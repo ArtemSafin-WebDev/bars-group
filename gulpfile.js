@@ -145,6 +145,7 @@ gulp.task('build', gulp.parallel(
     'copy',
     'filelist', 
     'grunt-assemble', 
+    'grunt-modernizr', 
     'styles', 
     'images',
     'scripts'

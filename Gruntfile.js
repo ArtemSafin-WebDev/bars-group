@@ -3,6 +3,7 @@
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-assemble');
+  grunt.loadNpmTasks("grunt-modernizr");
 
   grunt.initConfig({
     
@@ -21,6 +22,21 @@ module.exports = function(grunt) {
         cwd: 'src/templates/pages',
         src: ['**/*.hbs'],
         dest: 'public/'
+      }
+    },
+
+    modernizr: {
+      dist: {
+        "crawl": false,
+        "customTests": [],
+        "dest": "./public/js/modernizr-output.js",
+        "tests": [
+          "touchevents"
+        ],
+        "options": [
+          "setClasses"
+        ],
+        "uglify": true
       }
     }
 
