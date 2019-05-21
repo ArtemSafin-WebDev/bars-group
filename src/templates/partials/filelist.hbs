@@ -1,0 +1,110 @@
+
+<style type="text/css">
+	
+	.filelist {
+		position: absolute;
+		z-index: 999999;
+		top: 0;
+		left: 0;
+		font-size: 18px;
+		color: #fff;
+	}
+
+	.filelist._active div {
+		display: block;
+	}
+
+	.filelist span {
+		display: inline-block;
+		padding: 9px 20px;
+		background: rgba(0,0,0, .3);
+	}
+
+	.filelist div {
+		display: none;
+		padding: 9px 0;
+		background: rgba(0,0,0, .3);
+	}
+
+	.filelist div a {
+		display: block;
+		padding: 9px 20px;
+		color: #fff !important;
+	}
+
+	.filelist div a:hover {
+		background: rgba(0,0,0, .1);
+	}
+	
+
+</style>
+
+<script type="text/javascript">
+	
+	(function () {
+
+		var Filelist = {
+
+			createHtml: function () {
+
+				var $filelist = $('<div class="filelist">' +
+						'<span></span>' +
+					'</div>'),
+
+					$label = $filelist.find('span'); 
+
+				$.ajax('filelist.json', {cache: false})
+					.done(function (data) {
+						$label.text('Pages count: ' + data.length);
+
+						var $body = $('<div></div>');
+						data.forEach(function (filename) {
+							$('<a href="' + filename + '">' + 
+								filename + 
+							'</a>').appendTo($body);
+						});
+						$body.appendTo($filelist);
+					})
+					.fail(function () {
+						$label.text('Filelist failed.');
+					})
+					.always(function () {
+						$filelist.appendTo($('body'));
+					});
+
+			},
+
+			_handleSpanClick: function (e) {
+				var self = e.data.self;
+
+				$('.filelist').toggleClass('_active');
+			},
+
+			_handleDocumentClick: function (e) {
+				var self = e.data.self;
+
+				if ( $(e.target).closest('.filelist').length > 0 ) return;
+				$('.filelist').removeClass('_active');
+			},
+
+			_bindUI: function () {
+				var self = this;
+
+				$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
+				$(document).on('click', {self: self}, self._handleDocumentClick);
+			},
+
+			init: function () {
+				var self = this;
+
+				self._bindUI();
+				self.createHtml();
+			}
+
+		};
+
+		Filelist.init();
+
+	}());
+
+</script>

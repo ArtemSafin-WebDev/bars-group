@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> Главная</title>
+	<link rel="stylesheet" href="css/main.min.css">
+	<script src="js/vendor.min.js"></script>
+	<script src="js/main.min.js"></script>
+</head>
+<body>
+	
+	
+
+
+<div style="max-width: 700px; margin: 0 auto;">
+	
+	<h2>Как работаем:</h2>
+
+	<ol>
+		<li>Нарушать правила можно только при наличии разумной причины.</li>
+
+		<li>Стараемся советоваться с напарниками по любому значимому поводу. Чем больше мы знаем о том, что и как делают другие, тем меньше вероятности, что будут какие-то проблемы.</li>
+
+		<li>Используем <b>БЕМ</b> в нотации <b><i>.block__element--modificator</i></b></li>
+
+		<li>Верстаем максимально изолированно, создавая поменьше общих сущностей. Основные кандидаты на общие элементы -- типографика, кнопки и работа с формами. Экономим пространство имен.</li>
+		
+		<li>Любые библиотеки стараемся тянуть через <b>bower</b> и подключать из папки <b><i>/bower_components/</i></b>, не забывая регистрировать в <b>bower.json</b>. Почему не <b>npm</b>? Потому что тяжело потом искать что-то среди сотни зависимостей. Не забываем, что любой проект из <b>github</b> можно забрать к себе. Например, <b>bower install https://github.com/csstools/sanitize.css.git#8.0.0 --save</b>. Для dev-зависимостей используем <b>npm</b>.</li>
+		
+		<li>Если вендорный файл требует изменений или нет возможности подключить через <b>bower</b>, копируем непосредственно в <b><i>/src/css/vendor/</i></b> или <b><i>/src/js/vendor</i></b>. Измененные файлы при этом помечаем постфиксом <b>--fixed</b>.</li>
+		
+		<li>Блоки для css файлов именуются с префиксом от своего имени. <b>di-header</b> для <b>Димы</b>, <b>vl-header</b> для Владимира и хранятся в <b><i>/src/css/blocks/</i></b>. Если имя повторяется, придумайте себе псевдоним.</li>
+
+		<li>Скрипты оформляем в отдельные файлы (модули) и складываем в <b><i>/src/js/modules/</i></b>. Называем в соответствии с блоками css: <b>di-header.js, vl-header.js</b>. Модуль имеет право создавать только одну переменную в глобальном пространстве: <b>DiHeader, VlHeader</b>. </li>
+
+		<li>
+			Работаем через <b>git</b>. Все делаем в одной ветке. Локально можно использовать сколько угодно веток. Merge делаем через <b>rebase</b>. Это значит, что вы переносите свои коммиты поверх чужих так, будто вы их делали позже по времени. Цель -- упростить восприятие истории изменений. Пример очень нежелательной ситуации на втором рисунке.
+			
+			<br>
+			<br>
+
+			<img src="http://cdn.differencebetween.net/wp-content/uploads/2018/11/Difference-Between-Git-Rebase-and-Merge-.png" alt="">
+
+			<br>
+			<br>
+
+			<img src="https://blog.carbonfive.com/wp-content/uploads/2017/08/Screen-Shot-2017-07-10-at-3.28.16-PM-1-470x428.png" alt="">
+
+			<br>
+			<br>
+
+		</li>
+
+		
+	</ol>
+
+</div>
+
+
+	
+	<style type="text/css">
+		
+		.filelist {
+			position: absolute;
+			z-index: 999999;
+			top: 0;
+			left: 0;
+			font-size: 18px;
+			color: #fff;
+		}
+	
+		.filelist._active div {
+			display: block;
+		}
+	
+		.filelist span {
+			display: inline-block;
+			padding: 9px 20px;
+			background: rgba(0,0,0, .3);
+		}
+	
+		.filelist div {
+			display: none;
+			padding: 9px 0;
+			background: rgba(0,0,0, .3);
+		}
+	
+		.filelist div a {
+			display: block;
+			padding: 9px 20px;
+			color: #fff !important;
+		}
+	
+		.filelist div a:hover {
+			background: rgba(0,0,0, .1);
+		}
+		
+	
+	</style>
+	
+	<script type="text/javascript">
+		
+		(function () {
+	
+			var Filelist = {
+	
+				createHtml: function () {
+	
+					var $filelist = $('<div class="filelist">' +
+							'<span></span>' +
+						'</div>'),
+	
+						$label = $filelist.find('span'); 
+	
+					$.ajax('filelist.json', {cache: false})
+						.done(function (data) {
+							$label.text('Pages count: ' + data.length);
+	
+							var $body = $('<div></div>');
+							data.forEach(function (filename) {
+								$('<a href="' + filename + '">' + 
+									filename + 
+								'</a>').appendTo($body);
+							});
+							$body.appendTo($filelist);
+						})
+						.fail(function () {
+							$label.text('Filelist failed.');
+						})
+						.always(function () {
+							$filelist.appendTo($('body'));
+						});
+	
+				},
+	
+				_handleSpanClick: function (e) {
+					var self = e.data.self;
+	
+					$('.filelist').toggleClass('_active');
+				},
+	
+				_handleDocumentClick: function (e) {
+					var self = e.data.self;
+	
+					if ( $(e.target).closest('.filelist').length > 0 ) return;
+					$('.filelist').removeClass('_active');
+				},
+	
+				_bindUI: function () {
+					var self = this;
+	
+					$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
+					$(document).on('click', {self: self}, self._handleDocumentClick);
+				},
+	
+				init: function () {
+					var self = this;
+	
+					self._bindUI();
+					self.createHtml();
+				}
+	
+			};
+	
+			Filelist.init();
+	
+		}());
+	
+	</script>	
+</body>
+</html>
+

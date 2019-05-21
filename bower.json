@@ -1,0 +1,20 @@
+{
+  "name": "html-barsgroup",
+  "description": "",
+  "main": "",
+  "authors": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "marx": "^3.0.7"
+  }
+}
