@@ -1,0 +1,32 @@
+
+// reset
+@import '../../bower_components/marx/css/marx';
+
+// sprites
+.icon {
+	display: inline-block;
+}
+
+@import "../../temp/css/sprite";
+@include retina-sprites($retina-groups);
+
+// fonts
+@import '_fonts';
+
+body {
+	min-width: 320px;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.42;
+	color: #000000;
+}
+
+a {
+	transition: color .2s;
+}
+
+// blocks
+@import 'blocks/im-page';
+@import 'blocks/im-footer';
+
+
+

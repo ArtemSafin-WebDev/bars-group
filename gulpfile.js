@@ -1,7 +1,8 @@
 'use strict';
 
 const gulp = require('gulp');
-const less = require('gulp-less');
+const gulpif = require('gulp-if');
+const sass = require('gulp-sass');
 const mmq = require('gulp-merge-media-queries');
 const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
@@ -12,6 +13,7 @@ const uglify = require('gulp-uglify');
 const rigger = require('gulp-rigger');
 const rename = require('gulp-rename');
 const header = require('gulp-header');
+const spritesmith = require('gulp.spritesmith');
 const rsync = require('gulp-rsync');
 
 const server = require("browser-sync").create();
@@ -76,7 +78,7 @@ gulp.task('scripts', function () {
 
 gulp.task('styles', function () {
     return gulp.src(['src/css/*.*', '!src/css/_*.*'])
-        .pipe(less())
+        .pipe(sass().on('error', sass.logError))
         .pipe(postcss([
             autoprefixer()
         ]))
@@ -111,12 +113,45 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('public/'));
 });
 
+gulp.task('sprite', function () {
+    return gulp.src('src/img/**/*.png')
+        .pipe(spritesmith({
+            padding: 20,
+            imgName: 'sprite.png',
+            imgPath: '../img/sprite.png',
+            cssName: 'sprite.scss',
+            retinaSrcFilter: '**/*@2x.png',
+            retinaImgName: 'sprite@2x.png',
+            retinaImgPath: '../img/sprite@2x.png',
+            cssVarMap: function (sprite) {
+
+                var iconName;
+                var basePaths = [ '/src/img/' ];
+                  
+                var fullPath = sprite.source_image.replace(/\\/g, '/');
+                  
+                for (var i = 0; i < basePaths.length; i++) {
+                  iconName = fullPath.split(basePaths[i])[1];
+                  if (iconName) break;
+                }
+
+                iconName = iconName
+                  .replace(/\//g, '-')          // replace '/' by '-'
+                  .replace(/(.+)\..+$/, '$1')   // remove extensions
+                  .replace(/-@2x/, '');         // remove '-@2x' part
+
+                sprite.name = 'icon-' + iconName;
+            }
+        }))
+        .pipe(gulpif('*.png', gulp.dest('public/img/'), gulp.dest('temp/css/')))
+});
+
 
 /*----------  Server  ----------*/
 
 gulp.task('watch', function(){
     gulp.watch('src/templates/**', gulp.series('filelist', 'grunt-assemble', 'reload'));
-    gulp.watch('src/css/**', gulp.series('styles'));
+    gulp.watch('src/css/**', gulp.series('sprite', 'styles'));
     gulp.watch('src/js/**', gulp.series('scripts', 'reload'));
     gulp.watch('src/img/**', gulp.series('images', 'reload'));
     gulp.watch(path.assets, gulp.series('copy', 'reload'));
@@ -161,6 +196,6 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('default', 
-    gulp.series('clean', 'build', 
+    gulp.series('clean', 'sprite', 'build', 
         gulp.parallel('server', 'watch')));
 
