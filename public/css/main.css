@@ -1161,6 +1161,15 @@ a {
 	width: 151px;
 }
 
+.im-footer__rest {
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
 .im-footer__menu {
 	-webkit-box-flex: 1;
 	-ms-flex-positive: 1;
@@ -1363,6 +1372,11 @@ a {
 	padding: 70px 0;
 }
 
+.im-footer__rest {
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
 .im-footer__menu {
 	margin-right: -20px;
 }
@@ -1424,7 +1438,7 @@ a {
 
 .im-footer__menu__title {
 	font-size: 11px;
-	margin-top: 11px;
+	margin-top: 16px;
 }
 
 .im-footer__menu__item {

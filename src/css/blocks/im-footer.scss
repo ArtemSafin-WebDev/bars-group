@@ -20,6 +20,11 @@
 		}
 	}
 
+	&__rest {
+		flex-grow: 1;
+		display: flex;
+	}
+
 	&__menu {
 		flex-grow: 1;
 		display: flex;
@@ -214,6 +219,10 @@
 
 		padding: 70px 0;
 
+		&__rest  {
+			flex-wrap: wrap;
+		}
+
 		&__menu {
 
 			margin-right: -20px;
@@ -275,7 +284,7 @@
 
 			&__title {
 				font-size: 11px;
-				margin-top: 11px;
+				margin-top: 16px;
 			}
 
 			&__item {
