@@ -115,6 +115,27 @@
 		}
 	}
 
+	&__social {
+		white-space: nowrap;
+		margin-top: 43px;
+
+		&__item {
+			display: inline-block;
+			margin-right: 20px;
+			font-size: 0;
+			text-decoration: none !important;
+			color: #7695bc !important;
+
+			&:hover {
+				color: lighten(#7695bc, 10%) !important;
+			}
+
+			i {
+				font-size: 24px;
+			}
+		}
+	}
+
 	&__info {
 		margin-top: 93px;
 		font-size: 0;
@@ -164,6 +185,10 @@
 	.im-footer {
 
 		&__logo {
+
+			&_for-info {
+				display: none;
+			}
 
 			&__size {
 				width: 130px;
@@ -279,6 +304,18 @@
 		&__email {
 			margin-top: 0;
 			font-size: 11px;
+		}
+
+		&__social {
+			margin-top: 13px;
+
+			&__item {
+				margin-right: 7px;
+
+				i {
+					font-size: 15px;
+				}
+			}
 		}
 
 		&__info {
