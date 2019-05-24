@@ -1,6 +1,6 @@
 
 // reset
-@import '../../bower_components/marx/css/marx';
+@import '../../bower_components/destyle.css/destyle.css';
 
 // sprites
 .icon {
@@ -10,8 +10,11 @@
 @import "../../temp/css/sprite";
 @include retina-sprites($retina-groups);
 
-// fonts
+// partials
 @import '_fonts';
+@import '_helpers';
+@import '_mixins';
+@import '_colors';
 
 body {
 	min-width: 320px;
@@ -27,6 +30,7 @@ a {
 // blocks
 @import 'blocks/im-page';
 @import 'blocks/im-footer';
+@import 'blocks/im-digits';
 
 
 

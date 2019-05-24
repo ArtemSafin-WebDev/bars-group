@@ -15,6 +15,6 @@
   ],
   "dependencies": {
     "jquery": "^3.4.1",
-    "marx": "^3.0.7"
+    "destyle.css": "https://github.com/nicolas-cusan/destyle.css.git#1.0.5"
   }
 }

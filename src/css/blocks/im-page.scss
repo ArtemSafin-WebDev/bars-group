@@ -1,5 +1,9 @@
 
 .im-page {
+
+	&__wrapper {
+		overflow: hidden;
+	}
 	
 	&__center {
 		max-width: 1600px;
@@ -8,6 +12,17 @@
 
 	&__inner {
 		padding: 0 40px;
+	}
+
+	&__label {
+		display: inline-block;
+		padding: 13px 16px 11px 16px;
+		background: #59b4e6;
+		font-size: 16px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 1.78px;
+		color: #ffffff;
 	}
 
 }

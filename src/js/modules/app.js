@@ -2,9 +2,17 @@ var App = {
 
 	_handleDOMReady: function () {
 		var self = this;
-
-		// init modules here
-		// ModuleName.init();
+		
+		WebFont.load({
+			google: {
+				families: ['Open Sans:400,600,700:cyrillic']
+			},
+			active: function () {
+				
+				// init modules here
+				ImDigits.init();
+			}
+		});
 
 	},
 
