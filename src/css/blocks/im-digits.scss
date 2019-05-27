@@ -4,6 +4,19 @@
 	margin-top: 198px;
 	margin-bottom: 163px;
 
+	&._visible {
+		.im-digits__nums__list {
+			visibility: visible;
+		}
+	}
+
+	&._ready {
+		.im-digits__nums__list {
+			transition: transform .4s ease-in-out;
+			will-change: transform;
+		}
+	}
+
 	&__center {
 		position: relative;
 	}
@@ -105,12 +118,12 @@
 		&__crop {
 			position: relative;
 			overflow: hidden;
-			width: 2000px;
+			width: 1400px;
 		}
 
 		&__list {
-			transition: transform .4s ease-in-out;
-			will-change: transform;
+			visibility: hidden;
+			display: inline-block;
 			white-space: nowrap;
 			font-size: 0;
 		}

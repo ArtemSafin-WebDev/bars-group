@@ -93,6 +93,8 @@ a {
 
 .im-page__wrapper {
 	overflow: hidden;
+	max-width: 3000px;
+	margin: 0 auto;
 }
 
 .im-page__center {
@@ -308,6 +310,18 @@ a {
 	margin-bottom: 163px;
 }
 
+.im-digits._visible .im-digits__nums__list {
+	visibility: visible;
+}
+
+.im-digits._ready .im-digits__nums__list {
+	-webkit-transition: -webkit-transform .4s ease-in-out;
+	transition: -webkit-transform .4s ease-in-out;
+	transition: transform .4s ease-in-out;
+	transition: transform .4s ease-in-out, -webkit-transform .4s ease-in-out;
+	will-change: transform;
+}
+
 .im-digits__center {
 	position: relative;
 }
@@ -429,15 +443,12 @@ a {
 .im-digits__nums__crop {
 	position: relative;
 	overflow: hidden;
-	width: 2000px;
+	width: 1400px;
 }
 
 .im-digits__nums__list {
-	-webkit-transition: -webkit-transform .4s ease-in-out;
-	transition: -webkit-transform .4s ease-in-out;
-	transition: transform .4s ease-in-out;
-	transition: transform .4s ease-in-out, -webkit-transform .4s ease-in-out;
-	will-change: transform;
+	visibility: hidden;
+	display: inline-block;
 	white-space: nowrap;
 	font-size: 0;
 }

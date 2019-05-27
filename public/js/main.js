@@ -32,14 +32,22 @@
 var ImDigits = {
 
 	_state: {
-		currentIndex: 0,
+		currentIndex: null,
 		animating: false
 	},
 
-	_getNumsCount: function () {
+	_getRealIndex: function (index) {
 		var self = this;
 
+		return index % self._getRealCount(); 
+	},
+
+	_getNumsCount: function () {
 		return $('#im-digits .im-digits__nums__item').length;
+	},
+
+	_getRealCount: function () {
+		return $('#im-digits .im-digits__pics__item').length;
 	},
 
 	_getDirection: function (nextIndex) {
@@ -49,6 +57,51 @@ var ImDigits = {
 		return (nextIndex > currentIndex) ? 'left' : 'right';
 	},
 
+	_setInitialPosition: function () {
+		var self = this;
+
+		var count = self._getRealCount();
+
+		self._state.currentIndex = count;
+		self._moveNumsToItem(count);
+	},
+
+	_setRightRebasePos: function () {
+		var self = this;
+
+		var count = self._getRealCount();
+		var nextIndex = self._state.currentIndex - count;
+
+		self._state.currentIndex = nextIndex;
+		self._moveNumsToItem(nextIndex);
+	},
+
+	_setVisibleState: function () {
+		$('#im-digits').addClass('_visible');
+	},
+
+	_setReadyState: function () {
+		setTimeout(function () {
+			$('#im-digits').addClass('_ready');
+		}, 20);
+	},
+
+	_cloneNumsItems: function () {
+		var self = this;
+
+		var $_ = $('#im-digits');
+		var $numsCrop = $_.find('.im-digits__nums__crop');
+		var $numsList = $_.find('.im-digits__nums__list');
+		var $numsItem = $_.find('.im-digits__nums__item');
+		var cropWidth = $numsCrop.width();
+		var listWidth = $numsList.width();
+		var factor = Math.ceil(cropWidth / listWidth) + 1;
+
+		for (var i = 0; i < factor; i++) {
+			$numsItem.clone().appendTo($numsList);
+		}
+	},
+
 	_slideToItem: function (index) {
 		var self = this;
 
@@ -56,22 +109,22 @@ var ImDigits = {
 		self._state.animating = true;
 
 		// indexes
-		var prevIndex = self._state.currentIndex;
+		var currIndex = self._state.currentIndex;
 		var nextIndex = index;
 
 		// elements
 		var $_ = $('#im-digits');
 		var $numsCrop = $_.find('.im-digits__nums__crop');
 		
-		var $nextPicsItem = $_.find('.im-digits__pics__item').eq(nextIndex);
 		var $nextNumsItem = $_.find('.im-digits__nums__item').eq(nextIndex);
-		var $nextTextItem = $_.find('.im-digits__text__item').eq(nextIndex);
+		var $nextPicsItem = $_.find('.im-digits__pics__item').eq(self._getRealIndex(nextIndex));
+		var $nextTextItem = $_.find('.im-digits__text__item').eq(self._getRealIndex(nextIndex));
 		var $nextTextValue = $nextTextItem.find('.im-digits__text__value');
 		var $nextTextDesc = $nextTextItem.find('.im-digits__text__desc');
 
-		var $currPicsItem = $_.find('.im-digits__pics__item').eq(prevIndex);
-		var $currNumsItem = $_.find('.im-digits__nums__item').eq(prevIndex);
-		var $currTextItem = $_.find('.im-digits__text__item').eq(prevIndex);
+		var $currNumsItem = $_.find('.im-digits__nums__item').eq(currIndex);
+		var $currPicsItem = $_.find('.im-digits__pics__item').eq(self._getRealIndex(currIndex));
+		var $currTextItem = $_.find('.im-digits__text__item').eq(self._getRealIndex(currIndex));
 		var $currTextValue = $currTextItem.find('.im-digits__text__value');
 		var $currTextDesc = $currTextItem.find('.im-digits__text__desc');
 
@@ -156,6 +209,9 @@ var ImDigits = {
 			// allow animating
 			self._state.animating = false;
 			self._state.currentIndex = nextIndex;
+
+			// rebase, if no side clones
+			self._rebaseAtEdges();
 		}, 700);
 
 	},
@@ -177,6 +233,30 @@ var ImDigits = {
 		$list.css({'transform': 'translateX(-' + listOffset + 'px)'});
 	},
 
+	_rebaseAtEdges: function () {
+		var self = this;
+
+		var $_ = $('#im-digits');
+		var $numsCrop = $_.find('.im-digits__nums__crop');
+		var $numsItem = $_.find('.im-digits__nums__item');
+		var penultOffset = $numsItem .last().prev().offset().left;
+		var rightEdge = $numsCrop.offset().left + $numsCrop.width();
+		var currIndex = self._state.currentIndex;
+
+		if (currIndex == 0 || penultOffset < rightEdge) {
+			$('#im-digits').removeClass('_ready');
+
+			if (currIndex == 0) {
+				self._setInitialPosition();
+			} else {
+				self._setRightRebasePos();
+			}
+			setTimeout(function () {
+				$('#im-digits').addClass('_ready');
+			}, 20);
+		} 
+	},
+
 	_handleNumClick: function (e) {
 		var self = e.data.self;
 
@@ -192,8 +272,6 @@ var ImDigits = {
 		e.preventDefault();
 
 		var nextIndex = self._state.currentIndex - 1;
-
-		if (nextIndex < 0) return;
 		self._slideToItem(nextIndex);
 	},
 
@@ -203,15 +281,11 @@ var ImDigits = {
 		e.preventDefault();
 
 		var nextIndex = self._state.currentIndex + 1;
-		var lastIndex = self._getNumsCount() - 1;
-
-		if (nextIndex > lastIndex) return;
 		self._slideToItem(nextIndex);
 	},
 
 	_bindUI: function () {
 		var self = this;
-
 
 		$(document).on('click', '.im-digits__nums__item', {self: self}, self._handleNumClick);
 		$(document).on('click', '.im-digits__prev', {self: self}, self._handlePrevClick);
@@ -223,7 +297,11 @@ var ImDigits = {
 
 		if ( $('#im-digits').length == 0 ) return;
 
-		self._moveNumsToItem(0);
+		self._cloneNumsItems();
+		self._setInitialPosition();
+		self._setVisibleState();
+		self._setReadyState();
+
 		self._bindUI();
 	}
 
