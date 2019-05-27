@@ -254,12 +254,20 @@ var ImDigits = {
 		self._slideToItem(nextIndex);
 	},
 
+	_handleWindowResize: function (e) {
+		var self = e.data.self;
+
+		var currIndex = self._state.currentIndex;
+		self._moveNumsToItem(currIndex);
+	},
+
 	_bindUI: function () {
 		var self = this;
 
 		$(document).on('click', '.im-digits__nums__item', {self: self}, self._handleNumClick);
 		$(document).on('click', '.im-digits__prev', {self: self}, self._handlePrevClick);
 		$(document).on('click', '.im-digits__next', {self: self}, self._handleNextClick);
+		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {

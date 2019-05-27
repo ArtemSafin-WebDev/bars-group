@@ -29,6 +29,15 @@
 
 }
 
+@media screen and (max-width: 1200px) {
+
+	.im-page {
+		&__label {
+			font-size: 14px;
+		}
+	}
+}
+
 @media screen and (max-width: 850px) {
 
 	.im-page {

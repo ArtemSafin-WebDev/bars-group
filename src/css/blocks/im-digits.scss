@@ -42,8 +42,8 @@
 			@include position-fill();
 			z-index: 5;
 			content: ' ';
-			background: #5375a2;
-			opacity: .3;
+			background: #58616f;
+			opacity: .5;
 		}
 
 		&__item {
@@ -225,6 +225,62 @@
 	}
 
 }
+
+@media screen and (max-width: 1300px) {
+
+	.im-digits {
+
+		&__slider {
+			margin-left: 0;
+			width: 65%;
+		}
+
+		&__label {
+			top: -18px;
+			left: 20px;
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	
+	.im-digits {
+
+		&__text {
+
+			&__desc {
+				padding: 0 50px;
+				font-size: 21px;
+			}
+
+			&__value {
+				padding-right: 50px;
+				font-size: 70px;
+			}
+
+		}
+		
+		&__nums {
+			&__item {
+				margin-left: 50px;
+				font-size: 70px;
+			}
+		}
+
+	}
+
+}
+@media screen and (max-width: 1100px) {
+
+	.im-digits {
+
+		&__slider {
+			width: 75%;
+		}
+
+	}
+}
+
 
 @keyframes imDigitsFadeOutLeft {
 	0% {
