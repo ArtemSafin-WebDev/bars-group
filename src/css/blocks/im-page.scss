@@ -29,7 +29,7 @@
 
 }
 
-@media screen and (max-width: 1200px) {
+@media all and (max-width: 1200px) {
 
 	.im-page {
 		&__label {
@@ -38,7 +38,7 @@
 	}
 }
 
-@media screen and (max-width: 850px) {
+@media all and (max-width: 850px) {
 
 	.im-page {
 
@@ -48,4 +48,15 @@
 
 	}
 
+}
+
+@media all and (max-width: 600px) {
+
+	.im-page {
+		&__label {
+			padding: 8px 7px;
+			font-size: 11px;
+			letter-spacing: 1.22px;
+		}
+	}
 }

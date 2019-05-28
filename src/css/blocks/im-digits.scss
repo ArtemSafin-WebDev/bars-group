@@ -18,6 +18,7 @@
 	}
 
 	&__center {
+		@extend .clearfix;
 		position: relative;
 	}
 
@@ -203,6 +204,10 @@
 		@extend .icon-arrow-right;
 	}
 
+	&__about {
+		display: none;
+	}
+
 	._fadeOutLeft {
 		animation: imDigitsFadeOutLeft .4s ease-in-out;
 		animation-fill-mode: forwards;
@@ -230,7 +235,7 @@
 
 }
 
-@media screen and (max-width: 1300px) {
+@media all and (max-width: 1300px) {
 
 	.im-digits {
 
@@ -246,7 +251,7 @@
 	}
 }
 
-@media screen and (max-width: 1200px) {
+@media all and (max-width: 1200px) {
 	
 	.im-digits {
 
@@ -274,7 +279,8 @@
 	}
 
 }
-@media screen and (max-width: 1100px) {
+
+@media all and (max-width: 1100px) {
 
 	.im-digits {
 
@@ -284,6 +290,138 @@
 
 	}
 }
+
+
+@media all and (max-width: 800px) {
+
+	.im-digits {
+
+		&__label {
+			left: 0;
+		}
+
+		&__content {
+			margin: 0 -20px;
+		}
+
+		&__slider {
+			width: 100%;
+			height: 200px;
+		}
+
+		&__text {
+			&__desc {
+				display: none;
+			}
+
+			&__value {
+				padding: 0 20px;
+			}
+		}
+
+		&__nums {
+			margin-left: -1px;
+			overflow: hidden;
+
+			&__item {
+				height: 200px;
+				line-height: 200px;
+				visibility: visible !important;
+			}
+		}
+
+		&__about {
+			display: block;
+			margin-top: 25px;
+
+			&__list {
+				overflow: hidden;
+			}
+
+			&__item {
+				transition: opacity .4s;
+				opacity: 0;
+				float: left;
+				width: 100%;
+				margin-left: -100%;
+	
+				&:first-child {
+					margin-left: 0;
+				}
+
+				&._active {
+					opacity: 1;
+				}
+			}
+
+			&__title {
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 1.37;
+			}
+
+			&__desc {
+				margin-top: 9px;
+				font-size: 14px;
+				line-height: 1.72;
+				opacity: .7;
+			}
+		}
+
+		&__buttons {
+			position: static;
+			float: right;
+			margin-top: 20px;
+		}
+
+	}
+}
+
+@media all and (max-width: 600px) {
+
+	.im-digits {
+
+		&__slider {
+			height: 118px;
+		}
+
+		&__text {
+			&__value {
+				padding: 0 16px;
+				font-size: 60px;
+			}
+		}
+
+		&__nums {
+			&__item {
+				height: 118px;
+				line-height: 118px;
+			}
+		}
+
+		&__about {
+
+			&__title {
+				font-size: 16px;
+			}
+
+			&__desc {
+				font-size: 11px;
+			}
+		}
+
+		&__prev,
+		&__next {
+			width: 28px;
+			height: 28px;
+			line-height: 28px;
+			font-size: 12px;
+		}
+
+	}
+}
+
+
 
 
 @keyframes imDigitsFadeOutLeft {

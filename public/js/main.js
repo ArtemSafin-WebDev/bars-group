@@ -33,6 +33,8 @@ var ImDigits = {
 
 	_state: {
 		currentIndex: null,
+		touchStartX: null,
+		touchStartY: null,
 		animating: false
 	},
 
@@ -128,8 +130,16 @@ var ImDigits = {
 		var $currTextValue = $currTextItem.find('.im-digits__text__value');
 		var $currTextDesc = $currTextItem.find('.im-digits__text__desc');
 
+		var $aboutItem = $_.find('.im-digits__about__item');
+
 		// direction
 		var direction = self._getDirection(index);
+
+		$aboutItem.eq(self._getRealIndex(currIndex)).removeClass('_active');
+		
+		setTimeout(function () {
+			$aboutItem.eq(self._getRealIndex(nextIndex)).addClass('_active');
+		}, 200);
 
 		switch (direction) {
 			case 'left': 
@@ -304,12 +314,42 @@ var ImDigits = {
 		self._moveNumsToItem(currIndex);
 	},
 
+	_handleTouchStart: function (e) {
+		var self = e.data.self;
+
+		self._state.touchStartX = e.originalEvent.touches[0].clientX;
+		self._state.touchStartY = e.originalEvent.touches[0].clientX;
+	},
+
+	_handleTouchMove: function (e) {
+		var self = e.data.self;
+
+		var touchStartX = self._state.touchStartX;
+		var touchStartY = self._state.touchStartY;
+
+		var deltaX = touchStartX - e.originalEvent.touches[0].clientX;
+		var deltaY = touchStartY - e.originalEvent.touches[0].clientY;
+		
+		if (Math.abs(deltaX) > 100 && Math.abs(deltaX) > Math.abs(deltaY)) {
+			if (deltaX > 0) {
+				// swipe left
+				var nextIndex = self._state.currentIndex + 1;
+			} else {
+				// swipe right
+				var nextIndex = self._state.currentIndex - 1;
+			}
+			self._slideToItem(nextIndex);
+		}
+	},
+
 	_bindUI: function () {
 		var self = this;
 
 		$(document).on('click', '.im-digits__nums__item', {self: self}, self._handleNumClick);
 		$(document).on('click', '.im-digits__prev', {self: self}, self._handlePrevClick);
 		$(document).on('click', '.im-digits__next', {self: self}, self._handleNextClick);
+		$(document).on('touchstart', '.im-digits__center', {self: self}, self._handleTouchStart);
+		$(document).on('touchmove', '.im-digits__center', {self: self}, self._handleTouchMove);
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 	},
 
