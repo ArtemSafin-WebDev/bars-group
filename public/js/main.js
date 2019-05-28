@@ -257,6 +257,19 @@ var ImDigits = {
 		} 
 	},
 
+	_initImagerJs: function () {
+		new Imager('#im-digits .im-digits__pics__item img', { 
+			availableWidths: [857], 
+			availablePixelRatios: [1, 2],
+			onImagesReplaced: function () {
+				$(this.selector).each(function () {
+					var src = $(this).attr('src');
+					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
+				});
+			}
+		});
+	},
+
 	_handleNumClick: function (e) {
 		var self = e.data.self;
 
@@ -305,6 +318,7 @@ var ImDigits = {
 
 		if ( $('#im-digits').length == 0 ) return;
 
+		self._initImagerJs();
 		self._cloneNumsItems();
 		self._setInitialPosition();
 		self._setVisibleState();

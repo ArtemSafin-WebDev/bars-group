@@ -1,3 +1,3 @@
 //= ../../bower_components/jquery/dist/jquery.js
-//= vendor/example.js
+//= ../../bower_components/imager.js/Imager.js
 

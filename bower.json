@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "jquery": "^3.4.1",
-    "destyle.css": "https://github.com/nicolas-cusan/destyle.css.git#1.0.5"
+    "destyle.css": "https://github.com/nicolas-cusan/destyle.css.git#1.0.5",
+    "imager.js": "^0.5.1"
   }
 }

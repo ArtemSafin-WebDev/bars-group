@@ -877,6 +877,10 @@ a {
 	background-size: cover;
 }
 
+.im-digits__pics__item img {
+	visibility: hidden;
+}
+
 .im-digits__text {
 	position: absolute;
 	top: 0;
