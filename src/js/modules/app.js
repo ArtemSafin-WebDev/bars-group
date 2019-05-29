@@ -1,19 +1,21 @@
 var App = {
 
+	_isFontsReady: function () {
+		return $('html').hasClass('wf-active');
+	},
+
 	_handleDOMReady: function () {
 		var self = this;
-		
-		WebFont.load({
-			google: {
-				families: ['Open Sans:400,600,700:cyrillic']
-			},
-			active: function () {
-				
+
+		var timer = setInterval(function () {
+			if ( self._isFontsReady() ) {
+				clearInterval(timer);
+
 				// init modules here
 				ImDigits.init();
+				ImOverview.init();
 			}
-		});
-
+		}, 20);
 	},
 
 	_bindUI: function () {

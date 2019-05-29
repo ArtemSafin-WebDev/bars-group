@@ -153,7 +153,7 @@ gulp.task('watch', function(){
     gulp.watch('src/templates/**', gulp.series('filelist', 'grunt-assemble', 'reload'));
     gulp.watch('src/css/**', gulp.series('sprite', 'styles'));
     gulp.watch('src/js/**', gulp.series('scripts', 'reload'));
-    gulp.watch('src/img/**', gulp.series('images', 'reload'));
+    gulp.watch('src/img/**', gulp.series('images', 'grunt-responsive_images', 'reload'));
     gulp.watch(path.assets, gulp.series('copy', 'reload'));
 });
 
@@ -183,6 +183,7 @@ gulp.task('build', gulp.parallel(
     'grunt-modernizr', 
     'styles', 
     'images',
+    'grunt-responsive_images',
     'scripts'
 ));
 

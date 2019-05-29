@@ -43,7 +43,7 @@
 			@include position-fill();
 			z-index: 5;
 			content: ' ';
-			background: #58616f;
+			background: #525354;
 			opacity: .5;
 		}
 
@@ -177,7 +177,7 @@
 
 	&__prev,
 	&__next {
-		transition: background .2s;
+		transition: background .2s ease-in-out;
 		margin-left: 9px;
 		float: left;
 		width: 36px;
@@ -296,6 +296,8 @@
 
 	.im-digits {
 
+		margin-bottom: 72px;
+
 		&__label {
 			left: 0;
 		}
@@ -380,6 +382,8 @@
 @media all and (max-width: 600px) {
 
 	.im-digits {
+
+		margin-bottom: 72px;
 
 		&__slider {
 			height: 118px;

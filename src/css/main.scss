@@ -2,6 +2,9 @@
 // reset
 @import '../../bower_components/destyle.css/destyle';
 
+// vendor
+@import 'vendor/bootstrap-transitions';
+
 // sprites
 .icon {
 	display: inline-block;
@@ -27,9 +30,15 @@ a {
 	transition: color .2s;
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 // blocks
 @import 'blocks/im-page';
 @import 'blocks/im-footer';
+@import 'blocks/im-overview';
 @import 'blocks/im-digits';
 
 

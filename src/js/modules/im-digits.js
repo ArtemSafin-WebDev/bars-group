@@ -109,7 +109,7 @@ var ImDigits = {
 		
 		setTimeout(function () {
 			$aboutItem.eq(self._getRealIndex(nextIndex)).addClass('_active');
-		}, 200);
+		}, 0);
 
 		switch (direction) {
 			case 'left': 
@@ -138,7 +138,7 @@ var ImDigits = {
 					$nextTextItem.addClass('_active');
 					$fakeNumsItem.css({'transform': 'translateX(-' + distance + 'px)'});
 					self._moveNumsToItem(nextIndex);
-				}, 200);
+				}, 0);
 
 			break;
 			case 'right':
@@ -165,7 +165,7 @@ var ImDigits = {
 					$nextTextDesc.addClass('_fadeInLeft');
 					$nextTextValue.addClass('_fadeInLeft');
 					$nextTextItem.addClass('_active');
-				}, 200);
+				}, 0);
 
 			break;
 		}
@@ -239,7 +239,7 @@ var ImDigits = {
 
 	_initImagerJs: function () {
 		new Imager('#im-digits .im-digits__pics__item img', { 
-			availableWidths: [857], 
+			availableWidths: [600, 1000], 
 			availablePixelRatios: [1, 2],
 			onImagesReplaced: function () {
 				$(this.selector).each(function () {
