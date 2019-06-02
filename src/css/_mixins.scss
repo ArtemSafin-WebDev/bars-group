@@ -6,3 +6,14 @@
 	width: 100%;
 	height: 100%;
 }
+
+@mixin add-scrollbar() {
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none; 
+    -ms-overflow-style: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+} 

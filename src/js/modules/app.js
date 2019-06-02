@@ -14,6 +14,11 @@ var App = {
 				// init modules here
 				ImDigits.init();
 				ImOverview.init();
+				ImSlider.init();
+
+				if (getScrollbarWidth() == 0) {
+					$("html").addClass('hidden-scrollbar');
+				}
 			}
 		}, 20);
 	},

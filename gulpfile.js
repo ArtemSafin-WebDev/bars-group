@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const sass = require('gulp-sass');
-const mmq = require('gulp-merge-media-queries');
 const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
 const cleancss = require('gulp-clean-css');
@@ -82,7 +81,6 @@ gulp.task('styles', function () {
         .pipe(postcss([
             autoprefixer()
         ]))
-        .pipe(mmq())
         .pipe(header(banner, { pkg: pkg } ))
         .pipe(gulp.dest('public/css/'))
         .pipe(sourcemaps.init())
