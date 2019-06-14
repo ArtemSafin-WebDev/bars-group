@@ -1,13 +1,31 @@
----
-title: Главная
-layout: default.hbs
----
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<title> Главная</title>
+	<link rel="stylesheet" href="css/main.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+	<script src="js/modernizr-output.js"></script>
+	<script>
+	WebFont.load({
+		google: {
+			families: ['Open Sans:400,600,700:cyrillic']
+		}
+	});
+	</script>
+</head>
+<body>
+	
+	
 
 <div class="im-page__wrapper">
 
 	<div style='height: 300px;'></div>
 
-	<section class="im-slider" id="im-slider">
+	<section class="im-slider im-slider--2-lines" id="im-slider">
 
 		<div class="im-slider__body">
 			<div class="im-slider__crop">
@@ -20,249 +38,282 @@ layout: default.hbs
 								<div class="im-slider__list im-slider__list--yellow">
 									<div class="im-slider__line"></div>
 									<div class="im-slider__type">
-										<div class="im-slider__label">Продукт</div>
+										<div class="im-slider__type__crop">
+											<div class="im-slider__label">Продукт</div>
+										</div>
 									</div>
-									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/printing-{width}{pixel_ratio}.jpg" alt="">
-												</span>
-												<video class="im-slider__bg__video" preload="none" loop muted playsinline>
-													<source src="data/video/printing.mp4" type="video/mp4">
-												</video>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/printing-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Alpha BI</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Продукт</span>
-												</span>
+											<video class="im-slider__bg__video" preload="none" loop muted playsinline>
+												<source src="data/video/printing.mp4" type="video/mp4">
+											</video>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">Alpha BI</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Продукт</span>
 											</span>
-											<span class="im-slider__desc">
-												Комплекс услуг для органов государственной власти, который включает в себя функции нормотворчества.
+										</span>
+										<span class="im-slider__desc">
+											Комплекс услуг для органов государственной власти, который включает в себя функции нормотворчества.
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/transport-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-										</a>
-									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/transport-{width}{pixel_ratio}.jpg" alt="">
-												</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">ФГИС ЦС</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Продукт</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">ФГИС ЦС</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Продукт</span>
-												</span>
+										</span>
+										<span class="im-slider__desc">
+											Решение разработано на собственной технологической платформе с использованием отраслевых компетенций.
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/printing-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__desc">
-												Решение разработано на собственной технологической платформе с использованием отраслевых компетенций.
+											<video class="im-slider__bg__video" preload="none" loop muted playsinline>
+												<source src="data/video/printing.mp4" type="video/mp4">
+											</video>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">Alpha BI</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Продукт</span>
 											</span>
-										</a>
-									</div>
-									{{/repeat}}
+										</span>
+										<span class="im-slider__desc">
+											Комплекс услуг для органов государственной власти, который включает в себя функции нормотворчества.
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/transport-{width}{pixel_ratio}.jpg" alt="">
+											</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">ФГИС ЦС</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Продукт</span>
+											</span>
+										</span>
+										<span class="im-slider__desc">
+											Решение разработано на собственной технологической платформе с использованием отраслевых компетенций.
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/printing-{width}{pixel_ratio}.jpg" alt="">
+											</span>
+											<video class="im-slider__bg__video" preload="none" loop muted playsinline>
+												<source src="data/video/printing.mp4" type="video/mp4">
+											</video>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">Alpha BI</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Продукт</span>
+											</span>
+										</span>
+										<span class="im-slider__desc">
+											Комплекс услуг для органов государственной власти, который включает в себя функции нормотворчества.
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/transport-{width}{pixel_ratio}.jpg" alt="">
+											</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">ФГИС ЦС</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Продукт</span>
+											</span>
+										</span>
+										<span class="im-slider__desc">
+											Решение разработано на собственной технологической платформе с использованием отраслевых компетенций.
+										</span>
+									</a>
 								</div>
 								<div class="im-slider__list im-slider__list--blue">
 									<div class="im-slider__line"></div>
 									<div class="im-slider__type">
-										<div class="im-slider__label">Событие</div>
+										<div class="im-slider__type__crop">
+											<div class="im-slider__label">Событие</div>
+										</div>
 									</div>
-									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/social-{width}{pixel_ratio}.jpg" alt="">
-												</span>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/social-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">«HR PRO от Head Hunter»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Событие</span>
-												</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«HR PRO от Head Hunter»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/finance-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-										</a>
-									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/finance-{width}{pixel_ratio}.jpg" alt="">
-												</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«Неделе образования»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">«Неделе образования»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Событие</span>
-												</span>
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/factory-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«Телемедфорум 2019»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-										</a>
-									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/factory-{width}{pixel_ratio}.jpg" alt="">
-												</span>
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/social-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">«Телемедфорум 2019»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Событие</span>
-												</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«HR PRO от Head Hunter»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/finance-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-										</a>
-									</div>
-									{{/repeat}}
-								</div>
-								<div class="im-slider__list im-slider__list--green">
-									<div class="im-slider__line"></div>
-									<div class="im-slider__type">
-										<div class="im-slider__label">Решения</div>
-									</div>
-									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/smart-city-{width}{pixel_ratio}.jpg" alt="">
-												</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«Неделе образования»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Управление финансами</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Решения</span>
-												</span>
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/factory-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«Телемедфорум 2019»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-										</a>
-									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/education-{width}{pixel_ratio}.jpg" alt="">
-												</span>
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/social-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Информационная безопасность</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Решения</span>
-												</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«HR PRO от Head Hunter»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/finance-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-										</a>
-									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/agriculture-{width}{pixel_ratio}.jpg" alt="">
-												</span>
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«Неделе образования»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Бизнес-аналитика</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Решения</span>
-												</span>
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
+									<a href="#" class="im-slider__item">
+										<span class="im-slider__bg">
+											<span   class="im-slider__bg__image">
+												<img data-src="img/im-overview/factory-{width}{pixel_ratio}.jpg" alt="">
 											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+										<span class="im-slider__dash"></span>
+										<span class="im-slider__h1">
+											<span class="im-slider__h1__left">«Телемедфорум 2019»</span>
+											<span class="im-slider__h1__right">
+												<span class="im-slider__label">Событие</span>
 											</span>
-										</a>
-									</div>
-									{{/repeat}}
-								</div>
-								<div class="im-slider__list im-slider__list--red">
-									<div class="im-slider__line"></div>
-									<div class="im-slider__type">
-										<div class="im-slider__label">Кейс</div>
-									</div>
-									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/walking-{width}{pixel_ratio}.jpg" alt="">
-												</span>
-												<video class="im-slider__bg__video" preload="none" loop muted playsinline>
-													<source src="data/video/walking.mp4" type="video/mp4">
-												</video>
-											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Пенсионный фонд РТ</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Кейс</span>
-												</span>
-											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
-											</span>
-										</a>
-									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/transport-{width}{pixel_ratio}.jpg" alt="">
-												</span>
-											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">ФАУ "Главгосэкспертиза"</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Кейс</span>
-												</span>
-											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
-											</span>
-										</a>
-									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
-													<img data-src="img/im-overview/winter-{width}{pixel_ratio}.jpg" alt="">
-												</span>
-											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">АО «Вертолёты России»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Кейс</span>
-												</span>
-											</span>
-											<span class="im-slider__desc">
-												Платформа бизнес-аналитики, для сбора и анализа данных
-											</span>
-										</a>
-									</div>
-									{{/repeat}}
+										</span>
+										<span class="im-slider__desc">
+											Платформа бизнес-аналитики, для сбора и анализа данных
+										</span>
+									</a>
 								</div>
 								
 							</div>
@@ -876,3 +927,120 @@ layout: default.hbs
 	</footer>
 
 </div>
+
+	
+	<script src="js/vendor.min.js"></script>
+	<script src="js/main.min.js"></script>
+
+	
+	<style type="text/css">
+		
+		.filelist {
+			position: absolute;
+			z-index: 999999;
+			top: 0;
+			left: 0;
+			font-size: 18px;
+			color: #fff;
+		}
+	
+		.filelist._active div {
+			display: block;
+		}
+	
+		.filelist span {
+			display: inline-block;
+			padding: 9px 20px;
+			background: rgba(0,0,0, .3);
+		}
+	
+		.filelist div {
+			display: none;
+			padding: 9px 0;
+			background: rgba(0,0,0, .3);
+		}
+	
+		.filelist div a {
+			display: block;
+			padding: 9px 20px;
+			color: #fff !important;
+		}
+	
+		.filelist div a:hover {
+			background: rgba(0,0,0, .1);
+		}
+		
+	
+	</style>
+	
+	<script type="text/javascript">
+		
+		(function () {
+	
+			var Filelist = {
+	
+				createHtml: function () {
+	
+					var $filelist = $('<div class="filelist">' +
+							'<span></span>' +
+						'</div>'),
+	
+						$label = $filelist.find('span'); 
+	
+					$.ajax('filelist.json', {cache: false})
+						.done(function (data) {
+							$label.text('Pages count: ' + data.length);
+	
+							var $body = $('<div></div>');
+							data.forEach(function (filename) {
+								$('<a href="' + filename + '">' + 
+									filename + 
+								'</a>').appendTo($body);
+							});
+							$body.appendTo($filelist);
+						})
+						.fail(function () {
+							$label.text('Filelist failed.');
+						})
+						.always(function () {
+							$filelist.appendTo($('body'));
+						});
+	
+				},
+	
+				_handleSpanClick: function (e) {
+					var self = e.data.self;
+	
+					$('.filelist').toggleClass('_active');
+				},
+	
+				_handleDocumentClick: function (e) {
+					var self = e.data.self;
+	
+					if ( $(e.target).closest('.filelist').length > 0 ) return;
+					$('.filelist').removeClass('_active');
+				},
+	
+				_bindUI: function () {
+					var self = this;
+	
+					$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
+					$(document).on('click', {self: self}, self._handleDocumentClick);
+				},
+	
+				init: function () {
+					var self = this;
+	
+					self._bindUI();
+					self.createHtml();
+				}
+	
+			};
+	
+			Filelist.init();
+	
+		}());
+	
+	</script></body>
+</html>
+

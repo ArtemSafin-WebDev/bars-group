@@ -9,6 +9,7 @@
 
 @mixin add-scrollbar() {
 	overflow-x: scroll;
+	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: none; 
     -ms-overflow-style: none;
