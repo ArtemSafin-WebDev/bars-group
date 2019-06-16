@@ -1,0 +1,334 @@
+
+.im-header {
+
+	margin-bottom: 115px;
+	
+	/*----------  top line  ----------*/
+	
+	&__top-line {
+		border-bottom: 2px solid #e6ebf2;
+
+		&__center {
+			position: relative;
+			display: flex;
+			height: 72px;
+		}
+	}
+
+	&__menu {
+		padding-top: 17px;
+
+		&__wrap {
+			position: relative;
+			padding-right: 100px;
+		}
+
+		&__crop {
+			overflow: hidden;
+			height: 53px;
+		}
+
+		&__item {
+			margin-right: 35px;
+			float: left;
+
+			> a {
+				padding-top: 17px;
+				height: 53px;
+				white-space: nowrap;
+			}
+
+			&--more {
+				position: absolute;
+				left: 100%;
+				top: 0;
+				visibility: hidden;
+
+				&.--active {
+					visibility: visible;
+				}
+
+				&.--opened {
+
+					.im-header__menu__down {
+						visibility: visible;
+						opacity: 1;
+					}
+
+					> a {
+						&:before {
+							transform: rotate(-90deg) scaleX(-1);
+						}
+					}
+				}
+
+				> a {
+					position: relative;
+					padding-right: 25px;
+
+					&:before {
+						@extend .icon;
+						@extend .icon-arrow-left;
+						transition: .2s ease-out;
+						will-change: transform;
+						transform: rotate(-90deg);
+						position: absolute;
+						right: 0;
+						top: 50%;
+						margin-top: -7px;
+						font-size: 12px;
+					}
+				}
+			}
+		}
+
+		&__down {
+			transition: .2s ease-out;
+			will-change: opacity, visibility;
+			position: absolute;
+			z-index: 10;
+			top: 100%;
+			left: -22px;
+			padding-top: 20px;
+			min-width: 240px;
+			visibility: hidden;
+			opacity: 0;
+
+			&__body {
+				padding: 20px;
+				border: 2px solid #e6ebf2;
+				background: #fff;
+			}
+
+			a {
+				padding: 5px 0;
+			}
+		}
+
+		a {
+			display: block;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: 600;
+			color: #8a9eb8;
+
+			&:hover {
+				color: darken(#8a9eb8, 5%);
+			}
+		}
+
+	}
+
+	&__item {
+		padding-left: 25px;
+		padding-top: 32px;
+		white-space: nowrap;
+	}
+
+	&__phone {
+		font-size: 14px;
+		font-weight: 600;
+		color: #000;
+	}
+
+	&__email {
+		font-size: 14px;
+		font-weight: 600;
+		color: #92a4bc;
+
+		&:hover {
+			color: darken(#92a4bc, 5%);
+		}
+	}
+
+	&__search {
+		@extend .icon;
+		@extend .icon-search;
+		flex: 0 0 70px;
+		padding-top: 34px;
+		text-align: center;
+		font-size: 17px;
+		color: #6e7f95;
+
+		&:before {
+			margin-left: -4px;
+		}
+	}
+
+	&__write {
+		@extend .icon;
+		@extend .icon-comment;
+		font-size: 26px;
+		color: #44abe1;
+	}
+
+	&__gap {
+		flex-grow: 1;
+	}
+
+	&__sep {
+		flex: 0 0 3px;
+		background: #e6ebf2;
+	}
+	
+	/*----------  logo line  ----------*/
+	&__logo-line {
+		margin-top: 55px;
+		display: flex;
+	}
+
+	&__logo {
+		flex: 0 0 151px;
+	}
+
+	&__desc {
+		margin-left: 48px;
+		margin-top: 13px;
+		font-size: 18px;
+		line-height: 1.5;
+
+		&__long {
+			max-width: 300px;
+			display: none;
+		}
+
+		&__short {
+			max-width: 300px;
+		}
+
+		span {
+			color: #6f8fb9;
+		}
+	}
+
+	&__burger {
+		display: none;
+		position: absolute;
+		top: 50%;
+		margin-top: -16px;
+		right: 0;
+		
+		&__icon {
+			@extend .clearfix;
+			display: block;
+			padding: 10px 0;
+
+			span {
+				transition: width .2s ease-in-out;
+				display: block;
+				height: 2px;
+				width: 34px;
+				margin-bottom: 5px;
+				background: #000;
+			}
+		}
+	}
+
+}
+
+@media all and (max-width: 1050px) {
+
+	.im-header {
+		&__logo {
+			flex-basis: 130px;
+		}
+
+		&__desc {
+			margin-left: 45px;
+			font-size: 16px;
+		}
+	}
+
+}
+
+@media all and (max-width: 950px) {
+
+	.im-header {
+		
+		/*----------  top line  ----------*/
+		&__top-line {
+			&__center {
+				align-items: center;
+			}
+		}
+
+		&__menu,
+		&__search,
+		&__write,
+		&__sep,
+		&__gap {
+			display: none;
+		}
+
+		&__item {
+			padding-top: 0;
+			padding-right: 25px;
+			padding-left: 0;
+		}
+
+		&__burger {
+			display: block;
+		}
+	}
+
+}
+@media all and (max-width: 600px) {
+
+	.im-header {
+
+		margin-bottom: 37px;
+
+		/*----------  top line  ----------*/
+
+		&__top-line {
+			border-bottom: 0;
+
+			&__center {
+				height: 56px;
+			}
+		}
+
+		&__phone,
+		&__email {
+			font-size: 12px;
+		}
+
+		&__burger {
+			&__icon {
+				span {
+					width: 20px;
+					margin-bottom: 4px;
+				}
+			}
+		}
+		
+		/*----------  logo line  ----------*/
+		
+		&__logo-line {
+			margin-top: 17px;
+			flex-wrap: wrap;
+		}
+
+		&__logo {
+			flex-basis: 90px;
+		}
+
+		&__desc {
+			flex-basis: 100%;
+			margin-left: 0;
+			margin-top: 20px;
+			font-size: 11px;
+			line-height: 1.63;
+
+			&__long {
+				display: block;
+			}
+
+			&__short {
+				display: none;
+			}
+			
+		}
+	}
+
+}

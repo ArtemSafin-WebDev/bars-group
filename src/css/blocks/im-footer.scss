@@ -47,11 +47,10 @@
 			}
 
 			a {
-				text-decoration: none !important;
-				color: #6f8fb9 !important;
+				color: #6f8fb9;
 
 				&:hover {
-					color: lighten(#6f8fb9, 10%) !important;
+					color: lighten(#6f8fb9, 10%);
 				}
 			}
 		}
@@ -70,8 +69,7 @@
 			}
 
 			a {
-				text-decoration: none !important;
-				color: #000000 !important;
+				color: #000000;
 
 				&:hover {
 					opacity: .8;
@@ -97,8 +95,7 @@
 		font-weight: 700;
 
 		a {
-			text-decoration: none !important;
-			color: #000000 !important;
+			color: #000000;
 		}
 	}
 
@@ -108,11 +105,10 @@
 		font-weight: 600;
 
 		a {
-			text-decoration: none !important;
-			color: #6f8fb9 !important;
+			color: #6f8fb9;
 
 			&:hover {
-				color: lighten(#6f8fb9, 10%) !important;
+				color: lighten(#6f8fb9, 10%);
 			}
 		}
 	}
@@ -125,11 +121,10 @@
 			display: inline-block;
 			margin-right: 20px;
 			font-size: 0;
-			text-decoration: none !important;
-			color: #7695bc !important;
+			color: #7695bc;
 
 			&:hover {
-				color: lighten(#7695bc, 10%) !important;
+				color: lighten(#7695bc, 10%);
 			}
 
 			i {
@@ -150,11 +145,10 @@
 			color: #c4c4c4;
 
 			a {
-				text-decoration: none !important;
-				color: #c4c4c4 !important;
+				color: #c4c4c4;
 
 				&:hover {
-					color: darken(#c4c4c4, 10%) !important;
+					color: darken(#c4c4c4, 10%);
 				}
 			}
 		}
@@ -167,8 +161,7 @@
 		padding-right: 71px;
 		font-size: 12px;
 		font-weight: 600;
-		text-decoration: none !important;
-		color: #c4c4c4 !important;
+		color: #c4c4c4;
 
 		&__logo {
 			@extend .icon;
@@ -272,7 +265,7 @@
 			margin-bottom: 23px;
 
 			&__size {
-				width: 89px;
+				width: 90px;
 				margin-top: -13px;
 			}
 		}

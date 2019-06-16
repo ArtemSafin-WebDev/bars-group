@@ -15,6 +15,7 @@ var App = {
 				ImDigits.init();
 				ImOverview.init();
 				ImSlider.init();
+				ImHeader.init();
 
 				if (getScrollbarWidth() == 0) {
 					$("html").addClass('hidden-scrollbar');
