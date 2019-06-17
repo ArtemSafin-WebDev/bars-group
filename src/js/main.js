@@ -3,6 +3,7 @@
 //= modules/im-overview.js
 //= modules/im-slider.js
 //= modules/im-header.js
+//= modules/im-news.js
 //= modules/app.js
 
 App.init();

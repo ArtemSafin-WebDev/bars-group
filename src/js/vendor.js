@@ -5,5 +5,6 @@
 //= ../../bower_components/rangeslider.js/dist/rangeslider.js
 //= ../../bower_components/bootstrap/js/dist/util.js
 //= ../../bower_components/bootstrap/js/dist/collapse.js
+//= ../../bower_components/sly/dist/sly.js
 //= vendor/scrollbar-width.js
 

@@ -177,7 +177,6 @@
 
 	&__prev,
 	&__next {
-		transition: background .2s ease-in-out;
 		margin-left: 9px;
 		float: left;
 		width: 36px;
@@ -188,10 +187,6 @@
 		background: #eff4fd;
 		font-size: 15px;
 		color: #6e7f95 !important;
-
-		&:hover {
-			background: darken(#eff4fd, 5%);
-		}
 	}
 
 	&__prev {

@@ -316,8 +316,8 @@ var ImDigits = {
 		var self = this;
 
 		$(document).on('click', '.im-digits__nums__item', {self: self}, self._handleNumClick);
-		$(document).on('click', '.im-digits__prev', {self: self}, self._handlePrevClick);
-		$(document).on('click', '.im-digits__next', {self: self}, self._handleNextClick);
+		$(document).on('click', '#im-digits .im-digits__prev', {self: self}, self._handlePrevClick);
+		$(document).on('click', '#im-digits .im-digits__next', {self: self}, self._handleNextClick);
 		$(document).on('touchstart', '.im-digits__center', {self: self}, self._handleTouchStart);
 		$(document).on('touchmove', '.im-digits__center', {self: self}, self._handleTouchMove);
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);

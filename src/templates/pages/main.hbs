@@ -3,7 +3,7 @@ title: Главная
 layout: default.hbs
 ---
 
-<div class="im-page__wrapper">
+<div class="im-page__wrapper" id="im-wrapper">
 
 	<header class="im-header" id="im-header">
 		<div class="im-header__top-line">
@@ -384,6 +384,50 @@ layout: default.hbs
 			</div>
 		</div>
 
+	</section>
+
+	<section class="im-news" id="im-news">
+		<div class="im-page__center">
+			<div class="im-page__inner">
+
+				<div class="im-news__center">
+					
+					<h3 class="im-page__label im-news__label">Новости</h3>
+					
+					<div class="im-news__slider">
+						<div class="im-news__list">
+							<div class="im-news__item --active">
+								<time class="im-news__date" datetime="2019-01-28" pubdate>28 января 2019</time>
+								<h3  class="im-news__title">
+									Ространснадзор будет рассчитывать риски в цифровом сервисе, разработанном «БАРС Груп»
+								</h3>
+								<div class="im-news__desc">
+									В результате обновлений платформа перешла на российскую СУБД PostgreSQL, платформа перешла на российскую СУБД PostgreSQL.
+								</div>
+							</div>
+							{{#repeat 10}}
+							<div class="im-news__item">
+								<time class="im-news__date" datetime="2019-01-28" pubdate>17 января 2019</time>
+								<h3  class="im-news__title">
+									«БАРС Груп» выпустила новый релиз платформы «Своды»
+								</h3>
+								<div class="im-news__desc">
+									В результате обновлений платформа перешла на российскую СУБД PostgreSQL, платформа перешла на российскую СУБД PostgreSQL.
+								</div>
+							</div>
+							{{/repeat}}
+						</div>
+					</div>
+
+					<div class="im-digits__buttons im-news__buttons">
+						<a href="#" class="im-digits__prev"></a>
+						<a href="#" class="im-digits__next"></a>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
 	</section>
 	
 	<section class="im-digits" id="im-digits">

@@ -28,8 +28,6 @@ var ImHeader = {
 		var $lastItem = $items.eq(lastIndex);
 		var maxIndex = $items.length - 1;
 
-		console.log(lastIndex);
-
 		if (lastIndex < maxIndex) {
 
 			// show 'more' and position it
