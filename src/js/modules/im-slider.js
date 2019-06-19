@@ -1,122 +1,63 @@
 
 var ImSlider = {
 
+	_GANTT_ITEM_WIDTH: 510,
+	_GANTT_SCENE_HEIGHT: 600,
+	_GANTT_EDGE_OFFSET: 60,
+
+	_PATTERN_ITEMS: [[310, 60], [25, 355], [200, 775], [370, 1070], [100, 1435], [410, 1760], [120, 2115]],
+	_PATTERN_WIDTH: 2440,
+
 	_state: {
-		currView: 'lines',
+		randomItems: [],
 		isUserActivityHandled: false,
-		maxListWidth: null,
+		isGanttView: false,
+		savedSceneHeight: null,
 		maxScrollLeft: null,
 		lastRangeValue: null
 	},
 
-	_switchToGantView: function () {
+	_switchToGanttView: function () {
 		var self = this;
 
-		// to add some random (but repeatable) effect to items 
-		var widthFactors = Array(15).join('1.0|1.3|1.0|1.2|1.0|1.2|1.3|1.1|1.2|').split('|');
-		var leftFactors  = ('0.8|0.1|0.5|' + Array(15).join('0.3|0.4|0.4|0.3|0.3|0.5|0.4|0.3|0.3|')).split('|');
+		var $_ = $('#im-slider');
+		var $scroll = $_.find('.im-slider__scroll');
+		var $scene  = $_.find('.im-slider__scene');
 
-		// prepare items to walk one by one and put into lines
-		var items = _getSortedListOfItems();
-		
-		// get dimentions for items positions calculation
-		var itemsHeight = $(items[0]).outerHeight();
-		var itemsWidth  = $(items[0]).outerWidth();
-		var currSceneHeight = $('#im-slider .im-slider__scene').height();
-		var gantSceneHeight = 600;
-		var linesCount  = 3;
-		var linesHeight = Math.round(gantSceneHeight / linesCount);
+		// get items to walk through
+		var randomItems = self._state.randomItems;
 
-		// place, where the length of the line will be saved
-		var linesEdges = [0, 0, 0];
-
-		// calculate items positions and sizes
-		for (var i = 0, l = items.length; i < l; i++) {
-			var lineIndex = _getShortestLineIndex();
-
+		// calculate and set items positions 
+		for (var i = 0, l = randomItems.length; i < l; i++) {
 			// get item's position in 'lines' view
-			var $scrollBox = $('#im-slider .im-slider__scroll');
-			var currTop    = parseInt($(items[i]).offset().top - $scrollBox.offset().top);
-			var currLeft   = parseInt($(items[i]).offset().left + $scrollBox.scrollLeft());
+			var currTop     = parseInt($(randomItems[i]).offset().top - $scroll.offset().top);
+			var currLeft    = parseInt($(randomItems[i]).offset().left + $scroll.scrollLeft());
 
-			// get item's position in 'gant' view
-			var gantTop    = lineIndex * linesHeight + 20;
-			var gantWidth  = itemsWidth * widthFactors[i];
-			var gantLeft   = linesEdges[lineIndex] + leftFactors[i] * itemsWidth;
-			linesEdges[lineIndex] = gantLeft + gantWidth;
+			// get item's position in 'gantt' view
+			var ganttTop    = self._getGanttItemTopPos(i); 
+			var ganttLeft   = self._getGanttItemLeftPos(i);
 
 			// get item's transform value
-			var topOffset  = gantTop - currTop;
-			var leftOffset = gantLeft - currLeft;
+			var topOffset  = ganttTop  - currTop;
+			var leftOffset = ganttLeft - currLeft;
 			var transform  = 'translate3d(' + leftOffset + 'px,' + topOffset + 'px,0)';
 
-			$(items[i]).find('.im-slider__item__body').css({
+			$(randomItems[i]).find('.im-slider__item__body').css({
 				transform: transform,
-				width: gantWidth
+				width: self._GANTT_ITEM_WIDTH
 			});
-			
 		}
 
-		// change styles to gant mode
-		$('#im-slider .im-slider__scene').height(gantSceneHeight);
-		$('#im-slider').addClass('im-slider--gant-view');
-
-		function _getSortedListOfItems() {
-
-			// group by list
-			var lists = [];
-			var itemsCounter = 0;
-
-			$('#im-slider .im-slider__list').each(function () {
-				var items = $.makeArray($(this).find('.im-slider__item')).reverse();
-				itemsCounter += items.length;
-				lists.push(items);
-			});
-
-			// take from each list
-			var items = [];
-			var viewed = 0;
-			while (viewed < itemsCounter) {
-				lists.forEach(function (list) {
-					if (list.length == 0) return;
-					items.push(list.pop())
-					viewed++;
-				});
-			};
-
-			return items;
-		}
-
-		function _getShortestLineIndex() {
-			var minLength = Infinity;
-			var lineIndex = 0;
-
-			linesEdges.forEach(function (value, index) {
-				if (value < minLength) {
-					minLength = value;
-					lineIndex = index;
-				}
-			});
-
-			return lineIndex;
-		}
-
-		function _getLongestLineIndex() {
-			var maxLength = 0;
-			var lineIndex = 0;
-
-			linesEdges.forEach(function (value, index) {
-				if (value > maxLength) {
-					maxLength = value;
-					lineIndex = index;
-				}
-			});
-
-			return lineIndex;
-		}
+		// change styles to gantt mode
+		self._state.isGanttView = true;
+		self._state.savedSceneHeight = $scene.height();
+		$scene.height(self._state.savedSceneHeight);
+		$scene.height(self._GANTT_SCENE_HEIGHT);
+		$('#im-slider').addClass('im-slider--gantt-view');
+		self._makeScrollCalcs();
 
 		function _isPositionInViewport(left) {
-			return left - $scrollBox.scrollLeft() < $(window).width();
+			return left - $scroll.scrollLeft() < $(window).width();
 		}
 
 	},
@@ -124,47 +65,104 @@ var ImSlider = {
 	_switchToLinesView: function () {
 		var self = this;
 
-		$('#im-slider .im-slider__scene').height('auto');
+		self._state.isGanttView = false;
+		$('#im-slider .im-slider__scene').height(self._state.savedSceneHeight);
 		$('#im-slider .im-slider__item__body').attr('style', '');
-		$('#im-slider').removeClass('im-slider--gant-view');
+		$('#im-slider').removeClass('im-slider--gantt-view');
+		self._makeScrollCalcs();
 
+		setTimeout(function () {
+			$('#im-slider .im-slider__scene').attr('style', '');
+		}, 200);
 	},
 
-	_calcDimensions: function () {
+
+
+	_fillRandomItems: function () {
 		var self = this;
 
-		self._state.maxListWidth = self._getMaxListWidth();
-		self._state.maxScrollLeft = self._getMaxScrollLeft();
-	},
+		var lines = [];
+		var items = [];
+		var counter = 0;
 
-	_getMaxListWidth: function () {
-		var self = this;
-
-		var maxWidth = 0;
-		$('#im-slider .im-slider__list').each(function () {
-			var $lastItem = $(this).find('.im-slider__item').last();
-			var listOffset = $(this).offset().left;
-			var itemOffset = $lastItem.offset().left;
-			var itemWidth = $lastItem.width();
-			var listWidth = itemOffset - listOffset + itemWidth;
-			maxWidth = Math.max(maxWidth, listWidth);
+		// group items by line
+		$('#im-slider .im-slider__line').each(function () {
+			var items = $.makeArray($(this).find('.im-slider__item')).reverse();
+			counter += items.length;
+			lines.push(items);
 		});
-		return maxWidth;
+
+		// take from each group
+		var viewed = 0;
+		while (viewed < counter) {
+			lines.forEach(function (line) {
+				if (line.length == 0) return;
+				items.push(line.pop())
+				viewed++;
+			});
+		};
+
+		self._state.randomItems = items;
 	},
 
-	_getMaxScrollLeft: function () {
-		var $scrollBox = $('#im-slider .im-slider__scroll');
-		var currScrollLeft = $scrollBox.scrollLeft();
-		$scrollBox.scrollLeft(100000);
-		var maxScrollLeft = $scrollBox.scrollLeft();
-		$scrollBox.scrollLeft(currScrollLeft);
-		return maxScrollLeft;
-	},
-
-	_setGridLinesWidth: function () {
+	_getGanttItemTopPos: function (index) {
 		var self = this;
 
-		$('#im-slider .im-slider__line').width(self._state.maxListWidth);
+		return self._PATTERN_ITEMS[self._convertToPatternIndex(index)][0];
+	},
+
+	_getGanttItemLeftPos: function (index) {
+		var self = this;
+
+		var factor = Math.floor(index / self._PATTERN_ITEMS.length);
+		return self._PATTERN_ITEMS[self._convertToPatternIndex(index)][1] + self._PATTERN_WIDTH * factor;
+	},
+
+	_convertToPatternIndex: function (index) {
+		var self = this;
+
+		return index % self._PATTERN_ITEMS.length;
+	},
+
+	_makeScrollCalcs: function () {
+		var self = this;
+
+		var $scroll = $('#im-slider .im-slider__scroll');
+		var $lines  = $('#im-slider .im-slider__line');
+		var lineOffset = $lines.offset().left + $scroll.scrollLeft();
+
+		if (self._state.isGanttView) {
+
+			// 1. set grid width equal to last item right edge + edge offset
+			var lastItemOffset = self._getGanttItemLeftPos(self._state.randomItems.length - 1);
+			var gridWidth = lastItemOffset - lineOffset + self._GANTT_ITEM_WIDTH + self._GANTT_EDGE_OFFSET;
+
+			// 2. calc maxScrollLeft
+			var maxScrollLeft = gridWidth + lineOffset - $(window).width();
+
+		} else {
+
+			// 1. set grid width equal to max line width
+			var maxWidth = 0;
+
+			$lines.each(function () {
+				var $lastItem = $(this).find('.im-slider__item').last();
+				var lineWidth = $lastItem.offset().left - lineOffset + $lastItem.width();
+				maxWidth = Math.max(maxWidth, lineWidth);
+			});
+
+			var gridWidth = maxWidth;
+
+			// 2. calc maxScrollLeft
+			var lastItemMargin = parseInt($('#im-slider .im-slider__item').last().css('margin-right'));
+			var maxScrollLeft = gridWidth + lineOffset  + lastItemMargin - $(window).width();
+		}
+
+		$('#im-slider .im-slider__grid').width(gridWidth);
+		
+		if (maxScrollLeft < 0) maxScrollLeft = 0;
+		self._state.maxScrollLeft = maxScrollLeft;
+
 	},
 
 	_initImagerJs: function () {
@@ -249,8 +247,7 @@ var ImSlider = {
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
-		self._calcDimensions();
-		self._setGridLinesWidth();
+		self._makeScrollCalcs();
 	},
 
 	_handleSliderScroll: function (e) {
@@ -264,12 +261,10 @@ var ImSlider = {
 	_handleToggleButton: function (e) {
 		var self = e.data.self;
 
-		if (self._state.currView == 'lines') {
-			self._switchToGantView();
-			self._state.currView = 'gant';
-		} else {
+		if (self._state.isGanttView) {
 			self._switchToLinesView();
-			self._state.currView = 'lines';
+		} else {
+			self._switchToGanttView();
 		}
 	},
 
@@ -290,10 +285,10 @@ var ImSlider = {
 
 		if ( $('#im-slider').length == 0 ) return;
 
-		self._calcDimensions();
-		self._setGridLinesWidth();
+		self._makeScrollCalcs();
 		self._initRangeSlider();
 		self._initImagerJs();
+		self._fillRandomItems();
 		self._bindUI();
 
 		$('body').trigger('click');

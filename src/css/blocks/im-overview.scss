@@ -43,7 +43,6 @@
 
 			&._animate {
 				transition: transform .3s, opacity .3s;
-				will-change: transform;
 			}
 		}
 
@@ -116,7 +115,6 @@
 				@extend .icon;
 				@extend .icon-arrow-right;
 				transition: transform .2s, opacity .2s;
-				will-change: transform;
 				transform: translateX(-10px);
 				position: absolute;
 				left: 100%;

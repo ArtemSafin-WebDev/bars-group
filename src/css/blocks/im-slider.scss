@@ -1,9 +1,9 @@
 
 .im-slider {
 
-	&--gant-view {
+	&--gantt-view {
 		
-		.im-slider__list {
+		.im-slider__line {
 			&--yellow {
 				.im-slider__h1 {
 					font-size: 40px;
@@ -12,7 +12,7 @@
 		}
 		
 		.im-slider__label,
-		.im-slider__line {
+		.im-slider__grid {
 			opacity: 0;
 		}
 
@@ -71,7 +71,11 @@
 		}
 	}
 
-	&__list {
+	&__scene {
+		transition: height .2s ease-out;
+	}
+
+	&__line {
 		position: relative;
 		white-space: nowrap;
 		font-size: 0;
@@ -105,7 +109,7 @@
 		}
 	}
 
-	&__line {
+	&__grid {
 		transition: opacity .2s ease-out;
 		position: absolute;
 		top: 3px;
@@ -143,9 +147,19 @@
 		margin-bottom: 20px;
 		width: 410px;
 
+		&._frozen {
+	    	.im-slider__bg,
+	    	.im-slider__dash {
+	    		transition: none;
+	    	}
+	    }
+
+		&:last-child {
+			margin-right: 40px;
+		}
+
 		&__body {
-			transition: all .2s ease-out;
-			will-change: transform, width, padding;
+			transition: transform .2s ease-out, width .2s ease-out, padding .2s ease-out;
 			position: relative;
 			z-index: 1;
 			display: block;
@@ -180,10 +194,6 @@
 			}
 		}
 
-		&:last-child {
-			margin-right: 40px;
-		}
-
 		.im-slider__label {
 			transition: opacity .2s ease-out;
 			opacity: 0;
@@ -194,13 +204,14 @@
 	&__bg,
 	&__dash {
 		transition: all .2s ease-out;
-		will-change: height, opacity;
 		position: absolute;
 	    z-index: 1;
 	    top: 0;
 	    right: 0;
 	    left: 0;
 	    height: 7px;
+
+	    
 	}
 
 	&__bg {
@@ -238,7 +249,7 @@
 
 	&__h1,
 	&__desc {
-		transition: all .2s ease-out;
+		transition: font-size .2s ease-out, color .2s ease-out;
 		position: relative;
 		z-index: 2;
 		overflow: hidden;
@@ -288,7 +299,7 @@
 	&__toggle {
 		@extend .icon;
 		@extend .icon-grid;
-		transition: background .2s ease-in-out;
+		transition: background .2s;
 		float: right;
 		width: 40px;
 		height: 40px;
@@ -300,7 +311,7 @@
 		color: #6e7f95;
 
 		&:hover {
-			background: darken(#eff4fd, 5%);
+			background: darken(#eff4fd, 3%);
 		}
 	}
 

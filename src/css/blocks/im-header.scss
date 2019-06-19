@@ -69,8 +69,7 @@
 					&:before {
 						@extend .icon;
 						@extend .icon-arrow-left;
-						transition: .2s ease-out;
-						will-change: transform;
+						transition: transform .2s ease-out;
 						transform: rotate(-90deg);
 						position: absolute;
 						right: 0;
@@ -83,8 +82,7 @@
 		}
 
 		&__down {
-			transition: .2s ease-out;
-			will-change: opacity, visibility;
+			transition: opacity .2s ease-out, visibility .2s ease-out;
 			position: absolute;
 			z-index: 10;
 			top: 100%;

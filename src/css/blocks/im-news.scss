@@ -38,8 +38,7 @@
 	}
 
 	&__item {
-		transition: .2s ease-out;
-		will-change: width;
+		transition: width .2s ease-out;
 		display: inline-block;
 		vertical-align: top;
 		margin-left: -60px;
@@ -73,8 +72,7 @@
 	}
 
 	&__title {
-		transition: .2s ease-out;
-		will-change: font-size;
+		transition: font-size .2s ease-out;
 		margin-top: 11px;
 		font-size: 18px;
 		font-weight: 700;
@@ -82,8 +80,7 @@
 	}
 
 	&__desc {
-		transition: .2s ease-out;
-		will-change: opacity;
+		transition: opacity .2s ease-out;
 		margin-top: 20px;
 		font-size: 14px;
 		line-height: 1.5;
