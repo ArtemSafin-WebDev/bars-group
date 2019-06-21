@@ -14,7 +14,7 @@ var App = {
 				// init modules here
 				Digits.init();
 				Overview.init();
-				ImSlider.init();
+				GanttSlider.init();
 				Header.init();
 				News.init();
 

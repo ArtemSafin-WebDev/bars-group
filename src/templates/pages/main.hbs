@@ -3,7 +3,7 @@ title: Главная
 layout: default.hbs
 ---
 
-<div class="page__wrapper" id="im-wrapper">
+<div class="page__wrapper" id="wrapper">
 
 	<header class="header" id="header">
 		<div class="header__top-line">
@@ -104,257 +104,257 @@ layout: default.hbs
 		</div>
 	</header>
 
-	<section class="im-slider" id="im-slider">
+	<section class="gantt-slider" id="gantt-slider">
 
-		<div class="im-slider__body">
-			<div class="im-slider__crop">
-				<div class="im-slider__scroll">
+		<div class="gantt-slider__body">
+			<div class="gantt-slider__crop">
+				<div class="gantt-slider__scroll">
 					<div class="page__center">
 						<div class="page__inner">
 							
-							<div class="im-slider__scene">
+							<div class="gantt-slider__scene">
 								
-								<div class="im-slider__line im-slider__line--yellow">
-									<div class="im-slider__grid"></div>
-									<div class="im-slider__type">
-										<div class="im-slider__label">Продукт</div>
+								<div class="gantt-slider__line gantt-slider__line--yellow">
+									<div class="gantt-slider__grid"></div>
+									<div class="gantt-slider__type">
+										<div class="gantt-slider__label">Продукт</div>
 									</div>
 									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/printing-{width}{pixel_ratio}.jpg" alt="">
 												</span>
-												<video class="im-slider__bg__video" preload="none" loop muted playsinline>
+												<video class="gantt-slider__bg__video" preload="none" loop muted playsinline>
 													<source src="data/video/printing.mp4" type="video/mp4">
 												</video>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Alpha BI</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Продукт</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">Alpha BI</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Продукт</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Комплекс услуг для органов государственной власти, который включает в себя функции нормотворчества.
 											</span>
 										</a>
 									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/transport-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">ФГИС ЦС</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Продукт</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">ФГИС ЦС</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Продукт</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Решение разработано на собственной технологической платформе с использованием отраслевых компетенций.
 											</span>
 										</a>
 									</div>
 									{{/repeat}}
 								</div>
-								<div class="im-slider__line im-slider__line--blue">
-									<div class="im-slider__grid"></div>
-									<div class="im-slider__type">
-										<div class="im-slider__label">Событие</div>
+								<div class="gantt-slider__line gantt-slider__line--blue">
+									<div class="gantt-slider__grid"></div>
+									<div class="gantt-slider__type">
+										<div class="gantt-slider__label">Событие</div>
 									</div>
 									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/social-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">«HR PRO от Head Hunter»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Событие</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">«HR PRO от Head Hunter»</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Событие</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/finance-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">«Неделе образования»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Событие</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">«Неделе образования»</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Событие</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/factory-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">«Телемедфорум 2019»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Событие</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">«Телемедфорум 2019»</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Событие</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
 									{{/repeat}}
 								</div>
-								<div class="im-slider__line im-slider__line--green">
-									<div class="im-slider__grid"></div>
-									<div class="im-slider__type">
-										<div class="im-slider__label">Решения</div>
+								<div class="gantt-slider__line gantt-slider__line--green">
+									<div class="gantt-slider__grid"></div>
+									<div class="gantt-slider__type">
+										<div class="gantt-slider__label">Решения</div>
 									</div>
 									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/smart-city-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Управление финансами</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Решения</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">Управление финансами</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Решения</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/education-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Информационная безопасность</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Решения</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">Информационная безопасность</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Решения</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/agriculture-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Бизнес-аналитика</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Решения</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">Бизнес-аналитика</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Решения</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
 									{{/repeat}}
 								</div>
-								<div class="im-slider__line im-slider__line--red">
-									<div class="im-slider__grid"></div>
-									<div class="im-slider__type">
-										<div class="im-slider__label">Кейс</div>
+								<div class="gantt-slider__line gantt-slider__line--red">
+									<div class="gantt-slider__grid"></div>
+									<div class="gantt-slider__type">
+										<div class="gantt-slider__label">Кейс</div>
 									</div>
 									{{#repeat 3}}
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/walking-{width}{pixel_ratio}.jpg" alt="">
 												</span>
-												<video class="im-slider__bg__video" preload="none" loop muted playsinline>
+												<video class="gantt-slider__bg__video" preload="none" loop muted playsinline>
 													<source src="data/video/walking.mp4" type="video/mp4">
 												</video>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">Пенсионный фонд РТ</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Кейс</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">Пенсионный фонд РТ</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Кейс</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/transport-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">ФАУ "Главгосэкспертиза"</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Кейс</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">ФАУ "Главгосэкспертиза"</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Кейс</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
 									</div>
-									<div class="im-slider__item">
-										<a href="#" class="im-slider__item__body">
-											<span class="im-slider__bg">
-												<span class="im-slider__bg__image">
+									<div class="gantt-slider__item">
+										<a href="#" class="gantt-slider__item__body">
+											<span class="gantt-slider__bg">
+												<span class="gantt-slider__bg__image">
 													<img data-src="img/overview/winter-{width}{pixel_ratio}.jpg" alt="">
 												</span>
 											</span>
-											<span class="im-slider__dash"></span>
-											<span class="im-slider__h1">
-												<span class="im-slider__h1__left">АО «Вертолёты России»</span>
-												<span class="im-slider__h1__right">
-													<span class="im-slider__label">Кейс</span>
+											<span class="gantt-slider__dash"></span>
+											<span class="gantt-slider__h1">
+												<span class="gantt-slider__h1__left">АО «Вертолёты России»</span>
+												<span class="gantt-slider__h1__right">
+													<span class="gantt-slider__label">Кейс</span>
 												</span>
 											</span>
-											<span class="im-slider__desc">
+											<span class="gantt-slider__desc">
 												Платформа бизнес-аналитики, для сбора и анализа данных
 											</span>
 										</a>
@@ -372,11 +372,11 @@ layout: default.hbs
 
 		<div class="page__center">
 			<div class="page__inner">
-				<div class="im-slider__ctrl">
+				<div class="gantt-slider__ctrl">
 					
-					<button class="im-slider__toggle"></button>
+					<button class="gantt-slider__toggle"></button>
 
-					<div class="im-slider__range">
+					<div class="gantt-slider__range">
 						<input type="range" value="0" min="0" max="1000">
 					</div>
 

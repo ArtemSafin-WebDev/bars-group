@@ -1,5 +1,5 @@
 
-var ImSlider = {
+var GanttSlider = {
 
 	_GANTT_ITEM_WIDTH: 510,
 	_GANTT_SCENE_HEIGHT: 600,
@@ -20,9 +20,9 @@ var ImSlider = {
 	_switchToGanttView: function () {
 		var self = this;
 
-		var $_ = $('#im-slider');
-		var $scroll = $_.find('.im-slider__scroll');
-		var $scene  = $_.find('.im-slider__scene');
+		var $_ = $('#gantt-slider');
+		var $scroll = $_.find('.gantt-slider__scroll');
+		var $scene  = $_.find('.gantt-slider__scene');
 
 		// get items to walk through
 		var randomItems = self._state.randomItems;
@@ -42,7 +42,7 @@ var ImSlider = {
 			var leftOffset = ganttLeft - currLeft;
 			var transform  = 'translate3d(' + leftOffset + 'px,' + topOffset + 'px,0)';
 
-			$(randomItems[i]).find('.im-slider__item__body').css({
+			$(randomItems[i]).find('.gantt-slider__item__body').css({
 				transform: transform,
 				width: self._GANTT_ITEM_WIDTH
 			});
@@ -53,7 +53,7 @@ var ImSlider = {
 		self._state.savedSceneHeight = $scene.height();
 		$scene.height(self._state.savedSceneHeight);
 		$scene.height(self._GANTT_SCENE_HEIGHT);
-		$('#im-slider').addClass('im-slider--gantt-view');
+		$('#gantt-slider').addClass('gantt-slider--gantt-view');
 		self._makeScrollCalcs();
 
 		function _isPositionInViewport(left) {
@@ -66,13 +66,13 @@ var ImSlider = {
 		var self = this;
 
 		self._state.isGanttView = false;
-		$('#im-slider .im-slider__scene').height(self._state.savedSceneHeight);
-		$('#im-slider .im-slider__item__body').attr('style', '');
-		$('#im-slider').removeClass('im-slider--gantt-view');
+		$('#gantt-slider .gantt-slider__scene').height(self._state.savedSceneHeight);
+		$('#gantt-slider .gantt-slider__item__body').attr('style', '');
+		$('#gantt-slider').removeClass('gantt-slider--gantt-view');
 		self._makeScrollCalcs();
 
 		setTimeout(function () {
-			$('#im-slider .im-slider__scene').attr('style', '');
+			$('#gantt-slider .gantt-slider__scene').attr('style', '');
 		}, 200);
 	},
 
@@ -86,8 +86,8 @@ var ImSlider = {
 		var counter = 0;
 
 		// group items by line
-		$('#im-slider .im-slider__line').each(function () {
-			var items = $.makeArray($(this).find('.im-slider__item')).reverse();
+		$('#gantt-slider .gantt-slider__line').each(function () {
+			var items = $.makeArray($(this).find('.gantt-slider__item')).reverse();
 			counter += items.length;
 			lines.push(items);
 		});
@@ -127,8 +127,8 @@ var ImSlider = {
 	_makeScrollCalcs: function () {
 		var self = this;
 
-		var $scroll = $('#im-slider .im-slider__scroll');
-		var $lines  = $('#im-slider .im-slider__line');
+		var $scroll = $('#gantt-slider .gantt-slider__scroll');
+		var $lines  = $('#gantt-slider .gantt-slider__line');
 		var lineOffset = $lines.offset().left + $scroll.scrollLeft();
 
 		if (self._state.isGanttView) {
@@ -146,7 +146,7 @@ var ImSlider = {
 			var maxWidth = 0;
 
 			$lines.each(function () {
-				var $lastItem = $(this).find('.im-slider__item').last();
+				var $lastItem = $(this).find('.gantt-slider__item').last();
 				var lineWidth = $lastItem.offset().left - lineOffset + $lastItem.width();
 				maxWidth = Math.max(maxWidth, lineWidth);
 			});
@@ -154,11 +154,11 @@ var ImSlider = {
 			var gridWidth = maxWidth;
 
 			// 2. calc maxScrollLeft
-			var lastItemMargin = parseInt($('#im-slider .im-slider__item').last().css('margin-right'));
+			var lastItemMargin = parseInt($('#gantt-slider .gantt-slider__item').last().css('margin-right'));
 			var maxScrollLeft = gridWidth + lineOffset  + lastItemMargin - $(window).width();
 		}
 
-		$('#im-slider .im-slider__grid').width(gridWidth);
+		$('#gantt-slider .gantt-slider__grid').width(gridWidth);
 		
 		if (maxScrollLeft < 0) maxScrollLeft = 0;
 		self._state.maxScrollLeft = maxScrollLeft;
@@ -166,7 +166,7 @@ var ImSlider = {
 	},
 
 	_initImagerJs: function () {
-		new Imager('#im-slider .im-slider__bg__image img', { 
+		new Imager('#gantt-slider .gantt-slider__bg__image img', { 
 			availableWidths: [600, 1000], 
 			availablePixelRatios: [1, 2],
 			onImagesReplaced: function () {
@@ -181,7 +181,7 @@ var ImSlider = {
 	_initRangeSlider: function () {
 		var self = this;
 
-		var $range = $('#im-slider .im-slider__range');
+		var $range = $('#gantt-slider .gantt-slider__range');
 		$range.find('input').rangeslider({
 			polyfill: false,
 			onInit: function () {
@@ -195,7 +195,7 @@ var ImSlider = {
 				if (!isHandleActive) return;
 
 				var scrollLeft = self._state.maxScrollLeft / 1000 * value; 
-				$('#im-slider .im-slider__scroll').scrollLeft(scrollLeft);
+				$('#gantt-slider .gantt-slider__scroll').scrollLeft(scrollLeft);
 			}, 50)
 		});
 
@@ -204,7 +204,7 @@ var ImSlider = {
 	_startVideoLoading: function () {
 		var self = this;
 
-		$('#im-slider video').each(function () {
+		$('#gantt-slider video').each(function () {
 			$(this)[0].load();
 		});
 	},
@@ -253,9 +253,9 @@ var ImSlider = {
 	_handleSliderScroll: function (e) {
 		var self = e.data.self;
 
-		var scrollLeft = $('#im-slider .im-slider__scroll').scrollLeft();
+		var scrollLeft = $('#gantt-slider .gantt-slider__scroll').scrollLeft();
 		var rangeValue = Math.round(1000 * scrollLeft / self._state.maxScrollLeft);
-		$('#im-slider .im-slider__range input').val(rangeValue).change();
+		$('#gantt-slider .gantt-slider__range input').val(rangeValue).change();
 	},
 
 	_handleToggleButton: function (e) {
@@ -271,19 +271,19 @@ var ImSlider = {
 	_bindUI: function () {
 		var self = this;
 
-		$('.im-slider__scroll').on('scroll', {self: self}, _.throttle(self._handleSliderScroll, 50));
-		$('.im-slider__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		$('.gantt-slider__scroll').on('scroll', {self: self}, _.throttle(self._handleSliderScroll, 50));
+		$('.gantt-slider__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
-		$(document).on('mouseover', '.im-slider__item', {self: self}, self._handleMouseOver);
-		$(document).on('mouseout', '.im-slider__item', {self: self}, self._handleMouseOut);
-		$(document).on('click', '.im-slider__toggle', {self: self}, self._handleToggleButton);
+		$(document).on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
+		$(document).on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
+		$(document).on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#im-slider').length == 0 ) return;
+		if ( $('#gantt-slider').length == 0 ) return;
 
 		self._makeScrollCalcs();
 		self._initRangeSlider();

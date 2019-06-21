@@ -10,7 +10,7 @@ var News = {
 	_setSliderWidth: function () {
 		var self = this;
 
-		var $wrapper = $('#im-wrapper');
+		var $wrapper = $('#wrapper');
 		var $slider  = $('#news .news__slider');
 		var wrapperOffset = $wrapper.offset().left;
 		var wrapperWidth = $wrapper.width();
