@@ -21,6 +21,7 @@
 
 body {
 	min-width: 360px;
+	font-size: 18px;
 	font-family: 'Open Sans', sans-serif;
 	line-height: 1.42;
 	color: #000000;
@@ -28,11 +29,24 @@ body {
 
 a {
 	transition: color .2s;
+	color: #6f8fb9;
+
+	&:hover {
+		color: lighten(#6f8fb9, 10%);
+	}
+}
+
+strong {
+	font-weight: 700;
 }
 
 img {
 	max-width: 100%;
 	height: auto;
+}
+
+.nobr {
+	white-space: nowrap;
 }
 
 // blocks
@@ -45,6 +59,7 @@ img {
 @import 'blocks/digits';
 @import 'blocks/gantt-slider';
 @import 'blocks/news';
+@import 'blocks/press-center';
 
 
 

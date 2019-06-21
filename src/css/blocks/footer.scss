@@ -45,14 +45,6 @@
 			&:first-child {
 				margin-top: 0;
 			}
-
-			a {
-				color: #6f8fb9;
-
-				&:hover {
-					color: lighten(#6f8fb9, 10%);
-				}
-			}
 		}
 		
 		&__list {
@@ -103,14 +95,6 @@
 		margin-top: 5px;
 		font-size: 14px;
 		font-weight: 600;
-
-		a {
-			color: #6f8fb9;
-
-			&:hover {
-				color: lighten(#6f8fb9, 10%);
-			}
-		}
 	}
 
 	&__social {

@@ -109,7 +109,11 @@
 			padding-left: 76px;
 			font-size: 16px;
 			line-height: 1.5;
-			color: #ffffff;
+			color: #fff;
+
+			&:hover {
+				color: #fff;
+			}
 
 			&:before {
 				@extend .icon;
@@ -123,8 +127,6 @@
 				margin-left: 10px;
 				opacity: 0;
 			}
-
-			
 
 			&--wheat,
 			&--factory,
