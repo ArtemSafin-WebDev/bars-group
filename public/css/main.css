@@ -458,16 +458,16 @@ template {
     -webkit-transition: none;
     transition: none; } }
 
-.icon, .im-header__menu__item--more > a:before, .im-header__search, .im-header__write, .im-footer__dev__logo, .im-overview__nav__link:before, .digits__prev, .digits__next, .im-slider__toggle, .im-slider__range .rangeslider__handle i {
+.icon, .im-header__menu__item--more > a:before, .im-header__search, .im-header__write, .footer__dev__logo, .im-overview__nav__link:before, .digits__prev, .digits__next, .im-slider__toggle, .im-slider__range .rangeslider__handle i {
   display: inline-block; }
 
-.icon-im-footer-markweber, .im-footer__dev__logo {
+.icon-footer-markweber, .footer__dev__logo {
   background-image: url(../img/sprite.png);
   background-position: -62px 0px;
   width: 66px;
   height: 16px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .icon-im-footer-markweber, .im-footer__dev__logo {
+    .icon-footer-markweber, .footer__dev__logo {
       background-image: url(../img/sprite@2x.png);
       background-size: 128px 45px; } }
 
@@ -488,7 +488,7 @@ template {
   font-weight: normal;
   font-style: normal; }
 
-.icon, .im-header__menu__item--more > a:before, .im-header__search, .im-header__write, .im-footer__dev__logo, .im-overview__nav__link:before, .digits__prev, .digits__next, .im-slider__toggle, .im-slider__range .rangeslider__handle i {
+.icon, .im-header__menu__item--more > a:before, .im-header__search, .im-header__write, .footer__dev__logo, .im-overview__nav__link:before, .digits__prev, .digits__next, .im-slider__toggle, .im-slider__range .rangeslider__handle i {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -832,26 +832,26 @@ img {
     font-size: 11px;
     letter-spacing: 1.22px; } }
 
-.im-footer {
+.footer {
   padding: 97px 0;
   background: #fff; }
-  .im-footer__line {
+  .footer__line {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
-  .im-footer__logo {
+  .footer__logo {
     margin-right: 6%; }
-    .im-footer__logo__size {
+    .footer__logo__size {
       margin-top: -16px;
       width: 151px; }
-  .im-footer__rest {
+  .footer__rest {
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
-  .im-footer__menu {
+  .footer__menu {
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
@@ -861,81 +861,81 @@ img {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-bottom: -30px; }
-    .im-footer__menu__col {
+    .footer__menu__col {
       max-width: 200px;
       margin-bottom: 30px;
       margin-right: 10%; }
-    .im-footer__menu__title {
+    .footer__menu__title {
       margin-top: 24px;
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
       white-space: nowrap;
       color: #6f8fb9; }
-      .im-footer__menu__title:first-child {
+      .footer__menu__title:first-child {
         margin-top: 0; }
-      .im-footer__menu__title a {
+      .footer__menu__title a {
         color: #6f8fb9; }
-        .im-footer__menu__title a:hover {
+        .footer__menu__title a:hover {
           color: #91aaca; }
-    .im-footer__menu__list {
+    .footer__menu__list {
       margin-top: 28px; }
-    .im-footer__menu__item {
+    .footer__menu__item {
       margin-top: 17px;
       font-size: 14px;
       font-weight: 400; }
-      .im-footer__menu__item:first-child {
+      .footer__menu__item:first-child {
         margin-top: 0; }
-      .im-footer__menu__item a {
+      .footer__menu__item a {
         color: #000000; }
-        .im-footer__menu__item a:hover {
+        .footer__menu__item a:hover {
           opacity: .8; }
-  .im-footer__find {
+  .footer__find {
     padding-right: 30px;
     padding-left: 50px; }
-  .im-footer__place {
+  .footer__place {
     font-size: 14px;
     width: 260px; }
-  .im-footer__phone {
+  .footer__phone {
     margin-top: 32px;
     font-size: 20px;
     font-weight: 700; }
-    .im-footer__phone a {
+    .footer__phone a {
       color: #000000; }
-  .im-footer__email {
+  .footer__email {
     margin-top: 5px;
     font-size: 14px;
     font-weight: 600; }
-    .im-footer__email a {
+    .footer__email a {
       color: #6f8fb9; }
-      .im-footer__email a:hover {
+      .footer__email a:hover {
         color: #91aaca; }
-  .im-footer__social {
+  .footer__social {
     white-space: nowrap;
     margin-top: 43px; }
-    .im-footer__social__item {
+    .footer__social__item {
       display: inline-block;
       margin-right: 20px;
       font-size: 0;
       color: #7695bc; }
-      .im-footer__social__item:hover {
+      .footer__social__item:hover {
         color: #98b0cd; }
-      .im-footer__social__item i {
+      .footer__social__item i {
         font-size: 24px; }
-  .im-footer__info {
+  .footer__info {
     margin-top: 93px;
     font-size: 0; }
-    .im-footer__info__item {
+    .footer__info__item {
       display: inline-block;
       margin-right: 34px;
       font-size: 11px;
       font-weight: 600;
       color: #c4c4c4; }
-      .im-footer__info__item a {
+      .footer__info__item a {
         color: #c4c4c4; }
-        .im-footer__info__item a:hover {
+        .footer__info__item a:hover {
           color: #ababab; }
-  .im-footer__dev {
+  .footer__dev {
     margin-top: 27px;
     display: inline-block;
     position: relative;
@@ -943,93 +943,93 @@ img {
     font-size: 12px;
     font-weight: 600;
     color: #c4c4c4; }
-    .im-footer__dev__logo {
+    .footer__dev__logo {
       position: absolute;
       right: 0;
       top: 4px; }
 
 @media all and (max-width: 1050px) {
-  .im-footer__logo--for-info {
+  .footer__logo--for-info {
     display: none; }
-  .im-footer__logo__size {
+  .footer__logo__size {
     width: 130px; }
-  .im-footer__line {
+  .footer__line {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap; }
-  .im-footer__logo {
+  .footer__logo {
     width: 100%;
     margin-bottom: 40px;
     margin-right: 0; } }
 
 @media all and (max-width: 850px) {
-  .im-footer {
+  .footer {
     padding: 70px 0; }
-    .im-footer__rest {
+    .footer__rest {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; }
-    .im-footer__menu {
+    .footer__menu {
       margin-right: -20px; }
-      .im-footer__menu__col {
+      .footer__menu__col {
         width: 50%;
         max-width: none;
         margin-right: 0;
         -webkit-box-ordinal-group: 3;
             -ms-flex-order: 2;
                 order: 2; }
-        .im-footer__menu__col:nth-child(2) {
+        .footer__menu__col:nth-child(2) {
           width: 100%;
           -webkit-box-ordinal-group: 2;
               -ms-flex-order: 1;
                   order: 1; }
-          .im-footer__menu__col:nth-child(2) .im-footer__menu__list {
+          .footer__menu__col:nth-child(2) .footer__menu__list {
             -webkit-column-count: 2;
                     column-count: 2;
             -webkit-column-gap: 0;
                     column-gap: 0; }
-      .im-footer__menu__title, .im-footer__menu__item {
+      .footer__menu__title, .footer__menu__item {
         padding-right: 30px; }
-    .im-footer__find {
+    .footer__find {
       width: 100%;
       padding-left: 0;
       margin-top: 50px; }
-    .im-footer__info {
+    .footer__info {
       margin-top: 50px; } }
 
 @media all and (max-width: 600px) {
-  .im-footer {
+  .footer {
     padding: 55px 0; }
-    .im-footer__logo {
+    .footer__logo {
       margin-bottom: 23px; }
-      .im-footer__logo__size {
+      .footer__logo__size {
         width: 90px;
         margin-top: -13px; }
-    .im-footer__menu__title {
+    .footer__menu__title {
       font-size: 11px;
       margin-top: 16px; }
-    .im-footer__menu__item {
+    .footer__menu__item {
       font-size: 11px;
       margin-top: 11px; }
-    .im-footer__menu__list {
+    .footer__menu__list {
       margin-top: 15px; }
-    .im-footer__find {
+    .footer__find {
       margin-top: 25px; }
-    .im-footer__place {
+    .footer__place {
       font-size: 11px; }
-    .im-footer__phone {
+    .footer__phone {
       margin-top: 28px;
       font-size: 16px; }
-    .im-footer__email {
+    .footer__email {
       margin-top: 0;
       font-size: 11px; }
-    .im-footer__social {
+    .footer__social {
       margin-top: 13px; }
-      .im-footer__social__item {
+      .footer__social__item {
         margin-right: 7px; }
-        .im-footer__social__item i {
+        .footer__social__item i {
           font-size: 15px; }
-    .im-footer__info {
+    .footer__info {
       margin-top: 35px; }
-    .im-footer__dev {
+    .footer__dev {
       margin-top: 31px; } }
 
 .im-overview {

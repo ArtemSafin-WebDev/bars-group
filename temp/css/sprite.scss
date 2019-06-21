@@ -9,17 +9,17 @@
 //
 // At the bottom of this section, we provide information about the spritesheet itself
 // $spritesheet: width height image $spritesheet-sprites;
-$icon-im-footer-markweber-name: 'icon-im-footer-markweber';
-$icon-im-footer-markweber-x: 62px;
-$icon-im-footer-markweber-y: 0px;
-$icon-im-footer-markweber-offset-x: -62px;
-$icon-im-footer-markweber-offset-y: 0px;
-$icon-im-footer-markweber-width: 66px;
-$icon-im-footer-markweber-height: 16px;
-$icon-im-footer-markweber-total-width: 128px;
-$icon-im-footer-markweber-total-height: 45px;
-$icon-im-footer-markweber-image: '../img/sprite.png';
-$icon-im-footer-markweber: (62px, 0px, -62px, 0px, 66px, 16px, 128px, 45px, '../img/sprite.png', 'icon-im-footer-markweber', );
+$icon-footer-markweber-name: 'icon-footer-markweber';
+$icon-footer-markweber-x: 62px;
+$icon-footer-markweber-y: 0px;
+$icon-footer-markweber-offset-x: -62px;
+$icon-footer-markweber-offset-y: 0px;
+$icon-footer-markweber-width: 66px;
+$icon-footer-markweber-height: 16px;
+$icon-footer-markweber-total-width: 128px;
+$icon-footer-markweber-total-height: 45px;
+$icon-footer-markweber-image: '../img/sprite.png';
+$icon-footer-markweber: (62px, 0px, -62px, 0px, 66px, 16px, 128px, 45px, '../img/sprite.png', 'icon-footer-markweber', );
 $icon-im-slider-dots-name: 'icon-im-slider-dots';
 $icon-im-slider-dots-x: 0px;
 $icon-im-slider-dots-y: 0px;
@@ -31,17 +31,17 @@ $icon-im-slider-dots-total-width: 128px;
 $icon-im-slider-dots-total-height: 45px;
 $icon-im-slider-dots-image: '../img/sprite.png';
 $icon-im-slider-dots: (0px, 0px, 0px, 0px, 42px, 45px, 128px, 45px, '../img/sprite.png', 'icon-im-slider-dots', );
-$icon-im-footer-markweber-2x-name: 'icon-im-footer-markweber@2x';
-$icon-im-footer-markweber-2x-x: 124px;
-$icon-im-footer-markweber-2x-y: 0px;
-$icon-im-footer-markweber-2x-offset-x: -124px;
-$icon-im-footer-markweber-2x-offset-y: 0px;
-$icon-im-footer-markweber-2x-width: 132px;
-$icon-im-footer-markweber-2x-height: 32px;
-$icon-im-footer-markweber-2x-total-width: 256px;
-$icon-im-footer-markweber-2x-total-height: 90px;
-$icon-im-footer-markweber-2x-image: '../img/sprite@2x.png';
-$icon-im-footer-markweber-2x: (124px, 0px, -124px, 0px, 132px, 32px, 256px, 90px, '../img/sprite@2x.png', 'icon-im-footer-markweber@2x', );
+$icon-footer-markweber-2x-name: 'icon-footer-markweber@2x';
+$icon-footer-markweber-2x-x: 124px;
+$icon-footer-markweber-2x-y: 0px;
+$icon-footer-markweber-2x-offset-x: -124px;
+$icon-footer-markweber-2x-offset-y: 0px;
+$icon-footer-markweber-2x-width: 132px;
+$icon-footer-markweber-2x-height: 32px;
+$icon-footer-markweber-2x-total-width: 256px;
+$icon-footer-markweber-2x-total-height: 90px;
+$icon-footer-markweber-2x-image: '../img/sprite@2x.png';
+$icon-footer-markweber-2x: (124px, 0px, -124px, 0px, 132px, 32px, 256px, 90px, '../img/sprite@2x.png', 'icon-footer-markweber@2x', );
 $icon-im-slider-dots-2x-name: 'icon-im-slider-dots@2x';
 $icon-im-slider-dots-2x-x: 0px;
 $icon-im-slider-dots-2x-y: 0px;
@@ -56,22 +56,22 @@ $icon-im-slider-dots-2x: (0px, 0px, 0px, 0px, 84px, 90px, 256px, 90px, '../img/s
 $spritesheet-width: 128px;
 $spritesheet-height: 45px;
 $spritesheet-image: '../img/sprite.png';
-$spritesheet-sprites: ($icon-im-footer-markweber, $icon-im-slider-dots, );
+$spritesheet-sprites: ($icon-footer-markweber, $icon-im-slider-dots, );
 $spritesheet: (128px, 45px, '../img/sprite.png', $spritesheet-sprites, );
 $retina-spritesheet-width: 256px;
 $retina-spritesheet-height: 90px;
 $retina-spritesheet-image: '../img/sprite@2x.png';
-$retina-spritesheet-sprites: ($icon-im-footer-markweber-2x, $icon-im-slider-dots-2x, );
+$retina-spritesheet-sprites: ($icon-footer-markweber-2x, $icon-im-slider-dots-2x, );
 $retina-spritesheet: (256px, 90px, '../img/sprite@2x.png', $retina-spritesheet-sprites, );
 
 // These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
 //
 // The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
-$icon-im-footer-markweber-group-name: 'icon-im-footer-markweber';
-$icon-im-footer-markweber-group: ('icon-im-footer-markweber', $icon-im-footer-markweber, $icon-im-footer-markweber-2x, );
+$icon-footer-markweber-group-name: 'icon-footer-markweber';
+$icon-footer-markweber-group: ('icon-footer-markweber', $icon-footer-markweber, $icon-footer-markweber-2x, );
 $icon-im-slider-dots-group-name: 'icon-im-slider-dots';
 $icon-im-slider-dots-group: ('icon-im-slider-dots', $icon-im-slider-dots, $icon-im-slider-dots-2x, );
-$retina-groups: ($icon-im-footer-markweber-group, $icon-im-slider-dots-group, );
+$retina-groups: ($icon-footer-markweber-group, $icon-im-slider-dots-group, );
 
 // The provided mixins are intended to be used with the array-like variables
 //

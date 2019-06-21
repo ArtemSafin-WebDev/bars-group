@@ -1,5 +1,5 @@
 
-.im-footer {
+.footer {
 
 	padding: 97px 0;
 	background: #fff;
@@ -165,7 +165,7 @@
 
 		&__logo {
 			@extend .icon;
-			@extend .icon-im-footer-markweber;
+			@extend .icon-footer-markweber;
 			position: absolute;
 			right: 0;
 			top: 4px;
@@ -177,7 +177,7 @@
 
 @media all and (max-width: 1050px) {
 
-	.im-footer {
+	.footer {
 
 		&__logo {
 
@@ -205,7 +205,7 @@
 }
 @media all and (max-width: 850px) {
 
-	.im-footer {
+	.footer {
 
 		padding: 70px 0;
 
@@ -227,7 +227,7 @@
 					width: 100%;
 					order: 1;
 
-					.im-footer__menu__list {
+					.footer__menu__list {
 						column-count: 2;
 						column-gap: 0;
 					}
@@ -257,7 +257,7 @@
 
 @media all and (max-width: 600px) {
 	
-	.im-footer {
+	.footer {
 
 		padding: 55px 0;
 
