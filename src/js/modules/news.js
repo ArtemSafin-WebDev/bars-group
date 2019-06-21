@@ -1,5 +1,5 @@
 
-var ImNews = {
+var News = {
 
 	_state: {
 		sly: null,
@@ -11,7 +11,7 @@ var ImNews = {
 		var self = this;
 
 		var $wrapper = $('#im-wrapper');
-		var $slider  = $('#im-news .im-news__slider');
+		var $slider  = $('#news .news__slider');
 		var wrapperOffset = $wrapper.offset().left;
 		var wrapperWidth = $wrapper.width();
 		var sliderOffset = $slider.offset().left;
@@ -22,12 +22,12 @@ var ImNews = {
 	_initSlider: function () {
 		var self = this;
 
-		var $_ = $('#im-news');
-		var $slider  = $_.find('.im-news__slider');
+		var $_ = $('#news');
+		var $slider  = $_.find('.news__slider');
 		var $prevBtn = $_.find('.digits__prev');
 		var $nextBtn = $_.find('.digits__next');
 
-		self._state.maxIndex = $_.find('.im-news__item').length - 1;
+		self._state.maxIndex = $_.find('.news__item').length - 1;
 		self._state.sly = new Sly($slider[0], {
 			horizontal: 1,
 			itemNav: 'basic',
@@ -79,15 +79,15 @@ var ImNews = {
 		var self = this;
 
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
-		$(document).on('click', '#im-news .digits__next', {self: self}, self._handleNextButton);
-		$(document).on('click', '#im-news .digits__prev', {self: self}, self._handlePrevButton);
+		$(document).on('click', '#news .digits__next', {self: self}, self._handleNextButton);
+		$(document).on('click', '#news .digits__prev', {self: self}, self._handlePrevButton);
 		self._state.sly.on('moveEnd', self._handleMoveEnd.bind(self));
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#im-news').length == 0 ) return;
+		if ( $('#news').length == 0 ) return;
 
 		self._setSliderWidth();
 		self._initSlider();

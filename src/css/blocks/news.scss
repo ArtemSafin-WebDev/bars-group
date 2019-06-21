@@ -1,5 +1,5 @@
 
-.im-news {
+.news {
 
 	margin-top: 130px;
 
@@ -53,11 +53,11 @@
 		&.--active {
 			width: 560px;
 
-			.im-news__title {
+			.news__title {
 				font-size: 24px;
 			}
 
-			.im-news__desc {
+			.news__desc {
 				opacity: .7;
 			}
 		}
@@ -90,7 +90,7 @@
 
 @media all and (max-width: 1300px) {
 
-	.im-news {
+	.news {
 
 		&__label {
 			top: -18px;
