@@ -316,8 +316,8 @@ var Digits = {
 		var self = this;
 
 		$(document).on('click', '.digits__nums__item', {self: self}, self._handleNumClick);
-		$(document).on('click', '#digits .digits__prev', {self: self}, self._handlePrevClick);
-		$(document).on('click', '#digits .digits__next', {self: self}, self._handleNextClick);
+		$(document).on('click', '#digits .js-digits-prev', {self: self}, self._handlePrevClick);
+		$(document).on('click', '#digits .js-digits-next', {self: self}, self._handleNextClick);
 		$(document).on('touchstart', '.digits__center', {self: self}, self._handleTouchStart);
 		$(document).on('touchmove', '.digits__center', {self: self}, self._handleTouchMove);
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);

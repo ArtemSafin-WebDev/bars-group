@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<title> Главная</title>
+	<link rel="stylesheet" href="css/main.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+	<script src="js/modernizr-output.js"></script>
+	<script>
+	WebFont.load({
+		google: {
+			families: ['Open Sans:400,600,700:cyrillic']
+		}
+	});
+	</script>
+</head>
+<body>
+	
+	
+
+<div class="page__wrapper" id="wrapper">
+
+	<div class="page__center">
+		<div class="page__inner">
+			
+			<div style="margin-top: 20px;">
+				<h3 class="page__label">Новости</h3>
+			</div>
+
+			<div style="margin-top: 20px;">
+				<div class="arrow-both-circle">
+					<a href="#" class="arrow-both-circle__prev"></a>
+					<a href="#" class="arrow-both-circle__next"></a>
+				</div>
+			</div>
+			
+			<div style="margin-top: 20px; padding: 20px; background: #000;">
+				<a href="#" class="arrow-right-fly">
+					<span></span>
+				</a>
+			</div>
+
+			<div style="margin-top: 20px; padding: 20px; background: #000;">
+				<a href="#" class="arrow-right-thin">
+					<span></span>
+				</a>
+			</div>
+
+
+		</div>
+	</div>
+
+</div>
+
+	
+	<script src="js/vendor.min.js"></script>
+	<script src="js/main.min.js"></script>
+
+	
+	<style type="text/css">
+		
+		.filelist {
+			position: absolute;
+			z-index: 999999;
+			top: 0;
+			left: 0;
+			font-size: 18px;
+			color: #fff;
+		}
+	
+		.filelist._active div {
+			display: block;
+		}
+	
+		.filelist span {
+			display: inline-block;
+			padding: 9px 20px;
+			background: rgba(0,0,0, .3);
+		}
+	
+		.filelist div {
+			display: none;
+			padding: 9px 0;
+			background: rgba(0,0,0, .3);
+		}
+	
+		.filelist div a {
+			display: block;
+			padding: 9px 20px;
+			color: #fff !important;
+		}
+	
+		.filelist div a:hover {
+			background: rgba(0,0,0, .1);
+		}
+		
+	
+	</style>
+	
+	<script type="text/javascript">
+		
+		(function () {
+	
+			var Filelist = {
+	
+				createHtml: function () {
+	
+					var $filelist = $('<div class="filelist">' +
+							'<span></span>' +
+						'</div>'),
+	
+						$label = $filelist.find('span'); 
+	
+					$.ajax('filelist.json', {cache: false})
+						.done(function (data) {
+							$label.text('Pages count: ' + data.length);
+	
+							var $body = $('<div></div>');
+							data.forEach(function (filename) {
+								$('<a href="' + filename + '">' + 
+									filename + 
+								'</a>').appendTo($body);
+							});
+							$body.appendTo($filelist);
+						})
+						.fail(function () {
+							$label.text('Filelist failed.');
+						})
+						.always(function () {
+							$filelist.appendTo($('body'));
+						});
+	
+				},
+	
+				_handleSpanClick: function (e) {
+					var self = e.data.self;
+	
+					$('.filelist').toggleClass('_active');
+				},
+	
+				_handleDocumentClick: function (e) {
+					var self = e.data.self;
+	
+					if ( $(e.target).closest('.filelist').length > 0 ) return;
+					$('.filelist').removeClass('_active');
+				},
+	
+				_bindUI: function () {
+					var self = this;
+	
+					$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
+					$(document).on('click', {self: self}, self._handleDocumentClick);
+				},
+	
+				init: function () {
+					var self = this;
+	
+					self._bindUI();
+					self.createHtml();
+				}
+	
+			};
+	
+			Filelist.init();
+	
+		}());
+	
+	</script></body>
+</html>
+

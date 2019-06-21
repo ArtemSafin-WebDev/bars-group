@@ -172,35 +172,6 @@
 		bottom: -85px;
 	}
 
-	&__prev,
-	&__next {
-		transition: background .2s;
-		margin-left: 9px;
-		float: left;
-		width: 36px;
-		height: 36px;
-		line-height: 36px;
-		text-align: center;
-		border-radius: 50%;
-		background: #eff4fd;
-		font-size: 15px;
-		color: #6e7f95 !important;
-
-		&:hover {
-			background: darken(#eff4fd, 3%);
-		}
-	}
-
-	&__prev {
-		@extend .icon;
-		@extend .icon-arrow-left;
-	}
-
-	&__next {
-		@extend .icon;
-		@extend .icon-arrow-right;
-	}
-
 	&__about {
 		display: none;
 	}
@@ -411,13 +382,7 @@
 			}
 		}
 
-		&__prev,
-		&__next {
-			width: 28px;
-			height: 28px;
-			line-height: 28px;
-			font-size: 12px;
-		}
+		
 
 	}
 }

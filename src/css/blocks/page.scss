@@ -27,50 +27,6 @@
 		color: #ffffff;
 	}
 
-	&__more {
-		display: inline-block;
-		padding: 20px;
-
-		&:hover {
-			span {
-				&:before {
-					transform: rotate(45deg);
-				}
-				&:after {
-					transform: rotate(-45deg);
-				}
-			}
-		}
-
-		span {
-			position: relative;
-			display: block;
-			height: 2px;
-			background: #fff;
-			width: 27px;
-
-			&:before,
-			&:after {
-				transition: transform .2s;
-				content: ' ';
-				position: absolute;
-				right: 0;
-				top: 0;
-				height: 2px;
-				background: #fff;
-				width: 15px;
-			}
-
-			&:before {
-				transform-origin: right bottom;
-			}
-			&:after {
-				transform-origin: right top;
-			}
-			
-		}
-	}
-
 }
 
 @media all and (max-width: 1200px) {

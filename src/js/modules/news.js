@@ -24,8 +24,8 @@ var News = {
 
 		var $_ = $('#news');
 		var $slider  = $_.find('.news__slider');
-		var $prevBtn = $_.find('.digits__prev');
-		var $nextBtn = $_.find('.digits__next');
+		var $prevBtn = $_.find('.js-news-prev');
+		var $nextBtn = $_.find('.js-news-next');
 
 		self._state.maxIndex = $_.find('.news__item').length - 1;
 		self._state.sly = new Sly($slider[0], {
@@ -79,8 +79,8 @@ var News = {
 		var self = this;
 
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
-		$(document).on('click', '#news .digits__next', {self: self}, self._handleNextButton);
-		$(document).on('click', '#news .digits__prev', {self: self}, self._handlePrevButton);
+		$(document).on('click', '#news .js-news-next', {self: self}, self._handleNextButton);
+		$(document).on('click', '#news .js-news-prev', {self: self}, self._handlePrevButton);
 		self._state.sly.on('moveEnd', self._handleMoveEnd.bind(self));
 	},
 

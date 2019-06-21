@@ -1,0 +1,52 @@
+---
+title: Главная
+layout: default.hbs
+---
+
+<div style="max-width: 700px; margin: 0 auto;">
+	
+	<h2 style="font-size: 30px; font-weight: 600; line-height: 1.5;">Как работаем:</h2>
+
+	<ol style="list-style: decimal inside;">
+		<li style="margin-top: 20px;">Нарушать правила можно только при наличии разумной причины.</li>
+
+		<li style="margin-top: 20px;">Стараемся советоваться с напарниками по любому значимому поводу. Чем больше мы знаем о том, что и как делают другие, тем меньше вероятности, что будут какие-то проблемы.</li>
+
+		<li style="margin-top: 20px;">Используем <b>БЕМ</b> в нотации <b><i>.block__element--modificator</i></b></li>
+
+		<li style="margin-top: 20px;">Инструкция по запуску сборочного проекта находится в <b>README.md</b>.</li>
+
+		<li style="margin-top: 20px;">Если хотите использовать спрайты, то достаточно положить картинки, например, <b>logo@2x.png</b> и <b>logo.png</b> в папку <b><i>/img/header/</i></b>, и будет доступен класс <b>.icon-header-logo</b>.</li>
+
+		<li style="margin-top: 20px;">Любые библиотеки стараемся тянуть через <b>bower</b> и подключать из папки <b><i>/bower_components/</i></b>, не забывая регистрировать в <b>bower.json</b>. Почему не <b>npm</b>? Потому что тяжело потом искать что-то среди сотни зависимостей. Не забываем, что любой проект из <b>github</b> можно забрать к себе. Например, <b>bower install https://github.com/nicolas-cusan/destyle.css.git#1.0.5 --save</b>. Для dev-зависимостей используем <b>npm</b>.</li>
+		
+		<li style="margin-top: 20px;">Если вендорный файл требует изменений или нет возможности подключить через <b>bower</b>, копируем непосредственно в <b><i>/src/css/vendor/</i></b> или <b><i>/src/js/vendor</i></b>. Измененные файлы при этом помечаем постфиксом <b>--fixed</b>.</li>
+		
+		<li style="margin-top: 20px;"><b>Modernizr</b> по умолчанию подключен. Задача по сборке запускается только при первом билде. Если нужно добавить проверку новых фич, делать это в конфиге из <b>Gruntfile.js</b>. </li>
+
+		<li style="margin-top: 20px;">Скрипты оформляем в отдельные файлы (модули) и складываем в <b><i>/src/js/modules/</i></b>. Называем в соответствии с блоками css: <b>header.js, nav-top.js</b>. Модуль имеет право создавать только одну переменную в глобальном пространстве: <b>Header, NavTop</b>. </li>
+
+		<li style="margin-top: 20px;">
+			Работаем через <b>git</b>. Все делаем в одной ветке. Локально можно использовать сколько угодно веток. Merge делаем через <b>rebase</b>. Это значит, что вы переносите свои коммиты поверх чужих так, будто вы их делали позже по времени. Цель -- упростить восприятие истории изменений. Пример очень нежелательной ситуации на втором рисунке.
+			
+			<br>
+			<br>
+
+			<img src="http://cdn.differencebetween.net/wp-content/uploads/2018/11/Difference-Between-Git-Rebase-and-Merge-.png" alt="">
+
+			<br>
+			<br>
+
+			<img src="https://blog.carbonfive.com/wp-content/uploads/2017/08/Screen-Shot-2017-07-10-at-3.28.16-PM-1-470x428.png" alt="">
+
+			<br>
+			<br>
+
+		</li>
+
+		
+	</ol>
+
+</div>
+
+

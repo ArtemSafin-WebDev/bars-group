@@ -458,7 +458,7 @@ template {
     -webkit-transition: none;
     transition: none; } }
 
-.icon, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .digits__prev, .digits__next, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i {
+.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i {
   display: inline-block; }
 
 .icon-footer-markweber, .footer__dev__logo {
@@ -488,7 +488,7 @@ template {
   font-weight: normal;
   font-style: normal; }
 
-.icon, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .digits__prev, .digits__next, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i {
+.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -513,10 +513,10 @@ template {
 .icon-linkedin:before {
   content: "\e903"; }
 
-.icon-arrow-left:before, .header__menu__item--more > a:before, .digits__prev:before, .gantt-slider__range .rangeslider__handle i:first-child:before {
+.icon-arrow-left:before, .arrow-both-circle__prev:before, .header__menu__item--more > a:before, .gantt-slider__range .rangeslider__handle i:first-child:before {
   content: "\e904"; }
 
-.icon-arrow-right:before, .overview__nav__link:before, .digits__next:before, .gantt-slider__range .rangeslider__handle i:last-child:before {
+.icon-arrow-right:before, .arrow-both-circle__next:before, .overview__nav__link:before, .gantt-slider__range .rangeslider__handle i:last-child:before {
   content: "\e905"; }
 
 .icon-pause:before, .gantt-slider__range .rangeslider__handle i:nth-child(2):before {
@@ -549,6 +549,99 @@ a {
 img {
   max-width: 100%;
   height: auto; }
+
+.arrow-right-thin {
+  display: inline-block;
+  padding: 10px 0; }
+  .arrow-right-thin:hover span {
+    width: 58px; }
+  .arrow-right-thin span {
+    -webkit-transition: width .2s;
+    transition: width .2s;
+    position: relative;
+    display: block;
+    width: 48px;
+    background: #fff;
+    height: 1px; }
+    .arrow-right-thin span:before, .arrow-right-thin span:after {
+      content: ' ';
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: #fff;
+      width: 10px; }
+    .arrow-right-thin span:before {
+      -webkit-transform-origin: right bottom;
+              transform-origin: right bottom;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg); }
+    .arrow-right-thin span:after {
+      -webkit-transform-origin: right top;
+              transform-origin: right top;
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg); }
+
+.arrow-right-fly {
+  display: inline-block;
+  padding: 20px; }
+  .arrow-right-fly:hover span:before {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); }
+  .arrow-right-fly:hover span:after {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg); }
+  .arrow-right-fly span {
+    position: relative;
+    display: block;
+    height: 2px;
+    background: #fff;
+    width: 27px; }
+    .arrow-right-fly span:before, .arrow-right-fly span:after {
+      -webkit-transition: -webkit-transform .2s;
+      transition: -webkit-transform .2s;
+      transition: transform .2s;
+      transition: transform .2s, -webkit-transform .2s;
+      content: ' ';
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 2px;
+      background: #fff;
+      width: 15px; }
+    .arrow-right-fly span:before {
+      -webkit-transform-origin: right bottom;
+              transform-origin: right bottom; }
+    .arrow-right-fly span:after {
+      -webkit-transform-origin: right top;
+              transform-origin: right top; }
+
+.arrow-both-circle--white .arrow-both-circle__prev,
+.arrow-both-circle--white .arrow-both-circle__next {
+  background: #fff; }
+
+.arrow-both-circle__prev, .arrow-both-circle__next {
+  -webkit-transition: background .2s;
+  transition: background .2s;
+  margin-left: 9px;
+  float: left;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  background: #eff4fd;
+  font-size: 15px;
+  color: #6e7f95 !important; }
+  .arrow-both-circle__prev:hover, .arrow-both-circle__next:hover {
+    background: #e1ebfb; }
+
+@media all and (max-width: 600px) {
+  .arrow-both-circle__prev, .arrow-both-circle__next {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px; } }
 
 .header {
   margin-bottom: 115px;
@@ -783,40 +876,6 @@ img {
   text-transform: uppercase;
   letter-spacing: 1.78px;
   color: #ffffff; }
-
-.page__more {
-  display: inline-block;
-  padding: 20px; }
-  .page__more:hover span:before {
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg); }
-  .page__more:hover span:after {
-    -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg); }
-  .page__more span {
-    position: relative;
-    display: block;
-    height: 2px;
-    background: #fff;
-    width: 27px; }
-    .page__more span:before, .page__more span:after {
-      -webkit-transition: -webkit-transform .2s;
-      transition: -webkit-transform .2s;
-      transition: transform .2s;
-      transition: transform .2s, -webkit-transform .2s;
-      content: ' ';
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 2px;
-      background: #fff;
-      width: 15px; }
-    .page__more span:before {
-      -webkit-transform-origin: right bottom;
-              transform-origin: right bottom; }
-    .page__more span:after {
-      -webkit-transform-origin: right top;
-              transform-origin: right top; }
 
 @media all and (max-width: 1200px) {
   .page__label {
@@ -1205,34 +1264,6 @@ img {
     padding: 20px 0;
     right: 0;
     bottom: 20px; }
-    .overview__arrow:hover span {
-      width: 58px; }
-    .overview__arrow span {
-      -webkit-transition: width .2s;
-      transition: width .2s;
-      position: relative;
-      display: block;
-      width: 48px;
-      background: #fff;
-      height: 1px; }
-      .overview__arrow span:before, .overview__arrow span:after {
-        content: ' ';
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 1px;
-        background: #fff;
-        width: 10px; }
-      .overview__arrow span:before {
-        -webkit-transform-origin: right bottom;
-                transform-origin: right bottom;
-        -webkit-transform: rotate(45deg);
-                transform: rotate(45deg); }
-      .overview__arrow span:after {
-        -webkit-transform-origin: right top;
-                transform-origin: right top;
-        -webkit-transform: rotate(-45deg);
-                transform: rotate(-45deg); }
 
 @media all and (max-width: 1500px) {
   .overview__nav {
@@ -1466,21 +1497,6 @@ img {
     position: absolute;
     right: 0;
     bottom: -85px; }
-  .digits__prev, .digits__next {
-    -webkit-transition: background .2s;
-    transition: background .2s;
-    margin-left: 9px;
-    float: left;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    border-radius: 50%;
-    background: #eff4fd;
-    font-size: 15px;
-    color: #6e7f95 !important; }
-    .digits__prev:hover, .digits__next:hover {
-      background: #e1ebfb; }
   .digits__about {
     display: none; }
   .digits ._fadeOutLeft {
@@ -1597,12 +1613,7 @@ img {
     .digits__about__title {
       font-size: 16px; }
     .digits__about__desc {
-      font-size: 11px; }
-    .digits__prev, .digits__next {
-      width: 28px;
-      height: 28px;
-      line-height: 28px;
-      font-size: 12px; } }
+      font-size: 11px; } }
 
 @-webkit-keyframes imDigitsFadeOutLeft {
   0% {
@@ -1990,9 +2001,6 @@ img {
     position: absolute;
     right: 0;
     top: 225px; }
-    .news__buttons .digits__prev,
-    .news__buttons .digits__next {
-      background: #fff; }
   .news__label {
     min-width: 225px;
     position: absolute;
