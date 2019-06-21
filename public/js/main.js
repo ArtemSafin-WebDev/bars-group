@@ -798,22 +798,22 @@ var ImSlider = {
 
 };
 
-var ImHeader = {
+var Header = {
 
 
 	_adjustMoreItem: function () {
 		var self = this;
 
-		var $_ = $('#im-header');
+		var $_ = $('#header');
 
 		// close dropdown during resizing
-		var $more = $_.find('.im-header__menu__item--more');
+		var $more = $_.find('.header__menu__item--more');
 		$more.removeClass('--opened');
 
 		// compare container & items top offsets and find break point
-		var $crop  = $_.find('.im-header__menu__crop');
+		var $crop  = $_.find('.header__menu__crop');
 		var cropOffset = $crop.offset().top;
-		var $items = $crop.find('.im-header__menu__item');
+		var $items = $crop.find('.header__menu__item');
 		var lastIndex = 0;
 
 		$items.each(function (index) {
@@ -838,7 +838,7 @@ var ImHeader = {
 			$more.addClass('--active').css({ left: moreOffset + 'px'});
 
 			// show/hide 'more' elements
-			var $moreItems = $_.find('.im-header__menu__down__body > div');
+			var $moreItems = $_.find('.header__menu__down__body > div');
 			$moreItems.each(function (index) {
 				if (index > lastIndex) {
 					$(this).show();
@@ -858,15 +858,15 @@ var ImHeader = {
 
 		e.preventDefault();
 
-		$('#im-header .im-header__menu__item--more').toggleClass('--opened');
+		$('#header .header__menu__item--more').toggleClass('--opened');
 	},
 
 	_handleDocumentClick: function (e) {
 		var self = e.data.self;
 
-		var moreSelector = '.im-header__menu__item--more';
+		var moreSelector = '.header__menu__item--more';
 		if ( $(e.target).closest(moreSelector).length == 0 ){
-			$('#im-header ' + moreSelector).removeClass('--opened');
+			$('#header ' + moreSelector).removeClass('--opened');
 		}
 	},
 
@@ -880,14 +880,14 @@ var ImHeader = {
 		var self = this;
 
 		$(document).on('click', {self: self}, self._handleDocumentClick);
-		$(document).on('click', '.im-header__menu__item--more > a', {self: self}, self._handleMoreClick);
+		$(document).on('click', '.header__menu__item--more > a', {self: self}, self._handleMoreClick);
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#im-header').length == 0) return;
+		if ( $('#header').length == 0) return;
 
 		self._adjustMoreItem();
 		self._bindUI();
@@ -1006,7 +1006,7 @@ var App = {
 				Digits.init();
 				ImOverview.init();
 				ImSlider.init();
-				ImHeader.init();
+				Header.init();
 				ImNews.init();
 
 				if (getScrollbarWidth() == 0) {

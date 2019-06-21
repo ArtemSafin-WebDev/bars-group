@@ -15,7 +15,7 @@ var App = {
 				Digits.init();
 				ImOverview.init();
 				ImSlider.init();
-				ImHeader.init();
+				Header.init();
 				ImNews.init();
 
 				if (getScrollbarWidth() == 0) {

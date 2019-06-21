@@ -2,7 +2,7 @@
 //= modules/digits.js
 //= modules/im-overview.js
 //= modules/im-slider.js
-//= modules/im-header.js
+//= modules/header.js
 //= modules/im-news.js
 //= modules/app.js
 
