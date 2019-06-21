@@ -12,7 +12,7 @@ var App = {
 				clearInterval(timer);
 
 				// init modules here
-				ImDigits.init();
+				Digits.init();
 				ImOverview.init();
 				ImSlider.init();
 				ImHeader.init();

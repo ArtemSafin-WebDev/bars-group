@@ -24,8 +24,8 @@ var ImNews = {
 
 		var $_ = $('#im-news');
 		var $slider  = $_.find('.im-news__slider');
-		var $prevBtn = $_.find('.im-digits__prev');
-		var $nextBtn = $_.find('.im-digits__next');
+		var $prevBtn = $_.find('.digits__prev');
+		var $nextBtn = $_.find('.digits__next');
 
 		self._state.maxIndex = $_.find('.im-news__item').length - 1;
 		self._state.sly = new Sly($slider[0], {
@@ -79,8 +79,8 @@ var ImNews = {
 		var self = this;
 
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
-		$(document).on('click', '#im-news .im-digits__next', {self: self}, self._handleNextButton);
-		$(document).on('click', '#im-news .im-digits__prev', {self: self}, self._handlePrevButton);
+		$(document).on('click', '#im-news .digits__next', {self: self}, self._handleNextButton);
+		$(document).on('click', '#im-news .digits__prev', {self: self}, self._handlePrevButton);
 		self._state.sly.on('moveEnd', self._handleMoveEnd.bind(self));
 	},
 

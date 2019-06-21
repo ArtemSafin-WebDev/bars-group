@@ -29,7 +29,7 @@
 
 })();
 
-var ImDigits = {
+var Digits = {
 
 	_state: {
 		currentIndex: null,
@@ -45,11 +45,11 @@ var ImDigits = {
 	},
 
 	_getNumsCount: function () {
-		return $('#im-digits .im-digits__nums__item').length;
+		return $('#digits .digits__nums__item').length;
 	},
 
 	_getRealCount: function () {
-		return $('#im-digits .im-digits__pics__item').length;
+		return $('#digits .digits__pics__item').length;
 	},
 
 	_getDirection: function (nextIndex) {
@@ -79,22 +79,22 @@ var ImDigits = {
 	},
 
 	_setVisibleState: function () {
-		$('#im-digits').addClass('_visible');
+		$('#digits').addClass('_visible');
 	},
 
 	_setReadyState: function () {
 		setTimeout(function () {
-			$('#im-digits').addClass('_ready');
+			$('#digits').addClass('_ready');
 		}, 20);
 	},
 
 	_cloneNumsItems: function () {
 		var self = this;
 
-		var $_ = $('#im-digits');
-		var $numsCrop = $_.find('.im-digits__nums__crop');
-		var $numsList = $_.find('.im-digits__nums__list');
-		var $numsItem = $_.find('.im-digits__nums__item');
+		var $_ = $('#digits');
+		var $numsCrop = $_.find('.digits__nums__crop');
+		var $numsList = $_.find('.digits__nums__list');
+		var $numsItem = $_.find('.digits__nums__item');
 		var cropWidth = $numsCrop.width();
 		var listWidth = $numsList.width();
 		var factor = Math.ceil(cropWidth / listWidth) + 1;
@@ -115,22 +115,22 @@ var ImDigits = {
 		var nextIndex = index;
 
 		// elements
-		var $_ = $('#im-digits');
-		var $numsCrop = $_.find('.im-digits__nums__crop');
+		var $_ = $('#digits');
+		var $numsCrop = $_.find('.digits__nums__crop');
 		
-		var $nextNumsItem = $_.find('.im-digits__nums__item').eq(nextIndex);
-		var $nextPicsItem = $_.find('.im-digits__pics__item').eq(self._getRealIndex(nextIndex));
-		var $nextTextItem = $_.find('.im-digits__text__item').eq(self._getRealIndex(nextIndex));
-		var $nextTextValue = $nextTextItem.find('.im-digits__text__value');
-		var $nextTextDesc = $nextTextItem.find('.im-digits__text__desc');
+		var $nextNumsItem = $_.find('.digits__nums__item').eq(nextIndex);
+		var $nextPicsItem = $_.find('.digits__pics__item').eq(self._getRealIndex(nextIndex));
+		var $nextTextItem = $_.find('.digits__text__item').eq(self._getRealIndex(nextIndex));
+		var $nextTextValue = $nextTextItem.find('.digits__text__value');
+		var $nextTextDesc = $nextTextItem.find('.digits__text__desc');
 
-		var $currNumsItem = $_.find('.im-digits__nums__item').eq(currIndex);
-		var $currPicsItem = $_.find('.im-digits__pics__item').eq(self._getRealIndex(currIndex));
-		var $currTextItem = $_.find('.im-digits__text__item').eq(self._getRealIndex(currIndex));
-		var $currTextValue = $currTextItem.find('.im-digits__text__value');
-		var $currTextDesc = $currTextItem.find('.im-digits__text__desc');
+		var $currNumsItem = $_.find('.digits__nums__item').eq(currIndex);
+		var $currPicsItem = $_.find('.digits__pics__item').eq(self._getRealIndex(currIndex));
+		var $currTextItem = $_.find('.digits__text__item').eq(self._getRealIndex(currIndex));
+		var $currTextValue = $currTextItem.find('.digits__text__value');
+		var $currTextDesc = $currTextItem.find('.digits__text__desc');
 
-		var $aboutItem = $_.find('.im-digits__about__item');
+		var $aboutItem = $_.find('.digits__about__item');
 
 		// direction
 		var direction = self._getDirection(index);
@@ -230,7 +230,7 @@ var ImDigits = {
 		var self = this;
 
 		// сложить ширину и отступ всех элементов до текущего 
-		var $items = $('#im-digits .im-digits__nums__item');
+		var $items = $('#digits .digits__nums__item');
 		var maxIndex = Math.min(index, self._getNumsCount() - 1);
 		var listOffset = 0;
 
@@ -239,22 +239,22 @@ var ImDigits = {
 			listOffset += parseFloat($items.eq(i).css('margin-left'));
 		}
 		
-		var $list = $('#im-digits .im-digits__nums__list');
+		var $list = $('#digits .digits__nums__list');
 		$list.css({'transform': 'translateX(-' + listOffset + 'px)'});
 	},
 
 	_rebaseAtEdges: function () {
 		var self = this;
 
-		var $_ = $('#im-digits');
-		var $numsCrop = $_.find('.im-digits__nums__crop');
-		var $numsItem = $_.find('.im-digits__nums__item');
+		var $_ = $('#digits');
+		var $numsCrop = $_.find('.digits__nums__crop');
+		var $numsItem = $_.find('.digits__nums__item');
 		var penultOffset = $numsItem .last().prev().offset().left;
 		var rightEdge = $numsCrop.offset().left + $numsCrop.width();
 		var currIndex = self._state.currentIndex;
 
 		if (currIndex == 0 || penultOffset < rightEdge) {
-			$('#im-digits').removeClass('_ready');
+			$('#digits').removeClass('_ready');
 
 			if (currIndex == 0) {
 				self._setInitialPosition();
@@ -262,13 +262,13 @@ var ImDigits = {
 				self._setRightRebasePos();
 			}
 			setTimeout(function () {
-				$('#im-digits').addClass('_ready');
+				$('#digits').addClass('_ready');
 			}, 20);
 		} 
 	},
 
 	_initImagerJs: function () {
-		new Imager('#im-digits .im-digits__pics__item img', { 
+		new Imager('#digits .digits__pics__item img', { 
 			availableWidths: [600, 1000], 
 			availablePixelRatios: [1, 2],
 			onImagesReplaced: function () {
@@ -345,18 +345,18 @@ var ImDigits = {
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('click', '.im-digits__nums__item', {self: self}, self._handleNumClick);
-		$(document).on('click', '#im-digits .im-digits__prev', {self: self}, self._handlePrevClick);
-		$(document).on('click', '#im-digits .im-digits__next', {self: self}, self._handleNextClick);
-		$(document).on('touchstart', '.im-digits__center', {self: self}, self._handleTouchStart);
-		$(document).on('touchmove', '.im-digits__center', {self: self}, self._handleTouchMove);
+		$(document).on('click', '.digits__nums__item', {self: self}, self._handleNumClick);
+		$(document).on('click', '#digits .digits__prev', {self: self}, self._handlePrevClick);
+		$(document).on('click', '#digits .digits__next', {self: self}, self._handleNextClick);
+		$(document).on('touchstart', '.digits__center', {self: self}, self._handleTouchStart);
+		$(document).on('touchmove', '.digits__center', {self: self}, self._handleTouchMove);
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#im-digits').length == 0 ) return;
+		if ( $('#digits').length == 0 ) return;
 
 		self._initImagerJs();
 		self._cloneNumsItems();
@@ -919,8 +919,8 @@ var ImNews = {
 
 		var $_ = $('#im-news');
 		var $slider  = $_.find('.im-news__slider');
-		var $prevBtn = $_.find('.im-digits__prev');
-		var $nextBtn = $_.find('.im-digits__next');
+		var $prevBtn = $_.find('.digits__prev');
+		var $nextBtn = $_.find('.digits__next');
 
 		self._state.maxIndex = $_.find('.im-news__item').length - 1;
 		self._state.sly = new Sly($slider[0], {
@@ -974,8 +974,8 @@ var ImNews = {
 		var self = this;
 
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
-		$(document).on('click', '#im-news .im-digits__next', {self: self}, self._handleNextButton);
-		$(document).on('click', '#im-news .im-digits__prev', {self: self}, self._handlePrevButton);
+		$(document).on('click', '#im-news .digits__next', {self: self}, self._handleNextButton);
+		$(document).on('click', '#im-news .digits__prev', {self: self}, self._handlePrevButton);
 		self._state.sly.on('moveEnd', self._handleMoveEnd.bind(self));
 	},
 
@@ -1003,7 +1003,7 @@ var App = {
 				clearInterval(timer);
 
 				// init modules here
-				ImDigits.init();
+				Digits.init();
 				ImOverview.init();
 				ImSlider.init();
 				ImHeader.init();
