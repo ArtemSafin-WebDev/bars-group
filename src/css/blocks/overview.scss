@@ -1,5 +1,5 @@
 
-.im-overview {
+.overview {
 	position: relative;
 
 	&__label {
@@ -88,14 +88,14 @@
 
 			&._active {
 				
-				.im-overview__nav__link{
+				.overview__nav__link{
 					&:before {
 						transform: translateX(0);
 						opacity: 1;
 					}
 				}
 
-				.im-overview__nav__icon {
+				.overview__nav__icon {
 					opacity: 1;
 				}
 			}
@@ -129,13 +129,13 @@
 			&--wheat,
 			&--factory,
 			&--city {
-				.im-overview__nav__icon {
+				.overview__nav__icon {
 					margin-top: -35px;
 				}
 			}
 
 			&--ruble {
-				.im-overview__nav__icon {
+				.overview__nav__icon {
 					margin-top: -27px;
 				}
 			}
@@ -268,7 +268,7 @@
 
 @media all and (max-width: 1500px) {
 
-	.im-overview {
+	.overview {
 
 		&__nav {
 			padding-top: 30px;
@@ -292,7 +292,7 @@
 
 @media all and (max-width: 1300px) {
 
-	.im-overview {
+	.overview {
 
 		&__label {
 			top: -18px;
@@ -316,7 +316,7 @@
 
 @media all and (max-width: 1200px) {
 	
-	.im-overview {
+	.overview {
 
 		&__title {
 			font-size: 21px;
@@ -327,7 +327,7 @@
 
 @media all and (max-width: 950px) {
 	
-	.im-overview {
+	.overview {
 
 		&__nav {
 
@@ -346,7 +346,7 @@
 
 @media all and (max-width: 800px) {
 	
-	.im-overview {
+	.overview {
 
 		&__nav {
 			margin-left: 0;
@@ -366,7 +366,7 @@
 
 @media all and (max-width: 600px) {
 	
-	.im-overview {
+	.overview {
 
 		&__bg {
 			&__item {
@@ -392,7 +392,7 @@
 				}
 
 				&._active {
-					.im-overview__nav__link {
+					.overview__nav__link {
 						&:before {
 							transform: rotate(90deg) scaleX(-1) !important;
 						}

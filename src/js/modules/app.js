@@ -13,7 +13,7 @@ var App = {
 
 				// init modules here
 				Digits.init();
-				ImOverview.init();
+				Overview.init();
 				ImSlider.init();
 				Header.init();
 				News.init();
