@@ -762,19 +762,19 @@ img {
       .header__desc__short {
         display: none; } }
 
-.im-page__wrapper {
+.page__wrapper {
   overflow: hidden;
   max-width: 3000px;
   margin: 0 auto; }
 
-.im-page__center {
+.page__center {
   max-width: 1600px;
   margin: 0 auto; }
 
-.im-page__inner {
+.page__inner {
   padding: 0 40px; }
 
-.im-page__label {
+.page__label {
   display: inline-block;
   padding: 13px 16px 11px 16px;
   background: #59b4e6;
@@ -784,22 +784,22 @@ img {
   letter-spacing: 1.78px;
   color: #ffffff; }
 
-.im-page__more {
+.page__more {
   display: inline-block;
   padding: 20px; }
-  .im-page__more:hover span:before {
+  .page__more:hover span:before {
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg); }
-  .im-page__more:hover span:after {
+  .page__more:hover span:after {
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg); }
-  .im-page__more span {
+  .page__more span {
     position: relative;
     display: block;
     height: 2px;
     background: #fff;
     width: 27px; }
-    .im-page__more span:before, .im-page__more span:after {
+    .page__more span:before, .page__more span:after {
       -webkit-transition: -webkit-transform .2s;
       transition: -webkit-transform .2s;
       transition: transform .2s;
@@ -811,23 +811,23 @@ img {
       height: 2px;
       background: #fff;
       width: 15px; }
-    .im-page__more span:before {
+    .page__more span:before {
       -webkit-transform-origin: right bottom;
               transform-origin: right bottom; }
-    .im-page__more span:after {
+    .page__more span:after {
       -webkit-transform-origin: right top;
               transform-origin: right top; }
 
 @media all and (max-width: 1200px) {
-  .im-page__label {
+  .page__label {
     font-size: 14px; } }
 
 @media all and (max-width: 850px) {
-  .im-page__inner {
+  .page__inner {
     padding: 0 20px; } }
 
 @media all and (max-width: 600px) {
-  .im-page__label {
+  .page__label {
     padding: 8px 7px;
     font-size: 11px;
     letter-spacing: 1.22px; } }
