@@ -16,6 +16,7 @@
 		width: 62px;
 		font-size: 16px;
 		background: #eff4fd;
+		color: #000 !important;
 
 		&:hover {
 			background: darken(#eff4fd, 5%);
@@ -27,7 +28,7 @@
 
 		&.--active {
 			background: #59b4e6;
-			color: #fff;
+			color: #fff !important;
 		}
 	}
 
@@ -36,7 +37,7 @@
 		@extend .icon;
 		position: absolute;
 		top: 0;
-		color: #6e7f95;
+		color: #6e7f95 !important;
 	}
 
 	&__prev {

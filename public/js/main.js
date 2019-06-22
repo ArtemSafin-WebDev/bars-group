@@ -989,6 +989,33 @@ var News = {
 		self._bindUI();
 	}
 };
+var Button = {
+
+	_handleButtonMouseover: function (e) {
+		var self = e.data.self;
+
+		$(this).addClass('--active');
+	},
+
+	_handleButtonMouseout: function (e) {
+		var self = e.data.self;
+
+		$(this).removeClass('--active');
+	},
+
+	_bindUI: function () {
+		var self = this;
+
+		$(document).on('mouseover', '.button', {self: self}, self._handleButtonMouseover);
+		$(document).on('mouseout', '.button', {self: self}, self._handleButtonMouseout);
+	},
+
+	init: function () {
+		var self = this;
+
+		self._bindUI();
+	}
+};
 var App = {
 
 	_isFontsReady: function () {
@@ -1008,6 +1035,7 @@ var App = {
 				GanttSlider.init();
 				Header.init();
 				News.init();
+				Button.init();
 
 				if (getScrollbarWidth() == 0) {
 					$("html").addClass('hidden-scrollbar');

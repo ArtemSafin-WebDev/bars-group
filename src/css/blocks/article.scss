@@ -1,0 +1,48 @@
+
+.article {
+
+	line-height: 1.6;
+
+	*:first-child {
+		margin-top: 0 !important;
+	}
+
+	*:last-child {
+		margin-bottom: 0 !important;
+	}
+
+	section {
+		margin: 40px 0;
+	}
+
+	h5 {
+		margin-bottom: 10px;
+		font-size: 16px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 1.78px;
+		color: #59b4e6;
+	}
+
+	ul {
+		li {
+			position: relative;
+			padding-left: 25px;
+			margin-top: 10px;
+
+			&:before {
+				content: ' ';
+				position: absolute;
+				left: 0;
+				top: .9em;
+				margin-top: -3px;
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				background: #59b4e6;
+			}
+		}
+	}
+
+
+}

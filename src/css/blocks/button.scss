@@ -1,0 +1,21 @@
+
+.button {
+	transition: background .2s;
+	display: inline-block;
+}
+
+.button-default {
+	position: relative;
+	padding: 23px 30px;
+	padding-right: 87px;
+	font-weight: 600;
+	background: #59b4e6;
+	color: #fff !important;
+
+	&__icon {
+		position: absolute;
+		top: 50%;
+		margin-top: -20px;
+		right: 10px;
+	}
+}
