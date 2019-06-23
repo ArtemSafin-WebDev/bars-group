@@ -98,23 +98,7 @@
 	}
 
 	&__social {
-		white-space: nowrap;
 		margin-top: 43px;
-
-		&__item {
-			display: inline-block;
-			margin-right: 20px;
-			font-size: 0;
-			color: #7695bc;
-
-			&:hover {
-				color: lighten(#7695bc, 10%);
-			}
-
-			i {
-				font-size: 18px;
-			}
-		}
 	}
 
 	&__info {
@@ -291,14 +275,6 @@
 
 		&__social {
 			margin-top: 13px;
-
-			&__item {
-				margin-right: 7px;
-
-				i {
-					font-size: 15px;
-				}
-			}
 		}
 
 		&__info {
