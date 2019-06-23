@@ -36,7 +36,7 @@ var Header = {
 			var lastItemWidth = $lastItem.width();
 
 			var moreOffset = lastItemLeft + lastItemMargin + lastItemWidth;
-			$more.addClass('--active').css({ left: moreOffset + 'px'});
+			$more.addClass('--shown').css({ left: moreOffset + 'px'});
 
 			// show/hide 'more' elements
 			var $moreItems = $_.find('.header__menu__down__body > div');
@@ -49,7 +49,7 @@ var Header = {
 			});
 
 		} else {
-			$more.removeClass('--active');
+			$more.removeClass('--shown');
 		}
 
 	},

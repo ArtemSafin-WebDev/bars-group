@@ -16,7 +16,7 @@
 	}
 
 	&__menu {
-		padding-top: 17px;
+		padding-top: 19px;
 
 		&__wrap {
 			position: relative;
@@ -25,7 +25,7 @@
 
 		&__crop {
 			overflow: hidden;
-			height: 53px;
+			height: 55px;
 		}
 
 		&__item {
@@ -33,9 +33,26 @@
 			float: left;
 
 			> a {
-				padding-top: 17px;
-				height: 53px;
+				position: relative;
+				height: 50px;
+				line-height: 50px;
 				white-space: nowrap;
+			}
+
+			&.--active {
+				a {
+					color: #000 !important;
+
+					&:before {
+						content: ' ';
+						position: absolute;
+						bottom: -5px;
+						right: 10px;
+						left: 10px;
+						height: 2px;
+						background: #59b4e6;
+					}
+				}
 			}
 
 			&--more {
@@ -44,7 +61,7 @@
 				top: 0;
 				visibility: hidden;
 
-				&.--active {
+				&.--shown {
 					visibility: visible;
 				}
 

@@ -888,26 +888,37 @@ img {
       display: flex;
       height: 72px; }
   .header__menu {
-    padding-top: 17px; }
+    padding-top: 19px; }
     .header__menu__wrap {
       position: relative;
       padding-right: 100px; }
     .header__menu__crop {
       overflow: hidden;
-      height: 53px; }
+      height: 55px; }
     .header__menu__item {
       margin-right: 35px;
       float: left; }
       .header__menu__item > a {
-        padding-top: 17px;
-        height: 53px;
+        position: relative;
+        height: 50px;
+        line-height: 50px;
         white-space: nowrap; }
+      .header__menu__item.--active a {
+        color: #000 !important; }
+        .header__menu__item.--active a:before {
+          content: ' ';
+          position: absolute;
+          bottom: -5px;
+          right: 10px;
+          left: 10px;
+          height: 2px;
+          background: #59b4e6; }
       .header__menu__item--more {
         position: absolute;
         left: 100%;
         top: 0;
         visibility: hidden; }
-        .header__menu__item--more.--active {
+        .header__menu__item--more.--shown {
           visibility: visible; }
         .header__menu__item--more.--opened .header__menu__down {
           visibility: visible;
