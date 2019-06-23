@@ -469,7 +469,7 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-footer-markweber, .footer__dev__logo {
       background-image: url(../img/sprite@2x.png);
-      background-size: 128px 45px; } }
+      background-size: 128px 92px; } }
 
 .icon-gantt-slider-dots {
   background-image: url(../img/sprite.png);
@@ -479,12 +479,22 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-gantt-slider-dots {
       background-image: url(../img/sprite@2x.png);
-      background-size: 128px 45px; } }
+      background-size: 128px 92px; } }
+
+.icon-nav-social-habrahabr {
+  background-image: url(../img/sprite.png);
+  background-position: 0px -65px;
+  width: 23px;
+  height: 27px; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .icon-nav-social-habrahabr {
+      background-image: url(../img/sprite@2x.png);
+      background-size: 128px 92px; } }
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?xo2d1t");
-  src: url("../fonts/icomoon.eot?xo2d1t#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?xo2d1t") format("truetype"), url("../fonts/icomoon.woff?xo2d1t") format("woff"), url("../fonts/icomoon.svg?xo2d1t#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?5eknau");
+  src: url("../fonts/icomoon.eot?5eknau#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?5eknau") format("truetype"), url("../fonts/icomoon.woff?5eknau") format("woff"), url("../fonts/icomoon.svg?5eknau#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -501,17 +511,62 @@ template {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icon-instagram:before {
+.icon-filter:before {
   content: "\e900"; }
 
-.icon-odnoklassniki:before {
+.icon-arrow-bird-down:before {
   content: "\e901"; }
 
-.icon-vkontakte:before {
+.icon-arrow-thin-up:before {
   content: "\e902"; }
 
-.icon-linkedin:before {
+.icon-arrow-thin-right:before {
   content: "\e903"; }
+
+.icon-checked-lg:before {
+  content: "\e90c"; }
+
+.icon-pointer:before {
+  content: "\e90d"; }
+
+.icon-close:before {
+  content: "\e90e"; }
+
+.icon-quotes:before {
+  content: "\e90f"; }
+
+.icon-download:before {
+  content: "\e910"; }
+
+.icon-plus-lg:before {
+  content: "\e911"; }
+
+.icon-talking:before {
+  content: "\e912"; }
+
+.icon-operator:before {
+  content: "\e913"; }
+
+.icon-mail:before {
+  content: "\e914"; }
+
+.icon-twitter:before {
+  content: "\e915"; }
+
+.icon-facebook:before {
+  content: "\e916"; }
+
+.icon-vkontakte:before {
+  content: "\e917"; }
+
+.icon-odnoklassniki:before {
+  content: "\e918"; }
+
+.icon-linkedin:before {
+  content: "\e919"; }
+
+.icon-instagram:before {
+  content: "\e91a"; }
 
 .icon-arrow-left:before, .arrow-both-circle__prev:before, .nav-pager__prev:before, .header__menu__item--more > a:before, .gantt-slider__range .rangeslider__handle i:first-child:before {
   content: "\e904"; }
@@ -534,7 +589,7 @@ template {
 .icon-plus:before, .vacancies__title:before {
   content: "\e90b"; }
 
-.icon-close:before {
+.icon-close-small:before {
   content: "\e90a"; }
 
 .clearfix::after, .header__burger__icon::after, .digits__center::after, .digits__content::after, .gantt-slider__ctrl::after {
@@ -1091,7 +1146,7 @@ img {
       .footer__social__item:hover {
         color: #98b0cd; }
       .footer__social__item i {
-        font-size: 24px; }
+        font-size: 18px; }
   .footer__info {
     margin-top: 93px;
     font-size: 0; }
