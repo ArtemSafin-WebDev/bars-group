@@ -46,3 +46,20 @@
 
 
 }
+
+@media all and (max-width: 600px) {
+
+	.article {
+
+		font-size: 14px;
+
+		section {
+			margin: 50px 0;
+		}
+
+		h5 {
+			font-size: 12px;
+		}
+
+	}
+}

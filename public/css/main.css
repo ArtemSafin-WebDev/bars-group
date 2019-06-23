@@ -628,6 +628,7 @@ img {
 
 .button-default {
   position: relative;
+  min-width: 200px;
   padding: 23px 30px;
   padding-right: 87px;
   font-weight: 600;
@@ -638,6 +639,14 @@ img {
     top: 50%;
     margin-top: -20px;
     right: 10px; }
+
+@media all and (max-width: 600px) {
+  .button-default {
+    padding: 18px 20px;
+    padding-right: 65px;
+    font-size: 11px; }
+    .button-default__icon {
+      right: 0; } }
 
 .arrow-right-thin {
   display: inline-block;
@@ -727,6 +736,12 @@ img {
       background: #e1ebfb; }
 
 @media all and (max-width: 600px) {
+  .arrow-right-fly span {
+    height: 1px;
+    width: 23px; }
+    .arrow-right-fly span:before, .arrow-right-fly span:after {
+      height: 1px;
+      width: 12px; }
   .arrow-both-circle__prev, .arrow-both-circle__next {
     width: 28px;
     height: 28px;
@@ -834,6 +849,19 @@ img {
       border-radius: 50%;
       background: #59b4e6; }
 
+@media all and (max-width: 600px) {
+  .article {
+    font-size: 14px; }
+    .article section {
+      margin: 50px 0; }
+    .article h5 {
+      font-size: 12px; } }
+
+.page__h5 {
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 700; }
+
 .page__wrapper {
   overflow: hidden;
   max-width: 3000px;
@@ -856,11 +884,6 @@ img {
   letter-spacing: 1.78px;
   color: #ffffff; }
 
-.page__h5 {
-  margin-bottom: 40px;
-  font-size: 30px;
-  font-weight: 700; }
-
 @media all and (max-width: 1200px) {
   .page__label {
     font-size: 14px; } }
@@ -870,6 +893,9 @@ img {
     padding: 0 20px; } }
 
 @media all and (max-width: 600px) {
+  .page__h5 {
+    margin-bottom: 30px;
+    font-size: 19px; }
   .page__label {
     padding: 8px 7px;
     font-size: 11px;
@@ -2359,3 +2385,19 @@ img {
     color: #6e7f95; }
   .vacancies__button {
     margin-top: 55px; }
+
+@media all and (max-width: 600px) {
+  .vacancies__title {
+    padding: 21px 0;
+    font-size: 16px; }
+    .vacancies__title:before {
+      font-size: 17px;
+      margin-top: -8px; }
+  .vacancies__body {
+    padding-bottom: 55px; }
+  .vacancies__intro {
+    margin-bottom: 40px;
+    font-size: 14px; }
+  .vacancies__button {
+    float: right;
+    margin-top: 40px; } }

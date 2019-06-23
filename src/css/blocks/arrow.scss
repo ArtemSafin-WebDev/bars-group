@@ -128,6 +128,20 @@
 
 @media all and (max-width: 600px) {
 
+	.arrow-right-fly  {
+		
+		span {
+			height: 1px;
+			width: 23px;
+
+			&:before,
+			&:after {
+				height: 1px;
+				width: 12px;
+			}
+		}
+	}
+
 	.arrow-both-circle {
 		&__prev,
 		&__next {

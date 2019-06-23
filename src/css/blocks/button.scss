@@ -6,6 +6,7 @@
 
 .button-default {
 	position: relative;
+	min-width: 200px;
 	padding: 23px 30px;
 	padding-right: 87px;
 	font-weight: 600;
@@ -17,5 +18,17 @@
 		top: 50%;
 		margin-top: -20px;
 		right: 10px;
+	}
+}
+
+@media all and (max-width: 600px) {
+	.button-default {
+		padding: 18px 20px;
+		padding-right: 65px;
+		font-size: 11px;
+
+		&__icon {
+			right: 0;
+		}
 	}
 }

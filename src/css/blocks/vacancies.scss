@@ -56,3 +56,35 @@
 	}
 
 }
+
+@media all and (max-width: 600px) {
+
+	.vacancies {
+		
+		&__title {
+			padding: 21px 0;
+			font-size: 16px;
+
+			&:before {
+				font-size: 17px;
+				margin-top: -8px;
+			}
+		}
+
+		&__body {
+			padding-bottom: 55px;
+		}
+
+		&__intro {
+			margin-bottom: 40px;
+			font-size: 14px;
+		}
+
+		&__button {
+			float: right;
+			margin-top: 40px;
+		}
+
+	}
+
+}
