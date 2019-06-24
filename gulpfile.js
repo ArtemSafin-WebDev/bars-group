@@ -6,7 +6,6 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
 const cleancss = require('gulp-clean-css');
-const imagemin = require('gulp-imagemin');
 const filelist = require('gulp-filelist');
 const uglify = require('gulp-uglify');
 const rigger = require('gulp-rigger');
@@ -17,7 +16,6 @@ const rsync = require('gulp-rsync');
 
 const server = require("browser-sync").create();
 const autoprefixer = require('autoprefixer');
-const pngquant = require('imagemin-pngquant');
 const del = require('del');
 
 require('gulp-grunt')(gulp);    
@@ -97,12 +95,6 @@ gulp.task('styles', function () {
 /*----------  Assets  ----------*/
 gulp.task('images', function () {
     return gulp.src('src/img/**', { base: 'src/', since: gulp.lastRun('images') })
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()],
-            interlaced: true
-        }))
         .pipe(gulp.dest('public/'));
 });
 

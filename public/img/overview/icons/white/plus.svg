@@ -1,1 +1,17 @@
-<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M31.714 16.286H48v15.428H31.714V48H16.286V31.714H0V16.286h16.286V0h15.428v16.286z" id="a"/></defs><use fill="#FFF" xlink:href="#a"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>whCombined Shape 2 Copy 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M31.7142857,16.2857143 L48,16.2857143 L48,31.7142857 L31.7142857,31.7142857 L31.7142857,48 L16.2857143,48 L16.2857143,31.7142857 L1.62003744e-12,31.7142857 L8.10018719e-13,16.2857143 L16.2857143,16.2857143 L16.2857143,0 L31.7142857,0 L31.7142857,16.2857143 Z" id="path-1"></path>
+    </defs>
+    <g id="Frontend" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape-2-Copy-6">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

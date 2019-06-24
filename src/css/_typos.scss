@@ -1,0 +1,56 @@
+
+.typo-base {
+	
+	a {
+		color: #000 !important;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.typo-30 {
+	@extend .typo-base;
+	margin-bottom: 40px;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.typo-24 {
+	@extend .typo-base;
+	margin-bottom: 20px;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.typo-18 {
+	@extend .typo-base;
+	margin-bottom: 15px;
+	font-size: 17px;
+	font-weight: 700;
+}
+
+.typo-17 {
+	@extend .typo-base;
+	margin-bottom: 15px;
+	font-size: 17px;
+	font-weight: 700;
+}
+
+.typo-14 {
+	@extend .typo-base;
+	font-size: 14px;
+	line-height: 1.7;
+	color: rgba(#000, .7);
+}
+
+@media all and (max-width: 600px) {
+
+	.typo-30 {
+		margin-bottom: 30px;
+		font-size: 19px;
+	}
+
+}

@@ -1,12 +1,6 @@
 
 .page {
 
-	&__h5 {
-		margin-bottom: 40px;
-		font-size: 30px;
-		font-weight: 700;
-	}
-
 	&__wrapper {
 		overflow: hidden;
 		max-width: 3000px;
@@ -31,6 +25,10 @@
 		text-transform: uppercase;
 		letter-spacing: 1.78px;
 		color: #ffffff;
+	}
+
+	&__content {
+		margin-left: 200px;
 	}
 
 }
@@ -59,11 +57,6 @@
 @media all and (max-width: 600px) {
 
 	.page {
-		
-		&__h5 {
-			margin-bottom: 30px;
-			font-size: 19px;
-		}
 
 		&__label {
 			padding: 8px 7px;

@@ -165,19 +165,6 @@ var GanttSlider = {
 
 	},
 
-	_initImagerJs: function () {
-		new Imager('#gantt-slider .gantt-slider__bg__image img', { 
-			availableWidths: [600, 1000], 
-			availablePixelRatios: [1, 2],
-			onImagesReplaced: function () {
-				$(this.selector).each(function () {
-					var src = $(this).attr('src');
-					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
-				});
-			}
-		});
-	},
-
 	_initRangeSlider: function () {
 		var self = this;
 
@@ -287,7 +274,6 @@ var GanttSlider = {
 
 		self._makeScrollCalcs();
 		self._initRangeSlider();
-		self._initImagerJs();
 		self._fillRandomItems();
 		self._bindUI();
 

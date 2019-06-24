@@ -267,19 +267,6 @@ var Digits = {
 		} 
 	},
 
-	_initImagerJs: function () {
-		new Imager('#digits .digits__pics__item img', { 
-			availableWidths: [600, 1000], 
-			availablePixelRatios: [1, 2],
-			onImagesReplaced: function () {
-				$(this.selector).each(function () {
-					var src = $(this).attr('src');
-					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
-				});
-			}
-		});
-	},
-
 	_handleNumClick: function (e) {
 		var self = e.data.self;
 
@@ -358,7 +345,6 @@ var Digits = {
 
 		if ( $('#digits').length == 0 ) return;
 
-		self._initImagerJs();
 		self._cloneNumsItems();
 		self._setInitialPosition();
 		self._setVisibleState();
@@ -375,19 +361,6 @@ var Overview = {
 	_state: {
 		isUserActivityHandled: false,
 		currIndex: null
-	},
-
-	_initImagerJs: function () {
-		new Imager('#overview .overview__bg__image img', { 
-			availableWidths: [600, 1000], 
-			availablePixelRatios: [1, 2],
-			onImagesReplaced: function () {
-				$(this.selector).each(function () {
-					var src = $(this).attr('src');
-					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
-				});
-			}
-		});
 	},
 
 	_startVideoLoading: function () {
@@ -493,7 +466,6 @@ var Overview = {
 
 		if ( $('#overview').length == 0 ) return;
 
-		self._initImagerJs();
 		self._bindUI();
 
 		$('body').trigger('click');
@@ -667,19 +639,6 @@ var GanttSlider = {
 
 	},
 
-	_initImagerJs: function () {
-		new Imager('#gantt-slider .gantt-slider__bg__image img', { 
-			availableWidths: [600, 1000], 
-			availablePixelRatios: [1, 2],
-			onImagesReplaced: function () {
-				$(this.selector).each(function () {
-					var src = $(this).attr('src');
-					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
-				});
-			}
-		});
-	},
-
 	_initRangeSlider: function () {
 		var self = this;
 
@@ -789,7 +748,6 @@ var GanttSlider = {
 
 		self._makeScrollCalcs();
 		self._initRangeSlider();
-		self._initImagerJs();
 		self._fillRandomItems();
 		self._bindUI();
 
@@ -1022,6 +980,19 @@ var App = {
 		return $('html').hasClass('wf-active');
 	},
 
+	_initImagerJs: function () {
+		new Imager('.js-imager-box img', { 
+			availableWidths: [600, 1000], 
+			availablePixelRatios: [1, 2],
+			onImagesReplaced: function () {
+				$(this.selector).each(function () {
+					var src = $(this).attr('src');
+					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
+				});
+			}
+		});
+	},
+	
 	_handleDOMReady: function () {
 		var self = this;
 
@@ -1030,6 +1001,7 @@ var App = {
 				clearInterval(timer);
 
 				// init modules here
+				self._initImagerJs();
 				Digits.init();
 				Overview.init();
 				GanttSlider.init();
@@ -1049,6 +1021,8 @@ var App = {
 
 		$(document).ready(self._handleDOMReady.bind(self));
 	},
+
+
 
 	init: function () {
 		var self = this;

@@ -18,6 +18,7 @@
 @import '_helpers';
 @import '_mixins';
 @import '_colors';
+@import '_typos';
 
 body {
 	min-width: 360px;
@@ -64,6 +65,7 @@ img {
 @import 'blocks/news';
 @import 'blocks/press-center';
 @import 'blocks/vacancies';
+@import 'blocks/article-cards';
 
 
 

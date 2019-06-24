@@ -7,19 +7,6 @@ var Overview = {
 		currIndex: null
 	},
 
-	_initImagerJs: function () {
-		new Imager('#overview .overview__bg__image img', { 
-			availableWidths: [600, 1000], 
-			availablePixelRatios: [1, 2],
-			onImagesReplaced: function () {
-				$(this.selector).each(function () {
-					var src = $(this).attr('src');
-					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
-				});
-			}
-		});
-	},
-
 	_startVideoLoading: function () {
 		var self = this;
 
@@ -123,7 +110,6 @@ var Overview = {
 
 		if ( $('#overview').length == 0 ) return;
 
-		self._initImagerJs();
 		self._bindUI();
 
 		$('body').trigger('click');

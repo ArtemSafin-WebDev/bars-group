@@ -29,7 +29,6 @@
     "gulp-grunt": "^0.5.5",
     "gulp-header": "^2.0.5",
     "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^4.1.0",
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-rigger": "^0.5.8",
@@ -39,7 +38,6 @@
     "gulp-uglify": "^3.0.0",
     "gulp.spritesmith": "^6.9.0",
     "handlebars-helper-repeat": "~0.2.0",
-    "imagemin-pngquant": "^4.2.2",
     "rimraf": "^2.3.1"
   },
   "dependencies": {}
