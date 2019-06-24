@@ -7,15 +7,22 @@
 		margin: 0 -12px;
 	}
 
-	&__item {
+	&__col {
 		margin-top: 35px;
 		width: 33.33%;
 		max-width: 33.33%;
 		padding: 0 12px;
+		display: flex;
 
 		&:nth-child(-n+3) {
 			margin-top: 0;
 		}
+		
+	}
+
+	&__item {
+		position: relative;
+		width: 100%;
 
 		&--no-image {
 			.article-cards__desc {
@@ -23,6 +30,25 @@
 				padding-right: 30px;
 				padding-left: 30px;
 			}
+		}
+
+		&--color {
+
+			.article-cards__image {
+				@include position-fill();
+			}
+
+			.article-cards__desc {
+				position: relative;
+				z-index: 1;
+				padding-right: 30px;
+				padding-left: 30px;
+
+				* {
+					color: #fff !important;
+				}
+			}
+
 		}
 	}
 
