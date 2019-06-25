@@ -6,7 +6,7 @@ var App = {
 
 	_initImagerJs: function () {
 		new Imager('.js-imager-box img', { 
-			availableWidths: [600, 1000], 
+			availableWidths: [1000, 1500], 
 			availablePixelRatios: [1, 2],
 			onImagesReplaced: function () {
 				$(this.selector).each(function () {
@@ -28,6 +28,7 @@ var App = {
 				self._initImagerJs();
 				Digits.init();
 				Overview.init();
+				SliderContent.init();
 				GanttSlider.init();
 				Header.init();
 				News.init();

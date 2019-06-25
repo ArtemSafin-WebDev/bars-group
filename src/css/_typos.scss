@@ -17,6 +17,14 @@
 	font-weight: 700;
 }
 
+.typo-28 {
+	@extend .typo-base;
+	margin-bottom: 20px;
+	font-size: 28px;
+	font-weight: 700;
+	line-height: 1.28;
+}
+
 .typo-24 {
 	@extend .typo-base;
 	margin-bottom: 20px;
@@ -43,7 +51,6 @@
 	@extend .typo-base;
 	font-size: 14px;
 	line-height: 1.7;
-	color: rgba(#000, .7);
 }
 
 @media all and (max-width: 600px) {

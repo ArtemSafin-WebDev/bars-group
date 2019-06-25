@@ -51,19 +51,19 @@ module.exports = function(grunt) {
 		    myTask: {
 		      options: {
 		        sizes: [{
-		        	name: '600',
-		        	width: 600
-		        },{
-		        	name: '600',
-		        	suffix: "-2x",
-		        	width: 1200
-		        },{
 		        	name: '1000',
 		        	width: 1000
 		        },{
 		        	name: '1000',
 		        	suffix: "-2x",
 		        	width: 2000
+		        },{
+		        	name: '1500',
+		        	width: 1500
+		        },{
+		        	name: '1500',
+		        	suffix: "-2x",
+		        	width: 3000
 		        }]
 		      },
 		      files: [{

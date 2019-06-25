@@ -756,6 +756,27 @@ var GanttSlider = {
 
 };
 
+var SliderContent = {
+
+	init: function () {
+		var self = this;
+
+		if ( $('#slider-content').length == 0 ) return;
+		if ( $('body').hasClass('is-admin') ) return;
+
+		var $_ = $('#slider-content');
+
+		$_.find('.slider-content__list').slick({
+			dots: false,
+			infinite: false,
+			prevArrow: $_.find('.js-slider-content-prev'),
+			nextArrow: $_.find('.js-slider-content-next'),
+			fade: true
+		});
+	}
+
+};
+
 var Header = {
 
 
@@ -982,7 +1003,7 @@ var App = {
 
 	_initImagerJs: function () {
 		new Imager('.js-imager-box img', { 
-			availableWidths: [600, 1000], 
+			availableWidths: [1000, 1500], 
 			availablePixelRatios: [1, 2],
 			onImagesReplaced: function () {
 				$(this.selector).each(function () {
@@ -1004,6 +1025,7 @@ var App = {
 				self._initImagerJs();
 				Digits.init();
 				Overview.init();
+				SliderContent.init();
 				GanttSlider.init();
 				Header.init();
 				News.init();

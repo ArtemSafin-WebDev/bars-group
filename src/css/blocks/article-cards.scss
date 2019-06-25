@@ -8,7 +8,7 @@
 	}
 
 	&__col {
-		margin-top: 35px;
+		margin-top: 48px;
 		width: 33.33%;
 		max-width: 33.33%;
 		padding: 0 12px;
@@ -32,7 +32,7 @@
 			}
 		}
 
-		&--color {
+		&--color-bg {
 
 			.article-cards__image {
 				@include position-fill();
@@ -41,8 +41,7 @@
 			.article-cards__desc {
 				position: relative;
 				z-index: 1;
-				padding-right: 30px;
-				padding-left: 30px;
+				padding: 25px 30px;
 
 				* {
 					color: #fff !important;
@@ -54,6 +53,7 @@
 
 	&__image {
 		display: block;
+		background-color: $base-gray;
 		background-size: cover;
 
 		&:before {
@@ -68,7 +68,9 @@
 	}
 
 	&__desc {
-		padding: 25px 0;
+		position: relative;
+		z-index: 1;
+		padding-top: 25px;
 	}
 
 	&__h1 {
@@ -85,6 +87,26 @@
 
 	&__text {
 		@extend .typo-14;
+		color: rgba(#000, .7);
+	}
+
+}
+
+@media all and (max-width: 1300px) {
+
+	.article-cards {
+		
+		&__col {
+			width: 50%;
+			max-width: 50%;
+			margin-top: 48px !important;
+
+			&:nth-child(-n+2) {
+				margin-top: 0 !important;
+			}
+		}
+
+
 	}
 
 }

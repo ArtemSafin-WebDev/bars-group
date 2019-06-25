@@ -1,8 +1,7 @@
 
-// reset
-@import '../../bower_components/destyle.css/destyle';
-
 // vendor
+@import '../../bower_components/destyle.css/destyle';
+@import '../../bower_components/slick-carousel/slick/slick.css';
 @import 'vendor/bootstrap-transitions';
 
 // sprites
@@ -66,6 +65,7 @@ img {
 @import 'blocks/press-center';
 @import 'blocks/vacancies';
 @import 'blocks/article-cards';
+@import 'blocks/slider-content';
 
 
 

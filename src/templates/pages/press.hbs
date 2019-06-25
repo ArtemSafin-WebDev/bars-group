@@ -12,6 +12,60 @@ layout: default.hbs
 			
 			<div class="page__content">
 
+				{{!--  slider-content --}}
+				<section class="slider-content" id="slider-content">
+					<div class="slider-content__list">
+						<article class="slider-content__item">
+							<div class="slider-content__image js-imager-box">
+								<img data-src="img/slider-content/001-{width}{pixel_ratio}.jpg" alt="">
+							</div>
+							<div class="slider-content__desc">
+								<time class="article__date slider-content__date" datetime="2019-01-17">17 января 2019</time>
+								<h3 class="slider-content__h1">
+									Ространснадзор будет рассчитывать риски в цифровом сервисе, разработанном <span class="nobr">«БАРС Груп»</span>
+								</h3>
+								<div class="slider-content__text">
+									В результате обновлений платформа перешла на российскую СУБД PostgreSQL, платформа перешла на российскую СУБД PostgreSQL.
+								</div>
+							</div>
+						</article>
+						<article class="slider-content__item">
+							<div class="slider-content__image js-imager-box">
+								<img data-src="img/slider-content/002-{width}{pixel_ratio}.jpg" alt="">
+							</div>
+							<div class="slider-content__desc">
+								<time class="article__date slider-content__date" datetime="2019-01-17">17 января 2019</time>
+								<h3 class="slider-content__h1">
+									Социальный регистр населения от победил во всероссийском конкурсе
+								</h3>
+								<div class="slider-content__text">
+									В результате обновлений платформа перешла на российскую СУБД PostgreSQL, платформа перешла на российскую СУБД PostgreSQL.
+								</div>
+							</div>
+						</article>
+						<article class="slider-content__item">
+							<div class="slider-content__image js-imager-box">
+								<img data-src="img/slider-content/003-{width}{pixel_ratio}.jpg" alt="">
+							</div>
+							<div class="slider-content__desc">
+								<time class="article__date slider-content__date" datetime="2019-01-17">17 января 2019</time>
+								<h3 class="slider-content__h1">
+									«БАРС Груп» реализовала модуль «Система контрольно-аналитических показателей»
+								</h3>
+								<div class="slider-content__text">
+									Сейчас он функционирует в региональных образовательных системах, собирая и визуализируя данные, хранящиеся функционирует в региональных.	
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="arrow-both-circle arrow-both-circle--white slider-content__ctrl">
+						<a href="#" class="arrow-both-circle__prev js-slider-content-prev"></a>
+						<a href="#" class="arrow-both-circle__next js-slider-content-next"></a>
+					</div>
+				</section>
+				{{!-- /slider-content --}}
+
+				{{!--  article-cards --}}
 				<section class="article-cards" id="article-cards">
 					<div class="article-cards__list">
 
@@ -62,7 +116,7 @@ layout: default.hbs
 						</article>
 						
 						<article class="article-cards__col">
-							<a href='#' class="article-cards__item article-cards__item--color">
+							<a href='#' class="article-cards__item article-cards__item--color-bg">
 								<div class="article-cards__image js-imager-box">
 									<img data-src="img/article-cards/006-{width}{pixel_ratio}.jpg" alt="">
 								</div>
@@ -147,7 +201,9 @@ layout: default.hbs
 
 					</div>
 				</section>
+				{{!-- /article-cards --}}
 
+				{{!--  nav-pager --}}
 				<nav class="nav-pager">
 					<a href="#" class="nav-pager__prev"></a>
 					<a href="#" class="nav-pager__item --active">1</a>
@@ -157,6 +213,7 @@ layout: default.hbs
 					<a href="#" class="nav-pager__item">5</a>
 					<a href="#" class="nav-pager__next"></a>
 				</nav>
+				{{!-- /nav-pager --}}
 
 			</div>
 

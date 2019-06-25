@@ -1,0 +1,66 @@
+
+.slider-content {
+
+	position: relative;
+	margin-bottom: 75px;
+
+	&__item {
+		display: none;
+		position: relative;
+		background: $base-gray;
+		height: 445px;
+		
+		.is-admin &,
+		&:first-child {
+			display: block;
+		}
+	}
+
+	&__image {
+		@include position-fill();
+		background-color: $base-gray;
+		background-position: 50% 50%;
+		background-size: cover;
+
+		&:after {
+			content: ' ';
+			@include position-fill();
+			background: rgba(#000, .3);
+		}
+
+		img {
+			display: none;
+		}
+	}
+
+	&__desc {
+		position: relative;
+		z-index: 1;
+		padding: 50px 60px;
+	}
+
+	&__date {
+		color: #fff;
+	}
+
+	&__h1 {
+		@extend .typo-28;
+		max-width: 600px;
+		color: #fff;
+	}
+
+	&__text {
+		@extend .typo-14;
+		max-width: 450px;
+		color: rgba(#fff, .9);
+	}
+
+	&__ctrl {
+		position: absolute;
+		z-index: 10;
+		bottom: 50px;
+		right: 60px;
+	}
+
+}
+
