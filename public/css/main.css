@@ -494,8 +494,8 @@ template {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?5eknau");
-  src: url("../fonts/icomoon.eot?5eknau#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?5eknau") format("truetype"), url("../fonts/icomoon.woff?5eknau") format("woff"), url("../fonts/icomoon.svg?5eknau#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?80am8j");
+  src: url("../fonts/icomoon.eot?80am8j#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?80am8j") format("truetype"), url("../fonts/icomoon.woff?80am8j") format("woff"), url("../fonts/icomoon.svg?80am8j#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -802,7 +802,7 @@ img {
     .nav-social__item:hover {
       color: #98b0cd; }
     .nav-social__item i {
-      font-size: 18px; }
+      font-size: 20px; }
     .nav-social__item .icon-nav-social-habrahabr {
       position: relative;
       top: 2px; }
@@ -811,7 +811,7 @@ img {
   .nav-social__item {
     margin-right: 7px; }
     .nav-social__item i {
-      font-size: 11px; } }
+      font-size: 13px; } }
 
 .nav-pager {
   position: relative;
@@ -2376,9 +2376,10 @@ img {
     .press-center__call-lg + .press-center__email {
       margin-top: 2px; }
   .press-center__social {
-    margin-top: 12px; }
+    margin-top: 15px;
+    margin-left: -5px; }
     .press-center__social i {
-      font-size: 20px; }
+      font-size: 24px; }
 
 @media all and (max-width: 1200px) {
   .press-center__label {
