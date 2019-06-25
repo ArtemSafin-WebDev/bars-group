@@ -920,13 +920,18 @@ img {
 
 .page__label {
   display: inline-block;
-  padding: 13px 16px 11px 16px;
+  padding: 0 16px;
+  height: 43px;
+  line-height: 43px;
   background: #59b4e6;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.78px;
   color: #ffffff; }
+  .page__label--header {
+    height: 40px;
+    line-height: 40px; }
 
 .page__content {
   margin-left: 200px; }
@@ -941,7 +946,9 @@ img {
 
 @media all and (max-width: 600px) {
   .page__label {
-    padding: 8px 7px;
+    padding: 0 8px;
+    height: 30px;
+    line-height: 30px;
     font-size: 11px;
     letter-spacing: 1.22px; } }
 
@@ -2260,7 +2267,6 @@ img {
     right: 0;
     top: 225px; }
   .news__label {
-    min-width: 225px;
     position: absolute;
     z-index: 10;
     top: 27px;
