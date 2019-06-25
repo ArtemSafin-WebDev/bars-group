@@ -8,7 +8,7 @@
 		display: none;
 		position: relative;
 		background: $base-gray;
-		height: 445px;
+		height: 450px;
 		
 		.is-admin &,
 		&:first-child {
@@ -64,3 +64,13 @@
 
 }
 
+@media all and (max-width: 1300px) {
+
+	.slider-content {
+
+		&__item {
+			height: 400px;
+		}
+		
+	}
+}

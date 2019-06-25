@@ -21,8 +21,8 @@
 	}
 
 	&__col {
-		width: 425px;
-		max-width: 425px;
+		flex: 0 0 33.33%;
+		max-width: 33.33%;
 		padding: 0 12px;
 	}
 
@@ -86,7 +86,7 @@
 
 }
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1300px) {
 
 	.press-center {
 
@@ -94,12 +94,9 @@
 			top: -18px;
 		}
 
-		&__list {
-			justify-content: center;
-		}
-
 		&__col {
-			width: 50%;
+			flex-basis: 50%;
+			max-width: 50%;
 		}
 
 		&__human {
