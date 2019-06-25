@@ -32,7 +32,7 @@ var App = {
 				GanttSlider.init();
 				Header.init();
 				News.init();
-				Button.init();
+				ArrowFly.init();
 
 				if (getScrollbarWidth() == 0) {
 					$("html").addClass('hidden-scrollbar');

@@ -968,15 +968,15 @@ var News = {
 		self._bindUI();
 	}
 };
-var Button = {
+var ArrowFly = {
 
-	_handleButtonMouseover: function (e) {
+	_handleAreaMouseover: function (e) {
 		var self = e.data.self;
 
 		$(this).addClass('--active');
 	},
 
-	_handleButtonMouseout: function (e) {
+	_handleAreaMouseout: function (e) {
 		var self = e.data.self;
 
 		$(this).removeClass('--active');
@@ -985,8 +985,8 @@ var Button = {
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('mouseover', '.button', {self: self}, self._handleButtonMouseover);
-		$(document).on('mouseout', '.button', {self: self}, self._handleButtonMouseout);
+		$(document).on('mouseover', '.js-arrow-fly-area', {self: self}, self._handleAreaMouseover);
+		$(document).on('mouseout', '.js-arrow-fly-area', {self: self}, self._handleAreaMouseout);
 	},
 
 	init: function () {
@@ -1029,7 +1029,7 @@ var App = {
 				GanttSlider.init();
 				Header.init();
 				News.init();
-				Button.init();
+				ArrowFly.init();
 
 				if (getScrollbarWidth() == 0) {
 					$("html").addClass('hidden-scrollbar');

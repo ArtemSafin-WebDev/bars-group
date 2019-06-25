@@ -5,7 +5,7 @@
 //= modules/slider-content.js
 //= modules/header.js
 //= modules/news.js
-//= modules/button.js
+//= modules/arrow-fly.js
 //= modules/app.js
 
 App.init();

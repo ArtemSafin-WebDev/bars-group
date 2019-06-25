@@ -726,10 +726,10 @@ img {
 .arrow-right-fly {
   display: inline-block;
   padding: 20px; }
-  .button.--active .arrow-right-fly span:before, .arrow-right-fly:hover span:before {
+  .js-arrow-fly-area.--active .arrow-right-fly span:before, .arrow-right-fly:hover span:before {
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg); }
-  .button.--active .arrow-right-fly span:after, .arrow-right-fly:hover span:after {
+  .js-arrow-fly-area.--active .arrow-right-fly span:after, .arrow-right-fly:hover span:after {
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg); }
   .arrow-right-fly span {
@@ -2491,6 +2491,8 @@ img {
     padding: 25px 30px; }
     .article-cards__item--color-bg .article-cards__desc * {
       color: #fff !important; }
+  .article-cards__item--color-bg .article-cards__text {
+    padding-bottom: 80px; }
 
 .article-cards__image {
   display: block;
@@ -2510,6 +2512,11 @@ img {
 
 .article-cards__text {
   color: rgba(0, 0, 0, 0.7); }
+
+.article-cards__arrow {
+  position: absolute;
+  right: 25px;
+  bottom: 25px; }
 
 @media all and (max-width: 1300px) {
   .article-cards__col {

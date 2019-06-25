@@ -48,6 +48,10 @@
 				}
 			}
 
+			.article-cards__text {
+				padding-bottom: 80px;
+			}
+
 		}
 	}
 
@@ -88,6 +92,12 @@
 	&__text {
 		@extend .typo-14;
 		color: rgba(#000, .7);
+	}
+
+	&__arrow {
+		position: absolute;
+		right: 25px;
+		bottom: 25px;
 	}
 
 }
