@@ -26,9 +26,9 @@ var App = {
 
 				// init modules here
 				self._initImagerJs();
-				Digits.init();
 				Overview.init();
 				SliderContent.init();
+				SliderDigits.init();
 				GanttSlider.init();
 				Header.init();
 				News.init();

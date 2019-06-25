@@ -1,5 +1,5 @@
 
-var Digits = {
+var SliderDigits = {
 
 	_state: {
 		currentIndex: null,
@@ -15,11 +15,11 @@ var Digits = {
 	},
 
 	_getNumsCount: function () {
-		return $('#digits .digits__nums__item').length;
+		return $('#slider-digits .slider-digits__nums__item').length;
 	},
 
 	_getRealCount: function () {
-		return $('#digits .digits__pics__item').length;
+		return $('#slider-digits .slider-digits__pics__item').length;
 	},
 
 	_getDirection: function (nextIndex) {
@@ -49,22 +49,22 @@ var Digits = {
 	},
 
 	_setVisibleState: function () {
-		$('#digits').addClass('_visible');
+		$('#slider-digits').addClass('_visible');
 	},
 
 	_setReadyState: function () {
 		setTimeout(function () {
-			$('#digits').addClass('_ready');
+			$('#slider-digits').addClass('_ready');
 		}, 20);
 	},
 
 	_cloneNumsItems: function () {
 		var self = this;
 
-		var $_ = $('#digits');
-		var $numsCrop = $_.find('.digits__nums__crop');
-		var $numsList = $_.find('.digits__nums__list');
-		var $numsItem = $_.find('.digits__nums__item');
+		var $_ = $('#slider-digits');
+		var $numsCrop = $_.find('.slider-digits__nums__crop');
+		var $numsList = $_.find('.slider-digits__nums__list');
+		var $numsItem = $_.find('.slider-digits__nums__item');
 		var cropWidth = $numsCrop.width();
 		var listWidth = $numsList.width();
 		var factor = Math.ceil(cropWidth / listWidth) + 1;
@@ -85,22 +85,22 @@ var Digits = {
 		var nextIndex = index;
 
 		// elements
-		var $_ = $('#digits');
-		var $numsCrop = $_.find('.digits__nums__crop');
+		var $_ = $('#slider-digits');
+		var $numsCrop = $_.find('.slider-digits__nums__crop');
 		
-		var $nextNumsItem = $_.find('.digits__nums__item').eq(nextIndex);
-		var $nextPicsItem = $_.find('.digits__pics__item').eq(self._getRealIndex(nextIndex));
-		var $nextTextItem = $_.find('.digits__text__item').eq(self._getRealIndex(nextIndex));
-		var $nextTextValue = $nextTextItem.find('.digits__text__value');
-		var $nextTextDesc = $nextTextItem.find('.digits__text__desc');
+		var $nextNumsItem = $_.find('.slider-digits__nums__item').eq(nextIndex);
+		var $nextPicsItem = $_.find('.slider-digits__pics__item').eq(self._getRealIndex(nextIndex));
+		var $nextTextItem = $_.find('.slider-digits__text__item').eq(self._getRealIndex(nextIndex));
+		var $nextTextValue = $nextTextItem.find('.slider-digits__text__value');
+		var $nextTextDesc = $nextTextItem.find('.slider-digits__text__desc');
 
-		var $currNumsItem = $_.find('.digits__nums__item').eq(currIndex);
-		var $currPicsItem = $_.find('.digits__pics__item').eq(self._getRealIndex(currIndex));
-		var $currTextItem = $_.find('.digits__text__item').eq(self._getRealIndex(currIndex));
-		var $currTextValue = $currTextItem.find('.digits__text__value');
-		var $currTextDesc = $currTextItem.find('.digits__text__desc');
+		var $currNumsItem = $_.find('.slider-digits__nums__item').eq(currIndex);
+		var $currPicsItem = $_.find('.slider-digits__pics__item').eq(self._getRealIndex(currIndex));
+		var $currTextItem = $_.find('.slider-digits__text__item').eq(self._getRealIndex(currIndex));
+		var $currTextValue = $currTextItem.find('.slider-digits__text__value');
+		var $currTextDesc = $currTextItem.find('.slider-digits__text__desc');
 
-		var $aboutItem = $_.find('.digits__about__item');
+		var $aboutItem = $_.find('.slider-digits__about__item');
 
 		// direction
 		var direction = self._getDirection(index);
@@ -200,7 +200,7 @@ var Digits = {
 		var self = this;
 
 		// сложить ширину и отступ всех элементов до текущего 
-		var $items = $('#digits .digits__nums__item');
+		var $items = $('#slider-digits .slider-digits__nums__item');
 		var maxIndex = Math.min(index, self._getNumsCount() - 1);
 		var listOffset = 0;
 
@@ -209,22 +209,22 @@ var Digits = {
 			listOffset += parseFloat($items.eq(i).css('margin-left'));
 		}
 		
-		var $list = $('#digits .digits__nums__list');
+		var $list = $('#slider-digits .slider-digits__nums__list');
 		$list.css({'transform': 'translateX(-' + listOffset + 'px)'});
 	},
 
 	_rebaseAtEdges: function () {
 		var self = this;
 
-		var $_ = $('#digits');
-		var $numsCrop = $_.find('.digits__nums__crop');
-		var $numsItem = $_.find('.digits__nums__item');
+		var $_ = $('#slider-digits');
+		var $numsCrop = $_.find('.slider-digits__nums__crop');
+		var $numsItem = $_.find('.slider-digits__nums__item');
 		var penultOffset = $numsItem .last().prev().offset().left;
 		var rightEdge = $numsCrop.offset().left + $numsCrop.width();
 		var currIndex = self._state.currentIndex;
 
 		if (currIndex == 0 || penultOffset < rightEdge) {
-			$('#digits').removeClass('_ready');
+			$('#slider-digits').removeClass('_ready');
 
 			if (currIndex == 0) {
 				self._setInitialPosition();
@@ -232,7 +232,7 @@ var Digits = {
 				self._setRightRebasePos();
 			}
 			setTimeout(function () {
-				$('#digits').addClass('_ready');
+				$('#slider-digits').addClass('_ready');
 			}, 20);
 		} 
 	},
@@ -302,18 +302,18 @@ var Digits = {
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('click', '.digits__nums__item', {self: self}, self._handleNumClick);
-		$(document).on('click', '#digits .js-digits-prev', {self: self}, self._handlePrevClick);
-		$(document).on('click', '#digits .js-digits-next', {self: self}, self._handleNextClick);
-		$(document).on('touchstart', '.digits__center', {self: self}, self._handleTouchStart);
-		$(document).on('touchmove', '.digits__center', {self: self}, self._handleTouchMove);
+		$(document).on('click', '.slider-digits__nums__item', {self: self}, self._handleNumClick);
+		$(document).on('click', '#slider-digits .js-slider-digits-prev', {self: self}, self._handlePrevClick);
+		$(document).on('click', '#slider-digits .js-slider-digits-next', {self: self}, self._handleNextClick);
+		$(document).on('touchstart', '.slider-digits__center', {self: self}, self._handleTouchStart);
+		$(document).on('touchmove', '.slider-digits__center', {self: self}, self._handleTouchMove);
 		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#digits').length == 0 ) return;
+		if ( $('#slider-digits').length == 0 ) return;
 
 		self._cloneNumsItems();
 		self._setInitialPosition();

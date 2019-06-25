@@ -1,17 +1,17 @@
 
-.digits {
+.slider-digits {
 
 	margin-top: 140px;
 	margin-bottom: 160px;
 
 	&._visible {
-		.digits__nums__list {
+		.slider-digits__nums__list {
 			visibility: visible;
 		}
 	}
 
 	&._ready {
-		.digits__nums__list {
+		.slider-digits__nums__list {
 			transition: transform .4s ease-in-out;
 		}
 	}
@@ -205,7 +205,7 @@
 
 @media all and (max-width: 1300px) {
 
-	.digits {
+	.slider-digits {
 
 		&__slider {
 			margin-left: 0;
@@ -221,7 +221,7 @@
 
 @media all and (max-width: 1200px) {
 	
-	.digits {
+	.slider-digits {
 
 		&__text {
 
@@ -250,7 +250,7 @@
 
 @media all and (max-width: 1100px) {
 
-	.digits {
+	.slider-digits {
 
 		&__slider {
 			width: 75%;
@@ -262,7 +262,7 @@
 
 @media all and (max-width: 800px) {
 
-	.digits {
+	.slider-digits {
 
 		margin-bottom: 72px;
 
@@ -349,7 +349,7 @@
 
 @media all and (max-width: 600px) {
 
-	.digits {
+	.slider-digits {
 
 		margin-bottom: 72px;
 
