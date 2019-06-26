@@ -4,6 +4,12 @@
 	position: relative;
 	margin-bottom: 75px;
 
+	&.--has-wing {
+		.slider-content__ctrl {
+			right: 0;
+		}
+	}
+
 	&__item {
 		display: none;
 		position: relative;

@@ -2261,6 +2261,8 @@ img {
 .slider-content {
   position: relative;
   margin-bottom: 75px; }
+  .slider-content.--has-wing .slider-content__ctrl {
+    right: 0; }
   .slider-content__item {
     display: none;
     position: relative;

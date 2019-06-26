@@ -25,7 +25,6 @@ var App = {
 				clearInterval(timer);
 
 				// init modules here
-				self._initImagerJs();
 				Overview.init();
 				SliderContent.init();
 				SliderDigits.init();
@@ -33,6 +32,7 @@ var App = {
 				Header.init();
 				News.init();
 				ArrowFly.init();
+				self._initImagerJs();
 
 				if (getScrollbarWidth() == 0) {
 					$("html").addClass('hidden-scrollbar');
@@ -46,8 +46,6 @@ var App = {
 
 		$(document).ready(self._handleDOMReady.bind(self));
 	},
-
-
 
 	init: function () {
 		var self = this;
