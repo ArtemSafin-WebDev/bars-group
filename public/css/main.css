@@ -1853,7 +1853,7 @@ img {
   vertical-align: top; }
 
 .gantt-slider__type {
-  width: 13.15%; }
+  width: 200px; }
 
 .gantt-slider__item {
   margin-right: 24px;
@@ -2032,10 +2032,6 @@ img {
   .gantt-slider__range input {
     opacity: 0; }
 
-@media all and (max-width: 1300px) {
-  .gantt-slider__type {
-    width: 150px; } }
-
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .gantt-slider__body {
     background: url("../img/gantt-slider/dots@2x.png");
@@ -2057,8 +2053,8 @@ img {
     position: relative;
     overflow: hidden;
     float: left;
-    margin-left: 13.15%;
-    height: 239px;
+    margin-left: 200px;
+    height: 240px;
     width: 56.38%;
     background: #cbd9e1; }
   .slider-digits__pics {
@@ -2156,8 +2152,8 @@ img {
       transition: transform .4s ease-in-out, color .2s, -webkit-transform .4s ease-in-out;
       display: inline-block;
       margin-left: 65px;
-      height: 239px;
-      line-height: 239px;
+      height: 240px;
+      line-height: 240px;
       font-size: 80px;
       font-weight: 700;
       cursor: pointer;
@@ -2456,7 +2452,7 @@ img {
     top: 27px;
     left: 0; }
   .news__slider {
-    margin-left: 13.15%;
+    margin-left: 200px;
     width: 3000px;
     background: #eff4fd; }
   .news__list {
