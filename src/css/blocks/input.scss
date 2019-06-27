@@ -1,0 +1,31 @@
+
+.input-base {
+	display: block;
+	width: 100%;
+}
+
+.input-bottom-line {
+	position: relative;
+	border-bottom: 6px solid #59b4e6;
+
+	&__field {
+		@extend .input-base;
+		height: 60px;
+		padding: 18px 0;
+		font-size: 14px;
+		line-height: 24px;
+
+		&::placeholder {
+			color: #6f8fb9;	
+		}
+	}
+	
+	&__icon {
+		position: absolute;
+		top: 50%;
+		margin-top: -13px;
+		right: 0;
+		font-size: 26px;
+		color: #59b4e6;
+	}
+}

@@ -11,7 +11,7 @@ var App = {
 			onImagesReplaced: function () {
 				$(this.selector).each(function () {
 					var src = $(this).attr('src');
-					$(this).parent().css({ 'background-image': 'url(' + src + ')' });
+					$(this).parent().addClass('--inited').css({ 'background-image': 'url(' + src + ')' });
 				});
 			}
 		});

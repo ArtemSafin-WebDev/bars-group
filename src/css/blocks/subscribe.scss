@@ -1,0 +1,39 @@
+
+.subscribe {
+
+	margin-top: 160px;
+	margin-bottom: 85px;
+	padding: 45px;
+	background: #eff4fd;
+
+	&__form {
+		display: flex;
+		align-items: center;
+	}
+
+	&__text {
+		display: flex;
+		align-items: center;
+	}
+
+	&__title {
+		font-size: 22px;
+		font-weight: 700;
+	}
+
+	&__desc {
+		box-sizing: content-box;
+		margin-top: 10px;
+		padding: 0 70px;
+		max-width: 400px;
+		font-size: 16px;
+		line-height: 1.8;
+	}
+
+	&__list {
+		width: 40%;
+		max-width: 400px;
+		margin-left: auto;
+	}
+
+}

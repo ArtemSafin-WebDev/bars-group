@@ -28,7 +28,7 @@
 		background-position: 50% 50%;
 		background-size: cover;
 
-		&:after {
+		&.--inited:after {
 			content: ' ';
 			@include position-fill();
 			background: rgba(#000, .3);

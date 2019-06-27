@@ -8,7 +8,9 @@
     "url": "git@bitbucket.org:ildar-meyker/html-barsgroup.git"
   },
   "scripts": {
-    "start": "gulp"
+    "start": "gulp clean && grunt responsive_images && grunt modernizr && gulp",
+    "heavy-tasks": "grunt responsive_images && grunt modernizr",
+    "dev": "gulp"
   },
   "browserslist": [
     "last 2 versions",
