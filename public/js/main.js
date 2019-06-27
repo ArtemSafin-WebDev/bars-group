@@ -1034,6 +1034,19 @@ var ArrowFly = {
 		self._bindUI();
 	}
 };
+var CatsScroll = {
+
+	init: function () {
+		var self = this;
+
+		$('.cats-scroll__list').each(function () {
+            new PerfectScrollbar(this, {
+                suppressScrollX: true
+            });
+        });
+        
+	}
+};
 var App = {
 
 	_isFontsReady: function () {
@@ -1068,6 +1081,7 @@ var App = {
 				Header.init();
 				News.init();
 				ArrowFly.init();
+				CatsScroll.init();
 				self._initImagerJs();
 
 				if (getScrollbarWidth() == 0) {

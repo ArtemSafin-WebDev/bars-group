@@ -32,6 +32,7 @@ var App = {
 				Header.init();
 				News.init();
 				ArrowFly.init();
+				CatsScroll.init();
 				self._initImagerJs();
 
 				if (getScrollbarWidth() == 0) {

@@ -34,7 +34,8 @@ module.exports = function(grunt) {
 				"tests": [
 					"touchevents",
 					"video",
-					"lowbandwidth"
+					"lowbandwidth",
+					"csspointerevents"
 				],
 				"options": [
 					"setClasses"

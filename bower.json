@@ -22,6 +22,7 @@
     "rangeslider.js": "^2.3.2",
     "lodash": "^4.17.11",
     "sly": "https://github.com/darsain/sly.git#^1.6.1",
-    "slick-carousel": "https://github.com/kenwheeler/slick.git#1.8.1"
+    "slick-carousel": "https://github.com/kenwheeler/slick.git#1.8.1",
+    "perfect-scrollbar": "https://github.com/utatti/perfect-scrollbar.git#v1.4.0"
   }
 }

@@ -7,5 +7,6 @@
 //= ../../bower_components/bootstrap/js/dist/collapse.js
 //= ../../bower_components/sly/dist/sly.js
 //= ../../bower_components/slick-carousel/slick/slick.js
+//= ../../bower_components/perfect-scrollbar/dist/perfect-scrollbar
 //= vendor/scrollbar-width.js
 

@@ -432,6 +432,109 @@ template {
 [hidden] {
   display: none; }
 
+/*
+ * Container style
+ */
+.ps {
+  overflow: hidden !important;
+  overflow-anchor: none;
+  -ms-overflow-style: none;
+  touch-action: auto;
+  -ms-touch-action: auto; }
+
+/*
+ * Scrollbar rail styles
+ */
+.ps__rail-x {
+  display: none;
+  opacity: 0;
+  transition: background-color .2s linear, opacity .2s linear;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  height: 15px;
+  /* there must be 'bottom' or 'top' for ps__rail-x */
+  bottom: 0px;
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps__rail-y {
+  display: none;
+  opacity: 0;
+  transition: background-color .2s linear, opacity .2s linear;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  width: 15px;
+  /* there must be 'right' or 'left' for ps__rail-y */
+  right: 0;
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+  display: block;
+  background-color: transparent; }
+
+.ps:hover > .ps__rail-x,
+.ps:hover > .ps__rail-y,
+.ps--focus > .ps__rail-x,
+.ps--focus > .ps__rail-y,
+.ps--scrolling-x > .ps__rail-x,
+.ps--scrolling-y > .ps__rail-y {
+  opacity: 0.6; }
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: #eee;
+  opacity: 0.9; }
+
+/*
+ * Scrollbar thumb styles
+ */
+.ps__thumb-x {
+  background-color: #aaa;
+  border-radius: 6px;
+  transition: background-color .2s linear, height .2s ease-in-out;
+  -webkit-transition: background-color .2s linear, height .2s ease-in-out;
+  height: 6px;
+  /* there must be 'bottom' for ps__thumb-x */
+  bottom: 2px;
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps__thumb-y {
+  background-color: #aaa;
+  border-radius: 6px;
+  transition: background-color .2s linear, width .2s ease-in-out;
+  -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+  width: 6px;
+  /* there must be 'right' for ps__thumb-y */
+  right: 2px;
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+  background-color: #999;
+  height: 11px; }
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+  background-color: #999;
+  width: 11px; }
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+  .ps {
+    overflow: auto !important; } }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ps {
+    overflow: auto !important; } }
+
 .fade {
   -webkit-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear; }
@@ -2578,3 +2681,56 @@ img {
     margin-top: 48px !important; }
     .article-cards__col:nth-child(-n+2) {
       margin-top: 0 !important; } }
+
+.cats-scroll {
+  position: relative;
+  background: #0f1c2d;
+  height: 100%; }
+  .cats-scroll__title {
+    position: absolute;
+    width: 100%;
+    top: 35px;
+    left: 0;
+    padding: 0 40px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff; }
+  .cats-scroll__list {
+    position: absolute;
+    width: 100%;
+    top: 80px;
+    bottom: 40px;
+    left: 0;
+    padding: 0 40px;
+    overflow: hidden; }
+    .cats-scroll__list div {
+      margin-top: 6px; }
+      .cats-scroll__list div:first-child {
+        margin-top: 0; }
+    .cats-scroll__list a {
+      margin-right: -50px;
+      padding-right: 50px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff !important; }
+    .cats-scroll__list span {
+      position: relative;
+      left: 10px;
+      pointer-events: none;
+      color: #59b4e6; }
+  .cats-scroll__layer {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 80px;
+    bottom: 40px;
+    left: 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0f1c2d), color-stop(50%, rgba(15, 28, 45, 0)), to(#0f1c2d));
+    background: linear-gradient(180deg, #0f1c2d 0%, rgba(15, 28, 45, 0) 50%, #0f1c2d 100%);
+    pointer-events: none; }
+    .csspointerevents .cats-scroll__layer {
+      display: block; }
+  .cats-scroll .ps__rail-y {
+    opacity: 0 !important; }

@@ -1,0 +1,73 @@
+
+.cats-scroll {
+	
+	position: relative;
+	background: #0f1c2d;
+	height: 100%;
+	
+	&__title {
+		position: absolute;
+		width: 100%;
+		top: 35px;
+		left: 0;
+		padding: 0 40px;
+		font-size: 16px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: #ffffff;
+	}
+
+	&__list {
+		position: absolute;
+		width: 100%;
+		top: 80px;
+		bottom: 40px;
+		left: 0;
+		padding: 0 40px;
+		overflow: hidden;
+
+		div {
+			margin-top: 6px;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+		a {
+			margin-right: -50px;
+			padding-right: 50px;
+			font-size: 24px;
+			font-weight: 600;
+			color: #fff !important;
+		}
+
+		span {
+			position: relative;
+			left: 10px;
+			pointer-events: none;
+			color: #59b4e6;
+		}
+	}
+
+	&__layer {
+		display: none;
+		position: absolute;
+		width: 100%;
+		top: 80px;
+		bottom: 40px;
+		left: 0;
+		background: linear-gradient(180deg, #0f1c2d 0%, rgba(15, 28, 45, 0) 50%, #0f1c2d 100%);
+		pointer-events: none;
+
+		.csspointerevents & {
+			display: block;
+		}
+	}
+
+	.ps__rail-y {
+		opacity: 0 !important; 
+	}
+
+}
