@@ -1,7 +1,7 @@
 
 .footer {
 
-	padding: 97px 0;
+	padding: 100px 0;
 	background: #fff;
 
 	&__line {
@@ -138,6 +138,15 @@
 			right: 0;
 			top: 4px;
 		}
+	}
+
+}
+
+
+@media all and (max-width: 1300px) {
+
+	.footer {
+		padding: 0.9*100px 0;
 	}
 
 }

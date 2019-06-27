@@ -38,14 +38,41 @@
 		margin-left: 200px;
 	}
 
+	&__gap-xs {
+		height: 80px;
+	}
+
+	&__gap-sm {
+		height: 100px;
+	}
+
+	&__gap-lg {
+		height: 160px;
+	}
+
 }
 
-@media all and (max-width: 1200px) {
+
+@media all and (max-width: 1300px) {
 
 	.page {
+
 		&__label {
 			font-size: 14px;
 		}
+
+		&__gap-xs {
+			height: 0.9*80px;
+		}
+
+		&__gap-sm {
+			height: 0.9*100px;
+		}
+
+		&__gap-lg {
+			height: 0.9*160px;
+		}
+
 	}
 }
 
