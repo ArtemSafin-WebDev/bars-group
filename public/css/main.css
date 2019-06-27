@@ -2794,12 +2794,13 @@ img {
         -ms-flex-align: center;
             align-items: center; }
   .subscribe__title {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
     font-size: 22px;
     font-weight: 700; }
   .subscribe__desc {
     -webkit-box-sizing: content-box;
             box-sizing: content-box;
-    margin-top: 10px;
     padding: 0 70px;
     max-width: 400px;
     font-size: 16px;
