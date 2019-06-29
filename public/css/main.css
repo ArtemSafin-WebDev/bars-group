@@ -1176,6 +1176,10 @@ img {
   .page__gap-lg {
     height: 144px; } }
 
+@media all and (max-width: 1050px) {
+  .page__label {
+    font-size: 14px; } }
+
 @media all and (max-width: 850px) {
   .page__inner {
     padding: 0 20px; } }
@@ -1419,7 +1423,7 @@ img {
     display: -ms-flexbox;
     display: flex; }
   .footer__logo {
-    margin-right: 6%; }
+    width: 260px; }
     .footer__logo__size {
       margin-top: -16px;
       width: 151px; }
@@ -1511,7 +1515,9 @@ img {
 
 @media all and (max-width: 1300px) {
   .footer {
-    padding: 90px 0; } }
+    padding: 90px 0; }
+    .footer__logo {
+      width: 200px; } }
 
 @media all and (max-width: 1050px) {
   .footer__logo--for-info {
@@ -1731,7 +1737,7 @@ img {
     display: -ms-flexbox;
     display: flex; }
     .overview__about__logo {
-      margin-right: 6%; }
+      width: 260px; }
     .overview__about__list {
       width: 480px; }
     .overview__about__item {
@@ -1786,16 +1792,12 @@ img {
   .overview__label {
     top: -18px; }
   .overview__nav {
-    margin-left: 50px;
+    margin-left: 60px;
     padding-top: 60px; }
   .overview__about {
-    padding-left: 50px; }
+    padding-left: 60px; }
     .overview__about__logo {
       display: none; } }
-
-@media all and (max-width: 1200px) {
-  .overview__title {
-    font-size: 21px; } }
 
 @media all and (max-width: 950px) {
   .overview__nav__item {
@@ -2315,25 +2317,10 @@ img {
 @media all and (max-width: 1300px) {
   .slider-digits__slider {
     margin-left: 0;
-    width: 65%; }
+    width: 75%; }
   .slider-digits__label {
     top: -18px;
     left: 20px; } }
-
-@media all and (max-width: 1200px) {
-  .slider-digits__text__desc {
-    padding: 0 50px;
-    font-size: 21px; }
-  .slider-digits__text__value {
-    padding-right: 50px;
-    font-size: 70px; }
-  .slider-digits__nums__item {
-    margin-left: 50px;
-    font-size: 70px; } }
-
-@media all and (max-width: 1100px) {
-  .slider-digits__slider {
-    width: 75%; } }
 
 @media all and (max-width: 800px) {
   .slider-digits {
@@ -2559,7 +2546,8 @@ img {
     position: absolute;
     z-index: 10;
     top: 27px;
-    left: 0; }
+    left: 0;
+    min-width: 245px; }
   .news__slider {
     margin-left: 200px;
     width: 3000px;
@@ -2585,7 +2573,7 @@ img {
       .news__item.--active .news__desc {
         opacity: .7; }
   .news__date {
-    margin-top: -20px;
+    margin-top: -10px;
     display: block;
     font-size: 14px;
     line-height: 1.7;
@@ -2608,7 +2596,8 @@ img {
 @media all and (max-width: 1300px) {
   .news__label {
     top: -18px;
-    left: 20px; }
+    left: 20px;
+    min-width: auto; }
   .news__slider {
     margin-left: 0; } }
 

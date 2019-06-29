@@ -177,7 +177,7 @@
 		display: flex;
 
 		&__logo {
-			margin-right: 6%;
+			width: 260px;
 		}
 
 		&__list {
@@ -267,12 +267,12 @@
 		}
 
 		&__nav {
-			margin-left: 50px;
+			margin-left: 60px;
 			padding-top: 60px;
 		}
 
 		&__about {
-			padding-left: 50px;
+			padding-left: 60px;
 
 			&__logo {
 				display: none;
@@ -282,16 +282,6 @@
 
 }
 
-@media all and (max-width: 1200px) {
-	
-	.overview {
-
-		&__title {
-			font-size: 21px;
-		}
-	}
-
-}
 
 @media all and (max-width: 950px) {
 	

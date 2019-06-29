@@ -209,7 +209,7 @@
 
 		&__slider {
 			margin-left: 0;
-			width: 65%;
+			width: 75%;
 		}
 
 		&__label {
@@ -218,47 +218,6 @@
 		}
 	}
 }
-
-@media all and (max-width: 1200px) {
-	
-	.slider-digits {
-
-		&__text {
-
-			&__desc {
-				padding: 0 50px;
-				font-size: 21px;
-			}
-
-			&__value {
-				padding-right: 50px;
-				font-size: 70px;
-			}
-
-		}
-		
-		&__nums {
-			&__item {
-				margin-left: 50px;
-				font-size: 70px;
-			}
-		}
-
-	}
-
-}
-
-@media all and (max-width: 1100px) {
-
-	.slider-digits {
-
-		&__slider {
-			width: 75%;
-		}
-
-	}
-}
-
 
 @media all and (max-width: 800px) {
 

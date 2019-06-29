@@ -9,7 +9,7 @@
 	}
 
 	&__logo {
-		margin-right: 6%;
+		width: 260px;
 
 		&__size {
 			margin-top: -16px;
@@ -147,6 +147,10 @@
 
 	.footer {
 		padding: 0.9*100px 0;
+
+		&__logo {
+			width: 200px;
+		}
 	}
 
 }
