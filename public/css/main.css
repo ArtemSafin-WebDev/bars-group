@@ -1167,8 +1167,6 @@ img {
   height: 160px; }
 
 @media all and (max-width: 1300px) {
-  .page__label {
-    font-size: 14px; }
   .page__gap-xs {
     height: 72px; }
   .page__gap-sm {
