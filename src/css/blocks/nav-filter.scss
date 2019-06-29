@@ -1,0 +1,43 @@
+
+.nav-filter {
+
+	margin-top: 60px;
+	font-size: 14px;
+
+	&__item {
+		margin-top: 35px;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&__button {
+
+		&:after {
+			content: ' ';
+			position: relative;
+			left: 5px;
+			top: -2px;
+			border: 3px solid transparent;
+			border-top-color: #6e7f95;
+			font-size: 0;
+			width: 0;
+			height: 0;
+		}
+
+		span {
+			border-bottom: 1px dotted #6e7f95;
+		}
+
+		&:hover {
+			span {
+				border-color: lighten(#6f8fb9, 10%);
+			}
+		}
+	}
+
+	&__menu {
+		display: none;
+	}
+}

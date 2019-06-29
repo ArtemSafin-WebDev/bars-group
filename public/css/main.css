@@ -562,7 +562,7 @@ template {
     -webkit-transition: none;
     transition: none; } }
 
-.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i, .vacancies__title:before {
+.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__item:before, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i, .vacancies__title:before {
   display: inline-block; }
 
 .icon-footer-markweber, .footer__dev__logo {
@@ -602,7 +602,7 @@ template {
   font-weight: normal;
   font-style: normal; }
 
-.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i, .vacancies__title:before {
+.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__item:before, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i, .vacancies__title:before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -675,7 +675,7 @@ template {
 .icon-arrow-left:before, .arrow-both-circle__prev:before, .nav-pager__prev:before, .header__menu__item--more > a:before, .gantt-slider__range .rangeslider__handle i:first-child:before {
   content: "\e904"; }
 
-.icon-arrow-right:before, .arrow-both-circle__next:before, .nav-pager__next:before, .overview__nav__link:before, .gantt-slider__range .rangeslider__handle i:last-child:before {
+.icon-arrow-right:before, .arrow-both-circle__next:before, .nav-pager__next:before, .nav-side__item:before, .overview__nav__link:before, .gantt-slider__range .rangeslider__handle i:last-child:before {
   content: "\e905"; }
 
 .icon-pause:before, .gantt-slider__range .rangeslider__handle i:nth-child(2):before {
@@ -993,6 +993,92 @@ img {
   .nav-pager__item {
     margin: 0 3px; } }
 
+.nav-side {
+  position: relative;
+  background: #eff4fd;
+  padding: 13px 0; }
+  .nav-side.--has-wing:before {
+    width: 200px; }
+  .nav-side:before {
+    content: ' ';
+    position: absolute;
+    right: 100%;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    background: #eff4fd; }
+  .nav-side__item {
+    position: relative;
+    padding-right: 40px; }
+    .nav-side__item:before {
+      position: absolute;
+      top: 50%;
+      margin-top: -5px;
+      right: 23px;
+      font-size: 12px;
+      color: #6e7f95;
+      opacity: 0; }
+    .nav-side__item.--active:before {
+      opacity: 1; }
+    .nav-side__item.--active a {
+      color: #000 !important;
+      cursor: default; }
+    .nav-side__item.--active span {
+      border-color: transparent !important; }
+    .nav-side__item a {
+      display: block;
+      padding: 7px 0;
+      font-size: 16px;
+      font-weight: 600; }
+      .nav-side__item a:hover span {
+        border-color: #91aaca; }
+    .nav-side__item span {
+      border-bottom: 1px dotted #6e7f95; }
+
+.nav-filter {
+  margin-top: 60px;
+  font-size: 14px; }
+  .nav-filter__item {
+    margin-top: 35px; }
+    .nav-filter__item:first-child {
+      margin-top: 0; }
+  .nav-filter__button:after {
+    content: ' ';
+    position: relative;
+    left: 5px;
+    top: -2px;
+    border: 3px solid transparent;
+    border-top-color: #6e7f95;
+    font-size: 0;
+    width: 0;
+    height: 0; }
+  .nav-filter__button span {
+    border-bottom: 1px dotted #6e7f95; }
+  .nav-filter__button:hover span {
+    border-color: #91aaca; }
+  .nav-filter__menu {
+    display: none; }
+
+.nav-cats {
+  margin-top: 60px;
+  font-size: 14px; }
+  .nav-cats div {
+    padding: 8px 0; }
+    .nav-cats div.--active a {
+      font-weight: 600;
+      border-color: transparent !important;
+      color: #000 !important;
+      cursor: default; }
+    .nav-cats div a {
+      border-bottom: 1px dotted #6e7f95; }
+      .nav-cats div a:hover {
+        border-color: #91aaca; }
+    .nav-cats div span {
+      position: relative;
+      left: 5px;
+      font-size: 11px;
+      color: #6e7f95; }
+
 .article {
   line-height: 1.6; }
   .article *:first-child {
@@ -1048,6 +1134,14 @@ img {
 .page__inner {
   padding: 0 40px; }
 
+.page__col-side {
+  float: left;
+  padding-right: 30px;
+  width: 200px; }
+
+.page__col-main {
+  margin-left: 200px; }
+
 .page__label {
   display: inline-block;
   padding: 0 16px;
@@ -1062,9 +1156,6 @@ img {
   .page__label--header {
     height: 40px;
     line-height: 40px; }
-
-.page__content {
-  margin-left: 200px; }
 
 .page__gap-xs {
   height: 80px; }
@@ -2436,8 +2527,9 @@ img {
   .slider-content__desc {
     position: relative;
     z-index: 1;
-    padding: 50px 60px; }
+    padding: 60px; }
   .slider-content__date {
+    margin-top: -10px;
     color: #fff; }
   .slider-content__h1 {
     max-width: 600px;
@@ -2685,7 +2777,7 @@ img {
   .article-cards__item--color-bg .article-cards__desc {
     position: relative;
     z-index: 1;
-    padding: 25px 30px; }
+    padding: 30px; }
     .article-cards__item--color-bg .article-cards__desc * {
       color: #fff !important; }
   .article-cards__item--color-bg .article-cards__text {
@@ -2705,7 +2797,10 @@ img {
 .article-cards__desc {
   position: relative;
   z-index: 1;
-  padding-top: 25px; }
+  padding-top: 30px; }
+
+.article-cards__date {
+  margin-top: -5px; }
 
 .article-cards__text {
   color: rgba(0, 0, 0, 0.7); }
@@ -2751,15 +2846,12 @@ img {
       .cats-scroll__list div:first-child {
         margin-top: 0; }
     .cats-scroll__list a {
-      margin-right: -50px;
-      padding-right: 50px;
       font-size: 24px;
       font-weight: 600;
       color: #fff !important; }
     .cats-scroll__list span {
       position: relative;
       left: 10px;
-      pointer-events: none;
       color: #59b4e6; }
   .cats-scroll__layer {
     display: none;

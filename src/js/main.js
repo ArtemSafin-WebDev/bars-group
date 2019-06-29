@@ -7,6 +7,7 @@
 //= modules/news.js
 //= modules/arrow-fly.js
 //= modules/cats-scroll.js
+//= modules/nav-side.js
 //= modules/app.js
 
 App.init();

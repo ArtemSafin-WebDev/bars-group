@@ -41,10 +41,11 @@
 	&__desc {
 		position: relative;
 		z-index: 1;
-		padding: 50px 60px;
+		padding: 60px;
 	}
 
 	&__date {
+		margin-top: -10px;
 		color: #fff;
 	}
 

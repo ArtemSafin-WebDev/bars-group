@@ -16,6 +16,16 @@
 		padding: 0 40px;
 	}
 
+	&__col-side {
+		float: left;
+		padding-right: 30px;
+		width: 200px;
+	}
+
+	&__col-main {
+		margin-left: 200px;
+	}
+
 	&__label {
 		display: inline-block;
 		padding: 0 16px;
@@ -32,10 +42,6 @@
 			height: 40px;
 			line-height: 40px;
 		}
-	}
-
-	&__content {
-		margin-left: 200px;
 	}
 
 	&__gap-xs {

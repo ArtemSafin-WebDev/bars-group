@@ -41,7 +41,7 @@
 			.article-cards__desc {
 				position: relative;
 				z-index: 1;
-				padding: 25px 30px;
+				padding: 30px;
 
 				* {
 					color: #fff !important;
@@ -74,7 +74,11 @@
 	&__desc {
 		position: relative;
 		z-index: 1;
-		padding-top: 25px;
+		padding-top: 30px;
+	}
+
+	&__date {
+		margin-top: -5px;
 	}
 
 	&__h1 {
