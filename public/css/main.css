@@ -1035,20 +1035,50 @@ img {
       opacity: 0; }
     .nav-side__item.--active:before {
       opacity: 1; }
-    .nav-side__item.--active a {
+    .nav-side__item.--active .nav-side__link {
       color: #000 !important;
       cursor: default; }
-    .nav-side__item.--active span {
+    .nav-side__item.--active .nav-side__text {
       border-color: transparent !important; }
-    .nav-side__item a {
-      display: block;
-      padding: 7px 0;
-      font-size: 16px;
-      font-weight: 600; }
-      .nav-side__item a:hover span {
-        border-color: #91aaca; }
-    .nav-side__item span {
-      border-bottom: 1px dotted #6e7f95; }
+  .nav-side__link {
+    display: block;
+    padding: 7px 0;
+    font-size: 16px;
+    font-weight: 600; }
+    .nav-side__link:hover .nav-side__text {
+      border-color: #91aaca; }
+  .nav-side__text {
+    border-bottom: 1px dotted #6e7f95; }
+
+@media all and (max-width: 1050px) {
+  .nav-side {
+    margin: 0 -40px;
+    padding: 0 40px;
+    padding-top: 35px;
+    font-size: 0; }
+    .nav-side:before, .nav-side:after {
+      display: none; }
+    .nav-side__item {
+      display: inline-block;
+      margin-right: 30px;
+      padding: 0; }
+      .nav-side__item:last-child {
+        margin-right: 0; }
+      .nav-side__item:before {
+        display: none; }
+      .nav-side__item.--active:after {
+        content: ' ';
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background: #59b4e6; }
+    .nav-side__link {
+      padding: 0;
+      padding-bottom: 25px; }
+    .nav-side__text {
+      border: 0; } }
 
 .nav-filter {
   margin-top: 60px;
@@ -1192,7 +1222,9 @@ img {
   .page__label {
     font-size: 14px; }
   .page__col-side {
-    display: none; }
+    float: none;
+    padding-right: 0;
+    width: auto; }
   .page__col-main {
     margin-left: 0; } }
 
@@ -2933,7 +2965,8 @@ img {
       height: 100%;
       margin-right: -100px;
       padding-right: 100px;
-      overflow-y: scroll; }
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch; }
       .cats-scroll__list__box div {
         margin-top: 6px; }
         .cats-scroll__list__box div:first-child {

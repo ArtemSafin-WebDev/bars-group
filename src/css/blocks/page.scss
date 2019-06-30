@@ -82,7 +82,9 @@
 		}
 
 		&__col-side {
-			display: none;
+			float: none;
+			padding-right: 0;
+			width: auto;
 		}
 
 		&__col-main {
