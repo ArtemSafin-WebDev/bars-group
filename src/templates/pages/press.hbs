@@ -354,15 +354,17 @@ layout: default.hbs
 									<section class="cats-scroll">
 										<h3  class="cats-scroll__title">Рубрики</h3>
 										<div class="cats-scroll__list">
-											{{#repeat 3}}
-											<div><a href="#">Праздники</a><span>12</span></div>
-											<div><a href="#">Мероприятия</a><span>234</span></div>
-											<div><a href="#">Корпоративные новости</a><span>35</span></div>
-											<div><a href="#">Интервью</a><span>12</span></div>
-											<div><a href="#">Рейтинги</a><span>25</span></div>
-											<div><a href="#">Партнерство</a><span>67</span></div>
-											<div><a href="#">Проекты</a><span>146</span></div>
-											{{/repeat}}
+											<div class="cats-scroll__list__box">
+												{{#repeat 3}}
+												<div><a href="#">Праздники</a><span>12</span></div>
+												<div><a href="#">Мероприятия</a><span>234</span></div>
+												<div><a href="#">Корпоративные новости</a><span>35</span></div>
+												<div><a href="#">Интервью</a><span>12</span></div>
+												<div><a href="#">Рейтинги</a><span>25</span></div>
+												<div><a href="#">Партнерство</a><span>67</span></div>
+												<div><a href="#">Проекты</a><span>146</span></div>
+												{{/repeat}}
+											</div>
 										</div>
 										<div class="cats-scroll__layer"></div>
 									</section>

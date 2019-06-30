@@ -32,7 +32,6 @@ var App = {
 				Header.init();
 				News.init();
 				ArrowFly.init();
-				CatsScroll.init();
 				NavSide.init();
 				self._initImagerJs();
 

@@ -28,24 +28,31 @@
 		padding: 0 40px;
 		overflow: hidden;
 
-		div {
-			margin-top: 6px;
+		&__box {
+			height: 100%;
+			margin-right: -100px;
+			padding-right: 100px;
+			overflow-y: scroll;
 
-			&:first-child {
-				margin-top: 0;
+			div {
+				margin-top: 6px;
+
+				&:first-child {
+					margin-top: 0;
+				}
 			}
-		}
 
-		a {
-			font-size: 24px;
-			font-weight: 600;
-			color: #fff !important;
-		}
+			a {
+				font-size: 24px;
+				font-weight: 600;
+				color: #fff !important;
+			}
 
-		span {
-			position: relative;
-			left: 10px;
-			color: #59b4e6;
+			span {
+				position: relative;
+				left: 10px;
+				color: #59b4e6;
+			}
 		}
 	}
 
@@ -75,8 +82,10 @@
 	.cats-scroll {
 
 		&__list {
-			a {
-				font-size: 22px;
+			&__box {
+				a {
+					font-size: 22px;
+				}
 			}
 		}
 

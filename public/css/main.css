@@ -2929,18 +2929,23 @@ img {
     left: 0;
     padding: 0 40px;
     overflow: hidden; }
-    .cats-scroll__list div {
-      margin-top: 6px; }
-      .cats-scroll__list div:first-child {
-        margin-top: 0; }
-    .cats-scroll__list a {
-      font-size: 24px;
-      font-weight: 600;
-      color: #fff !important; }
-    .cats-scroll__list span {
-      position: relative;
-      left: 10px;
-      color: #59b4e6; }
+    .cats-scroll__list__box {
+      height: 100%;
+      margin-right: -100px;
+      padding-right: 100px;
+      overflow-y: scroll; }
+      .cats-scroll__list__box div {
+        margin-top: 6px; }
+        .cats-scroll__list__box div:first-child {
+          margin-top: 0; }
+      .cats-scroll__list__box a {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff !important; }
+      .cats-scroll__list__box span {
+        position: relative;
+        left: 10px;
+        color: #59b4e6; }
   .cats-scroll__layer {
     display: none;
     position: absolute;
@@ -2957,7 +2962,7 @@ img {
     opacity: 0 !important; }
 
 @media all and (max-width: 1050px) {
-  .cats-scroll__list a {
+  .cats-scroll__list__box a {
     font-size: 22px; } }
 
 @media all and (max-width: 600px) {
