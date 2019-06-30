@@ -1,6 +1,13 @@
 
 .article {
 
+	&__date {
+		margin-bottom: 10px;
+		display: block;
+		font-size: 14px;
+		color: #6f8fb9;
+	}
+
 	line-height: 1.6;
 
 	*:first-child {
@@ -44,18 +51,17 @@
 		}
 	}
 	
-	&__date {
-		margin-bottom: 10px;
-		display: block;
-		font-size: 14px;
-		color: #6f8fb9;
-	}
+	
 
 }
 
 @media all and (max-width: 600px) {
 
 	.article {
+
+		&__date {
+			font-size: 12px;
+		}
 
 		font-size: 14px;
 

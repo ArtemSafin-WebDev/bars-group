@@ -12,8 +12,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 62px;
-		width: 62px;
+		height: 3.875em;
+		width: 3.875em;
 		font-size: 16px;
 		background: #eff4fd;
 		color: #000 !important;
@@ -51,6 +51,19 @@
 	}
 
 }
+
+@media all and (max-width: 1050px) { 
+	
+	.nav-pager {
+
+		&__item,
+		&__prev,
+		&__next {
+			font-size: 15px;
+		}
+	}
+}
+
 
 @media all and (max-width: 600px) {
 

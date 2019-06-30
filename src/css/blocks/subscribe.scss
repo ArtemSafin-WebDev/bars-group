@@ -15,7 +15,6 @@
 	}
 
 	&__title {
-		align-self: flex-start;
 		font-size: 22px;
 		font-weight: 700;
 	}
@@ -23,15 +22,90 @@
 	&__desc {
 		box-sizing: content-box;
 		padding: 0 70px;
-		max-width: 400px;
 		font-size: 16px;
 		line-height: 1.8;
 	}
 
 	&__list {
-		width: 40%;
-		max-width: 400px;
+		flex: 0 0 40%;
 		margin-left: auto;
 	}
 
+}
+
+@media all and (max-width: 1300px) {
+
+	.subscribe {
+
+		&__form {
+			margin: 0 -12px;
+		}
+
+		&__text {
+			flex-wrap: wrap;
+			padding: 0 12px;
+		}
+
+		&__title {
+			margin-bottom: 15px;
+			margin-top: -5px;
+
+			br {
+				display: none;
+			}
+		}
+
+		&__desc {
+			padding: 0;
+		}
+
+		&__list {
+			padding: 0 12px;
+			flex: 0 0 50%;
+		}
+
+	
+	}
+}
+
+ @media all and (max-width: 850px) {
+
+	.subscribe {
+
+		&__form {
+			flex-wrap: wrap;
+		}
+
+		&__list {
+			flex: 0 0 100%;
+			margin-top: 40px;
+			margin-left: 0;
+		}
+
+	}
+
+ }
+
+@media all and (max-width: 650px) {
+
+  	.subscribe {
+  		max-width: none;
+  	}
+
+}
+
+@media all and (max-width: 600px) {
+
+  	.subscribe {
+  		padding: 30px 20px;
+
+		&__title {
+			font-size: 16px;
+		}
+
+		&__desc {
+			font-size: 12px;
+		}
+  	}
+  	
 }

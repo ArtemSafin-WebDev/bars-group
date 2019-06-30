@@ -438,6 +438,7 @@ var SliderContent = {
 		var $_ = $('#slider-content');
 		var $slider = $_.find('.slider-content__list');
 
+		var MIN_WINDOW_WIDTH = 1051;
 		var MAX_WING_WIDTH = 200;
 
 		var windowWidth = $(window).width();
@@ -445,7 +446,7 @@ var SliderContent = {
 		var sectionEnd = $_.offset().left + sectionWidth;
 		var wingWidth = windowWidth - sectionEnd;
 
-		if (wingWidth > MAX_WING_WIDTH) {
+		if (wingWidth > MAX_WING_WIDTH || windowWidth < MIN_WINDOW_WIDTH) {
 			$slider.css({ 'margin-right': 0 });
 			$_.removeClass('--has-wing');
 		} else {
@@ -1036,15 +1037,35 @@ var ArrowFly = {
 };
 var CatsScroll = {
 
+	_state: {
+		instances: []
+	},
+
+	_handleWindowResize: function (e) {
+		var self = e.data.self;
+
+		self._state.instances.forEach(function (ps) {
+			ps.update();
+		});
+	},
+
+	_bindUI: function () {
+		var self = this;
+
+		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+	},
+
 	init: function () {
 		var self = this;
 
 		$('.cats-scroll__list').each(function () {
-            new PerfectScrollbar(this, {
+			var ps = new PerfectScrollbar(this, {
                 suppressScrollX: true
             });
+            self._state.instances.push(ps);
         });
-        
+
+        self._bindUI();
 	}
 };
 

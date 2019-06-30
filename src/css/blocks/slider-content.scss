@@ -46,6 +46,7 @@
 
 	&__date {
 		margin-top: -10px;
+		margin-bottom: 18px;
 		color: #fff;
 	}
 
@@ -70,12 +71,53 @@
 
 }
 
-@media all and (max-width: 1300px) {
+@media all and (max-width: 1050px) {
 
 	.slider-content {
 
-		&__item {
-			height: 400px;
+		margin: 0 -40px;
+
+		
+	}
+}
+
+@media all and (max-width: 850px) {
+
+	.slider-content {
+
+		margin: 0 -20px;
+
+		&__desc {
+			padding: 40px;
+		}
+
+		&__ctrl {
+			right: 40px;
+			bottom: 40px;
+		}
+		
+	}
+}
+
+@media all and (max-width: 600px) {
+
+	.slider-content {
+
+		&__h1 {
+			font-size: 26px;
+		}
+
+		&__desc {
+			padding: 20px;
+		}
+
+		&__date {
+			margin-top: 10px;
+		}
+
+		&__ctrl {
+			right: 20px;
+			bottom: 20px;
 		}
 		
 	}

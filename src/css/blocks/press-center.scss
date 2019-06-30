@@ -33,7 +33,6 @@
 	}
 
 	&__desc {
-		min-height: 3.1em;
 		line-height: 1.55;
 	}
 
@@ -89,6 +88,8 @@
 @media all and (max-width: 1300px) {
 
 	.press-center {
+		
+		margin-top: 18px;
 
 		&__label {
 			top: -18px;
@@ -114,3 +115,55 @@
 	}
 }
 
+@media all and (max-width: 700px) {
+
+	.press-center {
+		
+		&__list {
+			display: block;
+			margin-top: -40px;
+		}
+
+		&__col {
+			max-width: none;
+			margin-top: 40px;
+
+			&:first-child {
+				.press-center__item {
+					border-top: 0;
+					padding-top: 0;
+				}
+			}
+		}
+
+		&__call-lg {
+			margin-top: 40px;
+		}
+	
+	}
+}
+
+@media all and (max-width: 600px) {
+
+	.press-center {
+		
+		font-size: 14px;
+
+		&__content {
+			padding: 50px 0;
+		}
+
+		&__call-lg {
+			font-size: 32px;
+		}
+
+		&__human {
+			font-size: 16px;
+		}
+
+		&__email {
+			font-size: 14px;
+		}
+	
+	}
+}

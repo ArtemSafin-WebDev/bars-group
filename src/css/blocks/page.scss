@@ -37,11 +37,6 @@
 		text-transform: uppercase;
 		letter-spacing: 1.78px;
 		color: #ffffff;
-
-		&--header {
-			height: 40px;
-			line-height: 40px;
-		}
 	}
 
 	&__gap-xs {
@@ -86,6 +81,14 @@
 			font-size: 14px;
 		}
 
+		&__col-side {
+			display: none;
+		}
+
+		&__col-main {
+			margin-left: 0;
+		}
+
 	}
 
 }
@@ -113,5 +116,20 @@
 			font-size: 11px;
 			letter-spacing: 1.22px;
 		}
+
+		&__gap-xs {
+			height: 0.5*80px;
+		}
+
+		&__gap-sm {
+			height: 0.5*100px;
+		}
+
+		&__gap-lg {
+			height: 0.5*160px;
+		}
+
 	}
+
+
 }

@@ -7,6 +7,7 @@ var SliderContent = {
 		var $_ = $('#slider-content');
 		var $slider = $_.find('.slider-content__list');
 
+		var MIN_WINDOW_WIDTH = 1051;
 		var MAX_WING_WIDTH = 200;
 
 		var windowWidth = $(window).width();
@@ -14,7 +15,7 @@ var SliderContent = {
 		var sectionEnd = $_.offset().left + sectionWidth;
 		var wingWidth = windowWidth - sectionEnd;
 
-		if (wingWidth > MAX_WING_WIDTH) {
+		if (wingWidth > MAX_WING_WIDTH || windowWidth < MIN_WINDOW_WIDTH) {
 			$slider.css({ 'margin-right': 0 });
 			$_.removeClass('--has-wing');
 		} else {

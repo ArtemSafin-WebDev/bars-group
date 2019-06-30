@@ -2,6 +2,13 @@
 .header {
 
 	margin-bottom: 100px;
+
+	&--has-label {
+		.page__label {
+			height: 40px;
+			line-height: 40px;
+		}
+	}
 	
 	/*----------  top line  ----------*/
 	
@@ -292,6 +299,19 @@
 	.header {
 
 		margin-bottom: 37px;
+
+		&--has-label {
+			.header__desc {
+				flex-basis: auto;
+				margin-left: 16px;
+				margin-top: 10px;
+			}
+
+			.page__label {
+				height: 24px;
+				line-height: 24px;
+			}
+		}
 
 		/*----------  top line  ----------*/
 
