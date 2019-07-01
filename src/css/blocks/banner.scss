@@ -1,0 +1,54 @@
+
+.banner {
+
+	position: relative;
+
+	&__image {
+		@include position-fill();
+		background-color: $base-gray;
+		background-position: 50% 50%;
+		background-size: cover;
+
+		&.--inited:after {
+			@include position-fill();
+			content: ' ';
+			background: rgba(#000, .3);
+		}
+
+		img {
+			display: none;
+		}
+	}
+
+	&__content {
+		position: relative;
+		padding-bottom: 210px;
+		z-index: 1;
+	}
+
+	&__logo {
+		margin-top: 0;
+		padding: 65px 0;
+	}
+
+	&__h1 {
+		@extend .typo-36;
+		max-width: 700px;
+		color: #fff;
+	}
+
+	&__desc {
+		max-width: 600px;
+		font-size: 18px;
+		line-height: 1.75;
+		color: rgba(#fff, .7);
+	}
+
+	&__button {
+		margin-top: 25px;
+	}
+
+
+
+
+}

@@ -85,10 +85,6 @@
 		@extend .typo-18;
 	}
 
-	&__h3 {
-		@extend .typo-17;
-	}
-
 	&__text {
 		@extend .typo-14;
 		color: rgba(#000, .7);
@@ -166,6 +162,10 @@
 
 		&__date {
 			margin-top: 0;
+		}
+
+		&__h2 {
+			font-size: 14px;
 		}
 
 		&__text {

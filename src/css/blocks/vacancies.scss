@@ -1,8 +1,16 @@
 
 .vacancies {
 
-	max-width: 1000px;
-	margin: 0 auto;
+	&__h1 {
+		margin-bottom: 40px;
+		font-size: 30px;
+		font-weight: 700;
+		line-height: 1.4;
+	}
+
+	&__list {
+		max-width: 1000px;
+	}
 
 	&__item {
 		border-top: 1px solid rgba(#000, .3);
@@ -62,7 +70,8 @@
 	.vacancies {
 		
 		&__title {
-			padding: 21px 0;
+			padding-top: 21px;
+			padding-bottom: 21px;
 			font-size: 16px;
 
 			&:before {

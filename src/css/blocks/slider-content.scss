@@ -28,8 +28,8 @@
 		background-size: cover;
 
 		&.--inited:after {
-			content: ' ';
 			@include position-fill();
+			content: ' ';
 			background: rgba(#000, .3);
 		}
 

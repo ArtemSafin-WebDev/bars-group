@@ -2,16 +2,11 @@
 .header {
 
 	margin-bottom: 100px;
-
-	&--has-label {
-		.page__label {
-			height: 40px;
-			line-height: 40px;
-		}
+	
+	&--no-logo {
+		margin-bottom: 0 !important;
 	}
-	
-	/*----------  top line  ----------*/
-	
+
 	&__top-line {
 		border-bottom: 2px solid #e6ebf2;
 
@@ -193,36 +188,6 @@
 		background: #e6ebf2;
 	}
 	
-	/*----------  logo line  ----------*/
-	&__logo-line {
-		margin-top: 55px;
-		display: flex;
-	}
-
-	&__logo {
-		flex: 0 0 151px;
-	}
-
-	&__desc {
-		margin-left: 48px;
-		margin-top: 13px;
-		font-size: 18px;
-		line-height: 1.5;
-
-		&__long {
-			max-width: 300px;
-			display: none;
-		}
-
-		&__short {
-			max-width: 300px;
-		}
-
-		span {
-			color: #6f8fb9;
-		}
-	}
-
 	&__burger {
 		display: none;
 		position: absolute;
@@ -251,17 +216,7 @@
 @media all and (max-width: 1050px) {
 
 	.header {
-
 		margin-bottom: 60px;
-
-		&__logo {
-			flex-basis: 130px;
-		}
-
-		&__desc {
-			margin-left: 45px;
-			font-size: 16px;
-		}
 	}
 
 }
@@ -270,7 +225,6 @@
 
 	.header {
 		
-		/*----------  top line  ----------*/
 		&__top-line {
 			&__center {
 				align-items: center;
@@ -303,21 +257,6 @@
 
 		margin-bottom: 40px;
 
-		&--has-label {
-			.header__desc {
-				flex-basis: auto;
-				margin-left: 16px;
-				margin-top: 10px;
-			}
-
-			.page__label {
-				height: 24px;
-				line-height: 24px;
-			}
-		}
-
-		/*----------  top line  ----------*/
-
 		&__top-line {
 			border-bottom: 0;
 
@@ -338,35 +277,8 @@
 					margin-bottom: 4px;
 				}
 			}
-		}
+		}		
 		
-		/*----------  logo line  ----------*/
-		
-		&__logo-line {
-			margin-top: 17px;
-			flex-wrap: wrap;
-		}
-
-		&__logo {
-			flex-basis: 90px;
-		}
-
-		&__desc {
-			flex-basis: 100%;
-			margin-left: 0;
-			margin-top: 20px;
-			font-size: 11px;
-			line-height: 1.63;
-
-			&__long {
-				display: block;
-			}
-
-			&__short {
-				display: none;
-			}
-			
-		}
 	}
 
 }
