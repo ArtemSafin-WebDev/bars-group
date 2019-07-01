@@ -2,34 +2,127 @@
 .nav-cats {
 	
 	margin-top: 60px;
-	font-size: 14px;
 
-	div {
+	&__item {
 		padding: 8px 0;
 
 		&.--active {
-			a {
+			
+			.nav-cats__link {
+				cursor: default;
+			}
+
+			.nav-cats__text {
 				font-weight: 600;
 				border-color: transparent !important;
 				color: #000 !important;
 				cursor: default;
 			}
 		}
+		
+	}
 
-		a {
-			border-bottom: 1px dotted #6e7f95;
+	&__link {
+		cursor: default;
 
-			&:hover {
-				border-color:lighten(#6f8fb9, 10%);
+		&:hover {
+			color: #6f8fb9;
+		}
+	}
+
+	&__text {
+		transition: color .2s, border-color .2s;
+		border-bottom: 1px dotted #6e7f95;
+		font-size: 14px;
+		cursor: pointer;
+
+		&:hover {
+			border-color:lighten(#6f8fb9, 10%);
+			color: lighten(#6f8fb9, 10%);
+		}
+	}
+
+	&__count {
+		position: relative;
+		left: 5px;
+		font-size: 11px;
+		color: #6e7f95;
+	}
+
+}
+
+@media all and (max-width: 1050px) {
+	
+	.nav-cats {
+
+		margin: 0 -40px 40px -40px;
+		border-bottom: 1px solid #e6ebf2;
+		white-space: nowrap;
+		overflow: hidden;
+
+		&__scroll {
+			@include add-scrollbar();
+			padding-bottom: 30px;
+			margin-bottom: -45px;
+
+			.hidden-scrollbar & {
+				margin-bottom: -30px;
 			}
 		}
 
-		span {
-			position: relative;
-			left: 5px;
-			font-size: 11px;
-			color: #6e7f95;
+		&__item {
+			display: inline-block;
+			margin-right: 35px;
+			padding: 0;
+
+			&:first-child {
+				margin-left: 40px;
+			}
+			&:last-child {
+				margin-right: 40px;
+			}
 		}
+
+		&__link {
+			display: block;
+			padding: 15px 0;
+			cursor: pointer;
+
+			&:hover {
+				.nav-cats__text {
+					color: lighten(#6f8fb9, 10%);
+				}
+			}
+		}
+
+		&__text {
+			border: 0;
+		}
+
+		&__count {
+			cursor: inherit;
+		}
+
+	}
+
+	.nav-filter {
+		display: none;
+	}
+	
+}
+
+@media all and (max-width: 600px) {
+
+	.nav-cats {
+		
+		&__text {
+			font-size: 12px;
+		}
+		
+		&__count {
+			font-size: 9px;
+		}
+
 	}
 
 }

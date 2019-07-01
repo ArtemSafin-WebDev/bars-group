@@ -91,6 +91,18 @@
 			margin-left: 0;
 		}
 
+		&__gap-xs {
+			height: 0.7*80px;
+		}
+
+		&__gap-sm {
+			height: 0.7*100px;
+		}
+
+		&__gap-lg {
+			height: 0.7*160px;
+		}
+
 	}
 
 }

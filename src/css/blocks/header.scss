@@ -251,6 +251,9 @@
 @media all and (max-width: 1050px) {
 
 	.header {
+
+		margin-bottom: 60px;
+
 		&__logo {
 			flex-basis: 130px;
 		}
@@ -298,7 +301,7 @@
 
 	.header {
 
-		margin-bottom: 37px;
+		margin-bottom: 40px;
 
 		&--has-label {
 			.header__desc {
