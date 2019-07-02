@@ -5,9 +5,12 @@
 
 	&._focused {
 		border-bottom-color: #59b4e6;
-
+	}
+	
+	&._focused,
+	&._filled {
 		.input-smart-label__label {
-			top: 25%;
+			top: 7px;
 			font-size: 10px;
 		}
 	}
@@ -39,9 +42,8 @@
 	&__label {
 		transition: all .2s;
 		position: absolute;
-		top: 50%;
+		top: 20px;
 		left: 0;
-		margin-top: -.5em;
 		font-size: 18px;
 		line-height: 1;
 		color: rgba(#000, .3);
@@ -55,16 +57,23 @@
 		font-size: 26px;
 		color: #59b4e6;
 	}
+	
+
+	textarea {
+		resize: none;
+	}
+
 }
 
 
 @media all and (max-width: 600px) {
 
 	.input-smart-label {
-
-		&._focused {
+		
+		&._focused,
+		&._filled {
 			.input-smart-label__label {
-				top: 15%;
+				top: 4px;
 			}
 		}
 
