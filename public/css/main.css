@@ -929,10 +929,10 @@ img {
 .arrow-right-fly {
   display: inline-block;
   padding: 20px; }
-  .js-form-wings.--hover .arrow-right-fly span:before, .arrow-right-fly:hover span:before {
+  .js-form-wings._hover .arrow-right-fly span:before, .arrow-right-fly:hover span:before {
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg); }
-  .js-form-wings.--hover .arrow-right-fly span:after, .arrow-right-fly:hover span:after {
+  .js-form-wings._hover .arrow-right-fly span:after, .arrow-right-fly:hover span:after {
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg); }
   .arrow-right-fly span {
