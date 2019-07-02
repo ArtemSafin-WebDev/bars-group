@@ -5,8 +5,8 @@
 //= modules/slider-digits.js
 //= modules/header.js
 //= modules/news.js
-//= modules/arrow-fly.js
 //= modules/nav-side.js
+//= modules/form.js
 //= modules/app.js
 
 App.init();

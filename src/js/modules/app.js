@@ -31,8 +31,8 @@ var App = {
 				GanttSlider.init();
 				Header.init();
 				News.init();
-				ArrowFly.init();
 				NavSide.init();
+				Form.init();
 				self._initImagerJs();
 
 				if (getScrollbarWidth() == 0) {
