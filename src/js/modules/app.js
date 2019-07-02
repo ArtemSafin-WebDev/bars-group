@@ -1,9 +1,5 @@
 var App = {
 
-	_isFontsReady: function () {
-		return $('html').hasClass('wf-active');
-	},
-
 	_initImagerJs: function () {
 		new Imager('.js-imager-box img', { 
 			availableWidths: [1000, 1500], 
@@ -20,26 +16,20 @@ var App = {
 	_handleDOMReady: function () {
 		var self = this;
 
-		var timer = setInterval(function () {
-			if ( self._isFontsReady() ) {
-				clearInterval(timer);
+		// init modules here
+		self._initImagerJs();
+		Overview.init();
+		SliderContent.init();
+		SliderDigits.init();
+		GanttSlider.init();
+		Header.init();
+		News.init();
+		NavSide.init();
+		Form.init();
 
-				// init modules here
-				Overview.init();
-				SliderContent.init();
-				SliderDigits.init();
-				GanttSlider.init();
-				Header.init();
-				News.init();
-				NavSide.init();
-				Form.init();
-				self._initImagerJs();
-
-				if (getScrollbarWidth() == 0) {
-					$("html").addClass('hidden-scrollbar');
-				}
-			}
-		}, 20);
+		if (getScrollbarWidth() == 0) {
+			$("html").addClass('hidden-scrollbar');
+		}
 	},
 
 	_bindUI: function () {

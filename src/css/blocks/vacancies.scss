@@ -1,7 +1,11 @@
 
 .vacancies {
 
+	padding: 110px 0;
+
 	&__h1 {
+		margin-top: -.6em;
+		margin-left: -2px;
 		margin-bottom: 40px;
 		font-size: 30px;
 		font-weight: 700;
@@ -65,9 +69,27 @@
 
 }
 
+@media all and (max-width: 1050px) {
+
+	.vacancies {
+
+		padding: 0.8*110px 0;
+
+
+	}
+
+}
+
 @media all and (max-width: 600px) {
 
 	.vacancies {
+
+		padding: 0.6*110px 0;
+
+		&__h1 {
+			margin-bottom: 30px;
+			font-size: 19px;
+		}
 		
 		&__title {
 			padding-top: 21px;

@@ -11,6 +11,7 @@
 	padding-right: 87px;
 	font-size: 18px;
 	font-weight: 600;
+	text-align: left;
 	background: #59b4e6;
 	color: #fff !important;
 
@@ -19,6 +20,18 @@
 		top: 50%;
 		margin-top: -20px;
 		right: 10px;
+	}
+}
+
+@media all and (max-width: 1050px) {
+	.button-default {
+		padding-left: 25px;
+		padding-right: 75px;
+		font-size: 16px;
+
+		&__icon {
+			right: 5px;
+		}
 	}
 }
 

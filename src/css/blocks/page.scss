@@ -53,26 +53,6 @@
 
 }
 
-
-@media all and (max-width: 1300px) {
-
-	.page {
-
-		&__gap-xs {
-			height: 0.9*80px;
-		}
-
-		&__gap-sm {
-			height: 0.9*100px;
-		}
-
-		&__gap-lg {
-			height: 0.9*160px;
-		}
-
-	}
-}
-
 @media all and (max-width: 1050px) {
 
 	.page {
@@ -92,15 +72,15 @@
 		}
 
 		&__gap-xs {
-			height: 0.7*80px;
+			height: 0.8*80px;
 		}
 
 		&__gap-sm {
-			height: 0.7*100px;
+			height: 0.8*100px;
 		}
 
 		&__gap-lg {
-			height: 0.7*160px;
+			height: 0.8*160px;
 		}
 
 	}
@@ -132,15 +112,15 @@
 		}
 
 		&__gap-xs {
-			height: 0.5*80px;
+			height: 0.6*80px;
 		}
 
 		&__gap-sm {
-			height: 0.5*100px;
+			height: 0.6*100px;
 		}
 
 		&__gap-lg {
-			height: 0.5*160px;
+			height: 0.6*160px;
 		}
 
 	}
