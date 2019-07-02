@@ -51,7 +51,8 @@ img {
 }
 
 // blocks
-@import 'blocks/input';
+@import 'blocks/input-smart-label';
+@import 'blocks/input-attach-file';
 @import 'blocks/button';
 @import 'blocks/arrow';
 @import 'blocks/nav-social';

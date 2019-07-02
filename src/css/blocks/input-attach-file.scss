@@ -1,0 +1,66 @@
+
+.input-attach-file {
+	position: relative;
+	padding: 25px 20px 25px 50px;
+	background: #e5eaf3;
+	overflow: hidden;
+
+	&._chosen {
+		.input-attach-file__label {
+			display: none;
+		}
+		.input-attach-file__files {
+			display: block;
+		}
+	}
+
+	&__label {
+		font-size: 18px;
+		line-height: 1.4;
+		color: rgba(#000, .3);
+	}
+
+	&__files {
+		display: none;
+		font-size: 18px;
+		line-height: 1.4;
+	}
+
+	&__field {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		font-size: 100px;
+		opacity: 0;
+	}
+
+	&__icon {
+		position: absolute;
+		top: 27px;
+		left: 20px;
+		opacity: .3;
+	}
+
+}
+
+@media all and (max-width: 600px) {
+
+	.input-attach-file {
+
+		padding-left: 45px;
+
+		&__label,
+		&__files {
+			font-size: 14px;
+		}
+
+		&__icon {
+			transform-origin: 0 0;
+			transform: scale(.8);
+		}
+
+	}
+
+}
