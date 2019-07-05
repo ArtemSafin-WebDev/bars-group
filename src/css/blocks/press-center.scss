@@ -40,7 +40,7 @@
 		margin-top: 8px;
 		font-size: 22px;
 		font-weight: 700;
-		line-height: 1.36;
+		line-height: 1.35;
 	}
 
 	&__call-lg {
@@ -66,12 +66,8 @@
 	}
 
 	&__email {
-		margin-top: 4px;
+		margin-top: 15px;
 		font-size: 16px;
-
-		.press-center__call-lg + & {
-			margin-top: 2px;
-		} 
 	}
 
 	&__social {
@@ -92,7 +88,7 @@
 		margin-top: 18px;
 
 		&__label {
-			top: -18px;
+			top: -20px;
 		}
 
 		&__col {

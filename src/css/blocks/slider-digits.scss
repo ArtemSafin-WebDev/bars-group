@@ -30,8 +30,8 @@
 		overflow: hidden;
 		float: left;
 		margin-left: 200px;
-		height: 240px;
-		width: 56.38%;
+		height: 260px;
+		width: 60%;
 		background: $base-gray;
 	}
 
@@ -93,17 +93,19 @@
 
 		&__desc {
 			position: relative;
-			padding: 0 60px;
 			flex-grow: 1;
+			padding: 0 60px;
+			max-width: 500px;
 			font-size: 24px;
 			font-weight: 700;
-			line-height: 1.33;
+			line-height: 1.35;
 			color: #fff;
 		}
 
 		&__value {
 			position: relative;
 			padding-right: 60px;
+			margin-left: auto;
 			font-size: 80px;
 			font-weight: 700;
 			color: #fff;
@@ -135,8 +137,8 @@
 			transition: transform .4s ease-in-out, color .2s;
 			display: inline-block;
 			margin-left: 65px;
-			height: 240px;
-			line-height: 240px;
+			height: 260px;
+			line-height: 260px;
 			font-size: 80px;
 			font-weight: 700;
 			cursor: pointer;
@@ -213,29 +215,28 @@
 		}
 
 		&__label {
-			top: -18px;
+			top: -20px;
 			left: 20px;
 		}
 	}
 }
 
-@media all and (max-width: 800px) {
+@media all and (max-width: 1050px) {
 
 	.slider-digits {
 
-		margin-bottom: 72px;
+		margin-bottom: 70px;
 
 		&__label {
 			left: 0;
 		}
 
 		&__content {
-			margin: 0 -20px;
+			margin: 0 -40px;
 		}
 
 		&__slider {
 			width: 100%;
-			height: 200px;
 		}
 
 		&__text {
@@ -244,7 +245,8 @@
 			}
 
 			&__value {
-				padding: 0 20px;
+				margin-left: 0;
+				padding: 0 40px;
 			}
 		}
 
@@ -253,8 +255,6 @@
 			overflow: hidden;
 
 			&__item {
-				height: 200px;
-				line-height: 200px;
 				visibility: visible !important;
 			}
 		}
@@ -284,16 +284,16 @@
 			}
 
 			&__title {
-				font-size: 20px;
+				margin-bottom: 20px;
+				font-size: 24px;
 				font-weight: 700;
-				line-height: 1.37;
+				line-height: 1.35;
 			}
 
 			&__desc {
-				margin-top: 9px;
 				font-size: 14px;
-				line-height: 1.72;
-				opacity: .7;
+				line-height: 1.5;
+				color: rgba(#000, .7);
 			}
 		}
 
@@ -310,34 +310,40 @@
 
 	.slider-digits {
 
-		margin-bottom: 72px;
+		margin-bottom: 70px;
+
+		&__content {
+			margin: 0 -20px;
+		}
 
 		&__slider {
-			height: 118px;
+			height: 160px;
 		}
 
 		&__text {
 			&__value {
-				padding: 0 16px;
+				padding: 0 20px;
 				font-size: 60px;
 			}
 		}
 
 		&__nums {
 			&__item {
-				height: 118px;
-				line-height: 118px;
+				height: 160px;
+				line-height: 160px;
 			}
 		}
 
 		&__about {
 
 			&__title {
-				font-size: 16px;
+				margin-bottom: 15px;
+				font-size: 17px;
 			}
 
 			&__desc {
-				font-size: 11px;
+				font-size: 12px;
+				line-height: 1.7;
 			}
 		}
 

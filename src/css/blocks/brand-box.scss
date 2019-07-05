@@ -4,9 +4,12 @@
 	margin-top: 55px;
 
 	&--has-label {
-		.page__label {
-			height: 40px;
-			line-height: 40px;
+		.brand-box__inner {
+			align-items: flex-end;
+		}
+		.brand-box__desc {
+			margin-top: 0;
+			margin-bottom: 2px;
 		}
 	}
 
@@ -25,12 +28,7 @@
 		line-height: 1.5;
 
 		&__long {
-			max-width: 300px;
 			display: none;
-		}
-
-		&__short {
-			max-width: 300px;
 		}
 
 		span {
@@ -44,6 +42,12 @@
 @media all and (max-width: 1050px) {
 	
 	.brand-box {
+
+		&--has-label {
+			.brand-box__desc {
+				margin-left: 30px;
+			}
+		}
 
 		&__image {
 			flex-basis: 130px;
@@ -68,13 +72,8 @@
 		&--has-label {
 			.brand-box__desc {
 				flex-basis: auto;
-				margin-left: 16px;
-				margin-top: 10px;
-			}
-
-			.page__label {
-				height: 24px;
-				line-height: 24px;
+				margin-left: 17px;
+				margin-bottom: 0;
 			}
 		}
 
@@ -90,8 +89,8 @@
 			flex-basis: 100%;
 			margin-left: 0;
 			margin-top: 20px;
-			font-size: 11px;
-			line-height: 1.63;
+			font-size: 12px;
+			line-height: 1.7;
 
 			&__long {
 				display: block;

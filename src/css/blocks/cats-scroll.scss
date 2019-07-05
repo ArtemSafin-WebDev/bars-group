@@ -36,7 +36,7 @@
 			-webkit-overflow-scrolling: touch;
 
 			div {
-				margin-top: 6px;
+				margin-top: 10px;
 
 				&:first-child {
 					margin-top: 0;
@@ -46,6 +46,7 @@
 			a {
 				font-size: 24px;
 				font-weight: 600;
+				line-height: 1.35;
 				color: #fff !important;
 			}
 

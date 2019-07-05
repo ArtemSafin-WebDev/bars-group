@@ -1130,7 +1130,7 @@ var App = {
 	_initImagerJs: function () {
 		new Imager('.js-imager-box img', { 
 			availableWidths: [1000, 1500], 
-			availablePixelRatios: [1, 2],
+			availablePixelRatios: [1],
 			onImagesReplaced: function () {
 				$(this.selector).each(function () {
 					var src = $(this).attr('src');

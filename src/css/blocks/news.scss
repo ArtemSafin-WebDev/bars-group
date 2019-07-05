@@ -7,10 +7,10 @@
 		position: relative;
 	}
 
-	&__buttons {
+	&__ctrl {
 		position: absolute;
 		right: 0;
-		top: 225px;
+		bottom: 60px;
 	}
 
 	&__label {
@@ -60,23 +60,22 @@
 
 	&__date {
 		margin-top: -10px;
+		margin-bottom: 20px;
 		display: block;
 		font-size: 14px;
-		line-height: 1.7;
 		color: #6f8fb9;
 	}
 
 	&__title {
 		transition: font-size .2s ease-out;
-		margin-top: 11px;
+		margin-bottom: 20px;
 		font-size: 18px;
 		font-weight: 700;
-		line-height: 1.33;
+		line-height: 1.35;
 	}
 
 	&__desc {
 		transition: opacity .2s ease-out;
-		margin-top: 20px;
 		font-size: 14px;
 		line-height: 1.5;
 		opacity: 0;
@@ -88,7 +87,7 @@
 	.news {
 
 		&__label {
-			top: -18px;
+			top: -20px;
 		    left: 20px;
 		    min-width: auto;
 		}

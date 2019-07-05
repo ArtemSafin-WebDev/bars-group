@@ -38,6 +38,7 @@
 			margin-top: 24px;
 			font-size: 14px;
 			font-weight: 600;
+			line-height: 1.45;
 			text-transform: uppercase;
 			white-space: nowrap;
 			color: #6f8fb9;
@@ -55,6 +56,7 @@
 			margin-top: 17px;
 			font-size: 14px;
 			font-weight: 400;
+			line-height: 1.45;
 
 			&:first-child {
 				margin-top: 0;
@@ -78,6 +80,7 @@
 
 	&__place {
 		font-size: 14px;
+		line-height: 1.45;
 		width: 260px;
 	}
 
@@ -92,7 +95,7 @@
 	}
 
 	&__email {
-		margin-top: 5px;
+		margin-top: 13px;
 		font-size: 14px;
 		font-weight: 600;
 	}
@@ -123,20 +126,20 @@
 	}
 
 	&__dev {
-		margin-top: 27px;
+		margin-top: 40px;
 		display: inline-block;
 		position: relative;
 		padding-right: 71px;
 		font-size: 12px;
 		font-weight: 600;
-		color: #c4c4c4;
+		color: #c4c4c4 !important;
 
 		&__logo {
 			@extend .icon;
 			@extend .icon-sprite-markweber;
 			position: absolute;
 			right: 0;
-			top: 4px;
+			top: 1px;
 		}
 	}
 
@@ -281,12 +284,12 @@
 		}
 
 		&__email {
-			margin-top: 0;
+			margin-top: 10px;
 			font-size: 11px;
 		}
 
 		&__social {
-			margin-top: 13px;
+			margin-top: 30px;
 		}
 
 		&__info {

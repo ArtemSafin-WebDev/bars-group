@@ -55,17 +55,16 @@ module.exports = function(grunt) {
 		        	name: '1000',
 		        	width: 1000
 		        },{
-		        	name: '1000',
-		        	suffix: "-2x",
-		        	width: 2000
-		        },{
 		        	name: '1500',
 		        	width: 1500
-		        },{
-		        	name: '1500',
-		        	suffix: "-2x",
-		        	width: 3000
 		        }]
+
+		        // retina example
+		        // {
+		        // 	name: '1000',
+		        // 	suffix: "-2x",
+		        // 	width: 2000
+		        // }
 		      },
 		      files: [{
 		        expand: true,
