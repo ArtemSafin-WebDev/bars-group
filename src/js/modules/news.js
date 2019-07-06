@@ -2,9 +2,7 @@
 var News = {
 
 	_state: {
-		sly: null,
-		maxIndex: null,
-		currIndex: 0
+		owl: null
 	},
 
 	_setSliderWidth: function () {
@@ -22,20 +20,13 @@ var News = {
 	_initSlider: function () {
 		var self = this;
 
-		var $_ = $('#news');
-		var $slider  = $_.find('.news__slider');
-		var $prevBtn = $_.find('.js-news-prev');
-		var $nextBtn = $_.find('.js-news-next');
-
-		self._state.maxIndex = $_.find('.news__item').length - 1;
-		self._state.sly = new Sly($slider[0], {
-			horizontal: 1,
-			itemNav: 'basic',
-			speed: 300,
-			mouseDragging: 1,
-			touchDragging: 1,
-			releaseSwing: true
-		}).init();
+		self._state.owl = $('#news .news__list').owlCarousel({
+		    loop: true,
+		    autoWidth: true,
+		    touchDrag: false,
+		    mouseDrag: false,
+		    smartSpeed: 500
+		});	
 
 	},
 
@@ -44,44 +35,41 @@ var News = {
 
 		e.preventDefault();
 
-		var currIndex = self._state.currIndex;
-		var nextIndex = currIndex + 1;
-		if (nextIndex > self._state.maxIndex) return;
+		self._state.owl.trigger('next.owl.carousel');
 
-		self._state.sly.toStart(++self._state.currIndex);
+		$('#news .news__item.--active')
+			.removeClass('--active')
+			.parent().next().find('.news__item')
+			.addClass('--active');
 	},
 
 	_handlePrevButton: function (e) {
 		var self = e.data.self;
 
 		e.preventDefault();
+		
+		self._state.owl.trigger('prev.owl.carousel');
 
-		var currIndex = self._state.currIndex;
-		var nextIndex = currIndex - 1;
-		if (nextIndex < 0) return;
+		$('#news .news__item.--active')
+			.removeClass('--active')
+			.parent().prev().find('.news__item')
+			.addClass('--active');
 
-		self._state.sly.toStart(--self._state.currIndex);
 	},
 
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
 		self._setSliderWidth();
-		self._state.sly.reload();
-	},
-
-	_handleMoveEnd: function () {
-		var self = this;
-
+		self._state.owl.trigger('refresh.owl.carousel');
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 		$(document).on('click', '#news .js-news-next', {self: self}, self._handleNextButton);
 		$(document).on('click', '#news .js-news-prev', {self: self}, self._handlePrevButton);
-		self._state.sly.on('moveEnd', self._handleMoveEnd.bind(self));
+		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {

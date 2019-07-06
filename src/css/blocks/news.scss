@@ -9,6 +9,7 @@
 
 	&__ctrl {
 		position: absolute;
+		z-index: 10;
 		right: 0;
 		bottom: 60px;
 	}
@@ -24,29 +25,25 @@
 	&__slider {
 		margin-left: 200px;
 		width: 3000px;
+		min-height: 360px;
 		background: #eff4fd;
 	}
 
 	&__list {
+		display: block;
 		white-space: nowrap;
 		font-size: 0;
 	}
 
 	&__item {
-		transition: width .2s ease-out;
+		transition: width .3s ease-out;
 		display: inline-block;
 		vertical-align: top;
-		margin-left: -60px;
-		width: 420px;
-		padding: 60px;
+		width: 520px;
+		padding: 60px 0 60px 60px;
 		white-space: normal;
 
-		&:first-child {
-			margin-left: 0;
-		}
-
 		&.--active {
-			width: 560px;
 
 			.news__title {
 				font-size: 24px;
@@ -67,15 +64,19 @@
 	}
 
 	&__title {
-		transition: font-size .2s ease-out;
+		transition: font-size .3s ease-out;
 		margin-bottom: 20px;
 		font-size: 18px;
 		font-weight: 700;
 		line-height: 1.35;
+
+		a {
+			color: #000 !important;
+		}
 	}
 
 	&__desc {
-		transition: opacity .2s ease-out;
+		transition: opacity .3s ease-out;
 		font-size: 14px;
 		line-height: 1.5;
 		opacity: 0;

@@ -10,6 +10,7 @@
 /* Reset box-model
    ========================================================================== */
 @import url(../../bower_components/slick-carousel/slick/slick.css);
+@import url(../../bower_components/owl.carousel/dist/assets/owl.carousel.css);
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -2574,6 +2575,7 @@ img {
     position: relative; }
   .news__ctrl {
     position: absolute;
+    z-index: 10;
     right: 0;
     bottom: 60px; }
   .news__label {
@@ -2585,27 +2587,24 @@ img {
   .news__slider {
     margin-left: 200px;
     width: 3000px;
+    min-height: 360px;
     background: #eff4fd; }
   .news__list {
+    display: block;
     white-space: nowrap;
     font-size: 0; }
   .news__item {
-    -webkit-transition: width .2s ease-out;
-    transition: width .2s ease-out;
+    -webkit-transition: width .3s ease-out;
+    transition: width .3s ease-out;
     display: inline-block;
     vertical-align: top;
-    margin-left: -60px;
-    width: 420px;
-    padding: 60px;
+    width: 520px;
+    padding: 60px 0 60px 60px;
     white-space: normal; }
-    .news__item:first-child {
-      margin-left: 0; }
-    .news__item.--active {
-      width: 560px; }
-      .news__item.--active .news__title {
-        font-size: 24px; }
-      .news__item.--active .news__desc {
-        opacity: .7; }
+    .news__item.--active .news__title {
+      font-size: 24px; }
+    .news__item.--active .news__desc {
+      opacity: .7; }
   .news__date {
     margin-top: -10px;
     margin-bottom: 20px;
@@ -2613,15 +2612,17 @@ img {
     font-size: 14px;
     color: #6f8fb9; }
   .news__title {
-    -webkit-transition: font-size .2s ease-out;
-    transition: font-size .2s ease-out;
+    -webkit-transition: font-size .3s ease-out;
+    transition: font-size .3s ease-out;
     margin-bottom: 20px;
     font-size: 18px;
     font-weight: 700;
     line-height: 1.35; }
+    .news__title a {
+      color: #000 !important; }
   .news__desc {
-    -webkit-transition: opacity .2s ease-out;
-    transition: opacity .2s ease-out;
+    -webkit-transition: opacity .3s ease-out;
+    transition: opacity .3s ease-out;
     font-size: 14px;
     line-height: 1.5;
     opacity: 0; }

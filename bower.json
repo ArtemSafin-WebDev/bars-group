@@ -25,6 +25,7 @@
     "slick-carousel": "https://github.com/kenwheeler/slick.git#1.8.1",
     "perfect-scrollbar": "https://github.com/utatti/perfect-scrollbar.git#v1.4.0",
     "autosize": "https://github.com/jackmoore/autosize.git#^4.0.2",
-    "iCheck": "https://github.com/fronteed/icheck.git#1.0.2"
+    "iCheck": "https://github.com/fronteed/icheck.git#1.0.2",
+    "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.3.4"
   }
 }
