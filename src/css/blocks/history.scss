@@ -123,6 +123,12 @@
 
 	.history {
 
+		&__list {
+			&:before {
+				top: 12px;
+			}
+		}
+
 		&__item {
 			margin-top: .6*200px;
 		}
@@ -137,6 +143,7 @@
 
 			&__left {
 				max-width: none;
+				padding-right: 0;
 			}
 
 			&__right {
@@ -153,6 +160,13 @@
 @media all and (max-width: 850px) { 
 	
 	.history {
+
+		&__list {
+			&:before {
+				top: 10px;
+			}
+		}
+
 		&__year {
 			font-size: 50px;
 		}
@@ -168,6 +182,7 @@
 
 			&:before {
 				border-width: 1px;
+				top: 8px;
 			}
 		}
 

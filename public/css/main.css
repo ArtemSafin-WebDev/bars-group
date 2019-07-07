@@ -3528,6 +3528,8 @@ img {
     font-size: 75px; } }
 
 @media all and (max-width: 1050px) {
+  .history__list:before {
+    top: 12px; }
   .history__item {
     margin-top: 120px; }
   .history__year {
@@ -3535,12 +3537,15 @@ img {
   .history__desc {
     display: block; }
     .history__desc__left {
-      max-width: none; }
+      max-width: none;
+      padding-right: 0; }
     .history__desc__right {
       max-width: none;
       margin-top: 50px; } }
 
 @media all and (max-width: 850px) {
+  .history__list:before {
+    top: 10px; }
   .history__year {
     font-size: 50px; } }
 
@@ -3548,7 +3553,8 @@ img {
   .history__list {
     padding-left: 31px; }
     .history__list:before {
-      border-width: 1px; }
+      border-width: 1px;
+      top: 8px; }
   .history__year {
     font-size: 40px; }
     .history__year:before {
