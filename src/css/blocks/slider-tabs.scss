@@ -1,0 +1,160 @@
+
+.slider-tabs {
+
+	position: relative;
+
+	&:before {
+		content: ' ';
+		display: block;
+		padding-top: 50%;
+	}
+
+	&__pics {
+		@include position-fill;
+		background: $base-gray;
+		overflow: hidden;
+
+		&__item {
+			position: absolute;
+			height: 120%;
+			top: 0;
+			left: 0;
+			width: 100%;
+			opacity: 0;
+
+			&._default {
+				transform: translateY(-40px);
+				opacity: 1;
+			}
+
+			&._animate {
+				transition: transform .3s, opacity .3s;
+			}
+		}
+
+		&__image {
+			@include position-fill;
+			background-position: 50% 50%;
+			background-size: cover;
+			
+			&:after {
+				@include position-fill;
+				content: ' ';
+				background: #000000;
+				opacity: .3;
+			}
+
+			img {
+				display: none;
+			}
+		}
+	}
+
+	&__ctrl {
+		position: absolute;
+		bottom: 50px;
+		width: 100%;
+		padding: 0 60px;
+
+		&__list {
+			display: flex;
+			margin: 0 -30px;
+		}
+
+		&__item {
+			transition: all .3s;
+			flex: 0 0 33.33%;
+			padding: 0 30px;
+			opacity: .8;
+			font-size: 14px;
+			line-height: 1.6;
+			cursor: pointer;
+			color: #fff;
+
+			&._active {
+				font-weight: 600;
+				opacity: 1;
+			}
+
+			&:hover {
+				opacity: 1;
+			}
+
+			&:before {
+				content: ' ';
+				display: block;
+				margin-bottom: 25px;
+				height: 1px;
+				background: #fff;
+				opacity: .8;
+			}
+		}
+	}
+}
+
+@media all and (max-width: 1300px) {
+
+	.slider-tabs {
+
+		&__ctrl {
+
+			padding: 0 40px;
+			bottom: 40px;
+
+			&__list {
+				margin: 0 -20px;
+			}
+
+			&__item {
+				padding: 0 20px;
+			}
+		}
+
+	}
+}
+
+@media all and (max-width: 1050px) {
+
+	.slider-tabs {
+
+		&:before {
+			display: none;
+		}
+
+		&__ctrl {
+			position: relative;
+			bottom: 0;
+			min-height: 500px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 20px 40px;
+
+			&__list {
+				display: block;
+				margin: 0;
+			}
+
+			&__item {
+				position: relative;
+				padding: 10px 20px;
+				max-width: 400px;
+				margin-top: 20px;
+
+				&:first-child {
+					margin-top: 0;
+				}
+
+				&:before {
+					position: absolute;
+					left: 0;
+					top: 0;
+					height: 100%;
+					width: 1px;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+}

@@ -3,6 +3,7 @@
 //= modules/gantt-slider.js
 //= modules/slider-content.js
 //= modules/slider-digits.js
+//= modules/slider-tabs.js
 //= modules/header.js
 //= modules/news.js
 //= modules/nav-side.js

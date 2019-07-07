@@ -7,7 +7,7 @@ var SliderContent = {
 		var $_ = $('#slider-content');
 		var $slider = $_.find('.slider-content__list');
 
-		var MIN_WINDOW_WIDTH = 1051;
+		var MIN_WINDOW_WIDTH = 1300;
 		var MAX_WING_WIDTH = 200;
 
 		var windowWidth = $(window).width();

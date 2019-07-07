@@ -18,7 +18,6 @@
 @import '_helpers';
 @import '_mixins';
 @import '_colors';
-@import '_typos';
 
 body {
 	min-width: 320px;
@@ -68,6 +67,7 @@ img {
 @import 'blocks/gantt-slider';
 @import 'blocks/slider-digits';
 @import 'blocks/slider-content';
+@import 'blocks/slider-tabs';
 @import 'blocks/news';
 @import 'blocks/press-center';
 @import 'blocks/vacancies';
@@ -78,6 +78,7 @@ img {
 @import 'blocks/banner';
 @import 'blocks/form';
 @import 'blocks/form-job';
+@import 'blocks/history';
 
 
 

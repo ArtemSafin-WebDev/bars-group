@@ -1,0 +1,198 @@
+
+.history {
+
+	&__list {
+		position: relative;
+		padding-left: 63px;	
+		
+		&:before {
+			content: ' ';
+			border-left: 3px solid #d4d9df;	
+			position: absolute;
+			top: 15px;
+			bottom: 0;
+			left: 0;
+		}
+
+	}
+
+	&__item {
+		margin-top: 200px;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&__year {
+		position: relative;
+		font-size: 80px;
+		font-weight: 700;
+
+		&:before {
+			content: ' ';
+			border-top: 3px solid #d4d9df;	
+			position: absolute;
+			top: 50%;
+			left: -60px;
+			width: 35px;
+		}
+	}
+
+	&__desc {
+		display: flex;
+		margin-top: 40px;
+
+		&__left {
+			flex: 0 0 66.66%;
+			max-width: 66.66%;
+			padding-right: 60px;
+		}
+
+		&__right {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+		}
+
+	}
+
+	&__cities {
+		&__title {
+			margin-bottom: 10px;
+			font-size: 16px;
+			font-weight: 700;
+			line-height: 1.45;
+			text-transform: uppercase;
+		}
+
+		&__list {
+			@extend .clearfix;
+			font-size: 14px;
+			line-height: 1.45;
+
+			li {
+				position: relative;
+				padding-left: 15px;
+				margin-right: 25px;
+				margin-top: 5px;
+				float: left;
+				
+
+				&:last-child {
+					margin-right: 0;
+				}
+
+				&:before {
+					content: ' ';
+					position: absolute;
+					top: 50%;
+					margin-top: -2px;
+					left: 0;
+					width: 4px;
+					height: 4px;
+					background: #59b4e6;
+					border-radius: 50%;
+				}
+			}
+		}
+
+	}
+
+	&__slider {
+		margin-top: 60px;
+	}
+
+}
+
+@media all and (max-width: 1300px) { 
+
+	.history {
+
+		&__item {
+			margin-top: .8*200px;
+		}
+
+		&__year {
+			font-size: 75px;
+		}
+	}
+
+}
+
+@media all and (max-width: 1050px) {
+
+	.history {
+
+		&__item {
+			margin-top: .6*200px;
+		}
+
+		&__year {
+			font-size: 60px;
+		}
+
+		&__desc {
+
+			display: block;
+
+			&__left {
+				max-width: none;
+			}
+
+			&__right {
+				max-width: none;
+				margin-top: 50px;
+			}
+
+		}
+	
+	}
+
+}
+
+@media all and (max-width: 850px) { 
+	
+	.history {
+		&__year {
+			font-size: 50px;
+		}
+	}
+}
+
+@media all and (max-width: 600px) {
+
+	.history {
+
+		&__list {
+			padding-left: 31px;
+
+			&:before {
+				border-width: 1px;
+			}
+		}
+
+		&__year {
+			font-size: 40px;
+
+			&:before {
+				border-width: 1px;
+				left: -30px;
+				width: 20px;
+			}
+		}
+
+		&__desc {
+			margin-top: 30px;
+
+			&__right {
+				margin-top: 30px;
+			}
+		}
+
+		&__slider {
+			margin-top: 50px;
+		}
+
+	}
+
+}

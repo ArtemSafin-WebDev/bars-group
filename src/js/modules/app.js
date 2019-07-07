@@ -21,6 +21,7 @@ var App = {
 		Overview.init();
 		SliderContent.init();
 		SliderDigits.init();
+		SliderTabs.init();
 		GanttSlider.init();
 		Header.init();
 		News.init();
