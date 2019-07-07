@@ -4,7 +4,7 @@ var Overview = {
 
 	_state: {
 		isUserActivityHandled: false,
-		currIndex: null
+		currIndex: 0
 	},
 
 	_startVideoLoading: function () {
