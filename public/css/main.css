@@ -3497,6 +3497,7 @@ img {
   text-transform: uppercase; }
 
 .history__cities__list {
+  margin-right: -25px;
   font-size: 14px;
   line-height: 1.45; }
   .history__cities__list li {
