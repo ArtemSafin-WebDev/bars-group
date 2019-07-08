@@ -607,7 +607,7 @@ template {
 .icon-checked:before, .icheckbox.checked:before {
   content: "\e91b"; }
 
-.clearfix::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .history__cities__list::after {
+.clearfix::after, .nav-video::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .history__cities__list::after {
   display: block;
   clear: both;
   content: ""; }
@@ -1122,74 +1122,84 @@ img {
   .nav-cats__count {
     font-size: 9px; } }
 
-.nav-video__item {
-  position: relative;
-  float: left;
-  margin-bottom: 1px;
-  height: 95px;
-  width: 20%;
-  background: #eff4fd;
-  overflow: hidden;
-  cursor: pointer; }
-  .nav-video__item:hover .nav-video__name {
-    color: #fff; }
-  .nav-video__item:hover .nav-video__image {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1; }
-  .nav-video__item:hover .nav-video__icon {
-    -webkit-transform: scale(1.5);
-            transform: scale(1.5);
-    opacity: 0; }
-
-.nav-video__name {
-  -webkit-transition: color .2s .1s;
-  transition: color .2s .1s;
-  position: relative;
-  z-index: 10;
-  margin: 20px 100px 0 25px;
-  font-size: 16px;
-  line-height: 1.45; }
-
-.nav-video__image {
-  -webkit-transition: all .2s .1s;
-  transition: all .2s .1s;
-  -webkit-transform-origin: 87% 60%;
-          transform-origin: 87% 60%;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #4F4949;
-  background-position: 50% 50%;
-  background-size: cover;
-  opacity: 0; }
-  .nav-video__image:after {
-    content: ' ';
+.nav-video {
+  background: #eff4fd; }
+  .nav-video__item {
+    position: relative;
+    float: left;
+    height: 95px;
+    width: 20%;
+    overflow: hidden;
+    cursor: pointer; }
+    .nav-video__item:before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: #fff;
+      z-index: 20; }
+    .nav-video__item:hover .nav-video__name {
+      color: #fff; }
+    .nav-video__item:hover .nav-video__image {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      opacity: 1; }
+    .nav-video__item:hover .nav-video__icon {
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+      opacity: 0; }
+  .nav-video__name {
+    -webkit-transition: color .2s .1s;
+    transition: color .2s .1s;
+    position: relative;
+    z-index: 10;
+    margin: 20px 100px 0 25px;
+    font-size: 16px;
+    line-height: 1.45; }
+  .nav-video__image {
+    -webkit-transition: all .2s .1s;
+    transition: all .2s .1s;
+    -webkit-transform-origin: 87% 60%;
+            transform-origin: 87% 60%;
+    -webkit-transform: scale(0);
+            transform: scale(0);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
-    opacity: .3; }
+    background-color: #4F4949;
+    background-position: 50% 50%;
+    background-size: cover;
+    opacity: 0; }
+    .nav-video__image:after {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: .3; }
+  .nav-video__icon {
+    -webkit-transition: all .2s .1s;
+    transition: all .2s .1s;
+    -webkit-transform-origin: 100% 70%;
+            transform-origin: 100% 70%;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    width: 60px;
+    text-align: center;
+    opacity: 1; }
 
-.nav-video__icon {
-  -webkit-transition: all .2s .1s;
-  transition: all .2s .1s;
-  -webkit-transform-origin: 100% 70%;
-          transform-origin: 100% 70%;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  position: absolute;
-  bottom: 15px;
-  right: 20px;
-  width: 60px;
-  text-align: center;
-  opacity: 1; }
+@media all and (max-width: 1550px) {
+  .nav-video__item {
+    width: 25%; } }
 
 .article {
   font-size: 18px;
@@ -3062,39 +3072,55 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
-
-.article-cards__item {
-  position: relative;
-  width: 100%; }
-  .article-cards__item--no-image .article-cards__desc {
+  .article-cards__col--gradient-1 .article-cards__image {
+    background: linear-gradient(45deg, #bb92e5, #58b4e6); }
+  .article-cards__col--gradient-2 .article-cards__image {
+    background: linear-gradient(45deg, #92e0e5, #58b4e6); }
+  .article-cards__col--no-image .article-cards__desc {
     border-top: 4px solid #59b4e6;
     padding-right: 30px;
     padding-left: 30px; }
-  .article-cards__item--color-bg .article-cards__image {
+  .article-cards__col--color-bg .article-cards__image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%; }
-  .article-cards__item--color-bg .article-cards__desc {
+  .article-cards__col--color-bg .article-cards__desc {
     position: relative;
     z-index: 1;
     padding: 30px; }
-    .article-cards__item--color-bg .article-cards__desc * {
+    .article-cards__col--color-bg .article-cards__desc * {
       color: #fff !important; }
-  .article-cards__item--color-bg .article-cards__text {
+  .article-cards__col--color-bg .article-cards__text {
     padding-bottom: 80px; }
 
+.article-cards__item {
+  position: relative;
+  width: 100%; }
+
 .article-cards__image {
+  position: relative;
   display: block;
   background-color: #cbd9e1;
-  background-size: cover; }
+  overflow: hidden; }
+  .article-cards__image:hover img {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
   .article-cards__image:before {
-    content: " ";
+    content: ' ';
     display: block;
-    padding-top: 64.31%; }
+    padding-top: 66.66%; }
   .article-cards__image img {
-    display: none; }
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover; }
 
 .article-cards__desc {
   position: relative;
