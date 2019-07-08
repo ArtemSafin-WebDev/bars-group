@@ -28,14 +28,32 @@
 
 	&__label {
 		display: inline-block;
+		min-width: 240px;
 		padding: 13px 15px;
-		background: #59b4e6;
+		background: #5CB3E5;
 		font-size: 16px;
 		font-weight: 600;
 		line-height: 1;
 		text-transform: uppercase;
 		letter-spacing: 1.78px;
 		color: #ffffff;
+
+		&--green {
+			background: #A1C527
+		}
+
+		&--yellow {
+			background: #F4CB23;
+		}
+
+		&--red {
+			background: #D74738;
+		}
+
+		&--dark {
+			background: #4F4949;
+		}
+
 	}
 
 	&__gap-xs {
@@ -102,6 +120,16 @@
 			font-size: 28px;
 		}
 
+	}
+
+}
+
+@media all and (max-width: 1300px) {
+
+	.page {
+		&__label {
+			min-width: auto;
+		}
 	}
 
 }

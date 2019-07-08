@@ -1,0 +1,31 @@
+
+.portfolio {
+
+	&__group {
+		margin-top: 100px;
+	}
+
+	&__label {
+		position: relative;
+		z-index: 30;
+	}
+
+}
+
+@media all and (max-width: 1300px) {
+
+	.portfolio {
+		&__group {
+			margin-top: .8*100px;
+		}
+	}
+}
+
+@media all and (max-width: 1050px) {
+
+	.portfolio {
+		&__group {
+			margin-top: .6*100px;
+		}
+	}
+}

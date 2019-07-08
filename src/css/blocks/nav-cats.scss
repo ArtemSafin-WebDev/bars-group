@@ -3,6 +3,14 @@
 	
 	margin-top: 60px;
 
+	&--close {
+		margin-top: 30px;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
 	&__item {
 		padding: 6px 0;
 
