@@ -122,12 +122,19 @@
 	<style type="text/css">
 		
 		.filelist {
-			position: absolute;
+			position: fixed;
 			z-index: 999999;
 			top: 0;
 			left: 0;
 			font-size: 18px;
 			color: #fff;
+		}
+	
+		.filelist__tip {
+			padding: 10px 20px 20px 20px !important;
+			max-width: 200px;
+			font-size: 12px;
+			line-height: 1.4;
 		}
 	
 		.filelist._hidden {
@@ -171,8 +178,9 @@
 	
 				createHtml: function () {
 	
-					var $filelist = $('<div class="filelist _hidden">' +
+					var $filelist = $('<div class="filelist">' +
 							'<span></span>' +
+							'<div class="filelist__tip">Щелкните мышкой дважды в любом месте, чтобы скрыть или показать.</div>' +
 						'</div>'),
 	
 						$label = $filelist.find('span'); 
@@ -187,7 +195,7 @@
 									filename + 
 								'</a>').appendTo($body);
 							});
-							$body.appendTo($filelist);
+							$body.insertAfter($label);
 						})
 						.fail(function () {
 							$label.text('Filelist failed.');
