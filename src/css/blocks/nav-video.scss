@@ -3,6 +3,7 @@
 
 	@extend .clearfix;
 	background: #eff4fd;
+	user-select: none;
 
 	&__item {
 		position: relative;
@@ -11,6 +12,7 @@
 		width: 20%;
 		overflow: hidden;
 		cursor: pointer;
+		
 
 		&:before {
 			content: ' ';

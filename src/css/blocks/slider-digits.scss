@@ -143,6 +143,7 @@
 			font-weight: 700;
 			cursor: pointer;
 			color: #dde7f8;
+			user-select: none;
 
 			&:hover {
 				color: darken(#dde7f8, 5%);

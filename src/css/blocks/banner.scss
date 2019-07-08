@@ -7,16 +7,13 @@
 		@include position-fill();
 		background-color: $base-gray;
 		background-position: 50% 50%;
+		background-attachment: fixed;
 		background-size: cover;
 
 		&:after {
 			@include position-fill();
 			content: ' ';
 			background: rgba(#000, .3);
-		}
-
-		img {
-			display: none;
 		}
 	}
 

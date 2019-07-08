@@ -2,6 +2,7 @@
 .button {
 	transition: background .2s ease-in;
 	display: inline-block;
+	user-select: none;
 }
 
 .button-default {
@@ -12,7 +13,7 @@
 	font-size: 18px;
 	font-weight: 600;
 	text-align: left;
-	background: linear-gradient(90deg, darken(#59b4e6, 10%) 50%, #59b4e6 50%);
+	background: linear-gradient(90deg, darken(#59b4e6, 5%) 50%, #59b4e6 50%);
 	background-size: 210%;
 	background-position: 100% 0;
 	color: #fff !important;

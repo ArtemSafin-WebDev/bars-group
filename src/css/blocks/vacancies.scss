@@ -26,6 +26,7 @@
 		font-weight: 700;
 		line-height: 1.35;
 		color: #000 !important;
+		user-select: none;
 
 		&.collapsed {
 			&:before {
