@@ -637,6 +637,8 @@ img {
   white-space: nowrap; }
 
 .input-smart-label {
+  -webkit-transition: border-color .2s;
+  transition: border-color .2s;
   position: relative;
   border-bottom: 2px solid #dadada; }
   .input-smart-label._focused {
@@ -754,8 +756,8 @@ img {
   font-size: 18px;
   font-weight: 600;
   text-align: left;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #43aae3), color-stop(50%, #59b4e6));
-  background: linear-gradient(90deg, #43aae3 50%, #59b4e6 50%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #2da0df), color-stop(50%, #59b4e6));
+  background: linear-gradient(90deg, #2da0df 50%, #59b4e6 50%);
   background-size: 210%;
   background-position: 100% 0;
   color: #fff !important; }
@@ -3097,6 +3099,9 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
+  .article-cards__col--gradient-1:hover .article-cards__image, .article-cards__col--gradient-2:hover .article-cards__image {
+    -webkit-filter: hue-rotate(10deg);
+            filter: hue-rotate(10deg); }
   .article-cards__col--gradient-1 .article-cards__image {
     background: linear-gradient(45deg, #bb92e5, #58b4e6); }
   .article-cards__col--gradient-2 .article-cards__image {
@@ -3125,6 +3130,8 @@ img {
   width: 100%; }
 
 .article-cards__image {
+  -webkit-transition: all .2s;
+  transition: all .2s;
   position: relative;
   display: block;
   background-color: #cbd9e1;
