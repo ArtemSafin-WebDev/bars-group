@@ -3336,6 +3336,8 @@ img {
     -webkit-box-align: end;
         -ms-flex-align: end;
             align-items: flex-end; }
+  .brand-box--has-label .page__label {
+    min-width: auto; }
   .brand-box__inner {
     display: -webkit-box;
     display: -ms-flexbox;
