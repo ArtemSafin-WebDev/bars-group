@@ -44,8 +44,7 @@
 			}
 
 			a {
-				font-size: 24px;
-				font-weight: 600;
+				font-size: 22px;
 				line-height: 1.35;
 				color: #fff !important;
 			}
@@ -77,21 +76,6 @@
 		opacity: 0 !important; 
 	}
 
-}
-
-@media all and (max-width: 1050px) {
-
-	.cats-scroll {
-
-		&__list {
-			&__box {
-				a {
-					font-size: 22px;
-				}
-			}
-		}
-
-	}
 }
 
 @media all and (max-width: 600px) {

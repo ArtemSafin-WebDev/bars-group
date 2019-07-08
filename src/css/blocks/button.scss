@@ -1,6 +1,6 @@
 
 .button {
-	transition: background .2s;
+	transition: background .2s ease-in;
 	display: inline-block;
 }
 
@@ -12,8 +12,14 @@
 	font-size: 18px;
 	font-weight: 600;
 	text-align: left;
-	background: #59b4e6;
+	background: linear-gradient(90deg, darken(#59b4e6, 10%) 50%, #59b4e6 50%);
+	background-size: 210%;
+	background-position: 100% 0;
 	color: #fff !important;
+
+	&:hover {
+		background-position: 0 0;
+	}
 
 	&__icon {
 		position: absolute;

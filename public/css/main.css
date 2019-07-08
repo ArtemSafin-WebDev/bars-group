@@ -738,8 +738,8 @@ img {
       top: 23px; } }
 
 .button {
-  -webkit-transition: background .2s;
-  transition: background .2s;
+  -webkit-transition: background .2s ease-in;
+  transition: background .2s ease-in;
   display: inline-block; }
 
 .button-default {
@@ -750,8 +750,13 @@ img {
   font-size: 18px;
   font-weight: 600;
   text-align: left;
-  background: #59b4e6;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #2da0df), color-stop(50%, #59b4e6));
+  background: linear-gradient(90deg, #2da0df 50%, #59b4e6 50%);
+  background-size: 210%;
+  background-position: 100% 0;
   color: #fff !important; }
+  .button-default:hover {
+    background-position: 0 0; }
   .button-default__icon {
     position: absolute;
     top: 50%;
@@ -3220,8 +3225,7 @@ img {
         .cats-scroll__list__box div:first-child {
           margin-top: 0; }
       .cats-scroll__list__box a {
-        font-size: 24px;
-        font-weight: 600;
+        font-size: 22px;
         line-height: 1.35;
         color: #fff !important; }
       .cats-scroll__list__box span {
@@ -3242,10 +3246,6 @@ img {
       display: block; }
   .cats-scroll .ps__rail-y {
     opacity: 0 !important; }
-
-@media all and (max-width: 1050px) {
-  .cats-scroll__list__box a {
-    font-size: 22px; } }
 
 @media all and (max-width: 600px) {
   .cats-scroll__title, .cats-scroll__list {
