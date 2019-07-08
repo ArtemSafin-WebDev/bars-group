@@ -755,6 +755,10 @@
 			color: #fff;
 		}
 	
+		.filelist._hidden {
+			display: none;
+		}
+	
 		.filelist._active div {
 			display: block;
 		}
@@ -762,13 +766,13 @@
 		.filelist span {
 			display: inline-block;
 			padding: 9px 20px;
-			background: rgba(0,0,0, .3);
+			background: #000;
 		}
 	
 		.filelist div {
 			display: none;
 			padding: 9px 0;
-			background: rgba(0,0,0, .3);
+			background: #000;
 		}
 	
 		.filelist div a {
@@ -792,7 +796,7 @@
 	
 				createHtml: function () {
 	
-					var $filelist = $('<div class="filelist">' +
+					var $filelist = $('<div class="filelist _hidden">' +
 							'<span></span>' +
 						'</div>'),
 	
@@ -832,9 +836,16 @@
 					$('.filelist').removeClass('_active');
 				},
 	
+				_handleDoubleClick: function (e) {
+					var self = e.data.self;
+	
+					$('.filelist').toggleClass('_hidden');
+				},
+	
 				_bindUI: function () {
 					var self = this;
 	
+					$(document).on('dblclick', {self: self}, self._handleDoubleClick);
 					$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
 					$(document).on('click', {self: self}, self._handleDocumentClick);
 				},
