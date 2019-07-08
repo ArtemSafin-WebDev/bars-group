@@ -3,8 +3,8 @@
 	transition: background .2s;
 	display: inline-block;
 	vertical-align: middle;
-	width: 32px;
-	height: 32px;
+	width: 30px;
+	height: 30px;
 	background: #59b4e6;
 	color: #fff;
 	cursor: pointer;
@@ -43,7 +43,7 @@
 		&__field {
 			flex: 0 0 50px;
 			align-self: flex-start;
-			line-height: 30px;
+			line-height: 40px;
 		}
 
 		&__text {
@@ -58,4 +58,34 @@
 	
 	}
 	
+}
+
+@media all and (max-width: 600px) {
+
+	.icheckbox {
+		width: 26px;
+		height: 26px;
+
+		&:before {
+			margin: -7px 0 0 -7px;
+			font-size: 14px;
+		}
+
+		&.checked {
+			&:before {
+				width: 14px;
+			}
+		}
+		
+	}
+
+	.form {
+		&__check {
+
+			&__field {
+				line-height: 35px;
+			}
+		}
+	}
+
 }

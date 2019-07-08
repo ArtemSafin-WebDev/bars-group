@@ -3477,8 +3477,8 @@ img {
   transition: background .2s;
   display: inline-block;
   vertical-align: middle;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   background: #59b4e6;
   color: #fff;
   cursor: pointer; }
@@ -3514,13 +3514,25 @@ img {
             flex: 0 0 50px;
     -ms-flex-item-align: start;
         align-self: flex-start;
-    line-height: 30px; }
+    line-height: 40px; }
   .form__check__text {
     font-size: 14px;
     line-height: 1.6; }
   .form__check input {
     position: absolute;
     opacity: 0; }
+
+@media all and (max-width: 600px) {
+  .icheckbox {
+    width: 26px;
+    height: 26px; }
+    .icheckbox:before {
+      margin: -7px 0 0 -7px;
+      font-size: 14px; }
+    .icheckbox.checked:before {
+      width: 14px; }
+  .form__check__field {
+    line-height: 35px; } }
 
 .form-job {
   background: #eff4fd; }
