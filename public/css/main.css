@@ -1240,9 +1240,6 @@ img {
   line-height: 1.3; }
 
 @media all and (max-width: 1300px) {
-  .page__label {
-    padding: 12px 14px;
-    font-size: 14px; }
   .page__col-side {
     float: none;
     padding-right: 0;
@@ -1261,6 +1258,9 @@ img {
     font-size: 28px; } }
 
 @media all and (max-width: 1050px) {
+  .page__label {
+    padding: 12px 14px;
+    font-size: 14px; }
   .page__gap-xs {
     height: 48px; }
   .page__gap-sm {
@@ -3219,13 +3219,13 @@ img {
 
 .brand-box {
   margin-top: 55px; }
+  .brand-box--has-label .brand-box__desc {
+    margin-top: 0;
+    margin-bottom: 2px; }
   .brand-box--has-label .brand-box__inner {
     -webkit-box-align: end;
         -ms-flex-align: end;
             align-items: flex-end; }
-  .brand-box--has-label .brand-box__desc {
-    margin-top: 0;
-    margin-bottom: 2px; }
   .brand-box__inner {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3235,24 +3235,32 @@ img {
         -ms-flex: 0 0 151px;
             flex: 0 0 151px; }
   .brand-box__desc {
-    margin-left: 48px;
-    margin-top: 13px;
+    margin-left: 49px;
+    margin-top: 13px; }
+  .brand-box__text-1 {
+    max-width: 360px;
     font-size: 18px;
-    line-height: 1.5; }
-    .brand-box__desc__long {
-      display: none; }
-    .brand-box__desc span {
+    line-height: 1.45; }
+  .brand-box__text-2 {
+    margin-top: 8px;
+    margin-left: 200px;
+    max-width: 360px;
+    font-size: 14px;
+    line-height: 1.7; }
+    .brand-box__text-2 span {
       color: #6f8fb9; }
 
 @media all and (max-width: 1050px) {
-  .brand-box--has-label .brand-box__desc {
-    margin-left: 30px; }
   .brand-box__image {
     -ms-flex-preferred-size: 130px;
         flex-basis: 130px; }
   .brand-box__desc {
-    margin-left: 45px;
-    font-size: 16px; } }
+    margin-top: 11px;
+    margin-left: 40px; }
+  .brand-box__text-1 {
+    font-size: 16px; }
+  .brand-box__text-2 {
+    margin-left: 170px; } }
 
 @media all and (max-width: 600px) {
   .brand-box {
@@ -3260,8 +3268,8 @@ img {
     .brand-box--has-label .brand-box__desc {
       -ms-flex-preferred-size: auto;
           flex-basis: auto;
-      margin-left: 17px;
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      margin-left: 20px; }
     .brand-box__inner {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; }
@@ -3271,14 +3279,17 @@ img {
     .brand-box__desc {
       -ms-flex-preferred-size: 100%;
           flex-basis: 100%;
-      margin-left: 0;
       margin-top: 20px;
+      margin-left: 0; }
+    .brand-box__text-1 {
+      max-width: 300px;
       font-size: 12px;
       line-height: 1.7; }
-      .brand-box__desc__long {
-        display: block; }
-      .brand-box__desc__short {
-        display: none; } }
+    .brand-box__text-2 {
+      margin-top: 20px;
+      margin-left: 0;
+      max-width: 300px;
+      font-size: 12px; } }
 
 .banner {
   position: relative; }

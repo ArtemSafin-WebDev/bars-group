@@ -72,11 +72,6 @@
 
 	.page {
 
-		&__label {
-			padding: 12px 14px;
-			font-size: 14px;
-		}
-
 		&__col-side {
 			float: none;
 			padding-right: 0;
@@ -114,6 +109,11 @@
 @media all and (max-width: 1050px) {
 	
 	.page {
+
+		&__label {
+			padding: 12px 14px;
+			font-size: 14px;
+		}
 
 		&__gap-xs {
 			height: 0.6*80px;
