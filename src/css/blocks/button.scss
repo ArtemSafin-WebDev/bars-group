@@ -8,10 +8,11 @@
 .button-default {
 	position: relative;
 	min-width: 200px;
-	padding: 23px 30px;
+	padding: 22px 30px;
 	padding-right: 87px;
 	font-size: 18px;
 	font-weight: 600;
+	line-height: 1.45;
 	text-align: left;
 	background: linear-gradient(90deg, darken(#59b4e6, 10%) 50%, #59b4e6 50%);
 	background-size: 210%;

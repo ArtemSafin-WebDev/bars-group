@@ -742,10 +742,11 @@ img {
 .button-default {
   position: relative;
   min-width: 200px;
-  padding: 23px 30px;
+  padding: 22px 30px;
   padding-right: 87px;
   font-size: 18px;
   font-weight: 600;
+  line-height: 1.45;
   text-align: left;
   background: -webkit-gradient(linear, left top, right top, color-stop(50%, #2da0df), color-stop(50%, #59b4e6));
   background: linear-gradient(90deg, #2da0df 50%, #59b4e6 50%);
