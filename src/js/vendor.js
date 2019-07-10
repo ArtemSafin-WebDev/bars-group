@@ -10,5 +10,6 @@
 //= ../../bower_components/autosize/dist/autosize.js
 //= ../../bower_components/iCheck/icheck.js
 //= ../../bower_components/owl.carousel/dist/owl.carousel.js
+//= ../../bower_components/dragscroll/dragscroll.js
 //= vendor/scrollbar-width.js
 

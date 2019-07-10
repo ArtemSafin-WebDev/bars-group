@@ -3,6 +3,7 @@
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const sass = require('gulp-sass');
+const less = require('gulp-less');
 const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
 const cleancss = require('gulp-clean-css');
@@ -75,7 +76,8 @@ gulp.task('scripts', function () {
 
 gulp.task('styles', function () {
     return gulp.src(['src/css/*.*', '!src/css/_*.*'])
-        .pipe(sass().on('error', sass.logError))
+        .pipe(gulpif('*.scss', sass().on('error', sass.logError)))
+        .pipe(gulpif('*.less', less()))
         .pipe(postcss([
             autoprefixer()
         ]))
@@ -104,7 +106,7 @@ gulp.task('copy', function() {
 });
 
 gulp.task('sprite', function () {
-    return gulp.src('src/img/**/*.png')
+    return gulp.src('src/img/sprite-png/*.png')
         .pipe(spritesmith({
             padding: 20,
             imgName: 'sprite.png',

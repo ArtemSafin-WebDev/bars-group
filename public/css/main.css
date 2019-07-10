@@ -11,6 +11,7 @@
    ========================================================================== */
 @import url(../../bower_components/slick-carousel/slick/slick.css);
 @import url(../../bower_components/owl.carousel/dist/assets/owl.carousel.css);
+@import url(../../bower_components/owl.carousel/dist/assets/owl.theme.default.css);
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -463,45 +464,35 @@ template {
 .icon, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__item:before, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__toggle, .gantt-slider__range .rangeslider__handle i, .vacancies__title:before, .icheckbox:before {
   display: inline-block; }
 
-.icon-gantt-slider-dots {
-  background-image: url(../img/sprite.png);
-  background-position: 0px 0px;
-  width: 42px;
-  height: 45px; }
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .icon-gantt-slider-dots {
-      background-image: url(../img/sprite@2x.png);
-      background-size: 128px 92px; } }
-
 .icon-sprite-png-clip {
   background-image: url(../img/sprite.png);
-  background-position: -43px -65px;
+  background-position: -43px -36px;
   width: 11px;
   height: 22px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-clip {
       background-image: url(../img/sprite@2x.png);
-      background-size: 128px 92px; } }
+      background-size: 66px 63px; } }
 
 .icon-sprite-png-habrahabr {
   background-image: url(../img/sprite.png);
-  background-position: 0px -65px;
+  background-position: 0px -36px;
   width: 23px;
   height: 27px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-habrahabr {
       background-image: url(../img/sprite@2x.png);
-      background-size: 128px 92px; } }
+      background-size: 66px 63px; } }
 
 .icon-sprite-png-markweber, .footer__dev__logo {
   background-image: url(../img/sprite.png);
-  background-position: -62px 0px;
+  background-position: 0px 0px;
   width: 66px;
   height: 16px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-markweber, .footer__dev__logo {
       background-image: url(../img/sprite@2x.png);
-      background-size: 128px 92px; } }
+      background-size: 66px 63px; } }
 
 @font-face {
   font-family: 'icomoon';
@@ -1304,6 +1295,8 @@ img {
   margin-left: 200px; }
 
 .page__label {
+  position: relative;
+  z-index: 100;
   display: inline-block;
   min-width: 240px;
   padding: 13px 15px;
@@ -2873,7 +2866,6 @@ img {
     bottom: 60px; }
   .news__label {
     position: absolute;
-    z-index: 10;
     top: 27px;
     left: 0; }
   .news__slider {

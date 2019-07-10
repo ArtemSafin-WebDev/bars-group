@@ -8,6 +8,7 @@
 //= modules/news.js
 //= modules/nav-side.js
 //= modules/form.js
+//= modules/talgat.js
 //= modules/app.js
 
 App.init();

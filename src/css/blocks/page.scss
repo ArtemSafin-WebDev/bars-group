@@ -27,6 +27,8 @@
 	}
 
 	&__label {
+		position: relative;
+		z-index: 100;
 		display: inline-block;
 		min-width: 240px;
 		padding: 13px 15px;
