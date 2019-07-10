@@ -10,11 +10,11 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  height: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
 }
 .press-center--common .press-center__call-lg {
   margin-top: auto;
@@ -26,10 +26,10 @@
   margin-top: 45px;
   padding-right: 30px;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-item-align: start;
-  align-self: flex-start;
+      align-self: flex-start;
 }
 .press-center__order > i {
   font-size: 28px;
