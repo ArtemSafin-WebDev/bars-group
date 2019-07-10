@@ -74,10 +74,6 @@
   padding-bottom: 25px;
   border-bottom: 2px #59b4e6 solid;
 }
-.tBlocks__item {
-  position: relative;
-  margin: 120px 0;
-}
 .tAdvantages {
   position: relative;
   min-height: 434px;
@@ -523,12 +519,11 @@
   height: 262px;
 }
 .tNews__thumb {
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
   width: 100%;
   height: 100%;
-  -webkit-transition: all 0.22s ease-out;
-  transition: all 0.22s ease-out;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 50%;
   background-size: cover;
 }
 .tNews__date {

@@ -113,12 +113,6 @@
         }
     }
 
-    &__item
-    {
-        position: relative;
-
-        margin: 120px 0;
-    }
 }
 
 .tAdvantages
@@ -842,23 +836,17 @@
 
     &__thumb
     {
+        transition: all .2s ease-out;
         width: 100%;
         height: 100%;
-
-        -webkit-transition: all .22s ease-out;
-                transition: all .22s ease-out;
-
-        background-repeat: no-repeat;
-        background-position: center;
+        background-position: 50% 50%;
         background-size: cover;
     }
 
     &__date
     {
         font-size: 14px;
-
         margin-top: 20px;
-
         color: #6f8fb9;
     }
 
