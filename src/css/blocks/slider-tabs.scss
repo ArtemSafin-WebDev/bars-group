@@ -34,6 +34,7 @@
 
 		&__image {
 			@include position-fill;
+			background-color: $base-gray;
 			background-position: 50% 50%;
 			background-size: cover;
 			
@@ -45,7 +46,8 @@
 			}
 
 			img {
-				display: none;
+				@include position-fill;
+				object-fit: cover;
 			}
 		}
 	}

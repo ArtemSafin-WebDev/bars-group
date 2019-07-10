@@ -29,12 +29,13 @@
 
 		&:after {
 			@include position-fill();
-			content: ' ';
 			background: rgba(#000, .3);
+			content: ' ';
 		}
 
 		img {
-			display: none;
+			@include position-fill();
+			object-fit: cover;
 		}
 	}
 
