@@ -950,15 +950,13 @@ img {
   position: relative;
   background: #eff4fd;
   padding: 13px 0; }
-  .nav-side.--has-wing:before {
-    width: 200px; }
   .nav-side:before {
     content: ' ';
     position: absolute;
     right: 100%;
     top: 0;
     height: 100%;
-    width: 40px;
+    width: 3000px;
     background: #eff4fd; }
   .nav-side__item {
     position: relative;
@@ -1126,11 +1124,20 @@ img {
     font-size: 9px; } }
 
 .nav-video {
+  position: relative;
   background: #eff4fd;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none; }
+  .nav-video:before {
+    content: ' ';
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 100%;
+    width: 3000px;
+    background: #eff4fd; }
   .nav-video__item {
     position: relative;
     float: left;
@@ -1390,6 +1397,10 @@ img {
   .page__h2 {
     margin-bottom: 30px;
     font-size: 22px; } }
+
+@media all and (min-width: 3000px) {
+  .page__wrapper {
+    max-width: 1600px; } }
 
 .header {
   margin-bottom: 100px; }

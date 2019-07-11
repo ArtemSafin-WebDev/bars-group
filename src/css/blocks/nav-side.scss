@@ -5,19 +5,13 @@
 	background: #eff4fd;
 	padding: 13px 0;
 
-	&.--has-wing {
-		&:before {
-			width: 200px;
-		}
-	}
-
 	&:before {
 		content: ' ';
 		position: absolute;
 		right: 100%;
 		top: 0;
 		height: 100%;
-		width: 40px;
+		width: 3000px;
 		background: #eff4fd;
 	}
 
