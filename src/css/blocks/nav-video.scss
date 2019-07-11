@@ -113,3 +113,56 @@
 
 	}
 }
+
+@media all and (max-width: 1300px) {
+
+	
+	.nav-video {
+
+		margin: 0 -40px;
+
+		&__crop {
+			overflow: hidden;
+		}
+
+		&__scroll {
+			padding: 0 40px;
+			white-space: nowrap;
+			font-size: 0;
+
+			@include add-scrollbar();
+			padding-bottom: 30px;
+			margin-bottom: -45px;
+
+			.hidden-scrollbar & {
+				margin-bottom: -30px;
+			}
+		}
+
+		&__item {
+			float: none;
+			display: inline-block;
+			width: 260px !important;
+
+			&:before {
+				width: 1px;
+				height: 100%;
+				left: auto;
+				right: 0;
+			}
+
+			&:last-child {
+				&:before {
+					display: none;
+				}
+			}
+		}
+
+		&__name {
+			white-space: normal;
+		}
+
+
+	}
+
+}

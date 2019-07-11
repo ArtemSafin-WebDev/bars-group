@@ -1,6 +1,10 @@
 
 .portfolio {
 
+	&__filters {
+		padding-top: 110px;
+	}
+
 	&__list {
 		position: relative;
 	}
@@ -17,10 +21,6 @@
 		&--local {
 			display: none;
 		}
-	}
-
-	&__nav {
-		padding-top: 110px;
 	}
 
 	&__ctrl {
@@ -109,6 +109,11 @@
 
 	.portfolio {
 
+		&__nav-side,
+		&__filters {
+			display: none;	
+		}
+
 		&__label {
 			top: -8px;
 			left: 20px;
@@ -120,10 +125,6 @@
 			&--local {
 				display: block;
 			}
-		}
-
-		&__nav {
-			display: none;
 		}
 
 	}
