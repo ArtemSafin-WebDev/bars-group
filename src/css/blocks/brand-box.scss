@@ -6,12 +6,8 @@
 	&--has-label {
 		
 		.brand-box__desc {
-			margin-top: 0;
-			margin-bottom: 2px;
-		}
-
-		.brand-box__inner {
-			align-items: flex-end;
+			margin-top: 17px;
+			font-size: 0;
 		}
 
 		.page__label {
@@ -57,6 +53,14 @@
 	
 	.brand-box {
 
+		&--has-label {
+
+			.brand-box__desc {
+				margin-top: 14px;
+			}
+
+		}
+
 		&__image {
 			flex-basis: 130px;
 		}
@@ -88,8 +92,12 @@
 
 			.brand-box__desc {
 				flex-basis: auto;
-				margin-bottom: 0;
 				margin-left: 20px;
+				margin-top: 8px;
+			}
+
+			.brand-box__inner {
+				flex-wrap: nowrap;
 			}
 
 		}
