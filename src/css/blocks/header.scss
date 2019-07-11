@@ -103,12 +103,13 @@
 		&__down {
 			transition: opacity .2s ease-out, visibility .2s ease-out;
 			position: absolute;
-			z-index: 10;
+			z-index: 110;
 			top: 100%;
 			left: -22px;
 			padding-top: 20px;
 			min-width: 240px;
 			visibility: hidden;
+			line-height: 1.45;
 			opacity: 0;
 
 			&__body {

@@ -126,7 +126,6 @@
 		}
 
 		&__scroll {
-			padding: 0 40px;
 			white-space: nowrap;
 			font-size: 0;
 
@@ -142,7 +141,7 @@
 		&__item {
 			float: none;
 			display: inline-block;
-			width: 260px !important;
+			width: 270px !important;
 
 			&:before {
 				width: 1px;
@@ -159,6 +158,8 @@
 		}
 
 		&__name {
+			margin-left: 40px;
+			margin-top: 25px;
 			white-space: normal;
 		}
 
@@ -171,11 +172,16 @@
 
 	.nav-video {
 
+		margin: 0 -20px;
+
 		&__item {
 			height: 85px;
+			width: 220px !important;
 		}
 
 		&__name {
+			margin-left: 20px;
+			margin-top: 20px;
 			font-size: 14px;
 		}
 
