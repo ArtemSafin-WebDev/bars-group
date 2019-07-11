@@ -26,10 +26,6 @@ var App = {
 		Header.init();
 		News.init();
 		Form.init();
-
-		if (getScrollbarWidth() == 0) {
-			$("html").addClass('hidden-scrollbar');
-		}
 	},
 
 	_bindUI: function () {

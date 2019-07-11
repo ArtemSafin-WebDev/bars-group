@@ -730,9 +730,6 @@
   }
 }
 @media (max-width: 600px) {
-  body {
-    font-size: 14px;
-  }
   .tForWhom__title {
     font-size: 18px;
   }

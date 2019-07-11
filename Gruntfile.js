@@ -35,7 +35,8 @@ module.exports = function(grunt) {
 					"touchevents",
 					"video",
 					"lowbandwidth",
-					"csspointerevents"
+					"csspointerevents",
+					"hiddenscroll"
 				],
 				"options": [
 					"setClasses"

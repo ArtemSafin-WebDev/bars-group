@@ -83,5 +83,11 @@ img {
 @import 'blocks/history';
 @import 'blocks/portfolio';
 
+@media all and (max-width: 600px) {
 
+	body {
+	    font-size: 14px;
+	}
+	
+}
 
