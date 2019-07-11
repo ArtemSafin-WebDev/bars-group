@@ -18,6 +18,7 @@
 <div class="page__wrapper" id="wrapper">
 
 	<header class="header" id="header">
+		
 		<div class="header__top-line">
 			<div class="page__center">
 				<div class="page__inner">
@@ -26,25 +27,25 @@
 						<nav class="header__menu">
 							<div class="header__menu__wrap">
 								<div class="header__menu__crop">
-									<div class="header__menu__item">
-										<a href="#">О компании</a>
+									<div class="header__menu__item ">
+										<a href="about.html">О компании</a>
 									</div>
-									<div class="header__menu__item">
-										<a href="#">Цифровое портфолио</a>
+									<div class="header__menu__item ">
+										<a href="portfolio.html">Цифровое портфолио</a>
 									</div>
-									<div class="header__menu__item">
+									<div class="header__menu__item ">
 										<a href="#">Технологии</a>
 									</div>
-									<div class="header__menu__item">
-										<a href="#">Пресс-центр</a>
+									<div class="header__menu__item ">
+										<a href="press.html">Пресс-центр</a>
 									</div>
-									<div class="header__menu__item --active">
-										<a href="#">Карьера</a>
+									<div class="header__menu__item ">
+										<a href="career.html">Карьера</a>
 									</div>
-									<div class="header__menu__item">
+									<div class="header__menu__item ">
 										<a href="#">Партнеры</a>
 									</div>
-									<div class="header__menu__item">
+									<div class="header__menu__item ">
 										<a href="#">Контакты</a>
 									</div>
 								</div>
@@ -52,11 +53,11 @@
 									<a href="#">Еще</a>
 									<div class="header__menu__down">
 										<div class="header__menu__down__body">
-											<div><a href="#">О компании</a></div>
-											<div><a href="#">Цифровое портфолио</a></div>
+											<div><a href="about.html">О компании</a></div>
+											<div><a href="portfolio.html">Цифровое портфолио</a></div>
 											<div><a href="#">Технологии</a></div>
-											<div><a href="#">Пресс-центр</a></div>
-											<div><a href="#">Карьера</a></div>
+											<div><a href="press.html">Пресс-центр</a></div>
+											<div><a href="career.html">Карьера</a></div>
 											<div><a href="#">Партнеры</a></div>
 											<div><a href="#">Контакты</a></div>
 										</div>
@@ -427,10 +428,19 @@
 		}
 	
 		.filelist__tip {
-			padding: 10px 20px 20px 20px !important;
+			border: 1px dashed rgba(255, 255, 255, .2);
+			border-width: 1px 0;
+			padding: 10px 20px !important;
 			max-width: 200px;
 			font-size: 12px;
 			line-height: 1.4;
+		}
+	
+	
+		.filelist__hide {
+			padding: 20px !important;
+			font-size: 14px;
+			cursor: pointer;
 		}
 	
 		.filelist._hidden {
@@ -474,9 +484,10 @@
 	
 				createHtml: function () {
 	
-					var $filelist = $('<div class="filelist">' +
+					var $filelist = $('<div class="filelist" id="filelist">' +
 							'<span></span>' +
-							'<div class="filelist__tip">Щелкните мышкой дважды в любом месте, чтобы скрыть или показать.</div>' +
+							'<div class="filelist__tip">Можно щелкнуть мышкой дважды в любом месте, чтобы скрыть или показать.</div>' +
+							'<div class="filelist__hide">Скрыть</div>' +
 						'</div>'),
 	
 						$label = $filelist.find('span'); 
@@ -505,26 +516,33 @@
 				_handleSpanClick: function (e) {
 					var self = e.data.self;
 	
-					$('.filelist').toggleClass('_active');
+					$('#filelist').toggleClass('_active');
 				},
 	
 				_handleDocumentClick: function (e) {
 					var self = e.data.self;
 	
 					if ( $(e.target).closest('.filelist').length > 0 ) return;
-					$('.filelist').removeClass('_active');
+					$('#filelist').removeClass('_active');
 				},
 	
 				_handleDoubleClick: function (e) {
 					var self = e.data.self;
 	
-					$('.filelist').toggleClass('_hidden');
+					$('#filelist').toggleClass('_hidden');
+				},
+	
+				_handleHideClick: function (e) {
+					var self = e.data.self;
+	
+					$('#filelist').addClass('_hidden');
 				},
 	
 				_bindUI: function () {
 					var self = this;
 	
 					$(document).on('dblclick', {self: self}, self._handleDoubleClick);
+					$(document).on('click', '.filelist__hide', {self: self}, self._handleHideClick);
 					$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
 					$(document).on('click', {self: self}, self._handleDocumentClick);
 				},

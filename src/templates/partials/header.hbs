@@ -1,4 +1,5 @@
 <header class="header" id="header">
+	
 	<div class="header__top-line">
 		<div class="page__center">
 			<div class="page__inner">
@@ -7,25 +8,25 @@
 					<nav class="header__menu">
 						<div class="header__menu__wrap">
 							<div class="header__menu__crop">
-								<div class="header__menu__item">
-									<a href="#">О компании</a>
+								<div class="header__menu__item {{#is page.title 'О компании' }}--active{{/is}}">
+									<a href="about.html">О компании</a>
 								</div>
-								<div class="header__menu__item">
-									<a href="#">Цифровое портфолио</a>
+								<div class="header__menu__item {{#is page.title 'Цифровое портфолио' }}--active{{/is}}">
+									<a href="portfolio.html">Цифровое портфолио</a>
 								</div>
-								<div class="header__menu__item">
+								<div class="header__menu__item {{#is page.title 'Технологии' }}--active{{/is}}">
 									<a href="#">Технологии</a>
 								</div>
-								<div class="header__menu__item">
-									<a href="#">Пресс-центр</a>
+								<div class="header__menu__item {{#is page.title 'Пресс-центр' }}--active{{/is}}">
+									<a href="press.html">Пресс-центр</a>
 								</div>
-								<div class="header__menu__item --active">
-									<a href="#">Карьера</a>
+								<div class="header__menu__item {{#is page.title 'Карьера' }}--active{{/is}}">
+									<a href="career.html">Карьера</a>
 								</div>
-								<div class="header__menu__item">
+								<div class="header__menu__item {{#is page.title 'Партнеры' }}--active{{/is}}">
 									<a href="#">Партнеры</a>
 								</div>
-								<div class="header__menu__item">
+								<div class="header__menu__item {{#is page.title 'Контакты' }}--active{{/is}}">
 									<a href="#">Контакты</a>
 								</div>
 							</div>
@@ -33,11 +34,11 @@
 								<a href="#">Еще</a>
 								<div class="header__menu__down">
 									<div class="header__menu__down__body">
-										<div><a href="#">О компании</a></div>
-										<div><a href="#">Цифровое портфолио</a></div>
+										<div><a href="about.html">О компании</a></div>
+										<div><a href="portfolio.html">Цифровое портфолио</a></div>
 										<div><a href="#">Технологии</a></div>
-										<div><a href="#">Пресс-центр</a></div>
-										<div><a href="#">Карьера</a></div>
+										<div><a href="press.html">Пресс-центр</a></div>
+										<div><a href="career.html">Карьера</a></div>
 										<div><a href="#">Партнеры</a></div>
 										<div><a href="#">Контакты</a></div>
 									</div>
