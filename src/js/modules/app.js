@@ -25,7 +25,6 @@ var App = {
 		GanttSlider.init();
 		Header.init();
 		News.init();
-		NavSide.init();
 		Form.init();
 
 		if (getScrollbarWidth() == 0) {

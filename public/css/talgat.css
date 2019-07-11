@@ -222,17 +222,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 -15px;
+  margin: 0 -12px;
 }
 .tProducts__column {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  width: 33.3333%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 33.3333%;
 }
 .tProducts__column--big {
   width: 66.6666%;
@@ -256,7 +256,7 @@
   overflow: hidden;
   height: 100%;
   min-height: 262px;
-  margin: 15px;
+  margin: 12px;
   padding: 25px 40px;
 }
 .tProducts__item:before {

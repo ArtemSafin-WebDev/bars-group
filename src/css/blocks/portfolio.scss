@@ -1,13 +1,88 @@
 
 .portfolio {
 
-	&__group {
-		margin-top: 100px;
+	&__list {
+		position: relative;
+	}
+
+	&__item {
+		position: relative;
 	}
 
 	&__label {
-		position: relative;
-		z-index: 30;
+		position: absolute;
+		top: 39px;
+		left: 0;
+
+		&--local {
+			display: none;
+		}
+	}
+
+	&__nav {
+		padding-top: 110px;
+	}
+
+	&__ctrl {
+		display: flex;
+		margin: 0 -12px;
+		margin-top: 12px;
+
+		&__item {
+			flex: 0 0 33.33%;
+			max-width: 33.33%;
+			padding: 0 12px;
+		}
+	}
+
+	&__button {
+		display: block;
+		height: 120px;
+		line-height: 120px;
+		padding-bottom: 0;
+		padding-top: 0;
+
+		&--green {
+			background: #A1C527;
+
+			&:before {
+				background: darken(#A1C527, 5%)
+			}
+		}
+
+		&--yellow {
+			background: #F4CB23;
+
+			&:before {
+				background: darken(#F4CB23, 7%);
+			}
+		}
+
+		&--red {
+			background: #D74738;
+
+			&:before {
+				background: darken(#D74738, 5%);
+			}
+		}
+
+		&--dark {
+			background: #4F4949;
+
+			&:before {
+				background: darken(#4F4949, 5%);
+			}
+		}
+
+		&__text {
+			display: inline-block;
+		    vertical-align: middle;
+			line-height: 1.45;
+		}
+
+		&__count {
+			color: rgba(#fff, .6);
+		}
 	}
 
 }
@@ -15,17 +90,27 @@
 @media all and (max-width: 1300px) {
 
 	.portfolio {
-		&__group {
-			margin-top: .8*100px;
-		}
-	}
-}
 
-@media all and (max-width: 1050px) {
+		&__label {
+			top: -8px;
+			left: 20px;
 
-	.portfolio {
-		&__group {
-			margin-top: .6*100px;
+			&--global {
+				display: none;
+			}
+
+			&--local {
+				display: block;
+			}
 		}
+
+		&__nav {
+			display: none;
+		}
+
+
+	
 	}
+
+
 }
