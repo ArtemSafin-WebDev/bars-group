@@ -197,11 +197,9 @@
             padding-right: 20px;
         }
 
-
-        @media screen and (max-width:400px) {
+        @media screen and (max-width: 400px) {
             padding: 10px 20px;
         }
-
 
         .icon {
             position: absolute;
@@ -226,7 +224,6 @@
             @media screen and (max-width: 400px) {
                 display: none;
             }
-           
         }
 
         p {
@@ -320,6 +317,14 @@
         width: 100%;
         position: relative;
         padding-bottom: 40px;
+        cursor: grab;
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+        &.active {
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
+        }
         @media screen and (max-width: 600px) {
             padding-bottom: 30px;
         }
@@ -339,6 +344,7 @@
                 padding-right: 40px;
                 border-bottom: 1px solid #979797;
                 white-space: nowrap;
+                letter-spacing: 1.5px;
                 @media screen and (max-width: 600px) {
                     font-size: 16px;
                     padding: 8px 0;
@@ -517,12 +523,12 @@
     font-size: 14px;
     line-height: 20px;
     @media screen and (max-width: 768px) {
-       padding: 6px 14px;
-       font-size: 12px;
-       line-height: 18px;
-       right: auto;
-       left: 20px;
-       bottom: 20px;
+        padding: 6px 14px;
+        font-size: 12px;
+        line-height: 18px;
+        right: auto;
+        left: 20px;
+        bottom: 20px;
     }
     .icon {
         font-size: 18px;
@@ -615,7 +621,6 @@
 .news-details__photo-slider-thumbnails {
     margin-top: 15px;
     position: relative;
-   
 
     .swiper-container {
         width: 100%;

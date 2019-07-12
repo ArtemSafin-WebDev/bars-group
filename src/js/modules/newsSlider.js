@@ -11,7 +11,9 @@ var NewsSlider = {
                 navigation: {
                     nextEl: document.querySelector(".js-news-slider--next"),
                     prevEl: document.querySelector(".js-news-slider--prev")
-                }
+                },
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true
             });
         });
     }

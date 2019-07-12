@@ -4338,7 +4338,13 @@ img {
     padding: 0 16px;
     width: 100%;
     position: relative;
-    padding-bottom: 40px; }
+    padding-bottom: 40px;
+    cursor: grab;
+    cursor: -webkit-grab;
+    cursor: -moz-grab; }
+    .news-details__content .table-scroll-container.active {
+      cursor: grabbing;
+      cursor: -webkit-grabbing; }
     @media screen and (max-width: 600px) {
       .news-details__content .table-scroll-container {
         padding-bottom: 30px; } }
@@ -4354,7 +4360,8 @@ img {
       padding: 15px 0;
       padding-right: 40px;
       border-bottom: 1px solid #979797;
-      white-space: nowrap; }
+      white-space: nowrap;
+      letter-spacing: 1.5px; }
       @media screen and (max-width: 600px) {
         .news-details__content table thead th {
           font-size: 16px;
