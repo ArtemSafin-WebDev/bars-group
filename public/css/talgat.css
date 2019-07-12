@@ -475,57 +475,6 @@
 .tForWhom__thumb {
   margin-left: 20px;
 }
-.tNews__slider {
-  position: relative;
-}
-.tNews__slider:before {
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  right: -20px;
-  width: 120px;
-  height: 100%;
-  content: '';
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.8)));
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.8) 100%);
-}
-.tNews__item {
-  position: relative;
-}
-.tNews__item:hover .tNews__thumb {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-.tNews__link {
-  position: absolute;
-  z-index: 20;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.tNews__thumb-wrapper {
-  overflow: hidden;
-  height: 260px;
-}
-.tNews__thumb {
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 100%;
-  height: 100%;
-  background-position: 50% 50%;
-  background-size: cover;
-}
-.tNews__date {
-  font-size: 14px;
-  margin-top: 20px;
-  color: #6f8fb9;
-}
-.tNews__title {
-  font-weight: 700;
-  line-height: 1.45;
-  margin-top: 15px;
-}
 .tComponents__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -733,9 +682,6 @@
   .tForWhom__title {
     font-size: 18px;
   }
-  .tNews__thumb-wrapper {
-    height: 200px;
-  }
   .tTasks__digit {
     font-size: 50px;
     line-height: 50px;
@@ -791,9 +737,6 @@
   }
 }
 @media (max-width: 420px) {
-  .tNews__thumb-wrapper {
-    height: 140px;
-  }
   .tAdvantages {
     min-height: 350px;
   }

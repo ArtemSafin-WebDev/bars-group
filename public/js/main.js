@@ -1197,26 +1197,6 @@ var Form = {
 			});
 		}
 
-		if ($('.jsTNewsSlider').length) {
-			$('.jsTNewsSlider').owlCarousel({
-				dots: false,
-				nav: true,
-				loop: true,
-				navText: [''],
-				margin: 30,
-				responsive: {
-					0: {
-						items: 1.5
-					},
-					800: {
-						items: 2.5
-					},
-					1366: {
-						items: 3.5
-					}
-				}
-			});
-		}
 	});
 
 })();
