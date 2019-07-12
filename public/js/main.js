@@ -1220,6 +1220,171 @@ var Form = {
 	});
 
 })();
+
+var ScrollableTable = {
+    
+    init: function() {
+        var self = this;
+
+        var initialOverflow = false;
+
+        var scrollableTables = Array.prototype.slice.call(
+            document.querySelectorAll(".js-srollable-table")
+        );
+
+        scrollableTables.forEach(function(item) {
+            var scrollableContainer = item.querySelector(
+                ".js-scroll-container"
+            );
+            var gradientWrapper = item;
+
+            var handleGradientsOnStart = function() {
+                if (
+                    scrollableContainer.scrollWidth >
+                    scrollableContainer.offsetWidth
+                ) {
+                    initialOverflow = true;
+                    gradientWrapper.classList.add(
+                        "table-gradient-wrapper--right-gradient"
+                    );
+                } else {
+                    initialOverflow = false;
+                    gradientWrapper.classList.remove(
+                        "table-gradient-wrapper--right-gradient"
+                    );
+                }
+            };
+
+            var handleGradientsOnScroll = function() {
+                var scrollLeft = this.scrollLeft;
+                var scrollWidth = this.scrollWidth;
+                var offsetWidth = this.offsetWidth;
+
+                if (scrollLeft > 0 && scrollLeft < scrollWidth - offsetWidth) {
+                    gradientWrapper.classList.add(
+                        "table-gradient-wrapper--right-gradient"
+                    );
+                    gradientWrapper.classList.add(
+                        "table-gradient-wrapper--left-gradient"
+                    );
+                } else if (scrollLeft === 0) {
+                    gradientWrapper.classList.remove(
+                        "table-gradient-wrapper--left-gradient"
+                    );
+                } else if (
+                    scrollLeft > 0 &&
+                    scrollLeft === scrollWidth - offsetWidth
+                ) {
+                    gradientWrapper.classList.remove(
+                        "table-gradient-wrapper--right-gradient"
+                    );
+                }
+            };
+
+            if (scrollableContainer) {
+                new PerfectScrollbar(scrollableContainer, {
+                    maxScrollbarLength: 105
+                });
+
+                handleGradientsOnStart();
+
+                if (initialOverflow) {
+                    scrollableContainer.addEventListener(
+                        "scroll",
+                        handleGradientsOnScroll
+                    );
+                }
+
+                window.addEventListener("resize", function() {
+                    scrollableContainer.removeEventListener(
+                        "scroll",
+                        handleGradientsOnScroll
+                    );
+                    handleGradientsOnStart();
+                    if (initialOverflow) {
+                        scrollableContainer.addEventListener(
+                            "scroll",
+                            handleGradientsOnScroll
+                        );
+                    }
+                });
+            }
+        });
+    }
+};
+var NewsSlider = {
+    init: function() {
+        var newsSliders = Array.prototype.slice.call(
+            document.querySelectorAll(".js-news-slider")
+        );
+
+        newsSliders.forEach(function(item) {
+            new Swiper(item, {
+                slidesPerView: "auto",
+                spaceBetween: 25,
+                navigation: {
+                    nextEl: document.querySelector(".js-news-slider--next"),
+                    prevEl: document.querySelector(".js-news-slider--prev")
+                }
+            });
+        });
+    }
+};
+var NewsPhotoSlider = {
+    init: function() {
+        var photoSliders = Array.prototype.slice.call(
+            document.querySelectorAll(".js-news-details-photo-slider")
+        );
+
+        photoSliders.forEach(function(item) {
+            var thumbnails = item.querySelector(
+                ".js-news-details-thumbnails-slider"
+            );
+            var container = item.querySelector(".swiper-container");
+
+            var thumbContainer;
+            var thumbSlider;
+
+            if (thumbnails) {
+                thumbContainer = thumbnails.querySelector(".swiper-container");
+            }
+
+            if (thumbContainer) {
+                thumbSlider = new Swiper(thumbContainer, {
+                    slidesPerView: "auto",
+                    spaceBetween: 15,
+                    watchSlidesVisibility: true,
+                    watchSlidesProgress: true,
+                    slideToClickedSlide: true,
+                    on: {
+                        reachEnd: function() {
+                            thumbnails.classList.remove("gradient-shown");
+                        }
+                    }
+                });
+            }
+
+            if (container) {
+                new Swiper(container, {
+                    effect: "fade",
+                    speed: 600,
+                    fadeEffect: { crossFade: true },
+                    navigation: {
+                        nextEl: document.querySelector(
+                            ".news-details__photo-slider-next"
+                        ),
+                        prevEl: document.querySelector(
+                            ".news-details__photo-slider-prev"
+                        )
+                    },
+                    thumbs: {
+                        swiper: thumbSlider
+                    }
+                });
+            }
+        });
+    }
+};
 var App = {
 
 	_initImagerJs: function () {
@@ -1248,6 +1413,9 @@ var App = {
 		Header.init();
 		News.init();
 		Form.init();
+		ScrollableTable.init();
+		NewsSlider.init();
+		NewsPhotoSlider.init();
 	},
 
 	_bindUI: function () {

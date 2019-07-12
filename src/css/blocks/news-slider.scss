@@ -1,0 +1,104 @@
+.news-slider {
+    position: relative;
+}
+
+
+.news-slider__outer-wrapper {
+    margin-right: calc(-1 * (100vw - (100% + 200px)) / 2);
+    margin-left: calc(-1 * (200px + (100vw - 100%)) / 2);
+    @media screen and (max-width: 1300px) {
+        margin-right: -40px;
+        margin-left: -40px;
+    }
+    @media screen and (max-width: 600px) {
+        margin-right: -40px;
+        margin-left: -20px;
+    }
+    .swiper-container {
+        width: 100%;
+        padding-left: calc(((100% - 1520px) / 2) + 200px);
+        @media screen and (max-width: 1300px) {
+            padding-right: 20px;
+            padding-left: 40px;
+        }
+        @media screen and (max-width: 600px) {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+    }
+
+    .swiper-slide {
+        width: 28.7%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        transition: transform, opacity .2s;
+        &:last-child {
+            margin-right: 25px !important;
+        }
+        @media screen and (max-width: 768px) {
+            width: 40%;
+        }
+        @media screen and (max-width: 600px) {
+            width: 55%;
+        }
+
+        @media screen and (max-width: 400px) {
+            width: 70%;
+        }
+      
+    }
+
+
+    .swiper-slide-prev{
+        opacity: .1;
+
+    }
+}
+
+.news-slider__content {
+    width: 100%;
+    position: relative;
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    //     height: 100%;
+    //     width: 10%;
+    //     background-image: linear-gradient(to left, white, rgba(white, 0));
+    //     z-index: 200;
+    // }
+}
+
+.news-slider__label {
+    position: absolute;
+    top: 26px;
+    right: 100%;
+    
+    margin-right: -50px;
+    z-index: 100;
+    @media screen and (max-width: 1300px) {
+        left: 40px;
+        right: auto;
+        margin: 0;
+        margin-left: -20px;
+        top: -21px;
+    }
+}
+
+.news-slider__arrows-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+}
+
+.news-slider__arrows {
+    margin-left: auto;
+    a {
+        outline: none;
+    }
+    > *:first-child {
+        margin-left: 0;
+    }
+}

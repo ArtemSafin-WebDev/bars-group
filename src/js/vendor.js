@@ -11,5 +11,7 @@
 //= ../../bower_components/iCheck/icheck.js
 //= ../../bower_components/owl.carousel/dist/owl.carousel.js
 //= ../../bower_components/dragscroll/dragscroll.js
+//= ../../bower_components/swiper/dist/js/swiper.js
 //= vendor/scrollbar-width.js
+//= vendor/perfect-scrollbar.js
 

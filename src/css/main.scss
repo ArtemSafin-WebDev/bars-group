@@ -4,7 +4,9 @@
 @import '../../bower_components/slick-carousel/slick/slick.css';
 @import '../../bower_components/owl.carousel/dist/assets/owl.carousel.css';
 @import '../../bower_components/owl.carousel/dist/assets/owl.theme.default.css';
+@import '../../bower_components/swiper/dist/css/swiper.css';
 @import 'vendor/bootstrap-transitions';
+@import 'vendor/perfect-scrollbar';
 
 // sprites
 .icon {
@@ -82,6 +84,8 @@ img {
 @import 'blocks/form-job';
 @import 'blocks/history';
 @import 'blocks/portfolio';
+@import 'blocks/news-details';
+@import 'blocks/news-slider';
 
 @media all and (max-width: 600px) {
 

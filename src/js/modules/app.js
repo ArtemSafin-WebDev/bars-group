@@ -26,6 +26,9 @@ var App = {
 		Header.init();
 		News.init();
 		Form.init();
+		ScrollableTable.init();
+		NewsSlider.init();
+		NewsPhotoSlider.init();
 	},
 
 	_bindUI: function () {

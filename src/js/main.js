@@ -8,6 +8,9 @@
 //= modules/news.js
 //= modules/form.js
 //= modules/talgat.js
+//= modules/scrollableTable.js
+//= modules/newsSlider.js
+//= modules/newsPhotoSlider.js
 //= modules/app.js
 
 App.init();
