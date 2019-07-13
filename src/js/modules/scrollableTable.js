@@ -6,13 +6,13 @@ var ScrollableTable = {
         var initialOverflow = false;
 
         var scrollableTables = Array.prototype.slice.call(
-            document.querySelectorAll(".js-srollable-table")
+            document.querySelectorAll(".js-news-details-content table")
         );
-
-
 
         function wrapTable(table) {
             
+            var tableBlock = document.createElement("div");
+            tableBlock.className = 'table-block';
             var tableGradientWrapper = document.createElement("div");
             tableGradientWrapper.className = 'table-gradient-wrapper js-srollable-table';
             var tableScrollContainer = document.createElement("div");
@@ -20,22 +20,30 @@ var ScrollableTable = {
             var tablePreviousSibling = table.previousElementSibling;
             var tablePreviousSiblingType;
             
-            table.parentNode.insertBefore(tableGradientWrapper, table);
+            table.parentNode.insertBefore(tableBlock, table);
 
+            tableBlock.appendChild(tableGradientWrapper)
             tableGradientWrapper.appendChild(tableScrollContainer);
             tableScrollContainer.appendChild(table)
-
 
             if (tablePreviousSibling) {
                 tablePreviousSiblingType = tablePreviousSibling.nodeName.toLowerCase();
                 if (tablePreviousSiblingType === 'h1' ||  tablePreviousSiblingType === 'h2' ||  tablePreviousSiblingType === 'h3' ||  tablePreviousSiblingType === 'h4' ||  tablePreviousSiblingType === 'h5' ||  tablePreviousSiblingType === 'h6') {
-                    tableScrollContainer.insertBefore(tablePreviousSibling, table);
+                    tableBlock.insertBefore(tablePreviousSibling, tableGradientWrapper);
                 }
+            }
+
+            return {
+                tableGradientWrapper: tableGradientWrapper,
+                tableScrollContainer: tableScrollContainer
             }
         }
 
 
+
         window.wrapTable = wrapTable;
+
+
 
         function addDragScrollHandlers(element) {
             var pressed = false;
@@ -67,10 +75,10 @@ var ScrollableTable = {
         }
 
         scrollableTables.forEach(function(item) {
-            var scrollableContainer = item.querySelector(
-                ".js-scroll-container"
-            );
-            var gradientWrapper = item;
+
+            var containers = wrapTable(item);
+            var scrollableContainer = containers.tableScrollContainer
+            var gradientWrapper = containers.tableGradientWrapper
 
             var handleGradientsOnStart = function() {
                 if (

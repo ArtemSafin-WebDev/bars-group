@@ -1228,13 +1228,13 @@ var ScrollableTable = {
         var initialOverflow = false;
 
         var scrollableTables = Array.prototype.slice.call(
-            document.querySelectorAll(".js-srollable-table")
+            document.querySelectorAll(".js-news-details-content table")
         );
-
-
 
         function wrapTable(table) {
             
+            var tableBlock = document.createElement("div");
+            tableBlock.className = 'table-block';
             var tableGradientWrapper = document.createElement("div");
             tableGradientWrapper.className = 'table-gradient-wrapper js-srollable-table';
             var tableScrollContainer = document.createElement("div");
@@ -1242,22 +1242,30 @@ var ScrollableTable = {
             var tablePreviousSibling = table.previousElementSibling;
             var tablePreviousSiblingType;
             
-            table.parentNode.insertBefore(tableGradientWrapper, table);
+            table.parentNode.insertBefore(tableBlock, table);
 
+            tableBlock.appendChild(tableGradientWrapper)
             tableGradientWrapper.appendChild(tableScrollContainer);
             tableScrollContainer.appendChild(table)
-
 
             if (tablePreviousSibling) {
                 tablePreviousSiblingType = tablePreviousSibling.nodeName.toLowerCase();
                 if (tablePreviousSiblingType === 'h1' ||  tablePreviousSiblingType === 'h2' ||  tablePreviousSiblingType === 'h3' ||  tablePreviousSiblingType === 'h4' ||  tablePreviousSiblingType === 'h5' ||  tablePreviousSiblingType === 'h6') {
-                    tableScrollContainer.insertBefore(tablePreviousSibling, table);
+                    tableBlock.insertBefore(tablePreviousSibling, tableGradientWrapper);
                 }
+            }
+
+            return {
+                tableGradientWrapper: tableGradientWrapper,
+                tableScrollContainer: tableScrollContainer
             }
         }
 
 
+
         window.wrapTable = wrapTable;
+
+
 
         function addDragScrollHandlers(element) {
             var pressed = false;
@@ -1289,10 +1297,10 @@ var ScrollableTable = {
         }
 
         scrollableTables.forEach(function(item) {
-            var scrollableContainer = item.querySelector(
-                ".js-scroll-container"
-            );
-            var gradientWrapper = item;
+
+            var containers = wrapTable(item);
+            var scrollableContainer = containers.tableScrollContainer
+            var gradientWrapper = containers.tableGradientWrapper
 
             var handleGradientsOnStart = function() {
                 if (
@@ -1376,17 +1384,58 @@ var NewsSlider = {
             document.querySelectorAll(".js-news-slider")
         );
 
+        function checkIfFullyVisible(element) {
+            var viewportOffsetLeft = element.getBoundingClientRect().left;
+            // var viewportOffsetRight = element.getBoundingClientRect().right;
+            var elementWidth = element.offsetWidth;
+            var viewportWidth = document.documentElement.clientWidth;
+
+            // console.log("viewportOffset", viewportOffset);
+            // console.log("elementWidth", elementWidth);
+            // console.log("viewportWidth", viewportWidth);
+            console.log('Checking visibility')
+
+            if (viewportOffsetLeft + elementWidth > viewportWidth || viewportOffsetLeft < 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function handleSlideVisibility() {
+            var slider = this;
+            var slides = Array.prototype.slice.call(slider.slides);
+
+            slides.forEach(function(slide) {
+                var slideFullyVisible = checkIfFullyVisible(slide);
+                if (!slideFullyVisible) {
+                    slide.classList.add("not-visible");
+                } else {
+                    slide.classList.remove("not-visible");
+                }
+            });
+        }
+
+        window.checkVisible = checkIfFullyVisible;
+
         newsSliders.forEach(function(item) {
-            new Swiper(item, {
+            var slider = new Swiper(item, {
                 slidesPerView: "auto",
                 spaceBetween: 25,
                 navigation: {
                     nextEl: document.querySelector(".js-news-slider--next"),
                     prevEl: document.querySelector(".js-news-slider--prev")
                 },
-                watchSlidesVisibility: true,
-                watchSlidesProgress: true
+                on: {
+                    init: handleSlideVisibility,
+                    slideChange: handleSlideVisibility,
+                    transitionEnd: handleSlideVisibility,
+                    resize: handleSlideVisibility,
+                    sliderMove: handleSlideVisibility
+                }
             });
+
+            
         });
     }
 };
