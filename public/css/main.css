@@ -1206,18 +1206,17 @@ img {
     white-space: nowrap;
     overflow: hidden; }
     .nav-cats__scroll {
+      -webkit-overflow-scrolling: touch;
       overflow-x: scroll;
       overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
       padding-bottom: 30px;
       margin-bottom: -45px; }
       .hiddenscroll .nav-cats__scroll {
+        -ms-overflow-style: none;
         scrollbar-width: none;
-        -ms-overflow-style: none; }
+        margin-bottom: -30px; }
         .hiddenscroll .nav-cats__scroll::-webkit-scrollbar {
           display: none; }
-      .hiddenscroll .nav-cats__scroll {
-        margin-bottom: -30px; }
     .nav-cats__item {
       display: inline-block;
       margin-right: 35px;
@@ -1337,20 +1336,19 @@ img {
     .nav-video__crop {
       overflow: hidden; }
     .nav-video__scroll {
-      white-space: nowrap;
-      font-size: 0;
+      -webkit-overflow-scrolling: touch;
       overflow-x: scroll;
       overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
       padding-bottom: 30px;
-      margin-bottom: -45px; }
+      margin-bottom: -45px;
+      white-space: nowrap;
+      font-size: 0; }
       .hiddenscroll .nav-video__scroll {
+        -ms-overflow-style: none;
         scrollbar-width: none;
-        -ms-overflow-style: none; }
+        margin-bottom: -30px; }
         .hiddenscroll .nav-video__scroll::-webkit-scrollbar {
           display: none; }
-      .hiddenscroll .nav-video__scroll {
-        margin-bottom: -30px; }
     .nav-video__item {
       float: none;
       display: inline-block;
@@ -1380,6 +1378,64 @@ img {
     .nav-video__icon {
       -webkit-transform: scale(0.8);
               transform: scale(0.8); } }
+
+.nav-banner {
+  margin-top: -20px; }
+  .nav-banner__crop {
+    overflow: hidden; }
+  .nav-banner__scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-bottom: 30px;
+    margin-bottom: -45px; }
+    .hiddenscroll .nav-banner__scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      margin-bottom: -30px; }
+      .hiddenscroll .nav-banner__scroll::-webkit-scrollbar {
+        display: none; }
+  .nav-banner__list {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .nav-banner__item {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.33%;
+            flex: 0 0 33.33%;
+    max-width: 300px;
+    min-height: 80px;
+    min-width: 120px;
+    padding-bottom: 20px;
+    padding-right: 30px;
+    color: rgba(0, 0, 0, 0.7); }
+    .nav-banner__item:hover, .nav-banner__item._active {
+      color: black; }
+  .nav-banner__line {
+    -webkit-transition: right .2s ease-in;
+    transition: right .2s ease-in;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #59b4e6;
+    height: 3px;
+    width: calc(33.33% - 30px);
+    max-width: 270px;
+    min-width: 90px; }
+  .nav-banner__num {
+    margin-bottom: 10px;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #8896a8; }
+  .nav-banner__name {
+    font-size: 18px;
+    line-height: 1.2; }
+
+@media all and (max-width: 600px) {
+  .nav-banner__name {
+    font-size: 14px; } }
 
 .article {
   font-size: 18px;
@@ -2240,18 +2296,17 @@ img {
     pointer-events: none; }
 
 .gantt-slider__scroll {
+  -webkit-overflow-scrolling: touch;
   overflow-x: scroll;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
   padding-bottom: 30px;
   margin-bottom: -45px; }
   .hiddenscroll .gantt-slider__scroll {
+    -ms-overflow-style: none;
     scrollbar-width: none;
-    -ms-overflow-style: none; }
+    margin-bottom: -30px; }
     .hiddenscroll .gantt-slider__scroll::-webkit-scrollbar {
       display: none; }
-  .hiddenscroll .gantt-slider__scroll {
-    margin-bottom: -30px; }
 
 .gantt-slider__scene {
   -webkit-transition: height .2s ease-out;
@@ -3631,6 +3686,8 @@ img {
     color: #000; }
   .banner--dark-text .banner__desc {
     color: rgba(0, 0, 0, 0.8); }
+  .banner--fixed-bg .banner__image {
+    background-attachment: fixed; }
   .banner__image {
     position: absolute;
     top: 0;
@@ -3639,7 +3696,6 @@ img {
     height: 100%;
     background-color: #cbd9e1;
     background-position: 50% 50%;
-    background-attachment: fixed;
     background-size: cover; }
     .banner__image__change {
       position: absolute;

@@ -8,13 +8,16 @@
 }
 
 @mixin add-scrollbar() {
+	-webkit-overflow-scrolling: touch;
 	overflow-x: scroll;
 	overflow-y: hidden;
-	-webkit-overflow-scrolling: touch;
+	padding-bottom: 30px;
+	margin-bottom: -45px;
 
 	.hiddenscroll & {
-		scrollbar-width: none; 
 	    -ms-overflow-style: none;
+		scrollbar-width: none; 
+	    margin-bottom: -30px;
 
 		&::-webkit-scrollbar {
 			display: none;

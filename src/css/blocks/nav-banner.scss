@@ -1,0 +1,68 @@
+
+.nav-banner {
+
+	margin-top: -20px;
+
+	&__crop {
+		overflow: hidden;
+	}
+
+	&__scroll {
+		@include add-scrollbar();
+	}
+
+	&__list {
+		position: relative;
+		display: flex;
+	}
+
+	&__item {
+		flex: 0 0 33.33%;
+		max-width: 300px;
+		min-height: 80px;
+		min-width: 120px;
+		padding-bottom: 20px;
+		padding-right: 30px;
+		color: rgba(#000, .7);
+
+		&:hover,
+		&._active {
+			color: rgba(#000, 1);
+		}
+
+	}
+
+	&__line {
+		transition: right .2s ease-in;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		background: #59b4e6;
+		height: 3px;
+		width: calc(33.33% - 30px);
+		max-width: 270px;
+		min-width: 90px;
+	}
+
+	&__num {
+		margin-bottom: 10px;
+		display: block;
+		font-size: 14px;
+		font-weight: 700;
+		color: #8896a8;
+	}
+
+	&__name {
+		font-size: 18px;
+		line-height: 1.2;
+	}
+}
+
+@media all and (max-width: 600px) {
+
+	.nav-banner {
+		&__name {
+			font-size: 14px;
+		}
+	}
+}

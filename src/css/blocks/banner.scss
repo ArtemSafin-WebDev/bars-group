@@ -13,11 +13,16 @@
 		}
 	}
 
+	&--fixed-bg {
+		.banner__image {
+			background-attachment: fixed;
+		}
+	}
+
 	&__image {
 		@include position-fill();
 		background-color: $base-gray;
 		background-position: 50% 50%;
-		background-attachment: fixed;
 		background-size: cover;
 
 		&__change {
