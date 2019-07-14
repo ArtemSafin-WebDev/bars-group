@@ -72,27 +72,28 @@
 {
     &__title
     {
-        font-size: 33px;
+        font-size: 30px;
         font-weight: 700;
         line-height: 1.35;
     }
 
-    &__subtitle
-    {
+    &__subtitle {
+        padding-bottom: 20px;
         font-size: 16px;
         font-weight: 600;
-
-        letter-spacing: 1.78px;
+        letter-spacing: 1.8px;
         text-transform: uppercase;
-
         color: #59b4e6;
 
-        &--with-line
-        {
-            padding-bottom: 25px;
-
+        &--has-line {
             border-bottom: 2px #59b4e6 solid;
+            padding-bottom: 28px;
         }
+
+        &--no-line {
+            padding-bottom: 28px;
+        }
+
     }
 
 }
@@ -100,10 +101,8 @@
 .tAdvantages
 {
     position: relative;
-
     min-height: 434px;
     margin-top: 60px;
-
     color: #fff;
 
     &__nav-wrapper
@@ -248,9 +247,7 @@
     &__item
     {
         position: relative;
-
         width: 33.3333%;
-        margin-top: 30px;
         padding-top: 90px;
         padding-right: 60px;
     }
@@ -600,81 +597,43 @@
     }
 }
 
-.tDescription
-{
-    &__wrapper
-    {
-        display: -webkit-box;
-        display: -ms-flexbox;
+.tDescription {
+    &__wrapper {
         display: flex;
-
-        &--adv
-        {
-            margin-top: 30px;
-        }
     }
 
-    &__barsup
-    {
-        width: 400px;
+    &__left {
+        margin-right: 100px;
+    }
 
-        -ms-flex-negative: 0;
-        flex-shrink: 0;
+    &__right {
+        flex: 0 0 440px;
 
-        & > p
-        {
+        & > p {
+            position: relative;
+            padding-left: 40px;
             font-style: italic;
             line-height: 1.75;
-
-            position: relative;
-
             color: #909090;
 
             &:before
             {
+                content: '';
                 position: absolute;
                 top: 14px;
-                left: -40px;
-
+                left: 0;
                 width: 25px;
                 height: 2px;
-
-                content: '';
-
-                background-color: #59b4e6;
+                background: #59b4e6;
             }
         }
     }
 
-    &__emblem
-    {
-        margin: 35px 0 77px;
+    &__emblem {
+        margin-bottom: 70px;
+        margin-left: 40px;
     }
-
-    &__text
-    {
-        width: calc(~"100% - 550px");
-        margin-right: 150px;
-
-        & > p
-        {
-            &:not(.tBlocks__title)
-            {
-                line-height: 1.75;
-            }
-        }
-
-        &:not(.tDescription__text--adv)
-        {
-            & > p
-            {
-                &:not(.tBlocks__title)
-                {
-                    line-height: 1.75;
-                }
-            }
-        }
-    }
+   
 }
 
 .tForWhom
@@ -683,32 +642,18 @@
 
     &__wrapper
     {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-
-        margin: 25px -45px 0;
-
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
         justify-content: space-between;
+        margin: 0 -45px;
     }
 
     &__item
     {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-
         width: calc(~"50% - 90px");
         margin: 0 45px;
         padding-top: 25px;
-
         border-top: 2px #59b4e6 solid;
-
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
     }
 
     &__title
@@ -720,13 +665,15 @@
     &__text
     {
         margin-top: 25px;
-
         color: #909090;
     }
 
     &__thumb
     {
-        margin-left: 20px;
+        flex: 0 0 35%;
+        margin-left: auto;
+        max-width: 170px;
+        padding-left: 20px;
     }
 }
 
@@ -859,41 +806,25 @@
         width: 50%;
     }
 
-    .tDescription
-    {
-        &__wrapper
-        {
-            flex-direction: column;
+    .tDescription {
+
+        &__wrapper {
+            display: block;
         }
 
-        &__barsup,
-        &__text
-        {
-            width: 100%;
-        }
-
-        &__text
-        {
+        &__left {
             margin-right: 0;
-
-            &--adv
-            {
-                margin-bottom: 30px;
-            }
         }
 
-        &__barsup
-        {
-            & > p
-            {
-                margin-left: 40px;
-            }
+        &__right {
+            margin-top: 30px;
         }
 
-        &__emblem
-        {
-            margin: 30px 0;
+        &__emblem {
+            margin-bottom: 30px;
+            margin-left: 0;
         }
+
     }
 }
 @media (max-width: 992px)
@@ -967,6 +898,10 @@
             {
                 margin: 0;
             }
+        }
+
+        &__thumb {
+            max-width: 120px;
         }
     }
 
@@ -1109,7 +1044,6 @@
         margin: 0 20px;
     }
 
-    .tBlocks__title,
     .tProductsItem__title,
     .tProducts__column--big .tProducts__item .tProductsItem__title,
     .tTechnicalIssues__title

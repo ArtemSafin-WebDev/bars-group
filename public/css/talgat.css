@@ -59,20 +59,24 @@
   scrollbar-color: transparent transparent !important;
 }
 .tBlocks__title {
-  font-size: 33px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 1.35;
 }
 .tBlocks__subtitle {
+  padding-bottom: 20px;
   font-size: 16px;
   font-weight: 600;
-  letter-spacing: 1.78px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   color: #59b4e6;
 }
-.tBlocks__subtitle--with-line {
-  padding-bottom: 25px;
+.tBlocks__subtitle--has-line {
   border-bottom: 2px #59b4e6 solid;
+  padding-bottom: 28px;
+}
+.tBlocks__subtitle--no-line {
+  padding-bottom: 28px;
 }
 .tAdvantages {
   position: relative;
@@ -171,7 +175,6 @@
 .tTasks__item {
   position: relative;
   width: 33.3333%;
-  margin-top: 30px;
   padding-top: 90px;
   padding-right: 60px;
 }
@@ -404,41 +407,33 @@
   display: -ms-flexbox;
   display: flex;
 }
-.tDescription__wrapper--adv {
-  margin-top: 30px;
+.tDescription__left {
+  margin-right: 100px;
 }
-.tDescription__barsup {
-  width: 400px;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
+.tDescription__right {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 440px;
+          flex: 0 0 440px;
 }
-.tDescription__barsup > p {
+.tDescription__right > p {
+  position: relative;
+  padding-left: 40px;
   font-style: italic;
   line-height: 1.75;
-  position: relative;
   color: #909090;
 }
-.tDescription__barsup > p:before {
+.tDescription__right > p:before {
+  content: '';
   position: absolute;
   top: 14px;
-  left: -40px;
+  left: 0;
   width: 25px;
   height: 2px;
-  content: '';
-  background-color: #59b4e6;
+  background: #59b4e6;
 }
 .tDescription__emblem {
-  margin: 35px 0 77px;
-}
-.tDescription__text {
-  width: calc(100% - 550px);
-  margin-right: 150px;
-}
-.tDescription__text > p:not(.tBlocks__title) {
-  line-height: 1.75;
-}
-.tDescription__text:not(.tDescription__text--adv) > p:not(.tBlocks__title) {
-  line-height: 1.75;
+  margin-bottom: 70px;
+  margin-left: 40px;
 }
 .tForWhom {
   margin-top: 60px;
@@ -447,10 +442,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 25px -45px 0;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 -45px;
 }
 .tForWhom__item {
   display: -webkit-box;
@@ -460,9 +455,6 @@
   margin: 0 45px;
   padding-top: 25px;
   border-top: 2px #59b4e6 solid;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
 }
 .tForWhom__title {
   font-size: 22px;
@@ -473,7 +465,12 @@
   color: #909090;
 }
 .tForWhom__thumb {
-  margin-left: 20px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 35%;
+          flex: 0 0 35%;
+  margin-left: auto;
+  max-width: 170px;
+  padding-left: 20px;
 }
 .tComponents__wrapper {
   display: -webkit-box;
@@ -557,26 +554,17 @@
     width: 50%;
   }
   .tDescription__wrapper {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    display: block;
   }
-  .tDescription__barsup,
-  .tDescription__text {
-    width: 100%;
-  }
-  .tDescription__text {
+  .tDescription__left {
     margin-right: 0;
   }
-  .tDescription__text--adv {
-    margin-bottom: 30px;
-  }
-  .tDescription__barsup > p {
-    margin-left: 40px;
+  .tDescription__right {
+    margin-top: 30px;
   }
   .tDescription__emblem {
-    margin: 30px 0;
+    margin-bottom: 30px;
+    margin-left: 0;
   }
 }
 @media (max-width: 992px) {
@@ -625,6 +613,9 @@
   }
   .tForWhom__item:last-child {
     margin: 0;
+  }
+  .tForWhom__thumb {
+    max-width: 120px;
   }
   .tTechnicalIssues__wrapper {
     -webkit-box-orient: vertical;
@@ -706,7 +697,6 @@
   .tAdvantages__nav-wrapper {
     margin: 0 20px;
   }
-  .tBlocks__title,
   .tProductsItem__title,
   .tProducts__column--big .tProducts__item .tProductsItem__title,
   .tTechnicalIssues__title {
