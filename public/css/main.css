@@ -3710,6 +3710,13 @@ img {
   .banner__content {
     padding: 110px 0;
     max-width: 600px; }
+  .banner__label {
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.55px;
+    color: #59b4e6; }
   .banner__h1 {
     color: #fff; }
   .banner__desc {
