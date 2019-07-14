@@ -1413,8 +1413,8 @@ img {
     .nav-banner__item:hover, .nav-banner__item._active {
       color: black; }
   .nav-banner__line {
-    -webkit-transition: right .2s ease-in;
-    transition: right .2s ease-in;
+    -webkit-transition: left .2s ease-in;
+    transition: left .2s ease-in;
     position: absolute;
     left: 0;
     bottom: 0;

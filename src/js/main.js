@@ -11,6 +11,7 @@
 //= modules/scrollableTable.js
 //= modules/newsSlider.js
 //= modules/newsPhotoSlider.js
+//= modules/nav-banner.js
 //= modules/app.js
 
 App.init();
