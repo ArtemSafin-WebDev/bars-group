@@ -3695,6 +3695,7 @@ img {
     width: 100%;
     height: 100%;
     background-color: #cbd9e1;
+    background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: cover; }
     .banner__image__change {
@@ -4809,6 +4810,137 @@ img {
     outline: none; }
   .news-slider__arrows > *:first-child {
     margin-left: 0; }
+
+.tech-promo {
+  height: calc(100vh - 74px);
+  min-height: 800px;
+  max-height: 1000px; }
+  .tech-promo .brand-box__text-2 {
+    color: #fff; }
+  .tech-promo .banner__image {
+    background-color: #000; }
+  .tech-promo .banner__text {
+    height: 100%; }
+  .tech-promo__base {
+    position: absolute;
+    width: 600px;
+    top: 50%;
+    margin-top: -300px;
+    left: 45%; }
+  .tech-promo__elem-1 {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg); }
+    .tech-promo__elem-1.--active .tech-promo__line {
+      -webkit-animation: tech-promo-stroke 2s ease-out forwards;
+              animation: tech-promo-stroke 2s ease-out forwards; }
+  .tech-promo__elem-2 {
+    -webkit-transform: translate(-36px, -36px);
+            transform: translate(-36px, -36px);
+    width: 300px;
+    height: 300px; }
+  .tech-promo__data {
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    opacity: 0; }
+    .tech-promo__data.--active {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      opacity: 1; }
+  .tech-promo__line {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000; }
+  .tech-promo__point {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+    .tech-promo__point.--active .tech-promo__point__label {
+      -webkit-transform: scale(1);
+              transform: scale(1); }
+    .tech-promo__point--1 {
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg); }
+      .tech-promo__point--1 .tech-promo__point__label {
+        -webkit-transition-delay: 0.0s;
+                transition-delay: 0.0s; }
+      .tech-promo__point--1 .tech-promo__point__data {
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg); }
+    .tech-promo__point--2 {
+      -webkit-transform: rotate(135deg);
+              transform: rotate(135deg); }
+      .tech-promo__point--2 .tech-promo__point__label {
+        -webkit-transition-delay: 0.3s;
+                transition-delay: 0.3s; }
+    .tech-promo__point--3 {
+      -webkit-transform: rotate(200deg);
+              transform: rotate(200deg); }
+      .tech-promo__point--3 .tech-promo__point__label {
+        -webkit-transition-delay: 0.6s;
+                transition-delay: 0.6s; }
+    .tech-promo__point--4 {
+      -webkit-transform: rotate(230deg);
+              transform: rotate(230deg); }
+      .tech-promo__point--4 .tech-promo__point__label {
+        -webkit-transition-delay: 0.9s;
+                transition-delay: 0.9s; }
+    .tech-promo__point--5 {
+      -webkit-transform: rotate(270deg);
+              transform: rotate(270deg); }
+      .tech-promo__point--5 .tech-promo__point__label {
+        -webkit-transition-delay: 1.2s;
+                transition-delay: 1.2s; }
+    .tech-promo__point--6 {
+      -webkit-transform: rotate(310deg);
+              transform: rotate(310deg); }
+      .tech-promo__point--6 .tech-promo__point__label {
+        -webkit-transition-delay: 1.5s;
+                transition-delay: 1.5s; }
+    .tech-promo__point__label {
+      -webkit-transition: -webkit-transform .3s;
+      transition: -webkit-transform .3s;
+      transition: transform .3s;
+      transition: transform .3s, -webkit-transform .3s;
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      margin-left: -10px;
+      background: #fff;
+      -webkit-box-shadow: 0 0 15px #fff;
+              box-shadow: 0 0 15px #fff;
+      border-radius: 50%; }
+    .tech-promo__point__data {
+      -webkit-transform-origin: 0 0;
+              transform-origin: 0 0; }
+
+@-webkit-keyframes tech-promo-stroke {
+  to {
+    stroke-dashoffset: 0; } }
+
+@keyframes tech-promo-stroke {
+  to {
+    stroke-dashoffset: 0; } }
 
 @media all and (max-width: 600px) {
   body {

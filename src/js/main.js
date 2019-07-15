@@ -12,6 +12,7 @@
 //= modules/newsSlider.js
 //= modules/newsPhotoSlider.js
 //= modules/nav-banner.js
+//= modules/tech-promo.js
 //= modules/app.js
 
 App.init();
