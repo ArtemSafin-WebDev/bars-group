@@ -29,6 +29,7 @@ var App = {
 		ScrollableTable.init();
 		NewsSlider.init();
 		NewsPhotoSlider.init();
+		NewsToggles.init();
 	},
 
 	_bindUI: function () {
