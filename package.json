@@ -10,6 +10,7 @@
   "scripts": {
     "start": "gulp clean && grunt responsive_images && grunt modernizr && gulp",
     "heavy-tasks": "grunt responsive_images && grunt modernizr",
+    "deploy": "gulp compress && gulp deploy && rm public/html-barsgroup.zip",
     "dev": "gulp"
   },
   "browserslist": [
@@ -39,6 +40,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^5.0.0",
     "gulp.spritesmith": "^6.9.0",
     "handlebars-helper-repeat": "~0.2.0",
     "rimraf": "^2.3.1"

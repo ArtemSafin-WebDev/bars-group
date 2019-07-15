@@ -27,6 +27,7 @@
     "autosize": "https://github.com/jackmoore/autosize.git#^4.0.2",
     "iCheck": "https://github.com/fronteed/icheck.git#1.0.2",
     "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.3.4",
-    "dragscroll": "https://github.com/asvd/dragscroll.git#0.0.8"
+    "dragscroll": "https://github.com/asvd/dragscroll.git#0.0.8",
+    "swiper": "https://github.com/nolimits4web/swiper.git#^4.5.0"
   }
 }

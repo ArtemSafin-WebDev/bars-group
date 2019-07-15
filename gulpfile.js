@@ -14,6 +14,7 @@ const rename = require('gulp-rename');
 const header = require('gulp-header');
 const spritesmith = require('gulp.spritesmith');
 const rsync = require('gulp-rsync');
+const zip = require('gulp-zip');
 
 const server = require("browser-sync").create();
 const autoprefixer = require('autoprefixer');
@@ -184,6 +185,12 @@ gulp.task('deploy', function() {
             hostname: 'ildar-meyker.ru',
             destination: '/home/users/i/ildar-meyker/domains/ildar-meyker.ru/html/markweber/barsgroup/'            
         }));
+});
+
+gulp.task('compress', function () {
+    return gulp.src('./public/**')
+        .pipe(zip('html-barsgroup.zip'))
+        .pipe(gulp.dest('./public/'));
 });
 
 gulp.task('default', 

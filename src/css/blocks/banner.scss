@@ -3,31 +3,42 @@
 
 	position: relative;
 
+	&--dark-text {
+		.banner__h1 {
+			color: #000;
+		}
+
+		.banner__desc {
+			color: rgba(#000, .8);
+		}
+	}
+
+	&--fixed-bg {
+		.banner__image {
+			background-attachment: fixed;
+		}
+	}
+
 	&__image {
 		@include position-fill();
 		background-color: $base-gray;
 		background-position: 50% 50%;
-		background-attachment: fixed;
 		background-size: cover;
 
-		&:after {
+		&__change {
 			@include position-fill();
-			background: rgba(#000, .3);
-			content: ' ';
 		}
 	}
 
-	&__content {
+	&__text {
 		position: relative;
-		padding: 200px 0;
 		z-index: 1;
+		padding-top: 1px;
 	}
 
-	&__logo {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
+	&__content {
+		padding: 110px 0;
+		max-width: 600px;
 	}
 
 	&__h1 {
@@ -35,29 +46,42 @@
 	}
 
 	&__desc {
-		max-width: 600px;
 		font-size: 18px;
 		line-height: 1.7;
 		color: rgba(#fff, .8);
 	}
 
 	&__button {
-		margin-top: 25px;
+		margin: 35px 0;
 	}
 
 }
 
 
+@media all and (max-width: 1300px) {
+	.banner {
+
+		&__content {
+			padding: .8*100px 0;
+		}
+	}
+}
+
+@media all and (max-width: 1050px) {
+	.banner {
+
+		&__content {
+			padding: .6*100px 0;
+		}
+	}
+}
+
 @media all and (max-width: 600px) {
 
 	.banner {
 
-		&__logo {
+		&__header {
 			margin-top: 30px;
-		}
-
-		&__content {
-			padding: 0.6*200px 0;
 		}
 
 		&__desc {

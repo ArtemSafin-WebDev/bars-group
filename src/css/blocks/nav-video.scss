@@ -126,16 +126,9 @@
 		}
 
 		&__scroll {
+			@include add-scrollbar();
 			white-space: nowrap;
 			font-size: 0;
-
-			@include add-scrollbar();
-			padding-bottom: 30px;
-			margin-bottom: -45px;
-
-			.hiddenscroll & {
-				margin-bottom: -30px;
-			}
 		}
 
 		&__item {

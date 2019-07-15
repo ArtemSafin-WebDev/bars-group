@@ -30,7 +30,7 @@ var App = {
 		NewsSlider.init();
 		NewsPhotoSlider.init();
 		NewsToggles.init();
-		// InlineVideos.init();
+		NavBanner.init();
 	},
 
 	_bindUI: function () {

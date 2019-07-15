@@ -1,13 +1,10 @@
 
 .vacancies {
 
-	padding: 110px 0;
 
 	&__center {
 		margin: 0 200px;
 	}
-
-
 
 	&__item {
 		border-top: 1px solid rgba(#000, .3);
@@ -74,24 +71,11 @@
 	}
 }
 
-@media all and (max-width: 1050px) {
-
-	.vacancies {
-
-		padding: 0.8*110px 0;
-
-
-	}
-
-}
 
 @media all and (max-width: 600px) {
 
 	.vacancies {
 
-		padding: 0.6*110px 0;
-
-		
 		&__title {
 			padding-top: 21px;
 			padding-bottom: 21px;

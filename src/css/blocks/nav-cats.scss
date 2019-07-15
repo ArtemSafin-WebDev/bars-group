@@ -71,12 +71,6 @@
 
 		&__scroll {
 			@include add-scrollbar();
-			padding-bottom: 30px;
-			margin-bottom: -45px;
-
-			.hiddenscroll & {
-				margin-bottom: -30px;
-			}
 		}
 
 		&__item {

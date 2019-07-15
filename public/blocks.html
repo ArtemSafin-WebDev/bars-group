@@ -6,10 +6,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width">
 	<title> Блоки</title>
-	<script src="js/modernizr-output.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=cyrillic" rel="stylesheet">
 	<link rel="stylesheet" href="css/main.min.css">
 	<link rel="stylesheet" href="css/talgat.min.css">
+	<script src="js/modernizr-output.js"></script>
 </head>
 <body>
 	
@@ -120,31 +120,38 @@
 		<div class="page__center">
 			<div class="page__inner">
 				<div class="page__col-main">
-					<div class="tBlocks__item tDescription">
+
+					<div class="tDescription">
+
 						<p class="tBlocks__subtitle">
 							Описание
 						</p>
 
 						<div class="tDescription__wrapper">
-							<div class="tDescription__text">
-								<p class="tBlocks__title">
+							<div class="tDescription__left">
+								
+								<h3 class="page__h2">
 									Комплекс социально-значимых решений, создающий
 									единый цифровой контур
-								</p>
+								</h3>
 
-								<p>
-									Одним из ключевых факторов успешного выполнения этих задач
-									должно стать внедрение и использование цифровых сервисов
-									в ежедневную медицинскую практику, которые помогут выстроить
-									работу врачей, обеспечить удобную маршрутизацию пациентов, а
-									руководителям - дать инструменты для процесса принятия
-									управленческих решений.
-								</p>
+								<div class="article">
+									<p>
+										Одним из ключевых факторов успешного выполнения этих задач
+										должно стать внедрение и использование цифровых сервисов
+										в ежедневную медицинскую практику, которые помогут выстроить
+										работу врачей, обеспечить удобную маршрутизацию пациентов, а
+										руководителям - дать инструменты для процесса принятия
+										управленческих решений.
+									</p>
+								</div>
+
 							</div>
 
-							<div class="tDescription__barsup">
+							<div class="tDescription__right">
+								
 								<div class="tDescription__emblem">
-									<img src="img/talgat/barsup.png" alt="" title="" />
+									<img src="img/talgat/barsup.png" alt="" />
 								</div>
 
 								<p>
@@ -155,7 +162,7 @@
 						</div>
 
 						<div class="tForWhom">
-							<p class="tBlocks__subtitle">
+							<p class="tBlocks__subtitle tBlocks__subtitle--no-line">
 								Для кого
 							</p>
 
@@ -227,28 +234,33 @@
 		</div>
 	</section>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
 	<section>
 		<div class="page__center">
 			<div class="page__inner">
 				<div class="page__col-main">
-					<div class="tBlocks__item tDescription">
-						<p class="tBlocks__title">
-							Преимущества системы
-						</p>
+					<div class="tDescription">
 
-						<div class="tDescription__wrapper tDescription__wrapper--adv">
-							<div class="tDescription__text tDescription__text--adv">
-								<p>
-									Входящие в него информационно-аналитические системы
-									обеспечивают комплексную автоматизацию профильных
-									учреждений, начиная медицинскими орнанизациями, заканчивая
-									органами управления здравоохранением.
-								</p>
+						<h3 class="page__h2">
+							Преимущества системы
+						</h3>
+
+						<div class="tDescription__wrapper">
+							<div class="tDescription__left">
+								
+								<div class="article">
+									<p>
+										Входящие в него информационно-аналитические системы
+										обеспечивают комплексную автоматизацию профильных
+										учреждений, начиная медицинскими орнанизациями, заканчивая
+										органами управления здравоохранением.
+									</p>
+								</div>
+
 							</div>
 
-							<div class="tDescription__barsup">
+							<div class="tDescription__right">
 								<p>
 									Входящие в него информационно-аналитические системы
 									обеспечивают комплексную автоматизацию профильных
@@ -304,179 +316,162 @@
 		</div>
 	</section>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
 	<section>
 		<div class="page__center">
 			<div class="page__inner">
-				<div class="tBlocks__item tNews">
-					<h3 class="page__label">Отраслевые новости</h3>
 
-					<div class="page__col-main jsOffsetRight">
-						<div class="tNews__wrapper">
-							<div class="tNews__slider owl-carousel owl-theme jsTNewsSlider">
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
 
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
-									</div>
+				
+				<div class="page__col-main">
+					
+					<div class="news-slider">
+					    <h3 class="page__label news-slider__label">Другие новости</h3>
+					    <div class="news-slider__outer-wrapper">
+					        <div class="news-slider__content">
+					            <div class="swiper-container js-news-slider">
+					                <div class="swiper-wrapper">
+					                    <div class="swiper-slide">
+					                        <div class="article-cards__item">
+					                            <a href="#" class="article-cards__image">
+					                                <img src="https://picsum.photos/id/1049/600/400.jpg" alt="">
+					                            </a>
+					                            <div class="article-cards__desc">
+					                                <time class="article__date article-cards__date"
+					                                    datetime="2019-01-17">17
+					                                    января 2019</time>
+					                                <h3 class="article-cards__h2">
+					                                    <a href="#">Социальный регистр населения от «БАРС Груп» победил
+					                                        во
+					                                        всероссийском конкурсе</a>
+					                                </h3>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="swiper-slide">
+					                        <div class="article-cards__item">
+					                            <a href="#" class="article-cards__image">
+					                                <img src="https://picsum.photos/id/1050/600/400.jpg" alt="">
+					                            </a>
+					                            <div class="article-cards__desc">
+					                                <time class="article__date article-cards__date"
+					                                    datetime="2019-01-17">17
+					                                    января 2019</time>
+					                                <h3 class="article-cards__h2">
+					                                    <a href="#">Социальный регистр населения от «БАРС Груп» победил
+					                                        во
+					                                        всероссийском конкурсе</a>
+					                                </h3>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="swiper-slide">
+					                        <div class="article-cards__item">
+					                            <a href="#" class="article-cards__image">
+					                                <img src="https://picsum.photos/id/1049/600/400.jpg" alt="">
+					                            </a>
+					                            <div class="article-cards__desc">
+					                                <time class="article__date article-cards__date"
+					                                    datetime="2019-01-17">17
+					                                    января 2019</time>
+					                                <h3 class="article-cards__h2">
+					                                    <a href="#">Социальный регистр населения от «БАРС Груп» победил
+					                                        во
+					                                        всероссийском конкурсе</a>
+					                                </h3>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="swiper-slide">
+					                        <div class="article-cards__item">
+					                            <a href="#" class="article-cards__image">
+					                                <img src="https://picsum.photos/id/1050/600/400.jpg" alt="">
+					                            </a>
+					                            <div class="article-cards__desc">
+					                                <time class="article__date article-cards__date"
+					                                    datetime="2019-01-17">17
+					                                    января 2019</time>
+					                                <h3 class="article-cards__h2">
+					                                    <a href="#">Социальный регистр населения от «БАРС Груп» победил
+					                                        во
+					                                        всероссийском конкурсе</a>
+					                                </h3>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="swiper-slide">
+					                        <div class="article-cards__item">
+					                            <a href="#" class="article-cards__image">
+					                                <img src="https://picsum.photos/id/1051/600/400.jpg" alt="">
+					                            </a>
+					                            <div class="article-cards__desc">
+					                                <time class="article__date article-cards__date"
+					                                    datetime="2019-01-17">17
+					                                    января 2019</time>
+					                                <h3 class="article-cards__h2">
+					                                    <a href="#">Социальный регистр населения от «БАРС Груп» победил
+					                                        во
+					                                        всероссийском конкурсе</a>
+					                                </h3>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="swiper-slide">
+					                        <div class="article-cards__item">
+					                            <a href="#" class="article-cards__image">
+					                                <img src="https://picsum.photos/id/1049/600/400.jpg" alt="">
+					                            </a>
+					                            <div class="article-cards__desc">
+					                                <time class="article__date article-cards__date"
+					                                    datetime="2019-01-17">17
+					                                    января 2019</time>
+					                                <h3 class="article-cards__h2">
+					                                    <a href="#">Социальный регистр населения от «БАРС Груп» победил
+					                                        во
+					                                        всероссийском конкурсе</a>
+					                                </h3>
+					                            </div>
+					                        </div>
+					                    </div>
+					                </div>
 
-									<p class="tNews__date">
-										17 января 2019
-									</p>
 
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
+					            </div>
 
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
 
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
-									</div>
+					        </div>
 
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
-
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
-									</div>
-
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
-
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
-									</div>
-
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
-
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
-									</div>
-
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
-
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
-									</div>
-
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
-
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
-									</div>
-
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
-
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
-									</div>
-
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-
-								<div class="tNews__item">
-									<a href="#" class="tNews__link"></a>
-
-									<div class="tNews__thumb-wrapper">
-										<div class="tNews__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
-									</div>
-
-									<p class="tNews__date">
-										17 января 2019
-									</p>
-
-									<p class="tNews__title">
-										Социальный регистр населения от «БАРС ГРУПП» победил во всероссийском конкурсе
-									</p>
-								</div>
-							</div>
-						</div>
+					    </div>
+					    <div class="news-slider__arrows-container">
+					        <div class="news-slider__arrows">
+					            <a href="#" class="arrow-both-circle__prev js-news-slider--prev" style=""
+					                aria-disabled="true"></a>
+					            <a href="#" class="arrow-both-circle__next js-news-slider--next" style=""
+					                aria-disabled="false"></a>
+					        </div>
+					    </div>
 					</div>
+					
 				</div>
+
+
 			</div>
 		</div>
 	</section>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-100"></div>
 
 	<section>
 		
 		<div class="page__center">
 			<div class="page__inner">
 				<div class="page__col-main">
-					<div class="tBlocks__item tTasks">
-						<p class="tBlocks__title">
+					<div class="tTasks">
+
+						<h3 class="page__h2">
 							Задачи
-						</p>
+						</h3>
 
 						<div class="tTasks__slider owl-carousel owl-theme jsTTasksSlider">
 							<div class="tTasks__wrapper">
@@ -596,9 +591,25 @@
 
 						<div class="slider-nav tTasks__nav"></div>
 					</div>
+				</div>
+			</div>
+		</div>
 
-					<div class="tBlocks__item tIntroduced">
-						<p class="tBlocks__subtitle tBlocks__subtitle--with-line">
+	</section>
+
+
+
+
+	<div class="page__gap-160"></div>
+
+	<section>
+		
+		<div class="page__center">
+			<div class="page__inner">
+				<div class="page__col-main">
+					
+					<div class="tIntroduced">
+						<p class="tBlocks__subtitle tBlocks__subtitle--has-line">
 							Было внедрено
 						</p>
 
@@ -694,243 +705,273 @@
 
 						<div class="slider-nav tIntroduced__nav"></div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 
 	</section>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
-	<section>
+
+	<div class="portfolio" id="portfolio">
 		<div class="page__center">
 			<div class="page__inner">
-				<div class="tBlocks__item tProducts">
 
-					<div class="page__col-side">
+				<div class="portfolio__list">
 
-						<h3 class="page__label">Продукты</h3>
-						
-						<nav class="nav-cats nav-cats--close">
-							<div class="nav-cats__scroll">
-								<div class="nav-cats__item --active">
-									<a href="#" class="nav-cats__link">
-										<span class="nav-cats__text">Все</span><span class="nav-cats__count">23</span>
-									</a>
-								</div>
-
-								<div class="nav-cats__item">
-									<a href="#" class="nav-cats__link active">
-										<span class="nav-cats__text">Для государства</span><span class="nav-cats__count">11</span>
-									</a>
-								</div>
-
-								<div class="nav-cats__item">
-									<a href="#" class="nav-cats__link">
-										<span class="nav-cats__text">Для бизнеса</span><span class="nav-cats__count">12</span>
-									</a>
-								</div>
-							</div>
-						</nav>
-
-						<nav class="nav-cats nav-cats--close">
-							<div class="nav-cats__scroll">
-								<div class="nav-cats__item --active">
-									<a href="#" class="nav-cats__link">
-										<span class="nav-cats__text">Все</span><span class="nav-cats__count">28</span>
-									</a>
-								</div>
-
-								<div class="nav-cats__item">
-									<a href="#" class="nav-cats__link">
-										<span class="nav-cats__text">Продукты</span><span class="nav-cats__count">21</span>
-									</a>
-								</div>
-
-								<div class="nav-cats__item">
-									<a href="#" class="nav-cats__link">
-										<span class="nav-cats__text">Кейсы</span><span class="nav-cats__count">7</span>
-									</a>
-								</div>
-							</div>
-						</nav>
+					<div class="page__label page__label--green portfolio__label portfolio__label--global">
+						Здравоохранение
 					</div>
 
-					<div class="page__col-main">
-						<div class="tProducts__row">
-							<div class="tProducts__column tProducts__column--big">
-								<div class="tProducts__item tProductsItem">
-									<a class="tProductsItem__link" href="#"></a>
-
-									<span class="tProductsItem__type">Продукт</span>
-
-									<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
-
-									<div class="tProductsItem__information">
-										<p class="tProductsItem__title">
-											Медицинская информационная система
-										</p>
-
-										<div class="tProductsItem__description">
-											<p>
-												Ошибки сводятся к минимуму
-											</p>
-
-											<p>
-												Простота актуализации НПА при их применении
-											</p>
-
-											<p>
-												Облачные технологии
-											</p>
+					<div class="clearfix">
+						<div class="page__col-side">
+							
+							<div class="portfolio__filters">
+								
+								<nav class="nav-cats nav-cats--close">
+									<div class="nav-cats__scroll">
+										<div class="nav-cats__item --active">
+											<a href="#" class="nav-cats__link">
+												<span class="nav-cats__text">Все</span><span class="nav-cats__count">23</span>
+											</a>
+										</div>
+										<div class="nav-cats__item">
+											<a href="#" class="nav-cats__link">
+												<span class="nav-cats__text">Для государства</span><span class="nav-cats__count">23</span>
+											</a>
+										</div>
+										<div class="nav-cats__item">
+											<a href="#" class="nav-cats__link">
+												<span class="nav-cats__text">Для бизнеса</span><span class="nav-cats__count">23</span>
+											</a>
 										</div>
 									</div>
-								</div>
+								</nav>
+
+								<nav class="nav-cats nav-cats--close">
+									<div class="nav-cats__scroll">
+										<div class="nav-cats__item --active">
+											<a href="#" class="nav-cats__link">
+												<span class="nav-cats__text">Все</span><span class="nav-cats__count">23</span>
+											</a>
+										</div>
+										<div class="nav-cats__item">
+											<a href="#" class="nav-cats__link">
+												<span class="nav-cats__text">Продукты</span><span class="nav-cats__count">23</span>
+											</a>
+										</div>
+										<div class="nav-cats__item">
+											<a href="#" class="nav-cats__link">
+												<span class="nav-cats__text">Кейсы</span><span class="nav-cats__count">23</span>
+											</a>
+										</div>
+									</div>
+								</nav>
+
 							</div>
 
-							<div class="tProducts__column">
-								<div class="tProducts__item tProductsItem">
-									<a class="tProductsItem__link" href="#"></a>
-
-									<span class="tProductsItem__type">Продукт</span>
-
-									<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
-
-									<div class="tProductsItem__information">
-										<p class="tProductsItem__title">
-											Лабораторные информационные системы
-										</p>
-
-										<div class="tProductsItem__description">
-											<p>
-												Описание
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="tProducts__item tProductsItem">
-									<a class="tProductsItem__link" href="#"></a>
-
-									<span class="tProductsItem__type">Продукт</span>
-
-									<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
-
-									<div class="tProductsItem__information">
-										<p class="tProductsItem__title">
-											Медицинская информационная система
-										</p>
-
-										<div class="tProductsItem__description">
-											<p>
-												Развитие МИС сфокусировано на создании единой
-												платформы регионального и федерального уровня
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
+						<div class="page__col-main">
+							
+							<div class="portfolio__item">
 
-						<div class="tProducts__row">
-							<div class="tProducts__column">
-								<div class="tProducts__item tProductsItem">
-									<a class="tProductsItem__link" href="#"></a>
+								<div class="page__label page__label--gree portfolio__label portfolio__label--local">
+									Здравоохранение
+								</div>
+								
+								<div class="tProducts__row">
+									<div class="tProducts__column tProducts__column--big">
+										<div class="tProducts__item tProductsItem">
+											<a class="tProductsItem__link" href="#"></a>
 
-									<span class="tProductsItem__type">Продукт</span>
+											<span class="tProductsItem__type">Продукт</span>
 
-									<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
+											<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
 
-									<div class="tProductsItem__information">
-										<p class="tProductsItem__title">
-											Мобильное приложение для пациента
-										</p>
+											<div class="tProductsItem__information">
+												<p class="tProductsItem__title">
+													Медицинская информационная система
+												</p>
 
-										<div class="tProductsItem__description">
-											<p>
-												Создать комфортные условия для
-												жизни граждан - то, ради чего мы работаем
-											</p>
+												<div class="tProductsItem__description">
+													<p>
+														Ошибки сводятся к минимуму
+													</p>
+
+													<p>
+														Простота актуализации НПА при их применении
+													</p>
+
+													<p>
+														Облачные технологии
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="tProducts__column">
+										<div class="tProducts__item tProductsItem">
+											<a class="tProductsItem__link" href="#"></a>
+
+											<span class="tProductsItem__type">Продукт</span>
+
+											<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
+
+											<div class="tProductsItem__information">
+												<p class="tProductsItem__title">
+													Лабораторные информационные системы
+												</p>
+
+												<div class="tProductsItem__description">
+													<p>
+														Описание
+													</p>
+												</div>
+											</div>
+										</div>
+
+										<div class="tProducts__item tProductsItem">
+											<a class="tProductsItem__link" href="#"></a>
+
+											<span class="tProductsItem__type">Продукт</span>
+
+											<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
+
+											<div class="tProductsItem__information">
+												<p class="tProductsItem__title">
+													Медицинская информационная система
+												</p>
+
+												<div class="tProductsItem__description">
+													<p>
+														Развитие МИС сфокусировано на создании единой
+														платформы регионального и федерального уровня
+													</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 
-							<div class="tProducts__column">
-								<div class="tProducts__item tProductsItem">
-									<a class="tProductsItem__link" href="#"></a>
+								<div class="tProducts__row">
+									<div class="tProducts__column">
+										<div class="tProducts__item tProductsItem">
+											<a class="tProductsItem__link" href="#"></a>
 
-									<span class="tProductsItem__type">Продукт</span>
+											<span class="tProductsItem__type">Продукт</span>
 
-									<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
+											<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
 
-									<div class="tProductsItem__information">
-										<p class="tProductsItem__title">
-											Платформа генетики
-										</p>
+											<div class="tProductsItem__information">
+												<p class="tProductsItem__title">
+													Мобильное приложение для пациента
+												</p>
 
-										<div class="tProductsItem__description">
-											<p>
-												На сегодняшний день государством активно реализуется
-												политика в области научно-технологического развития в России
-											</p>
+												<div class="tProductsItem__description">
+													<p>
+														Создать комфортные условия для
+														жизни граждан - то, ради чего мы работаем
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="tProducts__column">
+										<div class="tProducts__item tProductsItem">
+											<a class="tProductsItem__link" href="#"></a>
+
+											<span class="tProductsItem__type">Продукт</span>
+
+											<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
+
+											<div class="tProductsItem__information">
+												<p class="tProductsItem__title">
+													Платформа генетики
+												</p>
+
+												<div class="tProductsItem__description">
+													<p>
+														На сегодняшний день государством активно реализуется
+														политика в области научно-технологического развития в России
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="tProducts__column">
+										<div class="tProducts__item tProductsItem">
+											<a class="tProductsItem__link" href="#"></a>
+
+											<span class="tProductsItem__type">Продукт</span>
+
+											<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
+
+											<div class="tProductsItem__information">
+												<p class="tProductsItem__title">
+													Система поддержки принятия врачебных решений
+												</p>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 
-							<div class="tProducts__column">
-								<div class="tProducts__item tProductsItem">
-									<a class="tProductsItem__link" href="#"></a>
+								<div class="portfolio__ctrl">
+									<div class="portfolio__ctrl__item portfolio__ctrl__item--addon">
+										
+										<div class="portfolio__sm-pane">
+											<a href="#" class="tProductsItem__link"></a>
+											<div class="tProductsItem__type tProductsItem__type--dark">
+												Продукт
+											</div>
+											<div class="portfolio__sm-pane__title">
+												Мониторинг родовспоможения
+											</div>
+										</div>
 
-									<span class="tProductsItem__type">Продукт</span>
-
-									<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
-
-									<div class="tProductsItem__information">
-										<p class="tProductsItem__title">
-											Система поддержки принятия врачебных решений
-										</p>
+									</div>
+									<div class="portfolio__ctrl__item">
+										<a href="#" class="button button-default js-form-wings portfolio__button">
+											<span class="nobr button-default__text portfolio__button__text">
+												Показать все <span class="portfolio__button__count">(25)</span>
+											</span>
+											<i class="arrow-right-fly button-default__icon">
+												<span></span>
+											</i>
+										</a>
+									</div>
+									<div class="portfolio__ctrl__item">
+										<a href="#" class="button button-default js-form-wings portfolio__button portfolio__button--green">
+											<span class="button-default__text portfolio__button__text">
+												Подробнее о решениях
+												для здравоохранения
+											</span>
+											<i class="arrow-right-fly button-default__icon">
+												<span></span>
+											</i>
+										</a>
+										
 									</div>
 								</div>
-							</div>
-						</div>
-
-						<div class="portfolio__ctrl">
-							<div class="portfolio__ctrl__item"></div>
-							<div class="portfolio__ctrl__item">
-								<a href="#" class="button button-default js-form-wings portfolio__button">
-									<span class="button-default__text portfolio__button__text">
-										Показать все <span class="portfolio__button__count">(25)</span>
-									</span>
-									<i class="arrow-right-fly button-default__icon">
-										<span></span>
-									</i>
-								</a>
-							</div>
-							<div class="portfolio__ctrl__item">
-								<a href="#" class="button button-default js-form-wings portfolio__button portfolio__button--green">
-									<span class="button-default__text portfolio__button__text">
-										Подробнее о решениях
-										для здравоохранения
-									</span>
-									<i class="arrow-right-fly button-default__icon">
-										<span></span>
-									</i>
-								</a>
 								
 							</div>
-						</div>
 
+						</div>
 					</div>
+
 				</div>
+
 			</div>
 		</div>
-	</section>
+	</div>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
-	<div class="tBlocks__item tTechnicalIssues">
+	<div class="tTechnicalIssues">
 		<div class="page__center">
 			<div class="page__inner">
 				<div class="page__col-main">
@@ -977,7 +1018,7 @@
 		</div>
 	</div>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
 	<section class="vacancies">
 		<div class="page__center">
@@ -1320,15 +1361,15 @@
 		</div>
 	</section>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
 	<section>
 		
 		<div class="page__center">
 			<div class="page__inner">
 				<div class="page__col-main">
-					<div class="tBlocks__item tComponents">
-						<p class="tBlocks__subtitle tBlocks__subtitle--with-line">
+					<div class="tComponents">
+						<p class="tBlocks__subtitle tBlocks__subtitle--has-line">
 							Компоненты платформы
 						</p>
 
@@ -1442,7 +1483,7 @@
 
 	</section>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
 	<form data-action="data/form-success.json" method="get" class="form form-job form-job--common" id="form-job">
 		<div class="page__center">
@@ -1558,7 +1599,7 @@
 		</div>
 	</form>
 
-	<div class="page__gap-lg"></div>
+	<div class="page__gap-160"></div>
 
 	<section class="press-center press-center--common">
 		<div class="page__center">
@@ -1757,27 +1798,11 @@
 			color: #fff;
 		}
 	
-		.filelist__tip {
-			border: 1px dashed rgba(255, 255, 255, .2);
-			border-width: 1px 0;
-			padding: 10px 20px !important;
-			max-width: 200px;
-			font-size: 12px;
-			line-height: 1.4;
-		}
-	
-	
-		.filelist__hide {
-			padding: 20px !important;
-			font-size: 14px;
-			cursor: pointer;
-		}
-	
 		.filelist._hidden {
 			display: none;
 		}
 	
-		.filelist._active div {
+		.filelist._active .filelist__body {
 			display: block;
 		}
 	
@@ -1787,22 +1812,51 @@
 			background: #000;
 		}
 	
-		.filelist div {
+		.filelist__body {
 			display: none;
-			padding: 9px 0;
 			background: #000;
 		}
 	
-		.filelist div a {
+		.filelist__nav {
+			border-top: 1px dashed rgba(255, 255, 255, .2);
+			padding: 9px 0;
+		}
+	
+		.filelist__tip {
+			border-top: 1px dashed rgba(255, 255, 255, .2);
+			padding: 20px;
+			font-size: 12px;
+			line-height: 1.4;
+		}
+	
+		.filelist__text {
+			max-width: 200px;
+		}
+	
+		.filelist__nav:first-child {
+			border-top: 0;
+		}
+	
+		.filelist__nav a {
 			display: block;
 			padding: 9px 20px;
 			color: #fff !important;
 		}
 	
-		.filelist div a:hover {
-			background: rgba(0,0,0, .1);
+		.filelist__nav a:hover {
+			background: #fff;
+			color: #000 !important;
 		}
-		
+	
+		.filelist__nav .filelist__zip {
+			background: #5c905a;
+			color: #fff !important;
+		}
+	
+		.filelist__nav .filelist__zip:hover {
+			background: #6ca86a;
+			color: #fff !important;
+		}
 	
 	</style>
 	
@@ -1816,23 +1870,35 @@
 	
 					var $filelist = $('<div class="filelist" id="filelist">' +
 							'<span></span>' +
-							'<div class="filelist__tip">Можно щелкнуть мышкой дважды в любом месте, чтобы скрыть или показать.</div>' +
-							'<div class="filelist__hide">Скрыть</div>' +
+							'<div class="filelist__body">' + 
+								'<div class="filelist__nav">' + 
+									'<a href="http://ildar-meyker.ru/html/markweber/barsgroup/html-barsgroup.zip" target="_blank" class="filelist__zip">Скачать архив</a>' +
+									'<a href="#" class="js-filelist-hide">Скрыть</a>' +
+								'</div>' + 
+								'<div class="filelist__tip">' +
+									'<div class="filelist__text">' + 
+										'Можно щелкнуть мышкой дважды в любом месте, ' +
+										'чтобы скрыть или показать.' +
+									'</div>' +
+								'</div>' +
+							'</div>' + 
 						'</div>'),
 	
-						$label = $filelist.find('span'); 
+						$label = $filelist.find('span'),
+	
+						$body  = $filelist.find('.filelist__body');
 	
 					$.ajax('filelist.json', {cache: false})
 						.done(function (data) {
 							$label.text('Pages count: ' + data.length);
 	
-							var $body = $('<div></div>');
+							var $pages = $('<div class="filelist__nav"></div>');
 							data.forEach(function (filename) {
 								$('<a href="' + filename + '">' + 
 									filename + 
-								'</a>').appendTo($body);
+								'</a>').appendTo($pages);
 							});
-							$body.insertAfter($label);
+							$pages.prependTo($body);
 						})
 						.fail(function () {
 							$label.text('Filelist failed.');
@@ -1872,7 +1938,7 @@
 					var self = this;
 	
 					$(document).on('dblclick', {self: self}, self._handleDoubleClick);
-					$(document).on('click', '.filelist__hide', {self: self}, self._handleHideClick);
+					$(document).on('click', '.js-filelist-hide', {self: self}, self._handleHideClick);
 					$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
 					$(document).on('click', {self: self}, self._handleDocumentClick);
 				},

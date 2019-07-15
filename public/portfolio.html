@@ -6,10 +6,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width">
 	<title> Цифровое портфолио</title>
-	<script src="js/modernizr-output.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=cyrillic" rel="stylesheet">
 	<link rel="stylesheet" href="css/main.min.css">
 	<link rel="stylesheet" href="css/talgat.min.css">
+	<script src="js/modernizr-output.js"></script>
 </head>
 <body>
 	
@@ -218,7 +218,7 @@
 					</div>
 				</div>
 		
-				<div class="page__gap-sm"></div>
+				<div class="page__gap-100"></div>
 
 				<div class="portfolio__list">
 
@@ -461,7 +461,7 @@
 								
 							</div>
 
-							<div class="page__gap-sm"></div>
+							<div class="page__gap-100"></div>
 							
 							<div class="portfolio__item">
 
@@ -641,7 +641,7 @@
 								
 							</div>
 
-							<div class="page__gap-sm"></div>
+							<div class="page__gap-100"></div>
 							
 							<div class="portfolio__item">
 
@@ -979,27 +979,11 @@
 			color: #fff;
 		}
 	
-		.filelist__tip {
-			border: 1px dashed rgba(255, 255, 255, .2);
-			border-width: 1px 0;
-			padding: 10px 20px !important;
-			max-width: 200px;
-			font-size: 12px;
-			line-height: 1.4;
-		}
-	
-	
-		.filelist__hide {
-			padding: 20px !important;
-			font-size: 14px;
-			cursor: pointer;
-		}
-	
 		.filelist._hidden {
 			display: none;
 		}
 	
-		.filelist._active div {
+		.filelist._active .filelist__body {
 			display: block;
 		}
 	
@@ -1009,22 +993,51 @@
 			background: #000;
 		}
 	
-		.filelist div {
+		.filelist__body {
 			display: none;
-			padding: 9px 0;
 			background: #000;
 		}
 	
-		.filelist div a {
+		.filelist__nav {
+			border-top: 1px dashed rgba(255, 255, 255, .2);
+			padding: 9px 0;
+		}
+	
+		.filelist__tip {
+			border-top: 1px dashed rgba(255, 255, 255, .2);
+			padding: 20px;
+			font-size: 12px;
+			line-height: 1.4;
+		}
+	
+		.filelist__text {
+			max-width: 200px;
+		}
+	
+		.filelist__nav:first-child {
+			border-top: 0;
+		}
+	
+		.filelist__nav a {
 			display: block;
 			padding: 9px 20px;
 			color: #fff !important;
 		}
 	
-		.filelist div a:hover {
-			background: rgba(0,0,0, .1);
+		.filelist__nav a:hover {
+			background: #fff;
+			color: #000 !important;
 		}
-		
+	
+		.filelist__nav .filelist__zip {
+			background: #5c905a;
+			color: #fff !important;
+		}
+	
+		.filelist__nav .filelist__zip:hover {
+			background: #6ca86a;
+			color: #fff !important;
+		}
 	
 	</style>
 	
@@ -1038,23 +1051,35 @@
 	
 					var $filelist = $('<div class="filelist" id="filelist">' +
 							'<span></span>' +
-							'<div class="filelist__tip">Можно щелкнуть мышкой дважды в любом месте, чтобы скрыть или показать.</div>' +
-							'<div class="filelist__hide">Скрыть</div>' +
+							'<div class="filelist__body">' + 
+								'<div class="filelist__nav">' + 
+									'<a href="http://ildar-meyker.ru/html/markweber/barsgroup/html-barsgroup.zip" target="_blank" class="filelist__zip">Скачать архив</a>' +
+									'<a href="#" class="js-filelist-hide">Скрыть</a>' +
+								'</div>' + 
+								'<div class="filelist__tip">' +
+									'<div class="filelist__text">' + 
+										'Можно щелкнуть мышкой дважды в любом месте, ' +
+										'чтобы скрыть или показать.' +
+									'</div>' +
+								'</div>' +
+							'</div>' + 
 						'</div>'),
 	
-						$label = $filelist.find('span'); 
+						$label = $filelist.find('span'),
+	
+						$body  = $filelist.find('.filelist__body');
 	
 					$.ajax('filelist.json', {cache: false})
 						.done(function (data) {
 							$label.text('Pages count: ' + data.length);
 	
-							var $body = $('<div></div>');
+							var $pages = $('<div class="filelist__nav"></div>');
 							data.forEach(function (filename) {
 								$('<a href="' + filename + '">' + 
 									filename + 
-								'</a>').appendTo($body);
+								'</a>').appendTo($pages);
 							});
-							$body.insertAfter($label);
+							$pages.prependTo($body);
 						})
 						.fail(function () {
 							$label.text('Filelist failed.');
@@ -1094,7 +1119,7 @@
 					var self = this;
 	
 					$(document).on('dblclick', {self: self}, self._handleDoubleClick);
-					$(document).on('click', '.filelist__hide', {self: self}, self._handleHideClick);
+					$(document).on('click', '.js-filelist-hide', {self: self}, self._handleHideClick);
 					$(document).on('click', '.filelist > span', {self: self}, self._handleSpanClick);
 					$(document).on('click', {self: self}, self._handleDocumentClick);
 				},
