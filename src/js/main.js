@@ -12,6 +12,7 @@
 //= modules/newsSlider.js
 //= modules/newsPhotoSlider.js
 //= modules/newsToggles.js
+//= modules/inlineVideos.js
 //= modules/app.js
 
 App.init();

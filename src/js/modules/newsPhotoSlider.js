@@ -5,8 +5,7 @@ var NewsPhotoSlider = {
         );
 
 
-        
-
+    
         photoSliders.forEach(function(item) {
             var thumbnails = item.querySelector(
                 ".js-news-details-thumbnails-slider"
