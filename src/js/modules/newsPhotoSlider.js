@@ -4,35 +4,19 @@ var NewsPhotoSlider = {
             document.querySelectorAll(".js-news-details-photo-slider")
         );
 
+
+    
         photoSliders.forEach(function(item) {
             var thumbnails = item.querySelector(
                 ".js-news-details-thumbnails-slider"
             );
             var container = item.querySelector(".swiper-container");
-
             var thumbContainer;
-            var thumbSlider;
-
             if (thumbnails) {
                 thumbContainer = thumbnails.querySelector(".swiper-container");
             }
 
-            if (thumbContainer) {
-                thumbSlider = new Swiper(thumbContainer, {
-                    slidesPerView: "auto",
-                    spaceBetween: 15,
-                    watchSlidesVisibility: true,
-                    watchSlidesProgress: true,
-                    slideToClickedSlide: true,
-                    on: {
-                        reachEnd: function() {
-                            thumbnails.classList.remove("gradient-shown");
-                        }
-                    }
-                });
-            }
-
-            if (container) {
+            if (container && thumbContainer) {
                 new Swiper(container, {
                     effect: "fade",
                     speed: 600,
@@ -46,7 +30,50 @@ var NewsPhotoSlider = {
                         )
                     },
                     thumbs: {
-                        swiper: thumbSlider
+                        swiper: new Swiper(thumbContainer, {
+                            slidesPerView: 9,
+                            spaceBetween: 15,
+                            threshold: 10,
+                            // slideToClickedSlide: true,
+                            watchSlidesVisibility: true,
+                            watchSlidesProgress: true,
+                            on: {
+                                progress: function() {
+                                    if (this.isBeginning) {
+                                        thumbnails.classList.remove(
+                                            "gradient-left"
+                                        );
+                                    } else if (this.isEnd) {
+                                        thumbnails.classList.remove(
+                                            "gradient-right"
+                                        );
+                                    } else {
+                                        thumbnails.classList.add(
+                                            "gradient-left"
+                                        );
+                                        thumbnails.classList.add(
+                                            "gradient-right"
+                                        );
+                                    }
+                                }
+                            },
+                            breakpoints: {
+                                
+                                460: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 10,
+                                },
+                                
+                                600: {
+                                    slidesPerView: 6,
+                                    spaceBetween: 10,
+                                },
+                                800: {
+                                    slidesPerView: 7,
+                                    spaceBetween: 15,
+                                }
+                            }
+                        })
                     }
                 });
             }

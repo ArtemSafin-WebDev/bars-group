@@ -11,6 +11,7 @@
 //= modules/scrollableTable.js
 //= modules/newsSlider.js
 //= modules/newsPhotoSlider.js
+//= modules/newsToggles.js
 //= modules/nav-banner.js
 //= modules/tech-promo.js
 //= modules/app.js

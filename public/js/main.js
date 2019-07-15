@@ -1201,22 +1201,86 @@ var Form = {
 
 })();
 
-var ScrollableTable = {
-    
-    init: function() {
-        var self = this;
 
+var ScrollableTable = {
+    init: function() {
+        
         var initialOverflow = false;
 
         var scrollableTables = Array.prototype.slice.call(
-            document.querySelectorAll(".js-srollable-table")
+            document.querySelectorAll(".js-news-details-content table")
         );
 
+        function wrapTable(table) {
+            
+            var tableBlock = document.createElement("div");
+            tableBlock.className = 'table-block';
+            var tableGradientWrapper = document.createElement("div");
+            tableGradientWrapper.className = 'table-gradient-wrapper js-srollable-table';
+            var tableScrollContainer = document.createElement("div");
+            tableScrollContainer.className = 'table-scroll-container js-scroll-container';
+            var tablePreviousSibling = table.previousElementSibling;
+            var tablePreviousSiblingType;
+            
+            table.parentNode.insertBefore(tableBlock, table);
+
+            tableBlock.appendChild(tableGradientWrapper)
+            tableGradientWrapper.appendChild(tableScrollContainer);
+            tableScrollContainer.appendChild(table)
+
+            if (tablePreviousSibling) {
+                tablePreviousSiblingType = tablePreviousSibling.nodeName.toLowerCase();
+                if (tablePreviousSiblingType === 'h1' ||  tablePreviousSiblingType === 'h2' ||  tablePreviousSiblingType === 'h3' ||  tablePreviousSiblingType === 'h4' ||  tablePreviousSiblingType === 'h5' ||  tablePreviousSiblingType === 'h6') {
+                    tableBlock.insertBefore(tablePreviousSibling, tableGradientWrapper);
+                }
+            }
+
+            return {
+                tableGradientWrapper: tableGradientWrapper,
+                tableScrollContainer: tableScrollContainer
+            }
+        }
+
+
+
+        window.wrapTable = wrapTable;
+
+
+
+        function addDragScrollHandlers(element) {
+            var pressed = false;
+            var startX;
+            var scrollLeft;
+            element.addEventListener("mousedown", function(event) {
+                pressed = true;
+                element.classList.add("active");
+                startX = event.pageX - element.offsetLeft;
+                scrollLeft = element.scrollLeft;
+            });
+            element.addEventListener("mouseleave", function() {
+                pressed = false;
+                element.classList.remove("active");
+            });
+            element.addEventListener("mouseup", function() {
+                pressed = false;
+                element.classList.remove("active");
+            });
+            element.addEventListener("mousemove", function(event) {
+                if (!pressed) {
+                    return;
+                }
+                event.preventDefault();
+                var x = event.pageX - element.offsetLeft;
+                var walk = x - startX;
+                element.scrollLeft = scrollLeft - walk;
+            });
+        }
+
         scrollableTables.forEach(function(item) {
-            var scrollableContainer = item.querySelector(
-                ".js-scroll-container"
-            );
-            var gradientWrapper = item;
+
+            var containers = wrapTable(item);
+            var scrollableContainer = containers.tableScrollContainer
+            var gradientWrapper = containers.tableGradientWrapper
 
             var handleGradientsOnStart = function() {
                 if (
@@ -1268,6 +1332,8 @@ var ScrollableTable = {
 
                 handleGradientsOnStart();
 
+                addDragScrollHandlers(scrollableContainer);
+
                 if (initialOverflow) {
                     scrollableContainer.addEventListener(
                         "scroll",
@@ -1298,15 +1364,58 @@ var NewsSlider = {
             document.querySelectorAll(".js-news-slider")
         );
 
+        function checkIfFullyVisible(element) {
+            var viewportOffsetLeft = element.getBoundingClientRect().left;
+            // var viewportOffsetRight = element.getBoundingClientRect().right;
+            var elementWidth = element.offsetWidth;
+            var viewportWidth = document.documentElement.clientWidth;
+
+            // console.log("viewportOffset", viewportOffset);
+            // console.log("elementWidth", elementWidth);
+            // console.log("viewportWidth", viewportWidth);
+            console.log('Checking visibility')
+
+            if (viewportOffsetLeft + elementWidth > viewportWidth || viewportOffsetLeft < 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function handleSlideVisibility() {
+            var slider = this;
+            var slides = Array.prototype.slice.call(slider.slides);
+
+            slides.forEach(function(slide) {
+                var slideFullyVisible = checkIfFullyVisible(slide);
+                if (!slideFullyVisible) {
+                    slide.classList.add("not-visible");
+                } else {
+                    slide.classList.remove("not-visible");
+                }
+            });
+        }
+
+        window.checkVisible = checkIfFullyVisible;
+
         newsSliders.forEach(function(item) {
-            new Swiper(item, {
+            var slider = new Swiper(item, {
                 slidesPerView: "auto",
                 spaceBetween: 25,
                 navigation: {
                     nextEl: document.querySelector(".js-news-slider--next"),
                     prevEl: document.querySelector(".js-news-slider--prev")
+                },
+                on: {
+                    init: handleSlideVisibility,
+                    slideChange: handleSlideVisibility,
+                    transitionEnd: handleSlideVisibility,
+                    resize: handleSlideVisibility,
+                    sliderMove: handleSlideVisibility
                 }
             });
+
+            
         });
     }
 };
@@ -1316,35 +1425,19 @@ var NewsPhotoSlider = {
             document.querySelectorAll(".js-news-details-photo-slider")
         );
 
+
+    
         photoSliders.forEach(function(item) {
             var thumbnails = item.querySelector(
                 ".js-news-details-thumbnails-slider"
             );
             var container = item.querySelector(".swiper-container");
-
             var thumbContainer;
-            var thumbSlider;
-
             if (thumbnails) {
                 thumbContainer = thumbnails.querySelector(".swiper-container");
             }
 
-            if (thumbContainer) {
-                thumbSlider = new Swiper(thumbContainer, {
-                    slidesPerView: "auto",
-                    spaceBetween: 15,
-                    watchSlidesVisibility: true,
-                    watchSlidesProgress: true,
-                    slideToClickedSlide: true,
-                    on: {
-                        reachEnd: function() {
-                            thumbnails.classList.remove("gradient-shown");
-                        }
-                    }
-                });
-            }
-
-            if (container) {
+            if (container && thumbContainer) {
                 new Swiper(container, {
                     effect: "fade",
                     speed: 600,
@@ -1358,13 +1451,107 @@ var NewsPhotoSlider = {
                         )
                     },
                     thumbs: {
-                        swiper: thumbSlider
+                        swiper: new Swiper(thumbContainer, {
+                            slidesPerView: 9,
+                            spaceBetween: 15,
+                            threshold: 10,
+                            // slideToClickedSlide: true,
+                            watchSlidesVisibility: true,
+                            watchSlidesProgress: true,
+                            on: {
+                                progress: function() {
+                                    if (this.isBeginning) {
+                                        thumbnails.classList.remove(
+                                            "gradient-left"
+                                        );
+                                    } else if (this.isEnd) {
+                                        thumbnails.classList.remove(
+                                            "gradient-right"
+                                        );
+                                    } else {
+                                        thumbnails.classList.add(
+                                            "gradient-left"
+                                        );
+                                        thumbnails.classList.add(
+                                            "gradient-right"
+                                        );
+                                    }
+                                }
+                            },
+                            breakpoints: {
+                                
+                                460: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 10,
+                                },
+                                
+                                600: {
+                                    slidesPerView: 6,
+                                    spaceBetween: 10,
+                                },
+                                800: {
+                                    slidesPerView: 7,
+                                    spaceBetween: 15,
+                                }
+                            }
+                        })
                     }
                 });
             }
         });
     }
 };
+var NewsToggles = {
+    init: function() {
+        var prev = document.querySelector('.js-news-previous-article')
+        var prevContainer;
+        var next = document.querySelector('.js-news-next-article')
+        var nextContainer;
+        var prevShown = false;
+        var nextShown = false;
+
+        function outsidePrevClickHandler(event) {
+            if ((!prevContainer.contains(event.target) && event.target !== prevContainer)) {
+                if (prevShown) {
+                    prevContainer.classList.remove('active');
+                    prevShown = false;
+                    document.removeEventListener('click', outsidePrevClickHandler)
+                }
+            }
+        }
+        function outsideNextClickHandler(event) {
+            if ((!nextContainer.contains(event.target) && event.target !== nextContainer)) {
+                if (nextShown) {
+                    nextContainer.classList.remove('active');
+                    nextShown = false;
+                    document.removeEventListener('click', outsideNextClickHandler)
+                }
+            }
+        }
+
+    
+        if (prev) {
+            prevContainer = prev.parentElement;
+
+            prev.addEventListener('click', function(event) {
+                event.preventDefault();
+                prevContainer.classList.add('active')
+                prevShown = true;
+                document.addEventListener('click', outsidePrevClickHandler)
+            })
+        }
+        if (next) {
+            nextContainer = next.parentElement;
+
+            next.addEventListener('click', function(event) {
+                event.preventDefault();
+                nextContainer.classList.add('active')
+                nextShown = true;
+                document.addEventListener('click', outsideNextClickHandler)
+            })
+        }
+    }
+}
 
 var NavBanner = {
 
@@ -1458,6 +1645,7 @@ var App = {
 		ScrollableTable.init();
 		NewsSlider.init();
 		NewsPhotoSlider.init();
+		NewsToggles.init();
 		NavBanner.init();
 	},
 
