@@ -72,7 +72,6 @@
 }
 
 .news-details__content {
-    
     > *:not(blockquote):not(table):not(.news-details__brief):not(.news-details__photo-slider):not(.table-block) {
         max-width: 930px;
         margin-left: auto !important;
@@ -130,20 +129,28 @@
             position: relative;
             padding-left: 30px;
             font-size: 18px;
-            line-height: 35px;
+            line-height: 1.94;
+            margin-bottom: 4px;
+            &:last-child {
+                margin-bottom: 0;
+            }
             @media screen and (max-width: 1024px) {
                 font-size: 16px;
+                line-height: 1.77;
+               
             }
             &:before {
                 content: " ";
                 position: absolute;
                 left: 0;
-                top: 1em;
-                margin-top: -3px;
+                top: 14px;
                 width: 7px;
                 height: 7px;
                 border-radius: 50%;
                 background: #59b4e6;
+                @media screen and (max-width: 1024px) {
+                    top: 12px;
+                }
             }
         }
     }
@@ -161,20 +168,28 @@
             position: relative;
             padding-left: 30px;
             font-size: 18px;
-            line-height: 35px;
+            line-height: 1.94;
             counter-increment: ordered-list;
+            margin-bottom: 4px;
+            &:last-child {
+                margin-bottom: 0;
+            }
             @media screen and (max-width: 1024px) {
                 font-size: 16px;
+                line-height: 1.77;
             }
             &:before {
                 content: counter(ordered-list) ".";
                 position: absolute;
                 left: 0;
-                top: 0.1em;
+                top: 2px;
                 font-size: 18px;
-                line-height: 32px;
+                line-height: 1.77;
                 font-weight: 700;
                 color: #59b4e6;
+                @media screen and (max-width: 1024px) {
+                    top: -1px;
+                }
             }
         }
     }
@@ -231,7 +246,7 @@
                 // display: none;
                 opacity: 0.15;
                 font-size: 100px;
-                
+
                 top: auto;
                 left: auto;
                 right: 25px;
@@ -725,7 +740,7 @@
     width: 100%;
     padding-bottom: 100%;
     position: relative;
-    
+
     &::before {
         content: "";
         border: 5px solid #779bc9;
@@ -915,7 +930,7 @@
         background-size: 120px 120px;
         background-position: center;
         background-repeat: no-repeat;
-        opacity: .85;
+        opacity: 0.85;
         transition: opacity 0.3s;
         @media screen and (max-width: 800px) {
             background-size: 90px 90px;

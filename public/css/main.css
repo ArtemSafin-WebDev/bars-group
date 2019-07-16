@@ -4263,20 +4263,26 @@ img {
     position: relative;
     padding-left: 30px;
     font-size: 18px;
-    line-height: 35px; }
+    line-height: 1.94;
+    margin-bottom: 4px; }
+    .news-details__content ul li:last-child {
+      margin-bottom: 0; }
     @media screen and (max-width: 1024px) {
       .news-details__content ul li {
-        font-size: 16px; } }
+        font-size: 16px;
+        line-height: 1.77; } }
     .news-details__content ul li:before {
       content: " ";
       position: absolute;
       left: 0;
-      top: 1em;
-      margin-top: -3px;
+      top: 14px;
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: #59b4e6; }
+      @media screen and (max-width: 1024px) {
+        .news-details__content ul li:before {
+          top: 12px; } }
 
 .news-details__content ol {
   margin: 40px 0;
@@ -4291,20 +4297,27 @@ img {
     position: relative;
     padding-left: 30px;
     font-size: 18px;
-    line-height: 35px;
-    counter-increment: ordered-list; }
+    line-height: 1.94;
+    counter-increment: ordered-list;
+    margin-bottom: 4px; }
+    .news-details__content ol li:last-child {
+      margin-bottom: 0; }
     @media screen and (max-width: 1024px) {
       .news-details__content ol li {
-        font-size: 16px; } }
+        font-size: 16px;
+        line-height: 1.77; } }
     .news-details__content ol li:before {
       content: counter(ordered-list) ".";
       position: absolute;
       left: 0;
-      top: 0.1em;
+      top: 2px;
       font-size: 18px;
-      line-height: 32px;
+      line-height: 1.77;
       font-weight: 700;
       color: #59b4e6; }
+      @media screen and (max-width: 1024px) {
+        .news-details__content ol li:before {
+          top: -1px; } }
 
 .news-details__content blockquote {
   background-color: #eff4fd;
@@ -4970,7 +4983,7 @@ img {
     background-size: 120px 120px;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: .85;
+    opacity: 0.85;
     -webkit-transition: opacity 0.3s;
     transition: opacity 0.3s; }
     @media screen and (max-width: 800px) {
