@@ -1373,9 +1373,12 @@ var NewsSlider = {
             // console.log("viewportOffset", viewportOffset);
             // console.log("elementWidth", elementWidth);
             // console.log("viewportWidth", viewportWidth);
-            console.log('Checking visibility')
+            console.log("Checking visibility");
 
-            if (viewportOffsetLeft + elementWidth > viewportWidth || viewportOffsetLeft < 0) {
+            if (
+                viewportOffsetLeft + elementWidth > viewportWidth ||
+                viewportOffsetLeft < 0
+            ) {
                 return false;
             } else {
                 return true;
@@ -1399,21 +1402,27 @@ var NewsSlider = {
         window.checkVisible = checkIfFullyVisible;
 
         newsSliders.forEach(function(item) {
-            var slider = new Swiper(item, {
+           
+            var sliderInstance = new Swiper(item, {
                 slidesPerView: "auto",
                 spaceBetween: 25,
                 navigation: {
                     nextEl: document.querySelector(".js-news-slider--next"),
                     prevEl: document.querySelector(".js-news-slider--prev")
                 },
-                on: {
-                    init: handleSlideVisibility,
-                    slideChange: handleSlideVisibility,
-                    transitionEnd: handleSlideVisibility,
-                    resize: handleSlideVisibility,
-                    sliderMove: handleSlideVisibility
-                }
+                init: false
             });
+
+            if (!window.matchMedia("(max-width: 600px)").matches) {
+                sliderInstance.on("init", handleSlideVisibility);
+                sliderInstance.on("slideChange", handleSlideVisibility);
+                sliderInstance.on("transitionEnd", handleSlideVisibility);
+                sliderInstance.on("resize", handleSlideVisibility);
+                sliderInstance.on("sliderMove", handleSlideVisibility);
+                fadeAdded = true;
+            }
+
+            sliderInstance.init();
 
             
         });
