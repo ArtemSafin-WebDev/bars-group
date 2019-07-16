@@ -1,51 +1,47 @@
 var NewsToggles = {
     init: function() {
-        var prev = document.querySelector('.js-news-previous-article')
-        var prevContainer;
-        var next = document.querySelector('.js-news-next-article')
-        var nextContainer;
-        var prevShown = false;
-        var nextShown = false;
-
-        function outsidePrevClickHandler(event) {
-            if ((!prevContainer.contains(event.target) && event.target !== prevContainer)) {
-                if (prevShown) {
-                    prevContainer.classList.remove('active');
-                    prevShown = false;
-                    document.removeEventListener('click', outsidePrevClickHandler)
+        function setupHandlers(element) {
+            if (element) {
+                var elementContainer = element.parentElement;
+                var elementContent = element.nextElementSibling;
+                if (!elementContent)
+                    throw new Error(
+                        "Отсутствует блок контента виджета соседней новости"
+                    );
+                var elementOpen = false;
+                function outsideClickHandler(event) {
+                    if (
+                        !elementContainer.contains(event.target) &&
+                        event.target !== elementContainer
+                    ) {
+                        hideElement();
+                    }
                 }
+                function openElement(event) {
+                    if (event) event.preventDefault();
+                    if (!elementOpen) {
+                        elementContainer.classList.add("active");
+                        elementOpen = true;
+                        document.addEventListener("click", outsideClickHandler);
+                    }
+                }
+                function hideElement(event) {
+                    if (event) event.preventDefault();
+                    if (elementOpen) {
+                        elementContainer.classList.remove("active");
+                        elementOpen = false;
+                        document.removeEventListener(
+                            "click",
+                            outsideClickHandler
+                        );
+                    }
+                }
+
+                element.addEventListener("click", openElement);
             }
         }
-        function outsideNextClickHandler(event) {
-            if ((!nextContainer.contains(event.target) && event.target !== nextContainer)) {
-                if (nextShown) {
-                    nextContainer.classList.remove('active');
-                    nextShown = false;
-                    document.removeEventListener('click', outsideNextClickHandler)
-                }
-            }
-        }
 
-    
-        if (prev) {
-            prevContainer = prev.parentElement;
-
-            prev.addEventListener('click', function(event) {
-                event.preventDefault();
-                prevContainer.classList.add('active')
-                prevShown = true;
-                document.addEventListener('click', outsidePrevClickHandler)
-            })
-        }
-        if (next) {
-            nextContainer = next.parentElement;
-
-            next.addEventListener('click', function(event) {
-                event.preventDefault();
-                nextContainer.classList.add('active')
-                nextShown = true;
-                document.addEventListener('click', outsideNextClickHandler)
-            })
-        }
+        setupHandlers(document.querySelector(".js-news-previous-article"));
+        setupHandlers(document.querySelector(".js-news-next-article"));
     }
-}
+};
