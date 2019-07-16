@@ -22,6 +22,7 @@
 	&__image {
 		@include position-fill();
 		background-color: $base-gray;
+		background-repeat: no-repeat;
 		background-position: 50% 50%;
 		background-size: cover;
 
@@ -39,6 +40,15 @@
 	&__content {
 		padding: 110px 0;
 		max-width: 600px;
+	}
+
+	&__label {
+		margin-bottom: 15px;
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 1.55px;
+		color: #59b4e6;
 	}
 
 	&__h1 {
