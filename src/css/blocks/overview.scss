@@ -16,16 +16,7 @@
 
 	&__bg {
 		@include position-fill;
-		background: $base-gray;
 		overflow: hidden;
-
-		&:after {
-			@include position-fill;
-			z-index: 10;
-			content: ' ';
-			background: #000000;
-			opacity: .5;
-		}
 		
 		&__item {
 			position: absolute;
@@ -46,13 +37,9 @@
 		}
 
 		&__image {
-			@include position-fill;
-			background-position: 50% 50%;
+			@include position-fill();
+			background: $base-gray 50% 50% no-repeat;
 			background-size: cover;
-
-			img {
-				display: none;
-			}
 		}
 
 		&__video {

@@ -1,23 +1,9 @@
 var App = {
-
-	_initImagerJs: function () {
-		new Imager('.js-imager-box img', { 
-			availableWidths: [1000, 1500], 
-			availablePixelRatios: [1],
-			onImagesReplaced: function () {
-				$(this.selector).each(function () {
-					var src = $(this).attr('src');
-					$(this).parent().addClass('--inited').css({ 'background-image': 'url(' + src + ')' });
-				});
-			}
-		});
-	},
 	
 	_handleDOMReady: function () {
 		var self = this;
 
 		// init modules here
-		self._initImagerJs();
 		Overview.init();
 		SliderContent.init();
 		SliderDigits.init();
