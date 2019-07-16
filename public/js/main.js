@@ -1526,6 +1526,10 @@ var NewsToggles = {
                         elementContainer.classList.add("active");
                         elementOpen = true;
                         document.addEventListener("click", outsideClickHandler);
+                        elementContent.addEventListener(
+                            "mouseleave",
+                            contentMouseLeaveHandler
+                        );
                     }
                 }
                 function hideElement(event) {
@@ -1537,10 +1541,29 @@ var NewsToggles = {
                             "click",
                             outsideClickHandler
                         );
+                        elementContent.removeEventListener(
+                            "mouseleave",
+                            contentMouseLeaveHandler
+                        );
                     }
                 }
 
+                function contentMouseLeaveHandler() {
+                    hideElement();
+                    // elementContent.removeEventListener(
+                    //     "mouseleave",
+                    //     contentMouseLeaveHandler
+                    // );
+                }
+
                 element.addEventListener("click", openElement);
+                element.addEventListener("mouseenter", function() {
+                    openElement();
+                    // elementContent.addEventListener(
+                    //     "mouseleave",
+                    //     contentMouseLeaveHandler
+                    // );
+                });
             }
         }
 
