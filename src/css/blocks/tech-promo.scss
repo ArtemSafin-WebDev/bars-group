@@ -15,9 +15,13 @@
 
 	&__figure {
 		@include position-fill();
+		background: #000;
 
 		&__image {
 			@include position-fill();
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			background-size: cover;
 		}
 
 		&__video {
