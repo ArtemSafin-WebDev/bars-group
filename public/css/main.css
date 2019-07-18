@@ -1512,6 +1512,8 @@ img {
 .page__center {
   max-width: 1600px;
   margin: 0 auto; }
+  .page__center--about {
+    max-width: inherit; }
 
 .page__inner {
   padding: 0 40px; }
@@ -2293,6 +2295,17 @@ img {
     top: 0;
     background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(#fff));
     background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+    pointer-events: none; }
+  .gantt-slider__crop--with-left:before {
+    content: ' ';
+    position: absolute;
+    z-index: 10;
+    width: 100px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: -webkit-gradient(linear, right top, left top, from(rgba(255, 255, 255, 0)), to(#fff));
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
     pointer-events: none; }
 
 .gantt-slider__scroll {
