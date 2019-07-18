@@ -29,8 +29,8 @@ var Overview = {
 		var self = e.data.self;
 
 		objectFitPolyfill(this);
-		$(this).addClass('_active');
-		$(this)[0].play()
+		$(this).addClass('--active');
+		$(this)[0].play();
 	},
 
 	_handleLinkClick: function (e) {
@@ -47,13 +47,13 @@ var Overview = {
 
 		// set active nav item
 		var $navItems = $_.find('.overview__nav__item');
-		$navItems.eq(currIndex).removeClass('_active');
-		$navItems.eq(nextIndex).addClass('_active');
+		$navItems.eq(currIndex).removeClass('--active');
+		$navItems.eq(nextIndex).addClass('--active');
 
 		// set active about item
 		var $aboutItems = $_.find('.overview__about__item');
-		$aboutItems.eq(currIndex).removeClass('_active');
-		$aboutItems.eq(nextIndex).addClass('_active');
+		$aboutItems.eq(currIndex).removeClass('--active');
+		$aboutItems.eq(nextIndex).addClass('--active');
 
 		// collapse bodies
 		var $navBodies = $_.find('.overview__nav__body');

@@ -59,8 +59,8 @@ var Overview = {
 		var self = e.data.self;
 
 		objectFitPolyfill(this);
-		$(this).addClass('_active');
-		$(this)[0].play()
+		$(this).addClass('--active');
+		$(this)[0].play();
 	},
 
 	_handleLinkClick: function (e) {
@@ -77,13 +77,13 @@ var Overview = {
 
 		// set active nav item
 		var $navItems = $_.find('.overview__nav__item');
-		$navItems.eq(currIndex).removeClass('_active');
-		$navItems.eq(nextIndex).addClass('_active');
+		$navItems.eq(currIndex).removeClass('--active');
+		$navItems.eq(nextIndex).addClass('--active');
 
 		// set active about item
 		var $aboutItems = $_.find('.overview__about__item');
-		$aboutItems.eq(currIndex).removeClass('_active');
-		$aboutItems.eq(nextIndex).addClass('_active');
+		$aboutItems.eq(currIndex).removeClass('--active');
+		$aboutItems.eq(nextIndex).addClass('--active');
 
 		// collapse bodies
 		var $navBodies = $_.find('.overview__nav__body');
@@ -358,13 +358,13 @@ var GanttSlider = {
 		var self = e.data.self;
 
 		objectFitPolyfill(this);
-		$(this).addClass('_active');
+		$(this).addClass('--active');
 	},
 
 	_handleMouseOver: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video._active');
+		var $video = $(this).find('video.--active');
 		if ($video.length) {
 			$video[0].play();
 		}
@@ -373,7 +373,7 @@ var GanttSlider = {
 	_handleMouseOut: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video._active');
+		var $video = $(this).find('video.--active');
 		if ($video.length) {
 			$video[0].pause();
 		}
@@ -1618,6 +1618,7 @@ var TechPromo = {
 
 	_bindUI: function () {
 		var self = this;
+
 	},
 
 	init: function () {
@@ -1638,10 +1639,6 @@ var TechPromo = {
 		}, 4000);
 	}
 }
-
-$(function () {
-	TechPromo.init();
-});
 var App = {
 	
 	_handleDOMReady: function () {
@@ -1661,6 +1658,7 @@ var App = {
 		NewsPhotoSlider.init();
 		NewsToggles.init();
 		NavBanner.init();
+		TechPromo.init();
 	},
 
 	_bindUI: function () {

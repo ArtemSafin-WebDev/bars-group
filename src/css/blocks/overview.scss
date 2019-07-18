@@ -47,7 +47,7 @@
 			object-fit: cover;
 			display: none;
 
-			&._active {
+			&.--active {
 				display: block;
 			}
 		}
@@ -72,7 +72,7 @@
 				margin-top: 0;
 			}
 
-			&._active {
+			&.--active {
 				
 				.overview__nav__link{
 					&:before {
@@ -173,7 +173,7 @@
 				margin-left: 0;
 			}
 
-			&._active {
+			&.--active {
 				z-index: 1;
 				opacity: 1;
 			}
@@ -318,7 +318,7 @@
 					border-top: 0;
 				}
 
-				&._active {
+				&.--active {
 					.overview__nav__link {
 						&:before {
 							transform: rotate(90deg) scaleX(-1) !important;

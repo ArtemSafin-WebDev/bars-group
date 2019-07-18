@@ -9,12 +9,26 @@
 		color: #fff;
 	}
 
-	.banner__image {
-		background-color: #000;
-	}
-
 	.banner__text {
 		height: 100%;
+	}
+
+	&__figure {
+		@include position-fill();
+
+		&__image {
+			@include position-fill();
+		}
+
+		&__video {
+			@include position-fill();
+			object-fit: cover;
+			display: none;
+
+			&.--active {
+				display: block;
+			}
+		}
 	}
 
 	&__base {

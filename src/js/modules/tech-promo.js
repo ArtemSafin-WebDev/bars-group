@@ -3,6 +3,7 @@ var TechPromo = {
 
 	_bindUI: function () {
 		var self = this;
+
 	},
 
 	init: function () {
@@ -24,6 +25,3 @@ var TechPromo = {
 	}
 }
 
-$(function () {
-	TechPromo.init();
-});

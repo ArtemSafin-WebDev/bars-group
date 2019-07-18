@@ -2062,7 +2062,7 @@ img {
       -o-object-fit: cover;
          object-fit: cover;
       display: none; }
-      .overview__bg__video._active {
+      .overview__bg__video.--active {
         display: block; }
   .overview__nav {
     margin-left: 300px;
@@ -2076,11 +2076,11 @@ img {
       width: 25%; }
       .overview__nav__item:nth-child(-n+4) {
         margin-top: 0; }
-      .overview__nav__item._active .overview__nav__link:before {
+      .overview__nav__item.--active .overview__nav__link:before {
         -webkit-transform: translateX(0);
                 transform: translateX(0);
         opacity: 1; }
-      .overview__nav__item._active .overview__nav__icon {
+      .overview__nav__item.--active .overview__nav__icon {
         opacity: 1; }
     .overview__nav__link {
       position: relative;
@@ -2144,7 +2144,7 @@ img {
       opacity: 0; }
       .overview__about__item:first-child {
         margin-left: 0; }
-      .overview__about__item._active {
+      .overview__about__item.--active {
         z-index: 1;
         opacity: 1; }
   .overview__title {
@@ -2215,7 +2215,7 @@ img {
       width: 100%; }
       .overview__nav__item:first-child {
         border-top: 0; }
-      .overview__nav__item._active .overview__nav__link:before {
+      .overview__nav__item.--active .overview__nav__link:before {
         -webkit-transform: rotate(90deg) scaleX(-1) !important;
                 transform: rotate(90deg) scaleX(-1) !important; }
     .overview__nav__link {
@@ -2427,7 +2427,7 @@ img {
     -o-object-fit: cover;
        object-fit: cover;
     display: none; }
-    .gantt-slider__bg__video._active {
+    .gantt-slider__bg__video.--active {
       display: block; }
 
 .gantt-slider__h1, .gantt-slider__desc {
@@ -5019,10 +5019,31 @@ img {
   max-height: 1000px; }
   .tech-promo .brand-box__text-2 {
     color: #fff; }
-  .tech-promo .banner__image {
-    background-color: #000; }
   .tech-promo .banner__text {
     height: 100%; }
+  .tech-promo__figure {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+    .tech-promo__figure__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+    .tech-promo__figure__video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover;
+      display: none; }
+      .tech-promo__figure__video.--active {
+        display: block; }
   .tech-promo__base {
     position: absolute;
     width: 600px;

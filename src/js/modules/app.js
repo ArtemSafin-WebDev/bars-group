@@ -17,6 +17,7 @@ var App = {
 		NewsPhotoSlider.init();
 		NewsToggles.init();
 		NavBanner.init();
+		TechPromo.init();
 	},
 
 	_bindUI: function () {
