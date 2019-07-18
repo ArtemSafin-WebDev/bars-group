@@ -133,6 +133,12 @@
 		&:hover {
 			z-index: 10;
 
+			.tech-promo__circle__arrow__self {
+				transition: all .3s;
+				margin-top: -60px;
+				opacity: 1;
+			}
+
 			.tech-promo__circle__decor {
 				transition: all .3s ease-out;
 				transform: scale(1.2);
@@ -159,6 +165,43 @@
 				transition: height .3s, opacity .3s .1s;
 				height: 7.5em;
 				opacity: 1;
+			}
+		}
+
+		&__arrow {
+			@include position-fill();
+			transform: rotate(135deg);
+			z-index: 10;
+
+			&__self {
+				transform: rotate(-135deg);
+				transition: margin .3s .1s, opacity .3s;
+				margin-top: 0;
+				width: 66px;
+				height: 66px;
+				line-height: 66px;
+				text-align: center;
+				margin: 0 auto;
+				background: #59b4e6;
+				border-radius: 50%;
+				font-size: 0;
+				opacity: 0;
+
+				&:hover {
+					.arrow-right-thin {
+						span {
+							width: 38px;
+						}
+					}
+				}
+
+				.arrow-right-thin {
+					vertical-align: middle;
+
+					span {
+						width: 28px;
+					}
+				}
 			}
 		}
 

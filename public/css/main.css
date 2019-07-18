@@ -5223,6 +5223,11 @@ img {
               transition-delay: .1s; }
     .tech-promo__circle:hover {
       z-index: 10; }
+      .tech-promo__circle:hover .tech-promo__circle__arrow__self {
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        margin-top: -60px;
+        opacity: 1; }
       .tech-promo__circle:hover .tech-promo__circle__decor {
         -webkit-transition: all .3s ease-out;
         transition: all .3s ease-out;
@@ -5245,6 +5250,36 @@ img {
         transition: height .3s, opacity .3s .1s;
         height: 7.5em;
         opacity: 1; }
+    .tech-promo__circle__arrow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transform: rotate(135deg);
+              transform: rotate(135deg);
+      z-index: 10; }
+      .tech-promo__circle__arrow__self {
+        -webkit-transform: rotate(-135deg);
+                transform: rotate(-135deg);
+        -webkit-transition: margin .3s .1s, opacity .3s;
+        transition: margin .3s .1s, opacity .3s;
+        margin-top: 0;
+        width: 66px;
+        height: 66px;
+        line-height: 66px;
+        text-align: center;
+        margin: 0 auto;
+        background: #59b4e6;
+        border-radius: 50%;
+        font-size: 0;
+        opacity: 0; }
+        .tech-promo__circle__arrow__self:hover .arrow-right-thin span {
+          width: 38px; }
+        .tech-promo__circle__arrow__self .arrow-right-thin {
+          vertical-align: middle; }
+          .tech-promo__circle__arrow__self .arrow-right-thin span {
+            width: 28px; }
     .tech-promo__circle__decor {
       -webkit-transition: all .3s ease-out .1s;
       transition: all .3s ease-out .1s;
