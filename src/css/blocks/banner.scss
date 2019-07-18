@@ -21,14 +21,8 @@
 
 	&__image {
 		@include position-fill();
-		background-color: $base-gray;
-		background-repeat: no-repeat;
-		background-position: 50% 50%;
+		background: $base-gray 50% 50% no-repeat;
 		background-size: cover;
-
-		&__change {
-			@include position-fill();
-		}
 	}
 
 	&__text {

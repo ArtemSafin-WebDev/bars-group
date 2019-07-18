@@ -25,6 +25,7 @@ require('gulp-grunt')(gulp);
 var path = {
     assets: [
         'src/fonts/**',
+        'src/video/**',
         'src/data/**',
         'src/robots.txt'
     ]

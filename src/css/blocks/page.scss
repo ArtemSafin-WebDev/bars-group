@@ -1,6 +1,12 @@
 
 .page {
 
+	&__decor {
+		@include position-fill();
+		background: #000;
+		opacity: .3;
+	}
+
 	&__wrapper {
 		overflow: hidden;
 		max-width: 3000px;

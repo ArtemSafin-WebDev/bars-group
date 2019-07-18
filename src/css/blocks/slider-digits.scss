@@ -32,26 +32,15 @@
 		margin-left: 200px;
 		height: 260px;
 		width: 60%;
-		background: $base-gray;
 	}
 
 	&__pics {
 		@include position-fill();
 
-		&:after {
-			@include position-fill();
-			z-index: 5;
-			content: ' ';
-			background: #000000;
-			opacity: .3;
-		}
-
 		&__item {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: 0;
+			@include position-fill();
+			background: $base-gray 50% 50% no-repeat;
+			background-size: cover;
 			opacity: 0;
 
 			&._active {
@@ -60,11 +49,6 @@
 
 			&._cover {
 				z-index: 1;
-			}
-
-			img {
-				@include position-fill();
-				object-fit: cover;
 			}
 		}
 	}

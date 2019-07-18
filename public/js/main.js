@@ -59,8 +59,8 @@ var Overview = {
 		var self = e.data.self;
 
 		objectFitPolyfill(this);
-		$(this).addClass('_active');
-		$(this)[0].play()
+		$(this).addClass('--active');
+		$(this)[0].play();
 	},
 
 	_handleLinkClick: function (e) {
@@ -77,13 +77,13 @@ var Overview = {
 
 		// set active nav item
 		var $navItems = $_.find('.overview__nav__item');
-		$navItems.eq(currIndex).removeClass('_active');
-		$navItems.eq(nextIndex).addClass('_active');
+		$navItems.eq(currIndex).removeClass('--active');
+		$navItems.eq(nextIndex).addClass('--active');
 
 		// set active about item
 		var $aboutItems = $_.find('.overview__about__item');
-		$aboutItems.eq(currIndex).removeClass('_active');
-		$aboutItems.eq(nextIndex).addClass('_active');
+		$aboutItems.eq(currIndex).removeClass('--active');
+		$aboutItems.eq(nextIndex).addClass('--active');
 
 		// collapse bodies
 		var $navBodies = $_.find('.overview__nav__body');
@@ -358,13 +358,13 @@ var GanttSlider = {
 		var self = e.data.self;
 
 		objectFitPolyfill(this);
-		$(this).addClass('_active');
+		$(this).addClass('--active');
 	},
 
 	_handleMouseOver: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video._active');
+		var $video = $(this).find('video.--active');
 		if ($video.length) {
 			$video[0].play();
 		}
@@ -373,7 +373,7 @@ var GanttSlider = {
 	_handleMouseOut: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video._active');
+		var $video = $(this).find('video.--active');
 		if ($video.length) {
 			$video[0].pause();
 		}
@@ -1374,9 +1374,12 @@ var NewsSlider = {
             // console.log("viewportOffset", viewportOffset);
             // console.log("elementWidth", elementWidth);
             // console.log("viewportWidth", viewportWidth);
-            console.log('Checking visibility')
+            console.log("Checking visibility");
 
-            if (viewportOffsetLeft + elementWidth > viewportWidth || viewportOffsetLeft < 0) {
+            if (
+                viewportOffsetLeft + elementWidth > viewportWidth ||
+                viewportOffsetLeft < 0
+            ) {
                 return false;
             } else {
                 return true;
@@ -1400,21 +1403,27 @@ var NewsSlider = {
         window.checkVisible = checkIfFullyVisible;
 
         newsSliders.forEach(function(item) {
-            var slider = new Swiper(item, {
+           
+            var sliderInstance = new Swiper(item, {
                 slidesPerView: "auto",
                 spaceBetween: 25,
                 navigation: {
                     nextEl: document.querySelector(".js-news-slider--next"),
                     prevEl: document.querySelector(".js-news-slider--prev")
                 },
-                on: {
-                    init: handleSlideVisibility,
-                    slideChange: handleSlideVisibility,
-                    transitionEnd: handleSlideVisibility,
-                    resize: handleSlideVisibility,
-                    sliderMove: handleSlideVisibility
-                }
+                init: false
             });
+
+            if (!window.matchMedia("(max-width: 600px)").matches) {
+                sliderInstance.on("init", handleSlideVisibility);
+                sliderInstance.on("slideChange", handleSlideVisibility);
+                sliderInstance.on("transitionEnd", handleSlideVisibility);
+                sliderInstance.on("resize", handleSlideVisibility);
+                sliderInstance.on("sliderMove", handleSlideVisibility);
+                fadeAdded = true;
+            }
+
+            sliderInstance.init();
 
             
         });
@@ -1504,55 +1513,74 @@ var NewsPhotoSlider = {
 };
 var NewsToggles = {
     init: function() {
-        var prev = document.querySelector('.js-news-previous-article')
-        var prevContainer;
-        var next = document.querySelector('.js-news-next-article')
-        var nextContainer;
-        var prevShown = false;
-        var nextShown = false;
-
-        function outsidePrevClickHandler(event) {
-            if ((!prevContainer.contains(event.target) && event.target !== prevContainer)) {
-                if (prevShown) {
-                    prevContainer.classList.remove('active');
-                    prevShown = false;
-                    document.removeEventListener('click', outsidePrevClickHandler)
+        function setupHandlers(element) {
+            if (element) {
+                var elementContainer = element.parentElement;
+                var elementContent = element.nextElementSibling;
+                if (!elementContent)
+                    throw new Error(
+                        "Отсутствует блок контента виджета соседней новости"
+                    );
+                var elementOpen = false;
+                function outsideClickHandler(event) {
+                    if (
+                        !elementContainer.contains(event.target) &&
+                        event.target !== elementContainer
+                    ) {
+                        hideElement();
+                    }
                 }
+                function openElement(event) {
+                    if (event) event.preventDefault();
+                    if (!elementOpen) {
+                        elementContainer.classList.add("active");
+                        elementOpen = true;
+                        document.addEventListener("click", outsideClickHandler);
+                        elementContent.addEventListener(
+                            "mouseleave",
+                            contentMouseLeaveHandler
+                        );
+                    }
+                }
+                function hideElement(event) {
+                    if (event) event.preventDefault();
+                    if (elementOpen) {
+                        elementContainer.classList.remove("active");
+                        elementOpen = false;
+                        document.removeEventListener(
+                            "click",
+                            outsideClickHandler
+                        );
+                        elementContent.removeEventListener(
+                            "mouseleave",
+                            contentMouseLeaveHandler
+                        );
+                    }
+                }
+
+                function contentMouseLeaveHandler() {
+                    hideElement();
+                    // elementContent.removeEventListener(
+                    //     "mouseleave",
+                    //     contentMouseLeaveHandler
+                    // );
+                }
+
+                element.addEventListener("click", openElement);
+                element.addEventListener("mouseenter", function() {
+                    openElement();
+                    // elementContent.addEventListener(
+                    //     "mouseleave",
+                    //     contentMouseLeaveHandler
+                    // );
+                });
             }
         }
-        function outsideNextClickHandler(event) {
-            if ((!nextContainer.contains(event.target) && event.target !== nextContainer)) {
-                if (nextShown) {
-                    nextContainer.classList.remove('active');
-                    nextShown = false;
-                    document.removeEventListener('click', outsideNextClickHandler)
-                }
-            }
-        }
 
-    
-        if (prev) {
-            prevContainer = prev.parentElement;
-
-            prev.addEventListener('click', function(event) {
-                event.preventDefault();
-                prevContainer.classList.add('active')
-                prevShown = true;
-                document.addEventListener('click', outsidePrevClickHandler)
-            })
-        }
-        if (next) {
-            nextContainer = next.parentElement;
-
-            next.addEventListener('click', function(event) {
-                event.preventDefault();
-                nextContainer.classList.add('active')
-                nextShown = true;
-                document.addEventListener('click', outsideNextClickHandler)
-            })
-        }
+        setupHandlers(document.querySelector(".js-news-previous-article"));
+        setupHandlers(document.querySelector(".js-news-next-article"));
     }
-}
+};
 
 var NavBanner = {
 
@@ -1591,6 +1619,7 @@ var TechPromo = {
 
 	_bindUI: function () {
 		var self = this;
+
 	},
 
 	init: function () {
@@ -1611,10 +1640,6 @@ var TechPromo = {
 		}, 4000);
 	}
 }
-
-$(function () {
-	TechPromo.init();
-});
 
 var AboutSlider = {
 
@@ -1815,30 +1840,15 @@ $(document).ready(function(){
 	cities();
 
 	$(window).resize(function(){
-		console.log('resize');
 		cities();
 	});
 });
 var App = {
-
-	_initImagerJs: function () {
-		new Imager('.js-imager-box img', { 
-			availableWidths: [1000, 1500], 
-			availablePixelRatios: [1],
-			onImagesReplaced: function () {
-				$(this.selector).each(function () {
-					var src = $(this).attr('src');
-					$(this).parent().addClass('--inited').css({ 'background-image': 'url(' + src + ')' });
-				});
-			}
-		});
-	},
 	
 	_handleDOMReady: function () {
 		var self = this;
 
 		// init modules here
-		self._initImagerJs();
 		Overview.init();
 		SliderContent.init();
 		SliderDigits.init();
@@ -1853,6 +1863,7 @@ var App = {
 		NewsPhotoSlider.init();
 		NewsToggles.init();
 		NavBanner.init();
+		TechPromo.init();
 	},
 
 	_bindUI: function () {

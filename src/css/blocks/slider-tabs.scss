@@ -10,8 +10,7 @@
 	}
 
 	&__pics {
-		@include position-fill;
-		background: $base-gray;
+		@include position-fill();
 		overflow: hidden;
 
 		&__item {
@@ -33,22 +32,9 @@
 		}
 
 		&__image {
-			@include position-fill;
-			background-color: $base-gray;
-			background-position: 50% 50%;
+			@include position-fill();
+			background: $base-gray 50% 50% no-repeat;
 			background-size: cover;
-			
-			&:after {
-				@include position-fill;
-				content: ' ';
-				background: #000000;
-				opacity: .3;
-			}
-
-			img {
-				@include position-fill;
-				object-fit: cover;
-			}
 		}
 	}
 

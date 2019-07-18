@@ -210,13 +210,13 @@ var GanttSlider = {
 		var self = e.data.self;
 
 		objectFitPolyfill(this);
-		$(this).addClass('_active');
+		$(this).addClass('--active');
 	},
 
 	_handleMouseOver: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video._active');
+		var $video = $(this).find('video.--active');
 		if ($video.length) {
 			$video[0].play();
 		}
@@ -225,7 +225,7 @@ var GanttSlider = {
 	_handleMouseOut: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video._active');
+		var $video = $(this).find('video.--active');
 		if ($video.length) {
 			$video[0].pause();
 		}

@@ -12,7 +12,6 @@
 	&__item {
 		display: none;
 		position: relative;
-		background: $base-gray;
 		height: 450px;
 		
 		.is-admin &,
@@ -23,20 +22,8 @@
 
 	&__image {
 		@include position-fill();
-		background-color: $base-gray;
-		background-position: 50% 50%;
+		background: $base-gray 50% 50% no-repeat;
 		background-size: cover;
-
-		&:after {
-			@include position-fill();
-			background: rgba(#000, .3);
-			content: ' ';
-		}
-
-		img {
-			@include position-fill();
-			object-fit: cover;
-		}
 	}
 
 	&__desc {

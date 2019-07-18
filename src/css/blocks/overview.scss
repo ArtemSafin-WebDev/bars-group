@@ -16,16 +16,7 @@
 
 	&__bg {
 		@include position-fill;
-		background: $base-gray;
 		overflow: hidden;
-
-		&:after {
-			@include position-fill;
-			z-index: 10;
-			content: ' ';
-			background: #000000;
-			opacity: .5;
-		}
 		
 		&__item {
 			position: absolute;
@@ -46,13 +37,9 @@
 		}
 
 		&__image {
-			@include position-fill;
-			background-position: 50% 50%;
+			@include position-fill();
+			background: $base-gray 50% 50% no-repeat;
 			background-size: cover;
-
-			img {
-				display: none;
-			}
 		}
 
 		&__video {
@@ -60,7 +47,7 @@
 			object-fit: cover;
 			display: none;
 
-			&._active {
+			&.--active {
 				display: block;
 			}
 		}
@@ -85,7 +72,7 @@
 				margin-top: 0;
 			}
 
-			&._active {
+			&.--active {
 				
 				.overview__nav__link{
 					&:before {
@@ -186,7 +173,7 @@
 				margin-left: 0;
 			}
 
-			&._active {
+			&.--active {
 				z-index: 1;
 				opacity: 1;
 			}
@@ -331,7 +318,7 @@
 					border-top: 0;
 				}
 
-				&._active {
+				&.--active {
 					.overview__nav__link {
 						&:before {
 							transform: rotate(90deg) scaleX(-1) !important;
