@@ -573,143 +573,133 @@ template {
 
 .icon-sprite-png-alpha-bi {
   background-image: url(../img/sprite.png);
-  background-position: 0px -164px;
+  background-position: 0px -73px;
   width: 164px;
   height: 48px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-alpha-bi {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-barsup-ag-white {
   background-image: url(../img/sprite.png);
-  background-position: -98px -278px;
+  background-position: -264px -46px;
   width: 161px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-ag-white {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-barsup-ag {
   background-image: url(../img/sprite.png);
-  background-position: -98px -232px;
+  background-position: -264px 0px;
   width: 161px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-ag {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-barsup-ai-white {
   background-image: url(../img/sprite.png);
-  background-position: -337px -135px;
+  background-position: 0px -237px;
   width: 150px;
   height: 23px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-ai-white {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-barsup-ai {
   background-image: url(../img/sprite.png);
-  background-position: -337px -92px;
+  background-position: -264px -184px;
   width: 150px;
   height: 23px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-ai {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-barsup-am-white {
   background-image: url(../img/sprite.png);
-  background-position: -337px 0px;
+  background-position: -264px -92px;
   width: 160px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-am-white {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-barsup-am {
   background-image: url(../img/sprite.png);
-  background-position: -337px -46px;
+  background-position: -264px -138px;
   width: 160px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-am {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
-
-.icon-sprite-png-barsup-stack {
-  background-image: url(../img/sprite.png);
-  background-position: 0px 0px;
-  width: 317px;
-  height: 71px; }
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .icon-sprite-png-barsup-stack {
-      background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-barsup {
   background-image: url(../img/sprite.png);
-  background-position: 0px -91px;
+  background-position: 0px 0px;
   width: 244px;
   height: 53px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-biux {
   background-image: url(../img/sprite.png);
-  background-position: 0px -232px;
+  background-position: 0px -141px;
   width: 78px;
   height: 76px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-biux {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-clip {
   background-image: url(../img/sprite.png);
-  background-position: -483px -178px;
+  background-position: -227px -73px;
   width: 11px;
   height: 22px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-clip {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-habrahabr {
   background-image: url(../img/sprite.png);
-  background-position: -337px -256px;
+  background-position: -184px -73px;
   width: 23px;
   height: 27px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-habrahabr {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-markweber, .footer__dev__logo {
   background-image: url(../img/sprite.png);
-  background-position: -337px -220px;
+  background-position: -98px -183px;
   width: 66px;
   height: 16px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-markweber, .footer__dev__logo {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 .icon-sprite-png-svody {
   background-image: url(../img/sprite.png);
-  background-position: -337px -178px;
+  background-position: -98px -141px;
   width: 126px;
   height: 22px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-svody {
       background-image: url(../img/sprite@2x.png);
-      background-size: 497px 308px; } }
+      background-size: 425px 260px; } }
 
 @font-face {
   font-family: 'icomoon';
@@ -5169,11 +5159,8 @@ img {
   .tech-promo__center {
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-top: 150px;
-    padding-left: 120px;
+    margin-top: -100%;
+    padding: 25% 20% 0 20%;
     opacity: 0; }
     .tech-promo__center.--active {
       opacity: 1; }
@@ -5199,31 +5186,28 @@ img {
       stroke-dashoffset: 2000; }
   .tech-promo__elem-1 {
     position: absolute;
-    top: -30px;
-    left: 490px;
-    width: 300px;
-    height: 300px;
+    top: -5%;
+    left: 81%;
+    width: 50%;
+    height: 50%;
     border-radius: 50%; }
   .tech-promo__elem-2 {
     position: absolute;
-    top: 235px;
-    left: 540px;
-    width: 300px;
-    height: 300px;
+    top: 39%;
+    left: 90%;
+    width: 50%;
+    height: 50%;
     border-radius: 50%; }
   .tech-promo__elem-3 {
     position: absolute;
-    top: -60px;
-    left: -130px;
-    width: 220px;
-    height: 220px;
+    top: -11%;
+    left: -22%;
+    width: 37%;
+    height: 37%;
     border-radius: 50%; }
     .tech-promo__elem-3 .tech-promo__circle__decor {
       border-color: transparent;
       background: rgba(25, 20, 45, 0.7); }
-    .tech-promo__elem-3 .tech-promo__circle__data {
-      top: -40px;
-      left: -40px; }
     .tech-promo__elem-3 .tech-promo__circle:hover .tech-promo__circle__decor {
       -webkit-transform: scale(1.6);
               transform: scale(1.6); }
@@ -5321,7 +5305,12 @@ img {
       border: 1px solid #fff;
       border-radius: 50%; }
     .tech-promo__circle__data {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -150px 0 0 -150px;
+      height: 300px;
+      width: 300px;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -5332,8 +5321,6 @@ img {
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
-      height: 300px;
-      width: 300px;
       border-radius: 50%;
       pointer-events: none; }
     .tech-promo__circle__icon {
