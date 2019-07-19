@@ -9,8 +9,6 @@
 
 	&__wrapper {
 		overflow: hidden;
-		max-width: 3000px;
-		margin: 0 auto;
 	}
 	
 	&__center {
@@ -231,11 +229,3 @@
 
 }
 
-@media all and (min-width: 3000px) {
-	.page {
-
-		&__wrapper {
-			max-width: 1600px;
-		}
-	}
-}

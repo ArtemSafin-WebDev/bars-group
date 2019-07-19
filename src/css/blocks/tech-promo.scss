@@ -19,7 +19,6 @@
 
 		&__item {
 			@include position-fill();
-			transition: all .2s;
 			opacity: 0;
 
 			&.--active {
@@ -28,17 +27,14 @@
 		}
 
 		&__image {
-			float: left;
-			margin-right: -100%;
-			height: 100%;
-			width: 100%;
+			@include position-fill();
 			background-repeat: no-repeat;
 			background-position: 50% 50%;
 			background-size: cover;
 		}
 
 		&__video {
-			height: 100%;
+			@include position-fill();
 			object-fit: cover;
 			display: none;
 
