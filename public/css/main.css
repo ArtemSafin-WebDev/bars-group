@@ -5158,20 +5158,26 @@ img {
     width: 100%;
     height: 100%;
     background: #000; }
-    .tech-promo__figure__image {
+    .tech-promo__figure__item {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      -webkit-transition: all .2s;
+      transition: all .2s;
+      opacity: 0; }
+      .tech-promo__figure__item.--active {
+        opacity: 1; }
+    .tech-promo__figure__image {
+      float: left;
+      margin-right: -100%;
+      height: 100%;
+      width: 100%;
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: cover; }
     .tech-promo__figure__video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
       height: 100%;
       -o-object-fit: cover;
          object-fit: cover;
