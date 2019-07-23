@@ -422,7 +422,7 @@ var GanttSlider = {
 				$rangeslider = self._elems.$range.find('.rangeslider');
 				$rangeslider.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
 			},
-			onSlide: _.throttle(function(position, value) {
+			onSlide: function(position, value) {
 				if (value == self._state.lastRangeValue) return;
 				self._state.lastRangeValue = value;
 				
@@ -431,7 +431,7 @@ var GanttSlider = {
 
 				var scrollLeft = self._state.maxScrollLeft / 1000 * value; 
 				self._elems.$scroll.scrollLeft(scrollLeft);
-			}, 50)
+			}
 		});
 
 	},
@@ -513,7 +513,7 @@ var GanttSlider = {
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$scroll.on('scroll', {self: self}, _.throttle(self._handleSliderScroll, 50));
+		self._elems.$scroll.on('scroll', {self: self}, self._handleSliderScroll);
 		self._elems.$_.on('canplaythrough', '.gantt-slider__bg__video', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
 		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
