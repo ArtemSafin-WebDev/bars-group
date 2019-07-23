@@ -69,7 +69,7 @@ var News = {
 
 		$(document).on('click', '#news .js-news-next', {self: self}, self._handleNextButton);
 		$(document).on('click', '#news .js-news-prev', {self: self}, self._handlePrevButton);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {

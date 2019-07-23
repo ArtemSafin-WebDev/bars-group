@@ -162,6 +162,7 @@ var GanttSlider = {
 		$lines: $(),
 		$items: $(),
 		$ctrl: $(),
+		$range: $(),
 		$itemClone: $(),
 		$typeClone: $()
 	},
@@ -169,7 +170,9 @@ var GanttSlider = {
 	_state: {
 		currentView: 'gantt',
 		groupedItems: [],
-		randomItems: []
+		randomItems: [],
+		maxScrollLeft: 0,
+		lastRangeValue: 0
 	},
 
 	_getGanttPattern: function (width, height) {
@@ -316,7 +319,9 @@ var GanttSlider = {
 			height: calcs.canvas.height
 		});
 
+
 		self._state.currentView = 'gantt';
+		self._updateScrollCalcs();
 	},
 
 	_switchToLinesView: function () {
@@ -383,7 +388,54 @@ var GanttSlider = {
 		});
 
 		self._state.currentView = 'lines';
+		self._updateScrollCalcs();
 	},
+
+	_updateScrollCalcs: function () {
+		var self = this;
+
+		// update maxScrollLeft
+		var maxScrollLeft = self._elems.$canvas.width() - $(window).width();
+		self._elems.$range.toggleClass('gantt-slider__range--hidden', maxScrollLeft < 0);
+		self._state.maxScrollLeft = maxScrollLeft;
+
+		// update handle position
+		self._updateHandlePosition();
+	},
+
+	_updateHandlePosition: function () {
+		var self = this;
+
+		var scrollLeft = self._elems.$scroll.scrollLeft();
+		var rangeValue = Math.round(1000 * scrollLeft / self._state.maxScrollLeft);
+		self._elems.$range.find('input').val(rangeValue).change();
+	},
+
+	_initRangeSlider: function () {
+		var self = this;
+
+		var $rangeslider = $();
+
+		self._elems.$range.find('input').rangeslider({
+			polyfill: false,
+			onInit: function () {
+				$rangeslider = self._elems.$range.find('.rangeslider');
+				$rangeslider.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
+			},
+			onSlide: _.throttle(function(position, value) {
+				if (value == self._state.lastRangeValue) return;
+				self._state.lastRangeValue = value;
+				
+				var isHandleActive = $rangeslider.hasClass('rangeslider--active');
+				if (!isHandleActive) return;
+
+				var scrollLeft = self._state.maxScrollLeft / 1000 * value; 
+				self._elems.$scroll.scrollLeft(scrollLeft);
+			}, 50)
+		});
+
+	},
+
 
 	_startVideoLoading: function () {
 		var self = this;
@@ -452,15 +504,23 @@ var GanttSlider = {
 		if ($video.length) $video[0].pause();
 	},
 
+	_handleSliderScroll: function (e) {
+		var self = e.data.self;
+
+		self._updateHandlePosition();
+	},
+
 	_bindUI: function () {
 		var self = this;
 
-		$('.gantt-slider__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
-		$('.gantt-slider__item').on('mouseover', {self: self}, self._handleMouseOver);
-		$('.gantt-slider__item').on('mouseout', {self: self}, self._handleMouseOut);
-		$('.gantt-slider__toggle').on('click', {self: self}, self._handleToggleButton);
+		self._elems.$scroll.on('scroll', {self: self}, _.throttle(self._handleSliderScroll, 50));
+		self._elems.$_.on('canplaythrough', '.gantt-slider__bg__video', {self: self}, self._handleCanPlayEvent);
+		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
+		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
+		self._elems.$_.on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
+		
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
@@ -478,11 +538,13 @@ var GanttSlider = {
 		self._elems.$lines = $_.find('.gantt-slider__line');
 		self._elems.$items = $_.find('.gantt-slider__item');
 		self._elems.$ctrl = $_.find('.gantt-slider__ctrl');
+		self._elems.$range = $_.find('.gantt-slider__range');
 
 		self._createElemsClones();
 		self._sortItemsByGroup();
 		self._sortItemsRandomly();
 		self._switchToGanttView();
+		self._initRangeSlider();
 
 		self._elems.$_.removeClass('gantt-slider--frozen --loading');
 
@@ -527,7 +589,7 @@ var SliderContent = {
 	_bindUI: function () {
 		var self = this;
 
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},	
 
 	init: function () {
@@ -860,7 +922,7 @@ var SliderDigits = {
 		$(document).on('click', '#slider-digits .js-slider-digits-next', {self: self}, self._handleNextClick);
 		$(document).on('touchstart', '.slider-digits__center', {self: self}, self._handleTouchStart);
 		$(document).on('touchmove', '.slider-digits__center', {self: self}, self._handleTouchMove);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
@@ -1028,7 +1090,7 @@ var Header = {
 
 		$(document).on('click', {self: self}, self._handleDocumentClick);
 		$(document).on('click', '.header__menu__item--more > a', {self: self}, self._handleMoreClick);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
@@ -1111,7 +1173,7 @@ var News = {
 
 		$(document).on('click', '#news .js-news-next', {self: self}, self._handleNextButton);
 		$(document).on('click', '#news .js-news-prev', {self: self}, self._handlePrevButton);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {

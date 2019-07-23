@@ -307,7 +307,7 @@ var SliderDigits = {
 		$(document).on('click', '#slider-digits .js-slider-digits-next', {self: self}, self._handleNextClick);
 		$(document).on('touchstart', '.slider-digits__center', {self: self}, self._handleTouchStart);
 		$(document).on('touchmove', '.slider-digits__center', {self: self}, self._handleTouchMove);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {

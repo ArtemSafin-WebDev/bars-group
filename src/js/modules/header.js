@@ -82,7 +82,7 @@ var Header = {
 
 		$(document).on('click', {self: self}, self._handleDocumentClick);
 		$(document).on('click', '.header__menu__item--more > a', {self: self}, self._handleMoreClick);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {

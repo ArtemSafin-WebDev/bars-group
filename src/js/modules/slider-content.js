@@ -35,7 +35,7 @@ var SliderContent = {
 	_bindUI: function () {
 		var self = this;
 
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},	
 
 	init: function () {
