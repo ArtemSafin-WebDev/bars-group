@@ -1712,15 +1712,6 @@ img {
     .article__date {
       font-size: 12px; } }
 
-.page__decor {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: .3; }
-
 .page__wrapper {
   overflow: hidden; }
 
@@ -1738,6 +1729,23 @@ img {
 
 .page__col-main {
   margin-left: 200px; }
+
+.page__decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .3; }
+
+.page__click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30; }
 
 .page__label {
   position: relative;
