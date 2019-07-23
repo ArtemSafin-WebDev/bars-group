@@ -2947,73 +2947,69 @@ img {
     left: 20px; } }
 
 @media all and (max-width: 1050px) {
-  .slider-digits {
-    margin-bottom: 70px; }
-    .slider-digits__label {
-      left: 0; }
-    .slider-digits__content {
-      margin: 0 -40px; }
-    .slider-digits__slider {
-      width: 100%; }
-    .slider-digits__text__desc {
-      display: none; }
-    .slider-digits__text__value {
-      margin-left: 0;
-      padding: 0 40px; }
-    .slider-digits__nums {
-      margin-left: -1px;
+  .slider-digits__label {
+    left: 0; }
+  .slider-digits__content {
+    margin: 0 -40px; }
+  .slider-digits__slider {
+    width: 100%; }
+  .slider-digits__text__desc {
+    display: none; }
+  .slider-digits__text__value {
+    margin-left: 0;
+    padding: 0 40px; }
+  .slider-digits__nums {
+    margin-left: -1px;
+    overflow: hidden; }
+    .slider-digits__nums__item {
+      visibility: visible !important; }
+  .slider-digits__about {
+    display: block;
+    margin-top: 25px; }
+    .slider-digits__about__list {
       overflow: hidden; }
-      .slider-digits__nums__item {
-        visibility: visible !important; }
-    .slider-digits__about {
-      display: block;
-      margin-top: 25px; }
-      .slider-digits__about__list {
-        overflow: hidden; }
-      .slider-digits__about__item {
-        -webkit-transition: opacity .4s;
-        transition: opacity .4s;
-        opacity: 0;
-        float: left;
-        width: 100%;
-        margin-left: -100%; }
-        .slider-digits__about__item:first-child {
-          margin-left: 0; }
-        .slider-digits__about__item._active {
-          opacity: 1; }
-      .slider-digits__about__title {
-        margin-bottom: 20px;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 1.35; }
-      .slider-digits__about__desc {
-        font-size: 14px;
-        line-height: 1.5;
-        color: rgba(0, 0, 0, 0.7); }
-    .slider-digits__buttons {
-      position: static;
-      float: right;
-      margin-top: 20px; } }
+    .slider-digits__about__item {
+      -webkit-transition: opacity .4s;
+      transition: opacity .4s;
+      opacity: 0;
+      float: left;
+      width: 100%;
+      margin-left: -100%; }
+      .slider-digits__about__item:first-child {
+        margin-left: 0; }
+      .slider-digits__about__item._active {
+        opacity: 1; }
+    .slider-digits__about__title {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.35; }
+    .slider-digits__about__desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(0, 0, 0, 0.7); }
+  .slider-digits__buttons {
+    position: static;
+    float: right;
+    margin-top: 20px; } }
 
 @media all and (max-width: 600px) {
-  .slider-digits {
-    margin-bottom: 70px; }
-    .slider-digits__content {
-      margin: 0 -20px; }
-    .slider-digits__slider {
-      height: 160px; }
-    .slider-digits__text__value {
-      padding: 0 20px;
-      font-size: 60px; }
-    .slider-digits__nums__item {
-      height: 160px;
-      line-height: 160px; }
-    .slider-digits__about__title {
-      margin-bottom: 15px;
-      font-size: 17px; }
-    .slider-digits__about__desc {
-      font-size: 12px;
-      line-height: 1.7; } }
+  .slider-digits__content {
+    margin: 0 -20px; }
+  .slider-digits__slider {
+    height: 160px; }
+  .slider-digits__text__value {
+    padding: 0 20px;
+    font-size: 60px; }
+  .slider-digits__nums__item {
+    height: 160px;
+    line-height: 160px; }
+  .slider-digits__about__title {
+    margin-bottom: 15px;
+    font-size: 17px; }
+  .slider-digits__about__desc {
+    font-size: 12px;
+    line-height: 1.7; } }
 
 @-webkit-keyframes imDigitsFadeOutLeft {
   0% {
