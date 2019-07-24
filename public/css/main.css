@@ -3006,7 +3006,9 @@ img {
     .slider-digits__about__desc {
       font-size: 14px;
       line-height: 1.5;
-      color: rgba(0, 0, 0, 0.7); } }
+      color: rgba(0, 0, 0, 0.7); }
+  .slider-digits__buttons {
+    margin-bottom: -20px; } }
 
 @media all and (max-width: 600px) {
   .slider-digits__content {
@@ -3120,8 +3122,8 @@ img {
 
 .slider-content {
   position: relative; }
-  .slider-content--has-wing .slider-content__ctrl {
-    right: 0; }
+  .slider-content__wrapper {
+    margin-right: calc(-1 * (100vw - 1520px)/2); }
   .slider-content__item {
     display: none;
     position: relative;
@@ -3160,33 +3162,44 @@ img {
     position: absolute;
     z-index: 10;
     bottom: 50px;
-    right: 60px; }
+    right: 0px; }
   .slider-content .owl-carousel {
     display: block; }
 
+@media all and (min-width: 2000px) {
+  .slider-content__wrapper {
+    margin-right: 0; }
+  .slider-content__ctrl {
+    right: 60px; } }
+
+@media all and (max-width: 1600px) {
+  .slider-content__wrapper {
+    margin-right: -40px; }
+  .slider-content__ctrl {
+    right: 20px; } }
+
 @media all and (max-width: 1300px) {
-  .slider-content {
+  .slider-content__wrapper {
     margin: 0 -40px; }
-    .slider-content__desc {
-      padding: 40px; }
-    .slider-content__date {
-      margin-top: 0; }
-    .slider-content__ctrl {
-      right: 40px;
-      bottom: 40px; } }
+  .slider-content__desc {
+    padding: 40px; }
+  .slider-content__date {
+    margin-top: 0; }
+  .slider-content__ctrl {
+    bottom: 40px;
+    right: 0; } }
 
 @media all and (max-width: 600px) {
-  .slider-content {
+  .slider-content__wrapper {
     margin: 0 -20px; }
-    .slider-content__h1 {
-      font-size: 26px; }
-    .slider-content__desc {
-      padding: 20px; }
-    .slider-content__date {
-      margin-top: 10px; }
-    .slider-content__ctrl {
-      right: 20px;
-      bottom: 20px; } }
+  .slider-content__h1 {
+    font-size: 26px; }
+  .slider-content__desc {
+    padding: 20px; }
+  .slider-content__date {
+    margin-top: 10px; }
+  .slider-content__ctrl {
+    right: 20px; } }
 
 .slider-tabs {
   position: relative; }
@@ -3315,7 +3328,7 @@ img {
 
 .news__slider {
   margin-left: 200px;
-  width: 5000px;
+  margin-right: calc(-1 * (100vw - 1520px)/2);
   min-height: 360px;
   background: #eff4fd; }
 
@@ -3372,6 +3385,10 @@ img {
   line-height: 5.3em;
   padding-bottom: 0;
   padding-top: 0; }
+
+@media all and (max-width: 1600px) {
+  .news__slider {
+    margin-right: -40px; } }
 
 @media all and (max-width: 1300px) {
   .news__label {

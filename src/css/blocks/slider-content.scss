@@ -3,10 +3,8 @@
 
 	position: relative;
 
-	&--has-wing {
-		.slider-content__ctrl {
-			right: 0;
-		}
+	&__wrapper {
+		margin-right: calc(-1 * (100vw - 1520px)/2);
 	}
 
 	&__item {
@@ -58,7 +56,7 @@
 		position: absolute;
 		z-index: 10;
 		bottom: 50px;
-		right: 60px;
+		right: 0px;
 	}
 
 	.owl-carousel {
@@ -67,11 +65,37 @@
 
 }
 
+@media all and (min-width: 2000px) {
+	.slider-content {
+		&__wrapper {
+			margin-right: 0;
+		}
+
+		&__ctrl {
+			right: 60px;
+		}
+	}
+}
+
+@media all and (max-width: 1600px) {
+	.slider-content {
+		&__wrapper {
+			margin-right: -40px;
+		}
+
+		&__ctrl {
+			right: 20px;
+		}
+	}
+}
+
 @media all and (max-width: 1300px) {
 
 	.slider-content {
 
-		margin: 0 -40px;
+		&__wrapper {
+			margin: 0 -40px;
+		}
 
 		&__desc {
 			padding: 40px;
@@ -82,10 +106,10 @@
 		}
 
 		&__ctrl {
-			right: 40px;
 			bottom: 40px;
+			right: 0;
 		}
-		
+
 	}
 }
 
@@ -93,7 +117,9 @@
 
 	.slider-content {
 
-		margin: 0 -20px;
+		&__wrapper {
+			margin: 0 -20px;
+		}
 
 		&__h1 {
 			font-size: 26px;
@@ -109,7 +135,6 @@
 
 		&__ctrl {
 			right: 20px;
-			bottom: 20px;
 		}
 		
 	}

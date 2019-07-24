@@ -16,7 +16,7 @@
 
 	&__slider {
 		margin-left: 200px;
-		width: 5000px;
+		margin-right: calc(-1 * (100vw - 1520px)/2);
 		min-height: 360px;
 		background: #eff4fd;
 	}
@@ -87,6 +87,17 @@
 		padding-bottom: 0;
 		padding-top: 0;
 	}
+}
+
+@media all and (max-width: 1600px) {
+
+	.news {
+
+		&__slider {
+			margin-right: -40px;
+		}
+	}
+
 }
 
 @media all and (max-width: 1300px) {

@@ -7,30 +7,9 @@ var SliderContent = {
 		$slider: $()
 	},
 
-	_setSliderWidth: function () {
-		var self = this;
-
-		var MIN_WINDOW_WIDTH = 1300;
-		var MAX_WING_WIDTH = 200;
-
-		var windowWidth = $(window).width();
-		var sectionWidth = self._elems.$_.width()
-		var sectionEnd = self._elems.$_.offset().left + sectionWidth;
-		var wingWidth = windowWidth - sectionEnd;
-
-		if (wingWidth > MAX_WING_WIDTH || windowWidth < MIN_WINDOW_WIDTH) {
-			self._elems.$wrapper.css({ 'margin-right': 0 });
-			self._elems.$_.removeClass('slider-content--has-wing');
-		} else {
-			self._elems.$wrapper.css({ 'margin-right': -wingWidth });
-			self._elems.$_.addClass('slider-content--has-wing');
-		}
-	},
-
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
-		self._setSliderWidth();
 		self._elems.$slider.trigger('refresh.owl.carousel');
 	},
 
@@ -69,8 +48,6 @@ var SliderContent = {
 		self._elems.$_ = $_;
 		self._elems.$wrapper = $_.find('.slider-content__wrapper');
 		self._elems.$slider = $_.find('.owl-carousel');
-
-		self._setSliderWidth();
 
 		self._elems.$slider.owlCarousel({
 		    items: 1,
