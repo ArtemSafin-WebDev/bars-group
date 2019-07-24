@@ -834,7 +834,7 @@ template {
 .icon-checked:before, .icheckbox:before {
   content: "\e91b"; }
 
-.clearfix::after, .nav-video::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .history__cities__list::after {
+.clearfix::after, .nav-video::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .news__center::after, .history__cities__list::after {
   display: block;
   clear: both;
   content: ""; }
@@ -1066,8 +1066,11 @@ img {
   min-width: 200px;
   padding: 22px 30px;
   padding-right: 87px;
-  text-align: left;
   background: #59b4e6;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
   color: #fff !important;
   overflow: hidden; }
   .button-default:before {
@@ -1086,10 +1089,7 @@ img {
   .button-default__text {
     position: relative;
     display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.45; }
+    vertical-align: middle; }
   .button-default__icon {
     position: absolute;
     top: 50%;
@@ -1099,18 +1099,16 @@ img {
 @media all and (max-width: 1050px) {
   .button-default {
     padding-left: 25px;
-    padding-right: 75px; }
-    .button-default__text {
-      font-size: 16px; }
+    padding-right: 75px;
+    font-size: 16px; }
     .button-default__icon {
       right: 5px; } }
 
 @media all and (max-width: 600px) {
   .button-default {
     padding: 18px 20px;
-    padding-right: 65px; }
-    .button-default__text {
-      font-size: 12px; }
+    padding-right: 65px;
+    font-size: 12px; }
     .button-default__icon {
       right: 0; } }
 
@@ -2923,9 +2921,8 @@ img {
   left: 0; }
 
 .slider-digits__buttons {
-  position: absolute;
-  right: 0;
-  bottom: -85px; }
+  float: right;
+  margin-top: 20px; }
 
 .slider-digits__about {
   display: none; }
@@ -3009,9 +3006,7 @@ img {
     .slider-digits__about__desc {
       font-size: 14px;
       line-height: 1.5;
-      color: rgba(0, 0, 0, 0.7); }
-  .slider-digits__buttons {
-    bottom: -50px; } }
+      color: rgba(0, 0, 0, 0.7); } }
 
 @media all and (max-width: 600px) {
   .slider-digits__content {
@@ -3313,12 +3308,6 @@ img {
 .news__center {
   position: relative; }
 
-.news__ctrl {
-  position: absolute;
-  z-index: 10;
-  right: 0;
-  bottom: 60px; }
-
 .news__label {
   position: absolute;
   top: 27px;
@@ -3329,6 +3318,12 @@ img {
   width: 5000px;
   min-height: 360px;
   background: #eff4fd; }
+
+.news__ctrl {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  top: 260px; }
 
 .news__list {
   display: block;
@@ -3369,6 +3364,15 @@ img {
   line-height: 1.7;
   opacity: 0; }
 
+.news__btn-more {
+  float: right;
+  min-width: 290px;
+  margin-top: -25px;
+  height: 5.3em;
+  line-height: 5.3em;
+  padding-bottom: 0;
+  padding-top: 0; }
+
 @media all and (max-width: 1300px) {
   .news__label {
     top: -20px;
@@ -3383,11 +3387,17 @@ img {
     padding-left: 40px;
     width: 450px; }
   .news__label {
-    left: 0; } }
+    left: 0; }
+  .news__btn-more {
+    height: 4.5em;
+    line-height: 4.5em;
+    min-width: 240px; } }
 
 @media all and (max-width: 600px) {
   .news__slider {
     min-height: 320px; }
+  .news__ctrl {
+    top: 220px; }
   .news__item {
     width: 320px; }
     .news__item--active .news__title {
@@ -3395,7 +3405,9 @@ img {
   .news__title {
     font-size: 14px; }
   .news__desc {
-    font-size: 12px; } }
+    font-size: 12px; }
+  .news__btn-more {
+    min-width: 180px; } }
 
 .press-center {
   background: #eff4fd; }

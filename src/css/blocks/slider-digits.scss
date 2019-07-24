@@ -144,9 +144,8 @@
 	}
 
 	&__buttons {
-		position: absolute;
-		right: 0;
-		bottom: -85px;
+		float: right;
+		margin-top: 20px;
 	}
 
 	&__about {
@@ -270,10 +269,6 @@
 			}
 		}
 
-		&__buttons {
-			bottom: -50px;
-		}
-
 	}
 }
 
@@ -320,9 +315,6 @@
 
 	}
 }
-
-
-
 
 @keyframes imDigitsFadeOutLeft {
 	0% {
