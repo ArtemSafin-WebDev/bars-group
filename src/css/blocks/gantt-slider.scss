@@ -251,7 +251,7 @@
 	&__ctrl {
 		@extend .clearfix;
 		position: relative;
-		z-index: 20;
+		z-index: 50;
 		margin-top: -20px;
 		height: 40px;
 	}
@@ -407,6 +407,10 @@
 					}
 				}
 			}
+		}
+
+		&__canvas {
+			height: 410px;
 		}
 
 		&__label {
