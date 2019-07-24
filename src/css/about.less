@@ -313,6 +313,12 @@ body {
     &__value {
       display: flex;
       font-size: 325px;
+      span {
+        margin-left: -1px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
     }
   }
   &-values {
@@ -467,33 +473,108 @@ body {
   }
 }
 
-@font-face {
-  font-family: 'icomoon';
-  src:  url('../fonts/digits/icomoon.eot?xeugpo');
-  src:  url('../fonts/digits/icomoon.eot?xeugpo#iefix') format('embedded-opentype'),
-  url('../fonts/digits/icomoon.ttf?xeugpo') format('truetype'),
-  url('../fonts/digits/icomoon.woff?xeugpo') format('woff'),
-  url('../fonts/digits/icomoon.svg?xeugpo#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="icon-digit-"], [class*=" icon-digit-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-digit-0:before {
-  content: "\e900";
-  color: #fff;
+.iHistory {
+  .page {
+    &__center {
+      padding: 50px 0;
+    }
+  }
+  &-ruler {
+    margin-bottom: 90px;
+    display: flex;
+    justify-content: space-between;
+    &__left, &__right {
+      width: 85px;
+      font-size: 26px;
+      line-height: 36px;
+    }
+    &__left {
+      text-align: left;
+    }
+    &__right {
+      text-align: right;
+    }
+    &__line {
+      position: relative;
+      width: calc(~"100% - 170px");
+      height: 80px;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        width: 100%;
+        height: 1px;
+        background: rgba(110,127,149,0.98);
+      }
+    }
+    &__item {
+      min-width: 120px;
+      height: 80px;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 10px;
+        background: rgba(110,127,149,0.98);
+        left: 50%;
+        top: 21px;
+      }
+      &--active {
+        a {
+          background: #DCE7FC;
+          color: #000000;
+        }
+      }
+      a {
+        display: flex;
+        align-items: center;
+        width: 140px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 24px;
+        position: relative;
+        top: 40px;
+        left: 50%;
+        padding: 0 8px;
+        margin-left: -8px;
+      }
+    }
+  }
+  &-events {
+    min-height: 625px;
+  }
+  &-event {
+    display: flex;
+    justify-content: space-between;
+    &__left, &__right {
+      width: 50%;
+    }
+    &__left {
+      padding: 36px 0;
+    }
+    &__title {
+      font-size: 34px;
+      font-weight: bold;
+      line-height: 46px;
+      margin-bottom: 24px;
+    }
+    &__anons {
+      color: #6F8FB9;
+      font-size: 22px;
+      line-height: 31px;
+      margin-bottom: 20px;
+    }
+    &__text {
+      font-size: 18px;
+      line-height: 25px;
+    }
+    &__image {
+      max-width: 100%;
+      max-height: 425px;
+      width: auto !important;
+      height: auto;
+      float: right;
+    }
+  }
 }

@@ -1894,14 +1894,14 @@ $(document).ready(function(){
 		cities();
 	});
 
-	var owl = $('.iDigits .owl-carousel').owlCarousel({
+	var owlDigits = $('.iDigits .owl-carousel').owlCarousel({
 		nav: true,
 		dots: false,
 		items: 1,
 		auto: false
 	});
 
-	owl.on('changed.owl.carousel', function(event){
+	owlDigits.on('changed.owl.carousel', function(event){
 		$('.iDigits-values__item').removeClass($('.iDigits-values').data('active'));
 		$('.iDigits-values__item').eq(event.item.index).addClass($('.iDigits-values').data('active'));
 	});
@@ -1915,6 +1915,33 @@ $(document).ready(function(){
 
 		$('.iDigits .owl-carousel').trigger('to.owl.carousel', $(this).index());
 	});
+
+	var carouselHistoryRuler = $('.iHistory-ruler__line .owl-carousel');
+	var owlHistoryRuler = $('.iHistory-ruler__line .owl-carousel').owlCarousel({
+		nav: false,
+		dots: false,
+		items: Math.min(14, carouselHistoryRuler.data('count')),
+		auto: false
+	});
+
+	var owlHistory = $('.iHistory-events .owl-carousel').owlCarousel({
+		nav: false,
+		dots: false,
+		items: 1,
+		auto: false,
+		//animateOut: 'slideOutDown',
+		//animateIn: 'flipInX',
+	});
+
+	$('.iHistory-ruler__item a').click(function(event){
+		event.preventDefault();
+
+		$('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+
+		$(this).parent().addClass('iHistory-ruler__item--active');
+
+		$('.iHistory-events .owl-carousel').trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
+	})
 });
 var App = {
 	
