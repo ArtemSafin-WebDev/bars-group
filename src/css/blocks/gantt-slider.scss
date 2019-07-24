@@ -136,7 +136,7 @@
 	}
 
 	&__item {
-		transition: all .5s ease-out;
+		transition: all .5s ease-out, padding .2s ease-out;
 		position: absolute;
 		width: 410px;
 		height: 160px;
@@ -213,7 +213,7 @@
 
 	&__h1,
 	&__desc {
-		transition: font-size .2s ease-out, color .2s ease-out;
+		transition: all .2s ease-out;
 		position: relative;
 		z-index: 2;
 		overflow: hidden;
@@ -244,7 +244,7 @@
 		max-width: 75%;
 		max-height: 3em;
 		font-size: 14px;
-		line-height: 1.5;
+		line-height: 1.7;
 		color: #6f8fb9;
 	}
 
@@ -449,7 +449,7 @@
 		}
 		
 		&__desc {
-			font-size: 11px;
+			font-size: 12px;
 		}
 
 		&__toggle {

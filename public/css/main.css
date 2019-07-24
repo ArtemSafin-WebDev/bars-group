@@ -2562,8 +2562,8 @@ img {
     width: 200px;
     font-size: 0; }
   .gantt-slider__item {
-    -webkit-transition: all .5s ease-out;
-    transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out, padding .2s ease-out;
+    transition: all .5s ease-out, padding .2s ease-out;
     position: absolute;
     width: 410px;
     height: 160px;
@@ -2623,8 +2623,8 @@ img {
       .gantt-slider__bg__video.--active {
         display: block; }
   .gantt-slider__h1, .gantt-slider__desc {
-    -webkit-transition: font-size .2s ease-out, color .2s ease-out;
-    transition: font-size .2s ease-out, color .2s ease-out;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
     position: relative;
     z-index: 2;
     overflow: hidden;
@@ -2651,7 +2651,7 @@ img {
     max-width: 75%;
     max-height: 3em;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.7;
     color: #6f8fb9; }
   .gantt-slider__ctrl {
     position: relative;
@@ -2775,7 +2775,7 @@ img {
     .gantt-slider__h1__right {
       top: 0; }
   .gantt-slider__desc {
-    font-size: 11px; }
+    font-size: 12px; }
   .gantt-slider__toggle {
     width: 34px;
     height: 34px; }
@@ -3350,10 +3350,7 @@ img {
 
 .news__date {
   margin-top: -10px;
-  margin-bottom: 20px;
-  display: block;
-  font-size: 14px;
-  color: #6f8fb9; }
+  margin-bottom: 20px; }
 
 .news__title {
   -webkit-transition: font-size .3s ease-out;
@@ -3369,7 +3366,7 @@ img {
   -webkit-transition: opacity .3s ease-out;
   transition: opacity .3s ease-out;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.7;
   opacity: 0; }
 
 @media all and (max-width: 1300px) {
@@ -3378,6 +3375,27 @@ img {
     left: 20px; }
   .news__slider {
     margin-left: 0; } }
+
+@media all and (max-width: 1050px) {
+  .news__slider {
+    margin-left: -40px; }
+  .news__item {
+    padding-left: 40px;
+    width: 450px; }
+  .news__label {
+    left: 0; } }
+
+@media all and (max-width: 600px) {
+  .news__slider {
+    min-height: 320px; }
+  .news__item {
+    width: 320px; }
+    .news__item--active .news__title {
+      font-size: 17px; }
+  .news__title {
+    font-size: 14px; }
+  .news__desc {
+    font-size: 12px; } }
 
 .press-center {
   background: #eff4fd; }

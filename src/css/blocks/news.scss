@@ -54,9 +54,6 @@
 	&__date {
 		margin-top: -10px;
 		margin-bottom: 20px;
-		display: block;
-		font-size: 14px;
-		color: #6f8fb9;
 	}
 
 	&__title {
@@ -74,7 +71,7 @@
 	&__desc {
 		transition: opacity .3s ease-out;
 		font-size: 14px;
-		line-height: 1.5;
+		line-height: 1.7;
 		opacity: 0;
 	}
 }
@@ -91,5 +88,54 @@
 		&__slider {
 			margin-left: 0;
 		}
+	}
+}
+
+@media all and (max-width: 1050px) {
+
+	.news {
+		&__slider {
+			margin-left: -40px;
+		}
+
+		&__item {
+			padding-left: 40px;
+			width: 450px;
+		}
+
+		&__label {
+			left: 0;
+		}
+	}
+
+}
+
+@media all and (max-width: 600px) {
+
+	.news {
+
+		&__slider {
+			min-height: 320px;
+		}
+
+		&__item {
+
+			width: 320px;
+
+			&--active {
+				.news__title {
+					font-size: 17px;
+				}
+			}
+		}
+
+		&__title {
+			font-size: 14px;
+		}
+
+		&__desc {
+			font-size: 12px;
+		}
+
 	}
 }

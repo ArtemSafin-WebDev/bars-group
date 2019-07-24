@@ -1170,12 +1170,21 @@ var News = {
 			.eq(nextIndex).addClass(activeClass);
 	},
 
+	_handleWindowResize: function (e) {
+		var self = e.data.self;
+
+		setTimeout(function () {
+			self._elems.$slider.trigger('refresh.owl.carousel');
+		}, 500);
+	},
+
 	_bindUI: function () {
 		var self = this;
 
 		self._elems.$_.on('click', '.js-news-next', {self: self}, self._handleNextButton);
 		self._elems.$_.on('click', '.js-news-prev', {self: self}, self._handlePrevButton);
 		self._elems.$_.on('changed.owl.carousel', {self: self}, self._handleChangedEvent);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
@@ -1192,8 +1201,6 @@ var News = {
 
 		self._elems.$slider.owlCarousel({
 		    autoWidth: true,
-		    touchDrag: false,
-		    mouseDrag: false,
 		    loop: true
 		});	
 	}
