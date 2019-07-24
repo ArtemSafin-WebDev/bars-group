@@ -2534,8 +2534,8 @@ img {
     text-transform: uppercase;
     color: #ffffff; }
   .gantt-slider__line {
-    -webkit-transition-delay: .2s;
-            transition-delay: .2s;
+    -webkit-transition-delay: .5s;
+            transition-delay: .5s;
     position: absolute;
     border-top: 1px solid #d4ddea;
     margin-top: 3px; }
@@ -2556,14 +2556,14 @@ img {
   .gantt-slider__item--red .gantt-slider__dash {
     background: #c32118; }
   .gantt-slider__type {
-    -webkit-transition-delay: .2s;
-            transition-delay: .2s;
+    -webkit-transition-delay: .5s;
+            transition-delay: .5s;
     position: absolute;
     width: 200px;
     font-size: 0; }
   .gantt-slider__item {
-    -webkit-transition: all .2s ease-out, visibility 0s;
-    transition: all .2s ease-out, visibility 0s;
+    -webkit-transition: all .5s ease-out;
+    transition: all .5s ease-out;
     position: absolute;
     width: 410px;
     height: 160px;

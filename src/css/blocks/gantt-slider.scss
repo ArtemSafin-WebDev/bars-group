@@ -90,7 +90,7 @@
 	}
 
 	&__line {
-		transition-delay: .2s;
+		transition-delay: .5s;
 		position: absolute;
 		border-top: 1px solid #d4ddea;
 		margin-top: 3px;
@@ -129,14 +129,14 @@
 	}
 
 	&__type {
-		transition-delay: .2s;
+		transition-delay: .5s;
 		position: absolute;
 		width: 200px;
 		font-size: 0;
 	}
 
 	&__item {
-		transition: all .2s ease-out, visibility 0s;
+		transition: all .5s ease-out;
 		position: absolute;
 		width: 410px;
 		height: 160px;
