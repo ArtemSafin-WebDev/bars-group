@@ -2,6 +2,14 @@
 
 var Overview = {
 
+	_elems: {
+		$_: $(),
+		$bgItems: $(),
+		$aboutItems: $(),
+		$navItems: $(),
+		$navBodies: $()
+	},
+
 	_state: {
 		isUserActivityHandled: false,
 		currIndex: 0
@@ -10,7 +18,7 @@ var Overview = {
 	_startVideoLoading: function () {
 		var self = this;
 
-		$('#overview video').each(function () {
+		self._elems.$_.find('video').each(function () {
 			$(this)[0].load();
 		});
 	},
@@ -43,25 +51,19 @@ var Overview = {
 
 		if (nextIndex == currIndex) return;
 
-		var $_ = $('#overview');
-
 		// set active nav item
-		var $navItems = $_.find('.overview__nav__item');
-		$navItems.eq(currIndex).removeClass('--active');
-		$navItems.eq(nextIndex).addClass('--active');
+		self._elems.$navItems.eq(currIndex).removeClass('--active');
+		self._elems.$navItems.eq(nextIndex).addClass('--active');
 
 		// set active about item
-		var $aboutItems = $_.find('.overview__about__item');
-		$aboutItems.eq(currIndex).removeClass('--active');
-		$aboutItems.eq(nextIndex).addClass('--active');
+		self._elems.$aboutItems.eq(currIndex).removeClass('--active');
+		self._elems.$aboutItems.eq(nextIndex).addClass('--active');
 
 		// collapse bodies
-		var $navBodies = $_.find('.overview__nav__body');
-		$navBodies.eq(currIndex).collapse('hide');
-		$navBodies.eq(nextIndex).collapse('show');
+		self._elems.$navBodies.eq(currIndex).collapse('hide');
+		self._elems.$navBodies.eq(nextIndex).collapse('show');
 
 		// set active bg item
-		var $bgItems = $_.find('.overview__bg__item');
 		if (nextIndex > currIndex) {
 			// slide down
 			var nextStartPos = -80;
@@ -72,43 +74,53 @@ var Overview = {
 			var currEndPos = -80;
 		}
 
-		$bgItems.eq(nextIndex).removeClass('_animate').css({
-			transform: 'translateY(' + nextStartPos + 'px)',
-			opacity: 0
-		});
-
-		setTimeout(function () {
-
-			$bgItems.eq(currIndex).css({
-				transform: 'translateY(' + currEndPos + 'px)',
+		self._elems.$bgItems.eq(nextIndex)
+			.addClass('overview__bg__item--frozen')
+			.css({
+				transform: 'translateY(' + nextStartPos + 'px)',
 				opacity: 0
 			});
 
-			$bgItems.eq(nextIndex).addClass('_animate').css({
-				transform: 'translateY(-40px)',
-				opacity: 1
-			});
+		setTimeout(function () {
+
+			self._elems.$bgItems.eq(currIndex)
+				.css({
+					transform: 'translateY(' + currEndPos + 'px)',
+					opacity: 0
+				});
+
+			self._elems.$bgItems.eq(nextIndex)
+				.removeClass('overview__bg__item--frozen')
+				.css({
+					transform: 'translateY(-40px)',
+					opacity: 1
+				});
 
 		}, 20);
 
-		
-
 		self._state.currIndex = nextIndex;
-		
 	},
 
 	_bindUI: function () {
 		var self = this;
 
 		$('.overview__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$_.on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
-		$(document).on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#overview').length == 0 ) return;
+		var $_ = $('#overview');
+
+		if ( !$_.length ) return;
+
+		self._elems.$_ = $_;
+		self._elems.$bgItems = self._elems.$_.find('.overview__bg__item');
+		self._elems.$aboutItems = self._elems.$_.find('.overview__about__item');
+		self._elems.$navItems = self._elems.$_.find('.overview__nav__item');
+		self._elems.$navBodies = self._elems.$_.find('.overview__nav__body');
 
 		self._bindUI();
 

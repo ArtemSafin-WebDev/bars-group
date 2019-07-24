@@ -2247,6 +2247,8 @@ img {
     height: 100%;
     overflow: hidden; }
     .overview__bg__item {
+      -webkit-transition: all 1s;
+      transition: all 1s;
       position: absolute;
       height: 120%;
       top: 0;
@@ -2257,11 +2259,9 @@ img {
         -webkit-transform: translateY(-40px);
                 transform: translateY(-40px);
         opacity: 1; }
-      .overview__bg__item._animate {
-        -webkit-transition: opacity .3s, -webkit-transform .3s;
-        transition: opacity .3s, -webkit-transform .3s;
-        transition: transform .3s, opacity .3s;
-        transition: transform .3s, opacity .3s, -webkit-transform .3s; }
+      .overview__bg__item--frozen {
+        -webkit-transition-duration: 0s;
+                transition-duration: 0s; }
     .overview__bg__image {
       position: absolute;
       top: 0;

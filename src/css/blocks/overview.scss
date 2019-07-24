@@ -19,6 +19,7 @@
 		overflow: hidden;
 		
 		&__item {
+			transition: all 1s;
 			position: absolute;
 			height: 120%;
 			top: 0;
@@ -31,8 +32,8 @@
 				opacity: 1;
 			}
 
-			&._animate {
-				transition: transform .3s, opacity .3s;
+			&--frozen {
+				transition-duration: 0s;
 			}
 		}
 
