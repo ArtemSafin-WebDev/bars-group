@@ -9,7 +9,6 @@
 /*! de-style.css v1.0.5 | MIT License | https://github.com/nicolas-cusan/destyle.css */
 /* Reset box-model
    ========================================================================== */
-@import url(../../bower_components/slick-carousel/slick/slick.css);
 @import url(../../bower_components/owl.carousel/dist/assets/owl.carousel.css);
 @import url(../../bower_components/owl.carousel/dist/assets/owl.theme.default.css);
 @import url(../../bower_components/swiper/dist/css/swiper.css);
@@ -3126,7 +3125,7 @@ img {
 
 .slider-content {
   position: relative; }
-  .slider-content.--has-wing .slider-content__ctrl {
+  .slider-content--has-wing .slider-content__ctrl {
     right: 0; }
   .slider-content__item {
     display: none;
@@ -3167,6 +3166,8 @@ img {
     z-index: 10;
     bottom: 50px;
     right: 60px; }
+  .slider-content .owl-carousel {
+    display: block; }
 
 @media all and (max-width: 1300px) {
   .slider-content {

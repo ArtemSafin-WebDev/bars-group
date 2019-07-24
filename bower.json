@@ -19,7 +19,6 @@
     "objectFitPolyfill": "https://github.com/constancecchen/object-fit-polyfill.git#^2.2.0",
     "bootstrap": "^4.3.1",
     "rangeslider.js": "^2.3.2",
-    "slick-carousel": "https://github.com/kenwheeler/slick.git#1.8.1",
     "perfect-scrollbar": "https://github.com/utatti/perfect-scrollbar.git#v1.4.0",
     "autosize": "https://github.com/jackmoore/autosize.git#^4.0.2",
     "iCheck": "https://github.com/fronteed/icheck.git#1.0.2",

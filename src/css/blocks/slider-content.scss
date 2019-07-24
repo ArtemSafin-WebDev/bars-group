@@ -3,7 +3,7 @@
 
 	position: relative;
 
-	&.--has-wing {
+	&--has-wing {
 		.slider-content__ctrl {
 			right: 0;
 		}
@@ -59,6 +59,10 @@
 		z-index: 10;
 		bottom: 50px;
 		right: 60px;
+	}
+
+	.owl-carousel {
+		display: block;
 	}
 
 }
