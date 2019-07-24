@@ -3,9 +3,33 @@
 @middle: 	~"screen and (max-width: 768px)";
 @small: 	~"screen and (max-width: 576px)";
 
-@iScrollWidth: 1700px;
+@iScrollWidth: 1600px;
 @iOffsetTop: 155px;
 @iOffsetBottom: 155px;
+@iPageLabelLeft: 200px;
+@iPageInnerPadding: 40px;
+
+body {
+  &.with-scrollbar {
+    .iScroll {
+      &__item {
+        min-width: calc(~'100vw - 17px');
+      }
+    }
+  }
+}
+
+.page-center-h100 {
+  min-height: calc(~'100vh - @{iOffsetTop}');
+  height: 100%;
+}
+.header {
+  .page {
+    &__center {
+      //background: #cc3829;
+    }
+  }
+}
 
 .about {
   &-slider {
@@ -13,13 +37,15 @@
     top: 0;
     left: 0;
     height: 100vh;
+    min-height: 750px;
     max-width: 100vw;
     width: 100%;
     overflow: hidden;
     .gantt {
       &-slider {
         &__crop {
-          height: 100vh;
+          min-height: 100vh;
+          height: 100%;
           &:before, &:after {
             display: none;
           }
@@ -67,30 +93,47 @@
     position: relative;
     min-width: 100vw;
     width: @iScrollWidth;
-    height: calc(~'100vh - @{iOffsetTop}');
+    @media screen and (max-width: @iScrollWidth){
+      min-width: @iScrollWidth;
+    }
+    //min-height: calc(~'100vh - @{iOffsetTop}');
+    //height: 100%;
     margin-top: @iOffsetTop;
   }
   .page {
     &__center {
       position: relative;
+      //background: rgba(245, 109, 103, 0.36);
+      .page-center-h100;
+    }
+    &__inner {
+      position: relative;
+      .page-center-h100;
     }
   }
 }
 
 .iStart {
   position: relative;
+  &__img {
+    position: absolute;
+    top: 30px;
+    left: @iPageInnerPadding + @iPageLabelLeft + 100px;
+  }
   &__title {
     position: absolute;
-    bottom: 120px+@iOffsetBottom;
-    left: 200px;
+    top: 45%;
+    left: @iPageLabelLeft + @iPageInnerPadding;
+    width: 45%;
     font-size: 50px;
     font-weight: bold;
     line-height: 58px;
   }
   &__subtitle {
     position: absolute;
-    bottom: 25px+@iOffsetBottom;
-    right: 0;
+    top: 72%;
+    left: 50%;
+    max-width: 455px;
     font-size: 18px;
     line-height: 30px;
   }
@@ -107,16 +150,20 @@
     height: 100%;
   }
   &__pretitle {
-    margin-left: 200px;
+    margin-top: 30px;
+    margin-left: @iPageLabelLeft;
+    max-width: 455px;
     color: #59B4E6;
     font-weight: bold;
     font-size: 30px;
   }
   &__title {
     position: absolute;
-    top: 150px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 45px;
     width: 75%;
+    max-width: 1073px;
     font-weight: bold;
     font-size: 50px;
   }
@@ -141,7 +188,7 @@
   &__title {
     position: absolute;
     top: 25px;
-    left: 200px + 40px;
+    left: @iPageLabelLeft + @iPageInnerPadding;
     font-size: 50px;
     font-weight: bold;
   }
@@ -150,9 +197,14 @@
     top: 0;
     width: 100%;
     height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
   }
   &__item {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    opacity: 0;
     display: flex;
     align-items: center;
     color: #ffffff;
@@ -164,6 +216,12 @@
     background-size: cover;
     background-position: center;
     font-weight: bold;
+    transition: 0.3s ease-out;
+    &--active {
+      opacity: 1;
+      transform: scale(1);
+      transition: 0.3s ease-in;
+    }
     &:after {
       content: '';
       position: absolute;
@@ -233,6 +291,89 @@
     &__desc {
       color: #6F8FB9;
       font-size: 14px;
+    }
+  }
+}
+
+.iDigits {
+  .page__center {
+    background: transparent;
+  }
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 100px 0 100px @iPageLabelLeft;
+    &__title {
+      display: flex;
+      align-items: center;
+      font-size: 50px;
+      font-weight: bold;
+      line-height: 58px;
+    }
+    &__value {
+      display: flex;
+      font-size: 325px;
+    }
+  }
+  &-values {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #59B4E6;
+    &__item {
+      padding-top: 25px;
+      cursor: pointer;
+      font-size: 80px;
+      font-weight: bold;
+      line-height: 109px;
+      color: #DCE7FC;
+      transition: 0.3s ease-out;
+      &--active {
+        border-top: 2px solid #59B4E6;
+        color: #9AD1EF;
+        transition: 0.3s ease-in;
+      }
+    }
+  }
+  .owl {
+    &-nav {
+      position: absolute;
+      bottom: 25px;
+      right: 0;
+      button {
+        &.owl {
+          &-prev, &-next {
+            width: 35px;
+            height: 35px;
+            border-radius: 100%;
+            background: #EFF4FD;
+            color: #6E7F95;
+            font-family: icomoon!important;
+            &.disabled {
+              opacity: 0.5;
+              cursor: default;
+            }
+            span {
+              display: none;
+            }
+            &:before {
+              position: relative;
+              top: -2px;
+              font-size: 14px;
+            }
+          }
+          &-prev {
+            &:before {
+              content: '\e904';
+            }
+          }
+          &-next {
+            margin-left: 5px;
+            &:before {
+              content: '\e905';
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -324,4 +465,35 @@
       width: 100%;
     }
   }
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/digits/icomoon.eot?xeugpo');
+  src:  url('../fonts/digits/icomoon.eot?xeugpo#iefix') format('embedded-opentype'),
+  url('../fonts/digits/icomoon.ttf?xeugpo') format('truetype'),
+  url('../fonts/digits/icomoon.woff?xeugpo') format('woff'),
+  url('../fonts/digits/icomoon.svg?xeugpo#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-digit-"], [class*=" icon-digit-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-digit-0:before {
+  content: "\e900";
+  color: #fff;
 }

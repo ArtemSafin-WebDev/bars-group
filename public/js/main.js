@@ -1724,8 +1724,6 @@ var AboutSlider = {
 				var isHandleActive = $range.find('.rangeslider').hasClass('rangeslider--active');
 				if (!isHandleActive) return;
 
-				console.log($('#about-slider .iScroll').width());
-
 				self._state.maxScrollLeft = $('#about-slider .iScroll').width() - $('#about-slider .iScroll').width() / $('#about-slider .iScroll').children().length;
 				var scrollLeft = self._state.maxScrollLeft / 1000 * value;
 				$('#about-slider .gantt-slider__scroll').scrollLeft(scrollLeft);
@@ -1828,9 +1826,13 @@ var AboutSlider = {
 };
 
 $(document).ready(function(){
+	if($(document).height() > $(window).height())
+		$('body').addClass('with-scrollbar');
+
 	function cities(){
 		var height = $('.iGeo__map').height() + 63;
 		var width = $('.iGeo__map').width();
+		$('.iGeo__items').width($('.iGeo__map img').width());
 		$('.iGeo__item').each(function(){
 			var top = 0;
 			var left = 0;
@@ -1839,16 +1841,42 @@ $(document).ready(function(){
 			if($(this).data('left') > 0)
 				left = $(this).data('left') / width * 100 + 0.75;
 
-			console.log(left);
-
-			$(this).stop().animate({'top': top + '%', 'left': left + '%'}, 1000);
+			$(this).stop().animate({'top': top + '%', 'left': left + '%'}, 1000).addClass($('.iGeo__items').data('active'));
 		});
 	}
 
-	cities();
+	$('.iGeo__map img').on('load', function(){
+		cities();
+	});
 
 	$(window).resize(function(){
+		if($(document).height() > $(window).height())
+			$('body').addClass('with-scrollbar');
+		else
+			$('body').removeClass('with-scrollbar');
 		cities();
+	});
+
+	var owl = $('.iDigits .owl-carousel').owlCarousel({
+		nav: true,
+		dots: false,
+		items: 1,
+		auto: false
+	});
+
+	owl.on('changed.owl.carousel', function(event){
+		$('.iDigits-values__item').removeClass($('.iDigits-values').data('active'));
+		$('.iDigits-values__item').eq(event.item.index).addClass($('.iDigits-values').data('active'));
+	});
+
+	$('.iDigits-values__item').eq(0).addClass($('.iDigits-values').data('active'));
+
+	$('.iDigits-values__item').click(function(){
+		$('.iDigits-values__item').removeClass($('.iDigits-values').data('active'));
+
+		$(this).addClass($('.iDigits-values').data('active'));
+
+		$('.iDigits .owl-carousel').trigger('to.owl.carousel', $(this).index());
 	});
 });
 var App = {
