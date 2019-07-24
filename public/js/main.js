@@ -787,7 +787,7 @@ var SliderDigits = {
 					$nextTextItem.addClass('_active');
 					$fakeNumsItem.css({'transform': 'translateX(-' + distance + 'px)'});
 					self._moveNumsToItem(nextIndex);
-				}, 0);
+				}, 20);
 
 			break;
 			case 'right':
@@ -814,7 +814,7 @@ var SliderDigits = {
 					$nextTextDesc.addClass('_fadeInLeft');
 					$nextTextValue.addClass('_fadeInLeft');
 					$nextTextItem.addClass('_active');
-				}, 0);
+				}, 20);
 
 			break;
 		}
