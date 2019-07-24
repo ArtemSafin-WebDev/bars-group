@@ -2247,8 +2247,8 @@ img {
     height: 100%;
     overflow: hidden; }
     .overview__bg__item {
-      -webkit-transition: all 1s;
-      transition: all 1s;
+      -webkit-transition: all .5s;
+      transition: all .5s;
       position: absolute;
       height: 120%;
       top: 0;
