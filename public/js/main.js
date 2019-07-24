@@ -1200,8 +1200,9 @@ var News = {
 		self._bindUI();
 
 		self._elems.$slider.owlCarousel({
+		    loop: true,
 		    autoWidth: true,
-		    loop: true
+		    smartSpeed: 500
 		});	
 	}
 };
