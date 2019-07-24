@@ -3326,7 +3326,7 @@ img {
 
 .news__slider {
   margin-left: 200px;
-  width: 3000px;
+  width: 5000px;
   min-height: 360px;
   background: #eff4fd; }
 
@@ -3343,9 +3343,9 @@ img {
   width: 520px;
   padding: 60px 0 60px 60px;
   white-space: normal; }
-  .news__item.--active .news__title {
+  .news__item--active .news__title {
     font-size: 24px; }
-  .news__item.--active .news__desc {
+  .news__item--active .news__desc {
     opacity: .7; }
 
 .news__date {

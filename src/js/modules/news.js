@@ -1,33 +1,9 @@
 
 var News = {
 
-	_state: {
-		owl: null
-	},
-
-	_setSliderWidth: function () {
-		var self = this;
-
-		var $wrapper = $('#wrapper');
-		var $slider  = $('#news .news__slider');
-		var wrapperOffset = $wrapper.offset().left;
-		var wrapperWidth = $wrapper.width();
-		var sliderOffset = $slider.offset().left;
-		var sliderWidth = wrapperWidth- (sliderOffset - wrapperOffset);
-		$slider.width(sliderWidth);
-	},
-
-	_initSlider: function () {
-		var self = this;
-
-		self._state.owl = $('#news .news__list').owlCarousel({
-		    loop: true,
-		    autoWidth: true,
-		    touchDrag: false,
-		    mouseDrag: false,
-		    smartSpeed: 500
-		});	
-
+	_elems: {
+		$_: $(),
+		$slider: $()
 	},
 
 	_handleNextButton: function (e) {
@@ -35,12 +11,7 @@ var News = {
 
 		e.preventDefault();
 
-		self._state.owl.trigger('next.owl.carousel');
-
-		$('#news .news__item.--active')
-			.removeClass('--active')
-			.parent().next().find('.news__item')
-			.addClass('--active');
+		self._elems.$slider.trigger('next.owl.carousel');
 	},
 
 	_handlePrevButton: function (e) {
@@ -48,37 +19,44 @@ var News = {
 
 		e.preventDefault();
 		
-		self._state.owl.trigger('prev.owl.carousel');
-
-		$('#news .news__item.--active')
-			.removeClass('--active')
-			.parent().prev().find('.news__item')
-			.addClass('--active');
-
+		self._elems.$slider.trigger('prev.owl.carousel');
 	},
 
-	_handleWindowResize: function (e) {
+	_handleChangedEvent: function (e) {
 		var self = e.data.self;
 
-		self._setSliderWidth();
-		self._state.owl.trigger('refresh.owl.carousel');
+		var activeClass = 'news__item--active';
+		var nextIndex = e.item.index;
+
+		self._elems.$slider.find('.news__item').removeClass(activeClass)
+			.eq(nextIndex).addClass(activeClass);
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('click', '#news .js-news-next', {self: self}, self._handleNextButton);
-		$(document).on('click', '#news .js-news-prev', {self: self}, self._handlePrevButton);
-		$(window).on('resize', {self: self}, self._handleWindowResize);
+		self._elems.$_.on('click', '.js-news-next', {self: self}, self._handleNextButton);
+		self._elems.$_.on('click', '.js-news-prev', {self: self}, self._handlePrevButton);
+		self._elems.$_.on('changed.owl.carousel', {self: self}, self._handleChangedEvent);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#news').length == 0 ) return;
+		var $_ = $('#news');
 
-		self._setSliderWidth();
-		self._initSlider();
+		if ( !$_.length ) return;
+
+		self._elems.$_ = $_;
+		self._elems.$slider = $_.find('.news__list');
+
 		self._bindUI();
+
+		self._elems.$slider.owlCarousel({
+		    autoWidth: true,
+		    touchDrag: false,
+		    mouseDrag: false,
+		    loop: true
+		});	
 	}
 };

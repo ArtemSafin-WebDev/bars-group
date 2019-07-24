@@ -20,7 +20,7 @@
 
 	&__slider {
 		margin-left: 200px;
-		width: 3000px;
+		width: 5000px;
 		min-height: 360px;
 		background: #eff4fd;
 	}
@@ -39,7 +39,7 @@
 		padding: 60px 0 60px 60px;
 		white-space: normal;
 
-		&.--active {
+		&--active {
 
 			.news__title {
 				font-size: 24px;
