@@ -14,12 +14,22 @@ layout: default.hbs
 	<section class="banner tech-promo" id="tech-promo">
 
 		<div class="tech-promo__figure">
-			<div  class="tech-promo__figure__image" style="background-image: url('video/effect-2.jpg');">
+			<div class="tech-promo__figure__item --active">
+				<div  class="tech-promo__figure__image" style="background-image: url('video/effect-1.jpg');">
+				</div>
+				<video class="tech-promo__figure__video" autoplay loop muted playsinline>
+					<source src="video/effect-1.mp4" type="video/mp4">
+				</video>
+				<div class="page__decor"></div>
 			</div>
-			<video class="tech-promo__figure__video" preload="none" loop muted playsinline>
-				<source src="video/effect-2.mp4" type="video/mp4">
-			</video>
-			<div class="page__decor"></div>
+			<div class="tech-promo__figure__item">
+				<div  class="tech-promo__figure__image" style="background-image: url('video/effect-2.jpg');">
+				</div>
+				<video class="tech-promo__figure__video" autoplay loop muted playsinline>
+					<source src="video/effect-2.mp4" type="video/mp4">
+				</video>
+				<div class="page__decor"></div>
+			</div>
 		</div>
 
 		<div class="banner__text">
@@ -67,7 +77,7 @@ layout: default.hbs
 				</div>
 
 				<div class="tech-promo__elem-1">
-					<div class="tech-promo__circle">
+					<div class="tech-promo__circle tech-promo__circle--size-1 tech-promo__circle--delay-1" data-index="1">
 						<div class="tech-promo__circle__arrow">
 							<div class="tech-promo__circle__arrow__self">
 								<div class="arrow-right-thin">
@@ -77,9 +87,11 @@ layout: default.hbs
 						</div>
 						<div class="tech-promo__circle__decor"></div>
 						<div class="tech-promo__circle__data">
-							<div class="tech-promo__circle__icon">
-								<i class="icon icon-sprite-png-barsup-am-white"></i>
-								<i class="icon icon-sprite-png-barsup-am"></i>
+							<div class="tech-promo__circle__logo">
+								<div class="tech-promo__circle__icon">
+									<i class="icon icon-sprite-png-barsup-am-white"></i>
+									<i class="icon icon-sprite-png-barsup-am"></i>
+								</div>
 							</div>
 							<div class="tech-promo__circle__desc">
 								Входящие в него информационно-аналитические системы обеспечивают комплексную автоматизацию профильных учреждений
@@ -89,7 +101,7 @@ layout: default.hbs
 				</div>
 
 				<div class="tech-promo__elem-2">
-					<div class="tech-promo__circle tech-promo__circle--delay-1">
+					<div class="tech-promo__circle tech-promo__circle--size-1 tech-promo__circle--delay-2" data-index="1">
 						<div class="tech-promo__circle__arrow">
 							<div class="tech-promo__circle__arrow__self">
 								<div class="arrow-right-thin">
@@ -99,9 +111,11 @@ layout: default.hbs
 						</div>
 						<div class="tech-promo__circle__decor"></div>
 						<div class="tech-promo__circle__data">
-							<div class="tech-promo__circle__icon">
-								<i class="icon icon-sprite-png-barsup-ag-white"></i>
-								<i class="icon icon-sprite-png-barsup-ag"></i>
+							<div class="tech-promo__circle__logo">
+								<div class="tech-promo__circle__icon">
+									<i class="icon icon-sprite-png-barsup-ag-white"></i>
+									<i class="icon icon-sprite-png-barsup-ag"></i>
+								</div>
 							</div>
 							<div class="tech-promo__circle__desc">
 								Входящие в него информационно-аналитические системы обеспечивают комплексную автоматизацию профильных учреждений
@@ -111,7 +125,7 @@ layout: default.hbs
 				</div>
 
 				<div class="tech-promo__elem-3">
-					<div class="tech-promo__circle tech-promo__circle--delay-2">
+					<div class="tech-promo__circle tech-promo__circle--size-2 tech-promo__circle--delay-3" data-index="1">
 						<div class="tech-promo__circle__arrow">
 							<div class="tech-promo__circle__arrow__self">
 								<div class="arrow-right-thin">
@@ -121,9 +135,11 @@ layout: default.hbs
 						</div>
 						<div class="tech-promo__circle__decor"></div>
 						<div class="tech-promo__circle__data">
-							<div class="tech-promo__circle__icon">
-								<i class="icon icon-sprite-png-barsup-ai-white"></i>
-								<i class="icon icon-sprite-png-barsup-ai"></i>
+							<div class="tech-promo__circle__logo">
+								<div class="tech-promo__circle__icon">
+									<i class="icon icon-sprite-png-barsup-ai-white"></i>
+									<i class="icon icon-sprite-png-barsup-ai"></i>
+								</div>
 							</div>
 							<div class="tech-promo__circle__desc">
 								Входящие в него информационно-аналитические системы обеспечивают комплексную автоматизацию профильных учреждений
@@ -131,6 +147,81 @@ layout: default.hbs
 						</div>
 					</div>
 				</div>
+
+				<div class="tech-promo__elem-4">
+					<div class="tech-promo__circle tech-promo__circle--size-4 tech-promo__circle--delay-1" data-index="1">
+						<div class="tech-promo__circle__arrow">
+							<div class="tech-promo__circle__arrow__self">
+								<div class="arrow-right-thin">
+									<span></span>
+								</div>
+							</div>
+						</div>
+						<div class="tech-promo__circle__decor"></div>
+						<div class="tech-promo__circle__data">
+							<div class="tech-promo__circle__logo">
+								<div class="tech-promo__label">Платформа</div>
+								<div class="tech-promo__circle__icon">
+									<i class="icon icon-sprite-png-alpha-bi-white"></i>
+									<i class="icon icon-sprite-png-alpha-bi"></i>
+								</div>
+							</div>
+							<div class="tech-promo__circle__desc">
+								Входящие в него информационно-аналитические системы обеспечивают комплексную автоматизацию профильных учреждений
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="tech-promo__elem-5">
+					<div class="tech-promo__circle tech-promo__circle--size-2 tech-promo__circle--delay-2" data-index="1">
+						<div class="tech-promo__circle__arrow">
+							<div class="tech-promo__circle__arrow__self">
+								<div class="arrow-right-thin">
+									<span></span>
+								</div>
+							</div>
+						</div>
+						<div class="tech-promo__circle__decor"></div>
+						<div class="tech-promo__circle__data">
+							<div class="tech-promo__circle__logo">
+								<div class="tech-promo__label">Платформа</div>
+								<div class="tech-promo__circle__icon">
+									<i class="icon icon-sprite-png-svody-white"></i>
+									<i class="icon icon-sprite-png-svody"></i>
+								</div>
+							</div>
+							<div class="tech-promo__circle__desc">
+								Входящие в него информационно-аналитические системы обеспечивают комплексную автоматизацию профильных учреждений
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="tech-promo__elem-6">
+					<div class="tech-promo__circle tech-promo__circle--size-3 tech-promo__circle--delay-3" data-index="1">
+						<div class="tech-promo__circle__arrow">
+							<div class="tech-promo__circle__arrow__self">
+								<div class="arrow-right-thin">
+									<span></span>
+								</div>
+							</div>
+						</div>
+						<div class="tech-promo__circle__decor"></div>
+						<div class="tech-promo__circle__data">
+							<div class="tech-promo__circle__logo">
+								<div class="tech-promo__circle__icon">
+									<i class="icon icon-sprite-png-biux-white"></i>
+									<i class="icon icon-sprite-png-biux"></i>
+								</div>
+							</div>
+							<div class="tech-promo__circle__desc">
+								Входящие в него информационно-аналитические системы обеспечивают комплексную автоматизацию профильных учреждений
+							</div>
+						</div>
+					</div>
+				</div>
+
 
 			</div>
 
