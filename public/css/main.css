@@ -750,6 +750,46 @@ template {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-0:before {
+  content: "\e91c";
+  color: #fff; }
+
+.icon-1:before {
+  content: "\e91d";
+  color: #fff; }
+
+.icon-2:before {
+  content: "\e91e";
+  color: #fff; }
+
+.icon-3:before {
+  content: "\e91f";
+  color: #fff; }
+
+.icon-4:before {
+  content: "\e920";
+  color: #fff; }
+
+.icon-5:before {
+  content: "\e921";
+  color: #fff; }
+
+.icon-6:before {
+  content: "\e922";
+  color: #fff; }
+
+.icon-7:before {
+  content: "\e923";
+  color: #fff; }
+
+.icon-8:before {
+  content: "\e924";
+  color: #fff; }
+
+.icon-9:before {
+  content: "\e925";
+  color: #fff; }
+
 .icon-filter:before {
   content: "\e900"; }
 
@@ -1723,6 +1763,8 @@ img {
 .page__center {
   max-width: 1600px;
   margin: 0 auto; }
+  .page__center--about {
+    max-width: inherit; }
 
 .page__inner {
   padding: 0 40px; }
@@ -2504,6 +2546,17 @@ img {
   .gantt-slider__crop {
     position: relative;
     overflow: hidden; }
+    .gantt-slider__crop--with-left:before {
+      content: ' ';
+      position: absolute;
+      z-index: 10;
+      width: 100px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: -webkit-gradient(linear, right top, left top, from(rgba(255, 255, 255, 0)), to(#fff));
+      background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
+      pointer-events: none; }
   .gantt-slider__scroll {
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;

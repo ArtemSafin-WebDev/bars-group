@@ -8,6 +8,10 @@
 	&__center {
 		max-width: 1600px;
 		margin: 0 auto;
+
+		&--about {
+			max-width: inherit;
+		}
 	}
 
 	&__inner {

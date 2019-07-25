@@ -65,6 +65,20 @@
 	&__crop {
 		position: relative;
 		overflow: hidden;
+
+		&--with-left {
+			&:before {
+				content: ' ';
+				position: absolute;
+				z-index: 10;
+				width: 100px;
+				height: 100%;
+				left: 0;
+				top: 0;
+				background: linear-gradient(to left, rgba(#fff, 0), #fff);
+				pointer-events: none;
+			}
+		}
 	}
 
 	&__scroll {

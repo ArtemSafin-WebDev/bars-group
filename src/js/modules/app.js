@@ -9,6 +9,7 @@ var App = {
 		SliderDigits.init();
 		SliderTabs.init();
 		GanttSlider.init();
+		AboutSlider.init();
 		Header.init();
 		News.init();
 		Form.init();
