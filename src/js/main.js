@@ -1,6 +1,6 @@
 //= modules/iOSClickFix.js
 //= modules/overview.js
-//= modules/gantt-slider.js
+//= modules/ganttSlider.js
 //= modules/slider-content.js
 //= modules/slider-digits.js
 //= modules/slider-tabs.js

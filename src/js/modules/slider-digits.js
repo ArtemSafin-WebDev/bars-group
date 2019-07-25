@@ -138,7 +138,7 @@ var SliderDigits = {
 					$nextTextItem.addClass('_active');
 					$fakeNumsItem.css({'transform': 'translateX(-' + distance + 'px)'});
 					self._moveNumsToItem(nextIndex);
-				}, 0);
+				}, 20);
 
 			break;
 			case 'right':
@@ -165,7 +165,7 @@ var SliderDigits = {
 					$nextTextDesc.addClass('_fadeInLeft');
 					$nextTextValue.addClass('_fadeInLeft');
 					$nextTextItem.addClass('_active');
-				}, 0);
+				}, 20);
 
 			break;
 		}
@@ -307,7 +307,7 @@ var SliderDigits = {
 		$(document).on('click', '#slider-digits .js-slider-digits-next', {self: self}, self._handleNextClick);
 		$(document).on('touchstart', '.slider-digits__center', {self: self}, self._handleTouchStart);
 		$(document).on('touchmove', '.slider-digits__center', {self: self}, self._handleTouchMove);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {

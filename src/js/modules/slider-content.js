@@ -1,60 +1,59 @@
 
 var SliderContent = {
 
-	_updateSliderWidth: function () {
-		var self = this;
-
-		var $_ = $('#slider-content');
-		var $slider = $_.find('.slider-content__list');
-
-		var MIN_WINDOW_WIDTH = 1300;
-		var MAX_WING_WIDTH = 200;
-
-		var windowWidth = $(window).width();
-		var sectionWidth = $_.width()
-		var sectionEnd = $_.offset().left + sectionWidth;
-		var wingWidth = windowWidth - sectionEnd;
-
-		if (wingWidth > MAX_WING_WIDTH || windowWidth < MIN_WINDOW_WIDTH) {
-			$slider.css({ 'margin-right': 0 });
-			$_.removeClass('--has-wing');
-		} else {
-			$slider.css({ 'margin-right': -wingWidth });
-			$_.addClass('--has-wing');
-		}
-
-		$slider.slick('refresh');
+	_elems: {
+		$_: $(),
+		$wrapper: $(),
+		$slider: $()
 	},
 
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
-		self._updateSliderWidth();
+		self._elems.$slider.trigger('refresh.owl.carousel');
+	},
+
+	_handlePrevButton: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		self._elems.$slider.trigger('prev.owl.carousel')
+	},
+
+	_handleNextButton: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		self._elems.$slider.trigger('next.owl.carousel')
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		self._elems.$_.on('click', '.js-slider-content-prev', {self: self}, self._handlePrevButton);
+		self._elems.$_.on('click', '.js-slider-content-next', {self: self}, self._handleNextButton);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},	
 
 	init: function () {
 		var self = this;
 
-		if ( $('#slider-content').length == 0 ) return;
-		if ( $('body').hasClass('is-admin') ) return;
-
 		var $_ = $('#slider-content');
 
-		$_.find('.slider-content__list').slick({
-			dots: false,
-			infinite: false,
-			prevArrow: $_.find('.js-slider-content-prev'),
-			nextArrow: $_.find('.js-slider-content-next'),
-			fade: true
-		});
+		if ( !$_.length ) return;
+		if ( $('body').hasClass('is-admin') ) return;
 
-		self._updateSliderWidth();
+		self._elems.$_ = $_;
+		self._elems.$wrapper = $_.find('.slider-content__wrapper');
+		self._elems.$slider = $_.find('.owl-carousel');
+
+		self._elems.$slider.owlCarousel({
+		    items: 1,
+		    dots: false
+		});
+		
 		self._bindUI();
 	}
 

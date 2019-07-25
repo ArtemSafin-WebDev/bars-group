@@ -1,9 +1,6 @@
 
 .slider-digits {
 
-	margin-top: 140px;
-	margin-bottom: 160px;
-
 	&._visible {
 		.slider-digits__nums__list {
 			visibility: visible;
@@ -147,9 +144,8 @@
 	}
 
 	&__buttons {
-		position: absolute;
-		right: 0;
-		bottom: -85px;
+		float: right;
+		margin-top: 20px;
 	}
 
 	&__about {
@@ -202,8 +198,6 @@
 @media all and (max-width: 1050px) {
 
 	.slider-digits {
-
-		margin-bottom: 70px;
 
 		&__label {
 			left: 0;
@@ -276,9 +270,7 @@
 		}
 
 		&__buttons {
-			position: static;
-			float: right;
-			margin-top: 20px;
+			margin-bottom: -20px;
 		}
 
 	}
@@ -287,8 +279,6 @@
 @media all and (max-width: 600px) {
 
 	.slider-digits {
-
-		margin-bottom: 70px;
 
 		&__content {
 			margin: 0 -20px;
@@ -329,9 +319,6 @@
 
 	}
 }
-
-
-
 
 @keyframes imDigitsFadeOutLeft {
 	0% {

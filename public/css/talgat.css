@@ -327,14 +327,6 @@
 .tProductsItem__description > p:last-child {
   margin-bottom: 0;
 }
-.tProductsItem__link {
-  position: absolute;
-  z-index: 30;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 .tTechnicalIssues {
   padding: 90px 0;
   background-color: #eff4fd;
@@ -894,14 +886,6 @@
 .tSiteSearchNews__wrapper:hover .tSiteSearchNews__thumb {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}
-.tSiteSearchNews__link {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 .tSiteSearchNews__title {
   position: relative;

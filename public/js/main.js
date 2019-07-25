@@ -32,6 +32,14 @@
 
 var Overview = {
 
+	_elems: {
+		$_: $(),
+		$bgItems: $(),
+		$aboutItems: $(),
+		$navItems: $(),
+		$navBodies: $()
+	},
+
 	_state: {
 		isUserActivityHandled: false,
 		currIndex: 0
@@ -40,7 +48,7 @@ var Overview = {
 	_startVideoLoading: function () {
 		var self = this;
 
-		$('#overview video').each(function () {
+		self._elems.$_.find('video').each(function () {
 			$(this)[0].load();
 		});
 	},
@@ -73,25 +81,19 @@ var Overview = {
 
 		if (nextIndex == currIndex) return;
 
-		var $_ = $('#overview');
-
 		// set active nav item
-		var $navItems = $_.find('.overview__nav__item');
-		$navItems.eq(currIndex).removeClass('--active');
-		$navItems.eq(nextIndex).addClass('--active');
+		self._elems.$navItems.eq(currIndex).removeClass('--active');
+		self._elems.$navItems.eq(nextIndex).addClass('--active');
 
 		// set active about item
-		var $aboutItems = $_.find('.overview__about__item');
-		$aboutItems.eq(currIndex).removeClass('--active');
-		$aboutItems.eq(nextIndex).addClass('--active');
+		self._elems.$aboutItems.eq(currIndex).removeClass('--active');
+		self._elems.$aboutItems.eq(nextIndex).addClass('--active');
 
 		// collapse bodies
-		var $navBodies = $_.find('.overview__nav__body');
-		$navBodies.eq(currIndex).collapse('hide');
-		$navBodies.eq(nextIndex).collapse('show');
+		self._elems.$navBodies.eq(currIndex).collapse('hide');
+		self._elems.$navBodies.eq(nextIndex).collapse('show');
 
 		// set active bg item
-		var $bgItems = $_.find('.overview__bg__item');
 		if (nextIndex > currIndex) {
 			// slide down
 			var nextStartPos = -80;
@@ -102,43 +104,53 @@ var Overview = {
 			var currEndPos = -80;
 		}
 
-		$bgItems.eq(nextIndex).removeClass('_animate').css({
-			transform: 'translateY(' + nextStartPos + 'px)',
-			opacity: 0
-		});
-
-		setTimeout(function () {
-
-			$bgItems.eq(currIndex).css({
-				transform: 'translateY(' + currEndPos + 'px)',
+		self._elems.$bgItems.eq(nextIndex)
+			.addClass('overview__bg__item--frozen')
+			.css({
+				transform: 'translateY(' + nextStartPos + 'px)',
 				opacity: 0
 			});
 
-			$bgItems.eq(nextIndex).addClass('_animate').css({
-				transform: 'translateY(-40px)',
-				opacity: 1
-			});
+		setTimeout(function () {
+
+			self._elems.$bgItems.eq(currIndex)
+				.css({
+					transform: 'translateY(' + currEndPos + 'px)',
+					opacity: 0
+				});
+
+			self._elems.$bgItems.eq(nextIndex)
+				.removeClass('overview__bg__item--frozen')
+				.css({
+					transform: 'translateY(-40px)',
+					opacity: 1
+				});
 
 		}, 20);
 
-		
-
 		self._state.currIndex = nextIndex;
-		
 	},
 
 	_bindUI: function () {
 		var self = this;
 
 		$('.overview__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$_.on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
-		$(document).on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#overview').length == 0 ) return;
+		var $_ = $('#overview');
+
+		if ( !$_.length ) return;
+
+		self._elems.$_ = $_;
+		self._elems.$bgItems = self._elems.$_.find('.overview__bg__item');
+		self._elems.$aboutItems = self._elems.$_.find('.overview__about__item');
+		self._elems.$navItems = self._elems.$_.find('.overview__nav__item');
+		self._elems.$navBodies = self._elems.$_.find('.overview__nav__body');
 
 		self._bindUI();
 
@@ -149,199 +161,328 @@ var Overview = {
 
 var GanttSlider = {
 
-	_GANTT_ITEM_WIDTH: 510,
-	_GANTT_SCENE_HEIGHT: 600,
-	_GANTT_EDGE_OFFSET: 60,
-
-	_PATTERN_ITEMS: [[310, 60], [25, 355], [200, 775], [370, 1070], [100, 1435], [410, 1760], [120, 2115]],
-	_PATTERN_WIDTH: 2440,
+	_cache: {
+		gantt: {}
+	},
+	
+	_elems: {
+		$_: $(),
+		$inner: $(),
+		$scroll: $(),
+		$canvas: $(),
+		$types: $(),
+		$lines: $(),
+		$items: $(),
+		$ctrl: $(),
+		$range: $(),
+		$itemClone: $(),
+		$typeClone: $()
+	},
 
 	_state: {
+		currentView: 'gantt',
+		groupedItems: [],
 		randomItems: [],
-		isUserActivityHandled: false,
-		isGanttView: false,
-		savedSceneHeight: null,
-		maxScrollLeft: null,
-		lastRangeValue: null
+		maxScrollLeft: 0,
+		lastRangeValue: 0
+	},
+
+	_getGanttPattern: function (width, height) {
+		var self = this;
+
+		// imagine, that we have some picture, which contains 7 rectangles.
+		// pattern object properties describe how we can draw the picture
+		var PATTERN = {
+			canvasWidth: 2440,
+			canvasHeight: 600,
+			rectWidth: 510,
+			rectHeight: 160,
+			coords: [ [60, 310], [355, 25], [775, 200], [1070, 370], [1435, 100], [1760, 410], [2115, 120] ]
+		};
+
+		// items' width and height will change on different screen sizes
+		// so we need to have a pattern suitable for new item's dimensions
+		var result = {};
+		result.canvasWidth = parseInt(PATTERN.canvasWidth / PATTERN.rectWidth * width);
+		result.canvasHeight = parseInt(PATTERN.canvasHeight / PATTERN.rectHeight * height);
+		result.coords = [];
+		PATTERN.coords.forEach(function (coord) {
+			result.coords.push([
+				parseInt(coord[0] / PATTERN.canvasWidth * result.canvasWidth),
+				parseInt(coord[1] / PATTERN.canvasHeight * result.canvasHeight)
+			]);
+		});
+
+		return result;
+	},
+
+	// create elems clone to get their dimenstions
+	_createElemsClones: function () {
+		var self = this;
+
+		var $itemClone = self._elems.$items.eq(0).clone();
+		$itemClone.appendTo(self._elems.$sandbox);
+		self._elems.$itemClone = $itemClone;
+
+		var $typeClone = self._elems.$types.eq(0).clone();
+		$typeClone.appendTo(self._elems.$sandbox);
+		self._elems.$typeClone = $typeClone;
+	},
+
+	_sortItemsByGroup: function () {
+		var self = this;
+
+		var groupedItems = [];
+		self._elems.$items.each(function (index, item) {
+			var id = $(item).data('rel');
+			if (typeof groupedItems[id] === 'undefined') groupedItems[id] = [];
+			groupedItems[id].push(item);
+		});
+		self._state.groupedItems = groupedItems;
+	},
+
+	// picks items from different groups and puts them into one array
+	_sortItemsRandomly: function () {
+		var self = this;
+
+		var totalCount = 0;
+		var helperArray = [];
+		self._state.groupedItems.forEach(function (items, index) {
+			helperArray[index] = items.slice().reverse();
+			totalCount += items.length;
+		});
+
+		var randomItems = [];
+		var viewedCount = 0;
+		while (viewedCount < totalCount) {
+			helperArray.forEach(function (items) {
+				if (items.length == 0) return;
+				randomItems.push(items.pop())
+				viewedCount++;
+			});
+		};
+
+		self._state.randomItems = randomItems;
+	},
+
+	_getGanttViewCalcs: function () {
+		var self = this;
+
+		// get vars for cacheId
+		var itemWidth = self._elems.$itemClone.outerWidth();
+		var itemHeight = self._elems.$itemClone.outerHeight();
+
+		var cacheId = itemWidth + 'x' + itemHeight;
+		if ( !self._cache.gantt[cacheId] ) {
+
+			var result = {
+				canvas: {},
+				items: []
+			};
+
+			// save items positions
+			var pattern = self._getGanttPattern(itemWidth, itemHeight);
+			var maxLeftPos = 0;
+
+			self._state.randomItems.forEach(function (item, index) {
+				var baseIndex = index % pattern.coords.length;
+				var factor = Math.floor(index / pattern.coords.length);
+
+				var leftPos = pattern.coords[baseIndex][0] + pattern.canvasWidth * factor;
+				var topPos = pattern.coords[baseIndex][1];
+
+				result.items[index] = {
+					left: leftPos,
+					top: topPos
+				};
+
+				if (leftPos > maxLeftPos) maxLeftPos = leftPos;
+			});
+
+			// save canvas size
+			result.canvas.width = maxLeftPos + itemWidth + pattern.coords[0][0];
+			result.canvas.height = pattern.canvasHeight;
+
+			self._cache.gantt[cacheId] = result;
+		}
+
+		return self._cache.gantt[cacheId];
 	},
 
 	_switchToGanttView: function () {
 		var self = this;
 
-		var $_ = $('#gantt-slider');
-		var $scroll = $_.find('.gantt-slider__scroll');
-		var $scene  = $_.find('.gantt-slider__scene');
+		self._elems.$_.addClass('gantt-slider--gantt-view');
+		self._elems.$sandbox.addClass('gantt-slider--gantt-view');
+		
+		var calcs = self._getGanttViewCalcs();		
 
-		// get items to walk through
-		var randomItems = self._state.randomItems;
-
-		// calculate and set items positions 
-		for (var i = 0, l = randomItems.length; i < l; i++) {
-			// get item's position in 'lines' view
-			var currTop     = parseInt($(randomItems[i]).offset().top - $scroll.offset().top);
-			var currLeft    = parseInt($(randomItems[i]).offset().left + $scroll.scrollLeft());
-
-			// get item's position in 'gantt' view
-			var ganttTop    = self._getGanttItemTopPos(i); 
-			var ganttLeft   = self._getGanttItemLeftPos(i);
-
-			// get item's transform value
-			var topOffset  = ganttTop  - currTop;
-			var leftOffset = ganttLeft - currLeft;
-			var transform  = 'translate3d(' + leftOffset + 'px,' + topOffset + 'px,0)';
-
-			$(randomItems[i]).find('.gantt-slider__item__body').css({
-				transform: transform,
-				width: self._GANTT_ITEM_WIDTH
+		// set items positions
+		self._state.randomItems.forEach(function (item, index) {
+			$(item).css({ 
+				left: calcs.items[index].left, 
+				top: calcs.items[index].top 
 			});
-		}
+		});
 
-		// change styles to gantt mode
-		self._state.isGanttView = true;
-		self._state.savedSceneHeight = $scene.height();
-		$scene.height(self._state.savedSceneHeight);
-		$scene.height(self._GANTT_SCENE_HEIGHT);
-		$('#gantt-slider').addClass('gantt-slider--gantt-view');
-		self._makeScrollCalcs();
+		// set canvas size
+		self._elems.$canvas.css({
+			width: calcs.canvas.width,
+			height: calcs.canvas.height
+		});
 
-		function _isPositionInViewport(left) {
-			return left - $scroll.scrollLeft() < $(window).width();
-		}
 
+		self._state.currentView = 'gantt';
+		self._updateScrollCalcs();
 	},
 
 	_switchToLinesView: function () {
 		var self = this;
 
-		self._state.isGanttView = false;
-		$('#gantt-slider .gantt-slider__scene').height(self._state.savedSceneHeight);
-		$('#gantt-slider .gantt-slider__item__body').attr('style', '');
-		$('#gantt-slider').removeClass('gantt-slider--gantt-view');
-		self._makeScrollCalcs();
+		self._elems.$_.removeClass('gantt-slider--gantt-view');
+		self._elems.$sandbox.removeClass('gantt-slider--gantt-view');
 
-		setTimeout(function () {
-			$('#gantt-slider .gantt-slider__scene').attr('style', '');
-		}, 200);
-	},
+		// inner offset
+		var innerOffset = parseInt(self._elems.$inner.css('padding-left'));
 
+		// get item dimentions
+		var itemWidth = self._elems.$itemClone.outerWidth();
+		var itemHeight = self._elems.$itemClone.outerHeight();
+		var itemOffsetY = parseInt(self._elems.$itemClone.css('margin-bottom')); 
+		var itemOffsetX = parseInt(self._elems.$itemClone.css('margin-right')); 
 
+		// get type dimensions
+		var typeWidth = self._elems.$typeClone.width();
 
-	_fillRandomItems: function () {
-		var self = this;
+		// get start pos
+		var centerStart = self._elems.$ctrl.offset().left;
 
-		var lines = [];
-		var items = [];
-		var counter = 0;
+		var lineCounter = 0;
+		var maxLeftPos = 0;
+		var maxTopPos = 0;
 
-		// group items by line
-		$('#gantt-slider .gantt-slider__line').each(function () {
-			var items = $.makeArray($(this).find('.gantt-slider__item')).reverse();
-			counter += items.length;
-			lines.push(items);
+		self._state.groupedItems.forEach(function (items, index) {
+			var topPos = lineCounter * (itemHeight + itemOffsetY);
+
+			// items
+			items.forEach(function (item, index) {
+				var leftPos = centerStart + typeWidth + index * (itemWidth + itemOffsetX);
+				$(item).css({ top: topPos, left: leftPos });
+
+				if (leftPos > maxLeftPos) maxLeftPos = leftPos;
+			});
+
+			// types
+			self._elems.$types.filter('[data-rel="' + index + '"]').css({
+				top: topPos,
+				left: centerStart
+			});
+
+			// lines
+			self._elems.$lines.filter('[data-rel="' + index + '"]').css({
+				top: topPos,
+				left: centerStart
+			});
+
+			if (topPos > maxTopPos) maxTopPos = topPos;
+			lineCounter++;
 		});
 
-		// take from each group
-		var viewed = 0;
-		while (viewed < counter) {
-			lines.forEach(function (line) {
-				if (line.length == 0) return;
-				items.push(line.pop())
-				viewed++;
-			});
-		};
+		// set lines size 
+		self._elems.$lines.css({
+			width: maxLeftPos + itemWidth - centerStart
+		});
 
-		self._state.randomItems = items;
+		// set canvas size
+		self._elems.$canvas.css({
+			width: maxLeftPos + itemWidth + innerOffset,
+			height: maxTopPos + itemHeight + itemOffsetY
+		});
+
+		self._state.currentView = 'lines';
+		self._updateScrollCalcs();
 	},
 
-	_getGanttItemTopPos: function (index) {
+	_updateScrollCalcs: function () {
 		var self = this;
 
-		return self._PATTERN_ITEMS[self._convertToPatternIndex(index)][0];
-	},
-
-	_getGanttItemLeftPos: function (index) {
-		var self = this;
-
-		var factor = Math.floor(index / self._PATTERN_ITEMS.length);
-		return self._PATTERN_ITEMS[self._convertToPatternIndex(index)][1] + self._PATTERN_WIDTH * factor;
-	},
-
-	_convertToPatternIndex: function (index) {
-		var self = this;
-
-		return index % self._PATTERN_ITEMS.length;
-	},
-
-	_makeScrollCalcs: function () {
-		var self = this;
-
-		var $scroll = $('#gantt-slider .gantt-slider__scroll');
-		var $lines  = $('#gantt-slider .gantt-slider__line');
-		var lineOffset = $lines.offset().left + $scroll.scrollLeft();
-
-		if (self._state.isGanttView) {
-
-			// 1. set grid width equal to last item right edge + edge offset
-			var lastItemOffset = self._getGanttItemLeftPos(self._state.randomItems.length - 1);
-			var gridWidth = lastItemOffset - lineOffset + self._GANTT_ITEM_WIDTH + self._GANTT_EDGE_OFFSET;
-
-			// 2. calc maxScrollLeft
-			var maxScrollLeft = gridWidth + lineOffset - $(window).width();
-
-		} else {
-
-			// 1. set grid width equal to max line width
-			var maxWidth = 0;
-
-			$lines.each(function () {
-				var $lastItem = $(this).find('.gantt-slider__item').last();
-				var lineWidth = $lastItem.offset().left - lineOffset + $lastItem.width();
-				maxWidth = Math.max(maxWidth, lineWidth);
-			});
-
-			var gridWidth = maxWidth;
-
-			// 2. calc maxScrollLeft
-			var lastItemMargin = parseInt($('#gantt-slider .gantt-slider__item').last().css('margin-right'));
-			var maxScrollLeft = gridWidth + lineOffset  + lastItemMargin - $(window).width();
-		}
-
-		$('#gantt-slider .gantt-slider__grid').width(gridWidth);
-		
-		if (maxScrollLeft < 0) maxScrollLeft = 0;
+		// update maxScrollLeft
+		var maxScrollLeft = self._elems.$canvas.width() - $(window).width();
+		self._elems.$range.toggleClass('gantt-slider__range--hidden', maxScrollLeft < 0);
 		self._state.maxScrollLeft = maxScrollLeft;
 
+		// update handle position
+		self._updateHandlePosition();
+	},
+
+	_updateHandlePosition: function () {
+		var self = this;
+
+		var scrollLeft = self._elems.$scroll.scrollLeft();
+		var rangeValue = Math.round(1000 * scrollLeft / self._state.maxScrollLeft);
+		self._elems.$range.find('input').val(rangeValue).change();
 	},
 
 	_initRangeSlider: function () {
 		var self = this;
 
-		var $range = $('#gantt-slider .gantt-slider__range');
-		$range.find('input').rangeslider({
+		var $rangeslider = $();
+
+		self._elems.$range.find('input').rangeslider({
 			polyfill: false,
 			onInit: function () {
-				$range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
+				$rangeslider = self._elems.$range.find('.rangeslider');
+				$rangeslider.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
 			},
-			onSlide: _.throttle(function(position, value) {
+			onSlide: function(position, value) {
 				if (value == self._state.lastRangeValue) return;
 				self._state.lastRangeValue = value;
 				
-				var isHandleActive = $range.find('.rangeslider').hasClass('rangeslider--active');
+				var isHandleActive = $rangeslider.hasClass('rangeslider--active');
 				if (!isHandleActive) return;
 
 				var scrollLeft = self._state.maxScrollLeft / 1000 * value; 
-				$('#gantt-slider .gantt-slider__scroll').scrollLeft(scrollLeft);
-			}, 50)
+				self._elems.$scroll.scrollLeft(scrollLeft);
+			}
 		});
 
 	},
 
+
 	_startVideoLoading: function () {
 		var self = this;
 
-		$('#gantt-slider video').each(function () {
+		self._elems.$_.find('video').each(function () {
 			$(this)[0].load();
 		});
+	},
+
+	_handleWindowResize: function (e) {
+		var self = e.data.self;
+
+		switch (self._state.currentView) {
+			case 'gantt': 
+				self._switchToGanttView();
+			break;
+			case 'lines': 
+				self._switchToLinesView();
+			break;
+		}
+	},
+
+	_handleToggleButton: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		switch (self._state.currentView) {
+			case 'gantt': 
+				self._switchToLinesView();
+			break;
+			case 'lines': 
+				self._switchToGanttView();
+			break;
+		}
 	},
 
 	_handleUserActivity: function (e) {
@@ -365,127 +506,120 @@ var GanttSlider = {
 		var self = e.data.self;
 
 		var $video = $(this).find('video.--active');
-		if ($video.length) {
-			$video[0].play();
-		}
+		if ($video.length) $video[0].play();
 	},
 
 	_handleMouseOut: function (e) {
 		var self = e.data.self;
 
 		var $video = $(this).find('video.--active');
-		if ($video.length) {
-			$video[0].pause();
-		}
-	},
-
-	_handleWindowResize: function (e) {
-		var self = e.data.self;
-
-		self._makeScrollCalcs();
+		if ($video.length) $video[0].pause();
 	},
 
 	_handleSliderScroll: function (e) {
 		var self = e.data.self;
 
-		var scrollLeft = $('#gantt-slider .gantt-slider__scroll').scrollLeft();
-		var rangeValue = Math.round(1000 * scrollLeft / self._state.maxScrollLeft);
-		$('#gantt-slider .gantt-slider__range input').val(rangeValue).change();
-	},
-
-	_handleToggleButton: function (e) {
-		var self = e.data.self;
-
-		if (self._state.isGanttView) {
-			self._switchToLinesView();
-		} else {
-			self._switchToGanttView();
-		}
+		self._updateHandlePosition();
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$('.gantt-slider__scroll').on('scroll', {self: self}, _.throttle(self._handleSliderScroll, 50));
-		$('.gantt-slider__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$scroll.on('scroll', {self: self}, self._handleSliderScroll);
+		self._elems.$_.on('canplaythrough', '.gantt-slider__bg__video', {self: self}, self._handleCanPlayEvent);
+		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
+		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
+		self._elems.$_.on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
+		
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
-		$(document).on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
-		$(document).on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
-		$(document).on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#gantt-slider').length == 0 ) return;
+		var $_ = $('#gantt-slider');
+		if ( !$_.length ) return;
+		
+		self._elems.$_ = $_;
+		self._elems.$sandbox = $('#gantt-slider-sandbox');
+		self._elems.$inner = $_.find('.page__inner').first();
+		self._elems.$scroll = $_.find('.gantt-slider__scroll');
+		self._elems.$canvas = $_.find('.gantt-slider__canvas');
+		self._elems.$types = $_.find('.gantt-slider__type');
+		self._elems.$lines = $_.find('.gantt-slider__line');
+		self._elems.$items = $_.find('.gantt-slider__item');
+		self._elems.$ctrl = $_.find('.gantt-slider__ctrl');
+		self._elems.$range = $_.find('.gantt-slider__range');
 
-		self._makeScrollCalcs();
+		self._createElemsClones();
+		self._sortItemsByGroup();
+		self._sortItemsRandomly();
+		self._switchToGanttView();
 		self._initRangeSlider();
-		self._fillRandomItems();
-		self._bindUI();
 
-		$('body').trigger('click');
+		self._elems.$_.removeClass('gantt-slider--frozen --loading');
+
+		self._bindUI();
 	}
 
 };
 
 var SliderContent = {
 
-	_updateSliderWidth: function () {
-		var self = this;
-
-		var $_ = $('#slider-content');
-		var $slider = $_.find('.slider-content__list');
-
-		var MIN_WINDOW_WIDTH = 1300;
-		var MAX_WING_WIDTH = 200;
-
-		var windowWidth = $(window).width();
-		var sectionWidth = $_.width()
-		var sectionEnd = $_.offset().left + sectionWidth;
-		var wingWidth = windowWidth - sectionEnd;
-
-		if (wingWidth > MAX_WING_WIDTH || windowWidth < MIN_WINDOW_WIDTH) {
-			$slider.css({ 'margin-right': 0 });
-			$_.removeClass('--has-wing');
-		} else {
-			$slider.css({ 'margin-right': -wingWidth });
-			$_.addClass('--has-wing');
-		}
-
-		$slider.slick('refresh');
+	_elems: {
+		$_: $(),
+		$wrapper: $(),
+		$slider: $()
 	},
 
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
-		self._updateSliderWidth();
+		self._elems.$slider.trigger('refresh.owl.carousel');
+	},
+
+	_handlePrevButton: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		self._elems.$slider.trigger('prev.owl.carousel')
+	},
+
+	_handleNextButton: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		self._elems.$slider.trigger('next.owl.carousel')
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		self._elems.$_.on('click', '.js-slider-content-prev', {self: self}, self._handlePrevButton);
+		self._elems.$_.on('click', '.js-slider-content-next', {self: self}, self._handleNextButton);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},	
 
 	init: function () {
 		var self = this;
 
-		if ( $('#slider-content').length == 0 ) return;
-		if ( $('body').hasClass('is-admin') ) return;
-
 		var $_ = $('#slider-content');
 
-		$_.find('.slider-content__list').slick({
-			dots: false,
-			infinite: false,
-			prevArrow: $_.find('.js-slider-content-prev'),
-			nextArrow: $_.find('.js-slider-content-next'),
-			fade: true
-		});
+		if ( !$_.length ) return;
+		if ( $('body').hasClass('is-admin') ) return;
 
-		self._updateSliderWidth();
+		self._elems.$_ = $_;
+		self._elems.$wrapper = $_.find('.slider-content__wrapper');
+		self._elems.$slider = $_.find('.owl-carousel');
+
+		self._elems.$slider.owlCarousel({
+		    items: 1,
+		    dots: false
+		});
+		
 		self._bindUI();
 	}
 
@@ -630,7 +764,7 @@ var SliderDigits = {
 					$nextTextItem.addClass('_active');
 					$fakeNumsItem.css({'transform': 'translateX(-' + distance + 'px)'});
 					self._moveNumsToItem(nextIndex);
-				}, 0);
+				}, 20);
 
 			break;
 			case 'right':
@@ -657,7 +791,7 @@ var SliderDigits = {
 					$nextTextDesc.addClass('_fadeInLeft');
 					$nextTextValue.addClass('_fadeInLeft');
 					$nextTextItem.addClass('_active');
-				}, 0);
+				}, 20);
 
 			break;
 		}
@@ -799,7 +933,7 @@ var SliderDigits = {
 		$(document).on('click', '#slider-digits .js-slider-digits-next', {self: self}, self._handleNextClick);
 		$(document).on('touchstart', '.slider-digits__center', {self: self}, self._handleTouchStart);
 		$(document).on('touchmove', '.slider-digits__center', {self: self}, self._handleTouchMove);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
@@ -968,7 +1102,7 @@ var Header = {
 
 		$(document).on('click', {self: self}, self._handleDocumentClick);
 		$(document).on('click', '.header__menu__item--more > a', {self: self}, self._handleMoreClick);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
@@ -983,33 +1117,9 @@ var Header = {
 
 var News = {
 
-	_state: {
-		owl: null
-	},
-
-	_setSliderWidth: function () {
-		var self = this;
-
-		var $wrapper = $('#wrapper');
-		var $slider  = $('#news .news__slider');
-		var wrapperOffset = $wrapper.offset().left;
-		var wrapperWidth = $wrapper.width();
-		var sliderOffset = $slider.offset().left;
-		var sliderWidth = wrapperWidth- (sliderOffset - wrapperOffset);
-		$slider.width(sliderWidth);
-	},
-
-	_initSlider: function () {
-		var self = this;
-
-		self._state.owl = $('#news .news__list').owlCarousel({
-		    loop: true,
-		    autoWidth: true,
-		    touchDrag: false,
-		    mouseDrag: false,
-		    smartSpeed: 500
-		});	
-
+	_elems: {
+		$_: $(),
+		$slider: $()
 	},
 
 	_handleNextButton: function (e) {
@@ -1017,12 +1127,7 @@ var News = {
 
 		e.preventDefault();
 
-		self._state.owl.trigger('next.owl.carousel');
-
-		$('#news .news__item.--active')
-			.removeClass('--active')
-			.parent().next().find('.news__item')
-			.addClass('--active');
+		self._elems.$slider.trigger('next.owl.carousel');
 	},
 
 	_handlePrevButton: function (e) {
@@ -1030,38 +1135,53 @@ var News = {
 
 		e.preventDefault();
 		
-		self._state.owl.trigger('prev.owl.carousel');
+		self._elems.$slider.trigger('prev.owl.carousel');
+	},
 
-		$('#news .news__item.--active')
-			.removeClass('--active')
-			.parent().prev().find('.news__item')
-			.addClass('--active');
+	_handleChangedEvent: function (e) {
+		var self = e.data.self;
 
+		var activeClass = 'news__item--active';
+		var nextIndex = e.item.index;
+
+		self._elems.$slider.find('.news__item').removeClass(activeClass)
+			.eq(nextIndex).addClass(activeClass);
 	},
 
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
-		self._setSliderWidth();
-		self._state.owl.trigger('refresh.owl.carousel');
+		setTimeout(function () {
+			self._elems.$slider.trigger('refresh.owl.carousel');
+		}, 500);
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('click', '#news .js-news-next', {self: self}, self._handleNextButton);
-		$(document).on('click', '#news .js-news-prev', {self: self}, self._handlePrevButton);
-		$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+		self._elems.$_.on('click', '.js-news-next', {self: self}, self._handleNextButton);
+		self._elems.$_.on('click', '.js-news-prev', {self: self}, self._handlePrevButton);
+		self._elems.$_.on('changed.owl.carousel', {self: self}, self._handleChangedEvent);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
-		if ( $('#news').length == 0 ) return;
+		var $_ = $('#news');
 
-		self._setSliderWidth();
-		self._initSlider();
+		if ( !$_.length ) return;
+
+		self._elems.$_ = $_;
+		self._elems.$slider = $_.find('.news__list');
+
 		self._bindUI();
+
+		self._elems.$slider.owlCarousel({
+		    loop: true,
+		    autoWidth: true,
+		    smartSpeed: 500
+		});	
 	}
 };
 

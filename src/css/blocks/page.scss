@@ -1,18 +1,10 @@
 
 .page {
 
-	&__decor {
-		@include position-fill();
-		background: #000;
-		opacity: .3;
-	}
-
 	&__wrapper {
 		overflow: hidden;
-		max-width: 3000px;
-		margin: 0 auto;
 	}
-	
+
 	&__center {
 		max-width: 1600px;
 		margin: 0 auto;
@@ -34,6 +26,17 @@
 
 	&__col-main {
 		margin-left: 200px;
+	}
+
+	&__decor {
+		@include position-fill();
+		background: #000;
+		opacity: .3;
+	}
+
+	&__click {
+		@include position-fill();
+		z-index: 30;
 	}
 
 	&__label {
@@ -235,11 +238,3 @@
 
 }
 
-@media all and (min-width: 3000px) {
-	.page {
-
-		&__wrapper {
-			max-width: 1600px;
-		}
-	}
-}
