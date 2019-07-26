@@ -6,6 +6,26 @@
  * @description 
  * @repository git@bitbucket.org:ildar-meyker/html-barsgroup.git
  */
+.iziModal-close {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 54px;
+  height: 54px;
+  background: #0F1C2D;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 28px;
+  padding-left: 2px;
+  color: #ffffff;
+}
 body.with-scrollbar .iScroll__item {
   min-width: calc(100vw - 17px);
 }
@@ -614,4 +634,91 @@ body.with-scrollbar .iScroll__item {
   width: auto !important;
   height: auto;
   float: right;
+}
+.iLeadership {
+  overflow: hidden;
+}
+.iLeadership__items {
+  height: 749px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.iLeadership-item {
+  width: 290px;
+  height: 367px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+.iLeadership-item:nth-child(2n) {
+  margin-bottom: 0;
+}
+.iLeadership-modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 250px;
+}
+.iLeadership-modal__left {
+  width: 300px;
+}
+.iLeadership-modal__right {
+  min-width: 300px;
+  width: calc(100% - 300px - 50px);
+}
+.iLeadership-modal__name {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+}
+.iLeadership-modal__name + .iLeadership-modal__position {
+  margin-top: 13px;
+}
+.iLeadership-modal__name + .iLeadership-modal__title {
+  margin-top: 53px;
+}
+.iLeadership-modal__position {
+  font-size: 14px;
+  line-height: 18px;
+  color: #657385;
+}
+.iLeadership-modal__position + .iLeadership-modal__title {
+  margin-top: 53px;
+}
+.iLeadership-modal__title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+}
+.iLeadership-modal__title + .iLeadership-modal__text {
+  margin-top: 13px;
+}
+.iLeadership-modal__text {
+  font-size: 14px;
+  line-height: 21px;
+}
+.iLeadership-modal__text p,
+.iLeadership-modal__text li {
+  margin-bottom: 20px;
+}
+.iLeadership-modal__text p:last-child,
+.iLeadership-modal__text li:last-child {
+  margin-bottom: 0;
+}
+.iLeadership-modal__text + .iLeadership-modal__title {
+  margin-top: 30px;
+}
+.iLeadership-modal__text + .iLeadership-modal__text {
+  margin-top: 23px;
 }

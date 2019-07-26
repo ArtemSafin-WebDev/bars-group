@@ -67,17 +67,17 @@ var AboutSlider = {
 			onInit: function () {
 				$range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
 			},
-			onSlide: _.throttle(function(position, value) {
-				if (value == self._state.lastRangeValue) return;
-				self._state.lastRangeValue = value;
-				
-				var isHandleActive = $range.find('.rangeslider').hasClass('rangeslider--active');
-				if (!isHandleActive) return;
+			onSlide: function(position, value) {
+                if (value == self._state.lastRangeValue) return;
+                self._state.lastRangeValue = value;
 
-				self._state.maxScrollLeft = $('#about-slider .iScroll').width() - $('#about-slider .iScroll').width() / $('#about-slider .iScroll').children().length;
-				var scrollLeft = self._state.maxScrollLeft / 1000 * value;
-				$('#about-slider .gantt-slider__scroll').scrollLeft(scrollLeft);
-			}, 50)
+                var isHandleActive = $range.find('.rangeslider').hasClass('rangeslider--active');
+                if (!isHandleActive) return;
+
+                self._state.maxScrollLeft = $('#about-slider .iScroll').width() - $('#about-slider .iScroll').width() / $('#about-slider .iScroll').children().length;
+                var scrollLeft = self._state.maxScrollLeft / 1000 * value;
+                $('#about-slider .gantt-slider__scroll').scrollLeft(scrollLeft);
+            }
 		});
 
 	},
@@ -152,7 +152,7 @@ var AboutSlider = {
 	_bindUI: function () {
 		var self = this;
 
-		$('.gantt-slider__scroll').on('scroll', {self: self}, _.throttle(self._handleSliderScroll, 50));
+		$('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
 		$('.gantt-slider__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 		$(document).on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
@@ -176,6 +176,8 @@ var AboutSlider = {
 };
 
 $(document).ready(function(){
+	$('html').addClass('vh100');
+
 	if($(document).height() > $(window).height())
 		$('body').addClass('with-scrollbar');
 
@@ -254,5 +256,81 @@ $(document).ready(function(){
 		$(this).parent().addClass('iHistory-ruler__item--active');
 
 		$('.iHistory-events .owl-carousel').trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
-	})
+	});
+
+	$("#leadershipModal").iziModal({
+		overlayColor: 'rgba(0, 0, 0, 0.8)',
+		width: 912,
+		padding: 45,
+		radius: 0,
+		overlayClose: false,
+		onOpening: function(event){
+			var modal = event.$element;
+			var left = modal.find('.iLeadership-modal__left');
+			var right = modal.find('.iLeadership-modal__right');
+
+			$.ajax({
+				url: '/json/leadership.json',
+				dataType: 'json',
+				beforeSend: function () {
+					modal.addClass('--loading');
+					left.empty();
+					right.empty();
+				},
+				success: function (data) {
+					setTimeout(function(){
+						modal.removeClass('--loading');
+					}, 500);
+
+					if(data.image)
+						left.append(
+							$('<img />')
+								.attr('src', data.image)
+						);
+
+					if(data.name)
+						right.append(
+							$('<p/>')
+								.addClass('iLeadership-modal__name')
+								.text(data.name)
+						);
+
+					if(data.position)
+						right.append(
+							$('<p/>')
+								.addClass('iLeadership-modal__position')
+								.text(data.position)
+						);
+
+					if(data.content.length)
+						data.content.forEach(function (content) {
+							if (content.title)
+								right.append(
+									$('<p/>')
+										.addClass('iLeadership-modal__title')
+										.text(content.title)
+								);
+							if (content.text)
+								right.append(
+									$('<div/>')
+										.addClass('iLeadership-modal__text')
+										.html(content.text)
+								);
+						});
+				}
+			})
+		}
+	});
+
+	$('#leadershipModal .iziModal-close').click(function(event){
+		event.preventDefault();
+
+		$("#leadershipModal").iziModal('close');
+	});
+
+    $('.iLeadership-item a').click(function(event){
+        event.preventDefault();
+
+        $('#leadershipModal').iziModal('open');
+    });
 });

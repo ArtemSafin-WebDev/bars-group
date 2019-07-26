@@ -9,6 +9,23 @@
 @iPageLabelLeft: 200px;
 @iPageInnerPadding: 40px;
 
+.iziModal {
+  &-close {
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 54px;
+    height: 54px;
+    background: #0F1C2D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    padding-left: 2px;
+    color: #ffffff;
+  }
+}
+
 body {
   &.with-scrollbar {
     .iScroll {
@@ -575,6 +592,84 @@ body {
       width: auto !important;
       height: auto;
       float: right;
+    }
+  }
+}
+
+.iLeadership {
+  @iLeadership_height: 367px;
+  @iLeadership_width: 290px;
+  @iLeadership_margin: 15px;
+  overflow: hidden;
+  &__items {
+    height: 2*@iLeadership_height + @iLeadership_margin;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  &-item {
+    width: @iLeadership_width;
+    height: @iLeadership_height;
+    margin-right: @iLeadership_margin;
+    margin-bottom: @iLeadership_margin;
+    &:nth-child(2n){
+      margin-bottom: 0;
+    }
+  }
+  &-modal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 250px;
+    &__left {
+      width: 300px;
+    }
+    &__right {
+      min-width: 300px;
+      width: calc(~"100% - 300px - 50px");
+    }
+    &__name {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      & + .iLeadership-modal__position {
+        margin-top: 13px;
+      }
+      & + .iLeadership-modal__title {
+        margin-top: 53px;
+      }
+    }
+    &__position {
+      font-size: 14px;
+      line-height: 18px;
+      color: #657385;
+      & + .iLeadership-modal__title {
+        margin-top: 53px;
+      }
+    }
+    &__title {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 24px;
+      & + .iLeadership-modal__text {
+        margin-top: 13px;
+      }
+    }
+    &__text {
+      font-size: 14px;
+      line-height: 21px;
+      p, li {
+        margin-bottom: 20px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      & + .iLeadership-modal__title {
+        margin-top: 30px;
+      }
+      & + .iLeadership-modal__text {
+        margin-top: 23px;
+      }
     }
   }
 }
