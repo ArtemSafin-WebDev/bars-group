@@ -24427,7 +24427,7 @@ function processScrollDiff$1(
 
   // 1 for subpixel rounding
   if (element[scrollTop] < 1) {
-    i.reach[y] = 'iStart-img.png';
+    i.reach[y] = 'start';
   }
 
   // 1 for subpixel rounding
@@ -25389,13 +25389,13 @@ var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
   this.reach = {
     x:
       element.scrollLeft <= 0
-        ? 'iStart-img.png'
+        ? 'start'
         : element.scrollLeft >= this.contentWidth - this.containerWidth
           ? 'end'
           : null,
     y:
       element.scrollTop <= 0
-        ? 'iStart-img.png'
+        ? 'start'
         : element.scrollTop >= this.contentHeight - this.containerHeight
           ? 'end'
           : null,

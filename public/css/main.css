@@ -2547,28 +2547,6 @@ img {
   .gantt-slider__crop {
     position: relative;
     overflow: hidden; }
-    .gantt-slider__crop:after {
-      content: ' ';
-      position: absolute;
-      z-index: 10;
-      width: 200px;
-      height: 100%;
-      right: 0;
-      top: 0;
-      background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(#fff));
-      background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
-      pointer-events: none; }
-    .gantt-slider__crop--with-left:before {
-      content: ' ';
-      position: absolute;
-      z-index: 10;
-      width: 100px;
-      height: 100%;
-      left: 0;
-      top: 0;
-      background: -webkit-gradient(linear, right top, left top, from(rgba(255, 255, 255, 0)), to(#fff));
-      background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
-      pointer-events: none; }
   .gantt-slider__scroll {
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;

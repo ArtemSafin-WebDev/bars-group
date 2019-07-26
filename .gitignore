@@ -1,10 +1,7 @@
+node_modules/
+bower_components/
 npm-debug.log
-node_modules
-bower_components
 .idea
-<<<<<<< HEAD
-=======
 .DS_Store
 html-*.zip
 todo.txt
->>>>>>> 713f71925ef1cb480c43540e5808afa16aadcb8e
