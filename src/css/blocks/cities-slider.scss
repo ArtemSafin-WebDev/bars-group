@@ -2,12 +2,23 @@
 .cities-slider {
 
 	position: relative;
+	margin: -200px 0;
+	padding: 200px 0;
+	background: url('../img/map.svg') no-repeat 40% 0;
+	background-size: cover;
 
 	&.--loading {
 		.cities-slider__canvas,
 		.cities-slider__ctrl {
 			visibility: hidden;
 		}
+	}
+
+	&--sandbox {
+		overflow: hidden;
+		padding: 0;
+		margin: 0;
+		height: 0;
 	}
 
 	&--frozen {
@@ -83,15 +94,9 @@
 		}
 
 		&__label {
-			margin-left: 15px;
+			margin-left: 1.5em;
 			margin-top: 3px;
-			padding: 6px 8px;
 			background: #59b4e6;
-			font-size: 10px;
-			font-weight: 700;
-			letter-spacing: 1.2px;
-			text-transform: uppercase;
-			color: #ffffff;
 		}
 
 		&__desc {
@@ -146,3 +151,55 @@
 	}
 
 }
+
+
+@media all and (max-width: 1050px) {
+
+	.cities-slider {
+	
+		&__item {
+			width: 450px;
+
+			&__body {
+				min-height: 150px;
+			}
+		}
+	}
+
+}
+
+
+@media all and (max-width: 600px) {
+	.cities-slider {
+
+		&__canvas {
+			height: 410px;
+		}
+
+		&__item {
+			width: 350px;
+
+			&--main {
+				.cities-slider__item__city {
+					font-size: 20px;
+				}
+			}
+
+			&__body {
+				min-height: 110px;
+				padding: 20px;
+			}
+			
+			&__city {
+				font-size: 16px;
+			}
+
+			&__desc,
+			&__info {
+				font-size: 12px;
+			}
+	
+		}
+	}
+}
+

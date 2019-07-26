@@ -7,6 +7,7 @@ var CitiesSlider = {
 	
 	_elems: {
 		$_: $(),
+		$sandbox: $(),
 		$scroll: $(),
 		$canvas: $(),
 		$items: $(),
@@ -52,12 +53,21 @@ var CitiesSlider = {
 		return result;
 	},
 
+	// create elems clone to get their dimenstions
+	_createElemsClones: function () {
+		var self = this;
+
+		var $itemClone = self._elems.$items.eq(0).clone();
+		$itemClone.appendTo(self._elems.$sandbox);
+		self._elems.$itemClone = $itemClone;
+	},
+
 	_getGanttViewCalcs: function () {
 		var self = this;
 
 		// get vars for cacheId
-		var itemWidth  = self._elems.$testItem.outerWidth();
-		var itemHeight = self._elems.$testItem.outerHeight();
+		var itemWidth  = self._elems.$itemClone.outerWidth();
+		var itemHeight = self._elems.$itemClone.outerHeight();
 
 		var cacheId = itemWidth + 'x' + itemHeight;
 		if ( !self._cache.gantt[cacheId] ) {
@@ -101,7 +111,7 @@ var CitiesSlider = {
 		
 		var calcs = self._getGanttViewCalcs();		
 		var canvasMiddle = calcs.canvas.height / 2;
-		var itemHeight = self._elems.$testItem.outerHeight();
+		var itemHeight = self._elems.$itemClone.outerHeight();
 
 		// set items positions
 		self._elems.$items.each(function (index, item) {
@@ -239,13 +249,14 @@ var CitiesSlider = {
 		if ( !$_.length ) return;
 		
 		self._elems.$_ = $_;
+		self._elems.$sandbox = $('#cities-slider-sandbox');
 		self._elems.$scroll = $_.find('.cities-slider__scroll');
 		self._elems.$canvas = $_.find('.cities-slider__canvas');
 		self._elems.$items = $_.find('.cities-slider__item');
 		self._elems.$ctrl = $_.find('.cities-slider__ctrl');
 		self._elems.$range = $_.find('.cities-slider__range');
-		self._elems.$testItem = self._elems.$items.first();
 
+		self._createElemsClones();
 		self._setItemsPositions();
 		self._initRangeSlider();
 

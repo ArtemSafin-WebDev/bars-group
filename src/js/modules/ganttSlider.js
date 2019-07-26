@@ -7,6 +7,7 @@ var GanttSlider = {
 	
 	_elems: {
 		$_: $(),
+		$sandbox: $(),
 		$inner: $(),
 		$scroll: $(),
 		$canvas: $(),
