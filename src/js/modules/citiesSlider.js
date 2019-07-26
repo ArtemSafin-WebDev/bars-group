@@ -206,7 +206,8 @@ var CitiesSlider = {
 		var self = this;
 
 		if (!Modernizr.requestanimationframe) return;
-		
+		if (!Modernizr.hiddenscroll) return;
+
 		if (self._state.timeout) {
 			window.cancelAnimationFrame(self._state.timeout);
 		}

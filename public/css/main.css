@@ -1000,8 +1000,6 @@ img {
     -webkit-transition: none;
     transition: none; }
   .rangeslider__handle {
-    -webkit-transition: left .2s;
-    transition: left .2s;
     position: absolute;
     top: 0;
     width: 90px;
