@@ -2201,11 +2201,11 @@ img {
   .footer__social {
     margin-top: 43px; }
   .footer__info {
-    margin-top: 93px;
-    font-size: 0; }
+    margin-top: 90px;
+    line-height: 1.45; }
     .footer__info__item {
       display: inline-block;
-      margin-right: 34px;
+      margin-right: 35px;
       font-size: 11px;
       font-weight: 600;
       color: #c4c4c4; }
@@ -2218,7 +2218,7 @@ img {
     display: inline-block;
     position: relative;
     padding-right: 71px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: #c4c4c4 !important; }
     .footer__dev__logo {
@@ -2288,23 +2288,23 @@ img {
         width: 90px;
         margin-top: -13px; }
     .footer__menu__title {
-      font-size: 11px;
+      font-size: 12px;
       margin-top: 16px; }
     .footer__menu__item {
-      font-size: 11px;
-      margin-top: 11px; }
+      font-size: 12px;
+      margin-top: 10px; }
     .footer__menu__list {
       margin-top: 15px; }
     .footer__find {
-      margin-top: 25px; }
+      margin-top: 30px; }
     .footer__place {
-      font-size: 11px; }
+      font-size: 12px; }
     .footer__phone {
       margin-top: 28px;
-      font-size: 16px; }
+      font-size: 18px; }
     .footer__email {
       margin-top: 10px;
-      font-size: 11px; }
+      font-size: 12px; }
     .footer__social {
       margin-top: 30px; }
     .footer__info {

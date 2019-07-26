@@ -106,12 +106,12 @@
 	}
 
 	&__info {
-		margin-top: 93px;
-		font-size: 0;
+		margin-top: 90px;
+		line-height: 1.45;
 
 		&__item {
 			display: inline-block;
-			margin-right: 34px;
+			margin-right: 35px;
 			font-size: 11px;
 			font-weight: 600;
 			color: #c4c4c4;
@@ -131,7 +131,7 @@
 		display: inline-block;
 		position: relative;
 		padding-right: 71px;
-		font-size: 12px;
+		font-size: 11px;
 		font-weight: 600;
 		color: #c4c4c4 !important;
 
@@ -257,13 +257,13 @@
 		&__menu {
 
 			&__title {
-				font-size: 11px;
+				font-size: 12px;
 				margin-top: 16px;
 			}
 
 			&__item {
-				font-size: 11px;
-				margin-top: 11px;
+				font-size: 12px;
+				margin-top: 10px;
 			}
 
 			&__list {
@@ -272,21 +272,21 @@
 		}
 
 		&__find {
-			margin-top: 25px;
+			margin-top: 30px;
 		}
 
 		&__place {
-			font-size: 11px;
+			font-size: 12px;
 		}
 
 		&__phone {
 			margin-top: 28px;
-			font-size: 16px;
+			font-size: 18px;
 		}
 
 		&__email {
 			margin-top: 10px;
-			font-size: 11px;
+			font-size: 12px;
 		}
 
 		&__social {
