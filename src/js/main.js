@@ -1,6 +1,7 @@
 //= modules/iOSClickFix.js
 //= modules/overview.js
 //= modules/ganttSlider.js
+//= modules/citiesSlider.js
 //= modules/slider-content.js
 //= modules/slider-digits.js
 //= modules/slider-tabs.js

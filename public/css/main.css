@@ -567,7 +567,7 @@ template {
   .ps {
     overflow: auto !important; } }
 
-.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__item:before, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__range .rangeslider__handle i, .vacancies__title:before, .icheckbox:before {
+.icon, .rangeslider__handle i, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__item:before, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before {
   display: inline-block; }
 
 .icon-sprite-png-alpha-bi-white {
@@ -737,7 +737,7 @@ template {
   font-weight: normal;
   font-style: normal; }
 
-.icon, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__item:before, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .gantt-slider__range .rangeslider__handle i, .vacancies__title:before, .icheckbox:before {
+.icon, .rangeslider__handle i, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__item:before, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -847,13 +847,13 @@ template {
 .icon-instagram:before {
   content: "\e91a"; }
 
-.icon-arrow-left:before, .arrow-both-circle__prev:before, .nav-pager__prev:before, .header__menu__item--more > a:before, .gantt-slider__range .rangeslider__handle i:first-child:before {
+.icon-arrow-left:before, .rangeslider__handle i:first-child:before, .arrow-both-circle__prev:before, .nav-pager__prev:before, .header__menu__item--more > a:before {
   content: "\e904"; }
 
-.icon-arrow-right:before, .arrow-both-circle__next:before, .nav-pager__next:before, .nav-side__item:before, .overview__nav__link:before, .gantt-slider__range .rangeslider__handle i:last-child:before {
+.icon-arrow-right:before, .rangeslider__handle i:last-child:before, .arrow-both-circle__next:before, .nav-pager__next:before, .nav-side__item:before, .overview__nav__link:before {
   content: "\e905"; }
 
-.icon-pause:before, .gantt-slider__range .rangeslider__handle i:nth-child(2):before {
+.icon-pause:before, .rangeslider__handle i:nth-child(2):before {
   content: "\e906"; }
 
 .icon-grid:before {
@@ -874,7 +874,7 @@ template {
 .icon-checked:before, .icheckbox:before {
   content: "\e91b"; }
 
-.clearfix::after, .nav-video::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .news__center::after, .history__cities__list::after {
+.clearfix::after, .nav-video::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .cities-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .news__center::after, .history__cities__list::after {
   display: block;
   clear: both;
   content: ""; }
@@ -988,6 +988,48 @@ img {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
+
+.rangeslider {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  height: 40px; }
+  .rangeslider--active .rangeslider__handle {
+    -webkit-transition: none;
+    transition: none; }
+  .rangeslider__handle {
+    -webkit-transition: left .2s;
+    transition: left .2s;
+    position: absolute;
+    top: 0;
+    width: 90px;
+    height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    background: #eff4fd;
+    font-size: 0;
+    cursor: pointer; }
+    .rangeslider__handle i {
+      vertical-align: middle;
+      height: 40px;
+      font-size: 15px;
+      line-height: 40px;
+      color: #6e7f95; }
+      .rangeslider__handle i:nth-child(2) {
+        margin: 0 10px;
+        font-size: 13px;
+        color: #d1dae5; }
+
+@media all and (max-width: 600px) {
+  .rangeslider__handle {
+    height: 34px;
+    width: 80px; }
+    .rangeslider__handle i {
+      height: 34px;
+      line-height: 34px;
+      font-size: 13px; } }
 
 .input-smart-label {
   -webkit-transition: border-color .2s;
@@ -1759,6 +1801,9 @@ img {
 
 .page__wrapper {
   overflow: hidden; }
+  .page__wrapper--contacts {
+    background: url("../img/map.svg") no-repeat 40% 0;
+    background-size: 150% auto; }
 
 .page__center {
   max-width: 1600px;
@@ -1909,7 +1954,8 @@ img {
   .header--no-logo {
     margin-bottom: 0 !important; }
   .header__top-line {
-    border-bottom: 2px solid #e6ebf2; }
+    border-bottom: 2px solid #e6ebf2;
+    background: #fff; }
     .header__top-line__center {
       position: relative;
       display: -webkit-box;
@@ -2083,8 +2129,7 @@ img {
       margin-bottom: 4px; } }
 
 .footer {
-  padding: 100px 0;
-  background: #fff; }
+  padding: 100px 0; }
   .footer__line {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2753,38 +2798,6 @@ img {
     margin-right: 60px; }
     .gantt-slider__range--hidden {
       visibility: hidden !important; }
-    .gantt-slider__range .rangeslider {
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;
-      position: relative;
-      height: 40px; }
-      .gantt-slider__range .rangeslider--active .rangeslider__handle {
-        -webkit-transition: none;
-        transition: none; }
-      .gantt-slider__range .rangeslider__handle {
-        -webkit-transition: left .2s;
-        transition: left .2s;
-        position: absolute;
-        top: 0;
-        width: 90px;
-        height: 40px;
-        text-align: center;
-        border-radius: 20px;
-        background: #eff4fd;
-        font-size: 0;
-        cursor: pointer; }
-        .gantt-slider__range .rangeslider__handle i {
-          vertical-align: middle;
-          height: 40px;
-          font-size: 15px;
-          line-height: 40px;
-          color: #6e7f95; }
-          .gantt-slider__range .rangeslider__handle i:nth-child(2) {
-            margin: 0 10px;
-            font-size: 13px;
-            color: #d1dae5; }
     .gantt-slider__range input {
       opacity: 0; }
 
@@ -2842,6 +2855,114 @@ img {
   .gantt-slider__body {
     background: url("../img/gantt-slider/dots@2x.png");
     background-size: 42px 45px; } }
+
+.cities-slider {
+  position: relative; }
+  .cities-slider.--loading .cities-slider__canvas,
+  .cities-slider.--loading .cities-slider__ctrl {
+    visibility: hidden; }
+  .cities-slider--frozen * {
+    -webkit-transition: none !important;
+    transition: none !important; }
+  .cities-slider--sandbox {
+    overflow: hidden;
+    height: 0; }
+  .cities-slider__crop {
+    position: relative;
+    overflow: hidden; }
+  .cities-slider__scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-bottom: 30px;
+    margin-bottom: -45px; }
+    .hiddenscroll .cities-slider__scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      margin-bottom: -30px; }
+      .hiddenscroll .cities-slider__scroll::-webkit-scrollbar {
+        display: none; }
+  .cities-slider__canvas {
+    -webkit-transition: height .2s ease-out;
+    transition: height .2s ease-out;
+    position: relative;
+    height: 600px; }
+  .cities-slider__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 510px; }
+    .cities-slider__item:hover .cities-slider__item__info {
+      opacity: 1; }
+    .cities-slider__item--main .cities-slider__item__title {
+      margin-bottom: 10px; }
+    .cities-slider__item--main .cities-slider__item__city {
+      font-size: 30px; }
+    .cities-slider__item__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #cbd9e1 no-repeat 50% 50%; }
+    .cities-slider__item__body {
+      position: relative;
+      min-height: 160px;
+      padding: 30px; }
+    .cities-slider__item__title {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      margin-bottom: 5px;
+      font-size: 0; }
+    .cities-slider__item__city {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff; }
+    .cities-slider__item__label {
+      margin-left: 15px;
+      margin-top: 3px;
+      padding: 6px 8px;
+      background: #59b4e6;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #ffffff; }
+    .cities-slider__item__desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #fff; }
+    .cities-slider__item__collapse {
+      display: none; }
+    .cities-slider__item__info {
+      -webkit-transition: all .35s;
+      transition: all .35s;
+      padding-top: 15px;
+      min-height: 1.5em;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #fff;
+      opacity: 0; }
+      .cities-slider__item__info a {
+        font-weight: 700;
+        color: #fff; }
+    .cities-slider__item__icon {
+      position: absolute;
+      bottom: 20px;
+      right: 20px; }
+  .cities-slider__ctrl {
+    position: relative;
+    z-index: 50;
+    margin-top: -20px;
+    height: 40px; }
+  .cities-slider__range--hidden {
+    visibility: hidden !important; }
+  .cities-slider__range input {
+    opacity: 0; }
 
 .slider-digits._visible .slider-digits__nums__list {
   visibility: visible; }
@@ -3464,10 +3585,6 @@ img {
     min-width: 240px; } }
 
 @media all and (max-width: 600px) {
-  .news__slider {
-    min-height: 320px; }
-  .news__ctrl {
-    top: 220px; }
   .news__item {
     width: 320px; }
     .news__item--active .news__title {
@@ -4647,7 +4764,7 @@ img {
   @media screen and (max-width: 400px) {
     .news-details__content blockquote {
       padding: 10px 20px; } }
-  .news-details__content blockquote .icon, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
+  .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
     position: absolute;
     top: 60px;
     left: 55px;
@@ -4655,19 +4772,19 @@ img {
     color: #59b4e6;
     opacity: 0.3; }
     @media screen and (max-width: 1024px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
         font-size: 70px;
         top: 35px; } }
     @media screen and (max-width: 800px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
         top: 35px;
         font-size: 50px;
         left: 40px; } }
     @media screen and (max-width: 600px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
         left: 30px; } }
     @media screen and (max-width: 400px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__item:before, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before {
         opacity: 0.15;
         font-size: 100px;
         top: auto;
@@ -4954,11 +5071,11 @@ img {
       right: auto;
       left: 20px;
       bottom: 20px; } }
-  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__item:before, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before {
+  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__item:before, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before {
     font-size: 18px;
     margin-right: 12px; }
     @media screen and (max-width: 600px) {
-      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__item:before, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before {
+      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__item:before, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before {
         font-size: 16px; } }
   .news-details__photo-slider-download:link, .news-details__photo-slider-download:visited {
     color: white; }
@@ -5167,7 +5284,7 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .arrow-both-circle__prev, .news-details__next-article-arrow .arrow-both-circle__next, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__item:before, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__link:before, .news-details__next-article-arrow .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before {
+  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .arrow-both-circle__prev, .news-details__next-article-arrow .arrow-both-circle__next, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__item:before, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__link:before, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before {
     color: #6e7f95; }
   .active .news-details__next-article-arrow {
     -webkit-transform: translateZ(0) translateX(100%);
@@ -5182,7 +5299,7 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .arrow-both-circle__prev, .news-details__previous-article-arrow .arrow-both-circle__next, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__item:before, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__link:before, .news-details__previous-article-arrow .gantt-slider__range .rangeslider__handle i, .gantt-slider__range .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before {
+  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .arrow-both-circle__prev, .news-details__previous-article-arrow .arrow-both-circle__next, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__item:before, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__link:before, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before {
     color: #6e7f95;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg); }

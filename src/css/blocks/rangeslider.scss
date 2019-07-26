@@ -1,0 +1,64 @@
+.rangeslider {
+	user-select: none;
+	position: relative;
+	height: 40px;
+
+	&--active  {
+		.rangeslider__handle {
+			transition: none;
+		}
+	}
+
+	&__handle {
+		transition: left .2s;
+		position: absolute;
+		top: 0;
+		width: 90px;
+		height: 40px;
+		text-align: center;
+		border-radius: 20px;
+		background: #eff4fd;
+		font-size: 0;
+		cursor: pointer;
+
+		i {
+			@extend .icon;
+			vertical-align: middle;
+			height: 40px;
+			font-size: 15px;
+			line-height: 40px;
+			color: #6e7f95;
+
+			&:first-child {
+				@extend .icon-arrow-left;
+			}
+
+			&:nth-child(2) {
+				@extend .icon-pause;
+				margin: 0 10px;
+				font-size: 13px;
+				color: #d1dae5;
+			}
+
+			&:last-child {
+				@extend .icon-arrow-right;
+			}
+		}
+	}
+}
+
+@media all and (max-width: 600px) {
+	.rangeslider {
+
+		&__handle {
+			height: 34px;
+			width: 80px;
+
+			i {
+				height: 34px;
+				line-height: 34px;
+				font-size: 13px;
+			}
+		}
+	}
+}
