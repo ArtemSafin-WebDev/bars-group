@@ -185,7 +185,9 @@ var GanttSlider = {
 		groupedItems: [],
 		randomItems: [],
 		maxScrollLeft: 0,
-		lastRangeValue: 0
+		lastRangeValue: 0,
+		lastScrollTop: 0,
+		timeout: null
 	},
 
 	_getGanttPattern: function (width, height) {
@@ -518,15 +520,34 @@ var GanttSlider = {
 	},
 
 	_handleSliderScroll: function (e) {
-		var self = e.data.self;
+		var self = this;
 
 		self._updateHandlePosition();
+	},
+
+	_handleWindowScroll: function (e) {
+		var self = this;
+
+		if (!Modernizr.requestanimationframe) return;
+		if (!Modernizr.hiddenscroll) return;
+		if (self._state.currentView != 'gantt') return;
+
+		if (self._state.timeout) {
+			window.cancelAnimationFrame(self._state.timeout);
+		}
+
+		self._state.timeout = window.requestAnimationFrame(function () {
+			var scrollTop  = $(window).scrollTop();
+			var delta  = self._state.lastScrollTop - scrollTop;
+			scrollLeft = self._elems.$scroll.scrollLeft() - delta;
+			self._elems.$scroll.scrollLeft(scrollLeft)
+			self._state.lastScrollTop = scrollTop;
+		});
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$scroll.on('scroll', {self: self}, self._handleSliderScroll);
 		self._elems.$_.on('canplaythrough', '.gantt-slider__bg__video', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
 		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
@@ -534,6 +555,9 @@ var GanttSlider = {
 		
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 		$(window).on('resize', {self: self}, self._handleWindowResize);
+
+		self._elems.$scroll[0].addEventListener('scroll', self._handleSliderScroll.bind(self), false);
+		window.addEventListener('scroll', self._handleWindowScroll.bind(self), false);
 	},
 
 	init: function () {
