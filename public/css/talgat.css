@@ -82,6 +82,7 @@
   position: relative;
   min-height: 434px;
   margin-top: 60px;
+  margin-right: calc(-1 * (100vw - 1520px)/2);
   color: #fff;
 }
 .tAdvantages__nav-wrapper {
@@ -164,6 +165,11 @@
   position: relative;
   z-index: 15;
   max-width: 600px;
+}
+@media all and (max-width: 1600px) {
+  .tAdvantages {
+    margin-right: -40px;
+  }
 }
 .tTasks__wrapper {
   display: -webkit-box;
@@ -721,6 +727,9 @@
 .tPortfolioSearch {
   margin-bottom: 180px;
 }
+.tPortfolioSearch__form {
+  margin-right: calc(-1 * (100vw - 1520px)/2);
+}
 .tPortfolioSearch__input-wrapper {
   height: 96px;
 }
@@ -808,6 +817,11 @@
   -webkit-column-count: 3;
   -moz-column-count: 3;
        column-count: 3;
+}
+@media all and (max-width: 1600px) {
+  .tPortfolioSearch__form {
+    margin-right: -40px;
+  }
 }
 .tPortfolioSearchResults__item {
   display: -webkit-box;

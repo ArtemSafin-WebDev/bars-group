@@ -1557,59 +1557,34 @@ var Form = {
 
 (function () {
 
-	function manipulation() {
-		var
-			windowWidth = $(window).innerWidth(),
-			containerWidth = $('.page__center').width(),
-			containerPadding = $('.page__inner').innerWidth() - $('.page__inner').width(),
-			offset = (windowWidth - containerWidth) / 2 + containerPadding / 2;
-
-		$('.jsOffsetRight').css('margin-right', -offset + 'px');
-	}
-
-	$(window).on('load', function() {
-		setTimeout(function() {
-			manipulation();
-		}, 700);
-	});
-
-	$(window).on('load, resize', function() {
-		manipulation();
-	});
-
 	$(document).ready(function() {
-		if ($('.jsTTasksSlider').length) {
-			$('.jsTTasksSlider').owlCarousel({
-				items: 1,
-				dots: false,
-				nav: true,
-				loop: true,
-				navText: [''],
-				navContainer: '.tTasks__nav'
-			});
-		}
 
-		if ($('.jsTIntroducedSlider').length) {
-			$('.jsTIntroducedSlider').owlCarousel({
-				items: 1,
-				dots: false,
-				nav: true,
-				loop: true,
-				navText: [''],
-				navContainer: '.tIntroduced__nav'
-			});
-		}
+		$('.jsTTasksSlider').owlCarousel({
+			items: 1,
+			dots: false,
+			nav: true,
+			loop: true,
+			navText: [''],
+			navContainer: '.tTasks__nav'
+		});
 
-		if ($('.jsTComponentsSlider').length) {
-			$('.jsTComponentsSlider').owlCarousel({
-				items: 1,
-				dots: false,
-				nav: true,
-				loop: true,
-				navText: [''],
-				navContainer: '.tComponents__nav'
-			});
-		}
+		$('.jsTIntroducedSlider').owlCarousel({
+			items: 1,
+			dots: false,
+			nav: true,
+			loop: true,
+			navText: [''],
+			navContainer: '.tIntroduced__nav'
+		});
+
+		$('.jsTComponentsSlider').owlCarousel({
+			items: 1,
+			dots: false,
+			nav: true,
+			loop: true,
+			navText: [''],
+			navContainer: '.tComponents__nav'
+		});
 
 	});
 
@@ -1778,48 +1753,10 @@ var NewsSlider = {
             document.querySelectorAll(".js-news-slider")
         );
 
-        function checkIfFullyVisible(element) {
-            var viewportOffsetLeft = element.getBoundingClientRect().left;
-            // var viewportOffsetRight = element.getBoundingClientRect().right;
-            var elementWidth = element.offsetWidth;
-            var viewportWidth = document.documentElement.clientWidth;
-
-            // console.log("viewportOffset", viewportOffset);
-            // console.log("elementWidth", elementWidth);
-            // console.log("viewportWidth", viewportWidth);
-            console.log("Checking visibility");
-
-            if (
-                viewportOffsetLeft + elementWidth > viewportWidth ||
-                viewportOffsetLeft < 0
-            ) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function handleSlideVisibility() {
-            var slider = this;
-            var slides = Array.prototype.slice.call(slider.slides);
-
-            slides.forEach(function(slide) {
-                var slideFullyVisible = checkIfFullyVisible(slide);
-                if (!slideFullyVisible) {
-                    slide.classList.add("not-visible");
-                } else {
-                    slide.classList.remove("not-visible");
-                }
-            });
-        }
-
-        window.checkVisible = checkIfFullyVisible;
-
         newsSliders.forEach(function(item) {
            
             var sliderInstance = new Swiper(item, {
                 slidesPerView: "auto",
-                spaceBetween: 25,
                 navigation: {
                     nextEl: document.querySelector(".js-news-slider--next"),
                     prevEl: document.querySelector(".js-news-slider--prev")
@@ -1827,17 +1764,7 @@ var NewsSlider = {
                 init: false
             });
 
-            if (!window.matchMedia("(max-width: 600px)").matches) {
-                sliderInstance.on("init", handleSlideVisibility);
-                sliderInstance.on("slideChange", handleSlideVisibility);
-                sliderInstance.on("transitionEnd", handleSlideVisibility);
-                sliderInstance.on("resize", handleSlideVisibility);
-                sliderInstance.on("sliderMove", handleSlideVisibility);
-                fadeAdded = true;
-            }
-
             sliderInstance.init();
-
             
         });
     }

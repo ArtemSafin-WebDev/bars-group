@@ -29,6 +29,10 @@ body {
 	color: #000000;
 }
 
+*:focus {
+	outline: none;
+}
+
 a {
 	transition: color .2s;
 	color: #6f8fb9;
