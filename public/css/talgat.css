@@ -6,39 +6,6 @@
  * @description 
  * @repository git@bitbucket.org:ildar-meyker/html-barsgroup.git
  */
-.press-center--common .press-center__item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 100%;
-}
-.press-center--common .press-center__call-lg {
-  margin-top: auto;
-}
-.press-center__order {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 45px;
-  padding-right: 30px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-}
-.press-center__order > i {
-  font-size: 28px;
-  margin-left: 30px;
-}
-.press-center__free {
-  margin-top: 10px;
-  color: #6e7f95;
-}
 /**** TT ****/
 .scrollable-content::-webkit-scrollbar {
   display: none !important;
@@ -624,25 +591,6 @@
   }
   .tVacancies {
     margin-right: 0;
-  }
-  .press-center--common .press-center__list {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .press-center--common .press-center__col {
-    max-width: 100%;
-    margin-bottom: 60px;
-    -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
-  }
-  .press-center--common .press-center__col:last-child {
-    margin-bottom: 0;
-  }
-  .press-center--common .press-center__call-lg,
-  .press-center--common .press-center__order {
-    margin-top: 20px;
   }
   .tIntroduced__item,
   .tIntroduced__item,
