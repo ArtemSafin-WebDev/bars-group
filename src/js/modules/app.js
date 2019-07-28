@@ -20,6 +20,7 @@ var App = {
 		NavBanner.init();
 		TechPromo.init();
 		Overview.init();
+		NavMobile.init();
 	},
 
 	_bindUI: function () {

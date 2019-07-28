@@ -133,30 +133,7 @@
 
 		&__search {
 			display: block;
-			margin: 0 -40px;
-			padding: 5px 40px;
-			margin-top: 1px;
-			background: #eff4fd;
-
-			&__input {
-				border-color: transparent !important;
-			}
-
-			&__field {
-				padding-right: 40px;
-			}
-
-			&__submit {
-				transform: scaleX(-1);
-				position: absolute;
-				z-index: 10;
-				height: 100%;
-				top: 0;
-				right: 0;
-				width: 40px;
-				text-align: center;
-				color: #6e7f95;
-			}
+			margin: 1px -40px 0 -40px;
 		}
 
 	}

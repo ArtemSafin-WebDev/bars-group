@@ -120,15 +120,17 @@ layout: default.hbs
 							</div>
 						</nav>
 
-						<form action="#" class="portfolio__search">
-							<div class="input-smart-label portfolio__search__input">
-								<input type="text" class="input-smart-label__field js-form-input portfolio__search__field">
-								<div class="input-smart-label__label">Поиск по названию</div>
-								<button type="submit" class="portfolio__search__submit">
-									<i class="icon icon-search"></i>
-								</button>
-							</div>
-						</form>
+						<div class="portfolio__search">
+							<form action="#" class="form-search">
+								<div class="input-smart-label form-search__input">
+									<input type="text" class="input-smart-label__field js-form-input form-search__field">
+									<div class="input-smart-label__label">Поиск по названию</div>
+									<button type="submit" class="form-search__submit">
+										<i class="icon icon-search"></i>
+									</button>
+								</div>
+							</form>
+						</div>
 
 					</div>
 				</div>
@@ -772,3 +774,5 @@ layout: default.hbs
 	{{> footer }}
 
 </div>
+
+{{> nav-mobile }}

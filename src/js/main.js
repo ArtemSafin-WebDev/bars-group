@@ -16,6 +16,7 @@
 //= modules/nav-banner.js
 //= modules/tech-promo.js
 //= modules/about-slider.js
+//= modules/nav-mobile.js
 //= modules/app.js
 
 App.init();

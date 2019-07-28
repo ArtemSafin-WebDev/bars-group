@@ -1,0 +1,169 @@
+
+.nav-mobile {
+
+	&._active {
+		.nav-mobile__layer {
+			visibility: visible;
+			opacity: .9;
+		}
+		.nav-mobile__side {
+			transform: translateX(0%);
+		}
+		.nav-mobile__body {
+			opacity: 1;
+		}
+	}
+
+	&--frozen {
+		* {
+			transition: none !important;
+		}
+	}
+
+	&__layer {
+		transition: all .2s ease-out;
+		position: fixed;
+		z-index: 1000;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgb(30, 30, 30);
+		visibility: hidden;
+		opacity: 0;
+	}
+	
+	&__side {
+		transition: transform .2s ease-out;
+		transform: translateX(100%);
+		position: fixed;
+		z-index: 1001;
+		right: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		max-width: 400px;
+		background: #fff;
+
+		&__inner {
+			height: 100%;
+			overflow-y: scroll;
+		}
+	}
+
+	&__header {
+		height: 72px;
+		line-height: 72px;
+		text-align: right;
+	}
+
+	&__body {
+		opacity: 0;
+		padding: 20px 20px 100px 20px;
+	}
+
+	&__close {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		width: 34px;
+		height: 34px;
+
+		&:before,
+		&:after {
+			content: ' ';
+			position: absolute;
+			top: 50%;
+			margin-top: -1px;
+			right: 2px;
+			left: 2px;
+			height: 2px;
+			background: #000;
+		}
+
+		&:before {
+			transform: rotate(-45deg);
+		}
+
+		&:after {
+			transform: rotate(45deg);
+		}
+	}
+
+	&__menu {
+		margin-bottom: 60px;
+
+		&__item {
+			margin-top: 25px;
+			text-transform: uppercase;
+			letter-spacing: 1.95px;
+			font-size: 16px;
+			font-weight: 600;
+			line-height: 1.45;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&__find {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	
+	&__search {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 15px;
+
+		.hiddenscroll & {
+			right: 0;
+		}
+
+
+	}
+
+}
+
+@media all and (min-width: 601px) {
+	.nav-mobile {
+		.form-search {
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+	}
+}
+
+@media all and (max-width: 600px) {
+
+	.nav-mobile {
+
+		&__side {
+			max-width: none;
+		}
+
+		&__header {
+			height: 56px;
+			line-height: 56px;
+		}
+
+		&__close {
+			width: 26px;
+
+			&:before,
+			&:after {
+				right: 1px;
+				left: 1px;
+			}
+		}
+
+		&__menu {
+			&__item {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
