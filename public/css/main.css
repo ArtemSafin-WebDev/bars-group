@@ -1366,7 +1366,7 @@ img {
 @media all and (max-width: 600px) {
   .nav-pager__item, .nav-pager__prev, .nav-pager__next {
     height: 40px;
-    width: 40px;
+    width: 34px;
     font-size: 12px; }
   .nav-pager__item {
     margin: 0 3px; } }
@@ -1780,7 +1780,7 @@ img {
         border-radius: 50%;
         background: #59b4e6; }
   .article__date {
-    margin-bottom: 10px;
+    margin-bottom: 1em;
     display: block;
     font-size: 14px;
     color: #6f8fb9; }
@@ -1882,14 +1882,14 @@ img {
   height: 160px; }
 
 .page__h1 {
-  margin-bottom: 30px;
+  margin-bottom: .8em;
   max-width: 700px;
   font-size: 36px;
   font-weight: 700;
   line-height: 1.4; }
 
 .page__h2 {
-  margin-bottom: 40px;
+  margin-bottom: 1.4em;
   max-width: 700px;
   font-size: 30px;
   font-weight: 700;
@@ -1948,10 +1948,8 @@ img {
     font-size: 11px;
     letter-spacing: 1.22px; }
   .page__h1 {
-    margin-bottom: 20px;
     font-size: 24px; }
   .page__h2 {
-    margin-bottom: 30px;
     font-size: 22px; } }
 
 .header {
@@ -3333,10 +3331,9 @@ img {
     padding: 60px; }
   .slider-content__date {
     margin-top: -10px;
-    margin-bottom: 20px;
     color: #fff; }
   .slider-content__h1 {
-    margin-bottom: 20px;
+    margin-bottom: .8em;
     max-width: 600px;
     font-size: 28px;
     font-weight: 700;
@@ -3380,7 +3377,7 @@ img {
 
 @media all and (max-width: 600px) {
   .slider-content__h1 {
-    font-size: 26px; }
+    font-size: 24px; }
   .slider-content__ctrl {
     right: 20px; } }
 
@@ -3822,8 +3819,8 @@ img {
     background: linear-gradient(45deg, #92e0e5, #58b4e6); }
   .article-cards__col--no-image .article-cards__desc {
     border-top: 4px solid #59b4e6;
-    padding-right: 30px;
-    padding-left: 30px; }
+    padding-right: 25px;
+    padding-left: 25px; }
   .article-cards__col--color-bg .article-cards__image {
     position: absolute;
     top: 0;
@@ -3837,7 +3834,7 @@ img {
     .article-cards__col--color-bg .article-cards__desc * {
       color: #fff !important; }
   .article-cards__col--color-bg .article-cards__text {
-    padding-bottom: 80px; }
+    padding-bottom: 60px; }
 
 .article-cards__item {
   position: relative;
@@ -3866,7 +3863,7 @@ img {
   padding-top: 30px; }
 
 .article-cards__h1 {
-  margin-bottom: 20px;
+  margin-bottom: .8em;
   font-size: 24px;
   font-weight: 700;
   line-height: 1.35; }
@@ -3874,7 +3871,7 @@ img {
     color: #000 !important; }
 
 .article-cards__h2 {
-  margin-bottom: 15px;
+  margin-bottom: .8em;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.45; }
@@ -3900,7 +3897,7 @@ img {
   .article-cards__col {
     width: 100%;
     max-width: none; }
-  .article-cards__item--no-image .article-cards__desc {
+  .article-cards__col--no-image .article-cards__desc {
     padding-left: 0;
     padding-right: 0; } }
 
@@ -3909,12 +3906,12 @@ img {
     margin-top: -45px; }
   .article-cards__col {
     margin-top: 45px; }
-  .article-cards__item--color-bg .article-cards__desc {
-    padding: 20px; }
+    .article-cards__col--color-bg .article-cards__desc {
+      padding: 30px 25px; }
   .article-cards__desc {
-    padding-top: 20px; }
+    padding-top: 25px; }
   .article-cards__h2 {
-    font-size: 14px; }
+    font-size: 16px; }
   .article-cards__text {
     font-size: 12px; } }
 
@@ -3954,6 +3951,7 @@ img {
           margin-top: 0; }
       .cats-scroll__list__box a {
         font-size: 22px;
+        font-weight: 600;
         line-height: 1.35;
         color: #fff !important; }
       .cats-scroll__list__box span {
@@ -3976,8 +3974,13 @@ img {
     opacity: 0 !important; }
 
 @media all and (max-width: 600px) {
-  .cats-scroll__title, .cats-scroll__list {
-    padding: 0 30px; } }
+  .cats-scroll__title {
+    padding: 0 30px;
+    font-size: 14px; }
+  .cats-scroll__list {
+    padding: 0 30px; }
+    .cats-scroll__list__box a {
+      font-size: 18px; } }
 
 .subscribe {
   padding: 45px;
@@ -4005,7 +4008,7 @@ img {
             box-sizing: content-box;
     padding: 0 70px;
     font-size: 16px;
-    line-height: 1.8; }
+    line-height: 1.7; }
   .subscribe__list {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 40%;
@@ -4020,8 +4023,8 @@ img {
         flex-wrap: wrap;
     padding: 0 12px; }
   .subscribe__title {
-    margin-bottom: 15px;
-    margin-top: -5px; }
+    margin-bottom: .8em;
+    margin-top: -.2em; }
     .subscribe__title br {
       display: none; }
   .subscribe__desc {
@@ -4051,7 +4054,7 @@ img {
   .subscribe {
     padding: 30px 20px; }
     .subscribe__title {
-      font-size: 16px; }
+      font-size: 20px; }
     .subscribe__desc {
       font-size: 12px; } }
 
