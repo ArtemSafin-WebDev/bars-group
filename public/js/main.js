@@ -2129,13 +2129,16 @@ $(document).ready(function(){
 		}
 	});
 
+	var height = $('.iLeadership-item').eq(0).height();
+	$('.iLeadership-item').width(height*0.8);
+
 	$('#leadershipModal .iziModal-close').click(function(event){
 		event.preventDefault();
 
 		$("#leadershipModal").iziModal('close');
 	});
 
-    $('.iLeadership-item a').click(function(event){
+    $('.iLeadership-item').click(function(event){
         event.preventDefault();
 
         $('#leadershipModal').iziModal('open');

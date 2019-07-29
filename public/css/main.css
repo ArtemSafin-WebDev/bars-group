@@ -12,7 +12,7 @@
 @import url(../../bower_components/owl.carousel/dist/assets/owl.carousel.css);
 @import url(../../bower_components/owl.carousel/dist/assets/owl.theme.default.css);
 @import url(../../bower_components/swiper/dist/css/swiper.css);
-@import url(../../bower_components/izimodal/css/iziModal.min	.css);
+@import url(../../bower_components/izimodal/css/iziModal.min.css);
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -879,6 +879,11 @@ template {
   display: block;
   clear: both;
   content: ""; }
+
+html.vh100 {
+  min-height: 100vh; }
+  html.vh100 body {
+    min-height: 100vh; }
 
 body {
   min-width: 320px;
