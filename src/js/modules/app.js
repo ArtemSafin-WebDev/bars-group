@@ -23,10 +23,20 @@ var App = {
 		NavMobile.init();
 	},
 
+	_handleWindowLoad: function () {
+		var self = this;
+
+		setTimeout(function () {
+			$('#hello').removeClass('hello--active');
+			$('body').removeClass('page__locked');
+		}, 700);
+	},
+
 	_bindUI: function () {
 		var self = this;
 
 		$(document).ready(self._handleDOMReady.bind(self));
+		$(window).on('load', self._handleWindowLoad.bind(self));
 	},
 
 	init: function () {
