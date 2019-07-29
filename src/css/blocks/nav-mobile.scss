@@ -57,9 +57,13 @@
 		text-align: right;
 	}
 
+	&__search {
+		margin-top: 20px;
+	}
+
 	&__body {
 		opacity: 0;
-		padding: 20px 20px 100px 20px;
+		padding: 50px 20px;
 	}
 
 	&__close {
@@ -91,7 +95,6 @@
 	}
 
 	&__menu {
-		margin-bottom: 60px;
 
 		&__item {
 			margin-top: 25px;
@@ -108,22 +111,10 @@
 	}
 
 	&__find {
-		margin: 0 !important;
+		margin: 60px 0 20px 0 !important;
 		padding: 0 !important;
 	}
 	
-	&__search {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 15px;
-
-		.hiddenscroll & {
-			right: 0;
-		}
-
-
-	}
 
 }
 
