@@ -2384,7 +2384,7 @@ var App = {
 		setTimeout(function () {
 			$('#hello').removeClass('hello--active');
 			$('body').removeClass('page__locked');
-		}, 700);
+		}, 200);
 	},
 
 	_bindUI: function () {
