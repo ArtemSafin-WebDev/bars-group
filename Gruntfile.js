@@ -37,7 +37,8 @@ module.exports = function(grunt) {
 					"lowbandwidth",
 					"csspointerevents",
 					"hiddenscroll",
-					"objectfit"
+					"objectfit",
+					"requestanimationframe"
 				],
 				"options": [
 					"setClasses"

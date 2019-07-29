@@ -1,6 +1,8 @@
 
 .header {
-
+	
+	position: relative;
+	z-index: 10;
 	margin-bottom: 100px;
 	
 	&--no-logo {
@@ -9,6 +11,7 @@
 
 	&__top-line {
 		border-bottom: 2px solid #e6ebf2;
+		background: #fff;
 
 		&__center {
 			position: relative;
@@ -193,21 +196,33 @@
 		display: none;
 		position: absolute;
 		top: 50%;
-		margin-top: -16px;
+		margin-top: -18px;
 		right: 0;
 		
 		&__icon {
 			@extend .clearfix;
 			display: block;
 			padding: 10px 0;
+			width: 34px;
+
+			&:hover {
+				span {
+					width: 100% !important;
+				}
+			}
 
 			span {
 				transition: width .2s ease-in-out;
 				display: block;
 				height: 2px;
-				width: 34px;
 				margin-bottom: 5px;
 				background: #000;
+
+				&:last-child {
+					float: right;
+					margin-bottom: 0;
+					width: 80%;
+				}
 			}
 		}
 	}
@@ -272,9 +287,12 @@
 		}
 
 		&__burger {
+			margin-top: -17px;
+
 			&__icon {
+				width: 26px;
+
 				span {
-					width: 20px;
 					margin-bottom: 4px;
 				}
 			}

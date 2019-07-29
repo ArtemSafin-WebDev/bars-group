@@ -6,8 +6,6 @@
 		position: relative;
 	}
 
-	
-
 	&__label {
 		position: absolute;
 	    top: 27px;
@@ -145,14 +143,6 @@
 @media all and (max-width: 600px) {
 
 	.news {
-
-		&__slider {
-			min-height: 320px;
-		}
-
-		&__ctrl {
-			top: 220px;
-		}
 
 		&__item {
 

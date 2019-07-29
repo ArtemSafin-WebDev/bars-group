@@ -1,5 +1,14 @@
 
 .page {
+	
+	&__locked {
+		overflow: hidden;
+		margin-right: 15px;
+
+		.hiddenscroll & {
+			margin-right: 0;
+		}
+	}
 
 	&__wrapper {
 		overflow: hidden;
@@ -92,7 +101,7 @@
 	}
 
 	&__h1 {
-		margin-bottom: 30px;
+		margin-bottom: .8em;
 		max-width: 700px;
 		font-size: 36px;
 		font-weight: 700;
@@ -101,7 +110,7 @@
 	}
 
 	&__h2 {
-		margin-bottom: 40px;
+		margin-bottom: 1.4em;
 		max-width: 700px;
 		font-size: 30px;
 		font-weight: 700;
@@ -159,6 +168,11 @@
 @media all and (max-width: 1300px) {
 
 	.page {
+
+		&__inner {
+			padding: 0 30px;
+		}
+
 		&__label {
 			min-width: auto;
 		}
@@ -223,18 +237,16 @@
 			letter-spacing: 1.22px;
 		}
 
-		&__h1 {
-			margin-bottom: 20px;
-			font-size: 24px;
-		}
-
+		&__h1,
 		&__h2 {
-			margin-bottom: 30px;
-			font-size: 22px;
+			font-size: 24px;
 		}
 
 	}
 
-
 }
+
+
+
+
 

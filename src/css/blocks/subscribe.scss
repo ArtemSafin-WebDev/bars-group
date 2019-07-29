@@ -24,7 +24,7 @@
 		box-sizing: content-box;
 		padding: 0 70px;
 		font-size: 16px;
-		line-height: 1.8;
+		line-height: 1.7;
 	}
 
 	&__list {
@@ -48,8 +48,8 @@
 		}
 
 		&__title {
-			margin-bottom: 15px;
-			margin-top: -5px;
+			margin-bottom: .8em;
+			margin-top: -.2em;
 
 			br {
 				display: none;
@@ -101,7 +101,7 @@
   		padding: 30px 20px;
 
 		&__title {
-			font-size: 16px;
+			font-size: 20px;
 		}
 
 		&__desc {

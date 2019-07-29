@@ -4,11 +4,11 @@ var App = {
 		var self = this;
 
 		// init modules here
-		Overview.init();
+		GanttSlider.init();
+		CitiesSlider.init();
 		SliderContent.init();
 		SliderDigits.init();
 		SliderTabs.init();
-		GanttSlider.init();
 		AboutSlider.init();
 		Header.init();
 		News.init();
@@ -19,6 +19,8 @@ var App = {
 		NewsToggles.init();
 		NavBanner.init();
 		TechPromo.init();
+		Overview.init();
+		NavMobile.init();
 	},
 
 	_bindUI: function () {

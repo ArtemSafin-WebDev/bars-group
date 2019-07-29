@@ -1,6 +1,7 @@
 //= modules/iOSClickFix.js
 //= modules/overview.js
 //= modules/ganttSlider.js
+//= modules/citiesSlider.js
 //= modules/slider-content.js
 //= modules/slider-digits.js
 //= modules/slider-tabs.js
@@ -15,6 +16,7 @@
 //= modules/nav-banner.js
 //= modules/tech-promo.js
 //= modules/about-slider.js
+//= modules/nav-mobile.js
 //= modules/app.js
 
 App.init();

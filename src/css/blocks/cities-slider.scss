@@ -1,0 +1,205 @@
+
+.cities-slider {
+
+	position: relative;
+	margin: -200px 0;
+	padding: 200px 0;
+	background: url('../img/map.svg') no-repeat 40% 0;
+	background-size: cover;
+
+	&.--loading {
+		.cities-slider__canvas,
+		.cities-slider__ctrl {
+			visibility: hidden;
+		}
+	}
+
+	&--sandbox {
+		overflow: hidden;
+		padding: 0;
+		margin: 0;
+		height: 0;
+	}
+
+	&--frozen {
+		* {
+			transition: none !important;
+		}
+	}
+
+	&--sandbox {
+		overflow: hidden;	
+		height: 0;
+	}
+
+	&__crop {
+		position: relative;
+		overflow: hidden;
+	}
+
+	&__scroll {
+		@include add-scrollbar();
+	}
+
+	&__canvas {
+		transition: height .2s ease-out;
+		position: relative;
+		height: 600px;
+	}
+
+	&__item {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 510px;
+
+		&:hover {
+			.cities-slider__item__info {
+				opacity: 1;
+			}
+		}
+
+		&--main {
+			.cities-slider__item__title {
+				margin-bottom: 10px;
+			}
+
+			.cities-slider__item__city {
+				font-size: 30px;
+			}
+		}
+
+		&__image {
+			@include position-fill();
+			background: $base-gray no-repeat 50% 50%;
+		}
+
+		&__body {
+			position: relative;
+			min-height: 160px;
+			padding: 30px;
+		}
+
+		&__title {
+			display: flex;
+			align-items: center;
+			margin-bottom: 5px;
+			font-size: 0;
+		}
+
+		&__city {
+			font-size: 22px;
+			font-weight: 700;
+			color: #fff;
+		}
+
+		&__label {
+			margin-left: 1.5em;
+			margin-top: 3px;
+			background: #59b4e6;
+		}
+
+		&__desc {
+			font-size: 14px;
+			line-height: 1.7;
+			color: #fff;
+		}
+
+		&__collapse {
+			display: none;
+		}
+
+		&__info {
+			transition: all .35s;
+			padding-top: 15px;
+			min-height: 1.5em;
+			font-size: 14px;
+			line-height: 1.7;
+			color: #fff;
+			opacity: 0;
+
+			a {
+				font-weight: 700;
+				color: #fff;
+			}
+		}
+
+		&__icon {
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+		}
+	}
+
+	&__ctrl {
+		@extend .clearfix;
+		position: relative;
+		z-index: 50;
+		margin-top: -20px;
+		height: 40px;
+	}
+
+	&__range {
+
+		&--hidden {
+			visibility: hidden !important;
+		}
+
+		input {
+			opacity: 0;
+		}
+	}
+
+}
+
+
+@media all and (max-width: 1050px) {
+
+	.cities-slider {
+	
+		&__item {
+			width: 450px;
+
+			&__body {
+				min-height: 150px;
+			}
+		}
+	}
+
+}
+
+
+@media all and (max-width: 600px) {
+	.cities-slider {
+
+		&__canvas {
+			height: 410px;
+		}
+
+		&__item {
+			width: 350px;
+
+			&--main {
+				.cities-slider__item__city {
+					font-size: 20px;
+				}
+			}
+
+			&__body {
+				min-height: 110px;
+				padding: 20px;
+			}
+			
+			&__city {
+				font-size: 16px;
+			}
+
+			&__desc,
+			&__info {
+				font-size: 12px;
+			}
+	
+		}
+	}
+}
+
