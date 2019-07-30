@@ -1404,7 +1404,6 @@ var Header = {
 		var self = this;
 
 		if ( $('#header').length == 0) return;
-		if ( $('#header .header__menu').length == 0 ) return;
 
 		self._adjustMoreItem();
 		self._bindUI();

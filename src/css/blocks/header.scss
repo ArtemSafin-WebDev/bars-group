@@ -3,21 +3,13 @@
 	
 	position: relative;
 	z-index: 10;
-	margin-bottom: 100px;
-	
-	&--no-logo {
-		margin-bottom: 0 !important;
-	}
+	border-bottom: 2px solid #e6ebf2;
+	background: #fff;
 
-	&__top-line {
-		border-bottom: 2px solid #e6ebf2;
-		background: #fff;
-
-		&__center {
-			position: relative;
-			display: flex;
-			height: 72px;
-		}
+	&__center {
+		position: relative;
+		display: flex;
+		height: 72px;
 	}
 
 	&__menu {
@@ -229,22 +221,12 @@
 
 }
 
-@media all and (max-width: 1050px) {
-
-	.header {
-		margin-bottom: 60px;
-	}
-
-}
-
 @media all and (max-width: 950px) {
 
 	.header {
 		
-		&__top-line {
-			&__center {
-				align-items: center;
-			}
+		&__center {
+			align-items: center;
 		}
 
 		&__menu,
@@ -271,14 +253,10 @@
 
 	.header {
 
-		margin-bottom: 40px;
+		border-bottom: 0;
 
-		&__top-line {
-			border-bottom: 0;
-
-			&__center {
-				height: 56px;
-			}
+		&__center {
+			height: 56px;
 		}
 
 		&__phone,

@@ -19,6 +19,10 @@
 		}
 	}
 
+	&__header {
+		margin-bottom: 0;
+	}
+
 	&__image {
 		@include position-fill();
 		background: $base-gray 50% 50% no-repeat;
@@ -28,7 +32,6 @@
 	&__text {
 		position: relative;
 		z-index: 1;
-		padding-top: 1px;
 	}
 
 	&__content {
@@ -85,7 +88,7 @@
 	.banner {
 
 		&__header {
-			margin-top: 30px;
+			padding-top: 30px;
 		}
 
 		&__desc {
