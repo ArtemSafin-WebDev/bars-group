@@ -8,5 +8,6 @@
 //= ../../bower_components/owl.carousel/dist/owl.carousel.js
 //= ../../bower_components/dragscroll/dragscroll.js
 //= ../../bower_components/swiper/dist/js/swiper.js
+//= ../../bower_components/izimodal/js/iziModal.min.js
 //= vendor/perfect-scrollbar.js
 
