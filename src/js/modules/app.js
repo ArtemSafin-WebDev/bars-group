@@ -4,7 +4,6 @@ var App = {
 		var self = this;
 
 		// init modules here
-		AboutSlider.init();
 		GanttSlider.init();
 		CitiesSlider.init();
 		SliderContent.init();

@@ -24,6 +24,9 @@ var about = {
             if(self.window.width() <= 576)
                 self.isMobile = true;
 
+            if(!self.isMobile)
+                AboutSlider.init();
+
             if(self.isMobile)
                 self.initGeo();
             else

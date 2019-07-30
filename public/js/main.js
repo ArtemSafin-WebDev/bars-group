@@ -2056,6 +2056,9 @@ var about = {
             if(self.window.width() <= 576)
                 self.isMobile = true;
 
+            if(!self.isMobile)
+                AboutSlider.init();
+
             if(self.isMobile)
                 self.initGeo();
             else
@@ -2488,7 +2491,6 @@ var App = {
 		var self = this;
 
 		// init modules here
-		AboutSlider.init();
 		GanttSlider.init();
 		CitiesSlider.init();
 		SliderContent.init();
