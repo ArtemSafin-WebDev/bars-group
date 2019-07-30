@@ -25,35 +25,7 @@ layout: default.hbs
         <div class="gantt-slider__crop gantt-slider__crop--with-left">
             <div class="gantt-slider__scroll">
                 <div class="iScroll iScroll-9 iScroll--horizontal">
-                    <div class="iLeadership iScroll__item">
-                        <div class="page__center">
-                            <div class="page__inner">
-                                <div class="iLeadership__items">
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');"></a>
-                                </div>
-                            </div>
-                            <a href="#" class="button button-default js-form-wings">
-                                <span class="button-default__text">
-                                    Показать еще
-                                </span>
-                                <i class="arrow-right-fly button-default__icon">
-                                    <span></span>
-                                </i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="iStart iScroll__item">
+                    <div class="iStart iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iStart__img">
@@ -64,77 +36,82 @@ layout: default.hbs
                             </div>
                         </div>
                     </div>
-                    <div class="iMission iScroll__item">
-                        <img src="/img/about/bigcitylife.svg" alt="" class="iMission__bg">
+                    <div class="iMission iScroll-item">
+                        <img src="/uploads/about/bigcitylife.svg" alt="" class="iMission__bg">
                         <div class="page__center">
                             <div class="page__inner">
+                                <div class="iScroll-item__label">Миссия</div>
                                 <p class="iMission__pretitle">Создаём технологии, меняем жизнь</p>
                                 <p class="iMission__title">Мы улучшаем качество жизни людей, повышая эффективность цифрового государства, бизнеса и экономики
                                     с помощью российских облачных технологий</p>
                             </div>
                         </div>
                     </div>
-                    <div class="iGeo iScroll__item">
-                        <div class="iGeo__map">
-                            <img src="/uploads/about/iGeo-map.svg" alt="">
-                        </div>
+                    <div class="iGeo iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
+                                <div class="iScroll-item__label">География</div>
                                 <p class="iGeo__title">Наши офисы в 15 городах</p>
                             </div>
                         </div>
-                        <div class="iGeo__items" data-active="iGeo__item--active">
-                            <div class="iGeo__item" data-top="323" data-left="66" style="width: 266px; height: 69px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #A33A00;;">
-                                Калининград
+                        <div class="iGeo__wrapper">
+                            <div class="iGeo__map">
+                                <img src="/uploads/about/iGeo-map.svg" alt="">
                             </div>
-                            <div class="iGeo__item" data-top="366" data-left="263" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #005BA8;">
-                                Санкт-Петербург
-                            </div>
-                            <div class="iGeo__item" data-top="294" data-left="914" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #00015E;">
-                                Липецк
-                            </div>
-                            <div class="iGeo__item" data-top="426" data-left="651" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #000138;">
-                                Ростов-на-Дону
-                            </div>
-                            <div class="iGeo__item" data-top="470" data-left="1107" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #000138; z-index: 10;">
-                                Тюмень
-                            </div>
-                            <div class="iGeo__item" data-top="557" data-left="0" style="left: 0; width: 419px; height: 104px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #382100;">
-                                Москва
-                            </div>
-                            <div class="iGeo__item" data-top="554" data-left="464" style="width: 374px; height: 98px; background-image: url('/uploads/about/cities/kazan.png'); background-color: #090031; z-index: 10;">
-                                Казань <label>Головной офис</label>
-                            </div>
-                            <div class="iGeo__item" data-top="547" data-left="943" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #0074C2; z-index: 0;">
-                                Новосибирск
-                            </div>
-                            <div class="iGeo__item" data-top="632" data-left="287" style="width: 277px; height: 72px; background-image: url('/uploads/about/cities/innopolis.png'); background-color: #00312A; z-index: 0;">
-                                Иннополис
-                            </div>
-                            <div class="iGeo__item" data-top="724" data-left="149" style="width: 277px; height: 72px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #008975;">
-                                Краснодар
-                            </div>
-                            <div class="iGeo__item" data-top="766" data-left="567" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #A60060;">
-                                Набережные Челны
-                            </div>
-                            <div class="iGeo__item" data-top="710" data-left="947" style="width: 285px; height: 75px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #0032A6;">
-                                Рыбинск
-                            </div>
-                            <div class="iGeo__item" data-top="337" data-left="1305" style="width: 266px; height: 71px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #382100;">
-                                Рязань
-                            </div>
-                            <div class="iGeo__item" data-top="554" data-left="1408" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #383000;">
-                                Томск
-                            </div>
-                            <div class="iGeo__item" data-top="680" data-left="1194" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #A60060;">
-                                Владивосток
+                            <div class="iGeo__items" data-active="iGeo__item--active">
+                                <div class="iGeo__item" data-top="323" data-left="66" style="width: 266px; height: 69px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #A33A00;;">
+                                    Калининград
+                                </div>
+                                <div class="iGeo__item" data-top="366" data-left="263" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #005BA8;">
+                                    Санкт-Петербург
+                                </div>
+                                <div class="iGeo__item" data-top="294" data-left="914" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #00015E;">
+                                    Липецк
+                                </div>
+                                <div class="iGeo__item" data-top="426" data-left="651" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #000138;">
+                                    Ростов-на-Дону
+                                </div>
+                                <div class="iGeo__item" data-top="470" data-left="1107" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #000138; z-index: 10;">
+                                    Тюмень
+                                </div>
+                                <div class="iGeo__item" data-top="557" data-left="0" style="left: 0; width: 419px; height: 104px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #382100;">
+                                    Москва
+                                </div>
+                                <div class="iGeo__item" data-top="554" data-left="464" style="width: 374px; height: 98px; background-image: url('/uploads/about/cities/kazan.png'); background-color: #090031; z-index: 10;">
+                                    Казань <label>Головной офис</label>
+                                </div>
+                                <div class="iGeo__item" data-top="547" data-left="943" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #0074C2; z-index: 0;">
+                                    Новосибирск
+                                </div>
+                                <div class="iGeo__item" data-top="632" data-left="287" style="width: 277px; height: 72px; background-image: url('/uploads/about/cities/innopolis.png'); background-color: #00312A; z-index: 0;">
+                                    Иннополис
+                                </div>
+                                <div class="iGeo__item" data-top="724" data-left="149" style="width: 277px; height: 72px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #008975;">
+                                    Краснодар
+                                </div>
+                                <div class="iGeo__item" data-top="766" data-left="567" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #A60060;">
+                                    Набережные Челны
+                                </div>
+                                <div class="iGeo__item" data-top="710" data-left="947" style="width: 285px; height: 75px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #0032A6;">
+                                    Рыбинск
+                                </div>
+                                <div class="iGeo__item" data-top="337" data-left="1305" style="width: 266px; height: 71px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #382100;">
+                                    Рязань
+                                </div>
+                                <div class="iGeo__item" data-top="554" data-left="1408" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #383000;">
+                                    Томск
+                                </div>
+                                <div class="iGeo__item" data-top="680" data-left="1194" style="width: 326px; height: 85px; background-image: url('/uploads/about/cities/moscow.png'); background-color: #A60060;">
+                                    Владивосток
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="iDigits iScroll__item">
+                    <div class="iDigits iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
-                                <div class="owl-carousel">
+                                <div class="iScroll-item__label">Цифры</div>
+                                <div class="iDigits-slides owl-carousel">
                                     <div class="iDigits-item">
                                         <div class="iDigits-item__title">
                                             Работаем с 1992 года
@@ -199,7 +176,7 @@ layout: default.hbs
                                         </div>
                                     </div>
                                 </div>
-                                <div class="iDigits-values" data-active="iDigits-values__item--active">
+                                <div class="iDigits-values owl-carousel" data-active="iDigits-values__item--active">
                                     <div class="iDigits-values__item">1 992</div>
                                     <div class="iDigits-values__item">1 300</div>
                                     <div class="iDigits-values__item">200</div>
@@ -210,34 +187,41 @@ layout: default.hbs
                             </div>
                         </div>
                     </div>
-                    <div class="iAdvantages iScroll__item">
-                        <div class="iAdvantages__item iAdvantagesItem iAdvantagesItem--bordered iAdvantagesItem--bordered--blue">
-                            <p class="iAdvantagesItem__title">Собственные технологии</p>
-                            <p class="iAdvantagesItem__desc">В основе реализации проектов «БАРС Груп» — собственные облачные платформы. На их базе создан широкий спектр программных продуктов, включающий тиражные информационные системы и уникальные решения.</p>
-                        </div>
-                        <div class="iAdvantages__item iAdvantagesItem iAdvantagesItem--bordered iAdvantagesItem--bordered--green">
-                            <p class="iAdvantagesItem__title">Внедрение и сопровождение</p>
-                            <p class="iAdvantagesItem__desc">Компетенции компании позволяют осуществлять все этапы проекта: от обследования до внедрения и сопровождения. Для удобства Заказчиков к осуществлению проектов подключаются партнёрские организации.</p>
-                        </div>
-                        <div class="iAdvantages__item iAdvantagesItem iAdvantagesItem--bordered iAdvantagesItem--bordered--red">
-                            <p class="iAdvantagesItem__title">Экспертиза, методология и консалтинг</p>
-                            <p class="iAdvantagesItem__desc">Мы решаем конкретные управленческие задачи под ключ. Каждый проект, наряду с внедрением информационных технологий, включает в себя методологическую и экспертную поддержку Заказчика.</p>
-                        </div>
-                        <div class="iAdvantages__item iAdvantagesItem iAdvantagesItem--bordered iAdvantagesItem--bordered--gray">
-                            <p class="iAdvantagesItem__title">Комплексный подход к цифровой трансформации </p>
-                            <p class="iAdvantagesItem__desc">Тиражные и индивидуальные облачные решения разрабатываются «БАРС Груп» с учётом отрасли, особенностей бизнес-процессов, структуры и задач Заказчика.</p>
-                        </div>
-                        <div class="iAdvantages__item iAdvantagesItem iAdvantagesItem--bordered iAdvantagesItem--bordered--yellow">
-                            <p class="iAdvantagesItem__title">Индивидуальные пролектные решения</p>
-                            <p class="iAdvantagesItem__desc">Собственные облачные технологии и модульная структура тиражных решений дают нам возможность подобрать для Заказчика индивидуальную комплектацию
-                                в зависимости от поставленных задач.</p>
-                        </div>
-                    </div>
-                    <div class="iRatings iScroll__item">
+                    <div class="iAdvantages iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
-                                <div class="iRatings__items">
-                                    <div class="iRatings__item iRatings-item">
+                                <div class="iScroll-item__label">Преимущества</div>
+                                <div class="iAdvantages-items">
+                                    <div class="iAdvantages-item iAdvantages-item--bordered iAdvantages-item--bordered--blue">
+                                        <p class="iAdvantages-item__title">Собственные технологии</p>
+                                        <p class="iAdvantages-item__desc">В основе реализации проектов «БАРС Груп» — собственные облачные платформы. На их базе создан широкий спектр программных продуктов, включающий тиражные информационные системы и уникальные решения.</p>
+                                    </div>
+                                    <div class="iAdvantages-item iAdvantages-item--bordered iAdvantages-item--bordered--green">
+                                        <p class="iAdvantages-item__title">Внедрение и сопровождение</p>
+                                        <p class="iAdvantages-item__desc">Компетенции компании позволяют осуществлять все этапы проекта: от обследования до внедрения и сопровождения. Для удобства Заказчиков к осуществлению проектов подключаются партнёрские организации.</p>
+                                    </div>
+                                    <div class="iAdvantages-item iAdvantages-item--bordered iAdvantages-item--bordered--red">
+                                        <p class="iAdvantages-item__title">Экспертиза, методология и консалтинг</p>
+                                        <p class="iAdvantages-item__desc">Мы решаем конкретные управленческие задачи под ключ. Каждый проект, наряду с внедрением информационных технологий, включает в себя методологическую и экспертную поддержку Заказчика.</p>
+                                    </div>
+                                    <div class="iAdvantages-item iAdvantages-item--bordered iAdvantages-item--bordered--gray">
+                                        <p class="iAdvantages-item__title">Комплексный подход к цифровой трансформации </p>
+                                        <p class="iAdvantages-item__desc">Тиражные и индивидуальные облачные решения разрабатываются «БАРС Груп» с учётом отрасли, особенностей бизнес-процессов, структуры и задач Заказчика.</p>
+                                    </div>
+                                    <div class="iAdvantages-item iAdvantages-item--bordered iAdvantages-item--bordered--yellow">
+                                        <p class="iAdvantages-item__title">Индивидуальные пролектные решения</p>
+                                        <p class="iAdvantages-item__desc">Собственные облачные технологии и модульная структура тиражных решений дают нам возможность подобрать для Заказчика индивидуальную комплектацию
+                                            в зависимости от поставленных задач.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="iRatings iScroll-item">
+                        <div class="page__center">
+                            <div class="page__inner">
+                                <div class="iRatings-items">
+                                    <div class="iRatings-item">
                                         <div class="iRatings-item__line">
                                             <div class="iRatings-item__digit">34</div>
                                             <div class="iRatings-item__image">
@@ -248,7 +232,7 @@ layout: default.hbs
                                             <div class="iRatings-item__text">в рейтинге крупнейших ИТ-компаний России</div>
                                         </div>
                                     </div>
-                                    <div class="iRatings__item">
+                                    <div class="iRatings-item">
                                         <div class="iRatings-item__line">
                                             <div class="iRatings-item__digit">13</div>
                                             <div class="iRatings-item__image">
@@ -259,7 +243,7 @@ layout: default.hbs
                                             <div class="iRatings-item__text">в рейтинге крупнейших ИТ-разработчиков России</div>
                                         </div>
                                     </div>
-                                    <div class="iRatings__item">
+                                    <div class="iRatings-item">
                                         <div class="iRatings-item__line">
                                             <div class="iRatings-item__digit">2</div>
                                             <div class="iRatings-item__image">
@@ -270,7 +254,7 @@ layout: default.hbs
                                             <div class="iRatings-item__text">в рейтинге крупнейших поставщиков медицинских информационных систем</div>
                                         </div>
                                     </div>
-                                    <div class="iRatings__item">
+                                    <div class="iRatings-item">
                                         <div class="iRatings-item__line">
                                             <div class="iRatings-item__digit">14</div>
                                             <div class="iRatings-item__image">
@@ -281,7 +265,7 @@ layout: default.hbs
                                             <div class="iRatings-item__text">крупнейших поставщиков решений для госсектора</div>
                                         </div>
                                     </div>
-                                    <div class="iRatings__item">
+                                    <div class="iRatings-item">
                                         <div class="iRatings-item__line">
                                             <div class="iRatings-item__digit">10</div>
                                             <div class="iRatings-item__image">
@@ -292,7 +276,7 @@ layout: default.hbs
                                             <div class="iRatings-item__text">выручки участников российского рынка BI-систем</div>
                                         </div>
                                     </div>
-                                    <div class="iRatings__item">
+                                    <div class="iRatings-item">
                                         <div class="iRatings-item__line">
                                             <div class="iRatings-item__digit">5</div>
                                             <div class="iRatings-item__image">
@@ -303,7 +287,7 @@ layout: default.hbs
                                             <div class="iRatings-item__text">выручки участников российского рынка BI-систем</div>
                                         </div>
                                     </div>
-                                    <div class="iRatings__item">
+                                    <div class="iRatings-item">
                                         <div class="iRatings-item__line">
                                             <div class="iRatings-item__digit">29</div>
                                             <div class="iRatings-item__image">
@@ -318,89 +302,165 @@ layout: default.hbs
                             </div>
                         </div>
                     </div>
-                    <div class="iPartners iScroll__item">
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/alfa.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/ibm.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/ibs.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/kaspersky.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/oracle.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/postgre.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/rostelecom.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/acronis.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/codeb.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/infotecs.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/isbc.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/iz.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/lanit.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/not.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/pt.png" alt="">
-                            </a>
-                        </div>
-                        <div class="iPartners__item">
-                            <a href="#" target="_blank">
-                                <img src="/uploads/partners/rbt.png" alt="">
+                    <div class="iLeadership iScroll-item">
+                        <div class="page__center">
+                            <div class="page__inner">
+                                <div class="iScroll-item__label">Руководство</div>
+                                <div class="iLeadership__items">
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                    <a href="#" class="iLeadership-item" style="background-image: url('/uploads/about/leadership/leadership-1.jpg');">
+                                        <span class="iLeadership-item__name">Тимур Ахмеров</span>
+                                        <span class="iLeadership-item__position">Генеральный директор</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="#" class="button button-default js-form-wings">
+                                <span class="button-default__text">
+                                    Показать еще
+                                </span>
+                                <i class="arrow-right-fly button-default__icon">
+                                    <span></span>
+                                </i>
                             </a>
                         </div>
                     </div>
-                    <div class="iHistory iScroll__item">
+                    <div class="iPartners iScroll-item">
+                        <div class="page__center">
+                            <div class="page__inner">
+                                <div class="iPartners__items">
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/alfa.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/ibm.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/ibs.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/kaspersky.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/oracle.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/postgre.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/rostelecom.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/acronis.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/codeb.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/infotecs.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/isbc.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/iz.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/lanit.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/not.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/pt.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="iPartners__item">
+                                        <a href="#" target="_blank">
+                                            <img src="/uploads/partners/rbt.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="iHistory iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iHistory-ruler">
@@ -585,7 +645,7 @@ layout: default.hbs
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -607,8 +667,6 @@ layout: default.hbs
 
 </div>
 
-{{> nav-mobile }}
-
 <div id="leadershipModal" class="iziModal">
     <a href="#" class="iziModal-close">
         <span class="icon icon-close-small"></span>
@@ -625,3 +683,5 @@ layout: default.hbs
         <div class="iLeadership-modal__right"></div>
     </div>
 </div>
+
+{{> nav-mobile }}

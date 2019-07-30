@@ -178,7 +178,7 @@ var AboutSlider = {
 $(document).ready(function(){
 	$('html').addClass('vh100');
 
-	if($(document).height() > $(window).height())
+	/*if($(document).height() > $(window).height())
 		$('body').addClass('with-scrollbar');
 
 	function cities(){
@@ -335,5 +335,5 @@ $(document).ready(function(){
         event.preventDefault();
 
         $('#leadershipModal').iziModal('open');
-    });
+    });*/
 });
