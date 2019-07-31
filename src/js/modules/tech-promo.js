@@ -4,8 +4,6 @@ var TechPromo = {
 	_handleCanPlayEvent: function (e) {
 		var self = e.data.self;
 
-		console.log(1);
-
 		objectFitPolyfill(this);
 		$(this).addClass('--active');
 
