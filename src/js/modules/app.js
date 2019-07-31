@@ -42,6 +42,7 @@ var App = {
 		TechPromo.init();
 		Overview.init();
 		NavMobile.init();
+		NavSticker.init();
 	},
 
 	_handleWindowLoad: function () {
