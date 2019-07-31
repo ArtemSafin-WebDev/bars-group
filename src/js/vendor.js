@@ -9,5 +9,7 @@
 //= ../../bower_components/dragscroll/dragscroll.js
 //= ../../bower_components/swiper/dist/js/swiper.js
 //= ../../bower_components/izimodal/js/iziModal.min.js
+//= ../../bower_components/jquery.easing/js/jquery.easing.min.js
+//= ../../bower_components/jquery-mousewheel/jquery.mousewheel.min.js
 //= vendor/perfect-scrollbar.js
 

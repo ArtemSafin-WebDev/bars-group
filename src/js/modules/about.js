@@ -24,8 +24,9 @@ var about = {
             if(self.window.width() <= 576)
                 self.isMobile = true;
 
-            if(!self.isMobile)
+            if(!self.isMobile) {
                 AboutSlider.init();
+            }
 
             if(self.isMobile)
                 self.initGeo();
@@ -39,6 +40,9 @@ var about = {
 
             if($('.iLeadership') !== undefined && $('.iLeadership').length)
                 self.initLeadership();
+
+            if($('.iHistory') !== undefined && $('.iHistory').length)
+                self.initHistory();
         });
 
         self.window.resize(function(){
@@ -210,6 +214,41 @@ var about = {
 
             $('#leadershipModal').iziModal('open');
         });
+    },
+    initHistory: function(){
+        var self = this;
+
+        var ruler = $('.iHistory-ruler__line .owl-carousel');
+        var events = $('.iHistory-events .owl-carousel');
+
+        if(ruler === undefined || ruler.length == 0)
+            return;
+        if(events === undefined || events.length == 0)
+            return;
+
+        var owlRuler = ruler.owlCarousel({
+            nav: false,
+            dots: false,
+            items: Math.min(14, ruler.data('count')),
+            auto: false
+        });
+
+        var owlEvents = events.owlCarousel({
+            nav: false,
+            dots: false,
+            items: 1,
+            auto: false
+        });
+
+        $('.iHistory-ruler__item a').click(function(event){
+            event.preventDefault();
+
+            $('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+
+            $(this).parent().addClass('iHistory-ruler__item--active');
+
+            events.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
+        });
     }
 };
 
@@ -234,62 +273,27 @@ var AboutSlider = {
         lastRangeValue: null
     },
 
-    _makeScrollCalcs: function () {
-        var self = this;
-
-        var $scroll = $('#about-slider .gantt-slider__scroll');
-        var $lines  = $('#about-slider .gantt-slider__line');
-        var lineOffset = $lines.offset().left + $scroll.scrollLeft();
-
-        if (self._state.isGanttView) {
-
-            // 1. set grid width equal to last item right edge + edge offset
-            var lastItemOffset = self._getGanttItemLeftPos(self._state.randomItems.length - 1);
-            var gridWidth = lastItemOffset - lineOffset + self._GANTT_ITEM_WIDTH + self._GANTT_EDGE_OFFSET;
-
-            // 2. calc maxScrollLeft
-            var maxScrollLeft = gridWidth + lineOffset - $(window).width();
-
-        } else {
-
-            // 1. set grid width equal to max line width
-            var maxWidth = 0;
-
-            $lines.each(function () {
-                var $lastItem = $(this).find('.gantt-slider__item').last();
-                var lineWidth = $lastItem.offset().left - lineOffset + $lastItem.width();
-                maxWidth = Math.max(maxWidth, lineWidth);
-            });
-
-            var gridWidth = maxWidth;
-
-            // 2. calc maxScrollLeft
-            var lastItemMargin = parseInt($('#about-slider .gantt-slider__item').last().css('margin-right'));
-            var maxScrollLeft = gridWidth + lineOffset  + lastItemMargin - $(window).width();
-        }
-
-        $('#about-slider .gantt-slider__grid').width(gridWidth);
-
-        if (maxScrollLeft < 0) maxScrollLeft = 0;
-        self._state.maxScrollLeft = maxScrollLeft;
-
-    },
-
     _initRangeSlider: function () {
         var self = this;
 
         var $range = $('#about-slider .gantt-slider__range');
+        $range.data('position', 0);
         $range.find('input').rangeslider({
             polyfill: false,
             onInit: function () {
                 $range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
             },
             onSlide: function(position, value) {
-                if (value == self._state.lastRangeValue) return;
-                self._state.lastRangeValue = value;
+                if($('.iScroll').data('direction') == 'right'){
+                    if(position < $range.data('position'))
+                        $('.iScroll').data('direction', 'left');
+                }
+                else if($('.iScroll').data('direction') == 'left'){
+                    if(position > $range.data('position'))
+                        $('.iScroll').data('direction', 'right');
+                }
 
-                var isHandleActive = $range.find('.rangeslider').hasClass('rangeslider--active');
-                if (!isHandleActive) return;
+                $range.data('position', position);
 
                 self._state.maxScrollLeft = $('#about-slider .iScroll').width() - $('#about-slider .iScroll').width() / $('#about-slider .iScroll').children().length;
                 var scrollLeft = self._state.maxScrollLeft / 1000 * value;
@@ -299,82 +303,44 @@ var AboutSlider = {
 
     },
 
-    _startVideoLoading: function () {
-        var self = this;
-
-        $('#gantt-slider video').each(function () {
-            $(this)[0].load();
-        });
-    },
-
-    _handleUserActivity: function (e) {
-        var self = e.data.self;
-
-        if ( self._state.isUserActivityHandled ) return;
-        if ( !Modernizr.video || Modernizr.lowbandwidth ) return;
-
-        self._state.isUserActivityHandled = true;
-        setTimeout(self._startVideoLoading.bind(self), 100);
-    },
-
-    _handleCanPlayEvent: function (e) {
-        var self = e.data.self;
-
-        objectFitPolyfill(this);
-        $(this).addClass('_active');
-    },
-
-    _handleMouseOver: function (e) {
-        var self = e.data.self;
-
-        var $video = $(this).find('video._active');
-        if ($video.length) {
-            $video[0].play();
-        }
-    },
-
-    _handleMouseOut: function (e) {
-        var self = e.data.self;
-
-        var $video = $(this).find('video._active');
-        if ($video.length) {
-            $video[0].pause();
-        }
-    },
-
-    _handleWindowResize: function (e) {
-        var self = e.data.self;
-
-        self._makeScrollCalcs();
-    },
-
     _handleSliderScroll: function (e) {
         var self = e.data.self;
 
-        var scrollLeft = $('#gantt-slider .gantt-slider__scroll').scrollLeft();
+        var scrollLeft = $('#about-slider .gantt-slider__scroll').scrollLeft();
+        self._state.maxScrollLeft = $('#about-slider .iScroll').width() - $('#about-slider .iScroll').width() / $('#about-slider .iScroll').children().length;
         var rangeValue = Math.round(1000 * scrollLeft / self._state.maxScrollLeft);
-        $('#gantt-slider .gantt-slider__range input').val(rangeValue).change();
-    },
+        $('#about-slider .gantt-slider__range input').val(rangeValue).change();
 
-    _handleToggleButton: function (e) {
-        var self = e.data.self;
+        var img = $('#wrapper .brand-box__image img');
 
-        if (self._state.isGanttView) {
-            self._switchToLinesView();
-        } else {
-            self._switchToGanttView();
-        }
+        console.log($('.iScroll').data('direction'));
+
+        $('.iScroll-item').each(function(){
+            if(
+                $('.iScroll').data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
+                ||
+                $('.iScroll').data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600
+            ){
+                if($(this).find('.iScroll-item__label') !== undefined && $(this).find('.iScroll-item__label').length) {
+                    $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
+                }
+                else
+                    $('#wrapper .page__label').text('О компании');
+
+                if($(this).hasClass('iRatings')) {
+                    img.attr('src', img.data('white'));
+                    $(this).addClass('active');
+                }
+                else
+                    img.attr('src', img.data('original'));
+            }
+        });
     },
 
     _bindUI: function () {
         var self = this;
 
         $('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
-        $('.gantt-slider__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
-        $(document).one('click touchstart', {self: self}, self._handleUserActivity);
-        $(document).on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
-        $(document).on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
-        $(document).on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
         $(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
     },
 
@@ -384,7 +350,13 @@ var AboutSlider = {
         if ( $('#about-slider').length == 0 || $(window).width() <= 576) return;
 
         self._initRangeSlider();
+        self._bindUI();
 
-        $('body').trigger('click');
+        $('html, body').mousewheel(function(e, delta) {
+            var scrollLeft = $('#about-slider .gantt-slider__scroll').scrollLeft();
+            scrollLeft     = scrollLeft - 150 * delta;
+            console.log(delta);
+            $('#about-slider .gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft}, 100, 'easeOutQuint');
+        });
     }
 };

@@ -343,6 +343,16 @@ body {
     min-width: 1200px;
     height: 100%;
     text-align: center;
+    span {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      font-size: 500px;
+      font-weight: bold;
+      color: #9ad1ef;
+      opacity: 0.25;
+      z-index: 0;
+    }
     img {
       @media @min_small {
         min-width: 896px;
@@ -649,6 +659,36 @@ body {
   @media @min_small {
     padding-top: @iOffsetTop;
     height: 100vh;
+    &.active {
+      .iRatings {
+        &-item {
+          transition: 0.3s ease-out;
+          opacity: 1;
+          transform: scale(1);
+          &:nth-child(1){
+            transition-delay: 0.1s;
+          }
+          &:nth-child(2){
+            transition-delay: 0.3s;
+          }
+          &:nth-child(3){
+            transition-delay: 0.5s;
+          }
+          &:nth-child(4){
+            transition-delay: 0.7s;
+          }
+          &:nth-child(5){
+            transition-delay: 0.2s;
+          }
+          &:nth-child(6){
+            transition-delay: 0.4s;
+          }
+          &:nth-child(7){
+            transition-delay: 0.6s;
+          }
+        }
+      }
+    }
   }
   @media @max_small {
     padding-bottom: 60px - 47px;
@@ -659,7 +699,7 @@ body {
     flex-wrap: wrap;
     @media @min_small {
       margin-top: 50px;
-      justify-content: space-evenly;
+      justify-content: center;
     }
   }
   &-item {
@@ -675,6 +715,9 @@ body {
       border-radius: 100%;
       margin: 0 35px 30px;
       padding: 0px 30px 0 40px;
+      transition: 0.3s ease-out;
+      opacity: 0;
+      transform: scale(0);
       &:before {
         content: '';
         position: absolute;
@@ -840,7 +883,7 @@ body {
     }
     @media @min_small {
       min-height: 267px;
-      width: @iLeadership_width;
+      min-width: @iLeadership_width;
       height: calc(~"50% - 15px");
       margin-right: @iLeadership_margin;
       margin-bottom: @iLeadership_margin;

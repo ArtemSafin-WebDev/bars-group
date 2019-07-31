@@ -359,6 +359,16 @@ body.with-scrollbar .iScroll__item {
   height: 100%;
   text-align: center;
 }
+.iGeo__map span {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  font-size: 500px;
+  font-weight: bold;
+  color: #9ad1ef;
+  opacity: 0.25;
+  z-index: 0;
+}
 .iGeo__map img {
   max-height: 100%;
 }
@@ -718,6 +728,41 @@ body.with-scrollbar .iScroll__item {
     padding-top: 155px;
     height: 100vh;
   }
+  .iRatings.active .iRatings-item {
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  .iRatings.active .iRatings-item:nth-child(1) {
+    -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+  }
+  .iRatings.active .iRatings-item:nth-child(2) {
+    -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
+  }
+  .iRatings.active .iRatings-item:nth-child(3) {
+    -webkit-transition-delay: 0.5s;
+            transition-delay: 0.5s;
+  }
+  .iRatings.active .iRatings-item:nth-child(4) {
+    -webkit-transition-delay: 0.7s;
+            transition-delay: 0.7s;
+  }
+  .iRatings.active .iRatings-item:nth-child(5) {
+    -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+  }
+  .iRatings.active .iRatings-item:nth-child(6) {
+    -webkit-transition-delay: 0.4s;
+            transition-delay: 0.4s;
+  }
+  .iRatings.active .iRatings-item:nth-child(7) {
+    -webkit-transition-delay: 0.6s;
+            transition-delay: 0.6s;
+  }
 }
 @media screen and (max-width: 576px) {
   .iRatings {
@@ -737,9 +782,9 @@ body.with-scrollbar .iScroll__item {
 @media screen and (min-width: 577px) {
   .iRatings-items {
     margin-top: 50px;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 .iRatings-item {
@@ -764,6 +809,11 @@ body.with-scrollbar .iScroll__item {
     border-radius: 100%;
     margin: 0 35px 30px;
     padding: 0px 30px 0 40px;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0);
   }
   .iRatings-item:before {
     content: '';
@@ -968,7 +1018,7 @@ body.with-scrollbar .iScroll__item {
 @media screen and (min-width: 577px) {
   .iLeadership-item {
     min-height: 267px;
-    width: 290px;
+    min-width: 290px;
     height: calc(50% - 15px);
     margin-right: 15px;
     margin-bottom: 15px;
