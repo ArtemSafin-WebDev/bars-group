@@ -1,55 +1,60 @@
 
 .nav-sticker {
-		
-	transition: all .3s .3s;
-	position: absolute;
-	z-index: 100;
-	top: 225px;
-	left: calc((100% - 1520px) / 2) !important;
-	width: 200px;
 
-	&.--hidden {
-		transition-delay: 0s;
-		opacity: 0;
+	&.--hover {
+		.nav-sticker__list {
+			width: 100% !important;
+		}
 	}
 
-	&.--fixed {
-		transform: translateY(-50%);
-		position: fixed;
-		top: 50% !important;
+	&__menu {
+		transition: all .3s .3s;
+		position: absolute;
+		z-index: 110;
+		top: 225px;
+		left: calc((100% - 1520px) / 2 - 10px) !important;
+		width: 200px;
 
-		.nav-sticker__list {
-			transition: all .3s;
-			overflow: hidden;
-			width: 30px;
-			
-			&.--hover {
-				width: 100%;
-			}
+		&.--hidden {
+			transition-delay: 0s;
+			opacity: 0;
 		}
 
-		.nav-sticker__item {
-			padding-left: 25px;
+		&.--fixed {
+			transform: translateY(-50%);
+			position: fixed;
+			top: 50% !important;
 
-			&.--active {
+			.nav-sticker__list {
+				transition: all .3s;
+				overflow: hidden;
+				width: 30px;
+			}
+
+			.nav-sticker__item {
+				padding-left: 25px;
+
+				&.--active {
+					&:before {
+						background: #8896a8;
+						border-color: transparent;
+					}
+				}
+
 				&:before {
-					background: #8896a8;
-					border-color: transparent;
+					content: ' ';
+					position: absolute;
+					top: 50%;
+					margin-top: -4px;
+					left: 0;
+					width: 8px;
+					height: 8px;
+					border: 1px solid #6e7f95;
+					border-radius: 50%;
 				}
 			}
-
-			&:before {
-				content: ' ';
-				position: absolute;
-				top: 50%;
-				margin-top: -4px;
-				left: 0;
-				width: 8px;
-				height: 8px;
-				border: 1px solid #6e7f95;
-				border-radius: 50%;
-			}
 		}
+
 	}
 
 	&__list {
@@ -78,7 +83,9 @@
 			color: #6e7f95;
 		}
 	}
-
+	
+	
+	.nav-sticker__menu.--light,
 	.midnightHeader.--light {
 		.nav-sticker__item {
 			&.--active {
@@ -106,22 +113,22 @@
 			}
 		}
 
-
 	}
 
 	.midnightHeader.--ghost {
 		visibility: hidden;
 	}
 
-
 }
 
 @media all and (max-width: 1999px) {
 	.nav-sticker {
 
-		&.--hidden {
-			left: -200px !important;
-			opacity: 1;
+		&__menu {
+			&.--hidden {
+				left: -200px !important;
+				opacity: 1;
+			}
 		}
 
 	}
@@ -130,7 +137,10 @@
 @media all and (max-width: 1600px) {
 
 	.nav-sticker {
-		left: 30px !important;
+		
+		&__menu {
+			left: 30px !important;
+		}
 	}
 
 }
@@ -138,8 +148,11 @@
 @media all and (max-width: 1300px) {
 
 	.nav-sticker {
-		transition: none;
-		visibility: hidden;
+		
+		&__menu {
+			transition: none;
+			visibility: hidden;
+		}
 	}
 
 }

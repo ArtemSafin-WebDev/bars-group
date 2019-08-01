@@ -79,13 +79,13 @@ var NavSticker = {
 	_handleListMouseEnter: function (e) {
 		var self = e.data.self;
 
-		self._elems.$lists.addClass('--hover');
+		self._elems.$_.addClass('--hover');
 	},
 
 	_handleListMouseLeave: function (e) {
 		var self = e.data.self;
 
-		self._elems.$lists.removeClass('--hover');
+		self._elems.$_.removeClass('--hover');
 	},
 
 	_bindUI: function () {
@@ -104,6 +104,7 @@ var NavSticker = {
 
 		if ( $_.length == 0) return;
 
+		self._elems.$_ = $_;
 		self._elems.$static = $('#nav-sticker-static');
 		self._elems.$fixed = $('#nav-sticker-fixed');
 

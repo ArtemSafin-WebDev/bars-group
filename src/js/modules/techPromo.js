@@ -1,6 +1,10 @@
 
 var TechPromo = {
 
+	_state: {
+		timers: []
+	},
+
 	_handleCanPlayEvent: function (e) {
 		var self = e.data.self;
 
@@ -26,7 +30,11 @@ var TechPromo = {
 		e.preventDefault();
 
 		var index = $(this).data('index');
-		self._setActiveVideo(index);
+		var circleId = $(this).data('circle-id');
+
+		self._state.timers[circleId] = setTimeout(function () {
+			self._setActiveVideo(index);
+		}, 200);
 	},
 
 	_handleCircleLeave: function (e) {
@@ -34,6 +42,9 @@ var TechPromo = {
 
 		e.preventDefault();
 
+		var circleId = $(this).data('circle-id');
+
+		clearTimeout(self._state.timers[circleId]);
 		self._setActiveVideo(0);
 	},
 
