@@ -256,23 +256,9 @@ if($('#about-slider') !== undefined && $('#about-slider').length)
     about.init();
 
 var AboutSlider = {
-
-    _GANTT_ITEM_WIDTH: 510,
-    _GANTT_SCENE_HEIGHT: 600,
-    _GANTT_EDGE_OFFSET: 60,
-
-    _PATTERN_ITEMS: [[310, 60], [25, 355], [200, 775], [370, 1070], [100, 1435], [410, 1760], [120, 2115]],
-    _PATTERN_WIDTH: 2440,
-
     _state: {
-        randomItems: [],
-        isUserActivityHandled: false,
-        isGanttView: false,
-        savedSceneHeight: null,
-        maxScrollLeft: null,
-        lastRangeValue: null
+        maxScrollLeft: null
     },
-
     _initRangeSlider: function () {
         var self = this;
 
@@ -313,7 +299,15 @@ var AboutSlider = {
 
         var img = $('#wrapper .brand-box__image img');
 
-        console.log($('.iScroll').data('direction'));
+        $('.iScroll-item__parallax').each(function(){
+            console.log($(this).parent().attr('class'));
+            console.log($(this).parent().offset().left);
+            console.log('translateX(' + ($(this).data('direction') == 'right' ? -1 : 1) * $(this).data('factor') * Math.max($(this).data('x_min'), Math.min($(this).data('x_max'), $(this).parent().offset().left)) + 'px)');
+            $(this).css({
+                'transform' : 'translateX(' + ($(this).data('direction') == 'right' ? -1 : 1) * $('.iScroll-item__parallax').data('factor') * Math.max($(this).data('x_min'), Math.min($(this).data('x_max'), $(this).parent().offset().left)) + 'px)'
+                //'transform': 'translateX(' + ($(this).data('direction') == 'right' ? '-' : '') + $('.iScroll-item__parallax').data('factor') * Math.min(1600, Math.max(-1600, $('.iScroll-item__parallax').parent().offset().left)) + 'px)',
+            });
+        });
 
         $('.iScroll-item').each(function(){
             if(
@@ -354,8 +348,7 @@ var AboutSlider = {
 
         $('html, body').mousewheel(function(e, delta) {
             var scrollLeft = $('#about-slider .gantt-slider__scroll').scrollLeft();
-            scrollLeft     = scrollLeft - 150 * delta;
-            console.log(delta);
+            scrollLeft     = scrollLeft - 50 * delta;
             $('#about-slider .gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft}, 100, 'easeOutQuint');
         });
     }

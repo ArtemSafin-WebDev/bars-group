@@ -11,5 +11,6 @@
 //= ../../bower_components/izimodal/js/iziModal.min.js
 //= ../../bower_components/jquery.easing/js/jquery.easing.min.js
 //= ../../bower_components/jquery-mousewheel/jquery.mousewheel.min.js
+//= ../../bower_components/paroller.js/dist/jquery.paroller.min.js
 //= vendor/perfect-scrollbar.js
 

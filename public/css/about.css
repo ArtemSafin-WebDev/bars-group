@@ -161,6 +161,61 @@ body.with-scrollbar .iScroll__item {
     display: none;
   }
 }
+.iScroll-item__parallax {
+  position: absolute;
+  -webkit-transition: 4.75s linear;
+  transition: 4.75s linear;
+  -webkit-transition-delay: 0.12s;
+          transition-delay: 0.12s;
+  background-repeat: no-repeat;
+}
+@media screen and (max-width: 576px) {
+  .iScroll-item__parallax {
+    display: none;
+  }
+}
+.iScroll-item__parallax-1 {
+  width: 231px;
+  height: 415px;
+  background-image: url('../img/about/parallax/1.png');
+  left: 0;
+  bottom: 20%;
+}
+.iScroll-item__parallax-2 {
+  width: 671px;
+  height: 526px;
+  background-image: url('../img/about/parallax/2.png');
+  left: -200px;
+  bottom: 25%;
+}
+.iScroll-item__parallax-3 {
+  width: 648px;
+  height: 515px;
+  background-image: url('../img/about/parallax/3.png');
+  left: -200px;
+  top: 15%;
+}
+.iScroll-item__parallax-4 {
+  width: 648px;
+  height: 515px;
+  background-image: url('../img/about/parallax/3.png');
+  left: -200px;
+  top: 15%;
+}
+.iScroll-item__parallax-6 {
+  width: 862px;
+  height: 756px;
+  background-image: url('../img/about/parallax/6.png');
+  left: -400px;
+  top: -550px;
+}
+.iScroll-item__parallax-8 {
+  width: 733px;
+  height: 569px;
+  background-image: url('../img/about/parallax/8.png');
+  left: 800px;
+  top: -250px;
+}
 .iScroll .page__center {
   position: relative;
 }
@@ -466,6 +521,9 @@ body.with-scrollbar .iScroll__item {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.iAdvantages {
+  z-index: 5;
 }
 .iAdvantages-items {
   display: -webkit-box;
