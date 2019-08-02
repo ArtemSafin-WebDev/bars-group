@@ -13,10 +13,11 @@
 //= modules/newsSlider.js
 //= modules/newsPhotoSlider.js
 //= modules/newsToggles.js
-//= modules/nav-banner.js
-//= modules/tech-promo.js
+//= modules/navBanner.js
+//= modules/techPromo.js
 //= modules/about.js
-//= modules/nav-mobile.js
+//= modules/navMobile.js
+//= modules/navSticker.js
 //= modules/app.js
 
 App.init();

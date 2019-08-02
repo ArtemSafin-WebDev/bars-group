@@ -7,7 +7,45 @@ layout: default.hbs
 
 	{{> header }}
 
-	<section class="banner banner--fixed-bg banner--dark-text">
+	<div class="nav-sticker" id="nav-sticker">
+
+		<nav class="nav-sticker__menu" id="nav-sticker-static">
+			<ul class="nav-sticker__list">
+				<li class="nav-sticker__item --active">
+					<a href="#section-1" class="nav-sticker__link">Схема</a>
+				</li>
+				<li class="nav-sticker__item">
+					<a href="#section-2" class="nav-sticker__link">О платформе</a>
+				</li>
+				<li class="nav-sticker__item">
+					<a href="#section-3" class="nav-sticker__link">Компоненты</a>
+				</li>
+				<li class="nav-sticker__item">
+					<a href="#section-4" class="nav-sticker__link">Главные продукты</a>
+				</li>
+			</ul>
+		</nav>
+
+		<nav class="nav-sticker__menu --fixed --hidden" id="nav-sticker-fixed">
+			<ul class="nav-sticker__list">
+				<li class="nav-sticker__item --active">
+					<a href="#section-1" class="nav-sticker__link">Схема</a>
+				</li>
+				<li class="nav-sticker__item">
+					<a href="#section-2" class="nav-sticker__link">О платформе</a>
+				</li>
+				<li class="nav-sticker__item">
+					<a href="#section-3" class="nav-sticker__link">Компоненты</a>
+				</li>
+				<li class="nav-sticker__item">
+					<a href="#section-4" class="nav-sticker__link">Главные продукты</a>
+				</li>
+			</ul>
+		</nav>
+		
+	</div>
+
+	<section id="section-1" class="banner banner--fixed-bg banner--dark-text" data-midnight="--dark">
 
 		<div class="banner__image" style="background-image: url(img/banners/001.jpg);">
 			<div class="page__decor" style="opacity: 0.05;"></div>
@@ -91,6 +129,9 @@ layout: default.hbs
 		</div>
 
 	</section>
+	<section id="section-2" style="height: 800px; background: #63b7de;" data-midnight="--light"></section>
+	<section id="section-3" style="height: 800px;" data-midnight="--dark"></section>
+	<section id="section-4" style="height: 800px; background: #a1c527;" data-midnight="--light"></section>
 
 	{{> footer }}
 

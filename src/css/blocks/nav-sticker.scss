@@ -1,0 +1,158 @@
+
+.nav-sticker {
+
+	&.--hover {
+		.nav-sticker__list {
+			width: 100% !important;
+		}
+	}
+
+	&__menu {
+		transition: all .3s .3s;
+		position: absolute;
+		z-index: 110;
+		top: 225px;
+		left: calc((100% - 1520px) / 2 - 10px) !important;
+		width: 200px;
+
+		&.--hidden {
+			transition-delay: 0s;
+			opacity: 0;
+		}
+
+		&.--fixed {
+			transform: translateY(-50%);
+			position: fixed;
+			top: 50% !important;
+
+			.nav-sticker__list {
+				transition: all .3s;
+				overflow: hidden;
+				width: 30px;
+			}
+
+			.nav-sticker__item {
+				padding-left: 25px;
+
+				&.--active {
+					&:before {
+						background: #8896a8;
+						border-color: transparent;
+					}
+				}
+
+				&:before {
+					content: ' ';
+					position: absolute;
+					top: 50%;
+					margin-top: -4px;
+					left: 0;
+					width: 8px;
+					height: 8px;
+					border: 1px solid #6e7f95;
+					border-radius: 50%;
+				}
+			}
+		}
+
+	}
+
+	&__list {
+		padding-left: 10px;
+	}
+
+	&__item {
+		position: relative;
+		padding: 12px 0;
+		white-space: nowrap;
+		font-size: 14px;
+
+		&.--active {
+			font-weight: 700;
+
+			.nav-sticker__link {
+				color: #000;
+			}
+		}
+	}
+
+	&__link {
+		color: rgba(#6e7f95, .8);
+
+		&:hover  {
+			color: #6e7f95;
+		}
+	}
+	
+	
+	.nav-sticker__menu.--light,
+	.midnightHeader.--light {
+		.nav-sticker__item {
+			&.--active {
+				
+				&:before {
+					border-color: transparent;
+					background: #fff;
+				}
+
+				.nav-sticker__link {
+					color: #fff;
+				}
+			}
+
+			&:before {
+				border-color: #fff;
+			}
+		}
+
+		.nav-sticker__link {
+			color: rgba(#fff, .8);
+
+			&:hover {
+				color: #fff;
+			}
+		}
+
+	}
+
+	.midnightHeader.--ghost {
+		visibility: hidden;
+	}
+
+}
+
+@media all and (max-width: 1999px) {
+	.nav-sticker {
+
+		&__menu {
+			&.--hidden {
+				left: -200px !important;
+				opacity: 1;
+			}
+		}
+
+	}
+}
+
+@media all and (max-width: 1600px) {
+
+	.nav-sticker {
+		
+		&__menu {
+			left: 30px !important;
+		}
+	}
+
+}
+
+@media all and (max-width: 1300px) {
+
+	.nav-sticker {
+		
+		&__menu {
+			transition: none;
+			visibility: hidden;
+		}
+	}
+
+}
