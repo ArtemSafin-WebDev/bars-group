@@ -114,7 +114,7 @@ var Overview = {
 
 		var $_ = $('#overview');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 
 		self._elems.$_ = $_;
 		self._elems.$bgItems = self._elems.$_.find('.overview__bg__item');

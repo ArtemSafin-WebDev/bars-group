@@ -246,7 +246,7 @@ var CitiesSlider = {
 		var self = this;
 
 		var $_ = $('#cities-slider');
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		
 		self._elems.$_ = $_;
 		self._elems.$sandbox = $('#cities-slider-sandbox');

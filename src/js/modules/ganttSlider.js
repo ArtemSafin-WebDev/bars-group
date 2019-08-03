@@ -405,7 +405,7 @@ var GanttSlider = {
 		var self = this;
 
 		var $_ = $('#gantt-slider');
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		
 		self._elems.$_ = $_;
 		self._elems.$sandbox = $('#gantt-slider-sandbox');

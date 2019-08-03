@@ -144,7 +144,7 @@ var Overview = {
 
 		var $_ = $('#overview');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 
 		self._elems.$_ = $_;
 		self._elems.$bgItems = self._elems.$_.find('.overview__bg__item');
@@ -565,7 +565,7 @@ var GanttSlider = {
 		var self = this;
 
 		var $_ = $('#gantt-slider');
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		
 		self._elems.$_ = $_;
 		self._elems.$sandbox = $('#gantt-slider-sandbox');
@@ -840,7 +840,7 @@ var CitiesSlider = {
 		var self = this;
 
 		var $_ = $('#cities-slider');
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		
 		self._elems.$_ = $_;
 		self._elems.$sandbox = $('#cities-slider-sandbox');
@@ -904,7 +904,7 @@ var SliderContent = {
 
 		var $_ = $('#slider-content');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		if ( $('body').hasClass('is-admin') ) return;
 
 		self._elems.$_ = $_;
@@ -1465,7 +1465,7 @@ var News = {
 
 		var $_ = $('#news');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 
 		self._elems.$_ = $_;
 		self._elems.$slider = $_.find('.news__list');
