@@ -389,7 +389,7 @@ var GanttSlider = {
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$_.find('video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$_.find('video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
 		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
 		self._elems.$_.on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);

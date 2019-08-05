@@ -2,28 +2,38 @@
 var NavBanner = {
 
 	_elems: {
+		$_: $(),
 		$slider: $()
 	},
 
-	_handleItemClick: function (e) {
+	_setLineDimensions: function ($item) {
+		var self = this;
+
+		var $item = $item || self._elems.$_.find('.nav-banner__item._active');
+		var $line = self._elems.$_.find('.nav-banner__line');
+
+		$line.css({
+			left: $item.position().left + parseInt($item.css('padding-left')), 
+			width: $item.width()
+		});
+	},
+
+	_handleLinkClick: function (e) {
 		var self = e.data.self;
 
 		e.preventDefault();
+		
+		var $item = $(this).closest('.nav-banner__item');
 
-		var $root = $(this).closest('.nav-banner');
-
-		// set line position
-		var $line = $root.find('.nav-banner__line');
-		var elemOffset = $(this).position().left;
-		$line.css({left: elemOffset});
+		self._setLineDimensions($item);
 
 		// set active class
-		$(this)
+		$item
 			.siblings().removeClass('_active')
 			.end().addClass('_active');
 
 		// show slide
-		var index = $(this).index();
+		var index = $item.index();
 		self._elems.$slider.trigger('to.owl.carousel', [index]);
 	},
 
@@ -53,19 +63,32 @@ var NavBanner = {
 			dots: false
 		});
 
-
 		self._elems.$slider = $wrapper;
+	},
+
+	_handleWindowResize: function (e) {
+		var self = e.data.self;
+
+		self._setLineDimensions();
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('click', '.nav-banner__item', {self: self}, self._handleItemClick);
+		$(document).on('click', '.nav-banner__link', {self: self}, self._handleLinkClick);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
+		var $_ = $("#nav-banner");
+
+		if ( $_.length == 0) return;
+
+		self._elems.$_ = $_;
+
+		self._setLineDimensions();
 		self._wrapBlocksAsSlides();
 		self._bindUI();
 	}

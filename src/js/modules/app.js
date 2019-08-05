@@ -20,6 +20,8 @@ var App = {
 
 		$('#hello').removeClass('hello--active');
 		$('body').removeClass('page__locked');
+
+		TechPromo.init();
 	},
 
 	_handleDOMReady: function () {
@@ -41,7 +43,7 @@ var App = {
 		NewsSlider.init();
 		NewsPhotoSlider.init();
 		NewsToggles.init();
-		TechPromo.init();
+		
 		Overview.init();
 		NavMobile.init();
 		NavSticker.init();
@@ -59,12 +61,20 @@ var App = {
 		var self = e.data.self;
 
 		self._state.promoVideosLoaded++;
+
+		objectFitPolyfill(this);
+		$(this).addClass('--active');
+
+		// tech-promo case
+		if ( $(this).parent().hasClass('--active') ) {
+			$(this)[0].play();
+		}
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$promoVideos.on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$promoVideos.one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(window).on('load', self._handleWindowLoad.bind(self));
 		$(self._handleDOMReady.bind(self));
 	},

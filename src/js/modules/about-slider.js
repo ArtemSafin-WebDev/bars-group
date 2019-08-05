@@ -153,7 +153,7 @@ var AboutSlider = {
 		var self = this;
 
 		$('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
-		$('.gantt-slider__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		$('.gantt-slider__bg__video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 		$(document).on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
 		$(document).on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
