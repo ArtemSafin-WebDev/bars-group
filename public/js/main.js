@@ -1557,9 +1557,9 @@ var Form = {
 
 };
 
-(function () {
+var Talgat = {
 
-	$(document).ready(function() {
+	init: function () {
 
 		$('.jsTTasksSlider').owlCarousel({
 			items: 1,
@@ -1588,9 +1588,8 @@ var Form = {
 			navContainer: '.tComponents__nav'
 		});
 
-	});
-
-})();
+	}
+};
 
 
 var ScrollableTable = {
@@ -1926,6 +1925,10 @@ var NewsToggles = {
 
 var NavBanner = {
 
+	_elems: {
+		$slider: $()
+	},
+
 	_handleItemClick: function (e) {
 		var self = e.data.self;
 
@@ -1942,6 +1945,40 @@ var NavBanner = {
 		$(this)
 			.siblings().removeClass('_active')
 			.end().addClass('_active');
+
+		// show slide
+		var index = $(this).index();
+		self._elems.$slider.trigger('to.owl.carousel', [index]);
+	},
+
+	_wrapBlocksAsSlides: function () {
+		var self = this;
+
+		// find all blocks
+		var $blocks = $('.block-wrapper');
+
+		// filter slides
+		var $slides = $blocks.filter(function (index, elem) {
+			return !!$(elem).children('[data-tabs]').length;
+		}); 
+
+		// add wrapper
+		var $wrapper = $('<div class="owl-carousel"></div>');
+		$wrapper.insertBefore($slides.first());
+
+		// reattach slides
+		$slides.detach().appendTo($wrapper);
+
+		// init slider
+		$wrapper.owlCarousel({
+			items: 1,
+			mouseDrag: false,
+			touchDrag: false,
+			dots: false
+		});
+
+
+		self._elems.$slider = $wrapper;
 	},
 
 	_bindUI: function () {
@@ -1953,6 +1990,7 @@ var NavBanner = {
 	init: function () {
 		var self = this;
 
+		self._wrapBlocksAsSlides();
 		self._bindUI();
 	}
 };
@@ -2617,7 +2655,10 @@ var App = {
 	_handleDOMReady: function () {
 		var self = this;
 
-		// init modules here
+		// it's important to call NavBanner inition first,
+		// because tabs contents can have owl-carousel blocks inside
+		NavBanner.init();
+
 		GanttSlider.init();
 		CitiesSlider.init();
 		SliderContent.init();
@@ -2630,11 +2671,12 @@ var App = {
 		NewsSlider.init();
 		NewsPhotoSlider.init();
 		NewsToggles.init();
-		NavBanner.init();
 		TechPromo.init();
 		Overview.init();
 		NavMobile.init();
 		NavSticker.init();
+
+		Talgat.init();
 	},
 
 	_handleWindowLoad: function () {

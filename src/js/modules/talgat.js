@@ -1,7 +1,7 @@
 
-(function () {
+var Talgat = {
 
-	$(document).ready(function() {
+	init: function () {
 
 		$('.jsTTasksSlider').owlCarousel({
 			items: 1,
@@ -30,6 +30,5 @@
 			navContainer: '.tComponents__nav'
 		});
 
-	});
-
-})();
+	}
+};

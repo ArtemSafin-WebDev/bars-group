@@ -25,7 +25,10 @@ var App = {
 	_handleDOMReady: function () {
 		var self = this;
 
-		// init modules here
+		// it's important to call NavBanner inition first,
+		// because tabs contents can have owl-carousel blocks inside
+		NavBanner.init();
+
 		GanttSlider.init();
 		CitiesSlider.init();
 		SliderContent.init();
@@ -38,11 +41,12 @@ var App = {
 		NewsSlider.init();
 		NewsPhotoSlider.init();
 		NewsToggles.init();
-		NavBanner.init();
 		TechPromo.init();
 		Overview.init();
 		NavMobile.init();
 		NavSticker.init();
+
+		Talgat.init();
 	},
 
 	_handleWindowLoad: function () {
