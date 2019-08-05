@@ -39,7 +39,7 @@ var NavBanner = {
 		}); 
 
 		// add wrapper
-		var $wrapper = $('<div class="owl-carousel"></div>');
+		var $wrapper = $('<div class="owl-carousel nav-banner__tabs"></div>');
 		$wrapper.insertBefore($slides.first());
 
 		// reattach slides
