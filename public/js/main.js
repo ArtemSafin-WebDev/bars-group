@@ -2695,12 +2695,8 @@ var App = {
 		Overview.init();
 		NavMobile.init();
 		NavSticker.init();
-<<<<<<< HEAD
 		About.init();
-=======
-
 		Talgat.init();
->>>>>>> 0f5d585b80eff69fa7f15a45fc6d1801922dbc7d
 	},
 
 	_handleWindowLoad: function () {
