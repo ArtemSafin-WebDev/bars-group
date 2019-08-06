@@ -8,7 +8,7 @@ var TechPromo = {
 	_setActiveVideo: function (index) {
 		var self = this;
 
-		var $items = $('#tech-promo .tech-promo__figure__item');
+		var $items = $('#tech-promo .bg-layer__item');
 		$items.filter('.--active').removeClass('--active').end().find('video')[0].pause();
 		$items.eq(index).addClass('--active').end().find('video')[0].play();
 	},

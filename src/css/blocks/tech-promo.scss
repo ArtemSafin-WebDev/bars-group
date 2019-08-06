@@ -7,41 +7,12 @@
 		color: #fff;
 	}
 
-	&__figure {
-		@include position-fill();
-		background: #000;
-
-		&__item {
-			@include position-fill();
-
-			&.--active {
-				z-index: 1;
-			}
-		}
-
-		&__image {
-			@include position-fill();
-			background-repeat: no-repeat;
-			background-position: 50% 50%;
-			background-size: cover;
-		}
-
-		&__video {
-			@include position-fill();
-			object-fit: cover;
-			display: none;
-
-			&.--active {
-				display: block;
-			}
-		}
-	}
-
 	&__base {
 		position: relative;
 		width: 600px;
 		height: 600px;
-		margin-bottom: 300px;
+		margin-top: -50px;
+		margin-bottom: 250px;
 		margin-left: 45%;
 	}
 

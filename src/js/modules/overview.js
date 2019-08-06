@@ -11,34 +11,7 @@ var Overview = {
 	},
 
 	_state: {
-		isUserActivityHandled: false,
 		currIndex: 0
-	},
-
-	_startVideoLoading: function () {
-		var self = this;
-
-		self._elems.$_.find('video').each(function () {
-			$(this)[0].load();
-		});
-	},
-
-	_handleUserActivity: function (e) {
-		var self = e.data.self;
-
-		if ( self._state.isUserActivityHandled ) return;
-		if ( !Modernizr.video || Modernizr.lowbandwidth ) return;
-
-		self._state.isUserActivityHandled = true;
-		setTimeout(self._startVideoLoading.bind(self), 100);
-	},
-
-	_handleCanPlayEvent: function (e) {
-		var self = e.data.self;
-
-		objectFitPolyfill(this);
-		$(this).addClass('--active');
-		$(this)[0].play();
 	},
 
 	_handleLinkClick: function (e) {
@@ -104,9 +77,7 @@ var Overview = {
 	_bindUI: function () {
 		var self = this;
 
-		$('.overview__bg__video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
-		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 	},
 
 	init: function () {
@@ -123,8 +94,6 @@ var Overview = {
 		self._elems.$navBodies = self._elems.$_.find('.overview__nav__body');
 
 		self._bindUI();
-
-		$('body').trigger('click');
 	}
 
 };

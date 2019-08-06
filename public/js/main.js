@@ -41,34 +41,7 @@ var Overview = {
 	},
 
 	_state: {
-		isUserActivityHandled: false,
 		currIndex: 0
-	},
-
-	_startVideoLoading: function () {
-		var self = this;
-
-		self._elems.$_.find('video').each(function () {
-			$(this)[0].load();
-		});
-	},
-
-	_handleUserActivity: function (e) {
-		var self = e.data.self;
-
-		if ( self._state.isUserActivityHandled ) return;
-		if ( !Modernizr.video || Modernizr.lowbandwidth ) return;
-
-		self._state.isUserActivityHandled = true;
-		setTimeout(self._startVideoLoading.bind(self), 100);
-	},
-
-	_handleCanPlayEvent: function (e) {
-		var self = e.data.self;
-
-		objectFitPolyfill(this);
-		$(this).addClass('--active');
-		$(this)[0].play();
 	},
 
 	_handleLinkClick: function (e) {
@@ -134,9 +107,7 @@ var Overview = {
 	_bindUI: function () {
 		var self = this;
 
-		$('.overview__bg__video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
-		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 	},
 
 	init: function () {
@@ -153,8 +124,6 @@ var Overview = {
 		self._elems.$navBodies = self._elems.$_.find('.overview__nav__body');
 
 		self._bindUI();
-
-		$('body').trigger('click');
 	}
 
 };
@@ -181,7 +150,6 @@ var GanttSlider = {
 	},
 
 	_state: {
-		isUserActivityHandled: false,
 		currentView: 'gantt',
 		groupedItems: [],
 		randomItems: [],
@@ -452,15 +420,6 @@ var GanttSlider = {
 
 	},
 
-
-	_startVideoLoading: function () {
-		var self = this;
-
-		self._elems.$_.find('video').each(function () {
-			$(this)[0].load();
-		});
-	},
-
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
@@ -487,37 +446,6 @@ var GanttSlider = {
 				self._switchToGanttView();
 			break;
 		}
-	},
-
-	_handleUserActivity: function (e) {
-		var self = e.data.self;
-
-		if ( self._state.isUserActivityHandled ) return;
-		if ( !Modernizr.video || Modernizr.lowbandwidth ) return;
-
-		self._state.isUserActivityHandled = true;
-		setTimeout(self._startVideoLoading.bind(self), 100);
-	},
-
-	_handleCanPlayEvent: function (e) {
-		var self = e.data.self;
-
-		objectFitPolyfill(this);
-		$(this).addClass('--active');
-	},
-
-	_handleMouseOver: function (e) {
-		var self = e.data.self;
-
-		var $video = $(this).find('video.--active');
-		if ($video.length) $video[0].play();
-	},
-
-	_handleMouseOut: function (e) {
-		var self = e.data.self;
-
-		var $video = $(this).find('video.--active');
-		if ($video.length) $video[0].pause();
 	},
 
 	_handleSliderScroll: function (e) {
@@ -549,15 +477,9 @@ var GanttSlider = {
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$_.find('video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
-		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
-		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
 		self._elems.$_.on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
-		
-		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
-		$(window).on('resize', {self: self}, self._handleWindowResize);
-
 		self._elems.$scroll[0].addEventListener('scroll', self._handleSliderScroll.bind(self), false);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 		window.addEventListener('scroll', self._handleWindowScroll.bind(self), false);
 	},
 
@@ -587,8 +509,6 @@ var GanttSlider = {
 		self._elems.$_.removeClass('gantt-slider--frozen --loading');
 
 		self._bindUI();
-
-		$('body').trigger('click');
 	}
 
 };
@@ -1500,18 +1420,6 @@ var Form = {
 		$(this).parent().toggleClass('_filled', !!$(this).val().length);
 	},
 
-	_handleWingsMouseover: function (e) {
-		var self = e.data.self;
-
-		$(this).addClass('_hover');
-	},
-
-	_handleWingsMouseout: function (e) {
-		var self = e.data.self;
-
-		$(this).removeClass('_hover');
-	},
-
 	_handleFileChange: function (e) {
 		var self = e.data.self;
 
@@ -1538,8 +1446,6 @@ var Form = {
 		$(document).on('focus', '.js-form-input', {self: self}, self._handleFocusOnInput);
 		$(document).on('blur', '.js-form-input', {self: self}, self._handleBlurOnInput);
 		$(document).on('change', '.js-form-input', {self: self}, self._handleInputChange);
-		$(document).on('mouseover', '.js-form-wings', {self: self}, self._handleWingsMouseover);
-		$(document).on('mouseout', '.js-form-wings', {self: self}, self._handleWingsMouseout);
 		$(document).on('change', '.js-form-file', {self: self}, self._handleFileChange);
 	},
 
@@ -2027,7 +1933,7 @@ var TechPromo = {
 	_setActiveVideo: function (index) {
 		var self = this;
 
-		var $items = $('#tech-promo .tech-promo__figure__item');
+		var $items = $('#tech-promo .bg-layer__item');
 		$items.filter('.--active').removeClass('--active').end().find('video')[0].pause();
 		$items.eq(index).addClass('--active').end().find('video')[0].play();
 	},
@@ -2659,15 +2565,57 @@ var NavSticker = {
 	}
 
 };
-var App = {
 
-	_elems: {
-		$promoVideos: $()
+var Hover = {
+
+	_handleWingsMouseenter: function (e) {
+		var self = e.data.self;
+
+		$(this).addClass('--hover');
 	},
+
+	_handleWingsMouseleave: function (e) {
+		var self = e.data.self;
+
+		$(this).removeClass('--hover');
+	},
+
+	_handleVideoMouseenter: function (e) {
+		var self = e.data.self;
+
+		var $video = $(this).find('video.--active');
+		if ($video.length) $video[0].play();
+	},
+
+	_handleVideoMouseleave: function (e) {
+		var self = e.data.self;
+
+		var $video = $(this).find('video.--active');
+		if ($video.length) $video[0].pause();
+	},
+
+	_bindUI: function () {
+		var self = this;
+
+		$(document).on('mouseenter', '.js-hover-video', {self: self}, self._handleVideoMouseenter);
+		$(document).on('mouseleave', '.js-hover-video', {self: self}, self._handleVideoMouseleave);
+		$(document).on('mouseenter', '.js-hover-wings', {self: self}, self._handleWingsMouseenter);
+		$(document).on('mouseleave', '.js-hover-wings', {self: self}, self._handleWingsMouseleave);
+	},
+
+	init: function () {
+		var self = this;
+
+		self._bindUI();
+	}
+}
+var App = {
 
 	_state: {
 		preloaderTimer: null,
+		promoVideosTotal: 0,
 		promoVideosLoaded: 0,
+		isUserActivityHandled: false,
 		isWindowLoaded: false
 	},
 
@@ -2675,7 +2623,7 @@ var App = {
 		var self = this;
 
 		if ( self._state.isWindowLoaded === false ) return;
-		if ( self._state.promoVideosLoaded !== self._elems.$promoVideos.length) return;
+		if ( self._state.promoVideosLoaded !== self._state.promoVideosTotal) return;
 
 		clearInterval(self._state.preloaderTimer);
 
@@ -2685,11 +2633,29 @@ var App = {
 		TechPromo.init();
 	},
 
+	_startLazyVideosLoading: function () {
+		var self = this;
+
+		$('video[data-lazy]').each(function () {
+			$(this)[0].load();
+		});
+	},
+
+	_handleUserActivity: function (e) {
+		var self = e.data.self;
+
+		if ( self._state.isUserActivityHandled ) return;
+		if ( !Modernizr.video || Modernizr.lowbandwidth ) return;
+
+		self._state.isUserActivityHandled = true;
+		setTimeout(self._startLazyVideosLoading.bind(self), 100);
+	},
+
 	_handleDOMReady: function () {
 		var self = this;
 
 		// it's important to call NavBanner inition first,
-		// because tabs contents can have owl-carousel blocks inside
+		// because tabs content can contain other sliders inside
 		NavBanner.init();
 
 		GanttSlider.init();
@@ -2710,6 +2676,7 @@ var App = {
 		NavSticker.init();
 		About.init();
 		Talgat.init();
+		Hover.init();
 	},
 
 	_handleWindowLoad: function () {
@@ -2721,35 +2688,40 @@ var App = {
 	_handleCanPlayEvent: function (e) {
 		var self = e.data.self;
 
-		self._state.promoVideosLoaded++;
-
 		objectFitPolyfill(this);
 		$(this).addClass('--active');
 
-		// tech-promo case
-		if ( $(this).parent().hasClass('--active') ) {
-			$(this)[0].play();
+		if ($(this).data('promo') !== undefined) {
+			self._state.promoVideosLoaded++;
 		}
+
+		if ($(this).data('play') !== undefined) {
+			$(this)[0].play();
+		} 
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$promoVideos.one('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 		$(window).on('load', self._handleWindowLoad.bind(self));
+		$('video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(self._handleDOMReady.bind(self));
 	},
 
 	init: function () {
 		var self = this;
 
-		// check promo videos
-		self._elems.$promoVideos = $('video[data-promo]');
+		// count promo videos
+		self._state.promoVideosTotal = $('video[data-promo]').length;
 
 		// run preloader timer
 		self._state.preloaderTimer = setInterval(self._showContent.bind(self), 50);
 
 		self._bindUI();
+
+		// trigger click to start loading lazy videos
+		$('body').trigger('click');
 	}
 };
 

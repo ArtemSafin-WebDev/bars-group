@@ -19,18 +19,6 @@ var Form = {
 		$(this).parent().toggleClass('_filled', !!$(this).val().length);
 	},
 
-	_handleWingsMouseover: function (e) {
-		var self = e.data.self;
-
-		$(this).addClass('_hover');
-	},
-
-	_handleWingsMouseout: function (e) {
-		var self = e.data.self;
-
-		$(this).removeClass('_hover');
-	},
-
 	_handleFileChange: function (e) {
 		var self = e.data.self;
 
@@ -57,8 +45,6 @@ var Form = {
 		$(document).on('focus', '.js-form-input', {self: self}, self._handleFocusOnInput);
 		$(document).on('blur', '.js-form-input', {self: self}, self._handleBlurOnInput);
 		$(document).on('change', '.js-form-input', {self: self}, self._handleInputChange);
-		$(document).on('mouseover', '.js-form-wings', {self: self}, self._handleWingsMouseover);
-		$(document).on('mouseout', '.js-form-wings', {self: self}, self._handleWingsMouseout);
 		$(document).on('change', '.js-form-file', {self: self}, self._handleFileChange);
 	},
 

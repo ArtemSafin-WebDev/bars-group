@@ -21,7 +21,6 @@ var GanttSlider = {
 	},
 
 	_state: {
-		isUserActivityHandled: false,
 		currentView: 'gantt',
 		groupedItems: [],
 		randomItems: [],
@@ -292,15 +291,6 @@ var GanttSlider = {
 
 	},
 
-
-	_startVideoLoading: function () {
-		var self = this;
-
-		self._elems.$_.find('video').each(function () {
-			$(this)[0].load();
-		});
-	},
-
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
@@ -327,37 +317,6 @@ var GanttSlider = {
 				self._switchToGanttView();
 			break;
 		}
-	},
-
-	_handleUserActivity: function (e) {
-		var self = e.data.self;
-
-		if ( self._state.isUserActivityHandled ) return;
-		if ( !Modernizr.video || Modernizr.lowbandwidth ) return;
-
-		self._state.isUserActivityHandled = true;
-		setTimeout(self._startVideoLoading.bind(self), 100);
-	},
-
-	_handleCanPlayEvent: function (e) {
-		var self = e.data.self;
-
-		objectFitPolyfill(this);
-		$(this).addClass('--active');
-	},
-
-	_handleMouseOver: function (e) {
-		var self = e.data.self;
-
-		var $video = $(this).find('video.--active');
-		if ($video.length) $video[0].play();
-	},
-
-	_handleMouseOut: function (e) {
-		var self = e.data.self;
-
-		var $video = $(this).find('video.--active');
-		if ($video.length) $video[0].pause();
 	},
 
 	_handleSliderScroll: function (e) {
@@ -389,15 +348,9 @@ var GanttSlider = {
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$_.find('video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
-		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
-		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
 		self._elems.$_.on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
-		
-		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
-		$(window).on('resize', {self: self}, self._handleWindowResize);
-
 		self._elems.$scroll[0].addEventListener('scroll', self._handleSliderScroll.bind(self), false);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 		window.addEventListener('scroll', self._handleWindowScroll.bind(self), false);
 	},
 
@@ -427,8 +380,6 @@ var GanttSlider = {
 		self._elems.$_.removeClass('gantt-slider--frozen --loading');
 
 		self._bindUI();
-
-		$('body').trigger('click');
 	}
 
 };

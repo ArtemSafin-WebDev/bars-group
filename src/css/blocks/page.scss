@@ -50,13 +50,7 @@
 	&__col-main {
 		margin-left: 200px;
 	}
-
-	&__decor {
-		@include position-fill();
-		background: #000;
-		opacity: .3;
-	}
-
+	
 	&__click {
 		@include position-fill();
 		z-index: 30;

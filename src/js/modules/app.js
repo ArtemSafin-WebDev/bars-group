@@ -1,12 +1,10 @@
 var App = {
 
-	_elems: {
-		$promoVideos: $()
-	},
-
 	_state: {
 		preloaderTimer: null,
+		promoVideosTotal: 0,
 		promoVideosLoaded: 0,
+		isUserActivityHandled: false,
 		isWindowLoaded: false
 	},
 
@@ -14,7 +12,7 @@ var App = {
 		var self = this;
 
 		if ( self._state.isWindowLoaded === false ) return;
-		if ( self._state.promoVideosLoaded !== self._elems.$promoVideos.length) return;
+		if ( self._state.promoVideosLoaded !== self._state.promoVideosTotal) return;
 
 		clearInterval(self._state.preloaderTimer);
 
@@ -24,11 +22,29 @@ var App = {
 		TechPromo.init();
 	},
 
+	_startLazyVideosLoading: function () {
+		var self = this;
+
+		$('video[data-lazy]').each(function () {
+			$(this)[0].load();
+		});
+	},
+
+	_handleUserActivity: function (e) {
+		var self = e.data.self;
+
+		if ( self._state.isUserActivityHandled ) return;
+		if ( !Modernizr.video || Modernizr.lowbandwidth ) return;
+
+		self._state.isUserActivityHandled = true;
+		setTimeout(self._startLazyVideosLoading.bind(self), 100);
+	},
+
 	_handleDOMReady: function () {
 		var self = this;
 
 		// it's important to call NavBanner inition first,
-		// because tabs contents can have owl-carousel blocks inside
+		// because tabs content can contain other sliders inside
 		NavBanner.init();
 
 		GanttSlider.init();
@@ -49,6 +65,7 @@ var App = {
 		NavSticker.init();
 		About.init();
 		Talgat.init();
+		Hover.init();
 	},
 
 	_handleWindowLoad: function () {
@@ -60,34 +77,39 @@ var App = {
 	_handleCanPlayEvent: function (e) {
 		var self = e.data.self;
 
-		self._state.promoVideosLoaded++;
-
 		objectFitPolyfill(this);
 		$(this).addClass('--active');
 
-		// tech-promo case
-		if ( $(this).parent().hasClass('--active') ) {
-			$(this)[0].play();
+		if ($(this).data('promo') !== undefined) {
+			self._state.promoVideosLoaded++;
 		}
+
+		if ($(this).data('play') !== undefined) {
+			$(this)[0].play();
+		} 
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$promoVideos.one('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 		$(window).on('load', self._handleWindowLoad.bind(self));
+		$('video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(self._handleDOMReady.bind(self));
 	},
 
 	init: function () {
 		var self = this;
 
-		// check promo videos
-		self._elems.$promoVideos = $('video[data-promo]');
+		// count promo videos
+		self._state.promoVideosTotal = $('video[data-promo]').length;
 
 		// run preloader timer
 		self._state.preloaderTimer = setInterval(self._showContent.bind(self), 50);
 
 		self._bindUI();
+
+		// trigger click to start loading lazy videos
+		$('body').trigger('click');
 	}
 };

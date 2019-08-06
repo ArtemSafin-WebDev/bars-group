@@ -18,6 +18,7 @@
 //= modules/about.js
 //= modules/navMobile.js
 //= modules/navSticker.js
+//= modules/hover.js
 //= modules/app.js
 
 App.init();

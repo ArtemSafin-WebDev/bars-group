@@ -15,7 +15,8 @@
 	}
 
 	&__bg {
-		@include position-fill;
+		@include position-fill();
+		background: #000;
 		overflow: hidden;
 		
 		&__item {
@@ -34,22 +35,6 @@
 
 			&--frozen {
 				transition-duration: 0s;
-			}
-		}
-
-		&__image {
-			@include position-fill();
-			background: $base-gray 50% 50% no-repeat;
-			background-size: cover;
-		}
-
-		&__video {
-			@include position-fill;
-			object-fit: cover;
-			display: none;
-
-			&.--active {
-				display: block;
 			}
 		}
 	}
