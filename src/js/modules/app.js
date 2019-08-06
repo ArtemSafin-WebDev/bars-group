@@ -43,6 +43,7 @@ var App = {
 		Overview.init();
 		NavMobile.init();
 		NavSticker.init();
+		About.init();
 	},
 
 	_handleWindowLoad: function () {

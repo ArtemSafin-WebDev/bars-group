@@ -59,17 +59,10 @@ body {
   min-height: calc(~'100vh - @{iOffsetTop}');
   height: 100%;
 }
-.header {
-  .page {
-    &__center {
-      //background: #cc3829;
-    }
-  }
-}
 
 .about {
   &-slider {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
@@ -441,7 +434,7 @@ body {
   &__item {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%) scale(0);
+    transform: translateY(-50%);
     opacity: 0;
     display: flex;
     align-items: center;
@@ -455,6 +448,18 @@ body {
     background-position: center;
     font-weight: bold;
     transition: 0.3s ease-out;
+    &--small {
+      width: 266px;
+      height: 71px;
+    }
+    &--middle {
+      width: 326px;
+      height: 85px;
+    }
+    &--big {
+      width: 374px;
+      height: 98px;
+    }
     &--active {
       opacity: 1;
       transform: scale(1);

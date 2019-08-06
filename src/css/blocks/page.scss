@@ -12,6 +12,20 @@
 
 	&__wrapper {
 		overflow: hidden;
+		&.about {
+			@media screen and (min-width: 577px) {
+				.header {
+					position: fixed;
+					width: 100%;
+				}
+				&>.brand-box {
+					position: fixed;
+					top: 74px;
+					padding-top: 10px;
+					margin-bottom: 0;
+				}
+			}
+		}
 	}
 
 	&__center {

@@ -1,82 +1,196 @@
-var about = {
+var About = {
+    _elems: {
+        $_: $(),
+        $iScroll : $()
+    },
+    _state : {
+        isMobile : false  
+    },
+    _setIsMobile : function(){
+        var self = this;
+
+        self._state.isMobile = $(window).width() <= 576;
+    },
+    _setBodyHeight : function(){
+        var self = this;
+
+        if($(window).width() >= self._elems.$iScroll.children().width()) {
+            $('body').height($(window).width() * self._elems.$iScroll.children().length);
+        }
+        else
+            $('body').height(self._elems.$iScroll.width());
+    },
+    _setParoller: function(){
+        var self = this;
+
+        if(self._state.isMobile) return;
+
+        setTimeout(function() {
+            $('[data-paroller-factor]').paroller({
+                type : 'foreground',
+                factor : 0.2,
+                direction : 'horizontal'
+            });
+        }, 200);
+
+        self._elems.$_.find("[data-paroller-factor]").paroller({
+            type : 'foreground',
+            direction : 'horizontal'
+        });
+    },
+    _handleSliderScroll: function (e) {
+        var self = e.data.self;
+
+        var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+        var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
+        var rangeValue = Math.round(1000 * scrollLeft / maxScrollLeft);
+        self._elems.$_.find('.gantt-slider__range input').val(rangeValue).change();
+
+        var img = $('#wrapper .brand-box__image img');
+
+        self._elems.$iScroll.children('.iScroll-item').each(function(){
+            if(
+                self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
+                ||
+                self._elems.$iScroll.data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600
+            ){
+                if($(this).find('.iScroll-item__label') !== undefined && $(this).find('.iScroll-item__label').length) {
+                    $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
+                }
+                else
+                    $('#wrapper .page__label').text('О компании');
+
+                if($(this).hasClass('iRatings')) {
+                    img.attr('src', img.data('white'));
+                    $(this).addClass('active');
+                }
+                else
+                    img.attr('src', img.data('original'));
+            }
+        });
+    },
     /*** Init Function ***/
     init: function () {
         var self = this;
 
-        self.variables();
-        self.attachEvents();
+        var $_ = $('#about-slider');
+
+        if ( !$_.length ) return;
+
+        self._elems.$_ = $_;
+        self._elems.$iScroll = $_.find('.iScroll');
+
+        self._setIsMobile();
+        self._setBodyHeight();
+        self._initGeo();
+        self._initDigits();
+        self._initLeadership();
+        self._initHistory();
+
+        self._setParoller();
+
+        self._bindUI();
     },
-    /*** Variables ***/
-    variables: function () {
+
+    _bindUI: function(){
         var self = this;
 
-        /*** app ***/
-        self.document = $(document);
-        self.window   = $(window);
-        self.body     = $('body');
+        if(!self._state.isMobile)
+            self._initSlider(); /*AboutSlider.init(); */
 
-        self.isMobile = false;
-    },
-    attachEvents: function(){
-        var self = this;
+        $(window).resize(function(){
+            if($(window).width() <= 576)
+                self._state.isMobile = true;
+            else
+                self._state.isMobile = false;
+        });
 
-        self.document.ready(function(){
-            if(self.window.width() <= 576)
-                self.isMobile = true;
-
-            if(!self.isMobile) {
-                AboutSlider.init();
+        $(window).scroll(function(){
+            if(!self._state.isMobile) {
+                self._elems.$_.find('.gantt-slider__scroll').scrollLeft($(window).scrollTop());
             }
-
-            if(self.isMobile)
-                self.initGeo();
-            else
-                $('.iGeo__map img').on('load', function(){
-                    self.initGeo();
-                });
-
-            if($('.iDigits-slides.owl-carousel') !== undefined && $('.iDigits-slides.owl-carousel').length)
-                self.initDigits();
-
-            if($('.iLeadership') !== undefined && $('.iLeadership').length)
-                self.initLeadership();
-
-            if($('.iHistory') !== undefined && $('.iHistory').length)
-                self.initHistory();
         });
 
-        self.window.resize(function(){
-            if(self.window.width() <= 576)
-                self.isMobile = true;
-            else
-                self.isMobile = false;
+        if(!self._state.isMobile){
+            self._elems.$_.find('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
+            $(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+        }
+    },
+    _initSlider: function(){
+        var self = this;
+
+        self._initRangeSlider();
+    },
+    _initRangeSlider: function () {
+        var self = this;
+
+        var $range = self._elems.$_.find('.gantt-slider__range');
+        $range.data('position', 0);
+        $range.find('input').rangeslider({
+            polyfill: false,
+            onInit: function () {
+                $range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
+            },
+            onSlide: function(position, value) {
+                if(self._elems.$iScroll.data('direction') == 'right'){
+                    if(position < $range.data('position'))
+                        self._elems.$iScroll.data('direction', 'left');
+                }
+                else if(self._elems.$iScroll.data('direction') == 'left'){
+                    if(position > $range.data('position'))
+                        self._elems.$iScroll.data('direction', 'right');
+                }
+
+                $range.data('position', position);
+
+                var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
+                var scrollLeft    = maxScrollLeft / 1000 * value;
+                self._elems.$_.find('.gantt-slider__scroll').scrollLeft = scrollLeft;
+            }
         });
     },
-    initGeo: function(){
+    _initGeo: function(){
         var self = this;
-        var offsetTop = self.isMobile ? 200 : 63;
 
-        var height = $('.iGeo__map').height() + offsetTop;
-        var width = $('.iGeo__map').width();
-        $('.iGeo__items').width(!self.isMobile ? $('.iGeo__map img').width() : '100%');
-        $('.iGeo__item').each(function(){
+        var $iGeo = self._elems.$_.find('.iGeo');
+        if ($iGeo.length == 0) return;
+
+        var $iGeoMap   = $iGeo.find('.iGeo__map');
+        var $iGeoItems = $iGeo.find('.iGeo__items');
+        var $iGeoItem  = $iGeoItems.children('.iGeo__item');
+
+        var offsetTop = self._state.isMobile ? 200 : 63;
+
+        var iGeoMapHeight = $iGeoMap.height() + offsetTop;
+        var iGeoMapWidth  = $iGeoMap.width();
+
+        $iGeoItems.width(!self._state.isMobile ? $iGeoMap.width() : '100%');
+
+        $iGeoItem.each(function(){
             var top = 0;
             var left = 0;
             if($(this).data('top') > 0)
-                top = $(this).data('top') / height * 100;
+                top = $(this).data('top') / iGeoMapHeight * 100;
             if($(this).data('left') > 0)
-                left = $(this).data('left') / width * 100 + 0.75;
+                left = $(this).data('left') / iGeoMapWidth * 100 + 0.75;
 
-            if(self.isMobile)
+            if(self._state.isMobile)
                 top = Math.max(0, top - 40);
 
-            $(this).stop().animate({'top': top + '%', 'left': left + '%'}, 1000).addClass($('.iGeo__items').data('active'));
+            $(this).stop().animate({'top': top + '%', 'left': left + '%'}, 1000).addClass('iGeo__item--active');
         });
     },
-    initDigits: function(){
+    _initDigits: function(){
         var self = this;
 
-        var owlDigits = $('.iDigits-slides.owl-carousel').owlCarousel({
+        var $iDigits = self._elems.$_.find('.iDigits');
+        if ($iDigits.length == 0) return;
+
+        var $iDigitsSlides = $iDigits.find('.iDigits-slides.owl-carousel');
+        var $iDigitsValues = $iDigitsSlides.find('.iDigits-values');
+        var $iDigitsValueItem = $iDigitsSlides.find('.iDigits-values__item');
+
+        var owlDigits = $iDigitsSlides.owlCarousel({
             nav: false,
             dots: false,
             items: 1,
@@ -89,23 +203,23 @@ var about = {
         });
 
         owlDigits.on('changed.owl.carousel', function(event){
-            $('.iDigits-values__item').removeClass($('.iDigits-values').data('active'));
-            $('.iDigits-values__item').eq(event.item.index).addClass($('.iDigits-values').data('active'));
+            $iDigitsValueItem.removeClass($iDigitsValues.data('active'));
+            $iDigitsValueItem.eq(event.item.index).addClass($iDigitsValues.data('active'));
         });
 
-        $('.iDigits-values__item').eq(0).addClass($('.iDigits-values').data('active'));
+        $iDigitsValueItem.eq(0).addClass($iDigitsValues.data('active'));
 
-        $('.iDigits-values__item').click(function(){
+        $iDigitsValueItem.click(function(){
             $('.iDigits-values__item').removeClass($('.iDigits-values').data('active'));
 
             $(this).addClass($('.iDigits-values').data('active'));
 
-            var index = self.isMobile ? $(this).parent().index() : $(this).index();
+            var index = self._state.isMobile ? $(this).parent().index() : $(this).index();
 
             $('.iDigits .owl-carousel').trigger('to.owl.carousel', index);
         });
 
-        if(self.isMobile && $('.iDigits-values.owl-carousel') !== undefined && $('.iDigits-values.owl-carousel').length){
+        if(self._state.isMobile){
             var owlDigitsValues = $('.iDigits-values.owl-carousel').owlCarousel({
                 nav: false,
                 dots: false,
@@ -114,32 +228,35 @@ var about = {
             });
         }
     },
-    initLeadership: function(){
+    _initLeadership: function(){
         var self = this;
 
-        if($('.iLeadership-item') === undefined || $('.iLeadership-item').length == 0)
-            return;
+        var $iLeadership = self._elems.$_.find('.iLeadership');
+        if ($iLeadership.length == 0) return;
 
-        var height = $('.iLeadership-item').eq(0).height();
-        $('.iLeadership-item').width(height*0.8);
+        var $iLeadershipItem = $iLeadership.find('.iLeadership-item');
+        var $iLeadershipModal = $("#leadershipModal");
 
-        $('.iLeadership .button').click(function(event){
+        var height = $iLeadershipItem.eq(0).height();
+        $iLeadershipItem.width(height*0.8);
+
+        $iLeadership.find('.button').click(function(event){
             event.preventDefault();
 
-            if(self.isMobile) {
+            if(self._state.isMobile) {
                 if ($(this).hasClass('opened')) {
-                    $('.iLeadership .page__center').removeClass('opened');
+                    $iLeadership.find('.page__center').removeClass('opened');
                     $(this).removeClass('opened').children('.button-default__text').text('Показать еще');
                     $(this).children('i').show();
                 } else {
-                    $('.iLeadership .page__center').addClass('opened');
+                    $iLeadership.find('.page__center').addClass('opened');
                     $(this).addClass('opened').children('.button-default__text').text('Скрыть');
                     $(this).children('i').hide();
                 }
             }
         });
 
-        $("#leadershipModal").iziModal({
+        $iLeadershipModal.iziModal({
             overlayColor: 'rgba(0, 0, 0, 0.8)',
             width: 912,
             padding: 45,
@@ -203,28 +320,27 @@ var about = {
             }
         });
 
-        $('#leadershipModal .iziModal-close').click(function(event){
+        $iLeadershipModal.find('.iziModal-close').click(function(event){
             event.preventDefault();
-
-            $("#leadershipModal").iziModal('close');
+            $iLeadershipModal.iziModal('close');
         });
 
-        $('.iLeadership-item').click(function(event){
+        $iLeadershipItem.click(function(event){
             event.preventDefault();
-
-            $('#leadershipModal').iziModal('open');
+            $iLeadershipModal.iziModal('open');
         });
     },
-    initHistory: function(){
+    _initHistory: function(){
         var self = this;
 
-        var ruler = $('.iHistory-ruler__line .owl-carousel');
-        var events = $('.iHistory-events .owl-carousel');
+        var $iHistory = self._elems.$_.find('.iHistory');
+        if ($iHistory.length == 0) return;
 
-        if(ruler === undefined || ruler.length == 0)
-            return;
-        if(events === undefined || events.length == 0)
-            return;
+        var ruler = $iHistory.find('.iHistory-ruler__line .owl-carousel');
+        var events = $iHistory.find('.iHistory-events .owl-carousel');
+
+        if(ruler.length == 0) return;
+        if(events.length == 0) return;
 
         var owlRuler = ruler.owlCarousel({
             nav: false,
@@ -240,116 +356,14 @@ var about = {
             auto: false
         });
 
-        $('.iHistory-ruler__item a').click(function(event){
+        $iHistory.find('.iHistory-ruler__item a').click(function(event){
             event.preventDefault();
 
-            $('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+            $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
 
             $(this).parent().addClass('iHistory-ruler__item--active');
 
             events.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
-        });
-    }
-};
-
-if($('#about-slider') !== undefined && $('#about-slider').length)
-    about.init();
-
-var AboutSlider = {
-    _state: {
-        maxScrollLeft: null
-    },
-    _initRangeSlider: function () {
-        var self = this;
-
-        var $range = $('#about-slider .gantt-slider__range');
-        $range.data('position', 0);
-        $range.find('input').rangeslider({
-            polyfill: false,
-            onInit: function () {
-                $range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
-            },
-            onSlide: function(position, value) {
-                if($('.iScroll').data('direction') == 'right'){
-                    if(position < $range.data('position'))
-                        $('.iScroll').data('direction', 'left');
-                }
-                else if($('.iScroll').data('direction') == 'left'){
-                    if(position > $range.data('position'))
-                        $('.iScroll').data('direction', 'right');
-                }
-
-                $range.data('position', position);
-
-                self._state.maxScrollLeft = $('#about-slider .iScroll').width() - $('#about-slider .iScroll').width() / $('#about-slider .iScroll').children().length;
-                var scrollLeft = self._state.maxScrollLeft / 1000 * value;
-                $('#about-slider .gantt-slider__scroll').scrollLeft(scrollLeft);
-            }
-        });
-
-    },
-
-    _handleSliderScroll: function (e) {
-        var self = e.data.self;
-
-        var scrollLeft = $('#about-slider .gantt-slider__scroll').scrollLeft();
-        self._state.maxScrollLeft = $('#about-slider .iScroll').width() - $('#about-slider .iScroll').width() / $('#about-slider .iScroll').children().length;
-        var rangeValue = Math.round(1000 * scrollLeft / self._state.maxScrollLeft);
-        $('#about-slider .gantt-slider__range input').val(rangeValue).change();
-
-        var img = $('#wrapper .brand-box__image img');
-
-        $('.iScroll-item__parallax').each(function(){
-            console.log($(this).parent().attr('class'));
-            console.log($(this).parent().offset().left);
-            console.log('translateX(' + ($(this).data('direction') == 'right' ? -1 : 1) * $(this).data('factor') * Math.max($(this).data('x_min'), Math.min($(this).data('x_max'), $(this).parent().offset().left)) + 'px)');
-            $(this).css({
-                'transform' : 'translateX(' + ($(this).data('direction') == 'right' ? -1 : 1) * $('.iScroll-item__parallax').data('factor') * Math.max($(this).data('x_min'), Math.min($(this).data('x_max'), $(this).parent().offset().left)) + 'px)'
-                //'transform': 'translateX(' + ($(this).data('direction') == 'right' ? '-' : '') + $('.iScroll-item__parallax').data('factor') * Math.min(1600, Math.max(-1600, $('.iScroll-item__parallax').parent().offset().left)) + 'px)',
-            });
-        });
-
-        $('.iScroll-item').each(function(){
-            if(
-                $('.iScroll').data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
-                ||
-                $('.iScroll').data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600
-            ){
-                if($(this).find('.iScroll-item__label') !== undefined && $(this).find('.iScroll-item__label').length) {
-                    $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
-                }
-                else
-                    $('#wrapper .page__label').text('О компании');
-
-                if($(this).hasClass('iRatings')) {
-                    img.attr('src', img.data('white'));
-                    $(this).addClass('active');
-                }
-                else
-                    img.attr('src', img.data('original'));
-            }
-        });
-    },
-
-    _bindUI: function () {
-        var self = this;
-
-        $('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
-        $(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
-    },
-
-    init: function () {
-        var self = this;
-
-        if ( $('#about-slider').length == 0 || $(window).width() <= 576) return;
-
-        self._initRangeSlider();
-        self._bindUI();
-
-        $('html, body').mousewheel(function(e, delta) {
-            var scrollLeft = $('#about-slider .gantt-slider__scroll').scrollLeft();
-            scrollLeft     = scrollLeft - 50 * delta;
-            $('#about-slider .gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft}, 100, 'easeOutQuint');
         });
     }
 };

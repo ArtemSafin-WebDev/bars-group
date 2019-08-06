@@ -48,7 +48,7 @@ body.with-scrollbar .iScroll__item {
   height: 100%;
 }
 .about-slider {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
@@ -467,8 +467,8 @@ body.with-scrollbar .iScroll__item {
 .iGeo__item {
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%) scale(0);
-          transform: translateY(-50%) scale(0);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   opacity: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -487,6 +487,18 @@ body.with-scrollbar .iScroll__item {
   font-weight: bold;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
+}
+.iGeo__item--small {
+  width: 266px;
+  height: 71px;
+}
+.iGeo__item--middle {
+  width: 326px;
+  height: 85px;
+}
+.iGeo__item--big {
+  width: 374px;
+  height: 98px;
 }
 .iGeo__item--active {
   opacity: 1;
