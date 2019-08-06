@@ -2088,128 +2088,53 @@ var TechPromo = {
 	}
 }
 var About = {
+
     _elems: {
         $_: $(),
-        $iScroll : $()
+        $iScroll: $()
     },
-    _state : {
+
+    _state:  {
         isMobile : false  
     },
-    _setIsMobile : function(){
+    
+    _setIsMobile: function(){
         var self = this;
 
         self._state.isMobile = $(window).width() <= 576;
     },
-    _setBodyHeight : function(){
+
+    _setBodyHeight: function(){
         var self = this;
 
-        if($(window).width() >= self._elems.$iScroll.children().width()) {
+        if ($(window).width() >= self._elems.$iScroll.children().width()) {
             $('body').height($(window).width() * self._elems.$iScroll.children().length);
-        }
-        else
+        } else {
             $('body').height(self._elems.$iScroll.width());
+        }
     },
-    _setParoller: function(){
+
+    _initParoller: function(){
         var self = this;
 
-        if(self._state.isMobile) return;
+        if (self._state.isMobile) return;
+
+        var $targets = self._elems.$_.find('[data-paroller-factor]');
 
         setTimeout(function() {
-            $('[data-paroller-factor]').paroller({
+            $targets.paroller({
                 type : 'foreground',
-                factor : 0.2,
-                direction : 'horizontal'
+                direction : 'horizontal',
+                factor : 0.2
             });
         }, 200);
 
-        self._elems.$_.find("[data-paroller-factor]").paroller({
+        $targets.paroller({
             type : 'foreground',
             direction : 'horizontal'
         });
     },
-    _handleSliderScroll: function (e) {
-        var self = e.data.self;
 
-        var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
-        var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
-        var rangeValue = Math.round(1000 * scrollLeft / maxScrollLeft);
-        self._elems.$_.find('.gantt-slider__range input').val(rangeValue).change();
-
-        var img = $('#wrapper .brand-box__image img');
-
-        self._elems.$iScroll.children('.iScroll-item').each(function(){
-            if(
-                self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
-                ||
-                self._elems.$iScroll.data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600
-            ){
-                if($(this).find('.iScroll-item__label') !== undefined && $(this).find('.iScroll-item__label').length) {
-                    $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
-                }
-                else
-                    $('#wrapper .page__label').text('О компании');
-
-                if($(this).hasClass('iRatings')) {
-                    img.attr('src', img.data('white'));
-                    $(this).addClass('active');
-                }
-                else
-                    img.attr('src', img.data('original'));
-            }
-        });
-    },
-    /*** Init Function ***/
-    init: function () {
-        var self = this;
-
-        var $_ = $('#about-slider');
-
-        if ( !$_.length ) return;
-
-        self._elems.$_ = $_;
-        self._elems.$iScroll = $_.find('.iScroll');
-
-        self._setIsMobile();
-        self._setBodyHeight();
-        self._initGeo();
-        self._initDigits();
-        self._initLeadership();
-        self._initHistory();
-
-        self._setParoller();
-
-        self._bindUI();
-    },
-
-    _bindUI: function(){
-        var self = this;
-
-        if(!self._state.isMobile)
-            self._initSlider(); /*AboutSlider.init(); */
-
-        $(window).resize(function(){
-            if($(window).width() <= 576)
-                self._state.isMobile = true;
-            else
-                self._state.isMobile = false;
-        });
-
-        $(window).scroll(function(){
-            if(!self._state.isMobile) {
-                self._elems.$_.find('.gantt-slider__scroll').scrollLeft($(window).scrollTop());
-            }
-        });
-
-        if(!self._state.isMobile){
-            self._elems.$_.find('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
-            $(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
-        }
-    },
-    _initSlider: function(){
-        var self = this;
-
-        self._initRangeSlider();
-    },
     _initRangeSlider: function () {
         var self = this;
 
@@ -2221,13 +2146,15 @@ var About = {
                 $range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
             },
             onSlide: function(position, value) {
-                if(self._elems.$iScroll.data('direction') == 'right'){
-                    if(position < $range.data('position'))
+
+                if (self._elems.$iScroll.data('direction') == 'right') {
+                    if (position < $range.data('position')) {
                         self._elems.$iScroll.data('direction', 'left');
-                }
-                else if(self._elems.$iScroll.data('direction') == 'left'){
-                    if(position > $range.data('position'))
+                    }
+                } else if (self._elems.$iScroll.data('direction') == 'left') {
+                    if (position > $range.data('position')) {
                         self._elems.$iScroll.data('direction', 'right');
+                    }
                 }
 
                 $range.data('position', position);
@@ -2238,6 +2165,7 @@ var About = {
             }
         });
     },
+
     _initGeo: function(){
         var self = this;
 
@@ -2258,13 +2186,18 @@ var About = {
         $iGeoItem.each(function(){
             var top = 0;
             var left = 0;
-            if($(this).data('top') > 0)
-                top = $(this).data('top') / iGeoMapHeight * 100;
-            if($(this).data('left') > 0)
-                left = $(this).data('left') / iGeoMapWidth * 100 + 0.75;
 
-            if(self._state.isMobile)
+            if ($(this).data('top') > 0) {
+                top = $(this).data('top') / iGeoMapHeight * 100;
+            }
+            
+            if ($(this).data('left') > 0) {
+                left = $(this).data('left') / iGeoMapWidth * 100 + 0.75;
+            }
+
+            if (self._state.isMobile) {
                 top = Math.max(0, top - 40);
+            }
 
             $(this).stop().animate({'top': top + '%', 'left': left + '%'}, 1000).addClass('iGeo__item--active');
         });
@@ -2419,6 +2352,7 @@ var About = {
             $iLeadershipModal.iziModal('open');
         });
     },
+
     _initHistory: function(){
         var self = this;
 
@@ -2454,6 +2388,85 @@ var About = {
 
             events.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
         });
+    },
+
+    _handleSliderScroll: function (e) {
+        var self = e.data.self;
+
+        var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+        var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
+        var rangeValue = Math.round(1000 * scrollLeft / maxScrollLeft);
+        self._elems.$_.find('.gantt-slider__range input').val(rangeValue).change();
+
+        var img = $('#wrapper .brand-box__image img');
+
+        self._elems.$iScroll.children('.iScroll-item').each(function(){
+            if(
+                self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
+                ||
+                self._elems.$iScroll.data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600
+            ){
+                if($(this).find('.iScroll-item__label') !== undefined && $(this).find('.iScroll-item__label').length) {
+                    $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
+                }
+                else
+                    $('#wrapper .page__label').text('О компании');
+
+                if($(this).hasClass('iRatings')) {
+                    img.attr('src', img.data('white'));
+                    $(this).addClass('active');
+                }
+                else
+                    img.attr('src', img.data('original'));
+            }
+        });
+    },
+
+    _bindUI: function(){
+        var self = this;
+
+        if(!self._state.isMobile) {
+            self._initRangeSlider();
+        }
+
+        $(window).resize(function(){
+            if($(window).width() <= 576)
+                self._state.isMobile = true;
+            else
+                self._state.isMobile = false;
+        });
+
+        $(window).scroll(function(){
+            if(!self._state.isMobile) {
+                self._elems.$_.find('.gantt-slider__scroll').scrollLeft($(window).scrollTop());
+            }
+        });
+
+        if(!self._state.isMobile){
+            self._elems.$_.find('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
+            $(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+        }
+    },
+
+    init: function () {
+        var self = this;
+
+        var $_ = $('#about-slider');
+
+        if ( $_.length == 0 ) return;
+
+        self._elems.$_ = $_;
+        self._elems.$iScroll = $_.find('.iScroll');
+
+        self._setIsMobile();
+        self._setBodyHeight();
+        self._initGeo();
+        self._initDigits();
+        self._initLeadership();
+        self._initHistory();
+        self._initParoller();
+
+        self._bindUI();
     }
 };
 
