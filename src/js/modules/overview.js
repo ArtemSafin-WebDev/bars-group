@@ -104,7 +104,7 @@ var Overview = {
 	_bindUI: function () {
 		var self = this;
 
-		$('.overview__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		$('.overview__bg__video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 	},
@@ -114,7 +114,7 @@ var Overview = {
 
 		var $_ = $('#overview');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 
 		self._elems.$_ = $_;
 		self._elems.$bgItems = self._elems.$_.find('.overview__bg__item');

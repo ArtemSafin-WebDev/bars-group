@@ -20,12 +20,17 @@ var App = {
 
 		$('#hello').removeClass('hello--active');
 		$('body').removeClass('page__locked');
+
+		TechPromo.init();
 	},
 
 	_handleDOMReady: function () {
 		var self = this;
 
-		// init modules here
+		// it's important to call NavBanner inition first,
+		// because tabs contents can have owl-carousel blocks inside
+		NavBanner.init();
+
 		GanttSlider.init();
 		CitiesSlider.init();
 		SliderContent.init();
@@ -38,12 +43,12 @@ var App = {
 		NewsSlider.init();
 		NewsPhotoSlider.init();
 		NewsToggles.init();
-		NavBanner.init();
-		TechPromo.init();
+		
 		Overview.init();
 		NavMobile.init();
 		NavSticker.init();
 		About.init();
+		Talgat.init();
 	},
 
 	_handleWindowLoad: function () {
@@ -56,12 +61,20 @@ var App = {
 		var self = e.data.self;
 
 		self._state.promoVideosLoaded++;
+
+		objectFitPolyfill(this);
+		$(this).addClass('--active');
+
+		// tech-promo case
+		if ( $(this).parent().hasClass('--active') ) {
+			$(this)[0].play();
+		}
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$promoVideos.on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$promoVideos.one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(window).on('load', self._handleWindowLoad.bind(self));
 		$(self._handleDOMReady.bind(self));
 	},

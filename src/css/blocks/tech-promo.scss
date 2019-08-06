@@ -1,16 +1,10 @@
 
 .tech-promo {
 
-	height: calc(100vh - 74px);
-	min-height: 1100px;
 	overflow: hidden;
 
 	.brand-box__text-2 {
 		color: #fff;
-	}
-
-	.banner__text {
-		height: 100%;
 	}
 
 	&__figure {
@@ -44,12 +38,15 @@
 	}
 
 	&__base {
-		position: absolute;
+		position: relative;
 		width: 600px;
 		height: 600px;
-		top: 50%;
-		margin-top: -340px;
-		left: 45%;
+		margin-bottom: 300px;
+		margin-left: 45%;
+	}
+
+	&__static-img {
+		display: none;
 	}
 
 	&__center {
@@ -199,15 +196,15 @@
 		}
 
 		&.--delay-1 {
-			transition-delay: .1s;
+			transition-delay: .4s;
 		}
 
 		&.--delay-2 {
-			transition-delay: .2s;
+			transition-delay: .8s;
 		}
 
 		&.--delay-2 {
-			transition-delay: .3s;
+			transition-delay: 1.2s;
 		}
 		
 		&:hover {
@@ -419,37 +416,37 @@
 		}
 
 		&--2 {
-			transition-delay: 0.2s;
+			transition-delay: 0.1s;
 			top: 43%;
 			left: 98%;
 		}
 
 		&--3 {
-			transition-delay: 0.4s;
+			transition-delay: 0.2s;
 			top: 74%;
 			left: 91%;
 		}
 
 		&--4 {
-			transition-delay: 0.6s;
+			transition-delay: 0.3s;
 			top: 93%;
 			left: 26%;
 		}
 
 		&--5 {
-			transition-delay: 0.8s;
+			transition-delay: 0.4s;
 			top: 78%;
 			left: 8%;
 		}
 
 		&--6 {
-			transition-delay: 1.0s;
+			transition-delay: 0.5s;
 			top: 47%;
 			left: -1.5%;
 		}
 
 		&--7 {
-			transition-delay: 1.2s;
+			transition-delay: 0.6s;
 			top: 18%;
 			left: 9%;
 		}
@@ -463,9 +460,9 @@
 	.tech-promo {
 
 		&__base {
+			margin-top: 50px;
 			width: 500px;
 			height: 500px;
-			margin-top: -250px;
 		}
 
 		&__circle {
@@ -539,42 +536,26 @@
 		height: auto;
 		min-height: auto;
 
-		.banner__text {
-			padding-bottom: 1px;
-		}
-
 		&__base {
-			position: relative;
-			top: 0;
-			left: 0;
-			margin-left: auto;
-			margin-right: auto;
-			margin-bottom: 250px;
-			margin-top: 50px;
+			margin-top: 10vw;
+			margin-bottom: 20vw;
+			margin-left: 30%;
 		}
 	}
 }
 
-@media all and (max-width: 1150px) {
+@media all and (max-width: 1050px) {
 	.tech-promo {
+
 		&__base {
-			transform: scale(.8);
+			display: none;
 		}
 
-		&__circle {
-			&__desc {
-				font-size: 16px;
-			}
-		}
-	}
-}
-
-@media all and (max-width: 850px) {
-	.tech-promo {
-		&__base {
-			transform: scale(.6);
-			margin-bottom: 100px;
-			margin-top: 0;
+		&__static-img {
+			display: block;
+			max-width: 450px;
+			margin: 70px auto 100px auto;
+			text-align: center;
 		}
 	}
 }

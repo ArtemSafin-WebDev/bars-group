@@ -134,7 +134,7 @@ var Overview = {
 	_bindUI: function () {
 		var self = this;
 
-		$('.overview__bg__video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		$('.overview__bg__video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('click', '.overview__nav__link', {self: self}, self._handleLinkClick);
 		$(document).one('click touchstart', {self: self}, self._handleUserActivity);
 	},
@@ -144,7 +144,7 @@ var Overview = {
 
 		var $_ = $('#overview');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 
 		self._elems.$_ = $_;
 		self._elems.$bgItems = self._elems.$_.find('.overview__bg__item');
@@ -549,7 +549,7 @@ var GanttSlider = {
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$_.find('video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$_.find('video').one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		self._elems.$_.on('mouseover', '.gantt-slider__item', {self: self}, self._handleMouseOver);
 		self._elems.$_.on('mouseout', '.gantt-slider__item', {self: self}, self._handleMouseOut);
 		self._elems.$_.on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
@@ -565,7 +565,7 @@ var GanttSlider = {
 		var self = this;
 
 		var $_ = $('#gantt-slider');
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		
 		self._elems.$_ = $_;
 		self._elems.$sandbox = $('#gantt-slider-sandbox');
@@ -840,7 +840,7 @@ var CitiesSlider = {
 		var self = this;
 
 		var $_ = $('#cities-slider');
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		
 		self._elems.$_ = $_;
 		self._elems.$sandbox = $('#cities-slider-sandbox');
@@ -904,7 +904,7 @@ var SliderContent = {
 
 		var $_ = $('#slider-content');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		if ( $('body').hasClass('is-admin') ) return;
 
 		self._elems.$_ = $_;
@@ -1465,7 +1465,7 @@ var News = {
 
 		var $_ = $('#news');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 
 		self._elems.$_ = $_;
 		self._elems.$slider = $_.find('.news__list');
@@ -1557,9 +1557,9 @@ var Form = {
 
 };
 
-(function () {
+var Talgat = {
 
-	$(document).ready(function() {
+	init: function () {
 
 		$('.jsTTasksSlider').owlCarousel({
 			items: 1,
@@ -1588,9 +1588,8 @@ var Form = {
 			navContainer: '.tComponents__nav'
 		});
 
-	});
-
-})();
+	}
+};
 
 
 var ScrollableTable = {
@@ -1926,33 +1925,95 @@ var NewsToggles = {
 
 var NavBanner = {
 
-	_handleItemClick: function (e) {
+	_elems: {
+		$_: $(),
+		$slider: $()
+	},
+
+	_setLineDimensions: function ($item) {
+		var self = this;
+
+		var $item = $item || self._elems.$_.find('.nav-banner__item._active');
+		var $line = self._elems.$_.find('.nav-banner__line');
+
+		$line.css({
+			left: $item.position().left + parseInt($item.css('padding-left')), 
+			width: $item.width()
+		});
+	},
+
+	_handleLinkClick: function (e) {
 		var self = e.data.self;
 
 		e.preventDefault();
+		
+		var $item = $(this).closest('.nav-banner__item');
 
-		var $root = $(this).closest('.nav-banner');
-
-		// set line position
-		var $line = $root.find('.nav-banner__line');
-		var elemOffset = $(this).position().left;
-		$line.css({left: elemOffset});
+		self._setLineDimensions($item);
 
 		// set active class
-		$(this)
+		$item
 			.siblings().removeClass('_active')
 			.end().addClass('_active');
+
+		// show slide
+		var index = $item.index();
+		self._elems.$slider.trigger('to.owl.carousel', [index]);
+	},
+
+	_wrapBlocksAsSlides: function () {
+		var self = this;
+
+		// find all blocks
+		var $blocks = $('.block-wrapper');
+
+		// filter slides
+		var $slides = $blocks.filter(function (index, elem) {
+			return !!$(elem).children('[data-tabs]').length;
+		}); 
+
+		// add wrapper
+		var $wrapper = $('<div class="owl-carousel nav-banner__tabs"></div>');
+		$wrapper.insertBefore($slides.first());
+
+		// reattach slides
+		$slides.detach().appendTo($wrapper);
+
+		// init slider
+		$wrapper.owlCarousel({
+			items: 1,
+			mouseDrag: false,
+			touchDrag: false,
+			dots: false
+		});
+
+		self._elems.$slider = $wrapper;
+	},
+
+	_handleWindowResize: function (e) {
+		var self = e.data.self;
+
+		self._setLineDimensions();
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('click', '.nav-banner__item', {self: self}, self._handleItemClick);
+		$(document).on('click', '.nav-banner__link', {self: self}, self._handleLinkClick);
+		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
 	init: function () {
 		var self = this;
 
+		var $_ = $("#nav-banner");
+
+		if ( $_.length == 0) return;
+
+		self._elems.$_ = $_;
+
+		self._setLineDimensions();
+		self._wrapBlocksAsSlides();
 		self._bindUI();
 	}
 };
@@ -1961,17 +2022,6 @@ var TechPromo = {
 
 	_state: {
 		timers: []
-	},
-
-	_handleCanPlayEvent: function (e) {
-		var self = e.data.self;
-
-		objectFitPolyfill(this);
-		$(this).addClass('--active');
-
-		if ( $(this).closest('.tech-promo__figure__item').index() == 0 ) {
-			$(this)[0].play();
-		}
 	},
 
 	_setActiveVideo: function (index) {
@@ -2009,7 +2059,6 @@ var TechPromo = {
 	_bindUI: function () {
 		var self = this;
 
-		$('#tech-promo video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$('#tech-promo .tech-promo__circle').on('mouseenter', {self: self}, self._handleCircleEnter);
 		$('#tech-promo .tech-promo__circle').on('mouseleave', {self: self}, self._handleCircleLeave);
 	},
@@ -2029,11 +2078,11 @@ var TechPromo = {
 
 		setTimeout(function () {
 			$_.find('.tech-promo__center').addClass('--active');
-		}, 3700);
+		}, 3000);
 
 		setTimeout(function () {
 			$_.find('.tech-promo__circle').addClass('--active');
-		}, 4500);
+		}, 3500);
 
 		self._bindUI();
 	}
@@ -2619,12 +2668,17 @@ var App = {
 
 		$('#hello').removeClass('hello--active');
 		$('body').removeClass('page__locked');
+
+		TechPromo.init();
 	},
 
 	_handleDOMReady: function () {
 		var self = this;
 
-		// init modules here
+		// it's important to call NavBanner inition first,
+		// because tabs contents can have owl-carousel blocks inside
+		NavBanner.init();
+
 		GanttSlider.init();
 		CitiesSlider.init();
 		SliderContent.init();
@@ -2637,12 +2691,16 @@ var App = {
 		NewsSlider.init();
 		NewsPhotoSlider.init();
 		NewsToggles.init();
-		NavBanner.init();
-		TechPromo.init();
+		
 		Overview.init();
 		NavMobile.init();
 		NavSticker.init();
+<<<<<<< HEAD
 		About.init();
+=======
+
+		Talgat.init();
+>>>>>>> 0f5d585b80eff69fa7f15a45fc6d1801922dbc7d
 	},
 
 	_handleWindowLoad: function () {
@@ -2655,12 +2713,20 @@ var App = {
 		var self = e.data.self;
 
 		self._state.promoVideosLoaded++;
+
+		objectFitPolyfill(this);
+		$(this).addClass('--active');
+
+		// tech-promo case
+		if ( $(this).parent().hasClass('--active') ) {
+			$(this)[0].play();
+		}
 	},
 
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$promoVideos.on('canplaythrough', {self: self}, self._handleCanPlayEvent);
+		self._elems.$promoVideos.one('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$(window).on('load', self._handleWindowLoad.bind(self));
 		$(self._handleDOMReady.bind(self));
 	},

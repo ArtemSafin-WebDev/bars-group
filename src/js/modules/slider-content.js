@@ -42,7 +42,7 @@ var SliderContent = {
 
 		var $_ = $('#slider-content');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 		if ( $('body').hasClass('is-admin') ) return;
 
 		self._elems.$_ = $_;

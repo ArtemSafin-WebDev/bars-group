@@ -388,6 +388,9 @@
   margin-bottom: 70px;
   margin-left: 40px;
 }
+.tDescription__emblem img {
+  width: auto !important;
+}
 .tForWhom {
   margin-top: 60px;
 }

@@ -5,17 +5,6 @@ var TechPromo = {
 		timers: []
 	},
 
-	_handleCanPlayEvent: function (e) {
-		var self = e.data.self;
-
-		objectFitPolyfill(this);
-		$(this).addClass('--active');
-
-		if ( $(this).closest('.tech-promo__figure__item').index() == 0 ) {
-			$(this)[0].play();
-		}
-	},
-
 	_setActiveVideo: function (index) {
 		var self = this;
 
@@ -51,7 +40,6 @@ var TechPromo = {
 	_bindUI: function () {
 		var self = this;
 
-		$('#tech-promo video').on('canplaythrough', {self: self}, self._handleCanPlayEvent);
 		$('#tech-promo .tech-promo__circle').on('mouseenter', {self: self}, self._handleCircleEnter);
 		$('#tech-promo .tech-promo__circle').on('mouseleave', {self: self}, self._handleCircleLeave);
 	},
@@ -71,11 +59,11 @@ var TechPromo = {
 
 		setTimeout(function () {
 			$_.find('.tech-promo__center').addClass('--active');
-		}, 3700);
+		}, 3000);
 
 		setTimeout(function () {
 			$_.find('.tech-promo__circle').addClass('--active');
-		}, 4500);
+		}, 3500);
 
 		self._bindUI();
 	}

@@ -11,6 +11,23 @@
 		.banner__desc {
 			color: rgba(#000, .8);
 		}
+
+		.nav-banner__item {
+			color: rgba(#000, .7);
+
+			&:hover,
+			&._active {
+				color: rgba(#000, 1);
+			}
+		}
+
+		.nav-banner__num {
+			color: rgba(#000, .3);
+		}
+
+		.nav-banner__line {
+			background: #59b4e6;
+		}
 	}
 
 	&--fixed-bg {

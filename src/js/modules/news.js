@@ -54,7 +54,7 @@ var News = {
 
 		var $_ = $('#news');
 
-		if ( !$_.length ) return;
+		if ( $_.length == 0 ) return;
 
 		self._elems.$_ = $_;
 		self._elems.$slider = $_.find('.news__list');

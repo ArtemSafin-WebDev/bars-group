@@ -11,37 +11,61 @@
 		@include add-scrollbar();
 	}
 
-	&__list {
+	&__body {
 		position: relative;
+	}
+
+	&__list {
 		display: flex;
 	}
 
 	&__item {
-		flex: 0 0 33.33%;
-		max-width: 300px;
-		min-height: 80px;
-		min-width: 120px;
+		box-sizing: content-box;
+		position: relative;
+		max-width: 200px;
+		min-height: 60px;
 		padding-bottom: 20px;
-		padding-right: 30px;
-		color: rgba(#000, .7);
+		padding-left: 60px;
+		color: rgba(#fff, .7);
+
+		&:first-child {
+			padding-left: 0;
+
+			.nav-banner__link {
+				left: 0;
+			}
+		}
+
+		&:last-child {
+			padding-right: 40px;
+
+			.nav-banner__link {
+				right: 40px;
+			}
+		}
 
 		&:hover,
 		&._active {
-			color: rgba(#000, 1);
+			color: rgba(#fff, 1);
 		}
+	}
 
+	&__link {
+		position: absolute;
+		top: 0;
+		left: 40px;
+		bottom: 0;
+		right: 0;
 	}
 
 	&__line {
-		transition: left .2s ease-in;
+		transition: all .2s ease-in;
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		background: #59b4e6;
+		background: #fff;
 		height: 3px;
-		width: calc(33.33% - 30px);
-		max-width: 270px;
-		min-width: 90px;
+		width: 0;
 	}
 
 	&__num {
@@ -49,18 +73,56 @@
 		display: block;
 		font-size: 14px;
 		font-weight: 700;
-		color: #8896a8;
+		color: rgba(#fff, .3);
 	}
 
 	&__name {
 		font-size: 18px;
 		line-height: 1.2;
 	}
+
+	&__tabs {
+		.owl-item {
+			overflow: hidden;
+		}
+	}
+}
+
+@media all and (max-width: 1300px) {
+
+	.nav-banner {
+		&__item {
+			padding-left: 50px;
+
+			&:last-child {
+				padding-right: 30px;
+
+				.nav-banner__link {
+					right: 30px;
+				}
+			}
+		}
+	}
 }
 
 @media all and (max-width: 600px) {
 
 	.nav-banner {
+
+		&__item {
+			min-width: auto;
+			min-height: 50px;
+			padding-left: 30px;
+
+			&:last-child {
+				padding-right: 20px;
+
+				.nav-banner__link {
+					right: 20px;
+				}
+			}
+		}
+
 		&__name {
 			font-size: 14px;
 		}
