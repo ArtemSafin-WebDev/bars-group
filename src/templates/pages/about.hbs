@@ -4,6 +4,7 @@ layout: default.hbs
 ---
 
 <div class="page__wrapper about" id="wrapper">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.0/smooth-scroll.min.js"></script>
 
     {{> header }}
     
@@ -26,32 +27,32 @@ layout: default.hbs
         <div class="gantt-slider__crop gantt-slider__crop--with-left">
             <div class="gantt-slider__scroll">
                 <div class="iScroll iScroll-9 iScroll--horizontal" data-direction="right">
-                    <div class="iStart iScroll-item">
-                        <div class="iScroll-item__parallax iScroll-item__parallax-1" data-paroller-factor="0.25"></div>
+                    <div id="iStart" class="iStart iScroll-item">
+                        <div class="iScroll-item__parallax iScroll-item__parallax-1" data-factor="0.25"></div>
                         <div class="page__center">
                             <div class="page__inner">
-                                <div class="iStart__img" data-paroller-factor="-0.15">
+                                <div class="iStart__img" data-factor="-0.15">
                                     <img src="uploads/about/iStart-img.png" alt="">
                                 </div>
-                                <p class="iStart__title" data-paroller-factor="-0.25">«БАРС Груп» —<br />визионер российской цифровой экономики</p>
-                                <p class="iStart__subtitle" data-paroller-factor="-0.45">Создаем многопрофильные облачные ИТ-решения для государства и бизнеса с 1992 года</p>
+                                <p class="iStart__title" data-factor="-0.25">«БАРС Груп» —<br />визионер российской цифровой экономики</p>
+                                <p class="iStart__subtitle" data-factor="-0.45">Создаем многопрофильные облачные ИТ-решения для государства и бизнеса с 1992 года</p>
                             </div>
                         </div>
                     </div>
-                    <div class="iMission iScroll-item">
-                        <div class="iScroll-item__parallax iScroll-item__parallax-2" data-paroller-factor="0.45"></div>
+                    <div id="iMission" class="iMission iScroll-item">
+                        <div class="iScroll-item__parallax iScroll-item__parallax-2" data-factor="0.045"></div>
                         <img src="uploads/about/bigcitylife.svg" alt="" class="iMission__bg">
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">Миссия</div>
-                                <p class="iMission__pretitle" data-paroller-factor="-0.15">Создаём технологии, меняем жизнь</p>
-                                <p class="iMission__title" data-paroller-factor="-0.05">Мы улучшаем качество жизни людей, повышая эффективность цифрового государства, бизнеса и экономики
+                                <p class="iMission__pretitle" data-factor="-0.15">Создаём технологии, меняем жизнь</p>
+                                <p class="iMission__title" data-factor="-0.05">Мы улучшаем качество жизни людей, повышая эффективность цифрового государства, бизнеса и экономики
                                     с помощью российских облачных технологий</p>
                             </div>
                         </div>
                     </div>
-                    <div class="iGeo iScroll-item">
-                        <div class="iScroll-item__parallax iScroll-item__parallax-3" data-paroller-factor="-0.25"></div>
+                    <div id="iGeo" class="iGeo iScroll-item">
+                        <div class="iScroll-item__parallax iScroll-item__parallax-3" data-factor="-0.25"></div>
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">География</div>
@@ -64,55 +65,55 @@ layout: default.hbs
                                 <img src="uploads/about/iGeo-map.svg" alt="">
                             </div>
                             <div class="iGeo__items">
-                                <div class="iGeo__item iGeo__item--small" data-paroller-factor="-0.1" data-paroller-factorMd="-0.2" data-top="323" data-left="66" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #A33A00;;">
+                                <div class="iGeo__item iGeo__item--small" data-factor="-0.1" data-top="323" data-left="66" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #A33A00;;">
                                     Калининград
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="0.2" data-paroller-factorMd="0.4" data-top="366" data-left="263" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #005BA8;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="0.2" data-factorMd="0.4" data-top="366" data-left="263" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #005BA8;">
                                     Санкт-Петербург
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="0.3" data-paroller-factorMd="0.6" data-top="294" data-left="914" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #00015E;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="0.3" data-factorMd="0.6" data-top="294" data-left="914" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #00015E;">
                                     Липецк
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="-0.1" data-paroller-factorMd="-0.2" data-top="426" data-left="651" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #000138;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="-0.1" data-top="426" data-left="651" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #000138;">
                                     Ростов-на-Дону
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="0.2" data-paroller-factorMd="0.4" data-top="470" data-left="1107" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #000138; z-index: 10;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="0.2" data-factorMd="0.4" data-top="470" data-left="1107" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #000138; z-index: 10;">
                                     Тюмень
                                 </div>
-                                <div class="iGeo__item iGeo__item--big" data-paroller-factor="0.3" data-paroller-factorMd="0.6" data-top="557" data-left="0" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #382100;">
+                                <div class="iGeo__item iGeo__item--big" data-factor="0.3" data-factorMd="0.6" data-top="557" data-left="0" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #382100;">
                                     Москва
                                 </div>
-                                <div class="iGeo__item iGeo__item--big" data-paroller-factor="0.1" data-paroller-factorMd="0.2" data-top="554" data-left="464" style="background-image: url('uploads/about/cities/kazan.png'); background-color: #090031; z-index: 10;">
+                                <div class="iGeo__item iGeo__item--big" data-factor="0.1" data-factorMd="0.2" data-top="554" data-left="464" style="background-image: url('uploads/about/cities/kazan.png'); background-color: #090031; z-index: 10;">
                                     Казань <label>Головной офис</label>
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="-0.3" data-paroller-factorMd="-0.6" data-top="547" data-left="943" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #0074C2; z-index: 0;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="-0.3" data-factorMd="-0.6" data-top="547" data-left="943" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #0074C2; z-index: 0;">
                                     Новосибирск
                                 </div>
-                                <div class="iGeo__item iGeo__item--small" data-paroller-factor="-0.2" data-paroller-factorMd="-0.4" data-top="632" data-left="287" style="background-image: url('uploads/about/cities/innopolis.png'); background-color: #00312A; z-index: 0;">
+                                <div class="iGeo__item iGeo__item--small" data-factor="-0.2" data-factorMd="-0.4" data-top="632" data-left="287" style="background-image: url('uploads/about/cities/innopolis.png'); background-color: #00312A; z-index: 0;">
                                     Иннополис
                                 </div>
-                                <div class="iGeo__item iGeo__item--small" data-paroller-factor="0.2" data-paroller-factorMd="0.4" data-top="724" data-left="149" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #008975;">
+                                <div class="iGeo__item iGeo__item--small" data-factor="0.2" data-factorMd="0.4" data-top="724" data-left="149" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #008975;">
                                     Краснодар
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="0.1" data-paroller-factorMd="0.2" data-top="766" data-left="567" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #A60060;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="0.1" data-factorMd="0.2" data-top="766" data-left="567" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #A60060;">
                                     Набережные Челны
                                 </div>
-                                <div class="iGeo__item iGeo__item--small" data-paroller-factor="-0.3" data-paroller-factorMd="-0.6" data-top="710" data-left="947" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #0032A6;">
+                                <div class="iGeo__item iGeo__item--small" data-factor="-0.35" data-factorMd="-0.6" data-top="710" data-left="947" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #0032A6;">
                                     Рыбинск
                                 </div>
-                                <div class="iGeo__item iGeo__item--small" data-paroller-factor="0.2" data-paroller-factorMd="0.4" data-top="337" data-left="1305" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #382100;">
+                                <div class="iGeo__item iGeo__item--small" data-factor="0.2" data-factorMd="0.4" data-top="337" data-left="1305" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #382100;">
                                     Рязань
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="-0.1" data-paroller-factorMd="-0.2" data-top="554" data-left="1408" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #383000;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="-0.1" data-top="554" data-left="1408" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #383000;">
                                     Томск
                                 </div>
-                                <div class="iGeo__item iGeo__item--middle" data-paroller-factor="0.2" data-paroller-factorMd="0.4" data-top="680" data-left="1194" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #A60060;">
+                                <div class="iGeo__item iGeo__item--middle" data-factor="0.2" data-factorMd="0.4" data-top="680" data-left="1194" style="background-image: url('uploads/about/cities/moscow.png'); background-color: #A60060;">
                                     Владивосток
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="iDigits iScroll-item">
+                    <div id="iDigits" class="iDigits iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">Цифры</div>
@@ -192,8 +193,8 @@ layout: default.hbs
                             </div>
                         </div>
                     </div>
-                    <div class="iAdvantages iScroll-item">
-                        <div class="iScroll-item__parallax iScroll-item__parallax-6" data-factor="1.25" data-direction="right" data-x_min="-1000" data-x_max="1500"></div>
+                    <div id="iAdvantages" class="iAdvantages iScroll-item">
+                        <div class="iScroll-item__parallax iScroll-item__parallax-6" data-factor="0.25"></div>
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">Преимущества</div>
@@ -223,7 +224,7 @@ layout: default.hbs
                             </div>
                         </div>
                     </div>
-                    <div class="iRatings iScroll-item">
+                    <div id="iRatings" class="iRatings iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">Рейтинги</div>
@@ -309,7 +310,7 @@ layout: default.hbs
                             </div>
                         </div>
                     </div>
-                    <div class="iLeadership iScroll-item">
+                    <div id="iLeadership" class="iLeadership iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">Руководство</div>
@@ -378,7 +379,7 @@ layout: default.hbs
                             </a>
                         </div>
                     </div>
-                    <div class="iPartners iScroll-item">
+                    <div id="iPartners" class="iPartners iScroll-item">
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">Партнеры</div>
@@ -467,8 +468,8 @@ layout: default.hbs
                             </div>
                         </div>
                     </div>
-                    <div class="iHistory iScroll-item">
-                        <div class="iScroll-item__parallax iScroll-item__parallax-6" data-factor="0.75" data-direction="left" data-x_min="-1000" data-x_max="1500"></div>
+                    <div id="iHistory" class="iHistory iScroll-item">
+                        <div class="iScroll-item__parallax iScroll-item__parallax-6" data-factor="0.25"></div>
                         <div class="page__center">
                             <div class="page__inner">
                                 <div class="iScroll-item__label">История</div>
@@ -662,17 +663,24 @@ layout: default.hbs
         <div class="page__center">
             <div class="page__inner">
                 <div class="gantt-slider__ctrl">
-
                     <div class="gantt-slider__range">
                         <input type="range" value="0" min="0" max="1000">
                     </div>
-
+                    <nav class="iNav">
+                        <a href="#iStart">Главное</a>
+                        <a href="#iMission">Миссия</a>
+                        <a href="#iGeo">География</a>
+                        <a href="#iDigits">Цифры</a>
+                        <a href="#iAdvantages">Преимущества</a>
+                        <a href="#iRatings">Рейтинги</a>
+                        <a href="#iLeadership">Руководство</a>
+                        <a href="#iPartners">Партнеры</a>
+                        <a href="#iHistory">История</a>
+                    </nav>
                 </div>
             </div>
         </div>
     </section>
-
-	<div class="page__gap-xs"></div>
 
 </div>
 

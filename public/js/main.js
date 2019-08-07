@@ -2095,7 +2095,9 @@ var About = {
     },
 
     _state:  {
-        isMobile : false  
+        isMobile : false,
+        scrollType : false,
+        run : false
     },
     
     _setIsMobile: function(){
@@ -2114,25 +2116,12 @@ var About = {
         }
     },
 
-    _initParoller: function(){
+    _setScrollWidth: function(){
         var self = this;
 
-        if (self._state.isMobile) return;
-
-        var $targets = self._elems.$_.find('[data-paroller-factor]');
-
-        setTimeout(function() {
-            $targets.paroller({
-                type : 'foreground',
-                direction : 'horizontal',
-                factor : 0.2
-            });
-        }, 200);
-
-        $targets.paroller({
-            type : 'foreground',
-            direction : 'horizontal'
-        });
+        if ($(window).width() >= self._elems.$iScroll.children().width()) {
+            self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
+        }
     },
 
     _initRangeSlider: function () {
@@ -2146,6 +2135,8 @@ var About = {
                 $range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
             },
             onSlide: function(position, value) {
+                if (value == self._state.lastRangeValue) return;
+                self._state.lastRangeValue = value;
 
                 if (self._elems.$iScroll.data('direction') == 'right') {
                     if (position < $range.data('position')) {
@@ -2161,7 +2152,9 @@ var About = {
 
                 var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
                 var scrollLeft    = maxScrollLeft / 1000 * value;
-                self._elems.$_.find('.gantt-slider__scroll').scrollLeft = scrollLeft;
+                self._elems.$_.find('.gantt-slider__scroll').scrollLeft(scrollLeft);
+                if(self._state.scrollType == 'range')
+                    $(window).scrollTop(scrollLeft);
             }
         });
     },
@@ -2224,9 +2217,9 @@ var About = {
             }
         });
 
-        owlDigits.on('changed.owl.carousel', function(event){
+        owlDigits.on('changed.owl.carousel', function(e){
             $iDigitsValueItem.removeClass($iDigitsValues.data('active'));
-            $iDigitsValueItem.eq(event.item.index).addClass($iDigitsValues.data('active'));
+            $iDigitsValueItem.eq(e.item.index).addClass($iDigitsValues.data('active'));
         });
 
         $iDigitsValueItem.eq(0).addClass($iDigitsValues.data('active'));
@@ -2262,8 +2255,8 @@ var About = {
         var height = $iLeadershipItem.eq(0).height();
         $iLeadershipItem.width(height*0.8);
 
-        $iLeadership.find('.button').click(function(event){
-            event.preventDefault();
+        $iLeadership.find('.button').click(function(e){
+            e.preDefault();
 
             if(self._state.isMobile) {
                 if ($(this).hasClass('opened')) {
@@ -2284,8 +2277,8 @@ var About = {
             padding: 45,
             radius: 0,
             overlayClose: false,
-            onOpening: function(event){
-                var modal = event.$element;
+            onOpening: function(e){
+                var modal = e.$element;
                 var left = modal.find('.iLeadership-modal__left');
                 var right = modal.find('.iLeadership-modal__right');
 
@@ -2342,13 +2335,13 @@ var About = {
             }
         });
 
-        $iLeadershipModal.find('.iziModal-close').click(function(event){
-            event.preventDefault();
+        $iLeadershipModal.find('.iziModal-close').click(function(e){
+            e.preDefault();
             $iLeadershipModal.iziModal('close');
         });
 
-        $iLeadershipItem.click(function(event){
-            event.preventDefault();
+        $iLeadershipItem.click(function(e){
+            e.preDefault();
             $iLeadershipModal.iziModal('open');
         });
     },
@@ -2360,10 +2353,10 @@ var About = {
         if ($iHistory.length == 0) return;
 
         var ruler = $iHistory.find('.iHistory-ruler__line .owl-carousel');
-        var events = $iHistory.find('.iHistory-events .owl-carousel');
+        var es = $iHistory.find('.iHistory-es .owl-carousel');
 
         if(ruler.length == 0) return;
-        if(events.length == 0) return;
+        if(es.length == 0) return;
 
         var owlRuler = ruler.owlCarousel({
             nav: false,
@@ -2372,26 +2365,48 @@ var About = {
             auto: false
         });
 
-        var owlEvents = events.owlCarousel({
+        var owles = es.owlCarousel({
             nav: false,
             dots: false,
             items: 1,
             auto: false
         });
 
-        $iHistory.find('.iHistory-ruler__item a').click(function(event){
-            event.preventDefault();
+        $iHistory.find('.iHistory-ruler__item a').click(function(e){
+            e.preDefault();
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
 
             $(this).parent().addClass('iHistory-ruler__item--active');
 
-            events.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
+            es.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
+        });
+    },
+
+    _initNav: function(){
+        var self = this;
+
+        var $iNav = self._elems.$_.find('.iNav');
+        if ($iNav.length == 0) return;
+
+        $iNav.children('a').click(function(e){
+            e.preventDefault();
+
+            var $target = $($(this).attr('href'));
+            if($target.length == 0) return;
+
+            var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+            self._elems.$_.find('.gantt-slider__scroll').scrollLeft(scrollLeft + $target.offset().left);
         });
     },
 
     _handleSliderScroll: function (e) {
         var self = e.data.self;
+
+        if(self._elems.$_.find('.gantt-slider__scroll').hasClass('window-scroll'))
+            self._elems.$_.find('.gantt-slider__scroll').removeClass('window-scroll')
+        else
+            self._state.scrollType = 'range';
 
         var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
         var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
@@ -2438,13 +2453,27 @@ var About = {
 
         $(window).scroll(function(){
             if(!self._state.isMobile) {
-                self._elems.$_.find('.gantt-slider__scroll').scrollLeft($(window).scrollTop());
+                self._state.scrollType = 'window';
+                self._elems.$_.find('.gantt-slider__scroll').scrollLeft($(window).scrollTop()).addClass('window-scroll');
+
+                self._elems.$_.find('[data-factor]').each(function(){
+                    var parent = $(this).parents('.iScroll-item');
+                    if(parent.length == 0) return;
+
+                    if((parent.offset().left < $(window).width() + 100) && (parent.offset().left + parent.width()) > -100){
+                        $(this).css({
+                            'transform': 'translate(' + parent.offset().left * $(this).data('factor') + 'px, 0px)',
+                            'transition': 'transform 0.2s linear 0s',
+                            'will-change': 'transform'
+                        });
+                    }
+                });
             }
         });
 
         if(!self._state.isMobile){
             self._elems.$_.find('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
-            $(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+            //$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
         }
     },
 
@@ -2460,11 +2489,12 @@ var About = {
 
         self._setIsMobile();
         self._setBodyHeight();
+        self._setScrollWidth();
         self._initGeo();
         self._initDigits();
         self._initLeadership();
         self._initHistory();
-        self._initParoller();
+        self._initNav();
 
         self._bindUI();
     }

@@ -44,7 +44,7 @@ body.with-scrollbar .iScroll__item {
   min-width: calc(100vw - 17px);
 }
 .page-center-h100 {
-  min-height: calc(100vh - 155px);
+  min-height: calc(100vh - 155px - 105px);
   height: 100%;
 }
 .about-slider {
@@ -77,7 +77,21 @@ body.with-scrollbar .iScroll__item {
   display: none;
 }
 .about-slider .gantt-slider__ctrl {
-  margin-top: -50px;
+  margin-top: -105px;
+  height: 105px;
+  padding-bottom: 10px;
+}
+.about-slider .gantt-slider__range {
+  height: 40px;
+  margin-bottom: 20px;
+}
+.iNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .iScroll {
   display: -webkit-box;
@@ -128,6 +142,7 @@ body.with-scrollbar .iScroll__item {
   min-width: 100vw;
   width: 1600px;
   margin-top: 155px;
+  padding-bottom: 105px;
 }
 @media screen and (max-width: 1600px) {
   .iScroll-item {
@@ -221,7 +236,7 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iScroll .page__center {
-    min-height: calc(100vh - 155px);
+    min-height: calc(100vh - 155px - 105px);
     height: 100%;
   }
 }
@@ -230,7 +245,7 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iScroll .page__inner {
-    min-height: calc(100vh - 155px);
+    min-height: calc(100vh - 155px - 105px);
     height: 100%;
   }
 }
@@ -347,9 +362,7 @@ body.with-scrollbar .iScroll__item {
 @media screen and (min-width: 577px) {
   .iMission__title {
     position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    top: 35%;
     right: 45px;
     width: 75%;
     max-width: 1073px;
@@ -429,6 +442,7 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iGeo__map img {
+    display: none;
     min-width: 896px;
     margin-top: 63px;
   }
@@ -1207,6 +1221,7 @@ body.with-scrollbar .iScroll__item {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-top: 55px;
 }
 .iPartners__item {
   display: -webkit-box;
@@ -1304,7 +1319,7 @@ body.with-scrollbar .iScroll__item {
   margin-left: -8px;
 }
 .iHistory-events {
-  min-height: 625px;
+  min-height: 425px;
 }
 .iHistory-event {
   display: -webkit-box;
