@@ -26,7 +26,6 @@
     "dragscroll": "https://github.com/asvd/dragscroll.git#0.0.8",
     "swiper": "https://github.com/nolimits4web/swiper.git#^4.5.0",
     "izimodal": "^1.5.1",
-    "paroller.js": "^1.4.6",
     "midnight": "https://github.com/Aerolab/midnight.js.git#^1.1.2",
     "jQuery-One-Page-Nav": "https://github.com/davist11/jQuery-One-Page-Nav.git#^3.0.0"
   }
