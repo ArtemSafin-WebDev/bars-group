@@ -2383,7 +2383,7 @@ img {
 
 .header {
   position: relative;
-  z-index: 10;
+  z-index: 100;
   border-bottom: 2px solid #e6ebf2;
   background: #fff; }
   .header__center {

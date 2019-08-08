@@ -2701,6 +2701,13 @@ var App = {
 		$('body').removeClass('page__locked');
 
 		TechPromo.init();
+		NavMobile.init();
+		Overview.init();
+		CatalogFilter.init();
+		Hover.init();
+
+		// trigger click to start loading lazy videos
+		$('body').trigger('click');
 	},
 
 	_startLazyVideosLoading: function () {
@@ -2740,15 +2747,9 @@ var App = {
 		NewsSlider.init();
 		NewsPhotoSlider.init();
 		NewsToggles.init();
-		
-		Overview.init();
-		NavMobile.init();
 		NavSticker.init();
 		About.init();
 		Talgat.init();
-		Hover.init();
-
-		CatalogFilter.init();
 	},
 
 	_handleWindowLoad: function () {
@@ -2796,11 +2797,7 @@ var App = {
 		// run preloader timer
 		self._state.preloaderTimer = setInterval(self._showContent.bind(self), 50);
 
-
 		self._bindUI();
-
-		// trigger click to start loading lazy videos
-		$('body').trigger('click');
 	}
 };
 
