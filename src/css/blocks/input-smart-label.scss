@@ -4,19 +4,19 @@
 	position: relative;
 	border-bottom: 2px solid #dadada;
 
-	&._focused {
+	&.--focus {
 		border-bottom-color: #59b4e6;
 	}
 	
-	&._focused,
-	&._filled {
+	&.--focus,
+	&.--filled {
 		.input-smart-label__label {
 			top: 7px;
 			font-size: 10px;
 		}
 	}
 
-	&._error {
+	&.--error {
 		border-bottom-color: #c32118;
 	}
 
@@ -71,8 +71,8 @@
 
 	.input-smart-label {
 		
-		&._focused,
-		&._filled {
+		&.--focus,
+		&.--filled {
 			.input-smart-label__label {
 				top: 4px;
 			}

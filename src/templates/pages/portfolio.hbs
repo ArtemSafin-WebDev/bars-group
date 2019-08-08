@@ -56,8 +56,7 @@ layout: default.hbs
 						<nav class="nav-video" id="nav-video">
 							<div class="nav-video__crop">
 								<div class="nav-video__scroll">
-									<div class="nav-video__item js-hover-video">
-										<div class="nav-video__name">Здравоохранение</div>
+									<div class="nav-video__item">
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(video/effect-2.jpg);"></div>
 											<video class="bg-layer__video" data-lazy preload="none" loop muted playsinline>
@@ -68,8 +67,10 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/plus.svg" alt="">
 										</div>
+										<div class="nav-video__name">Здравоохранение</div>
+										<i class="nav-video__close"></i>
 									</div>
-									<div class="nav-video__item js-hover-video">
+									<div class="nav-video__item">
 										<div class="nav-video__name">Образование</div>
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1050/300/200.jpg);"></div>
@@ -78,9 +79,9 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/study.svg" alt="">
 										</div>
+										<i class="nav-video__close"></i>
 									</div>
-									<div class="nav-video__item js-hover-video">
-										<div class="nav-video__name">Сельское хозяйство</div>
+									<div class="nav-video__item">
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1047/300/200.jpg);"></div>
 											<div class="bg-layer__color"></div>
@@ -88,9 +89,10 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/wheat.svg" alt="">
 										</div>
+										<div class="nav-video__name">Сельское хозяйство</div>
+										<i class="nav-video__close"></i>
 									</div>
-									<div class="nav-video__item js-hover-video">
-										<div class="nav-video__name">Умный город</div>
+									<div class="nav-video__item">
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1052/300/200.jpg);"></div>
 											<div class="bg-layer__color"></div>
@@ -98,9 +100,10 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/city.svg" alt="">
 										</div>
+										<div class="nav-video__name">Умный город</div>
+										<i class="nav-video__close"></i>
 									</div>
-									<div class="nav-video__item js-hover-video">
-										<div class="nav-video__name">Транспорт и логистика</div>
+									<div class="nav-video__item">
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1055/300/200.jpg);"></div>
 											<div class="bg-layer__color"></div>
@@ -108,9 +111,10 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/car.svg" alt="">
 										</div>
+										<div class="nav-video__name">Транспорт и логистика</div>
+										<i class="nav-video__close"></i>
 									</div>
-									<div class="nav-video__item js-hover-video">
-										<div class="nav-video__name">ЖКХ и Соц. защита</div>
+									<div class="nav-video__item">
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1057/300/200.jpg);"></div>
 											<div class="bg-layer__color"></div>
@@ -118,9 +122,10 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/settings.svg" alt="">
 										</div>
+										<div class="nav-video__name">ЖКХ и Соц. защита</div>
+										<i class="nav-video__close"></i>
 									</div>
-									<div class="nav-video__item js-hover-video">
-										<div class="nav-video__name">Финансы</div>
+									<div class="nav-video__item">
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1001/300/200.jpg);"></div>
 											<div class="bg-layer__color"></div>
@@ -128,9 +133,10 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/ruble.svg" alt="">
 										</div>
+										<div class="nav-video__name">Финансы</div>
+										<i class="nav-video__close"></i>
 									</div>
-									<div class="nav-video__item js-hover-video">
-										<div class="nav-video__name">Промышленность</div>
+									<div class="nav-video__item">
 										<div class="bg-layer nav-video__bg">
 											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1002/300/200.jpg);"></div>
 											<div class="bg-layer__color"></div>
@@ -138,6 +144,8 @@ layout: default.hbs
 										<div class="nav-video__icon">
 											<img src="img/sprite-svg/theme-1/color/factory.svg" alt="">
 										</div>
+										<div class="nav-video__name">Промышленность</div>
+										<i class="nav-video__close"></i>
 									</div>
 								</div>
 							</div>
@@ -800,3 +808,88 @@ layout: default.hbs
 
 {{> nav-mobile }}
 {{> hello }}
+
+<aside>
+	
+	<form action="#" class="form form-filter" id="form-filter">
+		<div class="page__inner">
+			<h3 class="page__h3">Фильтр</h3>
+			<div class="form-filter__group">
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="check-1" type="checkbox">
+						</div>
+						<div class="form__check__text">
+							<span>Все</span>
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="check-2" type="checkbox">
+						</div>
+						<div class="form__check__text">
+							<span>Для государства</span>
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="check-3" type="checkbox">
+						</div>
+						<div class="form__check__text">
+							<span>Для бизнеса</span>
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+			</div>
+			<div class="form-filter__group">
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="radio-1" type="radio" checked>
+						</div>
+						<div class="form__check__text">
+							<span>Все</span> 
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="radio-1" type="radio">
+						</div>
+						<div class="form__check__text">
+							Продукты
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="radio-1" type="radio">
+						</div>
+						<div class="form__check__text">
+							Кейсы
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+			</div>
+			<div class="form-filter__group">
+				<div class="clearfix">
+					<a href="#" class="form-filter__reset">Сбросить</a>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</aside>

@@ -4,19 +4,19 @@ var Form = {
 	_handleFocusOnInput: function (e) {
 		var self = e.data.self;
 
-		$(this).parent().addClass('_focused');
+		$(this).parent().addClass('--focus');
 	},
 
 	_handleBlurOnInput: function (e) {
 		var self = e.data.self;
 
-		$(this).parent().removeClass('_focused');
+		$(this).parent().removeClass('--focus');
 	},
 
 	_handleInputChange: function (e) {
 		var self = e.data.self;
 
-		$(this).parent().toggleClass('_filled', !!$(this).val().length);
+		$(this).parent().toggleClass('--filled', !!$(this).val().length);
 	},
 
 	_handleFileChange: function (e) {
@@ -39,9 +39,17 @@ var Form = {
 
 	},
 
+	_handleCheckedState: function (e) {
+		var self = e.data.self;
+
+		var isChecked = $(this).prop('checked');
+		$(this).closest('.form__check').toggleClass('--active', isChecked);
+	},
+
 	_bindUI: function () {
 		var self = this;
 
+		$(document).on('ifCreated ifToggled', '.form__check input', {self: self}, self._handleCheckedState);
 		$(document).on('focus', '.js-form-input', {self: self}, self._handleFocusOnInput);
 		$(document).on('blur', '.js-form-input', {self: self}, self._handleBlurOnInput);
 		$(document).on('change', '.js-form-input', {self: self}, self._handleInputChange);
@@ -54,10 +62,10 @@ var Form = {
 		// init autosize
 		autosize($('textarea'));
 
+		self._bindUI();		
+
 		// init checkboxes
 		$('input').iCheck();
-
-		self._bindUI();		
 	}
 
 };

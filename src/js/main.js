@@ -2,9 +2,9 @@
 //= modules/overview.js
 //= modules/ganttSlider.js
 //= modules/citiesSlider.js
-//= modules/slider-content.js
-//= modules/slider-digits.js
-//= modules/slider-tabs.js
+//= modules/sliderContent.js
+//= modules/sliderDigits.js
+//= modules/sliderTabs.js
 //= modules/header.js
 //= modules/news.js
 //= modules/form.js
@@ -18,7 +18,9 @@
 //= modules/about.js
 //= modules/navMobile.js
 //= modules/navSticker.js
+//= modules/catalogFilter.js
 //= modules/hover.js
+//= modules/utils.js
 //= modules/app.js
 
 App.init();

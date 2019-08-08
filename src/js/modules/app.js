@@ -66,6 +66,8 @@ var App = {
 		About.init();
 		Talgat.init();
 		Hover.init();
+
+		CatalogFilter.init();
 	},
 
 	_handleWindowLoad: function () {
@@ -101,11 +103,18 @@ var App = {
 	init: function () {
 		var self = this;
 
+		if (Utils.isMobile()) {
+			$('html').addClass('mrkwbr-is-mobile');
+		} else {
+			$('html').addClass('mrkwbr-no-mobile');
+		}
+
 		// count promo videos
 		self._state.promoVideosTotal = $('video[data-promo]').length;
 
 		// run preloader timer
 		self._state.preloaderTimer = setInterval(self._showContent.bind(self), 50);
+
 
 		self._bindUI();
 

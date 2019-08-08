@@ -345,9 +345,25 @@ var GanttSlider = {
 		});
 	},
 
+	_handleItemMouseenter: function (e) {
+		var self = e.data.self;
+
+		var $video = $(this).find('video.--active');
+		if ($video.length) $video[0].play();
+	},
+
+	_handleItemMouseleave: function (e) {
+		var self = e.data.self;
+
+		var $video = $(this).find('video.--active');
+		if ($video.length) $video[0].pause();
+	},
+
 	_bindUI: function () {
 		var self = this;
 
+		self._elems.$_.on('mouseenter', '.gantt-slider__item', {self: self}, self._handleItemMouseenter);
+		self._elems.$_.on('mouseleave', '.gantt-slider__item', {self: self}, self._handleItemMouseleave);
 		self._elems.$_.on('click', '.gantt-slider__toggle', {self: self}, self._handleToggleButton);
 		self._elems.$scroll[0].addEventListener('scroll', self._handleSliderScroll.bind(self), false);
 		$(window).on('resize', {self: self}, self._handleWindowResize);
