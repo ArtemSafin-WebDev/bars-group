@@ -1,5 +1,5 @@
 
-.input-smart-label {
+.input-brianna {
 	transition: border-color .2s;
 	position: relative;
 	border-bottom: 2px solid #dadada;
@@ -10,7 +10,7 @@
 	
 	&.--focus,
 	&.--filled {
-		.input-smart-label__label {
+		.input-brianna__label {
 			top: 7px;
 			font-size: 10px;
 		}
@@ -23,7 +23,7 @@
 	&--email {
 		border-bottom: 4px solid #59b4e6;
 
-		.input-smart-label__field {
+		.input-brianna__field {
 			padding-right: 50px;
 		}
 	}
@@ -69,11 +69,11 @@
 
 @media all and (max-width: 600px) {
 
-	.input-smart-label {
+	.input-brianna {
 		
 		&.--focus,
 		&.--filled {
-			.input-smart-label__label {
+			.input-brianna__label {
 				top: 4px;
 			}
 		}

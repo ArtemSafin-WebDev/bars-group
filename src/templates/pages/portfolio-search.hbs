@@ -34,14 +34,15 @@ layout: default.hbs
 					<div class="page__col-side">
 						
 						{{!--  nav-side --}}
-						<nav class="nav-side portfolio__nav-side">
+						<nav class="nav-side portfolio__nav-side" id="portfolio-search-mode">
 							<div class="nav-side__list">
-								<div class="nav-side__item --active">
+								<div class="nav-side__item">
 									<a href="#" class="nav-side__link">
 										<span class="nav-side__text">По отраслям</span>
 									</a>
+									<i class="nav-side__arrow"></i>
 								</div>
-								<div class="nav-side__item">
+								<div class="nav-side__item --active">
 									<a href="#" class="nav-side__link">
 										<span class="nav-side__text">По названию</span>
 									</a>
@@ -53,58 +54,158 @@ layout: default.hbs
 					</div>
 					<div class="page__col-main">
 						
-						<form class="form tPortfolioSearch__form">
-							<div class="tPortfolioSearch__input-wrapper">
-								<input class="tPortfolioSearch__input" type="text" name="" value="" placeholder="Поиск новостей" />
-							</div>
-
-							<div class="tPortfolioSearch__choose scrollable-content dragscroll">
-								<div class="tPortfolioSearch__lang">
-									<a href="#">А</a>
-									<a href="#">Б</a>
-									<a href="#">В</a>
-									<a href="#">Г</a>
-									<a href="#">Д</a>
-									<a href="#">Е</a>
-									<a href="#">Ё</a>
-									<a href="#">Ж</a>
-									<a href="#">З</a>
-									<a href="#">И</a>
-									<a href="#">Й</a>
-									<a href="#">К</a>
-									<a href="#">Л</a>
-									<a href="#">М</a>
-									<a href="#">Н</a>
-									<a href="#">О</a>
-									<a href="#">П</a>
-									<a href="#">Р</a>
-									<a href="#">С</a>
-									<a href="#">Т</a>
-									<a href="#">У</a>
-									<a href="#">Ф</a>
-									<a href="#">Х</a>
-									<a href="#">Ц</a>
-									<a href="#">Ч</a>
-									<a href="#">Ш</a>
-									<a href="#">Щ</a>
-									<a href="#">Ъ</a>
-									<a href="#">Ы</a>
-									<a href="#">Ь</a>
-									<a href="#">Э</a>
-									<a href="#">Ю</a>
-									<a href="#">Я</a>
+						<div class="portfolio__ctrl-main">
+							<form action="#" class="form tPortfolioSearch__form --active" id="portfolio-search-form">
+								
+								<div class="tPortfolioSearch__input-wrapper">
+									<input class="tPortfolioSearch__input" type="text" name="" value="" placeholder="Поиск новостей">
 								</div>
 
-								<div class="tPortfolioSearch__lang">
-									<a href="#">A</a>
-									<a href="#">B</a>
-									<a href="#">C</a>
-									<a href="#">D</a>
-									<a href="#">E</a>
-									<a href="#">F</a>
+								<div class="tPortfolioSearch__choose scrollable-content dragscroll">
+									<div class="tPortfolioSearch__lang">
+										<a href="#">А</a>
+										<a href="#">Б</a>
+										<a href="#">В</a>
+										<a href="#">Г</a>
+										<a href="#">Д</a>
+										<a href="#">Е</a>
+										<a href="#">Ё</a>
+										<a href="#">Ж</a>
+										<a href="#">З</a>
+										<a href="#">И</a>
+										<a href="#">Й</a>
+										<a href="#">К</a>
+										<a href="#">Л</a>
+										<a href="#">М</a>
+										<a href="#">Н</a>
+										<a href="#">О</a>
+										<a href="#">П</a>
+										<a href="#">Р</a>
+										<a href="#">С</a>
+										<a href="#">Т</a>
+										<a href="#">У</a>
+										<a href="#">Ф</a>
+										<a href="#">Х</a>
+										<a href="#">Ц</a>
+										<a href="#">Ч</a>
+										<a href="#">Ш</a>
+										<a href="#">Щ</a>
+										<a href="#">Ъ</a>
+										<a href="#">Ы</a>
+										<a href="#">Ь</a>
+										<a href="#">Э</a>
+										<a href="#">Ю</a>
+										<a href="#">Я</a>
+									</div>
+
+									<div class="tPortfolioSearch__lang">
+										<a href="#">A</a>
+										<a href="#">B</a>
+										<a href="#">C</a>
+										<a href="#">D</a>
+										<a href="#">E</a>
+										<a href="#">F</a>
+									</div>
 								</div>
-							</div>
-						</form>
+							</form>
+							<nav class="nav-video" id="portfolio-industries">
+								<div class="nav-video__crop">
+									<div class="nav-video__scroll">
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(video/effect-2.jpg);"></div>
+												<video class="bg-layer__video" data-lazy preload="none" loop muted playsinline>
+													<source src="video/effect-2.mp4" type="video/mp4">
+												</video>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/plus.svg" alt="">
+											</div>
+											<div class="nav-video__name">Здравоохранение</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="nav-video__name">Образование</div>
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1050/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/study.svg" alt="">
+											</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1047/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/wheat.svg" alt="">
+											</div>
+											<div class="nav-video__name">Сельское хозяйство</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1052/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/city.svg" alt="">
+											</div>
+											<div class="nav-video__name">Умный город</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1055/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/car.svg" alt="">
+											</div>
+											<div class="nav-video__name">Транспорт и логистика</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1057/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/settings.svg" alt="">
+											</div>
+											<div class="nav-video__name">ЖКХ и Соц. защита</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1001/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/ruble.svg" alt="">
+											</div>
+											<div class="nav-video__name">Финансы</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1002/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/factory.svg" alt="">
+											</div>
+											<div class="nav-video__name">Промышленность</div>
+											<i class="nav-video__close"></i>
+										</div>
+									</div>
+								</div>
+							</nav>
+						</div>
 
 						<div class="tPortfolioSearch__results tPortfolioSearchResults">
 							<div class="tPortfolioSearchResults__item">

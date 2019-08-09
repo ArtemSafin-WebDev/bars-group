@@ -1,11 +1,8 @@
 
-.button {
+.button-aurora {
 	transition: background .2s ease-in;
 	display: inline-block;
 	user-select: none;
-}
-
-.button-default {
 	position: relative;
 	min-width: 200px;
 	padding: 22px 30px;
@@ -19,7 +16,7 @@
 	overflow: hidden;
 
 	&:before {
-		@include position-fill;
+		@include position-fill();
 		left: -100%;
 		transition: left .2s ease-in;
 		background: darken(#59b4e6, 10%);
@@ -55,7 +52,7 @@
 }
 
 @media all and (max-width: 1050px) {
-	.button-default {
+	.button-aurora {
 		padding-left: 25px;
 		padding-right: 75px;
 		font-size: 16px;
@@ -71,7 +68,7 @@
 }
 
 @media all and (max-width: 600px) {
-	.button-default {
+	.button-aurora {
 		padding: 18px 20px;
 		padding-right: 65px;
 		font-size: 12px;

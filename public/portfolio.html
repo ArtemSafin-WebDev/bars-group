@@ -116,19 +116,20 @@
 	</div>
 	
 
-	<div class="portfolio" id="portfolio">
+	<div class="portfolio">
 		<div class="page__center">
 			<div class="page__inner">
 
 				<div class="clearfix">
 					<div class="page__col-side">
 						
-						<nav class="nav-side portfolio__nav-side">
+						<nav class="nav-side portfolio__nav-side" id="portfolio-search-mode">
 							<div class="nav-side__list">
 								<div class="nav-side__item --active">
 									<a href="#" class="nav-side__link">
 										<span class="nav-side__text">По отраслям</span>
 									</a>
+									<i class="nav-side__arrow"></i>
 								</div>
 								<div class="nav-side__item">
 									<a href="#" class="nav-side__link">
@@ -141,109 +142,164 @@
 					</div>
 					<div class="page__col-main">
 						
-						<nav class="nav-video" id="nav-video">
-							<div class="nav-video__crop">
-								<div class="nav-video__scroll">
-									<div class="nav-video__item">
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(video/effect-2.jpg);"></div>
-											<video class="bg-layer__video" data-lazy preload="none" loop muted playsinline>
-												<source src="video/effect-2.mp4" type="video/mp4">
-											</video>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/plus.svg" alt="">
-										</div>
-										<div class="nav-video__name">Здравоохранение</div>
-										<i class="nav-video__close"></i>
+						<div class="portfolio__ctrl-main">
+							<form class="form tPortfolioSearch__form" id="portfolio-search-form">
+								<div class="input-bella portfolio__ctrl-main__input">
+									<input type="text" class="input-bella__field js-form-input">
+									<div class="input-bella__label">Поиск по названию</div>
+								</div>
+								<div class="tPortfolioSearch__choose scrollable-content dragscroll">
+									<div class="tPortfolioSearch__lang">
+										<a href="#">А</a>
+										<a href="#">Б</a>
+										<a href="#">В</a>
+										<a href="#">Г</a>
+										<a href="#">Д</a>
+										<a href="#">Е</a>
+										<a href="#">Ё</a>
+										<a href="#">Ж</a>
+										<a href="#">З</a>
+										<a href="#">И</a>
+										<a href="#">Й</a>
+										<a href="#">К</a>
+										<a href="#">Л</a>
+										<a href="#">М</a>
+										<a href="#">Н</a>
+										<a href="#">О</a>
+										<a href="#">П</a>
+										<a href="#">Р</a>
+										<a href="#">С</a>
+										<a href="#">Т</a>
+										<a href="#">У</a>
+										<a href="#">Ф</a>
+										<a href="#">Х</a>
+										<a href="#">Ц</a>
+										<a href="#">Ч</a>
+										<a href="#">Ш</a>
+										<a href="#">Щ</a>
+										<a href="#">Ъ</a>
+										<a href="#">Ы</a>
+										<a href="#">Ь</a>
+										<a href="#">Э</a>
+										<a href="#">Ю</a>
+										<a href="#">Я</a>
 									</div>
-									<div class="nav-video__item">
-										<div class="nav-video__name">Образование</div>
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1050/300/200.jpg);"></div>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/study.svg" alt="">
-										</div>
-										<i class="nav-video__close"></i>
-									</div>
-									<div class="nav-video__item">
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1047/300/200.jpg);"></div>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/wheat.svg" alt="">
-										</div>
-										<div class="nav-video__name">Сельское хозяйство</div>
-										<i class="nav-video__close"></i>
-									</div>
-									<div class="nav-video__item">
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1052/300/200.jpg);"></div>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/city.svg" alt="">
-										</div>
-										<div class="nav-video__name">Умный город</div>
-										<i class="nav-video__close"></i>
-									</div>
-									<div class="nav-video__item">
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1055/300/200.jpg);"></div>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/car.svg" alt="">
-										</div>
-										<div class="nav-video__name">Транспорт и логистика</div>
-										<i class="nav-video__close"></i>
-									</div>
-									<div class="nav-video__item">
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1057/300/200.jpg);"></div>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/settings.svg" alt="">
-										</div>
-										<div class="nav-video__name">ЖКХ и Соц. защита</div>
-										<i class="nav-video__close"></i>
-									</div>
-									<div class="nav-video__item">
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1001/300/200.jpg);"></div>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/ruble.svg" alt="">
-										</div>
-										<div class="nav-video__name">Финансы</div>
-										<i class="nav-video__close"></i>
-									</div>
-									<div class="nav-video__item">
-										<div class="bg-layer nav-video__bg">
-											<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1002/300/200.jpg);"></div>
-											<div class="bg-layer__color"></div>
-										</div>
-										<div class="nav-video__icon">
-											<img src="img/sprite-svg/theme-1/color/factory.svg" alt="">
-										</div>
-										<div class="nav-video__name">Промышленность</div>
-										<i class="nav-video__close"></i>
+
+									<div class="tPortfolioSearch__lang">
+										<a href="#">A</a>
+										<a href="#">B</a>
+										<a href="#">C</a>
+										<a href="#">D</a>
+										<a href="#">E</a>
+										<a href="#">F</a>
 									</div>
 								</div>
-							</div>
-						</nav>
+							</form>
+							<nav class="nav-video" id="portfolio-industries">
+								<div class="nav-video__crop">
+									<div class="nav-video__scroll">
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(video/effect-2.jpg);"></div>
+												<video class="bg-layer__video" data-lazy preload="none" loop muted playsinline>
+													<source src="video/effect-2.mp4" type="video/mp4">
+												</video>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/plus.svg" alt="">
+											</div>
+											<div class="nav-video__name">Здравоохранение</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="nav-video__name">Образование</div>
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1050/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/study.svg" alt="">
+											</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1047/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/wheat.svg" alt="">
+											</div>
+											<div class="nav-video__name">Сельское хозяйство</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1052/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/city.svg" alt="">
+											</div>
+											<div class="nav-video__name">Умный город</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1055/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/car.svg" alt="">
+											</div>
+											<div class="nav-video__name">Транспорт и логистика</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1057/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/settings.svg" alt="">
+											</div>
+											<div class="nav-video__name">ЖКХ и Соц. защита</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1001/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/ruble.svg" alt="">
+											</div>
+											<div class="nav-video__name">Финансы</div>
+											<i class="nav-video__close"></i>
+										</div>
+										<div class="nav-video__item">
+											<div class="bg-layer nav-video__bg">
+												<div class="bg-layer__image" style="background-image: url(https://picsum.photos/id/1002/300/200.jpg);"></div>
+												<div class="bg-layer__color"></div>
+											</div>
+											<div class="nav-video__icon">
+												<img src="img/sprite-svg/theme-1/color/factory.svg" alt="">
+											</div>
+											<div class="nav-video__name">Промышленность</div>
+											<i class="nav-video__close"></i>
+										</div>
+									</div>
+								</div>
+							</nav>
+						</div>
+
 
 						<div class="portfolio__search">
 							<form action="#" class="form-search">
-								<div class="input-smart-label form-search__input">
-									<input type="text" class="input-smart-label__field js-form-input form-search__field">
-									<div class="input-smart-label__label">Поиск по названию</div>
+								<div class="input-brianna form-search__input">
+									<input type="text" class="input-brianna__field js-form-input form-search__field">
+									<div class="input-brianna__label">Поиск по названию</div>
 									<button type="submit" class="form-search__submit">
 										<i class="icon icon-search"></i>
 									</button>
@@ -256,16 +312,12 @@
 		
 				<div class="page__gap-100"></div>
 
-				<div class="portfolio__list">
+				<div class="clearfix js-sidebar-root">
+					<div class="page__col-side js-sidebar">
 
-					<div class="page__label page__label--green portfolio__label portfolio__label--global">
-						Здравоохранение
-					</div>
-
-					<div class="clearfix">
-						<div class="page__col-side">
+						<div class="js-sidebar__inner">
 							
-							<div class="portfolio__filters">
+							<div class="portfolio__ctrl-filters">
 								
 								<nav class="nav-cats nav-cats--close">
 									<div class="nav-cats__scroll">
@@ -310,574 +362,574 @@
 							</div>
 
 						</div>
-						<div class="page__col-main">
-							
-							<div class="portfolio__item">
 
-								<div class="page__label page__label--gree portfolio__label portfolio__label--local">
-									Здравоохранение
-								</div>
-								
-								<div class="tProducts__row">
-									<div class="tProducts__column tProducts__column--big">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
-											<div class="bg-layer__color" style="opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Медицинская информационная система
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Ошибки сводятся к минимуму
-													</p>
-
-													<p>
-														Простота актуализации НПА при их применении
-													</p>
-
-													<p>
-														Облачные технологии
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
-											<div class="bg-layer__color" style="opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Лабораторные информационные системы
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Описание
-													</p>
-												</div>
-											</div>
-										</div>
-
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
-											<div class="bg-layer__color" style="opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Медицинская информационная система
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Развитие МИС сфокусировано на создании единой
-														платформы регионального и федерального уровня
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="tProducts__row">
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
-											<div class="bg-layer__color" style="opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Мобильное приложение для пациента
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Создать комфортные условия для
-														жизни граждан - то, ради чего мы работаем
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
-											<div class="bg-layer__color" style="opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Платформа генетики
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														На сегодняшний день государством активно реализуется
-														политика в области научно-технологического развития в России
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
-											<div class="bg-layer__color" style="opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Система поддержки принятия врачебных решений
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="portfolio__ctrl">
-									<div class="portfolio__ctrl__item portfolio__ctrl__item--addon">
-										
-										<div class="portfolio__sm-pane">
-											<a href="#" class="page__click"></a>
-											<div class="tProductsItem__type tProductsItem__type--dark">
-												Продукт
-											</div>
-											<div class="portfolio__sm-pane__title">
-												Мониторинг родовспоможения
-											</div>
-										</div>
-
-									</div>
-									<div class="portfolio__ctrl__item">
-										<a href="#" class="button button-default js-hover-wings portfolio__button">
-											<span class="nobr button-default__text portfolio__button__text">
-												Показать все <span class="portfolio__button__count">(25)</span>
-											</span>
-											<i class="arrow-right-fly button-default__icon">
-												<span></span>
-											</i>
-										</a>
-									</div>
-									<div class="portfolio__ctrl__item">
-										<a href="#" class="button button-default js-hover-wings portfolio__button portfolio__button--green">
-											<span class="button-default__text portfolio__button__text">
-												Подробнее о решениях
-												для здравоохранения
-											</span>
-											<i class="arrow-right-fly button-default__icon">
-												<span></span>
-											</i>
-										</a>
-										
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="page__gap-100"></div>
-							
-							<div class="portfolio__item">
-
-								<div class="page__label page__label--yellow portfolio__label portfolio__label--local">
-									Образование
-								</div>
-								
-								<div class="tProducts__row">
-									<div class="tProducts__column tProducts__column--big">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/204/850/600.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Электронная школа
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Ошибки сводятся к минимуму
-													</p>
-
-													<p>
-														Простота актуализации НПА при их применении
-													</p>
-
-													<p>
-														Облачные технологии
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/206/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Электронный колледж
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Управление организациями начального и среднего профессионального образования
-													</p>
-												</div>
-											</div>
-										</div>
-
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/211/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Одаренные дети – поддержка талантливой молодежи
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Выявление, развитие и поддержка одаренных детей и талантливой учащейся молодежи.
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="tProducts__row">
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/212/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Обучение на дому/индивидуальный план обучения
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Сервис для детей, проходящих надомное, семейное, дистанционное образование
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/215/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Цифровое портфолио обучающихся
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Веб-сайт учащегося для хранения результатов и продуктов его учебной деятельности
-													</p>
-												</div>
-
-												
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/223/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Электронный колледж
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Управление организациями начального и среднего профессионального образования
-													</p>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="portfolio__ctrl">
-									<div class="portfolio__ctrl__item">
-										<a href="#" class="button button-default js-hover-wings portfolio__button">
-											<span class="nobr button-default__text portfolio__button__text">
-												Показать все <span class="portfolio__button__count">(25)</span>
-											</span>
-											<i class="arrow-right-fly button-default__icon">
-												<span></span>
-											</i>
-										</a>
-									</div>
-									<div class="portfolio__ctrl__item">
-										<a href="#" class="button button-default js-hover-wings portfolio__button portfolio__button--yellow">
-											<span class="button-default__text portfolio__button__text">
-												Подробнее о решениях
-												для образования
-											</span>
-											<i class="arrow-right-fly button-default__icon">
-												<span></span>
-											</i>
-										</a>
-										
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="page__gap-100"></div>
-							
-							<div class="portfolio__item">
-
-								<div class="page__label page__label--red portfolio__label portfolio__label--local">
-									Сельское хозяйство
-								</div>
-								
-								<div class="tProducts__row">
-									<div class="tProducts__column tProducts__column--big">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/301/850/600.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Автопилотируемые комбайны
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Ошибки сводятся к минимуму
-													</p>
-
-													<p>
-														Простота актуализации НПА при их применении
-													</p>
-
-													<p>
-														Облачные технологии
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/315/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Электронный колледж
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Управление организациями начального и среднего профессионального образования
-													</p>
-												</div>
-											</div>
-										</div>
-
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/308/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Одаренные дети – поддержка талантливой молодежи
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Выявление, развитие и поддержка одаренных детей и талантливой учащейся молодежи.
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="tProducts__row">
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/304/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Обучение на дому/индивидуальный план обучения
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Сервис для детей, проходящих надомное, семейное, дистанционное образование
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/305/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Цифровое портфолио обучающихся
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Веб-сайт учащегося для хранения результатов и продуктов его учебной деятельности
-													</p>
-												</div>
-
-												
-											</div>
-										</div>
-									</div>
-
-									<div class="tProducts__column">
-										<div class="tProducts__item tProductsItem">
-											<a class="page__click" href="#"></a>
-
-											<span class="tProductsItem__type">Продукт</span>
-
-											<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/306/410/300.jpg');"></div>
-											<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
-
-											<div class="tProductsItem__information">
-												<p class="tProductsItem__title">
-													Электронный колледж
-												</p>
-
-												<div class="tProductsItem__description">
-													<p>
-														Управление организациями начального и среднего профессионального образования
-													</p>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="portfolio__ctrl">
-									<div class="portfolio__ctrl__item">
-										<a href="#" class="button button-default js-hover-wings portfolio__button">
-											<span class="nobr button-default__text portfolio__button__text">
-												Показать все <span class="portfolio__button__count">(25)</span>
-											</span>
-											<i class="arrow-right-fly button-default__icon">
-												<span></span>
-											</i>
-										</a>
-									</div>
-									<div class="portfolio__ctrl__item">
-										<a href="#" class="button button-default js-hover-wings portfolio__button portfolio__button--red">
-											<span class="button-default__text portfolio__button__text">
-												Подробнее о решениях
-												для сельского хозяйства
-											</span>
-											<i class="arrow-right-fly button-default__icon">
-												<span></span>
-											</i>
-										</a>
-										
-									</div>
-								</div>
-								
-							</div>
-
-						</div>
 					</div>
+					<div class="page__col-main">
+						
+						<div class="portfolio__item">
 
+							<div class="page__label page__label--green portfolio__label portfolio__label--local">
+								Здравоохранение
+							</div>
+							
+							<div class="tProducts__row">
+								<div class="tProducts__column tProducts__column--big">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
+										<div class="bg-layer__color" style="opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Медицинская информационная система
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Ошибки сводятся к минимуму
+												</p>
+
+												<p>
+													Простота актуализации НПА при их применении
+												</p>
+
+												<p>
+													Облачные технологии
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
+										<div class="bg-layer__color" style="opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Лабораторные информационные системы
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Описание
+												</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
+										<div class="bg-layer__color" style="opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Медицинская информационная система
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Развитие МИС сфокусировано на создании единой
+													платформы регионального и федерального уровня
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tProducts__row">
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://mobile.simbirsoft.ru/upload/iblock/732/7320e53f50518306d881938a4177cc66.jpg');"></div>
+										<div class="bg-layer__color" style="opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Мобильное приложение для пациента
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Создать комфортные условия для
+													жизни граждан - то, ради чего мы работаем
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://images.wallpaperscraft.ru/image/dnk_spiral_genetika_132693_2048x1152.jpg');"></div>
+										<div class="bg-layer__color" style="opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Платформа генетики
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													На сегодняшний день государством активно реализуется
+													политика в области научно-технологического развития в России
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://bujinfo.am/wp-content/uploads/2018/10/osteogoodhealth_md-1.jpg');"></div>
+										<div class="bg-layer__color" style="opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Система поддержки принятия врачебных решений
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="portfolio__ctrl">
+								<div class="portfolio__ctrl__item portfolio__ctrl__item--addon">
+									
+									<div class="portfolio__sm-pane">
+										<a href="#" class="page__click"></a>
+										<div class="tProductsItem__type tProductsItem__type--dark">
+											Продукт
+										</div>
+										<div class="portfolio__sm-pane__title">
+											Мониторинг родовспоможения
+										</div>
+									</div>
+
+								</div>
+								<div class="portfolio__ctrl__item">
+									<a href="#" class="button-aurora js-hover-wings portfolio__button">
+										<span class="nobr button-aurora__text portfolio__button__text">
+											Показать все <span class="portfolio__button__count">(25)</span>
+										</span>
+										<i class="arrow-ciara button-aurora__icon">
+											<span></span>
+										</i>
+									</a>
+								</div>
+								<div class="portfolio__ctrl__item">
+									<a href="#" class="button-aurora js-hover-wings portfolio__button portfolio__button--green">
+										<span class="button-aurora__text portfolio__button__text">
+											Подробнее о решениях
+											для здравоохранения
+										</span>
+										<i class="arrow-ciara button-aurora__icon">
+											<span></span>
+										</i>
+									</a>
+									
+								</div>
+							</div>
+							
+						</div>
+
+						<div class="page__gap-100"></div>
+						
+						<div class="portfolio__item">
+
+							<div class="page__label page__label--yellow portfolio__label portfolio__label--local">
+								Образование
+							</div>
+							
+							<div class="tProducts__row">
+								<div class="tProducts__column tProducts__column--big">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/204/850/600.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Электронная школа
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Ошибки сводятся к минимуму
+												</p>
+
+												<p>
+													Простота актуализации НПА при их применении
+												</p>
+
+												<p>
+													Облачные технологии
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/206/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Электронный колледж
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Управление организациями начального и среднего профессионального образования
+												</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/211/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Одаренные дети – поддержка талантливой молодежи
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Выявление, развитие и поддержка одаренных детей и талантливой учащейся молодежи.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tProducts__row">
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/212/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Обучение на дому/индивидуальный план обучения
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Сервис для детей, проходящих надомное, семейное, дистанционное образование
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/215/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Цифровое портфолио обучающихся
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Веб-сайт учащегося для хранения результатов и продуктов его учебной деятельности
+												</p>
+											</div>
+
+											
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/223/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Электронный колледж
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Управление организациями начального и среднего профессионального образования
+												</p>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="portfolio__ctrl">
+								<div class="portfolio__ctrl__item">
+									<a href="#" class="button-aurora js-hover-wings portfolio__button">
+										<span class="nobr button-aurora__text portfolio__button__text">
+											Показать все <span class="portfolio__button__count">(25)</span>
+										</span>
+										<i class="arrow-ciara button-aurora__icon">
+											<span></span>
+										</i>
+									</a>
+								</div>
+								<div class="portfolio__ctrl__item">
+									<a href="#" class="button-aurora js-hover-wings portfolio__button portfolio__button--yellow">
+										<span class="button-aurora__text portfolio__button__text">
+											Подробнее о решениях
+											для образования
+										</span>
+										<i class="arrow-ciara button-aurora__icon">
+											<span></span>
+										</i>
+									</a>
+									
+								</div>
+							</div>
+							
+						</div>
+
+						<div class="page__gap-100"></div>
+						
+						<div class="portfolio__item">
+
+							<div class="page__label page__label--red portfolio__label portfolio__label--local">
+								Сельское хозяйство
+							</div>
+							
+							<div class="tProducts__row">
+								<div class="tProducts__column tProducts__column--big">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/301/850/600.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Автопилотируемые комбайны
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Ошибки сводятся к минимуму
+												</p>
+
+												<p>
+													Простота актуализации НПА при их применении
+												</p>
+
+												<p>
+													Облачные технологии
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/315/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Электронный колледж
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Управление организациями начального и среднего профессионального образования
+												</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/308/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Одаренные дети – поддержка талантливой молодежи
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Выявление, развитие и поддержка одаренных детей и талантливой учащейся молодежи.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tProducts__row">
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/304/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Обучение на дому/индивидуальный план обучения
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Сервис для детей, проходящих надомное, семейное, дистанционное образование
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/305/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Цифровое портфолио обучающихся
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Веб-сайт учащегося для хранения результатов и продуктов его учебной деятельности
+												</p>
+											</div>
+
+											
+										</div>
+									</div>
+								</div>
+
+								<div class="tProducts__column">
+									<div class="tProducts__item tProductsItem">
+										<a class="page__click" href="#"></a>
+
+										<span class="tProductsItem__type">Продукт</span>
+
+										<div class="tProductsItem__thumb" style="background-image: url('https://picsum.photos/id/306/410/300.jpg');"></div>
+										<div class="bg-layer__color" style="background-color: #333; opacity: .4;"></div>
+
+										<div class="tProductsItem__information">
+											<p class="tProductsItem__title">
+												Электронный колледж
+											</p>
+
+											<div class="tProductsItem__description">
+												<p>
+													Управление организациями начального и среднего профессионального образования
+												</p>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="portfolio__ctrl">
+								<div class="portfolio__ctrl__item">
+									<a href="#" class="button-aurora js-hover-wings portfolio__button">
+										<span class="nobr button-aurora__text portfolio__button__text">
+											Показать все <span class="portfolio__button__count">(25)</span>
+										</span>
+										<i class="arrow-ciara button-aurora__icon">
+											<span></span>
+										</i>
+									</a>
+								</div>
+								<div class="portfolio__ctrl__item">
+									<a href="#" class="button-aurora js-hover-wings portfolio__button portfolio__button--red">
+										<span class="button-aurora__text portfolio__button__text">
+											Подробнее о решениях
+											для сельского хозяйства
+										</span>
+										<i class="arrow-ciara button-aurora__icon">
+											<span></span>
+										</i>
+									</a>
+									
+								</div>
+							</div>
+							
+						</div>
+
+					</div>
 				</div>
 
 			</div>
@@ -1030,9 +1082,9 @@
 			</div>
 			<div class="nav-mobile__search">
 				<form action="#" class="form-search">
-					<div class="input-smart-label form-search__input">
-						<input type="text" class="input-smart-label__field js-form-input form-search__field">
-						<div class="input-smart-label__label">Поиск по названию</div>
+					<div class="input-brianna form-search__input">
+						<input type="text" class="input-brianna__field js-form-input form-search__field">
+						<div class="input-brianna__label">Поиск по названию</div>
 						<button type="submit" class="form-search__submit">
 							<i class="icon icon-search"></i>
 						</button>
@@ -1115,7 +1167,7 @@
 
 <aside>
 	
-	<form action="#" class="form form-filter" id="form-filter">
+	<form action="#" class="form form-filter" id="portfolio-popup">
 		<div class="page__inner">
 			<h3 class="page__h3">Фильтр</h3>
 			<div class="form-filter__group">

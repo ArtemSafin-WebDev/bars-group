@@ -1,0 +1,40 @@
+.arrow-carina {
+
+	display: inline-block;
+	padding: 10px 0;
+	
+	&:hover {
+		span {
+			width: 58px;
+		}
+	}
+
+	span {
+		transition: width .2s;
+		position: relative;
+		display: block;
+		width: 48px;
+		background: #fff;
+		height: 1px;
+
+		&:before,
+		&:after {
+			content: ' ';
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 1px;
+			background: #fff;
+			width: 10px;
+		}
+		&:before {
+			transform-origin: right bottom;
+			transform: rotate(45deg);
+		}
+		&:after {
+			transform-origin: right top;
+			transform: rotate(-45deg);
+		}
+	}
+	
+}

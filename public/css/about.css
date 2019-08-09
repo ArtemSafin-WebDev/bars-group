@@ -999,25 +999,25 @@ body.with-scrollbar .iScroll__item {
 .iLeadership .page__center.opened .page__inner:after {
   display: none;
 }
-.iLeadership .page__center .button {
+.iLeadership .page__center .button-aurora {
   z-index: 50;
 }
 @media screen and (min-width: 577px) {
-  .iLeadership .page__center .button {
+  .iLeadership .page__center .button-aurora {
     position: absolute;
     right: 0;
     bottom: 0;
   }
 }
 @media screen and (max-width: 576px) {
-  .iLeadership .page__center .button {
+  .iLeadership .page__center .button-aurora {
     position: relative;
     margin-top: 25px;
     margin-right: 20px;
     margin-left: auto;
     float: right;
   }
-  .iLeadership .page__center .button.opened {
+  .iLeadership .page__center .button-aurora.opened {
     padding-right: 20px;
     text-align: right;
     min-width: initial;

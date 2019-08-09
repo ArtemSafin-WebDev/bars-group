@@ -16,107 +16,177 @@
 	
 	
 
-<div class="page__wrapper" id="wrapper">
+<style>
+	
+	.samples__space {
+		height: 100px;
+	}
 
-	<div class="page__center">
-		<div class="page__inner">
+	.samples__group {
+		padding: 20px; background: #fff;
+	}
 
-			<div style="margin-top: 20px;">
-				
-				<div class="input-attach-file js-form-file">
-					<input type="file" class="input-attach-file__field" multiple>
-					<div class="input-attach-file__files js-form-file__names"></div>
-					<div class="input-attach-file__label">Прикрепите резюме (doc, pdf)</div>
-					<i class="icon icon-sprite-png-clip input-attach-file__icon"></i>
-				</div>
+	.samples__group--dark {
+		padding: 20px; background: #000;
+	}
 
-			</div>
+	.samples__group__name {
+		margin-bottom: 20px;
+		text-align: center;
+		font-size: 22px;
+		font-weight: 600;
+		color: #000;
+	}
 
-			<div style="margin-top: 20px;">
-				
-				<div class="input-smart-label input-smart-label--email">
-					<input type="text" class="input-smart-label__field js-form-input">
-					<div class="input-smart-label__label">Ваш email</div>
-					<i class="icon icon-mail input-smart-label__icon"></i>
-				</div>
+	.samples__group__help {
+		margin-bottom: 20px;
+		text-align: center;
+		font-size: 18px;
+		color: #000;
+	}
 
-			</div>
+	.samples__item {
+		margin-bottom: 50px;
+	}
 
-			<div style="margin-top: 20px;">
-				
-				<div class="input-smart-label">
-					<input type="text" class="input-smart-label__field js-form-input">
-					<div class="input-smart-label__label">Ваше имя</div>
-				</div>
+	.samples__item:last-child {
+		margin-bottom: 0;
+	}
 
-			</div>
+	.samples__item__name {
+		margin-bottom: 20px;
+		font-size: 22px;
+		font-weight: 600;
+		color: #000;
+	}
 
-			<div style="margin-top: 20px;">
-				
-				<div class="input-smart-label --error">
-					<input type="text" class="input-smart-label__field js-form-input">
-					<div class="input-smart-label__label">Ваше имя</div>
-				</div>
+	.samples__color-white {
+		color: #fff;
+	}
+	
+</style>
 
-			</div>
-			
+<div class="samples__group">
+	<div class="samples__group__name">Buttons</div>
+	<div class="samples__group__help">Female Names For A</div>
 
-			<div style="margin-top: 20px;">
-				<h3 class="page__label">Здравоохранение</h3>
-				<h3 class="page__label page__label--green">Сельское хозяйство</h3>
-				<h3 class="page__label page__label--yellow">Образование</h3>
-				<h3 class="page__label page__label--red">Умный город</h3>
-				<h3 class="page__label page__label--dark">Транспорт и логистика</h3>
-			</div>
+	<div class="samples__item">
+		<div class="samples__item__name">button-aurora</div>
+		<a href="#" class="button-aurora js-hover-wings">
+			<span class="button-aurora__text">
+				Откликнуться
+			</span>
+			<i class="arrow-ciara button-aurora__icon">
+				<span></span>
+			</i>
+		</a>
+	</div>	
 
-			<div style="margin-top: 20px;">
-				<div class="arrow-both-circle">
-					<a href="#" class="arrow-both-circle__prev"></a>
-					<a href="#" class="arrow-both-circle__next"></a>
-				</div>
-			</div>
-			
-			<div style="margin-top: 20px; padding: 20px; background: #000;">
-				<a href="#" class="arrow-right-fly">
-					<span></span>
-				</a>
-			</div>
+</div>
 
-			<div style="margin-top: 20px; padding: 20px; background: #000;">
-				<a href="#" class="arrow-right-thin">
-					<span></span>
-				</a>
-			</div>
-
-			<div style="margin-top: 20px;">
-				
-				<nav class="nav-pager">
-					<a href="#" class="nav-pager__prev"></a>
-					<a href="#" class="nav-pager__item --active">1</a>
-					<a href="#" class="nav-pager__item">2</a>
-					<a href="#" class="nav-pager__item">3</a>
-					<a href="#" class="nav-pager__item">4</a>
-					<a href="#" class="nav-pager__item">5</a>
-					<a href="#" class="nav-pager__next"></a>
-				</nav>
-
-			</div>
-
-			<div style="margin-top: 20px;">
-				<a href="#" class="button button-default js-hover-wings">
-					<span class="button-default__text">
-						Откликнуться
-					</span>
-					<i class="arrow-right-fly button-default__icon">
-						<span></span>
-					</i>
-				</a>
-			</div>	
-
+<div class="samples__group">
+	<div class="samples__group__name">Inputs</div>
+	<div class="samples__group__help">Female Names For B</div>
+	
+	<div class="samples__item">
+		<div class="samples__item__name">input-barbara</div>
+		<div class="input-barbara js-form-file">
+			<input type="file" class="input-barbara__field" multiple>
+			<div class="input-barbara__files js-form-file__names"></div>
+			<div class="input-barbara__label">Прикрепите резюме (doc, pdf)</div>
+			<i class="icon icon-sprite-png-clip input-barbara__icon"></i>
 		</div>
+
+	</div>
+
+	<div class="samples__item">
+		<div class="samples__item__name">input-brianna</div>
+
+		<div class="input-brianna">
+			<input type="text" class="input-brianna__field js-form-input">
+			<div class="input-brianna__label">Ваше имя</div>
+		</div>
+
+		<br>
+
+		<div class="input-brianna --error">
+			<input type="text" class="input-brianna__field js-form-input">
+			<div class="input-brianna__label">Ваше имя</div>
+		</div>
+
+	</div>
+
+	<div class="samples__item">
+		<div class="samples__item__name">input-bella</div>
+		<div class="input-bella">
+			<input type="text" class="input-bella__field js-form-input">
+			<div class="input-bella__label">Ваше имя</div>
+		</div>
+
+	</div>
+
+
+</div>
+
+<div class="samples__space"></div>
+
+<div class="samples__group samples__group--dark">
+
+	<div class="samples__group__name samples__color-white">Arrows</div>
+	<div class="samples__group__help samples__color-white">Female Names For C</div>
+			
+	<div class="samples__item">
+		<div class="samples__item__name samples__color-white">arrow-ciara</div>
+		<a href="#" class="arrow-ciara">
+			<span></span>
+		</a>
+	</div>
+
+	<div class="samples__item">
+		<div class="samples__item__name samples__color-white">arrow-carina</div>
+		<a href="#" class="arrow-carina">
+			<span></span>
+		</a>
 	</div>
 
 </div>
+
+<div class="samples__space"></div>
+
+<div class="samples__group">
+	
+	<div class="samples__item">
+		<h3 class="page__label">Здравоохранение</h3>
+		<h3 class="page__label page__label--green">Сельское хозяйство</h3>
+		<h3 class="page__label page__label--yellow">Образование</h3>
+		<h3 class="page__label page__label--red">Умный город</h3>
+		<h3 class="page__label page__label--dark">Транспорт и логистика</h3>
+	</div>
+
+	<div class="samples__item">
+		<div class="arrow-both-circle">
+			<a href="#" class="arrow-both-circle__prev"></a>
+			<a href="#" class="arrow-both-circle__next"></a>
+		</div>
+	</div>
+	
+	<div class="samples__item">
+		
+		<nav class="nav-pager">
+			<a href="#" class="nav-pager__prev"></a>
+			<a href="#" class="nav-pager__item --active">1</a>
+			<a href="#" class="nav-pager__item">2</a>
+			<a href="#" class="nav-pager__item">3</a>
+			<a href="#" class="nav-pager__item">4</a>
+			<a href="#" class="nav-pager__item">5</a>
+			<a href="#" class="nav-pager__next"></a>
+		</nav>
+
+	</div>
+
+</div>
+	
+
 
 	
 	<script src="js/vendor.min.js"></script>

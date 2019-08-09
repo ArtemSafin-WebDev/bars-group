@@ -166,17 +166,17 @@ var About = {
         var height = $iLeadershipItem.eq(0).height();
         $iLeadershipItem.width(height*0.8);
 
-        $iLeadership.find('.button').click(function(e){
+        $iLeadership.find('.button-aurora').click(function(e){
             e.preDefault();
 
             if(self._state.isMobile) {
                 if ($(this).hasClass('opened')) {
                     $iLeadership.find('.page__center').removeClass('opened');
-                    $(this).removeClass('opened').children('.button-default__text').text('Показать еще');
+                    $(this).removeClass('opened').children('.button-aurora__text').text('Показать еще');
                     $(this).children('i').show();
                 } else {
                     $iLeadership.find('.page__center').addClass('opened');
-                    $(this).addClass('opened').children('.button-default__text').text('Скрыть');
+                    $(this).addClass('opened').children('.button-aurora__text').text('Скрыть');
                     $(this).children('i').hide();
                 }
             }

@@ -1,0 +1,39 @@
+
+.input-bella {
+	transition: background .2s;
+	position: relative;
+	background: #59b4e6;
+	font-size: 22px;
+
+	&.--focus {
+		background: darken(#59b4e6, 5%);
+	}
+	
+	&.--focus,
+	&.--filled {
+		.input-bella__label {
+			top: 25%;
+			font-size: .7em;
+		}
+	}
+
+	&__label {
+		transition: all .2s;
+		position: absolute;
+		top: 50%;
+		margin-top: -.5em;
+		left: 40px;
+		opacity: .5;
+		color: #fff;
+	}
+
+	&__field {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		padding: 35px 40px 25px 40px;
+		height: 95px;
+		line-height: 35px;
+		color: #fff;
+	}
+}

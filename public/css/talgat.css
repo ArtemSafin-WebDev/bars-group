@@ -679,44 +679,13 @@
   margin-bottom: 180px;
 }
 .tPortfolioSearch__form {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  margin-top: -190px;
   margin-right: calc(-1 * (100vw - 1520px)/2);
 }
-.tPortfolioSearch__input-wrapper {
-  height: 96px;
-}
-.tPortfolioSearch__input {
-  font-size: 28px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  width: 100%;
-  height: 100%;
-  padding: 0 40px;
-  color: #fff;
-  background-color: #59b4e6;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.tPortfolioSearch__input::-webkit-input-placeholder {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.5);
-}
-.tPortfolioSearch__input:-ms-input-placeholder {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.5);
-}
-.tPortfolioSearch__input::-moz-placeholder {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.5);
-}
-.tPortfolioSearch__input::-ms-input-placeholder {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.5);
-}
-.tPortfolioSearch__input::placeholder {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.5);
+.tPortfolioSearch__form.--active {
+  margin-top: 0;
 }
 .tPortfolioSearch__search-instead {
   font-size: 15px;
@@ -725,12 +694,12 @@
   padding: 0 40px;
 }
 .tPortfolioSearch__search-instead > span {
-  padding-bottom: 3px;
-  cursor: pointer;
   -webkit-transition: all 0.22s ease-out;
   transition: all 0.22s ease-out;
-  color: #5cb3e5;
   border-bottom: 1px dotted #5cb3e5;
+  padding-bottom: 3px;
+  cursor: pointer;
+  color: #5cb3e5;
 }
 .tPortfolioSearch__search-instead > span:hover {
   border-bottom-color: transparent;
@@ -739,12 +708,12 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 90px;
-  padding: 0 40px;
-  background-color: #eff4fd;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 95px;
+  padding: 0 40px;
+  background: #eff4fd;
 }
 .tPortfolioSearch__lang {
   display: -webkit-box;
@@ -963,8 +932,7 @@
 }
 @media screen and (max-width: 1300px) {
   .tPortfolioSearch__form {
-    margin-top: 40px;
-    margin-left: -40px;
+    display: none;
   }
   .tSiteSearch__news,
   .tSiteSearch__results {
@@ -984,27 +952,8 @@
     -moz-column-count: 1;
          column-count: 1;
   }
-  .tPortfolioSearch__input-wrapper,
   .tPortfolioSearch__shoose {
     height: 65px;
-  }
-  .tPortfolioSearch__input {
-    font-size: 16px;
-  }
-  .tPortfolioSearch__input::-webkit-input-placeholder {
-    font-size: 16px;
-  }
-  .tPortfolioSearch__input:-ms-input-placeholder {
-    font-size: 16px;
-  }
-  .tPortfolioSearch__input::-moz-placeholder {
-    font-size: 16px;
-  }
-  .tPortfolioSearch__input::-ms-input-placeholder {
-    font-size: 16px;
-  }
-  .tPortfolioSearch__input::placeholder {
-    font-size: 16px;
   }
   .tPortfolioSearchResults__letter {
     font-size: 18px;

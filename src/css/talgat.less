@@ -1036,55 +1036,16 @@
 
 .tPortfolioSearch
 {
+
     margin-bottom: 180px;
 
     &__form {
+        transition: all .2s;
+        margin-top: -190px;
         margin-right: calc(-1 * (100vw - 1520px)/ 2);
-    }
 
-    &__input-wrapper
-    {
-        height: 96px;
-    }
-
-    &__input
-    {
-        font-size: 28px;
-
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
-        display: inline-flex;
-
-        width: 100%;
-        height: 100%;
-        padding: 0 40px;
-
-        color: #fff;
-        background-color: #59b4e6;
-
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-
-        &::-webkit-input-placeholder
-        {
-            font-size: 22px;
-
-            color: rgba(255, 255, 255, .5);
-        }
-
-        &:-ms-input-placeholder
-        {
-            font-size: 22px;
-
-            color: rgba(255, 255, 255, .5);
-        }
-
-        &::placeholder
-        {
-            font-size: 22px;
-
-            color: rgba(255, 255, 255, .5);
+        &.--active {
+            margin-top: 0;
         }
     }
 
@@ -1096,46 +1057,30 @@
         margin-top: 20px;
         padding: 0 40px;
 
-        & > span
-        {
-            padding-bottom: 3px;
-
-            cursor: pointer;
-            -webkit-transition: all .22s ease-out;
-                    transition: all .22s ease-out;
-
-            color: #5cb3e5;
+        & > span {
+            transition: all .22s ease-out;
             border-bottom: 1px dotted #5cb3e5;
+            padding-bottom: 3px;
+            cursor: pointer;
+            color: #5cb3e5;
 
-            &:hover
-            {
+            &:hover {
                 border-bottom-color: transparent;
             }
         }
     }
 
-    &__choose
-    {
-        display: -webkit-box;
-        display: -ms-flexbox;
+    &__choose {
         display: flex;
-
-        height: 90px;
-        padding: 0 40px;
-
-        background-color: #eff4fd;
-
-        -webkit-box-align: center;
-        -ms-flex-align: center;
         align-items: center;
+        height: 95px;
+        padding: 0 40px;
+        background: #eff4fd;
     }
 
     &__lang
     {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-
         margin-right: 44px;
 
         &:last-child
@@ -1149,16 +1094,12 @@
             }
         }
 
-        & > a
-        {
+        & > a {
             font-size: 18px;
-
             margin-right: 11px;
-
             color: #59b4e6;
 
-            &:last-child
-            {
+            &:last-child {
                 margin-right: 0;
             }
         }
@@ -1485,8 +1426,7 @@
     {
         &__form
         {
-            margin-top: 40px;
-            margin-left: -40px;
+            display: none;
         }
     }
 
@@ -1514,30 +1454,9 @@
                     column-count: 1;
         }
 
-        &__input-wrapper,
         &__shoose
         {
             height: 65px;
-        }
-
-        &__input
-        {
-            font-size: 16px;
-
-            &::-webkit-input-placeholder
-            {
-                font-size: 16px;
-            }
-
-            &:-ms-input-placeholder
-            {
-                font-size: 16px;
-            }
-
-            &::placeholder
-            {
-                font-size: 16px;
-            }
         }
     }
 

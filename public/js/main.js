@@ -2185,17 +2185,17 @@ var About = {
         var height = $iLeadershipItem.eq(0).height();
         $iLeadershipItem.width(height*0.8);
 
-        $iLeadership.find('.button').click(function(e){
+        $iLeadership.find('.button-aurora').click(function(e){
             e.preDefault();
 
             if(self._state.isMobile) {
                 if ($(this).hasClass('opened')) {
                     $iLeadership.find('.page__center').removeClass('opened');
-                    $(this).removeClass('opened').children('.button-default__text').text('Показать еще');
+                    $(this).removeClass('opened').children('.button-aurora__text').text('Показать еще');
                     $(this).children('i').show();
                 } else {
                     $iLeadership.find('.page__center').addClass('opened');
-                    $(this).addClass('opened').children('.button-default__text').text('Скрыть');
+                    $(this).addClass('opened').children('.button-aurora__text').text('Скрыть');
                     $(this).children('i').hide();
                 }
             }
@@ -2623,11 +2623,24 @@ var NavSticker = {
 var CatalogFilter = {
 
 	_elems: {
-		$formFilter: $(),
-		$navVideo: $()
+		$popup: $(),
+		$industries: $(),
+		$searchMode: $(),
+		$searchForm: $()
 	},
 
-	_handleVideoMouseenter: function (e) {
+	_stickSidebar: function () {
+		var self = this;
+
+		new StickySidebar('.js-sidebar', {
+		    topSpacing: 20,
+		    bottomSpacing: 20,
+		    innerWrapperSelector: '.js-sidebar-inner',
+		    containerSelector: '.js-sidebar-root'
+		});
+	},
+
+	_handleIndustryMouseenter: function (e) {
 		var self = e.data.self;
 
 		if ($(this).hasClass('--active')) return;
@@ -2636,7 +2649,7 @@ var CatalogFilter = {
 		if ($video.length) $video[0].play();
 	},
 
-	_handleVideoMouseleave: function (e) {
+	_handleIndustryMouseleave: function (e) {
 		var self = e.data.self;
 
 		if ($(this).hasClass('--active')) return;
@@ -2645,30 +2658,56 @@ var CatalogFilter = {
 		if ($video.length) $video[0].pause();
 	},
 
-	_handleVideoClick: function (e) {
+	_handleIndustryClick: function (e) {
 		var self = e.data.self;
 
 		$(this).toggleClass('--active').siblings().removeClass('--active');
 	},
 
+	_handleSearchModeClick: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault()
+
+		// set active class
+		var $currItem = $(this).closest('.nav-side__item');
+		$currItem.addClass('--active').siblings().removeClass('--active');
+
+		// set arrow position
+		self._elems.$searchMode.find('.nav-side__arrow').css({
+			transform: 'translateY(' + $currItem.index() * 100 + '%)'
+		});
+
+		// toggle search form
+		var isFormActive = !!$currItem.index();
+		self._elems.$searchForm.toggleClass('--active', isFormActive);
+	},
+
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$navVideo.on('mouseenter', '.nav-video__item', {self: self}, self._handleVideoMouseenter);
-		self._elems.$navVideo.on('mouseleave', '.nav-video__item', {self: self}, self._handleVideoMouseleave);
-		self._elems.$navVideo.on('click', '.nav-video__item', {self: self}, self._handleVideoClick);
+		self._elems.$industries.on('mouseenter', '.nav-video__item', {self: self}, self._handleIndustryMouseenter);
+		self._elems.$industries.on('mouseleave', '.nav-video__item', {self: self}, self._handleIndustryMouseleave);
+		self._elems.$industries.on('click', '.nav-video__item', {self: self}, self._handleIndustryClick);
+		self._elems.$searchMode.on('click', '.nav-side__link', {self: self}, self._handleSearchModeClick);
 	},
 
 	init: function () {
 		var self = this;
 
-		var $formFilter = $('#form-filter');
-		var $navVideo = $('#nav-video');
+		var $popup = $('#portfolio-popup');
+		var $industries = $('#portfolio-industries');
+		var $searchMode = $('#portfolio-search-mode');
+		var $searchForm = $('#portfolio-search-form');
 
-		if ($navVideo.length == 0) return;
+		if ($industries.length == 0) return;
 
-		self._elems.$formFilter = $formFilter;
-		self._elems.$navVideo = $navVideo;
+		self._elems.$popup = $popup;
+		self._elems.$industries = $industries;
+		self._elems.$searchMode = $searchMode;
+		self._elems.$searchForm = $searchForm;
+
+		self._stickSidebar();
 
 		self._bindUI();
 	}

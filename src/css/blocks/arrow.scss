@@ -1,88 +1,4 @@
-.arrow-right-thin {
 
-	display: inline-block;
-	padding: 10px 0;
-	
-	&:hover {
-		span {
-			width: 58px;
-		}
-	}
-
-	span {
-		transition: width .2s;
-		position: relative;
-		display: block;
-		width: 48px;
-		background: #fff;
-		height: 1px;
-
-		&:before,
-		&:after {
-			content: ' ';
-			position: absolute;
-			right: 0;
-			top: 0;
-			height: 1px;
-			background: #fff;
-			width: 10px;
-		}
-		&:before {
-			transform-origin: right bottom;
-			transform: rotate(45deg);
-		}
-		&:after {
-			transform-origin: right top;
-			transform: rotate(-45deg);
-		}
-	}
-	
-}
-
-.arrow-right-fly {
-	display: inline-block;
-	padding: 20px;
-
-	.js-hover-wings.--hover &,
-	&:hover {
-		span {
-			&:before {
-				transform: rotate(45deg);
-			}
-			&:after {
-				transform: rotate(-45deg);
-			}
-		}
-	}
-
-	span {
-		position: relative;
-		display: block;
-		height: 2px;
-		background: #fff;
-		width: 27px;
-
-		&:before,
-		&:after {
-			transition: transform .2s;
-			content: ' ';
-			position: absolute;
-			right: 0;
-			top: 0;
-			height: 2px;
-			background: #fff;
-			width: 15px;
-		}
-
-		&:before {
-			transform-origin: right bottom;
-		}
-		&:after {
-			transform-origin: right top;
-		}
-		
-	}
-}
 
 .arrow-both-circle {
 
@@ -127,20 +43,6 @@
 }
 
 @media all and (max-width: 600px) {
-
-	.arrow-right-fly  {
-		
-		span {
-			height: 1px;
-			width: 23px;
-
-			&:before,
-			&:after {
-				height: 1px;
-				width: 12px;
-			}
-		}
-	}
 
 	.arrow-both-circle {
 		&__prev,

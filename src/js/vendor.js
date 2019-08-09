@@ -12,5 +12,6 @@
 //= ../../bower_components/paroller.js/dist/jquery.paroller.min.js
 //= ../../bower_components/midnight/midnight.jquery.js
 //= ../../bower_components/jQuery-One-Page-Nav/jquery.nav.js
+//= ../../bower_components/sticky-sidebar/dist/sticky-sidebar.js
 //= vendor/perfect-scrollbar.js
 
