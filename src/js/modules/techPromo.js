@@ -1,5 +1,6 @@
+var $ = require('jquery');
 
-var TechPromo = {
+module.exports = {
 
 	_state: {
 		timers: []

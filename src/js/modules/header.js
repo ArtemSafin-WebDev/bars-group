@@ -1,6 +1,6 @@
+var $ = require('jquery');
 
-var Header = {
-
+module.exports = {
 
 	_adjustMoreItem: function () {
 		var self = this;

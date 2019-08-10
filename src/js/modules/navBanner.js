@@ -1,5 +1,7 @@
+var $ = require('jquery');
+require('owl.carousel');
 
-var NavBanner = {
+module.exports = {
 
 	_elems: {
 		$_: $(),

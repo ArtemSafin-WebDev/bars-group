@@ -1,5 +1,7 @@
+var $ = require('jquery');
+require("rangeslider.js");
 
-var CitiesSlider = {
+module.exports = {
 
 	_cache: {
 		gantt: {}

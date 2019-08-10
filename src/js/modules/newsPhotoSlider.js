@@ -1,11 +1,12 @@
-var NewsPhotoSlider = {
+var Swiper = require('swiper');
+
+module.exports = {
+    
     init: function() {
         var photoSliders = Array.prototype.slice.call(
             document.querySelectorAll(".js-news-details-photo-slider")
         );
 
-
-    
         photoSliders.forEach(function(item) {
             var thumbnails = item.querySelector(
                 ".js-news-details-thumbnails-slider"

@@ -1,5 +1,7 @@
+var $ = require('jquery');
+var StickySidebar = require('sticky-sidebar');
 
-var CatalogFilter = {
+module.exports = {
 
 	_elems: {
 		$popup: $(),

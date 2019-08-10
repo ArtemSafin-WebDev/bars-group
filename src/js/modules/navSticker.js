@@ -1,6 +1,8 @@
+var $ = require('jquery');
+require('jQuery-One-Page-Nav');
+require('midnight.js');
 
-
-var NavSticker = {
+module.exports = {
 
 	_elems: {
 		$_: $(),

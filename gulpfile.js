@@ -1,5 +1,10 @@
 'use strict';
 
+
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const sass = require('gulp-sass');
@@ -55,9 +60,11 @@ gulp.task('filelist', function() {
 
 /*----------  Scripts  ----------*/
 
-gulp.task('scripts', function () {
-    return gulp.src('src/js/*.js')
-        .pipe(rigger())
+gulp.task('scripts', function() {
+    return browserify('./src/js/main.js')
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(buffer())
         .pipe(header(banner, { pkg: pkg } ))
         .pipe(gulp.dest('public/js/'))
         .pipe(sourcemaps.init())
@@ -72,7 +79,6 @@ gulp.task('scripts', function () {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/js/'));
 });
-
 
 /*----------  Styles  ----------*/
 

@@ -1,5 +1,7 @@
+var $ = require('jquery');
+require('owl.carousel');
 
-var Talgat = {
+module.exports = {
 
 	init: function () {
 

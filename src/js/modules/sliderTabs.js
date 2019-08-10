@@ -1,6 +1,6 @@
+var $ = require('jquery');
 
-
-var SliderTabs = {
+module.exports = {
 
 	_handleTabClick: function (e) {
 		var self = e.data.self;

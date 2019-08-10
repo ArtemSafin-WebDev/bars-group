@@ -1,4 +1,31 @@
-var App = {
+var $ = require('jquery');
+require('objectFitPolyfill');
+require('dragscroll');
+
+var TechPromo = require('./techPromo');
+var NavMobile = require('./navMobile');
+var Overview = require('./overview');
+var CatalogFilter = require('./catalogFilter');
+var Hover = require('./hover');
+var NavBanner = require('./navBanner');
+var GanttSlider = require('./ganttSlider');
+var CitiesSlider = require('./citiesSlider');
+var SliderContent = require('./sliderContent');
+var SliderDigits = require('./sliderDigits');
+var SliderTabs = require('./sliderTabs');
+var Header = require('./header');
+var News = require('./news');
+var Form = require('./form');
+var ScrollableTable = require('./scrollableTable');
+var NewsSlider = require('./newsSlider');
+var NewsPhotoSlider = require('./newsPhotoSlider');
+var NewsToggles = require('./newsToggles');
+var NavSticker = require('./navSticker');
+var About = require('./about');
+var Talgat = require('./talgat');
+var Utils = require('./utils');
+
+module.exports = {
 
 	_state: {
 		preloaderTimer: null,

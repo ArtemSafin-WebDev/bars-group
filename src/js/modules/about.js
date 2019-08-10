@@ -1,4 +1,9 @@
-var About = {
+var $ = require('jquery');
+require("rangeslider.js");
+require('owl.carousel');
+require('izimodal')($);
+
+module.exports = {
 
     _elems: {
         $_: $(),

@@ -1,5 +1,6 @@
+var $ = require('jquery');
 
-var SliderDigits = {
+module.exports = {
 
 	_state: {
 		currentIndex: null,

@@ -1,5 +1,8 @@
+var $ = require('jquery');
+var autosize = require('autosize');
+require('icheck');
 
-var Form = {
+module.exports = {
 
 	_handleFocusOnInput: function (e) {
 		var self = e.data.self;

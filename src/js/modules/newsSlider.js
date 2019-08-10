@@ -1,4 +1,6 @@
-var NewsSlider = {
+var Swiper = require('swiper');
+
+module.exports = {
     init: function() {
         var newsSliders = Array.prototype.slice.call(
             document.querySelectorAll(".js-news-slider")

@@ -1,5 +1,6 @@
+var $ = require('jquery');
 
-var Hover = {
+module.exports = {
 
 	_handleWingsMouseenter: function (e) {
 		var self = e.data.self;

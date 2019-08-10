@@ -1,4 +1,6 @@
-var NewsToggles = {
+
+module.exports = {
+    
     init: function() {
         function setupHandlers(element) {
             if (element) {

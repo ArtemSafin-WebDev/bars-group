@@ -1,5 +1,6 @@
+var $ = require('jquery');
 
-var NavMobile = {
+module.exports = {
 
 	_state: {
 		isOpened: false

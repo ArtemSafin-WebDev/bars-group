@@ -1,6 +1,7 @@
+var PerfectScrollbar = require('perfect-scrollbar');
 
-
-var ScrollableTable = {
+module.exports = {
+    
     init: function() {
         
         var initialOverflow = false;

@@ -1,5 +1,7 @@
+var $ = require('jquery');
+require('owl.carousel');
 
-var SliderContent = {
+module.exports = {
 
 	_elems: {
 		$_: $(),

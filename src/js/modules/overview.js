@@ -1,6 +1,8 @@
+var $ = require('jquery');
+require('./../../../bower_components/bootstrap/js/dist/util');
+require('./../../../bower_components/bootstrap/js/dist/collapse');
 
-
-var Overview = {
+module.exports = {
 
 	_elems: {
 		$_: $(),
