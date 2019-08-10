@@ -227,7 +227,7 @@ module.exports = {
 		self._state.timeout = window.requestAnimationFrame(function () {
 			var scrollTop  = $(window).scrollTop();
 			var delta  = self._state.lastScrollTop - scrollTop;
-			scrollLeft = self._elems.$scroll.scrollLeft() - delta;
+			var scrollLeft = self._elems.$scroll.scrollLeft() - delta;
 			self._elems.$scroll.scrollLeft(scrollLeft)
 			self._state.lastScrollTop = scrollTop;
 		});

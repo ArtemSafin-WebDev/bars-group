@@ -2,6 +2,7 @@
 
 
 const browserify = require('browserify');
+const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 
@@ -62,6 +63,7 @@ gulp.task('filelist', function() {
 
 gulp.task('scripts', function() {
     return browserify('./src/js/main.js')
+        .transform(babelify, { "presets": ["@babel/preset-env"] })
         .bundle()
         .pipe(source('main.js'))
         .pipe(buffer())
