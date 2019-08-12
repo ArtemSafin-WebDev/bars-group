@@ -5037,10 +5037,18 @@ img {
   .history__slider {
     margin-top: 50px; } }
 
+.catalog.--replace .catalog__label {
+  opacity: 0; }
+
+.catalog.--replace .catalog__replace:before {
+  width: 100%; }
+
 .catalog__section {
   position: relative; }
 
 .catalog__label {
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
   position: absolute;
   left: 20px;
   top: -8px; }
@@ -5141,6 +5149,20 @@ img {
 
 .catalog__search {
   display: none; }
+
+.catalog__replace {
+  position: relative; }
+  .catalog__replace:before {
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    content: ' ';
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background: #fff; }
 
 @media all and (max-width: 1600px) {
   .catalog__ctrl-main {

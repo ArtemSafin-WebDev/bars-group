@@ -1,11 +1,25 @@
 
 .catalog {
 
+	&.--replace {
+
+		.catalog__label {
+			opacity: 0;
+		}
+
+		.catalog__replace {
+			&:before {
+				width: 100%;
+			}
+		}
+	}
+
 	&__section {
 		position: relative;
 	}
 
 	&__label {
+		transition: all .1s ease-in-out;
 		position: absolute;
 		left: 20px;
 		top: -8px;
@@ -135,6 +149,22 @@
 
 	&__search {
 		display: none;
+	}
+
+	&__replace {
+		position: relative;
+
+		&:before {
+			transition: all .2s;
+			content: ' ';
+			position: absolute;
+			z-index: 100;
+			top: 0;
+			right: 0;
+			width: 0;
+			height: 100%;
+			background: #fff;
+		}
 	}
 
 }
