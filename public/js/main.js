@@ -32407,7 +32407,7 @@ module.exports = {
     if (self._state.isWindowLoaded === false) return;
     if (self._state.promoVideosLoaded !== self._state.promoVideosTotal) return;
     clearInterval(self._state.preloaderTimer);
-    $('#hello').removeClass('hello--active');
+    $('#loader-main').removeClass('--active');
     $('body').removeClass('page__locked');
     TechPromo.init();
     NavMobile.init();

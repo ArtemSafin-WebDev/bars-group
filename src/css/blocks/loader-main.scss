@@ -1,5 +1,5 @@
 
-.hello {
+.loader-main {
 	
 	position: fixed;
 	z-index: 999999;
@@ -14,7 +14,7 @@
 	visibility: hidden;
 	opacity: 0;
 
-	&--active {
+	&.--active {
 		visibility: visible;
 		opacity: 1;
 	}
@@ -25,8 +25,7 @@
 	}
 
 	&__line {
-		animation: hello-loading 1.5s infinite;
-		margin-right: 100%;
+		animation: loader-main 1.5s infinite;
 		margin-top: 100px;
 		height: 4px;
 		background: #e6ebf2;
@@ -35,7 +34,7 @@
 
 @media all and (max-width: 600px) {
 
-	.hello {
+	.loader-main {
 		&__line {
 			margin-top: 50px;
 		}
@@ -43,17 +42,11 @@
 
 }
 
-@keyframes hello-loading {
+@keyframes loader-main {
 	0% {
-		margin-left: 0;
-		margin-right: 100%;
-	}
-	50% {
-		margin-left: 0;
-		margin-right: 0;
+		transform: translateX(-100%)
 	}
 	100% {
-		margin-left: 100%;
-		margin-right: 0;
+		transform: translateX(100%)
 	}
 }

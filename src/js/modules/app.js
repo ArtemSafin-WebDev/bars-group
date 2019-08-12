@@ -44,7 +44,7 @@ module.exports = {
 
 		clearInterval(self._state.preloaderTimer);
 
-		$('#hello').removeClass('hello--active');
+		$('#loader-main').removeClass('--active');
 		$('body').removeClass('page__locked');
 
 		TechPromo.init();

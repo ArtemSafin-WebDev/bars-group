@@ -68,6 +68,8 @@ img {
 // blocks
 @import 'blocks/bg-layer';
 @import 'blocks/loader';
+@import 'blocks/loader-main';
+@import 'blocks/loader-ajax';
 @import 'blocks/rangeslider';
 @import 'blocks/buttons/button-aurora';
 @import 'blocks/inputs/input-brianna';
@@ -109,10 +111,10 @@ img {
 @import 'blocks/form-job';
 @import 'blocks/history';
 @import 'blocks/catalog';
+
 @import 'blocks/news-details';
 @import 'blocks/news-slider';
 @import 'blocks/tech-promo';
-@import 'blocks/hello';
 @import 'blocks/popup';
 
 @media all and (max-width: 600px) {

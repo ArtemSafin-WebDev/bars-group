@@ -1063,6 +1063,93 @@ img {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
+.loader-main {
+  position: fixed;
+  z-index: 999999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #fff;
+  visibility: hidden;
+  opacity: 0; }
+  .loader-main.--active {
+    visibility: visible;
+    opacity: 1; }
+  .loader-main__logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+  .loader-main__line {
+    -webkit-animation: loader-main 1.5s infinite;
+            animation: loader-main 1.5s infinite;
+    margin-top: 100px;
+    height: 4px;
+    background: #e6ebf2; }
+
+@media all and (max-width: 600px) {
+  .loader-main__line {
+    margin-top: 50px; } }
+
+@-webkit-keyframes loader-main {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
+
+@keyframes loader-main {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
+
+.loader-ajax {
+  -webkit-animation: loader-ajax 1s infinite;
+          animation: loader-ajax 1s infinite;
+  display: none;
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #5cb3e5; }
+  .loader-ajax.--active {
+    display: block; }
+
+@-webkit-keyframes loader-ajax {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
+
+@keyframes loader-ajax {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
+
 .rangeslider {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1703,7 +1790,6 @@ img {
     -webkit-transition: color .2s .1s;
     transition: color .2s .1s;
     position: relative;
-    z-index: 10;
     margin: 20px 100px 0 25px;
     font-size: 16px;
     line-height: 1.45; }
@@ -6484,70 +6570,6 @@ img {
 @keyframes tech-promo-stroke {
   to {
     stroke-dashoffset: 0; } }
-
-.hello {
-  position: fixed;
-  z-index: 999999;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: #fff;
-  visibility: hidden;
-  opacity: 0; }
-  .hello--active {
-    visibility: visible;
-    opacity: 1; }
-  .hello__logo {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center; }
-  .hello__line {
-    -webkit-animation: hello-loading 1.5s infinite;
-            animation: hello-loading 1.5s infinite;
-    margin-right: 100%;
-    margin-top: 100px;
-    height: 4px;
-    background: #e6ebf2; }
-
-@media all and (max-width: 600px) {
-  .hello__line {
-    margin-top: 50px; } }
-
-@-webkit-keyframes hello-loading {
-  0% {
-    margin-left: 0;
-    margin-right: 100%; }
-  50% {
-    margin-left: 0;
-    margin-right: 0; }
-  100% {
-    margin-left: 100%;
-    margin-right: 0; } }
-
-@keyframes hello-loading {
-  0% {
-    margin-left: 0;
-    margin-right: 100%; }
-  50% {
-    margin-left: 0;
-    margin-right: 0; }
-  100% {
-    margin-left: 100%;
-    margin-right: 0; } }
 
 .popup {
   position: relative;
