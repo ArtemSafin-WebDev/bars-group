@@ -24,6 +24,7 @@ var NavSticker = require('./navSticker');
 var About = require('./about');
 var Talgat = require('./talgat');
 var Utils = require('./utils');
+var Popup = require('./popup');
 
 module.exports = {
 
@@ -51,6 +52,7 @@ module.exports = {
 		Overview.init();
 		CatalogFilter.init();
 		Hover.init();
+		Popup.init();
 
 		// trigger click to start loading lazy videos
 		$('body').trigger('click');

@@ -53,11 +53,11 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "autosize": "^4.0.2",
     "bootstrap": "^4.3.1",
     "dragscroll": "0.0.8",
     "icheck": "^1.0.2",
-    "izimodal": "^1.5.1",
     "jquery": "^3.4.1",
     "midnight.js": "^1.1.1",
     "objectFitPolyfill": "^2.2.0",
@@ -68,7 +68,6 @@
     "swiper": "^4.5.0"
   },
   "browser": {
-    "izimodal": "./bower_components/izimodal/js/iziModal.js",
     "jQuery-One-Page-Nav": "./bower_components/jQuery-One-Page-Nav/jquery.nav.js"
   }
 }

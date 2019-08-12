@@ -1,0 +1,24 @@
+
+.fancybox-content {
+	padding: 50px;
+}
+
+.fancybox-fx-slide-in-out.fancybox-slide--previous {
+  transform: translateY(100%);
+}
+
+.fancybox-fx-slide-in-out.fancybox-slide--next {
+  transform: translateY(100%);
+}
+
+.fancybox-fx-slide-in-out.fancybox-slide--current {
+  transform: translateY(0);
+}
+
+@media all and (max-width: 600px) {
+
+	.fancybox-content {
+		padding: 30px;
+	}
+
+}

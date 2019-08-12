@@ -1,7 +1,6 @@
 var $ = require('jquery');
 require("rangeslider.js");
 require('owl.carousel');
-require('izimodal')($);
 
 module.exports = {
 
@@ -172,7 +171,7 @@ module.exports = {
         $iLeadershipItem.width(height*0.8);
 
         $iLeadership.find('.button-aurora').click(function(e){
-            e.preDefault();
+            e.preventDefault();
 
             if(self._state.isMobile) {
                 if ($(this).hasClass('opened')) {
@@ -187,79 +186,6 @@ module.exports = {
             }
         });
 
-        $iLeadershipModal.iziModal({
-            overlayColor: 'rgba(0, 0, 0, 0.8)',
-            width: 912,
-            padding: 45,
-            radius: 0,
-            overlayClose: false,
-            onOpening: function(e){
-                var modal = e.$element;
-                var left = modal.find('.iLeadership-modal__left');
-                var right = modal.find('.iLeadership-modal__right');
-
-                $.ajax({
-                    url: 'data/leadership.json',
-                    dataType: 'json',
-                    beforeSend: function () {
-                        modal.addClass('--loading');
-                        left.empty();
-                        right.empty();
-                    },
-                    success: function (data) {
-                        setTimeout(function(){
-                            modal.removeClass('--loading');
-                        }, 500);
-
-                        if(data.image)
-                            left.append(
-                                $('<img />')
-                                    .attr('src', data.image)
-                            );
-
-                        if(data.name)
-                            right.append(
-                                $('<p/>')
-                                    .addClass('iLeadership-modal__name')
-                                    .text(data.name)
-                            );
-
-                        if(data.position)
-                            right.append(
-                                $('<p/>')
-                                    .addClass('iLeadership-modal__position')
-                                    .text(data.position)
-                            );
-
-                        if(data.content.length)
-                            data.content.forEach(function (content) {
-                                if (content.title)
-                                    right.append(
-                                        $('<p/>')
-                                            .addClass('iLeadership-modal__title')
-                                            .text(content.title)
-                                    );
-                                if (content.text)
-                                    right.append(
-                                        $('<div/>')
-                                            .addClass('iLeadership-modal__text')
-                                            .html(content.text)
-                                    );
-                            });
-                    }
-                })
-            }
-        });
-
-        $iLeadershipModal.find('.iziModal-close').click(function(e){
-            e.preDefault();
-            $iLeadershipModal.iziModal('close');
-        });
-
-        $iLeadershipItem.click(function(e){
-            e.preDefault();
-            $iLeadershipModal.iziModal('open');
-        });
     },
 
     _initHistory: function(){
@@ -289,7 +215,7 @@ module.exports = {
         });
 
         $iHistory.find('.iHistory-ruler__item a').click(function(e){
-            e.preDefault();
+            e.preventDefault();
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
 
@@ -391,6 +317,7 @@ module.exports = {
             self._elems.$_.find('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
             //$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
         }
+
     },
 
     init: function () {

@@ -16,35 +16,6 @@
 @iPageLabelLeft: 200px;
 @iPageInnerPadding: 40px;
 
-.iziModal {
-  &-close {
-    position: fixed;
-    top: 0;
-    left: 100%;
-    width: 54px;
-    height: 54px;
-    background: #0F1C2D;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    padding-left: 2px;
-    color: #ffffff;
-    @media @max_small {
-      right: 7px;
-      left: auto;
-      width: 25px;
-      height: 25px;
-      font-size: 15px;
-    }
-  }
-  @media @max_mini {
-    &-content {
-      padding: 25px !important;
-    }
-  }
-}
-
 body {
   &.with-scrollbar {
     .iScroll {
@@ -918,6 +889,7 @@ body {
       }
     }
   }
+
   &__items {
     height: inherit;
     display: flex;

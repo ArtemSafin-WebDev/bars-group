@@ -1,11 +1,13 @@
 
 .form-filter {
-
-	max-width: 600px;
 	
 	&__group {
-		border-top: 1px solid #e6ebf2;
+		border-bottom: 1px solid #e6ebf2;
 		padding: 20px 0;
+
+		&:first-child {
+			border-top: 1px solid #e6ebf2;
+		}
 	}
 
 	&__item {
@@ -24,7 +26,7 @@
 	&__reset {
 		position: relative;
 		float: right;
-		margin: 10px 0;
+		margin: 30px 0 10px 0;
 		padding-left: 25px;
 		font-size: 16px;
 		color: #d74738;

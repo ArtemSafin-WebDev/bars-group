@@ -1,0 +1,28 @@
+
+.popup {
+	position: relative;
+	width: 600px;
+
+	&--large {
+		width: 950px;
+	}
+
+	&__close {
+		@extend .icon;
+		@extend .icon-close;
+		transition: all .2s;
+		position: absolute;
+		width: 2.5em;
+		height: 2.5em;
+		line-height: 2.5em;
+		text-align: center;
+		top: 0;
+		right: 0;
+		background: #5cb3e5;
+		color: #fff !important;
+
+		&:hover {
+			background: darken(#5cb3e5, 5%);
+		}
+	}
+}
