@@ -12,7 +12,8 @@
 
 	&__wrapper {
 		overflow: hidden;
-		&.about {
+
+		&--about {
 			@media screen and (min-width: 577px) {
 				.header {
 					position: fixed;
@@ -23,9 +24,12 @@
 					top: 74px;
 					padding-top: 10px;
 					margin-bottom: 0;
+					width: 100%;
+					left: 0;
 				}
 			}
 		}
+		
 	}
 
 	&__center {

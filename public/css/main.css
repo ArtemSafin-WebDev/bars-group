@@ -2187,14 +2187,16 @@ img {
 .page__wrapper {
   overflow: hidden; }
   @media screen and (min-width: 577px) {
-    .page__wrapper.about .header {
+    .page__wrapper--about .header {
       position: fixed;
       width: 100%; }
-    .page__wrapper.about > .brand-box {
+    .page__wrapper--about > .brand-box {
       position: fixed;
       top: 74px;
       padding-top: 10px;
-      margin-bottom: 0; } }
+      margin-bottom: 0;
+      width: 100%;
+      left: 0; } }
 
 .page__center {
   max-width: 1600px;
