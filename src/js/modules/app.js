@@ -5,7 +5,7 @@ require('dragscroll');
 var TechPromo = require('./techPromo');
 var NavMobile = require('./navMobile');
 var Overview = require('./overview');
-var CatalogFilter = require('./catalogFilter');
+var Catalog = require('./catalog');
 var Hover = require('./hover');
 var NavBanner = require('./navBanner');
 var GanttSlider = require('./ganttSlider');
@@ -50,7 +50,7 @@ module.exports = {
 		TechPromo.init();
 		NavMobile.init();
 		Overview.init();
-		CatalogFilter.init();
+		Catalog.init();
 		Hover.init();
 		Popup.init();
 

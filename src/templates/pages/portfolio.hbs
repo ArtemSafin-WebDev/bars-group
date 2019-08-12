@@ -26,7 +26,7 @@ layout: default.hbs
 	</div>
 	
 
-	<div class="portfolio">
+	<div class="catalog" id="catalog">
 		<div class="page__center">
 			<div class="page__inner">
 
@@ -34,7 +34,7 @@ layout: default.hbs
 					<div class="page__col-side">
 						
 						{{!--  nav-side --}}
-						<nav class="nav-side portfolio__nav-side" id="portfolio-search-mode">
+						<nav class="nav-side catalog__ctrl-modes" id="catalog-ctrl-modes">
 							<div class="nav-side__list">
 								<div class="nav-side__item --active">
 									<a href="#" class="nav-side__link">
@@ -54,9 +54,9 @@ layout: default.hbs
 					</div>
 					<div class="page__col-main">
 						
-						<div class="portfolio__ctrl-main">
-							<form class="form tPortfolioSearch__form" id="portfolio-search-form">
-								<div class="input-bella portfolio__ctrl-main__input">
+						<div class="catalog__ctrl-main" id="catalog-ctrl-main">
+							<form class="form tPortfolioSearch__form" id="catalog-search-form">
+								<div class="input-bella catalog__ctrl-main__input">
 									<input type="text" class="input-bella__field js-form-input">
 									<div class="input-bella__label">Поиск по названию</div>
 								</div>
@@ -107,7 +107,7 @@ layout: default.hbs
 									</div>
 								</div>
 							</form>
-							<nav class="nav-video" id="portfolio-industries">
+							<nav class="nav-video">
 								<div class="nav-video__crop">
 									<div class="nav-video__scroll">
 										<div class="nav-video__item">
@@ -207,7 +207,7 @@ layout: default.hbs
 						</div>
 
 
-						<div class="portfolio__search">
+						<div class="catalog__search">
 							<form action="#" class="form-search">
 								<div class="input-brianna form-search__input">
 									<input type="text" class="input-brianna__field js-form-input form-search__field">
@@ -221,6 +221,10 @@ layout: default.hbs
 
 					</div>
 				</div>
+
+				<div class="catalog__ctrl-mobile">
+					<a href="#" class="catalog__button-filter">Фильтр</a>
+				</div>
 		
 				<div class="page__gap-100"></div>
 
@@ -229,7 +233,7 @@ layout: default.hbs
 
 						<div class="js-sidebar__inner">
 							
-							<div class="portfolio__ctrl-filters">
+							<div class="catalog__ctrl-filter">
 								
 								<nav class="nav-cats nav-cats--close">
 									<div class="nav-cats__scroll">
@@ -279,9 +283,9 @@ layout: default.hbs
 					<div class="page__col-main">
 						
 						{{!--  здравоохранение --}}
-						<div class="portfolio__item">
+						<div class="catalog__section">
 
-							<div class="page__label page__label--green portfolio__label portfolio__label--local">
+							<div class="page__label page__label--green catalog__label catalog__label--local">
 								Здравоохранение
 							</div>
 							
@@ -430,33 +434,33 @@ layout: default.hbs
 								</div>
 							</div>
 
-							<div class="portfolio__ctrl">
-								<div class="portfolio__ctrl__item portfolio__ctrl__item--addon">
+							<div class="catalog__ctrl-more">
+								<div class="catalog__ctrl-more__item catalog__ctrl-more__item--addon">
 									
-									<div class="portfolio__sm-pane">
+									<div class="catalog__sm-pane">
 										<a href="#" class="page__click"></a>
 										<div class="tProductsItem__type tProductsItem__type--dark">
 											Продукт
 										</div>
-										<div class="portfolio__sm-pane__title">
+										<div class="catalog__sm-pane__title">
 											Мониторинг родовспоможения
 										</div>
 									</div>
 
 								</div>
-								<div class="portfolio__ctrl__item">
-									<a href="#" class="button-aurora js-hover-wings portfolio__button">
-										<span class="nobr button-aurora__text portfolio__button__text">
-											Показать все <span class="portfolio__button__count">(25)</span>
+								<div class="catalog__ctrl-more__item">
+									<a href="#" class="button-aurora js-hover-wings catalog__button-large">
+										<span class="nobr button-aurora__text catalog__button-large__text">
+											Показать все <span class="catalog__button-large__count">(25)</span>
 										</span>
 										<i class="arrow-ciara button-aurora__icon">
 											<span></span>
 										</i>
 									</a>
 								</div>
-								<div class="portfolio__ctrl__item">
-									<a href="#" class="button-aurora js-hover-wings portfolio__button portfolio__button--green">
-										<span class="button-aurora__text portfolio__button__text">
+								<div class="catalog__ctrl-more__item">
+									<a href="#" class="button-aurora js-hover-wings catalog__button-large catalog__button-large--green">
+										<span class="button-aurora__text catalog__button-large__text">
 											Подробнее о решениях
 											для здравоохранения
 										</span>
@@ -474,9 +478,9 @@ layout: default.hbs
 						<div class="page__gap-100"></div>
 						
 						{{!--  образование --}}
-						<div class="portfolio__item">
+						<div class="catalog__section">
 
-							<div class="page__label page__label--yellow portfolio__label portfolio__label--local">
+							<div class="page__label page__label--yellow catalog__label catalog__label--local">
 								Образование
 							</div>
 							
@@ -631,20 +635,20 @@ layout: default.hbs
 								</div>
 							</div>
 
-							<div class="portfolio__ctrl">
-								<div class="portfolio__ctrl__item">
-									<a href="#" class="button-aurora js-hover-wings portfolio__button">
-										<span class="nobr button-aurora__text portfolio__button__text">
-											Показать все <span class="portfolio__button__count">(25)</span>
+							<div class="catalog__ctrl-more">
+								<div class="catalog__ctrl-more__item">
+									<a href="#" class="button-aurora js-hover-wings catalog__button-large">
+										<span class="nobr button-aurora__text catalog__button-large__text">
+											Показать все <span class="catalog__button-large__count">(25)</span>
 										</span>
 										<i class="arrow-ciara button-aurora__icon">
 											<span></span>
 										</i>
 									</a>
 								</div>
-								<div class="portfolio__ctrl__item">
-									<a href="#" class="button-aurora js-hover-wings portfolio__button portfolio__button--yellow">
-										<span class="button-aurora__text portfolio__button__text">
+								<div class="catalog__ctrl-more__item">
+									<a href="#" class="button-aurora js-hover-wings catalog__button-large catalog__button-large--yellow">
+										<span class="button-aurora__text catalog__button-large__text">
 											Подробнее о решениях
 											для образования
 										</span>
@@ -662,9 +666,9 @@ layout: default.hbs
 						<div class="page__gap-100"></div>
 						
 						{{!--  сельское хозяйство --}}
-						<div class="portfolio__item">
+						<div class="catalog__section">
 
-							<div class="page__label page__label--red portfolio__label portfolio__label--local">
+							<div class="page__label page__label--red catalog__label catalog__label--local">
 								Сельское хозяйство
 							</div>
 							
@@ -819,20 +823,20 @@ layout: default.hbs
 								</div>
 							</div>
 
-							<div class="portfolio__ctrl">
-								<div class="portfolio__ctrl__item">
-									<a href="#" class="button-aurora js-hover-wings portfolio__button">
-										<span class="nobr button-aurora__text portfolio__button__text">
-											Показать все <span class="portfolio__button__count">(25)</span>
+							<div class="catalog__ctrl-more">
+								<div class="catalog__ctrl-more__item">
+									<a href="#" class="button-aurora js-hover-wings catalog__button-large">
+										<span class="nobr button-aurora__text catalog__button-large__text">
+											Показать все <span class="catalog__button-large__count">(25)</span>
 										</span>
 										<i class="arrow-ciara button-aurora__icon">
 											<span></span>
 										</i>
 									</a>
 								</div>
-								<div class="portfolio__ctrl__item">
-									<a href="#" class="button-aurora js-hover-wings portfolio__button portfolio__button--red">
-										<span class="button-aurora__text portfolio__button__text">
+								<div class="catalog__ctrl-more__item">
+									<a href="#" class="button-aurora js-hover-wings catalog__button-large catalog__button-large--red">
+										<span class="button-aurora__text catalog__button-large__text">
 											Подробнее о решениях
 											для сельского хозяйства
 										</span>
@@ -863,7 +867,7 @@ layout: default.hbs
 	
 <div class="d-none">
 	
-	<div class="popup" id="portfolio-popup">
+	<div class="popup" id="catalog-popup">
 		<form action="#" class="form form-filter">
 			<h3 class="page__h3">Фильтр</h3>
 			<div>
@@ -871,7 +875,7 @@ layout: default.hbs
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="check-1" type="checkbox">
+								<input name="radio-2" type="radio" checked>
 							</div>
 							<div class="form__check__text">
 								<span>Все</span>
@@ -882,7 +886,7 @@ layout: default.hbs
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="check-2" type="checkbox">
+								<input name="radio-2" type="radio">
 							</div>
 							<div class="form__check__text">
 								<span>Для государства</span>
@@ -893,7 +897,7 @@ layout: default.hbs
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="check-3" type="checkbox">
+								<input name="radio-2" type="radio">
 							</div>
 							<div class="form__check__text">
 								<span>Для бизнеса</span>
@@ -938,8 +942,18 @@ layout: default.hbs
 					</div>
 				</div>
 			</div>
-			<div class="clearfix">
-				<a href="#" class="form-filter__reset">Сбросить</a>
+			<div class="form-filter__ctrl">
+				<div>
+					<a href="#" class="button-aurora js-hover-wings">
+						<span class="button-aurora__text">
+							Применить
+						</span>
+						<i class="arrow-ciara button-aurora__icon">
+							<span></span>
+						</i>
+					</a>
+				</div>
+				<div><a href="#" class="form-filter__reset">Сбросить</a></div>
 			</div>
 		</form>
 		<a href="#" class="popup__close js-popup-close"></a>

@@ -24,10 +24,10 @@
 
 	&__image {
 		flex: 0 0 151px;
+		margin-right: 49px;
 	}
 
 	&__desc {
-		margin-left: 49px;
 		margin-top: 13px;
 	}
 
@@ -68,11 +68,11 @@
 
 		&__image {
 			flex-basis: 130px;
+			margin-right: 40px;
 		}
 
 		&__desc {
 			margin-top: 11px;
-			margin-left: 40px;
 		}
 
 		&__text-1 {
@@ -98,12 +98,7 @@
 
 			.brand-box__desc {
 				flex-basis: auto;
-				margin-left: 20px;
 				margin-top: 8px;
-			}
-
-			.brand-box__inner {
-				flex-wrap: nowrap;
 			}
 
 		}
@@ -114,12 +109,13 @@
 
 		&__image {
 			flex-basis: 90px;
+			margin-right: 20px;
+			margin-bottom: 10px;
 		}
 
 		&__desc {
 			flex-basis: 100%;
 			margin-top: 20px;
-			margin-left: 0;
 		}
 
 		&__text-1 {
@@ -129,7 +125,7 @@
 		}
 
 		&__text-2 {
-			margin-top: 20px;
+			margin-top: 15px;
 			margin-left: 0;
 			max-width: 300px;
 			font-size: 12px;

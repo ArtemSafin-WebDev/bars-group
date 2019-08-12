@@ -4,10 +4,12 @@ var StickySidebar = require('sticky-sidebar');
 module.exports = {
 
 	_elems: {
-		$popup: $(),
-		$industries: $(),
-		$searchMode: $(),
-		$searchForm: $()
+		$_: $(),
+		$ctrlMain: $(),
+		$ctrlFilter: $(),
+		$ctrlModes: $(),
+		$searchForm: $(),
+		$popup: $()
 	},
 
 	_stickSidebar: function () {
@@ -55,7 +57,7 @@ module.exports = {
 		$currItem.addClass('--active').siblings().removeClass('--active');
 
 		// set arrow position
-		self._elems.$searchMode.find('.nav-side__arrow').css({
+		self._elems.$ctrlModes.find('.nav-side__arrow').css({
 			transform: 'translateY(' + $currItem.index() * 100 + '%)'
 		});
 
@@ -67,26 +69,31 @@ module.exports = {
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$industries.on('mouseenter', '.nav-video__item', {self: self}, self._handleIndustryMouseenter);
-		self._elems.$industries.on('mouseleave', '.nav-video__item', {self: self}, self._handleIndustryMouseleave);
-		self._elems.$industries.on('click', '.nav-video__item', {self: self}, self._handleIndustryClick);
-		self._elems.$searchMode.on('click', '.nav-side__link', {self: self}, self._handleSearchModeClick);
+		self._elems.$ctrlMain.on('mouseenter', '.nav-video__item', {self: self}, self._handleIndustryMouseenter);
+		self._elems.$ctrlMain.on('mouseleave', '.nav-video__item', {self: self}, self._handleIndustryMouseleave);
+		self._elems.$ctrlMain.on('click', '.nav-video__item', {self: self}, self._handleIndustryClick);
+		self._elems.$ctrlModes.on('click', '.nav-side__link', {self: self}, self._handleSearchModeClick);
 	},
 
 	init: function () {
 		var self = this;
 
-		var $popup = $('#portfolio-popup');
-		var $industries = $('#portfolio-industries');
-		var $searchMode = $('#portfolio-search-mode');
-		var $searchForm = $('#portfolio-search-form');
+		var $_ = $('#catalog');
+		
+		if ( $_.length == 0 ) return;
 
-		if ($industries.length == 0) return;
+		var $ctrlModes = $('#catalog-ctrl-modes');
+		var $ctrlFilter = $('#catalog-ctrl-filter');
+		var $ctrlMain = $('#catalog-ctrl-main');
+		var $searchForm = $('#catalog-search-form');
+		var $popup = $('#catalog-popup');
 
-		self._elems.$popup = $popup;
-		self._elems.$industries = $industries;
-		self._elems.$searchMode = $searchMode;
+		self._elems.$_ = $_;
+		self._elems.$ctrlModes = $ctrlModes;
+		self._elems.$ctrlFilter = $ctrlFilter;
+		self._elems.$ctrlMain = $ctrlMain;
 		self._elems.$searchForm = $searchForm;
+		self._elems.$popup = $popup;
 
 		self._stickSidebar();
 

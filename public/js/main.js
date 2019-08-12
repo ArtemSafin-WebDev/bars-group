@@ -32354,7 +32354,7 @@ var NavMobile = require('./navMobile');
 
 var Overview = require('./overview');
 
-var CatalogFilter = require('./catalogFilter');
+var Catalog = require('./catalog');
 
 var Hover = require('./hover');
 
@@ -32412,7 +32412,7 @@ module.exports = {
     TechPromo.init();
     NavMobile.init();
     Overview.init();
-    CatalogFilter.init();
+    Catalog.init();
     Hover.init();
     Popup.init(); // trigger click to start loading lazy videos
 
@@ -32498,7 +32498,7 @@ module.exports = {
   }
 };
 
-},{"./about":17,"./catalogFilter":19,"./citiesSlider":20,"./form":21,"./ganttSlider":22,"./header":23,"./hover":24,"./navBanner":25,"./navMobile":26,"./navSticker":27,"./news":28,"./newsPhotoSlider":29,"./newsSlider":30,"./newsToggles":31,"./overview":32,"./popup":33,"./scrollableTable":34,"./sliderContent":35,"./sliderDigits":36,"./sliderTabs":37,"./talgat":38,"./techPromo":39,"./utils":40,"dragscroll":6,"jquery":8,"objectFitPolyfill":10}],19:[function(require,module,exports){
+},{"./about":17,"./catalog":19,"./citiesSlider":20,"./form":21,"./ganttSlider":22,"./header":23,"./hover":24,"./navBanner":25,"./navMobile":26,"./navSticker":27,"./news":28,"./newsPhotoSlider":29,"./newsSlider":30,"./newsToggles":31,"./overview":32,"./popup":33,"./scrollableTable":34,"./sliderContent":35,"./sliderDigits":36,"./sliderTabs":37,"./talgat":38,"./techPromo":39,"./utils":40,"dragscroll":6,"jquery":8,"objectFitPolyfill":10}],19:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -32507,10 +32507,12 @@ var StickySidebar = require('sticky-sidebar');
 
 module.exports = {
   _elems: {
-    $popup: $(),
-    $industries: $(),
-    $searchMode: $(),
-    $searchForm: $()
+    $_: $(),
+    $ctrlMain: $(),
+    $ctrlFilter: $(),
+    $ctrlModes: $(),
+    $searchForm: $(),
+    $popup: $()
   },
   _stickSidebar: function _stickSidebar() {
     var self = this;
@@ -32544,7 +32546,7 @@ module.exports = {
     var $currItem = $(this).closest('.nav-side__item');
     $currItem.addClass('--active').siblings().removeClass('--active'); // set arrow position
 
-    self._elems.$searchMode.find('.nav-side__arrow').css({
+    self._elems.$ctrlModes.find('.nav-side__arrow').css({
       transform: 'translateY(' + $currItem.index() * 100 + '%)'
     }); // toggle search form
 
@@ -32556,33 +32558,37 @@ module.exports = {
   _bindUI: function _bindUI() {
     var self = this;
 
-    self._elems.$industries.on('mouseenter', '.nav-video__item', {
+    self._elems.$ctrlMain.on('mouseenter', '.nav-video__item', {
       self: self
     }, self._handleIndustryMouseenter);
 
-    self._elems.$industries.on('mouseleave', '.nav-video__item', {
+    self._elems.$ctrlMain.on('mouseleave', '.nav-video__item', {
       self: self
     }, self._handleIndustryMouseleave);
 
-    self._elems.$industries.on('click', '.nav-video__item', {
+    self._elems.$ctrlMain.on('click', '.nav-video__item', {
       self: self
     }, self._handleIndustryClick);
 
-    self._elems.$searchMode.on('click', '.nav-side__link', {
+    self._elems.$ctrlModes.on('click', '.nav-side__link', {
       self: self
     }, self._handleSearchModeClick);
   },
   init: function init() {
     var self = this;
-    var $popup = $('#portfolio-popup');
-    var $industries = $('#portfolio-industries');
-    var $searchMode = $('#portfolio-search-mode');
-    var $searchForm = $('#portfolio-search-form');
-    if ($industries.length == 0) return;
-    self._elems.$popup = $popup;
-    self._elems.$industries = $industries;
-    self._elems.$searchMode = $searchMode;
+    var $_ = $('#catalog');
+    if ($_.length == 0) return;
+    var $ctrlModes = $('#catalog-ctrl-modes');
+    var $ctrlFilter = $('#catalog-ctrl-filter');
+    var $ctrlMain = $('#catalog-ctrl-main');
+    var $searchForm = $('#catalog-search-form');
+    var $popup = $('#catalog-popup');
+    self._elems.$_ = $_;
+    self._elems.$ctrlModes = $ctrlModes;
+    self._elems.$ctrlFilter = $ctrlFilter;
+    self._elems.$ctrlMain = $ctrlMain;
     self._elems.$searchForm = $searchForm;
+    self._elems.$popup = $popup;
 
     self._stickSidebar();
 

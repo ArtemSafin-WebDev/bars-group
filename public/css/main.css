@@ -568,7 +568,7 @@ template {
   .ps {
     overflow: auto !important; } }
 
-.icon, .rangeslider__handle i, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .popup__close {
+.icon, .rangeslider__handle i, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close {
   display: inline-block; }
 
 .icon-sprite-png-alpha-bi-white {
@@ -757,7 +757,7 @@ template {
   font-weight: normal;
   font-style: normal; }
 
-.icon, .rangeslider__handle i, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .popup__close {
+.icon, .rangeslider__handle i, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -810,7 +810,7 @@ template {
   content: "\e925";
   color: #fff; }
 
-.icon-filter:before {
+.icon-filter:before, .catalog__button-filter:before {
   content: "\e900"; }
 
 .icon-arrow-bird-down:before {
@@ -894,7 +894,7 @@ template {
 .icon-checked:before, .icheckbox:before {
   content: "\e91b"; }
 
-.clearfix::after, .nav-video::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .cities-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .news__center::after, .history__cities__list::after {
+.clearfix::after, .nav-video::after, .header__burger__icon::after, .overview__about::after, .gantt-slider__ctrl::after, .cities-slider__ctrl::after, .slider-digits__center::after, .slider-digits__content::after, .news__center::after, .history__cities__list::after, .catalog__ctrl-mobile::after {
   display: block;
   clear: both;
   content: ""; }
@@ -2234,6 +2234,7 @@ img {
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
+  white-space: nowrap;
   letter-spacing: 1.78px;
   color: #ffffff; }
   .page__label--green {
@@ -4541,9 +4542,9 @@ img {
   .brand-box__image {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 151px;
-            flex: 0 0 151px; }
+            flex: 0 0 151px;
+    margin-right: 49px; }
   .brand-box__desc {
-    margin-left: 49px;
     margin-top: 13px; }
   .brand-box__text-1 {
     max-width: 360px;
@@ -4565,10 +4566,10 @@ img {
       margin-top: 14px; }
     .brand-box__image {
       -ms-flex-preferred-size: 130px;
-          flex-basis: 130px; }
+          flex-basis: 130px;
+      margin-right: 40px; }
     .brand-box__desc {
-      margin-top: 11px;
-      margin-left: 40px; }
+      margin-top: 11px; }
     .brand-box__text-1 {
       font-size: 16px; }
     .brand-box__text-2 {
@@ -4581,28 +4582,25 @@ img {
     .brand-box--has-label .brand-box__desc {
       -ms-flex-preferred-size: auto;
           flex-basis: auto;
-      margin-left: 20px;
       margin-top: 8px; }
-    .brand-box--has-label .brand-box__inner {
-      -ms-flex-wrap: nowrap;
-          flex-wrap: nowrap; }
     .brand-box__inner {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; }
     .brand-box__image {
       -ms-flex-preferred-size: 90px;
-          flex-basis: 90px; }
+          flex-basis: 90px;
+      margin-right: 20px;
+      margin-bottom: 10px; }
     .brand-box__desc {
       -ms-flex-preferred-size: 100%;
           flex-basis: 100%;
-      margin-top: 20px;
-      margin-left: 0; }
+      margin-top: 20px; }
     .brand-box__text-1 {
       max-width: 300px;
       font-size: 12px;
       line-height: 1.7; }
     .brand-box__text-2 {
-      margin-top: 20px;
+      margin-top: 15px;
       margin-left: 0;
       max-width: 300px;
       font-size: 12px; } }
@@ -4798,10 +4796,20 @@ img {
   font-size: .7em;
   color: #999; }
 
+.form-filter__ctrl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 30px; }
+
 .form-filter__reset {
   position: relative;
-  float: right;
-  margin: 30px 0 10px 0;
   padding-left: 25px;
   font-size: 16px;
   color: #d74738; }
@@ -5029,15 +5037,23 @@ img {
   .history__slider {
     margin-top: 50px; } }
 
-.portfolio__item {
+.catalog__section {
   position: relative; }
 
-.portfolio__label {
+.catalog__label {
   position: absolute;
   left: 20px;
   top: -8px; }
 
-.portfolio__ctrl {
+.catalog__ctrl-main {
+  margin-right: calc(-1 * (100vw - 1520px)/ 2);
+  padding-right: calc(1 * (100vw - 1520px)/ 2);
+  overflow: hidden;
+  height: 190px; }
+  .catalog__ctrl-main__input {
+    padding-right: calc(1 * (100vw - 1520px)/ 2); }
+
+.catalog__ctrl-more {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5046,40 +5062,62 @@ img {
           justify-content: flex-end;
   margin: 0 -12px;
   margin-top: 12px; }
-  .portfolio__ctrl__item {
+  .catalog__ctrl-more__item {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33%;
             flex: 0 0 33.33%;
     max-width: 33.33%;
     padding: 0 12px; }
 
-.portfolio__button {
+.catalog__ctrl-mobile {
+  display: none;
+  margin-bottom: -40px;
+  margin-top: 30px; }
+
+.catalog__button-filter {
+  position: relative;
+  float: right;
+  padding: 10px 0 10px 25px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  color: #59b4e6; }
+  .catalog__button-filter:before {
+    position: absolute;
+    top: 50%;
+    margin-top: -.5em;
+    left: 0;
+    font-size: 12px; }
+  .catalog__button-filter:hover {
+    color: #6fbee9; }
+
+.catalog__button-large {
   display: block;
   height: 120px;
   line-height: 120px;
   padding-bottom: 0;
   padding-left: 40px;
   padding-top: 0; }
-  .portfolio__button--green {
+  .catalog__button-large--green {
     background: #A1C527; }
-    .portfolio__button--green:before {
+    .catalog__button-large--green:before {
       background: #90b023; }
-  .portfolio__button--yellow {
+  .catalog__button-large--yellow {
     background: #F4CB23; }
-    .portfolio__button--yellow:before {
+    .catalog__button-large--yellow:before {
       background: #e8bd0c; }
-  .portfolio__button--red {
+  .catalog__button-large--red {
     background: #D74738; }
-    .portfolio__button--red:before {
+    .catalog__button-large--red:before {
       background: #cc3829; }
-  .portfolio__button--dark {
+  .catalog__button-large--dark {
     background: #4F4949; }
-    .portfolio__button--dark:before {
+    .catalog__button-large--dark:before {
       background: #423d3d; }
-  .portfolio__button__count {
+  .catalog__button-large__count {
     color: rgba(255, 255, 255, 0.6); }
 
-.portfolio__sm-pane {
+.catalog__sm-pane {
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
   position: relative;
@@ -5092,78 +5130,72 @@ img {
   padding: 35px 100px 35px 40px;
   height: 120px;
   background: #eff4fd; }
-  .portfolio__sm-pane__title {
+  .catalog__sm-pane__title {
     font-size: 18px;
     font-weight: 700;
     line-height: 1.45;
     max-height: 2.9em;
     overflow: hidden; }
-  .portfolio__sm-pane:hover {
+  .catalog__sm-pane:hover {
     background: #e1ebfb; }
 
-.portfolio__search {
+.catalog__search {
   display: none; }
 
-.portfolio__ctrl-main {
-  margin-right: calc(-1 * (100vw - 1520px)/ 2);
-  padding-right: calc(1 * (100vw - 1520px)/ 2);
-  overflow: hidden;
-  height: 190px; }
-  .portfolio__ctrl-main__input {
-    padding-right: calc(1 * (100vw - 1520px)/ 2); }
-
 @media all and (max-width: 1600px) {
-  .portfolio__ctrl-main {
+  .catalog__ctrl-main {
     margin-right: -40px;
     padding-right: 40px; }
-    .portfolio__ctrl-main__input {
+    .catalog__ctrl-main__input {
       padding-right: 40px; } }
 
 @media all and (max-width: 1300px) {
-  .portfolio__ctrl-main {
+  .catalog__ctrl-main {
     height: auto;
     overflow: visible; }
-  .portfolio__ctrl-filters {
+  .catalog__ctrl-mobile {
+    display: block; }
+  .catalog__ctrl-filter {
     display: none; }
-  .portfolio__nav-side {
+  .catalog__ctrl-modes {
     display: none; }
-  .portfolio__search {
+  .catalog__search {
     display: block;
     margin: 1px -40px 0 -40px; } }
 
 @media all and (max-width: 1100px) {
-  .portfolio__ctrl {
+  .catalog__ctrl-more {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap; }
-    .portfolio__ctrl__item {
+    .catalog__ctrl-more__item {
       -ms-flex-preferred-size: 50%;
           flex-basis: 50%;
       max-width: 50%; }
-      .portfolio__ctrl__item--addon {
+      .catalog__ctrl-more__item--addon {
         margin-bottom: 24px;
         -ms-flex-preferred-size: 100%;
             flex-basis: 100%;
         max-width: 100%; } }
 
 @media all and (max-width: 850px) {
-  .portfolio__ctrl {
+  .catalog__ctrl-more {
     display: block; }
-    .portfolio__ctrl__item {
+    .catalog__ctrl-more__item {
       max-width: none; }
-      .portfolio__ctrl__item:last-child {
+      .catalog__ctrl-more__item:last-child {
         margin-bottom: 0; }
-  .portfolio__button {
+  .catalog__button-large {
     height: 100px;
     line-height: 100px; } }
 
 @media all and (max-width: 600px) {
-  .portfolio__button {
+  .catalog__button-large {
     height: 75px;
     line-height: 75px;
     padding-left: 20px; }
-    .portfolio__button__text {
+    .catalog__button-large__text {
       font-size: 14px; }
-  .portfolio__sm-pane {
+  .catalog__sm-pane {
     padding-left: 20px; } }
 
 .news-details {
@@ -5357,7 +5389,7 @@ img {
   @media screen and (max-width: 400px) {
     .news-details__content blockquote {
       padding: 10px 20px; } }
-  .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .popup__close {
+  .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close {
     position: absolute;
     top: 60px;
     left: 55px;
@@ -5365,19 +5397,19 @@ img {
     color: #59b4e6;
     opacity: 0.3; }
     @media screen and (max-width: 1024px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .popup__close {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close {
         font-size: 70px;
         top: 35px; } }
     @media screen and (max-width: 800px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .popup__close {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close {
         top: 35px;
         font-size: 50px;
         left: 40px; } }
     @media screen and (max-width: 600px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .popup__close {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close {
         left: 30px; } }
     @media screen and (max-width: 400px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .popup__close {
+      .news-details__content blockquote .icon, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .arrow-both-circle__prev, .news-details__content blockquote .arrow-both-circle__next, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close {
         opacity: 0.15;
         font-size: 100px;
         top: auto;
@@ -5664,11 +5696,11 @@ img {
       right: auto;
       left: 20px;
       bottom: 20px; } }
-  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .popup__close {
+  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close {
     font-size: 18px;
     margin-right: 12px; }
     @media screen and (max-width: 600px) {
-      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .popup__close {
+      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .arrow-both-circle__prev, .news-details__photo-slider-download .arrow-both-circle__next, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close {
         font-size: 16px; } }
   .news-details__photo-slider-download:link, .news-details__photo-slider-download:visited {
     color: white; }
@@ -5877,7 +5909,7 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .arrow-both-circle__prev, .news-details__next-article-arrow .arrow-both-circle__next, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__arrow, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__link:before, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before, .news-details__next-article-arrow .form-filter__reset:before, .news-details__next-article-arrow .popup__close {
+  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .arrow-both-circle__prev, .news-details__next-article-arrow .arrow-both-circle__next, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__arrow, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__link:before, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before, .news-details__next-article-arrow .form-filter__reset:before, .news-details__next-article-arrow .catalog__button-filter:before, .news-details__next-article-arrow .popup__close {
     color: #6e7f95; }
   .active .news-details__next-article-arrow {
     -webkit-transform: translateZ(0) translateX(100%);
@@ -5892,7 +5924,7 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .arrow-both-circle__prev, .news-details__previous-article-arrow .arrow-both-circle__next, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__arrow, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__link:before, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before, .news-details__previous-article-arrow .form-filter__reset:before, .news-details__previous-article-arrow .popup__close {
+  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .arrow-both-circle__prev, .news-details__previous-article-arrow .arrow-both-circle__next, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__arrow, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__link:before, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before, .news-details__previous-article-arrow .form-filter__reset:before, .news-details__previous-article-arrow .catalog__button-filter:before, .news-details__previous-article-arrow .popup__close {
     color: #6e7f95;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg); }
