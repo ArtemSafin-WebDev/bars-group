@@ -33223,11 +33223,20 @@ module.exports = {
   },
   _state: {
     stickySidebar: null,
+    currentMode: 'tiles',
+    filter: {
+      customer: {
+        counts: {},
+        value: 'total'
+      },
+      type: {
+        counts: {},
+        value: 'total'
+      }
+    },
     searchText: '',
     letter: '',
-    industry: '',
-    customer: '',
-    type: ''
+    industry: ''
   },
   _stickSidebar: function _stickSidebar() {
     var self = this;
@@ -33236,6 +33245,35 @@ module.exports = {
       bottomSpacing: 20,
       innerWrapperSelector: '.js-sidebar-inner',
       containerSelector: '.js-sidebar-root'
+    });
+  },
+  _renderCurrentView: function _renderCurrentView() {
+    var self = this;
+
+    switch (self._state.currentMode) {
+      case 'names':
+        self._renderNamesView();
+
+        break;
+
+      case 'tiles':
+        self._renderTilesView();
+
+        break;
+    }
+  },
+  _renderFiltersView: function _renderFiltersView() {
+    var self = this; // update side filter
+
+    self._elems.$ctrlFilter.find('.nav-cats').each(function () {
+      var filterId = $(this).data('id');
+      var filterState = self._state.filter[filterId];
+      $(this).find('.nav-cats__item').each(function () {
+        var filterItemId = $(this).data('id');
+        var isItemActive = filterState.value == filterItemId;
+        $(this).find('.nav-cats__count').html(filterState.counts[filterItemId]);
+        $(this).toggleClass('--active', isItemActive);
+      });
     });
   },
   _renderSearchView: function _renderSearchView() {
@@ -33249,19 +33287,27 @@ module.exports = {
   _renderTilesView: function _renderTilesView() {
     var self = this; // prepare url
 
-    var url = self._elems.$_.data('tiles-url').replace('{industry}', self._state.industry).replace('{customer}', self._state.customer).replace('{type}', self._state.type); // show common loader
+    var url = self._elems.$_.data('tiles-url').replace('{industry}', self._state.industry).replace('{customer}', self._state.filter.customer.value).replace('{type}', self._state.filter.type.value); // clear state
+
+
+    self._state.searchText = ''; // reset search forms view
+
+    self._renderSearchView(); // show common loader
 
 
     $('#loader-ajax').addClass('--active'); // set industry loader
 
-    self._elems.$industries.removeClass('--active --loading').filter("[data-id=\"".concat(self._state.industry, "\"]")).addClass('--loading');
+    self._renderIndustries('--loading');
 
     $.ajax({
       method: 'get',
       url: url,
-      dataType: 'html'
+      dataType: 'json',
+      cache: false
     }).done(function (data) {
-      // hide content
+      self._state.filter.customer.counts = data.filterCounts.customer;
+      self._state.filter.type.counts = data.filterCounts.type; // hide content
+
       setTimeout(function () {
         self._elems.$_.addClass('--replace');
       }, 200); // update content
@@ -33269,18 +33315,18 @@ module.exports = {
       setTimeout(function () {
         self._elems.$names.removeClass('--active');
 
-        self._elems.$tiles.addClass('--active').html(data);
-
-        self._elems.$ctrlFilter.removeClass('--disabled');
+        self._elems.$tiles.addClass('--active').html(data.result);
 
         self._state.stickySidebar.updateSticky();
+
+        self._renderFiltersView();
       }, 400); // show content
 
       setTimeout(function () {
         self._elems.$_.removeClass('--replace');
       }, 800); // set active class
 
-      self._elems.$industries.filter("[data-id=\"".concat(self._state.industry, "\"]")).addClass('--active');
+      self._renderIndustries('--active');
     }).fail(function (jqXHR, textStatus) {
       // notify error
       notify('Catalog ajax fail.', textStatus);
@@ -33292,18 +33338,25 @@ module.exports = {
   _renderNamesView: function _renderNamesView() {
     var self = this; // prepare url
 
-    var url = self._elems.$_.data('names-url').replace('{search}', self._state.searchText).replace('{letter}', self._state.letter); // clear state 
+    var url = self._elems.$_.data('names-url').replace('{searchText}', self._state.searchText).replace('{letter}', self._state.letter).replace('{customer}', self._state.filter.customer.value).replace('{type}', self._state.filter.type.value); // clear state 
 
 
-    self._state.letter = ''; // show common loader
+    self._state.letter = '';
+    self._state.industry = ''; // reset industry view
+
+    self._renderIndustries(); // show common loader
+
 
     $('#loader-ajax').addClass('--active');
     $.ajax({
       method: 'get',
       url: url,
-      dataType: 'html'
+      dataType: 'json',
+      cache: false
     }).done(function (data) {
-      // hide content
+      self._state.filter.customer.counts = data.filterCounts.customer;
+      self._state.filter.type.counts = data.filterCounts.type; // hide content
+
       setTimeout(function () {
         self._elems.$_.addClass('--replace');
       }, 200); // update content
@@ -33311,11 +33364,11 @@ module.exports = {
       setTimeout(function () {
         self._elems.$tiles.removeClass('--active');
 
-        self._elems.$names.addClass('--active').html(data);
-
-        self._elems.$ctrlFilter.addClass('--disabled');
+        self._elems.$names.addClass('--active').html(data.result);
 
         self._state.stickySidebar.updateSticky();
+
+        self._renderFiltersView();
       }, 400); // show content
 
       setTimeout(function () {
@@ -33328,6 +33381,12 @@ module.exports = {
       // hide common loader
       $('#loader-ajax').removeClass('--active');
     });
+  },
+  _renderIndustries: function _renderIndustries(className) {
+    var self = this;
+    var className = className || '';
+
+    self._elems.$industries.removeClass('--active --loading').filter("[data-id=\"".concat(self._state.industry, "\"]")).addClass(className);
   },
   _handleIndustryMouseenter: function _handleIndustryMouseenter(e) {
     var self = e.data.self;
@@ -33366,19 +33425,11 @@ module.exports = {
     self._elems.$searchForm.toggleClass('--active', isFormActive); // clear state
 
 
-    self._state.searchText = '', self._state.letter = '', self._state.industry = '', self._state.customer = '', self._state.type = '';
+    self._state.searchText = '', self._state.letter = '', self._state.industry = '', self._state.currentMode = $currItem.data('id');
 
-    switch ($currItem.data('id')) {
-      case 'names':
-        self._renderNamesView();
+    self._renderCurrentView();
 
-        break;
-
-      case 'tiles':
-        self._renderTilesView();
-
-        break;
-    }
+    self._renderSearchView();
   },
   _handleSearchKeyup: function _handleSearchKeyup(e) {
     var self = e.data.self;
@@ -33392,6 +33443,20 @@ module.exports = {
     self._state.letter = $(this).text();
 
     self._renderNamesView();
+  },
+  _handleFormSubmit: function _handleFormSubmit(e) {
+    var self = e.data.self;
+    e.preventDefault();
+
+    self._renderNamesView();
+  },
+  _handleFilterLink: function _handleFilterLink(e) {
+    var self = e.data.self;
+    e.preventDefault();
+    var filterId = $(this).closest('.nav-cats').data('id');
+    self._state.filter[filterId].value = $(this).closest('.nav-cats__item').data('id');
+
+    self._renderCurrentView();
   },
   _bindUI: function _bindUI() {
     var self = this;
@@ -33419,6 +33484,14 @@ module.exports = {
     self._elems.$_.on('click', '.tPortfolioSearch__lang a', {
       self: self
     }, self._handleLetterClick);
+
+    self._elems.$_.on('submit', '.js-catalog-form', {
+      self: self
+    }, self._handleFormSubmit);
+
+    self._elems.$_.on('click', '.nav-cats__link', {
+      self: self
+    }, self._handleFilterLink);
   },
   init: function init() {
     var self = this;

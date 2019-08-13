@@ -5179,9 +5179,6 @@ img {
   .catalog__ctrl-main__input {
     padding-right: calc(1 * (100vw - 1520px)/ 2); }
 
-.catalog__ctrl-filter.--disabled {
-  visibility: hidden; }
-
 .catalog__ctrl-more {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5201,13 +5198,15 @@ img {
 .catalog__ctrl-mobile {
   display: none;
   margin-bottom: -40px;
-  margin-top: 30px; }
+  margin-top: 30px;
+  height: 30px; }
 
 .catalog__button-filter {
   position: relative;
   float: right;
-  padding: 10px 0 10px 25px;
+  padding-left: 25px;
   text-transform: uppercase;
+  line-height: 30px;
   font-size: 11px;
   font-weight: 600;
   color: #59b4e6; }

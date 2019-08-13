@@ -44,12 +44,6 @@
 		}
 	}
 
-	&__ctrl-filter {
-		&.--disabled {
-			visibility: hidden;
-		}
-	}
-
 	&__ctrl-more {
 		display: flex;
 		justify-content: flex-end;
@@ -68,13 +62,15 @@
 		display: none;
 		margin-bottom: -40px;
 		margin-top: 30px;
+		height: 30px;
 	}
 	
 	&__button-filter {
 		position: relative;
 		float: right;
-		padding: 10px 0 10px 25px;
+		padding-left: 25px;
 		text-transform: uppercase;
+		line-height: 30px;
 		font-size: 11px;
 		font-weight: 600;
 		color: #59b4e6;

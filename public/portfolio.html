@@ -126,8 +126,8 @@
 	</div>
 	
 	<div class="catalog" id="catalog"
-		data-tiles-url="data/catalog-tiles.html?industry={industry}&customer={customer}&type={type}"
-		data-names-url="data/catalog-names.html?letter={letter}&text={text}">
+		data-tiles-url="data/catalog-tiles.json?industry={industry}&customer={customer}&type={type}"
+		data-names-url="data/catalog-names.json?letter={letter}&search={searchText}&customer={customer}&type={type}">
 		<div class="page__center">
 			<div class="page__inner">
 
@@ -154,7 +154,7 @@
 					<div class="page__col-main">
 						
 						<div class="catalog__ctrl-main">
-							<form class="form tPortfolioSearch__form" id="catalog-search-form">
+							<form class="form tPortfolioSearch__form js-catalog-form" id="catalog-search-form">
 								<div class="input-bella catalog__ctrl-main__input">
 									<input type="text" class="input-bella__field js-form-input js-catalog-search">
 									<div class="input-bella__label">Поиск по названию</div>
@@ -306,7 +306,7 @@
 						</div>
 
 						<div class="catalog__search">
-							<form action="#" class="form-search">
+							<form action="#" class="form-search js-catalog-form">
 								<div class="input-brianna form-search__input">
 									<input type="text" class="input-brianna__field form-search__field js-form-input js-catalog-search">
 									<div class="input-brianna__label">Поиск по названию</div>
@@ -333,19 +333,19 @@
 							
 							<div class="catalog__ctrl-filter catalog__replace" id="catalog-ctrl-filter">
 								
-								<nav class="nav-cats nav-cats--close">
+								<nav class="nav-cats nav-cats--close" data-id="customer">
 									<div class="nav-cats__scroll">
-										<div class="nav-cats__item --active">
+										<div class="nav-cats__item --active" data-id="total">
 											<a href="#" class="nav-cats__link">
 												<span class="nav-cats__text">Все</span><span class="nav-cats__count">23</span>
 											</a>
 										</div>
-										<div class="nav-cats__item">
+										<div class="nav-cats__item" data-id="state">
 											<a href="#" class="nav-cats__link">
 												<span class="nav-cats__text">Для государства</span><span class="nav-cats__count">23</span>
 											</a>
 										</div>
-										<div class="nav-cats__item">
+										<div class="nav-cats__item" data-id="business">
 											<a href="#" class="nav-cats__link">
 												<span class="nav-cats__text">Для бизнеса</span><span class="nav-cats__count">23</span>
 											</a>
@@ -353,19 +353,19 @@
 									</div>
 								</nav>
 
-								<nav class="nav-cats nav-cats--close">
+								<nav class="nav-cats nav-cats--close" data-id="type">
 									<div class="nav-cats__scroll">
-										<div class="nav-cats__item --active">
+										<div class="nav-cats__item --active" data-id="total">
 											<a href="#" class="nav-cats__link">
 												<span class="nav-cats__text">Все</span><span class="nav-cats__count">23</span>
 											</a>
 										</div>
-										<div class="nav-cats__item">
+										<div class="nav-cats__item" data-id="products">
 											<a href="#" class="nav-cats__link">
 												<span class="nav-cats__text">Продукты</span><span class="nav-cats__count">23</span>
 											</a>
 										</div>
-										<div class="nav-cats__item">
+										<div class="nav-cats__item" data-id="cases">
 											<a href="#" class="nav-cats__link">
 												<span class="nav-cats__text">Кейсы</span><span class="nav-cats__count">23</span>
 											</a>
@@ -1344,14 +1344,14 @@
 <div class="d-none">
 	
 	<div class="popup" id="catalog-popup">
-		<form action="#" class="form form-filter">
+		<form action="#" class="form form-filter" id="form-filter">
 			<h3 class="page__h3">Фильтр</h3>
 			<div>
 				<div class="form-filter__group">
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="radio-2" type="radio" checked>
+								<input name="state" type="radio" value="total" checked>
 							</div>
 							<div class="form__check__text">
 								<span>Все</span>
@@ -1362,7 +1362,7 @@
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="radio-2" type="radio">
+								<input name="state" type="radio" value="business">
 							</div>
 							<div class="form__check__text">
 								<span>Для государства</span>
@@ -1373,7 +1373,7 @@
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="radio-2" type="radio">
+								<input name="state" type="radio" value="state">
 							</div>
 							<div class="form__check__text">
 								<span>Для бизнеса</span>
@@ -1386,7 +1386,7 @@
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="radio-1" type="radio" checked>
+								<input name="customer" type="radio" value="total" checked>
 							</div>
 							<div class="form__check__text">
 								<span>Все</span> 
@@ -1397,7 +1397,7 @@
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="radio-1" type="radio">
+								<input name="customer" type="radio" value="products">
 							</div>
 							<div class="form__check__text">
 								Продукты
@@ -1408,7 +1408,7 @@
 					<div class="form-filter__item">
 						<label class="form__check">
 							<div class="form__check__field">
-								<input name="radio-1" type="radio">
+								<input name="customer" type="radio" value="cases">
 							</div>
 							<div class="form__check__text">
 								Кейсы
