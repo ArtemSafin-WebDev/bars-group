@@ -27,6 +27,7 @@
     "swiper": "https://github.com/nolimits4web/swiper.git#^4.5.0",
     "midnight": "https://github.com/Aerolab/midnight.js.git#^1.1.2",
     "jQuery-One-Page-Nav": "https://github.com/davist11/jQuery-One-Page-Nav.git#^3.0.0",
-    "sticky-sidebar": "https://github.com/abouolia/sticky-sidebar.git#^3.3.3"
+    "sticky-sidebar": "https://github.com/abouolia/sticky-sidebar.git#^3.3.3",
+    "notifyjs": "0.4.2"
   }
 }

@@ -68,6 +68,7 @@
     "swiper": "^4.5.0"
   },
   "browser": {
-    "jQuery-One-Page-Nav": "./bower_components/jQuery-One-Page-Nav/jquery.nav.js"
+    "jQuery-One-Page-Nav": "./bower_components/jQuery-One-Page-Nav/jquery.nav.js",
+    "notifyjs": "./bower_components/notifyjs/dist/notify.js"
   }
 }

@@ -568,6 +568,31 @@ template {
   .ps {
     overflow: auto !important; } }
 
+.notifyjs-corner {
+  margin: 0 !important;
+  padding: 20px;
+  max-width: 100%;
+  z-index: 99999 !important; }
+
+.notifyjs-wrapper {
+  margin: 10px 0 0 0 !important;
+  max-width: 300px; }
+  .notifyjs-wrapper:first-child {
+    margin-top: 0 !important; }
+
+.notifyjs-container {
+  margin: 0 !important; }
+
+.notifyjs-global-base {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #fff; }
+
+.notifyjs-global-title {
+  margin-bottom: 5px; }
+
 .icon, .rangeslider__handle i, .arrow-both-circle__prev, .arrow-both-circle__next, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close {
   display: inline-block; }
 
@@ -1205,7 +1230,6 @@ img {
   text-align: left;
   font-size: 18px;
   font-weight: 600;
-  line-height: 1.45;
   color: #fff !important;
   overflow: hidden; }
   .button-aurora:before {
@@ -1224,7 +1248,8 @@ img {
   .button-aurora__text {
     position: relative;
     display: inline-block;
-    vertical-align: middle; }
+    vertical-align: middle;
+    line-height: 1.45; }
   .button-aurora__icon {
     position: absolute;
     top: 50%;
@@ -1628,6 +1653,8 @@ img {
         left: 0;
         height: 3px;
         background: #59b4e6; }
+    .nav-side__arrow {
+      display: none; }
     .nav-side__link {
       padding: 0;
       padding-bottom: 25px; }
@@ -1764,20 +1791,20 @@ img {
       height: 1px;
       background: #fff;
       z-index: 20; }
-    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__name, .nav-video__item.--active .nav-video__name {
+    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__name, .nav-video__item.--loading .nav-video__name, .nav-video__item.--active .nav-video__name {
       color: #fff; }
-    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__bg, .nav-video__item.--active .nav-video__bg {
+    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__bg, .nav-video__item.--loading .nav-video__bg, .nav-video__item.--active .nav-video__bg {
       -webkit-transform: scale(1);
               transform: scale(1);
       opacity: 1; }
-    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__icon, .nav-video__item.--active .nav-video__icon {
+    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__icon, .nav-video__item.--loading .nav-video__icon, .nav-video__item.--active .nav-video__icon {
       -webkit-transform: scale(1.5);
               transform: scale(1.5);
       opacity: 0; }
-    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__close:before, .nav-video__item.--active .nav-video__close:before {
-      -webkit-transition: all .1s .4s;
-      transition: all .1s .4s; }
-    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__close:after, .nav-video__item.--active .nav-video__close:after {
+    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__close:before, .nav-video__item.--loading .nav-video__close:before, .nav-video__item.--active .nav-video__close:before {
+      -webkit-transition: all .1s .3s;
+      transition: all .1s .3s; }
+    .mrkwbr-no-mobile .nav-video__item:hover .nav-video__close:after, .nav-video__item.--loading .nav-video__close:after, .nav-video__item.--active .nav-video__close:after {
       -webkit-transition: all .1s .2s;
       transition: all .1s .2s; }
     .nav-video__item.--active .nav-video__close:before {
@@ -5129,6 +5156,11 @@ img {
 .catalog.--replace .catalog__replace:before {
   width: 100%; }
 
+.catalog__content {
+  display: none; }
+  .catalog__content.--active {
+    display: block; }
+
 .catalog__section {
   position: relative; }
 
@@ -5146,6 +5178,9 @@ img {
   height: 190px; }
   .catalog__ctrl-main__input {
     padding-right: calc(1 * (100vw - 1520px)/ 2); }
+
+.catalog__ctrl-filter.--disabled {
+  visibility: hidden; }
 
 .catalog__ctrl-more {
   display: -webkit-box;

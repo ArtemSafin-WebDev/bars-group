@@ -37,6 +37,7 @@
 		}
 
 		.mrkwbr-no-mobile &:hover,
+		&.--loading,
 		&.--active {
 
 			.nav-video__name {
@@ -55,7 +56,7 @@
 
 			.nav-video__close {
 				&:before {
-					transition: all .1s .4s;
+					transition: all .1s .3s;
 				}
 				&:after {
 					transition: all .1s .2s;
