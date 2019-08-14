@@ -72,6 +72,18 @@ module.exports = {
 			});
 		});
 
+		// update popup filter
+		self._elems.$popup.find('input').each(function () {
+			var filterId = $(this).attr('name');
+			var filterItemId = $(this).attr('value');
+			var filterState = self._state.filter[filterId];
+			var isChecked = filterState.value == filterItemId;
+			$(this)
+				.prop('checked', isChecked).iCheck('update')
+				.closest('.form-filter__item').find('.form-filter__count')
+				.html(filterState.counts[filterItemId]);
+		});
+
 	},
 
 	_renderSearchView: function () {
@@ -310,7 +322,7 @@ module.exports = {
 		self._renderCurrentView();
 	},
 
-	_handleFilterReset: function (e) {
+	_handlePopupReset: function (e) {
 		var self = e.data.self;
 
 		e.preventDefault();
@@ -321,10 +333,21 @@ module.exports = {
 		$.fancybox.close();
 	},
 
+	_handlePopupApply: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+		
+		var $popup = self._elems.$popup;
+		self._state.filter.customer.value = $popup.find('[name="customer"]:checked').val();
+		self._state.filter.type.value = $popup.find('[name="type"]:checked').val();
+		self._renderCurrentView();
+		$.fancybox.close();
+	},
+
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$popup.on('click', '.form-filter__reset', {self: self}, self._handleFilterReset);
 		self._elems.$_.on('mouseenter', '.nav-video__item', {self: self}, self._handleIndustryMouseenter);
 		self._elems.$_.on('mouseleave', '.nav-video__item', {self: self}, self._handleIndustryMouseleave);
 		self._elems.$_.on('click', '.nav-video__item', {self: self}, self._handleIndustryClick);
@@ -333,6 +356,8 @@ module.exports = {
 		self._elems.$_.on('click', '.tPortfolioSearch__lang a', {self: self}, self._handleLetterClick);
 		self._elems.$_.on('submit', '.js-catalog-form', {self: self}, self._handleFormSubmit);
 		self._elems.$_.on('click', '.nav-cats__link', {self: self}, self._handleFilterLink);
+		self._elems.$popup.on('click', '.form-filter__reset', {self: self}, self._handlePopupReset);
+		self._elems.$popup.on('click', '.js-catalog-apply', {self: self}, self._handlePopupApply);
 	},
 
 	init: function () {

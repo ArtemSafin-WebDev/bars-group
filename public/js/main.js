@@ -33274,6 +33274,15 @@ module.exports = {
         $(this).find('.nav-cats__count').html(filterState.counts[filterItemId]);
         $(this).toggleClass('--active', isItemActive);
       });
+    }); // update popup filter
+
+
+    self._elems.$popup.find('input').each(function () {
+      var filterId = $(this).attr('name');
+      var filterItemId = $(this).attr('value');
+      var filterState = self._state.filter[filterId];
+      var isChecked = filterState.value == filterItemId;
+      $(this).prop('checked', isChecked).iCheck('update').closest('.form-filter__item').find('.form-filter__count').html(filterState.counts[filterItemId]);
     });
   },
   _renderSearchView: function _renderSearchView() {
@@ -33458,7 +33467,7 @@ module.exports = {
 
     self._renderCurrentView();
   },
-  _handleFilterReset: function _handleFilterReset(e) {
+  _handlePopupReset: function _handlePopupReset(e) {
     var self = e.data.self;
     e.preventDefault();
     self._state.filter.customer.value = 'total';
@@ -33468,12 +33477,19 @@ module.exports = {
 
     $.fancybox.close();
   },
+  _handlePopupApply: function _handlePopupApply(e) {
+    var self = e.data.self;
+    e.preventDefault();
+    var $popup = self._elems.$popup;
+    self._state.filter.customer.value = $popup.find('[name="customer"]:checked').val();
+    self._state.filter.type.value = $popup.find('[name="type"]:checked').val();
+
+    self._renderCurrentView();
+
+    $.fancybox.close();
+  },
   _bindUI: function _bindUI() {
     var self = this;
-
-    self._elems.$popup.on('click', '.form-filter__reset', {
-      self: self
-    }, self._handleFilterReset);
 
     self._elems.$_.on('mouseenter', '.nav-video__item', {
       self: self
@@ -33506,6 +33522,14 @@ module.exports = {
     self._elems.$_.on('click', '.nav-cats__link', {
       self: self
     }, self._handleFilterLink);
+
+    self._elems.$popup.on('click', '.form-filter__reset', {
+      self: self
+    }, self._handlePopupReset);
+
+    self._elems.$popup.on('click', '.js-catalog-apply', {
+      self: self
+    }, self._handlePopupApply);
   },
   init: function init() {
     var self = this;
