@@ -1124,6 +1124,8 @@ img {
     margin-top: 100px;
     height: 4px;
     background: #e6ebf2; }
+  .loader-main .brand-box__image {
+    margin-right: 0; }
 
 @media all and (max-width: 600px) {
   .loader-main__line {
@@ -4913,6 +4915,8 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -4920,11 +4924,14 @@ img {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 30px; }
+  .form-filter__ctrl__left {
+    padding-right: 20px; }
 
 .form-filter__reset {
   position: relative;
   padding-left: 25px;
-  font-size: 16px;
+  display: inline-block;
+  margin: 20px 0;
   color: #d74738; }
   .form-filter__reset:hover {
     color: #e06e62; }

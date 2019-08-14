@@ -310,9 +310,21 @@ module.exports = {
 		self._renderCurrentView();
 	},
 
+	_handleFilterReset: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		self._state.filter.customer.value = 'total';
+		self._state.filter.type.value = 'total';
+		self._renderCurrentView();
+		$.fancybox.close();
+	},
+
 	_bindUI: function () {
 		var self = this;
 
+		self._elems.$popup.on('click', '.form-filter__reset', {self: self}, self._handleFilterReset);
 		self._elems.$_.on('mouseenter', '.nav-video__item', {self: self}, self._handleIndustryMouseenter);
 		self._elems.$_.on('mouseleave', '.nav-video__item', {self: self}, self._handleIndustryMouseleave);
 		self._elems.$_.on('click', '.nav-video__item', {self: self}, self._handleIndustryClick);
