@@ -1,0 +1,206 @@
+.iArch {
+  &__head {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+  }
+  &-slider {
+    margin-top: 60px;
+    margin-left: 150px;
+    max-width: 500px;
+    &Item {
+      &__title {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 25px;
+        &+.iArch {
+          &-slider {
+            &Item {
+              &__desc {
+                margin-top: 24px;
+              }
+            }
+          }
+        }
+      }
+      &__desc {
+        font-size: 14px;
+        line-height: 21px;
+      }
+    }
+    .owl {
+      &-nav {
+        position: absolute;
+        bottom: -55px;
+        right: 0;
+        button {
+          &.owl {
+            &-prev, &-next {
+              width: 35px;
+              height: 35px;
+              border-radius: 100%;
+              background: #EFF4FD;
+              color: #6E7F95;
+              font-family: icomoon!important;
+              &.disabled {
+                opacity: 0.5;
+                cursor: default;
+              }
+              span {
+                display: none;
+              }
+              &:before {
+                position: relative;
+                top: -2px;
+                font-size: 14px;
+              }
+            }
+            &-prev {
+              &:before {
+                content: '\e904';
+              }
+            }
+            &-next {
+              margin-left: 5px;
+              &:before {
+                content: '\e905';
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &-layers {
+    position: relative;
+    max-width: 1000px;
+    z-index: 0;
+  }
+  &-layer {
+    transition: 0.3s linear;
+    &--1 {
+      position: relative;
+      z-index: 1;
+      .iArch {
+        &-layer {
+          &-top, &-bottom {
+            transform: translateY(-50px);
+          }
+        }
+      }
+      .iArch {
+        &-layer {
+          &-bottom {
+            position: relative;
+          }
+        }
+      }
+      &.active {
+        &--2 {
+          margin: 15px 0 50px;
+          .iArch {
+            &-layer {
+              &-top {
+                opacity: 0.5;
+              }
+              &-top, &-bottom {
+                transform: translateY(15px);
+              }
+            }
+          }
+        }
+        &--3 {
+          margin: 110px 0 120px;
+          .iArch {
+            &-layer {
+              &-top {
+                opacity: 0.25;
+              }
+
+              &-top, &-bottom {
+                transform: translateY(55px);
+              }
+            }
+          }
+        }
+      }
+    }
+    &--2 {
+      z-index: 2;
+      .iArch {
+        &-layer {
+          &-top, &-bottom {
+            transform: translateY(-145px);
+          }
+        }
+      }
+      &.active {
+        .iArch {
+          &-layer {
+            &-top, &-bottom {
+              transform: translateY(-40px);
+            }
+          }
+        }
+        &--3 {
+          .iArch {
+            &-layer {
+              &-top {
+                opacity: 0.5;
+              }
+              &-top, &-bottom {
+                transform: translateY(0px);
+              }
+            }
+          }
+        }
+      }
+    }
+    &--3 {
+      z-index: 3;
+      .iArch {
+        &-layer {
+          &-top, &-bottom {
+            transform: translateY(-260px);
+          }
+        }
+      }
+      &.active {
+        .iArch {
+          &-layer {
+            &-top, &-bottom {
+              transform: translateY(-165px);
+            }
+          }
+        }
+      }
+    }
+    &--2, &--3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: 0.5s linear;
+      &.active {
+        opacity: 1;
+        transition: 0.5s linear;
+      }
+    }
+    &-top, &-bottom {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      transition: .5s ease-out;
+    }
+    &-top {
+      z-index: 5;
+    }
+    &-bottom {
+      z-index: 0;
+    }
+  }
+}
