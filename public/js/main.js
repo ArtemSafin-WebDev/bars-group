@@ -33282,7 +33282,7 @@ module.exports = {
       var filterItemId = $(this).attr('value');
       var filterState = self._state.filter[filterId];
       var isChecked = filterState.value == filterItemId;
-      $(this).prop('checked', isChecked).iCheck('update').closest('.form-filter__item').find('.form-filter__count').html(filterState.counts[filterItemId]);
+      $(this).prop('checked', isChecked).iCheck('update').trigger('ifToggled').closest('.form-filter__item').find('.form-filter__count').html(filterState.counts[filterItemId]);
     });
   },
   _renderSearchView: function _renderSearchView() {

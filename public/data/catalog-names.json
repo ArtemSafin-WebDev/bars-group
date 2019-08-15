@@ -2,8 +2,8 @@
 	"filterCounts": {
 		"customer": {
 			"total": 23,
-			"forBusiness": 20,
-			"forState": 3
+			"business": 20,
+			"state": 3
 		},
 		"type": {
 			"total": 23,

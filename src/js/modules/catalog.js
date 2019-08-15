@@ -79,7 +79,7 @@ module.exports = {
 			var filterState = self._state.filter[filterId];
 			var isChecked = filterState.value == filterItemId;
 			$(this)
-				.prop('checked', isChecked).iCheck('update')
+				.prop('checked', isChecked).iCheck('update').trigger('ifToggled')
 				.closest('.form-filter__item').find('.form-filter__count')
 				.html(filterState.counts[filterItemId]);
 		});
