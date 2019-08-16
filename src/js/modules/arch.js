@@ -9,7 +9,7 @@ module.exports = {
         $layers: $()
     },
 
-    _initSlider : function(){
+    _initSlider: function(){
         var self = this;
 
         if ( self._elems.$slider.length == 0 ) return;
@@ -44,19 +44,5 @@ module.exports = {
         self._elems.$layers = $_.find('.iArch-layers');
 
         self._initSlider();
-
-        /*var i = 1;
-
-        setInterval(function(){
-            $('.iArch-layer').each(function(){
-                $(this).removeClass('active active-1 active-2 active-3');
-                $(this).addClass('active-' + i);
-                if($(this).index() < i)
-                    $(this).addClass('active');
-            });
-
-            i++;
-            if(i > 3) i = 1;
-        }, 1500);*/
     }
 };

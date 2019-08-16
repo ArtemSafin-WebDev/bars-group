@@ -25,6 +25,7 @@ var About = require('./about');
 var Talgat = require('./talgat');
 var Utils = require('./utils');
 var Popup = require('./popup');
+var Arch = require('./arch');
 
 module.exports = {
 
@@ -98,6 +99,7 @@ module.exports = {
 		NavSticker.init();
 		About.init();
 		Talgat.init();
+		Arch.init();
 	},
 
 	_handleWindowLoad: function () {
