@@ -6617,6 +6617,13 @@ img {
   width: 600px; }
   .popup--large {
     width: 950px; }
+  .popup--fixed {
+    position: fixed;
+    top: 0;
+    left: -9999px; }
+    .popup--fixed.fancybox-content {
+      position: relative;
+      left: 0; }
   .popup__close {
     -webkit-transition: all .2s;
     transition: all .2s;

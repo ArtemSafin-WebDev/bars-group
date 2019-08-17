@@ -7,6 +7,17 @@
 		width: 950px;
 	}
 
+	&--fixed {
+		position: fixed;
+		top: 0;
+		left: -9999px;
+
+		&.fancybox-content {
+			position: relative;
+			left: 0;
+		}
+	}
+
 	&__close {
 		@extend .icon;
 		@extend .icon-close;
