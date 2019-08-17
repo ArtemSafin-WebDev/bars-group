@@ -1,8 +1,37 @@
 var $ = require('jquery');
 var autosize = require('autosize');
+require('jquery.maskedinput');
+require('jquery-validation');
+require('jquery-form')($);
 require('icheck');
 
+$.extend( $.validator.messages, {
+    required: "Вы пропустили поле",
+    email: "Подправьте email"
+});
+
+var notify = require('./notify');
+
 module.exports = {
+
+	_resetForm: function ($form) {
+		$form.data().validator.resetForm();
+		$form
+			.find('input, textarea').trigger('change')
+			.filter('input').iCheck('update');
+	},
+
+	isItPopupForm: function ($form) {
+		return !!$form.closest('.popup').length;
+	},
+
+	_handleFocusOnPhone: function (e) {
+		var self = e.data.self;
+
+		$(this).mask('+9 (999) 999-99-99', {
+		    placeholder: " "
+		});
+	},
 
 	_handleFocusOnInput: function (e) {
 		var self = e.data.self;
@@ -16,7 +45,7 @@ module.exports = {
 		$(this).parent().removeClass('--focus');
 	},
 
-	_handleInputChange: function (e) {
+	_handleFilledState: function (e) {
 		var self = e.data.self;
 
 		$(this).parent().toggleClass('--filled', !!$(this).val().length);
@@ -49,26 +78,123 @@ module.exports = {
 		$(this).closest('.form__check').toggleClass('--active', isChecked);
 	},
 
+	_handleFormSubmit: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		var $form = $(this);
+		var action = $form.data('action');
+
+		$form.addClass('--loading');
+
+		setTimeout(function () {
+
+			$form.ajaxSubmit({
+				url: action,
+				dataType: 'json',
+				success: function (data) {
+					if ( data.status == 'success' ) {
+
+						// notify success
+						if ( self.isItPopupForm($form) ) {
+
+							$.fancybox.close();
+							
+							// care about compensate-scrollbar width
+							setTimeout(function () {
+								$.fancybox.open({
+									src: '#form-success',
+									type: 'inline',
+									modal: true
+								});
+							}, 500);
+
+						} else {
+							$form.addClass('--success');
+						}
+
+						self._resetForm($form);
+
+					} else {
+					     // notify error
+					    notify('Ошибка при отправке', 'Некорректный ответ от сервера');
+					}
+					$form.removeClass('--loading');
+				},
+				error: function (jqXHR, textStatus) {
+					// notify error
+					notify('Ошибка при отправке', textStatus);
+
+					$form.removeClass('--loading');
+				}
+			});
+
+		}, 500);
+
+	},
+
+	_handleSuccessClose: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		$(this).closest('form').removeClass('--success');
+	},
+
+	_handleICheckValidation: function (e) {
+		var self = e.data.self;
+
+		var validator = $(this).closest('form').data().validator;
+		validator.element(this);
+	},
+
 	_bindUI: function () {
 		var self = this;
 
-		$(document).on('ifCreated ifToggled', '.form__check input', {self: self}, self._handleCheckedState);
+		$(document).on('click', '.js-form-complete', {self: self}, self._handleSuccessClose);
 		$(document).on('focus', '.js-form-input', {self: self}, self._handleFocusOnInput);
 		$(document).on('blur', '.js-form-input', {self: self}, self._handleBlurOnInput);
-		$(document).on('change', '.js-form-input', {self: self}, self._handleInputChange);
+		$(document).on('change', '.js-form-input', {self: self}, self._handleFilledState);
+		$(document).on('focus', '.js-form-phone', {self: self}, self._handleFocusOnPhone);
 		$(document).on('change', '.js-form-file', {self: self}, self._handleFileChange);
+		$(document).on('ifCreated ifToggled', '.form__check input', {self: self}, self._handleCheckedState);
+		$(document).on('ifToggled', '.js-form-validate input', {self: self}, self._handleICheckValidation);
+		$(document).on('submit', '.js-form-validate', {self: self}, self._handleFormSubmit);
 	},
 
 	init: function () {
 		var self = this;
 
+		self._bindUI();
+
 		// init autosize
 		autosize($('textarea'));
 
-		self._bindUI();		
-
 		// init checkboxes
 		$('input').iCheck();
+
+		// init validate
+		$('.js-form-validate').each(function () {
+			$(this).validate({
+				focusInvalid: false,
+				errorClass: '--error',
+				messages: {
+				    agree: "Забыли про галочку",
+				},
+				errorPlacement: function($error, $element) {
+					var $parent = $element.closest('.js-form-error-box');
+					$error.appendTo($parent);
+				},
+				highlight: function(element, errorClass) {
+					$(element).parent().addClass(errorClass);
+				},
+				unhighlight: function(element, errorClass) {
+					$(element).parent().removeClass(errorClass);
+				}
+			});
+		});
+
 	}
 
 };

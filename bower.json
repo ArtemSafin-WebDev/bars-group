@@ -14,20 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.4.1",
-    "destyle.css": "https://github.com/nicolas-cusan/destyle.css.git#1.0.5",
-    "objectFitPolyfill": "https://github.com/constancecchen/object-fit-polyfill.git#^2.2.0",
-    "bootstrap": "^4.3.1",
-    "rangeslider.js": "^2.3.2",
-    "perfect-scrollbar": "https://github.com/utatti/perfect-scrollbar.git#v1.4.0",
-    "autosize": "https://github.com/jackmoore/autosize.git#^4.0.2",
-    "iCheck": "https://github.com/fronteed/icheck.git#1.0.2",
-    "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.3.4",
-    "dragscroll": "https://github.com/asvd/dragscroll.git#0.0.8",
-    "swiper": "https://github.com/nolimits4web/swiper.git#^4.5.0",
-    "midnight": "https://github.com/Aerolab/midnight.js.git#^1.1.2",
     "jQuery-One-Page-Nav": "https://github.com/davist11/jQuery-One-Page-Nav.git#^3.0.0",
-    "sticky-sidebar": "https://github.com/abouolia/sticky-sidebar.git#^3.3.3",
-    "notifyjs": "0.4.2"
+    "jquery.maskedinput": "^1.4.1",
+    "jquery-form": "https://github.com/jquery-form/form.git#^4.2.2"
   }
 }

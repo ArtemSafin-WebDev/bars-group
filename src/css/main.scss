@@ -1,9 +1,9 @@
 
 // vendor
-@import '../../bower_components/destyle.css/destyle';
-@import '../../bower_components/owl.carousel/dist/assets/owl.carousel.css';
-@import '../../bower_components/owl.carousel/dist/assets/owl.theme.default.css';
-@import '../../bower_components/swiper/dist/css/swiper.css';
+@import '../../node_modules/destyle.css/destyle';
+@import '../../node_modules/owl.carousel/dist/assets/owl.carousel.css';
+@import '../../node_modules/owl.carousel/dist/assets/owl.theme.default.css';
+@import '../../node_modules/swiper/dist/css/swiper.css';
 @import '../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css';
 @import 'vendor/bootstrap-transitions';
 @import 'vendor/perfect-scrollbar';
@@ -117,6 +117,7 @@ img {
 @import 'blocks/news-slider';
 @import 'blocks/tech-promo';
 @import 'blocks/popup';
+@import 'blocks/success';
 
 @media all and (max-width: 600px) {
 

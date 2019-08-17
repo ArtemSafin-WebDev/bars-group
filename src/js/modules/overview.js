@@ -1,6 +1,6 @@
 var $ = require('jquery');
-require('./../../../bower_components/bootstrap/js/dist/util');
-require('./../../../bower_components/bootstrap/js/dist/collapse');
+require('./../../../node_modules/bootstrap/js/dist/util');
+require('./../../../node_modules/bootstrap/js/dist/collapse');
 
 module.exports = {
 

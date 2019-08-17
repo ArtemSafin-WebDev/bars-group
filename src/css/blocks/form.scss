@@ -66,6 +66,21 @@
 
 .form {
 
+	position: relative;
+
+	&.--success {
+		.success {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	&__tip {
+		margin-top: 10px;
+		font-size: 12px;
+		color: rgba(#000, .3);
+	}
+
 	&__check {
 		display: flex;
 		align-items: center;
@@ -89,7 +104,14 @@
 		}
 	
 	}
-	
+
+	label.--error {
+		display: block;
+		margin-top: 10px;
+		font-size: 12px;
+		color: #c32118;
+	}
+
 }
 
 @media all and (max-width: 600px) {

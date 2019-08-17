@@ -429,7 +429,16 @@ layout: default.hbs
 
 	<div class="page__gap-120"></div>
 
-	<form data-action="data/form-success.json" method="get" class="form form-job" id="form-job">
+	<form data-action="data/form-success.json" method="get" class="form form-job js-form-validate" id="form-job">
+
+		<div class="loader">
+		    <div class="loader__circle">
+		    	<svg height="100" width="100" class="loader__spinner">
+		    	    <circle cx="50" cy="50" r="45" fill="none" stroke-width="4" stroke-miterlimit="10" class="loader__stroke"></circle>
+		    	</svg>
+		    </div>
+		</div>
+		
 		<div class="page__center">
 			<div class="page__inner">
 				
@@ -449,44 +458,44 @@ layout: default.hbs
 
 						<div class="form-job__col-right">
 							<div class="form-job__list">
-								<div class="form-job__item">
-									<div class="input-brianna --filled">
-										<input type="text" class="input-brianna__field js-form-input" value="Ирек">
+								<div class="form-job__item js-form-error-box">
+									<div class="input-brianna">
+										<input name="firstname" type="text" class="input-brianna__field js-form-input" required>
 										<div class="input-brianna__label">Имя</div>
 									</div>
 								</div>
-								<div class="form-job__item">
-									<div class="input-brianna --filled">
-										<input type="text" class="input-brianna__field js-form-input" value="Гимадеев">
+								<div class="form-job__item js-form-error-box">
+									<div class="input-brianna">
+										<input name="surname" type="text" class="input-brianna__field js-form-input" required>
 										<div class="input-brianna__label">Фамилия</div>
 									</div>
 								</div>
-								<div class="form-job__item form-job__item--wide">
+								<div class="form-job__item js-form-error-box form-job__item--wide">
 									<div class="input-brianna">
-										<input type="text" class="input-brianna__field js-form-input">
+										<input name="position" type="text" class="input-brianna__field js-form-input" required>
 										<div class="input-brianna__label">Желаемая должность</div>
 									</div>
 								</div>
-								<div class="form-job__item">
-									<div class="input-brianna --filled">
-										<input type="text" class="input-brianna__field js-form-input" value="irek.gimadeev@gmail.com">
+								<div class="form-job__item js-form-error-box">
+									<div class="input-brianna">
+										<input name="email" type="text" class="input-brianna__field js-form-input" required>
 										<div class="input-brianna__label">Эл. почта</div>
 									</div>
 								</div>
-								<div class="form-job__item">
-									<div class="input-brianna --filled">
-										<input type="text" class="input-brianna__field js-form-input" value="+7 999 155-11-1">
+								<div class="form-job__item js-form-error-box">
+									<div class="input-brianna">
+										<input type="tel" class="input-brianna__field js-form-input js-form-phone" required>
 										<div class="input-brianna__label">Телефон</div>
 									</div>
 								</div>
-								<div class="form-job__item form-job__item--wide">
+								<div class="form-job__item js-form-error-box form-job__item--wide">
 									<div class="input-brianna">
 										<textarea class="input-brianna__field js-form-input"></textarea>
 										<div class="input-brianna__label">Сообщение</div>
 									</div>
-									<div class="form-job__tip">Не обязательно</div>
+									<div class="form__tip">Не обязательно</div>
 								</div>
-								<div class="form-job__item form-job__item--wide">
+								<div class="form-job__item js-form-error-box form-job__item--wide form-job__item--file">
 									<div class="input-barbara js-form-file">
 										<input type="file" class="input-barbara__field" multiple="">
 										<div class="input-barbara__files js-form-file__names"></div>
@@ -496,7 +505,7 @@ layout: default.hbs
 								</div>
 								<div class="form-job__item form-job__item--wide">
 									<div class="form-job__ctrl">
-										<div class="form-job__ctrl__left">
+										<div class="form-job__ctrl__left js-form-error-box">
 											<label class="form__check">
 												<div class="form__check__field">
 													<input name="agree" type="checkbox" checked required>
@@ -528,6 +537,31 @@ layout: default.hbs
 
 			</div>
 		</div>
+		
+		<div class="success">
+			<div class="page__center">
+				<div class="page__inner">
+					<div class="success__center">
+						
+						<div class="success__content">
+							<div class="success__title">
+								Спасибо за сообщение! <br>
+								Вы прекрасны!
+							</div>
+							<div class="success__message">
+								Заполните форму обратной связи и наши 
+								менеджеры свяжутся с вами в течение 
+								рабочего дня.
+							</div>
+						</div>
+						
+						<a href="#" class="success__close js-form-complete"></a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</form>
 
 	{{> footer }}

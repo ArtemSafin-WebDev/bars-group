@@ -56,10 +56,13 @@
     "@fancyapps/fancybox": "^3.5.7",
     "autosize": "^4.0.2",
     "bootstrap": "^4.3.1",
+    "destyle.css": "^1.0.9",
     "dragscroll": "0.0.8",
     "icheck": "^1.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^1.12.4",
+    "jquery-validation": "^1.19.1",
     "midnight.js": "^1.1.1",
+    "notifyjs-browser": "^0.4.2",
     "objectFitPolyfill": "^2.2.0",
     "owl.carousel": "^2.3.4",
     "perfect-scrollbar": "^1.4.0",
@@ -69,6 +72,7 @@
   },
   "browser": {
     "jQuery-One-Page-Nav": "./bower_components/jQuery-One-Page-Nav/jquery.nav.js",
-    "notifyjs": "./bower_components/notifyjs/dist/notify.js"
+    "jquery.maskedinput": "./bower_components/jquery.maskedinput/dist/jquery.maskedinput.js",
+    "jquery-form": "./bower_components/jquery-form/dist/jquery.form.min.js"
   }
 }

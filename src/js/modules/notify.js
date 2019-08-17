@@ -1,5 +1,5 @@
 var $ = require('jquery');
-require('notifyjs')($);
+require('notifyjs-browser')($);
 
 $.notify.addStyle("global", {
     html:

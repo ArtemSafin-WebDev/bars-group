@@ -150,7 +150,7 @@ module.exports = {
 		})
 		.fail(function (jqXHR, textStatus) {
 			// notify error
-			notify('Catalog ajax fail.', textStatus);
+			notify('Ошибка при загрузке.', textStatus);
 		})
 		.always(function () {
 			// hide common loader
@@ -210,7 +210,7 @@ module.exports = {
 		})
 		.fail(function (jqXHR, textStatus) {
 			// notify error
-			notify('Catalog ajax fail.', textStatus);
+			notify('Ошибка при загрузке.', textStatus);
 		})
 		.always(function () {
 			// hide common loader
