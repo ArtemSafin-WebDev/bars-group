@@ -302,7 +302,6 @@ module.exports = {
 		self._renderNamesView();
 	},
 
-
 	_handleFormSubmit: function (e) {
 		var self = e.data.self;
 

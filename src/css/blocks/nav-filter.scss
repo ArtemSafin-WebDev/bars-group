@@ -6,10 +6,19 @@
 	line-height: 1.45;
 
 	&__item {
+		position: relative;
 		margin-top: 35px;
 
 		&:first-child {
 			margin-top: 0;
+		}
+
+		&.--active {
+			.nav-options {
+				transform: translateY(0px);
+				visibility: visible;
+				opacity: 1;
+			}
 		}
 	}
 
@@ -38,7 +47,4 @@
 		}
 	}
 
-	&__menu {
-		display: none;
-	}
 }

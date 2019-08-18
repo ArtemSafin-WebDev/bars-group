@@ -35,6 +35,7 @@ layout: default.hbs
 								<a href="#" class="nav-side__link">
 									<span class="nav-side__text">Новости</span>
 								</a>
+								<i class="nav-side__arrow"></i>
 							</div>
 							<div class="nav-side__item">
 								<a href="#" class="nav-side__link">
@@ -88,29 +89,45 @@ layout: default.hbs
 					{{!-- /nav-cats --}}
 
 					{{!--  nav-filter --}}
-					<div class="nav-filter">
+					<div class="nav-filter" id="nav-filter">
 						<div class="nav-filter__item">
 							<a href="#" class="nav-filter__button"><span>Год публикации</span></a>
-							<div class="nav-filter__menu">
-								<div class="nav-filter__list">
-									<div><a href="#">2019</a></div>
-									<div><a href="#">2018</a></div>
-									<div><a href="#">2017</a></div>
+							<div class="nav-options">
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2019</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2018</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2017</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2016</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2015</a>
 								</div>
 							</div>
 						</div>
 						<div class="nav-filter__item">
 							<a href="#" class="nav-filter__button"><span>По направлениям</span></a>
-							<div class="nav-filter__menu">
-								<div class="nav-filter__list">
-									<div><a href="#">Здравоохранение</a></div>
-									<div><a href="#">Строительство</a></div>
-									<div><a href="#">Финансы</a></div>
+							<div class="nav-options">
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">Здравоохранение</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">Строительство</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">Финансы</a>
 								</div>
 							</div>
 						</div>
 					</div>
 					{{!-- /nav-filter --}}
+
+					
 
 				</div>
 				<div class="page__col-main">
