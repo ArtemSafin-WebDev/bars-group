@@ -2130,7 +2130,7 @@ img {
   top: 100%;
   left: 0;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 6px 0;
   border: 1px solid #eff4fd;
   -webkit-box-shadow: 0 0 15px rgba(111, 143, 182, 0.3);
@@ -2621,6 +2621,8 @@ img {
         .header__menu__item--more.--shown {
           visibility: visible; }
         .header__menu__item--more.--opened .header__menu__down {
+          -webkit-transform: translateY(0px);
+                  transform: translateY(0px);
           visibility: visible;
           opacity: 1; }
         .header__menu__item--more.--opened > a:before {
@@ -2642,8 +2644,10 @@ img {
             margin-top: -7px;
             font-size: 12px; }
     .header__menu__down {
-      -webkit-transition: opacity .2s ease-out, visibility .2s ease-out;
-      transition: opacity .2s ease-out, visibility .2s ease-out;
+      -webkit-transition: all .2s ease-out;
+      transition: all .2s ease-out;
+      -webkit-transform: translateY(30px);
+              transform: translateY(30px);
       position: absolute;
       z-index: 110;
       top: 100%;

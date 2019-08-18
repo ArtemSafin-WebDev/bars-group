@@ -65,6 +65,7 @@
 				&.--opened {
 
 					.header__menu__down {
+						transform: translateY(0px);
 						visibility: visible;
 						opacity: 1;
 					}
@@ -96,7 +97,8 @@
 		}
 
 		&__down {
-			transition: opacity .2s ease-out, visibility .2s ease-out;
+			transition: all .2s ease-out;
+			transform: translateY(30px);
 			position: absolute;
 			z-index: 110;
 			top: 100%;
