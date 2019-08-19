@@ -1,674 +1,544 @@
 ---
-title: Новости
+title: Пресс-центр
 layout: default.hbs
 ---
 
 <div class="page__wrapper" id="wrapper">
 
-    {{> header }}
+	{{> header }}
 
-    <div class="brand-box brand-box--has-label">
-        <div class="page__center">
-            <div class="page__inner">
-                <div class="brand-box__inner">
-                    <div class="brand-box__image">
-                        <img src="img/barsgroup.svg" alt="" width="151" height="63">
-                    </div>
-                    <div class="brand-box__desc">
-                        <div class="page__label">Новости</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="brand-box brand-box--has-label">
+		<div class="page__center">
+			<div class="page__inner">
+				<div class="brand-box__inner">
+					<div class="brand-box__image">
+						<img src="img/barsgroup.svg" alt="" width="151" height="63">
+					</div>
+					<div class="brand-box__desc">
+						<div class="page__label">Пресс-центр</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="page__center">
-        <div class="page__inner">
+	<div class="page__center">
+		<div class="page__inner">
+			
+			<div class="clearfix">
+				<div class="page__col-side">
+					
+					{{!--  nav-side --}}
+					<nav class="nav-side">
+						<div class="nav-side__list">
+							<div class="nav-side__item --active">
+								<a href="news.html" class="nav-side__link">
+									<span class="nav-side__text">Новости</span>
+								</a>
+								<i class="nav-side__arrow"></i>
+							</div>
+							<div class="nav-side__item">
+								<a href="news-search.html" class="nav-side__link">
+									<span class="nav-side__text">Поиск</span>
+								</a>
+							</div>
+						</div>
+					</nav>
+					{{!-- /nav-side --}}
 
-            <div class="clearfix">
-                <div class="page__col-main">
-                    <div class="news-details">
+					{{!--  nav-cats --}}
+					<nav class="nav-cats">
+						<div class="nav-cats__scroll">
+							<div class="nav-cats__item --active">
+								<a href="#" class="nav-cats__link">
+									<span class="nav-cats__text">Все</span><span class="nav-cats__count">10 726</span>
+								</a>
+							</div>
+							<div class="nav-cats__item">
+								<a href="#" class="nav-cats__link">
+									<span class="nav-cats__text">Праздники</span><span class="nav-cats__count">23</span>
+								</a>
+							</div>
+							<div class="nav-cats__item">
+								<a href="#" class="nav-cats__link">
+									<span class="nav-cats__text">Мероприятия</span><span class="nav-cats__count">239</span>
+								</a>
+							</div>
+							<div class="nav-cats__item">
+								<a href="#" class="nav-cats__link">
+									<span class="nav-cats__text">Корпоративные новости</span><span class="nav-cats__count">239</span>
+								</a>
+							</div>
+							<div class="nav-cats__item">
+								<a href="#" class="nav-cats__link">
+									<span class="nav-cats__text">Интервью</span><span class="nav-cats__count">4</span>
+								</a>
+							</div>
+							<div class="nav-cats__item">
+								<a href="#" class="nav-cats__link">
+									<span class="nav-cats__text">Партнерство</span><span class="nav-cats__count">31</span>
+								</a>
+							</div>
+							<div class="nav-cats__item">
+								<a href="#" class="nav-cats__link">
+									<span class="nav-cats__text">Проекты</span><span class="nav-cats__count">1 041</span>
+								</a>
+							</div>
+						</div>
+					</nav>
+					{{!-- /nav-cats --}}
 
-                        
-                        <div class="news-details__previous-article">
-                            <a href="#" class="news-details__previous-article-arrow js-news-previous-article">
-                                <span class="icon icon-arrow-thin-right"></span>
-                            </a>
-                            <a href="#" class="news-details__previous-article-content">
-                                <span class="news-details__previous-article-image-container">
-                                    <img src="img/news/next-news-photo.jpg" alt=""
-                                        class="news-details__previous-article-image">
-                                </span>
-                                <span class="news-details__description">
-                                    <p>
-                                        Представители компании «БАРС Груп» выступили экспертами на Всероссийском
-                                        Поволжском агрофоруме
-                                    </p>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="news-details__next-article">
-                            <a href="#" class="news-details__next-article-arrow js-news-next-article">
-                                <span class="icon icon-arrow-thin-right"></span>
-                            </a>
-                            <a href="#" class="news-details__next-article-content">
-                                <span class="news-details__next-article-image-container">
-                                    <img src="img/news/next-news-photo.jpg" alt=""
-                                        class="news-details__next-article-image">
-                                </span>
-                                <span class="news-details__description">
-                                    <p>
-                                        Представители компании «БАРС Груп» выступили экспертами на Всероссийском
-                                        Поволжском агрофоруме
-                                    </p>
-                                </span>
-                            </a>
-                        </div>
-                      
-                        <div class="news-details__heading-block">
-                            <h1>
-                                Представители «БАРС Груп» выступили экспертами на Поволжском агрофоруме
-                            </h1>
-                            <time class="article__date news-details__date" datetime="2019-01-17">17 января 2019</time>
-                        </div>
+					{{!--  nav-filter --}}
+					<div class="nav-filter" id="nav-filter">
+						<div class="nav-filter__item">
+							<a href="#" class="nav-filter__button"><span>Год публикации</span></a>
+							<div class="nav-options">
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2019</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2018</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2017</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2016</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">2015</a>
+								</div>
+							</div>
+						</div>
+						<div class="nav-filter__item">
+							<a href="#" class="nav-filter__button"><span>По направлениям</span></a>
+							<div class="nav-options">
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">Здравоохранение</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">Строительство</a>
+								</div>
+								<div class="nav-options__item">
+									<a href="#" class="nav-options__link">Финансы</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{!-- /nav-filter --}}
 
-                        <div class="news-details__content js-news-details-content">
+				</div>
+				<div class="page__col-main">
 
-                            <div class="news-details__brief">
-                                Представители «БАРС Груп», дочерней компании Национального Центра Информатизации,
-                                приняли участие в круглых столах с участием Министерства сельского хозяйства  и
-                                продовольствия РТ в рамках Поволжского агропромышленного форума.
-                            </div>
+					{{!--  slider-content --}}
+					<section class="slider-content" id="slider-content">
+						<div class="slider-content__wrapper">
+							<div class="owl-carousel">
+								<article class="slider-content__item">
+									<div class="slider-content__image" style="background-image: url(https://picsum.photos/id/204/1500/600.jpg);">
+										<div class="bg-layer__color"></div>
+									</div>
+									<div class="slider-content__desc">
+										<time class="article__date slider-content__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="slider-content__h1">
+											Ространснадзор будет рассчитывать риски в цифровом сервисе, разработанном <span class="nobr">«БАРС Груп»</span>
+										</h3>
+										<div class="slider-content__text">
+											В результате обновлений платформа перешла на российскую СУБД PostgreSQL, платформа перешла на российскую СУБД PostgreSQL.
+										</div>
+									</div>
+								</article>
+								<article class="slider-content__item">
+									<div class="slider-content__image" style="background-image: url(https://picsum.photos/id/209/1500/600.jpg);">
+										<div class="bg-layer__color"></div>
+									</div>
+									<div class="slider-content__desc">
+										<time class="article__date slider-content__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="slider-content__h1">
+											Социальный регистр населения от победил во всероссийском конкурсе
+										</h3>
+										<div class="slider-content__text">
+											В результате обновлений платформа перешла на российскую СУБД PostgreSQL, платформа перешла на российскую СУБД PostgreSQL.
+										</div>
+									</div>
+								</article>
+								<article class="slider-content__item">
+									<div class="slider-content__image" style="background-image: url(https://picsum.photos/id/202/1500/600.jpg);">
+										<div class="bg-layer__color"></div>
+									</div>
+									<div class="slider-content__desc">
+										<time class="article__date slider-content__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="slider-content__h1">
+											«БАРС Груп» реализовала модуль «Система контрольно-аналитических показателей»
+										</h3>
+										<div class="slider-content__text">
+											Сейчас он функционирует в региональных образовательных системах, собирая и визуализируя данные, хранящиеся функционирует в региональных.	
+										</div>
+									</div>
+								</article>
+							</div>
+						</div>
+						<div class="arrow-both-circle arrow-both-circle--white slider-content__ctrl">
+							<a href="#" class="arrow-both-circle__prev js-slider-content-prev"></a>
+							<a href="#" class="arrow-both-circle__next js-slider-content-next"></a>
+						</div>
+					</section>
+					{{!-- /slider-content --}}
 
+					<div class="page__gap-80"></div>
 
-                            <p>В первый день агрофорума на круглом столе «Создание консорциума Agrotech и применение
-                                цифровых технологий в сельском хозяйстве» они представили цифровые платформы «БАРС
-                                Груп»,
-                                которые улучшают функциональные возможности в сфере ветеринарии и сельского
-                                хозяйства.
-                            </p>
-                            <p>Дискуссию вызвал вопрос оформления субсидий. Участники круглого стола высказали
-                                мнение и
-                                пожелания по доработке существующей подсистемы ИАС АПК «БАРС.Сельское хозяйство –
-                                Субсидирование», обсудили упрощение приема документов и логику процесса их
-                                согласования.
-                                После доработки подсистемы сельхозтоваропроизводители смогут осуществлять подачу
-                                документов
-                                через «единое окно»: разрабатывается процесс приема документов, в результате
-                                которого
-                                все
-                                документы будут приниматься одним специалистом и далее распределяться по отделам
-                                ведомства.
-                            </p>
+					{{!--  article-cards --}}
+					<section class="article-cards" id="article-cards">
+						<div class="article-cards__list">
 
-                            <div class="news-details__photo-slider js-news-details-photo-slider">
-                                <div class="news-details__photo-slider-content">
-                                    <div class="swiper-container">
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href='#' class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1045/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">
+												Антону Алиханову представили мобильное приложение для дежурных врачей Калининграда
+											</a>
+										</h3>
+										<div class="article-cards__text">
+											За период работы системы было сменено 2 бюджетные классификации. Обеспечено формирование Реестра расходных обязательств по внебюджетным фондам. 
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href="#" class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1047/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Социальный регистр населения от победил во всероссийском конкурсе</a>
+										</h3>
+										<div class="article-cards__text">
+											За период работы системы было сменено 2 бюджетные классификации. Обеспечено формирование Реестра расходных обязательств по внебюджетным фондам. 
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="article-cards__col article-cards__col--no-image">
+								<div class="article-cards__item">
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h1">
+											<a href="#">
+												Регионы перенимают опыт Сахалинской области в решении медицинских проблем
+											</a>
+										</h3>
+										<div class="article-cards__text">
+											За период работы системы было сменено 2 бюджетные классификации. Обеспечено формирование Реестра расходных обязательств по внебюджетным фондам. 
+										</div>
+									</div>
+								</div>
+							</article>
+							
+							<article class="article-cards__col article-cards__col--gradient-1  article-cards__col--color-bg">
+								<a href='#' class="article-cards__item js-hover-wings">
+									<div class="article-cards__image"></div>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h1">
+											Более 100 тысяч лицевых счетов региональных операторов ТКО рассчитывается в системе «Биллинговый центр» 
+										</h3>
+										<div class="article-cards__text">
+											За период работы системы было сменено 2 бюджетные классификации. Обеспечено формирование Реестра расходных обязательств по внебюджетным фондам.
+										</div>
+									</div>
+									<div class="arrow-ciara article-cards__arrow">
+										<span></span>
+									</div>
+								</a>
+							</article>
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href='#' class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1049/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">«Цифровые» итоги недели</a>
+										</h3>
+									</div>
+								</div>
+							</article>
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href="#" class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1050/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Объявлены ключевые темы форума БИОТЕХМЕД 2019</a>
+										</h3>
+									</div>
+								</div>
+							</article>
 
-                                        <div class="swiper-wrapper">
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href="#" class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1051/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Еженеделельный дайджест цифровой экономики </a>
+										</h3>
+									</div>
+								</div>
+							</article>
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href='#' class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1052/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Новый модуль компании «БАРС Груп» облегчит процесс аттестации учителя </a>
+										</h3>
+									</div>
+								</div>
+							</article>
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href="#" class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1053/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Социальный регистр населения от «БАРС Груп» победил во всероссийском конкурсе</a>
+										</h3>
+									</div>
+								</div>
+							</article>
+							
+							<div class="article-cards__col">
+								<div class="article-cards__item">
+									
+									<section class="cats-scroll">
+										<h3  class="cats-scroll__title">Рубрики</h3>
+										<div class="cats-scroll__list">
+											<div class="cats-scroll__list__box">
+												{{#repeat 3}}
+												<div><a href="#">Праздники</a><span>12</span></div>
+												<div><a href="#">Мероприятия</a><span>234</span></div>
+												<div><a href="#">Корпоративные новости</a><span>35</span></div>
+												<div><a href="#">Интервью</a><span>12</span></div>
+												<div><a href="#">Рейтинги</a><span>25</span></div>
+												<div><a href="#">Партнерство</a><span>67</span></div>
+												<div><a href="#">Проекты</a><span>146</span></div>
+												{{/repeat}}
+											</div>
+										</div>
+										<div class="cats-scroll__layer"></div>
+									</section>
 
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <a href="https://www.youtube.com/watch?v=ScMzIvxBSi4&t=15s" class="news-details__photo-slider-video-link js-photo-slider-video-link">
-                                                            <img src="img/news-details-slider/news-photo.jpg" alt="" class="news-details__photo-slider-video-preview">
-                                                        </a>
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись видео
-                                                    </div>
-                                                   
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-card">
-                                                    <div class="news-details__photo-slider-image-container">
-                                                        <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                            class="news-details__photo-slider-image">
-                                                    </div>
-                                                    <div class="news-details__photo-slider-description">
-                                                        Подпись фотографии
-                                                    </div>
-                                                    <a href="#" class="news-details__photo-slider-download">
-                                                        <i class="icon icon-download"></i>
-                                                        pdf 2.3 МБ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                           
+								</div>
+							</div>
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href='#' class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1071/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Социальный регистр населения от победил во всероссийском конкурсе</a>
+										</h3>
+										<div class="article-cards__text">
+											За период работы системы было сменено 2 бюджетные классификации. Обеспечено формирование Реестра расходных обязательств по внебюджетным фондам. 
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="article-cards__col  article-cards__col--no-image">
+								<div class="article-cards__item">
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h1">
+											<a href="#">Социальный регистр населения от победил во всероссийском конкурсе</a>
+										</h3>
+										<div class="article-cards__text">
+											За период работы системы было сменено 2 бюджетные классификации. Обеспечено формирование Реестра расходных обязательств по внебюджетным фондам. 
+										</div>
+									</div>
+								</div>
+							</article>
 
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href='#' class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1049/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Социальный регистр населения от «БАРС Груп» победил во всероссийском конкурсе</a>
+										</h3>
+									</div>
+								</div>
+							</article>
+							<article class="article-cards__col article-cards__col--gradient-2  article-cards__col--color-bg">
+								<a href='#' class="article-cards__item js-hover-wings">
+									<div class="article-cards__image"></div>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h1">
+											Социальный регистр населения от «БАРС Груп» победил во всероссийском конкурсе
+										</h3>
+										<div class="article-cards__text">
+											За период работы системы было сменено 2 бюджетные классификации. Обеспечено формирование Реестра расходных обязательств по внебюджетным фондам.
+										</div>
+									</div>
+									<div class="arrow-ciara article-cards__arrow">
+										<span></span>
+									</div>
+								</a>
+							</article>
+							<article class="article-cards__col">
+								<div class="article-cards__item">
+									<a href="#" class="article-cards__image">
+										<span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1050/600/400.jpg);"></span>
+									</a>
+									<div class="article-cards__desc">
+										<time class="article__date article-cards__date" datetime="2019-01-17">17 января 2019</time>
+										<h3 class="article-cards__h2">
+											<a href="#">Социальный регистр населения от «БАРС Груп» победил во всероссийском конкурсе</a>
+										</h3>
+									</div>
+								</div>
+							</article>
 
-                                        </div>
+						</div>
+					</section>
+					{{!-- /article-cards --}}
 
-                                    </div>
-                                    <div class="news-details__photo-slider-arrows">
-                                        <a href="#" class="arrow-both-circle__prev news-details__photo-slider-prev"></a>
-                                        <a href="#" class="arrow-both-circle__next news-details__photo-slider-next"></a>
-                                    </div>
-                                </div>
-                                <div class="news-details__photo-slider-thumbnails gradient-right js-news-details-thumbnails-slider">
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container news-details__photo-slider-thumbnails-image-container--video">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="news-details__photo-slider-thumbnails-image-container">
-                                                    <img src="img/news-details-slider/news-photo.jpg" alt=""
-                                                        class="news-details__photo-slider-thumbnails-image">
-                                                </div>
-                                            </div>
-                                           
-                                           
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+					<div class="page__gap-100"></div>
 
+					{{!--  nav-pager --}}
+					<nav class="nav-pager">
+						<a href="#" class="nav-pager__prev"></a>
+						<a href="#" class="nav-pager__item --active">1</a>
+						<a href="#" class="nav-pager__item">2</a>
+						<a href="#" class="nav-pager__item">3</a>
+						<a href="#" class="nav-pager__item">4</a>
+						<a href="#" class="nav-pager__item">5</a>
+						<a href="#" class="nav-pager__next"></a>
+					</nav>
+					{{!-- /nav-pager --}}
 
-                            <p>В первый день агрофорума на круглом столе «Создание консорциума Agrotech и применение
-                                цифровых технологий в сельском хозяйстве» они представили цифровые платформы «БАРС
-                                Груп»,
-                                которые улучшают функциональные возможности в сфере ветеринарии и сельского
-                                хозяйства.
-                            </p>
-                            <p>Дискуссию вызвал вопрос оформления субсидий. Участники круглого стола высказали
-                                мнение и
-                                пожелания по доработке существующей подсистемы ИАС АПК «БАРС.Сельское хозяйство –
-                                Субсидирование», обсудили упрощение приема документов и логику процесса их
-                                согласования.
-                                После доработки подсистемы сельхозтоваропроизводители смогут осуществлять подачу
-                                документов
-                                через <a href="#">«единое окно»</a>: разрабатывается процесс приема документов, в
-                                результате которого
-                                все
-                                документы будут приниматься одним специалистом и далее распределяться по отделам
-                                ведомства.
-                            </p>
+					<div class="page__gap-160"></div>
 
+					<aside class="subscribe">
+						<form action="#" class="subscribe__form">
+							
+							<div class="subscribe__text">
+								
+								<div class="subscribe__title">
+									Подпишитесь <br>
+									на рассылку
+								</div>
 
+								<div class="subscribe__desc">
+									Это улучшит прослеживаемость и прозрачность процесса согласования документов. 
+								</div>
+								
+							</div>
+							
+							<div class="subscribe__list">
+								<div class="input-brianna input-brianna--email">
+									<input type="text" class="input-brianna__field js-form-input">
+									<div class="input-brianna__label">Ваш email</div>
+									<i class="icon icon-mail input-brianna__icon"></i>
+								</div>
+							</div>
 
-                            <blockquote>
-                                <span class="icon icon-quotes">
+						</form>
+					</aside>
 
-                                </span>
-                                <p>
-                                    Данный фреймворк имеет большое комьюнити, хорошо развивается, и при разработке
-                                    можно
-                                    использовать тот подход, который больше нравится команде.
-                                </p>
-                                <p class="author">
-                                    Святослав, Frontend-разработчик
-                                </p>
-                            </blockquote>
+				</div>
+			</div>
 
+		</div>
+	</div>
 
-                            <h4>
-                                Заголовок
-                            </h4>
-                            <p>
-                                В ИАС АПК, реализованной на платформе для сбора отчетности «Своды», регулярно
-                                собирается
-                                80 отчетов по показателям сельскохозяйственного производства (по надоям,
-                                урожайности,
-                                площадям и другим), из них – 38 отраслевых отчета и 42 оперативных, составляемых по
-                                240
-                                315 показателям.
-                            </p>
+	<div class="page__gap-80"></div>
 
+	<section class="press-center" id="press-center">
+		<div class="page__center">
+			<div class="page__inner">
+				<div class="press-center__content">
+					
+					<h3 class="page__label press-center__label">Пресс-служба</h3>
 
-                            <ul>
-                                <li>
-                                    38 отраслевых отчета
-                                </li>
-                                <li>
-                                    42 оперативных
-                                </li>
-                                <li>
-                                    Министерство презентовало информационные системы, внедренные в республике, среди
-                                    которых была разработка «БАРС Груп» – ИАС АПК
-                                </li>
-                            </ul>
-                            <ol>
-                                <li>
-                                    38 отраслевых отчета
-                                </li>
-                                <li>
-                                    42 оперативных
-                                </li>
-                                <li>
-                                    Министерство презентовало информационные системы, внедренные в республике, среди
-                                    которых была разработка «БАРС Груп» – ИАС АПК
-                                </li>
-                            </ol>
+					<div class="page__col-main">
+						
+						<div class="press-center__list">
+							<div class="press-center__col">
+								<div class="press-center__item">
+									<div class="press-center__desc">
+										<strong>Позвоните</strong> и мы <span class="nobr">проконсультируем вас</span>
+									</div>
+									<div class="press-center__call-lg">
+										<a href="tel:88005000191">8 800 5000 191</a>
+									</div>
+									<div class="press-center__email">
+										<a href="#">pr@bars-open.ru</a>
+									</div>
+									<nav class="nav-social press-center__social">
+										<a href="#" class="nav-social__item">
+											<i class="icon icon-facebook"></i>
+										</a>
+										<a href="#" class="nav-social__item">
+											<i class="icon icon-twitter"></i>
+										</a>
+										<a href="#" class="nav-social__item">
+											<i class="icon icon-sprite-png-habrahabr"></i>
+										</a>
+									</nav>
+								</div>
+							</div>
+							<div class="press-center__col">
+								<div class="press-center__item">
+									<div class="press-center__desc">
+										Начальник пресс-службы
+										<div class="press-center__human">
+											Ермалаев Александр Михаилович
+										</div>
+									</div>
+									<div class="press-center__call-sm">
+										+7 999 555-55-55
+									</div>
+									<div class="press-center__email">
+										<a href="#">pr-boss@bars-open.ru</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
 
+				</div>
+			</div>
+		</div>
+	</section>
 
-                            <h4>
-                                Таблица 1.1
-                            </h4>
-
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Заголовок 1-го столбца
-                                        </th>
-                                        <th>
-                                            Заголовок 2-го столбца
-                                        </th>
-                                        <th>
-                                            Заголовок 3-го столбца
-                                        </th>
-                                        <th>
-                                            Заголовок 4-го столбца
-                                        </th>
-                                        <th>
-                                            Заголовок 5-го столбца
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                        <td>
-                                            К участию
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                        <td>
-                                            Приволжском агропромышленном
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Форуме приглашались руководители сельскохозяйственных
-                                            предприятий
-                                        </td>
-                                        <td>
-                                            Форуме приглашались руководители сельскохозяйственных
-                                            предприятий
-                                        </td>
-                                        <td>
-                                            Форуме приглашались руководители сельскохозяйственных
-                                            предприятий
-                                        </td>
-                                        <td>
-                                            Форуме приглашались руководители сельскохозяйственных
-                                            предприятий
-                                        </td>
-                                        <td>
-                                            Форуме приглашались руководители сельскохозяйственных
-                                            предприятий
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-
-                            <p>
-                                К участию в Приволжском агропромышленном форуме приглашались руководители
-                                сельскохозяйственных предприятий, специалисты (агрономы, ветеринары, зоотехники,
-                                механизаторы), представители власти  и профильных общественных объединений, НИИ и
-                                другие
-                                заинтересованные лица.
-                            </p>
-
-                        </div>
-                        <nav class="news-details__sharing">
-                            <span class="news-details__sharing-text">
-                                Поделиться
-                            </span>
-
-                            <a href="#" class="news-details__sharing-item">
-                                <i class="icon icon-facebook"></i>
-                            </a>
-                            <a href="#" class="news-details__sharing-item">
-                                <i class="icon icon-twitter"></i>
-                            </a>
-                            <a href="#" class="news-details__sharing-item">
-                                <i class="icon icon-instagram"></i>
-                            </a>
-                            <a href="#" class="news-details__sharing-item">
-                                <i class="icon icon-vkontakte"></i>
-                            </a>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="page__gap-120"></div>
-    
-    <section class="news-slider">
-        <div class="page__center">
-            <div class="page__inner">
-                
-                <div class="news-slider__center">
-
-                    <h3 class="page__label news-slider__label">Другие новости</h3>
-                    
-                    <div class="page__col-main">
-
-                        <div class="news-slider__content">
-                            <div class="swiper-container js-news-slider">
-                                <div class="swiper-wrapper">
-                                    {{#repeat 2}}
-                                    <div class="swiper-slide">
-                                        <div class="article-cards__item">
-                                            <a href="#" class="article-cards__image">
-                                                <span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1050/600/400.jpg);"></span>
-                                            </a>
-                                            <div class="article-cards__desc">
-                                                <time class="article__date article-cards__date"
-                                                    datetime="2019-01-17">17
-                                                    января 2019</time>
-                                                <h3 class="article-cards__h2">
-                                                    <a href="#">Антону Алиханову представили мобильное приложение для дежурных врачей Калининграда</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="article-cards__item">
-                                            <a href="#" class="article-cards__image">
-                                                <span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1049/600/400.jpg);"></span>
-                                            </a>
-                                            <div class="article-cards__desc">
-                                                <time class="article__date article-cards__date"
-                                                    datetime="2019-01-17">17
-                                                    января 2019</time>
-                                                <h3 class="article-cards__h2">
-                                                    <a href="#">Регионы перенимают опыт Сахалинской области в решении медицинских проблем</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="article-cards__item">
-                                            <a href="#" class="article-cards__image">
-                                                <span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1050/600/400.jpg);"></span>
-                                            </a>
-                                            <div class="article-cards__desc">
-                                                <time class="article__date article-cards__date"
-                                                    datetime="2019-01-17">17
-                                                    января 2019</time>
-                                                <h3 class="article-cards__h2">
-                                                    <a href="#">Более 100 тысяч лицевых счетов региональных операторов ТКО рассчитывается в системе «Биллинговый центр» </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="article-cards__item">
-                                            <a href="#" class="article-cards__image">
-                                                <span class="article-cards__image__self" style="background-image: url(https://picsum.photos/id/1051/600/400.jpg);"></span>
-                                            </a>
-                                            <div class="article-cards__desc">
-                                                <time class="article__date article-cards__date"
-                                                    datetime="2019-01-17">17
-                                                    января 2019</time>
-                                                <h3 class="article-cards__h2">
-                                                    <a href="#">«Цифровые» итоги недели</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{/repeat}}
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="clearfix">
-                            <div class="news-slider__ctrl">
-                                <a href="#" class="arrow-both-circle__prev js-news-slider--prev"></a>
-                                <a href="#" class="arrow-both-circle__next js-news-slider--next"></a>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    {{> footer }}
+	{{> footer }}
 
 </div>
 
 {{> nav-mobile }}
+
