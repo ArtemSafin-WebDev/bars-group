@@ -69,6 +69,11 @@
 		white-space: nowrap;
 		overflow: hidden;
 
+		&--for-news {
+			margin-bottom: 0;
+			border-bottom: 0;
+		}
+
 		&__scroll {
 			@include add-scrollbar();
 		}

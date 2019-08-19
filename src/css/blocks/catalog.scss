@@ -219,6 +219,10 @@
 		&__search {
 			display: block;
 			margin: 1px -40px 0 -40px;
+
+			&--for-news {
+				margin-top: 0;
+			}
 		}
 
 	}

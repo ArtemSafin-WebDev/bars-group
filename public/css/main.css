@@ -1720,6 +1720,9 @@ img {
     border-bottom: 1px solid #e6ebf2;
     white-space: nowrap;
     overflow: hidden; }
+    .nav-cats--for-news {
+      margin-bottom: 0;
+      border-bottom: 0; }
     .nav-cats__scroll {
       -webkit-overflow-scrolling: touch;
       overflow-x: scroll;
@@ -5356,7 +5359,9 @@ img {
     display: none; }
   .catalog__search {
     display: block;
-    margin: 1px -40px 0 -40px; } }
+    margin: 1px -40px 0 -40px; }
+    .catalog__search--for-news {
+      margin-top: 0; } }
 
 @media all and (max-width: 1100px) {
   .catalog__ctrl-more {
