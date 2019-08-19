@@ -2129,7 +2129,8 @@ img {
   z-index: 10;
   top: 100%;
   left: 0;
-  width: 100%;
+  min-width: 100%;
+  max-width: 250px;
   margin-top: 20px;
   padding: 6px 0;
   border: 1px solid #eff4fd;
@@ -2687,6 +2688,7 @@ img {
     .header__email:hover {
       color: #8297b2; }
   .header__search {
+    position: relative;
     -webkit-box-flex: 0;
         -ms-flex: 0 0 70px;
             flex: 0 0 70px;
@@ -2696,6 +2698,16 @@ img {
     color: #6e7f95; }
     .header__search:before {
       margin-left: -4px; }
+    .header__search.--active {
+      color: #000; }
+      .header__search.--active:after {
+        content: ' ';
+        position: absolute;
+        background: #59b4e6;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        width: 100%; }
   .header__write {
     font-size: 26px;
     color: #44abe1; }

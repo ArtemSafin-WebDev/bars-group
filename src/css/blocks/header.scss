@@ -159,6 +159,7 @@
 	&__search {
 		@extend .icon;
 		@extend .icon-search;
+		position: relative;
 		flex: 0 0 70px;
 		padding-top: 34px;
 		text-align: center;
@@ -167,6 +168,20 @@
 
 		&:before {
 			margin-left: -4px;
+		}
+
+		&.--active {
+			color: #000;
+
+			&:after {
+				content: ' ';
+				position: absolute;
+				background: #59b4e6;
+				height: 2px;
+				bottom: -2px;
+				left: 0;
+				width: 100%;
+			}
 		}
 	}
 

@@ -684,6 +684,9 @@
   margin-top: -190px;
   margin-right: calc(-1 * (100vw - 1520px)/2);
 }
+.tPortfolioSearch__form--no-toggle {
+  margin-top: 0;
+}
 .tPortfolioSearch__form.--active {
   margin-top: 0;
 }

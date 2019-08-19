@@ -6,7 +6,8 @@
 	z-index: 10;
 	top: 100%;
 	left: 0;
-	width: 100%;
+	min-width: 100%;
+	max-width: 250px;
 	margin-top: 20px;
 	padding: 6px 0;
 	border: 1px solid #eff4fd;
