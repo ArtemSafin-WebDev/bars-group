@@ -16,10 +16,10 @@
     display: flex;
     justify-content: space-between;
     z-index: 10;
-    @media @max_middle {
+    @media @max_large {
       flex-wrap: wrap;
     }
-    @media @min_middle {
+    @media @min_large {
       .page {
         &__h2 {
           max-width: 300px;
@@ -107,6 +107,9 @@
     z-index: 0;
     @media @max_extra {
       margin-top: 100px;
+    }
+    @media @max_large {
+      margin-top: 175px;
     }
     @media @max_middle {
       margin-top: 0;
@@ -227,6 +230,13 @@
         &.active {
           opacity: 1;
           transition: 0.5s linear;
+        }
+        .iArch {
+          &-layer {
+            &-top, &-bottom {
+              img { max-width: 72%; }
+            }
+          }
         }
       }
       &-top, &-bottom {
