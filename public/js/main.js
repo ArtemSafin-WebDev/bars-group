@@ -36004,7 +36004,7 @@ module.exports = {
   },
   _setBodyHeight: function _setBodyHeight() {
     var self = this;
-    if (self._state.isMobile) return;else $('body').height('auto');
+    if (self._state.isMobile) return;
 
     if ($(window).width() >= self._elems.$iScroll.children().width()) {
       $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
@@ -36014,12 +36014,24 @@ module.exports = {
   },
   _setScrollWidth: function _setScrollWidth() {
     var self = this;
+    if (self._state.isMobile) return;
 
-    if (!self._state.isMobile) {
-      if ($(window).width() >= self._elems.$iScroll.children().width()) {
-        self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
-      }
+    if ($(window).width() >= self._elems.$iScroll.children().width()) {
+      self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
     }
+  },
+  _resetDesktop: function _resetDesktop() {
+    var self = this;
+    if (!self._state.isMobile) return;
+    $('body').height('auto');
+
+    self._elems.$iScroll.width('');
+
+    self._elems.$iScroll.parent().scrollLeft(0);
+
+    self._elems.$_.find('[data-factor]').css({
+      'transform': 'translate3d(0, 0, 0)'
+    });
   },
   _initRangeSlider: function _initRangeSlider() {
     var self = this;
@@ -36144,6 +36156,9 @@ module.exports = {
     var $iLeadershipItem = $iLeadership.find('.iLeadership-item');
     var height = $iLeadershipItem.eq(0).height();
     $iLeadershipItem.width(height * 0.8);
+    $(window).resize(function () {
+      $iLeadershipItem.width(height * 0.8);
+    });
     $iLeadership.find('.button-aurora').click(function (e) {
       e.preventDefault();
 
@@ -36251,6 +36266,8 @@ module.exports = {
       } else {
         self._state.isMobile = false;
       }
+
+      self._resetDesktop();
 
       self._setWindowRatio();
 
