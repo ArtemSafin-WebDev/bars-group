@@ -26641,6 +26641,441 @@ module.exports = PerfectScrollbar;
 }));
 
 },{"jquery":11}],18:[function(require,module,exports){
+/* smoothscroll v0.4.4 - 2019 - Dustan Kasten, Jeremias Menichelli - MIT License */
+(function () {
+  'use strict';
+
+  // polyfill
+  function polyfill() {
+    // aliases
+    var w = window;
+    var d = document;
+
+    // return if scroll behavior is supported and polyfill is not forced
+    if (
+      'scrollBehavior' in d.documentElement.style &&
+      w.__forceSmoothScrollPolyfill__ !== true
+    ) {
+      return;
+    }
+
+    // globals
+    var Element = w.HTMLElement || w.Element;
+    var SCROLL_TIME = 468;
+
+    // object gathering original scroll methods
+    var original = {
+      scroll: w.scroll || w.scrollTo,
+      scrollBy: w.scrollBy,
+      elementScroll: Element.prototype.scroll || scrollElement,
+      scrollIntoView: Element.prototype.scrollIntoView
+    };
+
+    // define timing method
+    var now =
+      w.performance && w.performance.now
+        ? w.performance.now.bind(w.performance)
+        : Date.now;
+
+    /**
+     * indicates if a the current browser is made by Microsoft
+     * @method isMicrosoftBrowser
+     * @param {String} userAgent
+     * @returns {Boolean}
+     */
+    function isMicrosoftBrowser(userAgent) {
+      var userAgentPatterns = ['MSIE ', 'Trident/', 'Edge/'];
+
+      return new RegExp(userAgentPatterns.join('|')).test(userAgent);
+    }
+
+    /*
+     * IE has rounding bug rounding down clientHeight and clientWidth and
+     * rounding up scrollHeight and scrollWidth causing false positives
+     * on hasScrollableSpace
+     */
+    var ROUNDING_TOLERANCE = isMicrosoftBrowser(w.navigator.userAgent) ? 1 : 0;
+
+    /**
+     * changes scroll position inside an element
+     * @method scrollElement
+     * @param {Number} x
+     * @param {Number} y
+     * @returns {undefined}
+     */
+    function scrollElement(x, y) {
+      this.scrollLeft = x;
+      this.scrollTop = y;
+    }
+
+    /**
+     * returns result of applying ease math function to a number
+     * @method ease
+     * @param {Number} k
+     * @returns {Number}
+     */
+    function ease(k) {
+      return 0.5 * (1 - Math.cos(Math.PI * k));
+    }
+
+    /**
+     * indicates if a smooth behavior should be applied
+     * @method shouldBailOut
+     * @param {Number|Object} firstArg
+     * @returns {Boolean}
+     */
+    function shouldBailOut(firstArg) {
+      if (
+        firstArg === null ||
+        typeof firstArg !== 'object' ||
+        firstArg.behavior === undefined ||
+        firstArg.behavior === 'auto' ||
+        firstArg.behavior === 'instant'
+      ) {
+        // first argument is not an object/null
+        // or behavior is auto, instant or undefined
+        return true;
+      }
+
+      if (typeof firstArg === 'object' && firstArg.behavior === 'smooth') {
+        // first argument is an object and behavior is smooth
+        return false;
+      }
+
+      // throw error when behavior is not supported
+      throw new TypeError(
+        'behavior member of ScrollOptions ' +
+          firstArg.behavior +
+          ' is not a valid value for enumeration ScrollBehavior.'
+      );
+    }
+
+    /**
+     * indicates if an element has scrollable space in the provided axis
+     * @method hasScrollableSpace
+     * @param {Node} el
+     * @param {String} axis
+     * @returns {Boolean}
+     */
+    function hasScrollableSpace(el, axis) {
+      if (axis === 'Y') {
+        return el.clientHeight + ROUNDING_TOLERANCE < el.scrollHeight;
+      }
+
+      if (axis === 'X') {
+        return el.clientWidth + ROUNDING_TOLERANCE < el.scrollWidth;
+      }
+    }
+
+    /**
+     * indicates if an element has a scrollable overflow property in the axis
+     * @method canOverflow
+     * @param {Node} el
+     * @param {String} axis
+     * @returns {Boolean}
+     */
+    function canOverflow(el, axis) {
+      var overflowValue = w.getComputedStyle(el, null)['overflow' + axis];
+
+      return overflowValue === 'auto' || overflowValue === 'scroll';
+    }
+
+    /**
+     * indicates if an element can be scrolled in either axis
+     * @method isScrollable
+     * @param {Node} el
+     * @param {String} axis
+     * @returns {Boolean}
+     */
+    function isScrollable(el) {
+      var isScrollableY = hasScrollableSpace(el, 'Y') && canOverflow(el, 'Y');
+      var isScrollableX = hasScrollableSpace(el, 'X') && canOverflow(el, 'X');
+
+      return isScrollableY || isScrollableX;
+    }
+
+    /**
+     * finds scrollable parent of an element
+     * @method findScrollableParent
+     * @param {Node} el
+     * @returns {Node} el
+     */
+    function findScrollableParent(el) {
+      while (el !== d.body && isScrollable(el) === false) {
+        el = el.parentNode || el.host;
+      }
+
+      return el;
+    }
+
+    /**
+     * self invoked function that, given a context, steps through scrolling
+     * @method step
+     * @param {Object} context
+     * @returns {undefined}
+     */
+    function step(context) {
+      var time = now();
+      var value;
+      var currentX;
+      var currentY;
+      var elapsed = (time - context.startTime) / SCROLL_TIME;
+
+      // avoid elapsed times higher than one
+      elapsed = elapsed > 1 ? 1 : elapsed;
+
+      // apply easing to elapsed time
+      value = ease(elapsed);
+
+      currentX = context.startX + (context.x - context.startX) * value;
+      currentY = context.startY + (context.y - context.startY) * value;
+
+      context.method.call(context.scrollable, currentX, currentY);
+
+      // scroll more if we have not reached our destination
+      if (currentX !== context.x || currentY !== context.y) {
+        w.requestAnimationFrame(step.bind(w, context));
+      }
+    }
+
+    /**
+     * scrolls window or element with a smooth behavior
+     * @method smoothScroll
+     * @param {Object|Node} el
+     * @param {Number} x
+     * @param {Number} y
+     * @returns {undefined}
+     */
+    function smoothScroll(el, x, y) {
+      var scrollable;
+      var startX;
+      var startY;
+      var method;
+      var startTime = now();
+
+      // define scroll context
+      if (el === d.body) {
+        scrollable = w;
+        startX = w.scrollX || w.pageXOffset;
+        startY = w.scrollY || w.pageYOffset;
+        method = original.scroll;
+      } else {
+        scrollable = el;
+        startX = el.scrollLeft;
+        startY = el.scrollTop;
+        method = scrollElement;
+      }
+
+      // scroll looping over a frame
+      step({
+        scrollable: scrollable,
+        method: method,
+        startTime: startTime,
+        startX: startX,
+        startY: startY,
+        x: x,
+        y: y
+      });
+    }
+
+    // ORIGINAL METHODS OVERRIDES
+    // w.scroll and w.scrollTo
+    w.scroll = w.scrollTo = function() {
+      // avoid action when no arguments are passed
+      if (arguments[0] === undefined) {
+        return;
+      }
+
+      // avoid smooth behavior if not required
+      if (shouldBailOut(arguments[0]) === true) {
+        original.scroll.call(
+          w,
+          arguments[0].left !== undefined
+            ? arguments[0].left
+            : typeof arguments[0] !== 'object'
+              ? arguments[0]
+              : w.scrollX || w.pageXOffset,
+          // use top prop, second argument if present or fallback to scrollY
+          arguments[0].top !== undefined
+            ? arguments[0].top
+            : arguments[1] !== undefined
+              ? arguments[1]
+              : w.scrollY || w.pageYOffset
+        );
+
+        return;
+      }
+
+      // LET THE SMOOTHNESS BEGIN!
+      smoothScroll.call(
+        w,
+        d.body,
+        arguments[0].left !== undefined
+          ? ~~arguments[0].left
+          : w.scrollX || w.pageXOffset,
+        arguments[0].top !== undefined
+          ? ~~arguments[0].top
+          : w.scrollY || w.pageYOffset
+      );
+    };
+
+    // w.scrollBy
+    w.scrollBy = function() {
+      // avoid action when no arguments are passed
+      if (arguments[0] === undefined) {
+        return;
+      }
+
+      // avoid smooth behavior if not required
+      if (shouldBailOut(arguments[0])) {
+        original.scrollBy.call(
+          w,
+          arguments[0].left !== undefined
+            ? arguments[0].left
+            : typeof arguments[0] !== 'object' ? arguments[0] : 0,
+          arguments[0].top !== undefined
+            ? arguments[0].top
+            : arguments[1] !== undefined ? arguments[1] : 0
+        );
+
+        return;
+      }
+
+      // LET THE SMOOTHNESS BEGIN!
+      smoothScroll.call(
+        w,
+        d.body,
+        ~~arguments[0].left + (w.scrollX || w.pageXOffset),
+        ~~arguments[0].top + (w.scrollY || w.pageYOffset)
+      );
+    };
+
+    // Element.prototype.scroll and Element.prototype.scrollTo
+    Element.prototype.scroll = Element.prototype.scrollTo = function() {
+      // avoid action when no arguments are passed
+      if (arguments[0] === undefined) {
+        return;
+      }
+
+      // avoid smooth behavior if not required
+      if (shouldBailOut(arguments[0]) === true) {
+        // if one number is passed, throw error to match Firefox implementation
+        if (typeof arguments[0] === 'number' && arguments[1] === undefined) {
+          throw new SyntaxError('Value could not be converted');
+        }
+
+        original.elementScroll.call(
+          this,
+          // use left prop, first number argument or fallback to scrollLeft
+          arguments[0].left !== undefined
+            ? ~~arguments[0].left
+            : typeof arguments[0] !== 'object' ? ~~arguments[0] : this.scrollLeft,
+          // use top prop, second argument or fallback to scrollTop
+          arguments[0].top !== undefined
+            ? ~~arguments[0].top
+            : arguments[1] !== undefined ? ~~arguments[1] : this.scrollTop
+        );
+
+        return;
+      }
+
+      var left = arguments[0].left;
+      var top = arguments[0].top;
+
+      // LET THE SMOOTHNESS BEGIN!
+      smoothScroll.call(
+        this,
+        this,
+        typeof left === 'undefined' ? this.scrollLeft : ~~left,
+        typeof top === 'undefined' ? this.scrollTop : ~~top
+      );
+    };
+
+    // Element.prototype.scrollBy
+    Element.prototype.scrollBy = function() {
+      // avoid action when no arguments are passed
+      if (arguments[0] === undefined) {
+        return;
+      }
+
+      // avoid smooth behavior if not required
+      if (shouldBailOut(arguments[0]) === true) {
+        original.elementScroll.call(
+          this,
+          arguments[0].left !== undefined
+            ? ~~arguments[0].left + this.scrollLeft
+            : ~~arguments[0] + this.scrollLeft,
+          arguments[0].top !== undefined
+            ? ~~arguments[0].top + this.scrollTop
+            : ~~arguments[1] + this.scrollTop
+        );
+
+        return;
+      }
+
+      this.scroll({
+        left: ~~arguments[0].left + this.scrollLeft,
+        top: ~~arguments[0].top + this.scrollTop,
+        behavior: arguments[0].behavior
+      });
+    };
+
+    // Element.prototype.scrollIntoView
+    Element.prototype.scrollIntoView = function() {
+      // avoid smooth behavior if not required
+      if (shouldBailOut(arguments[0]) === true) {
+        original.scrollIntoView.call(
+          this,
+          arguments[0] === undefined ? true : arguments[0]
+        );
+
+        return;
+      }
+
+      // LET THE SMOOTHNESS BEGIN!
+      var scrollableParent = findScrollableParent(this);
+      var parentRects = scrollableParent.getBoundingClientRect();
+      var clientRects = this.getBoundingClientRect();
+
+      if (scrollableParent !== d.body) {
+        // reveal element inside parent
+        smoothScroll.call(
+          this,
+          scrollableParent,
+          scrollableParent.scrollLeft + clientRects.left - parentRects.left,
+          scrollableParent.scrollTop + clientRects.top - parentRects.top
+        );
+
+        // reveal parent in viewport unless is fixed
+        if (w.getComputedStyle(scrollableParent).position !== 'fixed') {
+          w.scrollBy({
+            left: parentRects.left,
+            top: parentRects.top,
+            behavior: 'smooth'
+          });
+        }
+      } else {
+        // reveal element in viewport
+        w.scrollBy({
+          left: clientRects.left,
+          top: clientRects.top,
+          behavior: 'smooth'
+        });
+      }
+    };
+  }
+
+  if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // commonjs
+    module.exports = { polyfill: polyfill };
+  } else {
+    // global
+    polyfill();
+  }
+
+}());
+
+},{}],19:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -27400,7 +27835,7 @@ return StickySidebar;
 
 
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /**
  * Swiper 4.5.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -35526,7 +35961,7 @@ return StickySidebar;
 
 }));
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -35537,7 +35972,7 @@ var App = require('./modules/app');
 App.init();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./modules/app":22,"jquery":11}],21:[function(require,module,exports){
+},{"./modules/app":23,"jquery":11}],22:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -35546,6 +35981,8 @@ require("rangeslider.js");
 
 require('owl.carousel');
 
+require('smoothscroll-polyfill');
+
 module.exports = {
   _elems: {
     $_: $(),
@@ -35553,6 +35990,7 @@ module.exports = {
   },
   _state: {
     isMobile: false,
+    windowRatio: 1,
     scrollType: false,
     run: false
   },
@@ -35560,20 +35998,27 @@ module.exports = {
     var self = this;
     self._state.isMobile = $(window).width() <= 576;
   },
+  _setWindowRatio: function _setWindowRatio() {
+    var self = this;
+    self._state.windowRatio = $(window).width() / $(window).height();
+  },
   _setBodyHeight: function _setBodyHeight() {
     var self = this;
+    if (self._state.isMobile) return;else $('body').height('auto');
 
     if ($(window).width() >= self._elems.$iScroll.children().width()) {
-      $('body').height($(window).width() * self._elems.$iScroll.children().length);
+      $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
     } else {
-      $('body').height(self._elems.$iScroll.width());
+      $('body').height(self._elems.$iScroll.width() / self._state.windowRatio);
     }
   },
   _setScrollWidth: function _setScrollWidth() {
     var self = this;
 
-    if ($(window).width() >= self._elems.$iScroll.children().width()) {
-      self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
+    if (!self._state.isMobile) {
+      if ($(window).width() >= self._elems.$iScroll.children().width()) {
+        self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
+      }
     }
   },
   _initRangeSlider: function _initRangeSlider() {
@@ -35607,9 +36052,9 @@ module.exports = {
 
         var scrollLeft = maxScrollLeft / 1000 * value;
 
-        self._elems.$_.find('.gantt-slider__scroll').scrollLeft(scrollLeft);
+        self._elems.$iScroll.parent().scrollLeft(scrollLeft);
 
-        if (self._state.scrollType == 'range') $(window).scrollTop(scrollLeft);
+        if (self._state.scrollType == 'range') $(window).scrollTop(scrollLeft / self._state.windowRatio);
       }
     });
   },
@@ -35655,8 +36100,8 @@ module.exports = {
 
     if ($iDigits.length == 0) return;
     var $iDigitsSlides = $iDigits.find('.iDigits-slides.owl-carousel');
-    var $iDigitsValues = $iDigitsSlides.find('.iDigits-values');
-    var $iDigitsValueItem = $iDigitsSlides.find('.iDigits-values__item');
+    var $iDigitsValues = $iDigits.find('.iDigits-values.owl-carousel');
+    var $iDigitsValueItem = $iDigitsValues.find('.iDigits-values__item');
     var owlDigits = $iDigitsSlides.owlCarousel({
       nav: false,
       dots: false,
@@ -35673,15 +36118,16 @@ module.exports = {
       $iDigitsValueItem.eq(e.item.index).addClass($iDigitsValues.data('active'));
     });
     $iDigitsValueItem.eq(0).addClass($iDigitsValues.data('active'));
-    $iDigitsValueItem.click(function () {
-      $('.iDigits-values__item').removeClass($('.iDigits-values').data('active'));
-      $(this).addClass($('.iDigits-values').data('active'));
+    $iDigitsValueItem.click(function (e) {
+      e.preventDefault();
+      $('.iDigits-values__item').removeClass($iDigitsValues.data('active'));
+      $(this).addClass($iDigitsValues.data('active'));
       var index = self._state.isMobile ? $(this).parent().index() : $(this).index();
-      $('.iDigits .owl-carousel').trigger('to.owl.carousel', index);
+      $iDigitsSlides.trigger('to.owl.carousel', index);
     });
 
     if (self._state.isMobile) {
-      var owlDigitsValues = $('.iDigits-values.owl-carousel').owlCarousel({
+      $iDigitsValues.owlCarousel({
         nav: false,
         dots: false,
         auto: false,
@@ -35696,7 +36142,6 @@ module.exports = {
 
     if ($iLeadership.length == 0) return;
     var $iLeadershipItem = $iLeadership.find('.iLeadership-item');
-    var $iLeadershipModal = $("#leadershipModal");
     var height = $iLeadershipItem.eq(0).height();
     $iLeadershipItem.width(height * 0.8);
     $iLeadership.find('.button-aurora').click(function (e) {
@@ -35722,16 +36167,16 @@ module.exports = {
 
     if ($iHistory.length == 0) return;
     var ruler = $iHistory.find('.iHistory-ruler__line .owl-carousel');
-    var es = $iHistory.find('.iHistory-es .owl-carousel');
+    var events = $iHistory.find('.iHistory-events .owl-carousel');
     if (ruler.length == 0) return;
-    if (es.length == 0) return;
-    var owlRuler = ruler.owlCarousel({
+    if (events.length == 0) return;
+    ruler.owlCarousel({
       nav: false,
       dots: false,
       items: Math.min(14, ruler.data('count')),
       auto: false
     });
-    var owles = es.owlCarousel({
+    events.owlCarousel({
       nav: false,
       dots: false,
       items: 1,
@@ -35741,7 +36186,7 @@ module.exports = {
       e.preventDefault();
       $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
       $(this).parent().addClass('iHistory-ruler__item--active');
-      es.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
+      events.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
     });
   },
   _initNav: function _initNav() {
@@ -35753,18 +36198,20 @@ module.exports = {
     $iNav.children('a').click(function (e) {
       e.preventDefault();
       var $target = $($(this).attr('href'));
-      if ($target.length == 0) return;
-
-      var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
-
-      self._elems.$_.find('.gantt-slider__scroll').scrollLeft(scrollLeft + $target.offset().left);
+      if ($target.length == 0) return; //var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+      //self._elems.$_.find('.gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft + $target.offset().left}, 1200);
     });
   },
   _handleSliderScroll: function _handleSliderScroll(e) {
     var self = e.data.self;
-    if (self._elems.$_.find('.gantt-slider__scroll').hasClass('window-scroll')) self._elems.$_.find('.gantt-slider__scroll').removeClass('window-scroll');else self._state.scrollType = 'range';
 
-    var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+    if (self._elems.$iScroll.parent().hasClass('window-scroll')) {
+      self._elems.$iScroll.parent().removeClass('window-scroll');
+    } else {
+      self._state.scrollType = 'range';
+    }
+
+    var scrollLeft = self._elems.$iScroll.parent().scrollLeft();
 
     var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
 
@@ -35776,14 +36223,18 @@ module.exports = {
 
     self._elems.$iScroll.children('.iScroll-item').each(function () {
       if (self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360 || self._elems.$iScroll.data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600) {
-        if ($(this).find('.iScroll-item__label') !== undefined && $(this).find('.iScroll-item__label').length) {
+        if ($(this).find('.iScroll-item__label').length) {
           $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
-        } else $('#wrapper .page__label').text('О компании');
+        } else {
+          $('#wrapper .page__label').text('О компании');
+        }
 
         if ($(this).hasClass('iRatings')) {
           img.attr('src', img.data('white'));
           $(this).addClass('active');
-        } else img.attr('src', img.data('original'));
+        } else {
+          img.attr('src', img.data('original'));
+        }
       }
     });
   },
@@ -35795,23 +36246,35 @@ module.exports = {
     }
 
     $(window).resize(function () {
-      if ($(window).width() <= 576) self._state.isMobile = true;else self._state.isMobile = false;
+      if ($(window).width() <= 576) {
+        self._state.isMobile = true;
+      } else {
+        self._state.isMobile = false;
+      }
+
+      self._setWindowRatio();
+
+      self._setBodyHeight();
+
+      self._setScrollWidth();
     });
     $(window).scroll(function () {
       if (!self._state.isMobile) {
+        var offsetTop = $(window).scrollTop();
         self._state.scrollType = 'window';
 
-        self._elems.$_.find('.gantt-slider__scroll').scrollLeft($(window).scrollTop()).addClass('window-scroll');
+        self._elems.$iScroll.parent().addClass('window-scroll');
+
+        self._elems.$iScroll.parent().scrollLeft(offsetTop * self._state.windowRatio);
 
         self._elems.$_.find('[data-factor]').each(function () {
           var parent = $(this).parents('.iScroll-item');
           if (parent.length == 0) return;
+          var offsetLeft = parent.offset().left;
 
-          if (parent.offset().left < $(window).width() + 100 && parent.offset().left + parent.width() > -100) {
+          if (offsetLeft < $(window).width() + 100 && offsetLeft + parent.width() > -100) {
             $(this).css({
-              'transform': 'translate(' + parent.offset().left * $(this).data('factor') + 'px, 0px)',
-              'transition': 'transform 0.2s linear 0s',
-              'will-change': 'transform'
+              'transform': 'translate3d(' + offsetLeft * $(this).data('factor') + 'px, 0, 0)'
             });
           }
         });
@@ -35819,7 +36282,7 @@ module.exports = {
     });
 
     if (!self._state.isMobile) {
-      self._elems.$_.find('.gantt-slider__scroll').on('scroll', {
+      self._elems.$iScroll.parent().on('scroll', {
         self: self
       }, self._handleSliderScroll); //$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
 
@@ -35833,6 +36296,8 @@ module.exports = {
     self._elems.$iScroll = $_.find('.iScroll');
 
     self._setIsMobile();
+
+    self._setWindowRatio();
 
     self._setBodyHeight();
 
@@ -35852,7 +36317,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15,"rangeslider.js":17}],22:[function(require,module,exports){
+},{"jquery":11,"owl.carousel":15,"rangeslider.js":17,"smoothscroll-polyfill":18}],23:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36017,7 +36482,7 @@ module.exports = {
   }
 };
 
-},{"./about":21,"./arch":23,"./catalog":24,"./citiesSlider":25,"./form":26,"./ganttSlider":27,"./header":28,"./hover":29,"./navBanner":30,"./navFilter":31,"./navMobile":32,"./navSticker":33,"./news":34,"./newsPhotoSlider":35,"./newsSlider":36,"./newsToggles":37,"./overview":39,"./popup":40,"./scrollableTable":41,"./sliderContent":42,"./sliderDigits":43,"./sliderTabs":44,"./talgat":45,"./techPromo":46,"./utils":47,"dragscroll":8,"jquery":11,"objectFitPolyfill":14}],23:[function(require,module,exports){
+},{"./about":22,"./arch":24,"./catalog":25,"./citiesSlider":26,"./form":27,"./ganttSlider":28,"./header":29,"./hover":30,"./navBanner":31,"./navFilter":32,"./navMobile":33,"./navSticker":34,"./news":35,"./newsPhotoSlider":36,"./newsSlider":37,"./newsToggles":38,"./overview":40,"./popup":41,"./scrollableTable":42,"./sliderContent":43,"./sliderDigits":44,"./sliderTabs":45,"./talgat":46,"./techPromo":47,"./utils":48,"dragscroll":8,"jquery":11,"objectFitPolyfill":14}],24:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36095,7 +36560,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],24:[function(require,module,exports){
+},{"jquery":11,"owl.carousel":15}],25:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36444,7 +36909,7 @@ module.exports = {
   }
 };
 
-},{"./notify":38,"jquery":11,"sticky-sidebar":18}],25:[function(require,module,exports){
+},{"./notify":39,"jquery":11,"sticky-sidebar":19}],26:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36700,7 +37165,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"rangeslider.js":17}],26:[function(require,module,exports){
+},{"jquery":11,"rangeslider.js":17}],27:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36881,7 +37346,7 @@ module.exports = {
   }
 };
 
-},{"./notify":38,"autosize":5,"icheck":9,"jquery":11,"jquery-form":2,"jquery-validation":10,"jquery.maskedinput":3}],27:[function(require,module,exports){
+},{"./notify":39,"autosize":5,"icheck":9,"jquery":11,"jquery-form":2,"jquery-validation":10,"jquery.maskedinput":3}],28:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37282,7 +37747,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"rangeslider.js":17}],28:[function(require,module,exports){
+},{"jquery":11,"rangeslider.js":17}],29:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37372,7 +37837,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],29:[function(require,module,exports){
+},{"jquery":11}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37402,7 +37867,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],30:[function(require,module,exports){
+},{"jquery":11}],31:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37490,7 +37955,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],31:[function(require,module,exports){
+},{"jquery":11,"owl.carousel":15}],32:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37532,7 +37997,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],32:[function(require,module,exports){
+},{"jquery":11}],33:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37588,7 +38053,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],33:[function(require,module,exports){
+},{"jquery":11}],34:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37708,7 +38173,7 @@ module.exports = {
   }
 };
 
-},{"jQuery-One-Page-Nav":1,"jquery":11,"midnight.js":12}],34:[function(require,module,exports){
+},{"jQuery-One-Page-Nav":1,"jquery":11,"midnight.js":12}],35:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37781,7 +38246,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],35:[function(require,module,exports){
+},{"jquery":11,"owl.carousel":15}],36:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -37851,7 +38316,7 @@ module.exports = {
   }
 };
 
-},{"swiper":19}],36:[function(require,module,exports){
+},{"swiper":20}],37:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -37873,7 +38338,7 @@ module.exports = {
   }
 };
 
-},{"swiper":19}],37:[function(require,module,exports){
+},{"swiper":20}],38:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -37934,7 +38399,7 @@ module.exports = {
   }
 };
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37955,7 +38420,7 @@ module.exports = function (title, text) {
   });
 };
 
-},{"jquery":11,"notifyjs-browser":13}],39:[function(require,module,exports){
+},{"jquery":11,"notifyjs-browser":13}],40:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38046,7 +38511,7 @@ module.exports = {
   }
 };
 
-},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":11}],40:[function(require,module,exports){
+},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":11}],41:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38087,7 +38552,7 @@ module.exports = {
   }
 };
 
-},{"@fancyapps/fancybox":4,"jquery":11}],41:[function(require,module,exports){
+},{"@fancyapps/fancybox":4,"jquery":11}],42:[function(require,module,exports){
 "use strict";
 
 var PerfectScrollbar = require('perfect-scrollbar');
@@ -38211,7 +38676,7 @@ module.exports = {
   }
 };
 
-},{"perfect-scrollbar":16}],42:[function(require,module,exports){
+},{"perfect-scrollbar":16}],43:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38274,7 +38739,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],43:[function(require,module,exports){
+},{"jquery":11,"owl.carousel":15}],44:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38583,7 +39048,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],44:[function(require,module,exports){
+},{"jquery":11}],45:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38641,7 +39106,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],45:[function(require,module,exports){
+},{"jquery":11}],46:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38677,7 +39142,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],46:[function(require,module,exports){
+},{"jquery":11,"owl.carousel":15}],47:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38737,7 +39202,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],47:[function(require,module,exports){
+},{"jquery":11}],48:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -38746,4 +39211,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[20]);
+},{}]},{},[21]);

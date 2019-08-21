@@ -1,6 +1,7 @@
 var $ = require('jquery');
 require("rangeslider.js");
 require('owl.carousel');
+require('smoothscroll-polyfill');
 
 module.exports = {
 
@@ -11,6 +12,7 @@ module.exports = {
 
     _state:  {
         isMobile : false,
+        windowRatio :  1,
         scrollType : false,
         run : false
     },
@@ -21,21 +23,32 @@ module.exports = {
         self._state.isMobile = $(window).width() <= 576;
     },
 
+    _setWindowRatio: function(){
+        var self = this;
+
+        self._state.windowRatio = $(window).width() / $(window).height();
+    },
+
     _setBodyHeight: function(){
         var self = this;
 
+        if (self._state.isMobile) return;
+        else $('body').height('auto');
+
         if ($(window).width() >= self._elems.$iScroll.children().width()) {
-            $('body').height($(window).width() * self._elems.$iScroll.children().length);
+            $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
         } else {
-            $('body').height(self._elems.$iScroll.width());
+            $('body').height(self._elems.$iScroll.width() / self._state.windowRatio);
         }
     },
 
     _setScrollWidth: function(){
         var self = this;
 
-        if ($(window).width() >= self._elems.$iScroll.children().width()) {
-            self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
+        if (!self._state.isMobile) {
+            if ($(window).width() >= self._elems.$iScroll.children().width()) {
+                self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
+            }
         }
     },
 
@@ -67,13 +80,12 @@ module.exports = {
 
                 var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
                 var scrollLeft    = maxScrollLeft / 1000 * value;
-                self._elems.$_.find('.gantt-slider__scroll').scrollLeft(scrollLeft);
-                if(self._state.scrollType == 'range')
-                    $(window).scrollTop(scrollLeft);
+                self._elems.$iScroll.parent().scrollLeft(scrollLeft);
+                if (self._state.scrollType == 'range')
+                    $(window).scrollTop(scrollLeft / self._state.windowRatio);
             }
         });
     },
-
     _initGeo: function(){
         var self = this;
 
@@ -117,8 +129,8 @@ module.exports = {
         if ($iDigits.length == 0) return;
 
         var $iDigitsSlides = $iDigits.find('.iDigits-slides.owl-carousel');
-        var $iDigitsValues = $iDigitsSlides.find('.iDigits-values');
-        var $iDigitsValueItem = $iDigitsSlides.find('.iDigits-values__item');
+        var $iDigitsValues = $iDigits.find('.iDigits-values.owl-carousel');
+        var $iDigitsValueItem = $iDigitsValues.find('.iDigits-values__item');
 
         var owlDigits = $iDigitsSlides.owlCarousel({
             nav: false,
@@ -139,18 +151,20 @@ module.exports = {
 
         $iDigitsValueItem.eq(0).addClass($iDigitsValues.data('active'));
 
-        $iDigitsValueItem.click(function(){
-            $('.iDigits-values__item').removeClass($('.iDigits-values').data('active'));
+        $iDigitsValueItem.click(function(e){
+            e.preventDefault();
 
-            $(this).addClass($('.iDigits-values').data('active'));
+            $('.iDigits-values__item').removeClass($iDigitsValues.data('active'));
+
+            $(this).addClass($iDigitsValues.data('active'));
 
             var index = self._state.isMobile ? $(this).parent().index() : $(this).index();
 
-            $('.iDigits .owl-carousel').trigger('to.owl.carousel', index);
+            $iDigitsSlides.trigger('to.owl.carousel', index);
         });
 
-        if(self._state.isMobile){
-            var owlDigitsValues = $('.iDigits-values.owl-carousel').owlCarousel({
+        if (self._state.isMobile) {
+            $iDigitsValues.owlCarousel({
                 nav: false,
                 dots: false,
                 auto: false,
@@ -165,7 +179,6 @@ module.exports = {
         if ($iLeadership.length == 0) return;
 
         var $iLeadershipItem = $iLeadership.find('.iLeadership-item');
-        var $iLeadershipModal = $("#leadershipModal");
 
         var height = $iLeadershipItem.eq(0).height();
         $iLeadershipItem.width(height*0.8);
@@ -187,7 +200,6 @@ module.exports = {
         });
 
     },
-
     _initHistory: function(){
         var self = this;
 
@@ -195,19 +207,19 @@ module.exports = {
         if ($iHistory.length == 0) return;
 
         var ruler = $iHistory.find('.iHistory-ruler__line .owl-carousel');
-        var es = $iHistory.find('.iHistory-es .owl-carousel');
+        var events = $iHistory.find('.iHistory-events .owl-carousel');
 
         if(ruler.length == 0) return;
-        if(es.length == 0) return;
+        if(events.length == 0) return;
 
-        var owlRuler = ruler.owlCarousel({
+        ruler.owlCarousel({
             nav: false,
             dots: false,
             items: Math.min(14, ruler.data('count')),
             auto: false
         });
 
-        var owles = es.owlCarousel({
+        events.owlCarousel({
             nav: false,
             dots: false,
             items: 1,
@@ -218,13 +230,10 @@ module.exports = {
             e.preventDefault();
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
-
             $(this).parent().addClass('iHistory-ruler__item--active');
-
-            es.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
+            events.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
         });
     },
-
     _initNav: function(){
         var self = this;
 
@@ -237,20 +246,20 @@ module.exports = {
             var $target = $($(this).attr('href'));
             if($target.length == 0) return;
 
-            var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
-            self._elems.$_.find('.gantt-slider__scroll').scrollLeft(scrollLeft + $target.offset().left);
+            //var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+            //self._elems.$_.find('.gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft + $target.offset().left}, 1200);
         });
     },
-
     _handleSliderScroll: function (e) {
         var self = e.data.self;
 
-        if(self._elems.$_.find('.gantt-slider__scroll').hasClass('window-scroll'))
-            self._elems.$_.find('.gantt-slider__scroll').removeClass('window-scroll')
-        else
+        if (self._elems.$iScroll.parent().hasClass('window-scroll')) {
+            self._elems.$iScroll.parent().removeClass('window-scroll')
+        } else {
             self._state.scrollType = 'range';
+        }
 
-        var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+        var scrollLeft = self._elems.$iScroll.parent().scrollLeft();
         var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
         var rangeValue = Math.round(1000 * scrollLeft / maxScrollLeft);
         self._elems.$_.find('.gantt-slider__range input').val(rangeValue).change();
@@ -258,27 +267,26 @@ module.exports = {
         var img = $('#wrapper .brand-box__image img');
 
         self._elems.$iScroll.children('.iScroll-item').each(function(){
-            if(
+            if (
                 self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
                 ||
                 self._elems.$iScroll.data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600
-            ){
-                if($(this).find('.iScroll-item__label') !== undefined && $(this).find('.iScroll-item__label').length) {
+            ) {
+                if ($(this).find('.iScroll-item__label').length) {
                     $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
-                }
-                else
+                } else {
                     $('#wrapper .page__label').text('О компании');
+                }
 
-                if($(this).hasClass('iRatings')) {
+                if ($(this).hasClass('iRatings')) {
                     img.attr('src', img.data('white'));
                     $(this).addClass('active');
-                }
-                else
+                } else {
                     img.attr('src', img.data('original'));
+                }
             }
         });
     },
-
     _bindUI: function(){
         var self = this;
 
@@ -287,26 +295,34 @@ module.exports = {
         }
 
         $(window).resize(function(){
-            if($(window).width() <= 576)
+            if ($(window).width() <= 576) {
                 self._state.isMobile = true;
-            else
+            } else {
                 self._state.isMobile = false;
+            }
+
+            self._setWindowRatio();
+            self._setBodyHeight();
+            self._setScrollWidth();
         });
 
         $(window).scroll(function(){
             if(!self._state.isMobile) {
+                var offsetTop = $(window).scrollTop();
+
                 self._state.scrollType = 'window';
-                self._elems.$_.find('.gantt-slider__scroll').scrollLeft($(window).scrollTop()).addClass('window-scroll');
+                self._elems.$iScroll.parent().addClass('window-scroll');
+                self._elems.$iScroll.parent().scrollLeft( offsetTop * self._state.windowRatio );
 
                 self._elems.$_.find('[data-factor]').each(function(){
                     var parent = $(this).parents('.iScroll-item');
                     if(parent.length == 0) return;
 
-                    if((parent.offset().left < $(window).width() + 100) && (parent.offset().left + parent.width()) > -100){
+                    var offsetLeft = parent.offset().left;
+
+                    if ((offsetLeft < $(window).width() + 100) && (offsetLeft + parent.width()) > -100) {
                         $(this).css({
-                            'transform': 'translate(' + parent.offset().left * $(this).data('factor') + 'px, 0px)',
-                            'transition': 'transform 0.2s linear 0s',
-                            'will-change': 'transform'
+                            'transform': 'translate3d(' + offsetLeft * $(this).data('factor') + 'px, 0, 0)'
                         });
                     }
                 });
@@ -314,7 +330,7 @@ module.exports = {
         });
 
         if(!self._state.isMobile){
-            self._elems.$_.find('.gantt-slider__scroll').on('scroll', {self: self}, self._handleSliderScroll);
+            self._elems.$iScroll.parent().on('scroll', {self: self}, self._handleSliderScroll);
             //$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
         }
 
@@ -331,6 +347,7 @@ module.exports = {
         self._elems.$iScroll = $_.find('.iScroll');
 
         self._setIsMobile();
+        self._setWindowRatio();
         self._setBodyHeight();
         self._setScrollWidth();
         self._initGeo();

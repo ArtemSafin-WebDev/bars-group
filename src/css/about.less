@@ -26,6 +26,11 @@ body {
   }
 }
 
+[data-factor] {
+  will-change: transform;
+  transition: transform 0.5s linear 0s;
+}
+
 .page-center-h100 {
   min-height: calc(~'100vh - @{iOffsetTop} - 105px');
   height: 100%;
@@ -158,8 +163,8 @@ body {
         display: none;
       }
       position: absolute;
-      transition: 4.75s linear;
-      transition-delay: 0.12s;
+      /*transition: 4.75s linear;
+      transition-delay: 0.12s;*/
       background-repeat: no-repeat;
       &-1 {
         width: 231px;
@@ -263,7 +268,7 @@ body {
     line-height: 22px;
     @media @min_small {
       position: absolute;
-      top: 72%;
+      top: 80%;
       left: 50%;
       max-width: 455px;
       font-size: 18px;
@@ -353,6 +358,7 @@ body {
     overflow: hidden;
   }
   &__wrapper {
+    z-index: 10;
     @media @max_small {
       position: relative;
       overflow-x: scroll;
@@ -404,7 +410,7 @@ body {
       position: absolute;
       top: 0;
       width: 100%;
-      height: 100%;
+      height: calc(~'100% - 125px');
       left: 50%;
       transform: translateX(-50%);
     }
@@ -430,7 +436,6 @@ body {
     background-size: cover;
     background-position: center;
     font-weight: bold;
-    transition: 0.3s ease-out;
     &--small {
       width: 266px;
       height: 71px;
@@ -446,7 +451,6 @@ body {
     &--active {
       opacity: 1;
       transform: scale(1);
-      transition: 0.3s ease-in;
     }
     &:after {
       content: '';
@@ -456,7 +460,7 @@ body {
       background: #ffffff;
       right: 30px;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) translateZ(0);
     }
     label {
       background: #59B4E6;
@@ -471,6 +475,11 @@ body {
       align-items: center;
     }
   }
+  .page {
+    &__center {
+      z-index: 20;
+    }
+  }
 }
 
 .iAdvantages {
@@ -479,6 +488,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    @media @min_small {
+      height: 100%;
+    }
     @media @max_small {
       justify-content: space-between;
     }
@@ -500,12 +512,8 @@ body {
         margin-top: 85px;
       }
 
-      &:nth-child(4) {
-        margin-top: 150px;
-      }
-
       &:nth-child(5) {
-        margin-top: 175px;
+        margin-top: 25px;
       }
     }
     @media @max_small {
@@ -555,6 +563,15 @@ body {
   .page__center {
     background: transparent;
   }
+  @media @min_small {
+    &-slides {
+      &.owl-carousel {
+        display: flex;
+        align-items: center;
+      }
+      height: calc(~'100% - 165px');
+    }
+  }
   @media @max_small {
     &-slides {
       & + .iDigits-values {
@@ -566,7 +583,8 @@ body {
     display: flex;
     justify-content: space-between;
     @media @min_small {
-      padding: 100px 0 100px @iPageLabelLeft;
+      //padding: 100px 0 100px @iPageLabelLeft;
+      padding-left: @iPageLabelLeft;
     }
     @media @max_small {
       flex-wrap: wrap;
@@ -662,6 +680,7 @@ body {
             background: #EFF4FD;
             color: #6E7F95;
             font-family: icomoon!important;
+            text-align: center;
             &.disabled {
               opacity: 0.5;
               cursor: default;
@@ -923,7 +942,7 @@ body {
       min-width: calc(~'100%/2 - 10px');
     }
     @media @min_small {
-      min-height: 267px;
+      min-height: 255px;
       min-width: @iLeadership_width;
       height: calc(~"50% - 15px");
       margin-right: @iLeadership_margin;
@@ -1031,13 +1050,16 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 55px;
+    min-height: calc(~'100vh - @{iOffsetTop} - 105px');
+    max-height: calc(~'100vh - @{iOffsetTop} - 105px');
+    align-items: center;
   }
   &__item {
     display: flex;
     align-items: center;
     justify-content: center;
     width: calc(~"100%/5 - 15px");
-    height: 150px;
+    height: 100px;
 
     @media @max_small {
       width: calc(~"100%/2 - 25px");
@@ -1050,6 +1072,10 @@ body {
 
 .iHistory {
   .page {
+    &__inner {
+      max-height: calc(~'100% - 125px');
+      overflow-y: scroll;
+    }
     &__center {
       padding: 50px 0;
     }
