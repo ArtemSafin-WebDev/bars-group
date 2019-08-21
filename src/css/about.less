@@ -79,6 +79,9 @@ body {
 .iNav {
   display: flex;
   justify-content: space-between;
+  @media @max_small {
+    display: none;
+  }
 }
 
 .iScroll {
@@ -137,6 +140,7 @@ body {
     }
     @media @max_small {
       min-width: initial;
+      max-width: 100%;
       width: auto;
       margin-top: 0;
       padding: 60px 0;
@@ -417,7 +421,7 @@ body {
     @media @max_small {
       position: relative;
       min-width: 1200px;
-      min-height: 640px;
+      min-height: 100%;
     }
   }
   &__item {
@@ -439,14 +443,26 @@ body {
     &--small {
       width: 266px;
       height: 71px;
+      @media @max_small {
+        width: 188px;
+        height: 48px;
+      }
     }
     &--middle {
       width: 326px;
       height: 85px;
+      @media @max_small {
+        width: 231px;
+        height: 59px;
+      }
     }
     &--big {
       width: 374px;
       height: 98px;
+      @media @max_small {
+        width: 296px;
+        height: 72px;
+      }
     }
     &--active {
       opacity: 1;
@@ -1074,7 +1090,6 @@ body {
   .page {
     &__inner {
       max-height: calc(~'100% - 125px');
-      overflow-y: scroll;
     }
     &__center {
       padding: 50px 0;
@@ -1084,10 +1099,20 @@ body {
     margin-bottom: 90px;
     display: flex;
     justify-content: space-between;
+    @media @max_small {
+      margin-bottom: 20px;
+    }
     &__left, &__right {
       width: 85px;
       font-size: 26px;
       line-height: 36px;
+      cursor: pointer;
+      @media @max_small {
+        width: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+      }
     }
     &__left {
       text-align: left;
@@ -1099,6 +1124,9 @@ body {
       position: relative;
       width: calc(~"100% - 170px");
       height: 80px;
+      @media @max_small {
+        width: calc(~"100% - 100px");
+      }
       &:before {
         content: '';
         position: absolute;
@@ -1120,14 +1148,22 @@ body {
         background: rgba(110,127,149,0.98);
         left: 50%;
         top: 21px;
+        @media @max_small {
+          left: 15px;
+        }
       }
       &--active {
         a {
-          background: #DCE7FC;
           color: #000000;
+          span {
+            transform: translateX(0) !important;
+            transition: transform opacity 0.3s;
+            opacity: 1 !important;
+          }
         }
       }
       a {
+        position: relative;
         display: flex;
         align-items: center;
         width: 140px;
@@ -1139,6 +1175,36 @@ body {
         left: 50%;
         padding: 0 8px;
         margin-left: -8px;
+        @media @max_small {
+          left: 15px;
+          width: 80px;
+          height: 28px;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 19px;
+        }
+        &.--from-left {
+          span {
+            transform: translateX(-100%);
+          }
+        }
+        &.--from-right {
+          span {
+            transform: translateX(100%);
+          }
+        }
+        span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #DCE7FC;
+          transition: transform 0.3s;
+          transform: translateX(-100%);
+          z-index: -10;
+          opacity: 0;
+        }
       }
     }
   }
@@ -1148,27 +1214,53 @@ body {
   &-event {
     display: flex;
     justify-content: space-between;
+    @media @max_small {
+      flex-wrap: wrap;
+    }
     &__left, &__right {
       width: 50%;
+      @media @max_small {
+        width: 100%;
+      }
     }
     &__left {
       padding: 36px 0;
+      @media @max_small {
+        order: 2;
+      }
+    }
+    &__right {
+      @media @max_small {
+        order: 1;
+      }
     }
     &__title {
       font-size: 34px;
       font-weight: bold;
       line-height: 46px;
       margin-bottom: 24px;
+      @media @max_small {
+        font-size: 26px;
+        line-height: 36px;
+      }
     }
     &__anons {
       color: #6F8FB9;
       font-size: 22px;
       line-height: 31px;
       margin-bottom: 20px;
+      @media @max_small {
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
     &__text {
       font-size: 18px;
       line-height: 25px;
+      @media @max_small {
+        font-size: 12px;
+        line-height: 18px;
+      }
     }
     &__image {
       max-width: 100%;

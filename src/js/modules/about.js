@@ -229,23 +229,52 @@ module.exports = {
         ruler.owlCarousel({
             nav: false,
             dots: false,
-            items: Math.min(14, ruler.data('count')),
-            auto: false
+            auto: false,
+            responsive : {
+                576 : {
+                    items: Math.min(14, ruler.data('count'))
+                }
+            }
         });
 
         events.owlCarousel({
             nav: false,
             dots: false,
             items: 1,
+            margin: 15,
             auto: false
         });
 
         $iHistory.find('.iHistory-ruler__item a').click(function(e){
             e.preventDefault();
 
+            var link = $(this);
+
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
-            $(this).parent().addClass('iHistory-ruler__item--active');
-            events.trigger('to.owl.carousel', $(this).parents('.owl-item').index() + 1);
+            $iHistory.find('.iHistory-ruler__item a').removeClass('--from-right --from-left');
+            if(events.find('.owl-item.active').index() < link.parents('.owl-item').index() + 1)
+                link.addClass('--from-left');
+            else
+                link.addClass('--from-right');
+
+            setTimeout(function(){
+                link.parent().addClass('iHistory-ruler__item--active');
+            }, 10);
+            events.trigger('to.owl.carousel', link.parents('.owl-item').index() + 1);
+        });
+
+        $iHistory.find('.iHistory-ruler__left').click(function(e){
+            e.preventDefault();
+
+            $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+            events.trigger('to.owl.carousel', 0);
+        });
+
+        $iHistory.find('.iHistory-ruler__right').click(function(e){
+            e.preventDefault();
+
+            $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+            events.trigger('to.owl.carousel', events.find('.owl-item').length - 1);
         });
     },
     _initNav: function(){
