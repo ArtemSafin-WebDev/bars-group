@@ -37285,9 +37285,6 @@ module.exports = {
     $form.data().validator.resetForm();
     $form.find('input, textarea').trigger('change').filter('input').iCheck('update');
   },
-  isItPopupForm: function isItPopupForm($form) {
-    return !!$form.closest('.popup').length;
-  },
   _handleFocusOnPhone: function _handleFocusOnPhone(e) {
     var self = e.data.self;
     $(this).mask('+9 (999) 999-99-99', {
@@ -37337,19 +37334,7 @@ module.exports = {
         success: function success(data) {
           if (data.status == 'success') {
             // notify success
-            if (self.isItPopupForm($form)) {
-              $.fancybox.close(); // care about compensate-scrollbar width
-
-              setTimeout(function () {
-                $.fancybox.open({
-                  src: '#form-success',
-                  type: 'inline',
-                  modal: true
-                });
-              }, 500);
-            } else {
-              $form.addClass('--success');
-            }
+            $form.addClass('--success');
 
             self._resetForm($form);
           } else {
@@ -37370,7 +37355,16 @@ module.exports = {
   _handleSuccessClose: function _handleSuccessClose(e) {
     var self = e.data.self;
     e.preventDefault();
-    $(this).closest('form').removeClass('--success');
+    var $form = $(this).closest('form');
+
+    if ($form.hasClass('popup')) {
+      $.fancybox.close();
+      setTimeout(function () {
+        $form.removeClass('--success');
+      }, 500);
+    } else {
+      $form.removeClass('--success');
+    }
   },
   _handleICheckValidation: function _handleICheckValidation(e) {
     var self = e.data.self;

@@ -21,10 +21,6 @@ module.exports = {
 			.filter('input').iCheck('update');
 	},
 
-	isItPopupForm: function ($form) {
-		return !!$form.closest('.popup').length;
-	},
-
 	_handleFocusOnPhone: function (e) {
 		var self = e.data.self;
 
@@ -97,23 +93,7 @@ module.exports = {
 					if ( data.status == 'success' ) {
 
 						// notify success
-						if ( self.isItPopupForm($form) ) {
-
-							$.fancybox.close();
-							
-							// care about compensate-scrollbar width
-							setTimeout(function () {
-								$.fancybox.open({
-									src: '#form-success',
-									type: 'inline',
-									modal: true
-								});
-							}, 500);
-
-						} else {
-							$form.addClass('--success');
-						}
-
+						$form.addClass('--success');
 						self._resetForm($form);
 
 					} else {
@@ -139,7 +119,17 @@ module.exports = {
 
 		e.preventDefault();
 
-		$(this).closest('form').removeClass('--success');
+		var $form = $(this).closest('form');
+		
+		if ($form.hasClass('popup')) {
+			$.fancybox.close();
+			setTimeout(function () {
+				$form.removeClass('--success');
+			}, 500);
+		} else {
+			$form.removeClass('--success');
+		}
+
 	},
 
 	_handleICheckValidation: function (e) {

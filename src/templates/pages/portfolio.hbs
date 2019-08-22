@@ -1036,99 +1036,97 @@ layout: default.hbs
 	
 <div class="d-none">
 	
-	<div class="popup" id="catalog-popup">
-		<form action="#" class="form form-filter" id="form-filter">
-			<h3 class="page__h3">Фильтр</h3>
-			<div>
-				<div class="form-filter__group">
-					<div class="form-filter__item">
-						<label class="form__check">
-							<div class="form__check__field">
-								<input name="customer" type="radio" value="total" checked>
-							</div>
-							<div class="form__check__text">
-								<span>Все</span>
-								<span class="form-filter__count">23</span>
-							</div>
-						</label>
-					</div>
-					<div class="form-filter__item">
-						<label class="form__check">
-							<div class="form__check__field">
-								<input name="customer" type="radio" value="state">
-							</div>
-							<div class="form__check__text">
-								<span>Для государства</span>
-								<span class="form-filter__count">23</span>
-							</div>
-						</label>
-					</div>
-					<div class="form-filter__item">
-						<label class="form__check">
-							<div class="form__check__field">
-								<input name="customer" type="radio" value="business">
-							</div>
-							<div class="form__check__text">
-								<span>Для бизнеса</span>
-								<span class="form-filter__count">23</span>
-							</div>
-						</label>
-					</div>
+	<form action="#" class="form form-filter popup" id="catalog-popup">
+		<h3 class="page__h3">Фильтр</h3>
+		<div>
+			<div class="form-filter__group">
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="customer" type="radio" value="total" checked>
+						</div>
+						<div class="form__check__text">
+							<span>Все</span>
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
 				</div>
-				<div class="form-filter__group">
-					<div class="form-filter__item">
-						<label class="form__check">
-							<div class="form__check__field">
-								<input name="type" type="radio" value="total" checked>
-							</div>
-							<div class="form__check__text">
-								<span>Все</span> 
-								<span class="form-filter__count">23</span>
-							</div>
-						</label>
-					</div>
-					<div class="form-filter__item">
-						<label class="form__check">
-							<div class="form__check__field">
-								<input name="type" type="radio" value="products">
-							</div>
-							<div class="form__check__text">
-								Продукты
-								<span class="form-filter__count">23</span>
-							</div>
-						</label>
-					</div>
-					<div class="form-filter__item">
-						<label class="form__check">
-							<div class="form__check__field">
-								<input name="type" type="radio" value="cases">
-							</div>
-							<div class="form__check__text">
-								Кейсы
-								<span class="form-filter__count">23</span>
-							</div>
-						</label>
-					</div>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="customer" type="radio" value="state">
+						</div>
+						<div class="form__check__text">
+							<span>Для государства</span>
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="customer" type="radio" value="business">
+						</div>
+						<div class="form__check__text">
+							<span>Для бизнеса</span>
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
 				</div>
 			</div>
-			<div class="form-filter__ctrl">
-				<div class="form-filter__ctrl__left">
-					<a href="#" class="button-aurora js-hover-wings js-catalog-apply">
-						<span class="button-aurora__text">
-							Применить
-						</span>
-						<i class="arrow-ciara button-aurora__icon">
-							<span></span>
-						</i>
-					</a>
+			<div class="form-filter__group">
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="type" type="radio" value="total" checked>
+						</div>
+						<div class="form__check__text">
+							<span>Все</span> 
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
 				</div>
-				<div class="form-filter__ctrl__right">
-					<a href="#" class="form-filter__reset">Сбросить</a>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="type" type="radio" value="products">
+						</div>
+						<div class="form__check__text">
+							Продукты
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
+				</div>
+				<div class="form-filter__item">
+					<label class="form__check">
+						<div class="form__check__field">
+							<input name="type" type="radio" value="cases">
+						</div>
+						<div class="form__check__text">
+							Кейсы
+							<span class="form-filter__count">23</span>
+						</div>
+					</label>
 				</div>
 			</div>
-		</form>
+		</div>
+		<div class="form-filter__ctrl">
+			<div class="form-filter__ctrl__left">
+				<a href="#" class="button-aurora js-hover-wings js-catalog-apply">
+					<span class="button-aurora__text">
+						Применить
+					</span>
+					<i class="arrow-ciara button-aurora__icon">
+						<span></span>
+					</i>
+				</a>
+			</div>
+			<div class="form-filter__ctrl__right">
+				<a href="#" class="form-filter__reset">Сбросить</a>
+			</div>
+		</div>
 		<a href="#" class="popup__close js-popup-close"></a>
-	</div>
+	</form>
 
 </div>
 

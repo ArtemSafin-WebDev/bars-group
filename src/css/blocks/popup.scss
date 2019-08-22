@@ -4,10 +4,11 @@
 	width: 600px;
 
 	&--large {
-		width: 950px;
+		width: 1350px;
 	}
 
 	&--fixed {
+		display: inline-block !important;
 		position: fixed;
 		top: 0;
 		left: -9999px;
@@ -35,5 +36,10 @@
 		&:hover {
 			background: darken(#5cb3e5, 5%);
 		}
+	}
+
+	&__center {
+		max-width: 875px;
+		margin: 0 auto;
 	}
 }
