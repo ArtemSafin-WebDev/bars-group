@@ -9,6 +9,13 @@
 body.with-scrollbar .iScroll__item {
   min-width: calc(100vw - 17px);
 }
+[data-factor] {
+  will-change: transform;
+  -webkit-transition: -webkit-transform 0.5s linear 0s;
+  transition: -webkit-transform 0.5s linear 0s;
+  transition: transform 0.5s linear 0s;
+  transition: transform 0.5s linear 0s, -webkit-transform 0.5s linear 0s;
+}
 .page-center-h100 {
   min-height: calc(100vh - 155px - 105px);
   height: 100%;
@@ -58,6 +65,11 @@ body.with-scrollbar .iScroll__item {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+@media screen and (max-width: 576px) {
+  .iNav {
+    display: none;
+  }
 }
 .iScroll {
   display: -webkit-box;
@@ -118,6 +130,7 @@ body.with-scrollbar .iScroll__item {
 @media screen and (max-width: 576px) {
   .iScroll-item {
     min-width: initial;
+    max-width: 100%;
     width: auto;
     margin-top: 0;
     padding: 60px 0;
@@ -144,10 +157,8 @@ body.with-scrollbar .iScroll__item {
 }
 .iScroll-item__parallax {
   position: absolute;
-  -webkit-transition: 4.75s linear;
-  transition: 4.75s linear;
-  -webkit-transition-delay: 0.12s;
-          transition-delay: 0.12s;
+  /*transition: 4.75s linear;
+      transition-delay: 0.12s;*/
   background-repeat: no-repeat;
 }
 @media screen and (max-width: 576px) {
@@ -264,7 +275,7 @@ body.with-scrollbar .iScroll__item {
 @media screen and (min-width: 577px) {
   .iStart__subtitle {
     position: absolute;
-    top: 72%;
+    top: 80%;
     left: 50%;
     max-width: 455px;
     font-size: 18px;
@@ -375,6 +386,9 @@ body.with-scrollbar .iScroll__item {
     overflow: hidden;
   }
 }
+.iGeo__wrapper {
+  z-index: 10;
+}
 @media screen and (max-width: 576px) {
   .iGeo__wrapper {
     position: relative;
@@ -431,7 +445,7 @@ body.with-scrollbar .iScroll__item {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 125px);
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
@@ -441,7 +455,7 @@ body.with-scrollbar .iScroll__item {
   .iGeo__items {
     position: relative;
     min-width: 1200px;
-    min-height: 640px;
+    min-height: 100%;
   }
 }
 .iGeo__item {
@@ -465,27 +479,41 @@ body.with-scrollbar .iScroll__item {
   background-size: cover;
   background-position: center;
   font-weight: bold;
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
 }
 .iGeo__item--small {
   width: 266px;
   height: 71px;
 }
+@media screen and (max-width: 576px) {
+  .iGeo__item--small {
+    width: 188px;
+    height: 48px;
+  }
+}
 .iGeo__item--middle {
   width: 326px;
   height: 85px;
+}
+@media screen and (max-width: 576px) {
+  .iGeo__item--middle {
+    width: 231px;
+    height: 59px;
+  }
 }
 .iGeo__item--big {
   width: 374px;
   height: 98px;
 }
+@media screen and (max-width: 576px) {
+  .iGeo__item--big {
+    width: 296px;
+    height: 72px;
+  }
+}
 .iGeo__item--active {
   opacity: 1;
   -webkit-transform: scale(1);
           transform: scale(1);
-  -webkit-transition: 0.3s ease-in;
-  transition: 0.3s ease-in;
 }
 .iGeo__item:after {
   content: '';
@@ -495,8 +523,8 @@ body.with-scrollbar .iScroll__item {
   background: #ffffff;
   right: 30px;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -webkit-transform: translateY(-50%) translateZ(0);
+          transform: translateY(-50%) translateZ(0);
 }
 .iGeo__item label {
   background: #59B4E6;
@@ -514,6 +542,9 @@ body.with-scrollbar .iScroll__item {
       -ms-flex-align: center;
           align-items: center;
 }
+.iGeo .page__center {
+  z-index: 20;
+}
 .iAdvantages {
   z-index: 5;
 }
@@ -526,6 +557,11 @@ body.with-scrollbar .iScroll__item {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+}
+@media screen and (min-width: 577px) {
+  .iAdvantages-items {
+    height: 100%;
+  }
 }
 @media screen and (max-width: 576px) {
   .iAdvantages-items {
@@ -554,11 +590,8 @@ body.with-scrollbar .iScroll__item {
   .iAdvantages-item:nth-child(3) {
     margin-top: 85px;
   }
-  .iAdvantages-item:nth-child(4) {
-    margin-top: 150px;
-  }
   .iAdvantages-item:nth-child(5) {
-    margin-top: 175px;
+    margin-top: 25px;
   }
 }
 @media screen and (max-width: 576px) {
@@ -612,6 +645,19 @@ body.with-scrollbar .iScroll__item {
 .iDigits .page__center {
   background: transparent;
 }
+@media screen and (min-width: 577px) {
+  .iDigits-slides {
+    height: calc(100% - 165px);
+  }
+  .iDigits-slides.owl-carousel {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
 @media screen and (max-width: 576px) {
   .iDigits-slides + .iDigits-values {
     margin-top: 37px;
@@ -627,7 +673,7 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iDigits-item {
-    padding: 100px 0 100px 200px;
+    padding-left: 200px;
   }
 }
 @media screen and (max-width: 576px) {
@@ -743,6 +789,7 @@ body.with-scrollbar .iScroll__item {
   background: #EFF4FD;
   color: #6E7F95;
   font-family: icomoon!important;
+  text-align: center;
 }
 .iDigits .owl-nav button.owl-prev.disabled,
 .iDigits .owl-nav button.owl-next.disabled {
@@ -1067,7 +1114,7 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iLeadership-item {
-    min-height: 267px;
+    min-height: 255px;
     min-width: 290px;
     height: calc(50% - 15px);
     margin-right: 15px;
@@ -1188,6 +1235,11 @@ body.with-scrollbar .iScroll__item {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 55px;
+  min-height: calc(100vh - 155px - 105px);
+  max-height: calc(100vh - 155px - 105px);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .iPartners__item {
   display: -webkit-box;
@@ -1200,7 +1252,7 @@ body.with-scrollbar .iScroll__item {
       -ms-flex-pack: center;
           justify-content: center;
   width: calc(100%/5 - 15px);
-  height: 150px;
+  height: 100px;
 }
 @media screen and (max-width: 576px) {
   .iPartners__item {
@@ -1211,6 +1263,9 @@ body.with-scrollbar .iScroll__item {
   .iPartners__item {
     padding: 0 10px;
   }
+}
+.iHistory .page__inner {
+  max-height: calc(100% - 125px);
 }
 .iHistory .page__center {
   padding: 50px 0;
@@ -1224,11 +1279,26 @@ body.with-scrollbar .iScroll__item {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+@media screen and (max-width: 576px) {
+  .iHistory-ruler {
+    margin-bottom: 20px;
+  }
+}
 .iHistory-ruler__left,
 .iHistory-ruler__right {
   width: 85px;
   font-size: 26px;
   line-height: 36px;
+  cursor: pointer;
+}
+@media screen and (max-width: 576px) {
+  .iHistory-ruler__left,
+  .iHistory-ruler__right {
+    width: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+  }
 }
 .iHistory-ruler__left {
   text-align: left;
@@ -1240,6 +1310,11 @@ body.with-scrollbar .iScroll__item {
   position: relative;
   width: calc(100% - 170px);
   height: 80px;
+}
+@media screen and (max-width: 576px) {
+  .iHistory-ruler__line {
+    width: calc(100% - 100px);
+  }
 }
 .iHistory-ruler__line:before {
   content: '';
@@ -1263,9 +1338,22 @@ body.with-scrollbar .iScroll__item {
   left: 50%;
   top: 21px;
 }
+@media screen and (max-width: 576px) {
+  .iHistory-ruler__item:before {
+    left: 15px;
+  }
+}
 .iHistory-ruler__item--active a {
-  background: #DCE7FC;
   color: #000000;
+}
+.iHistory-ruler__item--active a span {
+  -webkit-transform: translateX(0) !important;
+          transform: translateX(0) !important;
+  -webkit-transition: -webkit-transform opacity 0.3s;
+  transition: -webkit-transform opacity 0.3s;
+  transition: transform opacity 0.3s;
+  transition: transform opacity 0.3s, -webkit-transform opacity 0.3s;
+  opacity: 1 !important;
 }
 .iHistory-ruler__item a {
   display: -webkit-box;
@@ -1284,6 +1372,40 @@ body.with-scrollbar .iScroll__item {
   padding: 0 8px;
   margin-left: -8px;
 }
+@media screen and (max-width: 576px) {
+  .iHistory-ruler__item a {
+    left: 15px;
+    width: 80px;
+    height: 28px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+  }
+}
+.iHistory-ruler__item a.--from-left span {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+.iHistory-ruler__item a.--from-right span {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+.iHistory-ruler__item a span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #DCE7FC;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  z-index: -10;
+  opacity: 0;
+}
 .iHistory-events {
   min-height: 425px;
 }
@@ -1295,12 +1417,38 @@ body.with-scrollbar .iScroll__item {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+@media screen and (max-width: 576px) {
+  .iHistory-event {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 .iHistory-event__left,
 .iHistory-event__right {
   width: 50%;
 }
+@media screen and (max-width: 576px) {
+  .iHistory-event__left,
+  .iHistory-event__right {
+    width: 100%;
+  }
+}
 .iHistory-event__left {
   padding: 36px 0;
+}
+@media screen and (max-width: 576px) {
+  .iHistory-event__left {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+}
+@media screen and (max-width: 576px) {
+  .iHistory-event__right {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
 }
 .iHistory-event__title {
   font-size: 34px;
@@ -1308,15 +1456,33 @@ body.with-scrollbar .iScroll__item {
   line-height: 46px;
   margin-bottom: 24px;
 }
+@media screen and (max-width: 576px) {
+  .iHistory-event__title {
+    font-size: 26px;
+    line-height: 36px;
+  }
+}
 .iHistory-event__anons {
   color: #6F8FB9;
   font-size: 22px;
   line-height: 31px;
   margin-bottom: 20px;
 }
+@media screen and (max-width: 576px) {
+  .iHistory-event__anons {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
 .iHistory-event__text {
   font-size: 18px;
   line-height: 25px;
+}
+@media screen and (max-width: 576px) {
+  .iHistory-event__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
 .iHistory-event__image {
   max-width: 100%;
