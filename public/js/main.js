@@ -37979,6 +37979,7 @@ module.exports = {
 
     var $line = self._elems.$_.find('.nav-banner__line');
 
+    if ($item.length == 0) return;
     $line.css({
       left: $item.position().left + parseInt($item.css('padding-left')),
       width: $item.width()
@@ -38005,7 +38006,8 @@ module.exports = {
 
     var $slides = $blocks.filter(function (index, elem) {
       return !!$(elem).children('[data-tabs]').length;
-    }); // add wrapper
+    });
+    if ($slides.length == 0) return; // add wrapper
 
     var $wrapper = $('<div class="owl-carousel nav-banner__tabs"></div>');
     $wrapper.insertBefore($slides.first()); // reattach slides
