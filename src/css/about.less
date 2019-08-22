@@ -890,6 +890,17 @@ body {
       background-image: linear-gradient(to right, rgba(white, 0) 16px, white);
     }
   }
+  &.opened {
+    width: inherit;
+    &:after {
+      display: none;
+    }
+    .page {
+      &__center {
+        max-width: inherit;
+      }
+    }
+  }
   .page {
     &__center {
       min-height: calc(~"100vh - @{iOffsetTop} - 88px");

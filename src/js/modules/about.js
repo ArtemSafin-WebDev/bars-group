@@ -189,6 +189,7 @@ module.exports = {
         if ($iLeadership.length == 0) return;
 
         var $iLeadershipItem = $iLeadership.find('.iLeadership-item');
+        var $iLeadershipToggle = $iLeadership.find('.button-aurora');
 
         var height = $iLeadershipItem.eq(0).height();
         $iLeadershipItem.width(height*0.8);
@@ -196,9 +197,16 @@ module.exports = {
         $(window).resize(function(){
             var height = $iLeadershipItem.eq(0).height();
             $iLeadershipItem.width(height*0.8);
+
+            self._elems.$iScroll.width('');
+
+            $iLeadership.removeClass('opened');
+            $iLeadershipToggle.removeClass('opened');
+            $iLeadershipToggle.children('.button-aurora__text').text('Показать еще');
+            $iLeadershipToggle.children('i').show();
         });
 
-        $iLeadership.find('.button-aurora').click(function(e){
+        $iLeadershipToggle.click(function(e){
             e.preventDefault();
 
             if(self._state.isMobile) {
@@ -211,9 +219,34 @@ module.exports = {
                     $(this).addClass('opened').children('.button-aurora__text').text('Скрыть');
                     $(this).children('i').hide();
                 }
+            } else {
+                if ($iLeadership.hasClass('opened')) {
+                    self._elems.$iScroll.width('');
+
+                    $iLeadership.removeClass('opened');
+                    $(this).removeClass('opened').children('.button-aurora__text').text('Показать еще');
+                    $(this).children('i').show();
+
+                    self._resetDesktop();
+                    self._setWindowRatio();
+                    self._setBodyHeight();
+                    self._setScrollWidth();
+                } else {
+                    var width = $iLeadershipItem.eq(0).width();
+                    var nWidth = (width + 15) * Math.round($iLeadershipItem.length / 2) - 1600;
+                    self._elems.$iScroll.width(self._elems.$iScroll.width() + nWidth);
+
+                    $iLeadership.addClass('opened');
+                    $(this).addClass('opened').children('.button-aurora__text').text('Скрыть');
+                    $(this).children('i').hide();
+
+                    self._resetDesktop();
+                    self._setWindowRatio();
+                    self._setBodyHeight();
+                    self._setScrollWidth();
+                }
             }
         });
-
     },
     _initHistory: function(){
         var self = this;
