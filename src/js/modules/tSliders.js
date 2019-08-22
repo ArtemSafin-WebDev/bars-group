@@ -9,14 +9,16 @@ module.exports = {
 		var $blocks = $('.jsTTasksSlider');
 		if ($blocks.length == 0) return;
 
-		$blocks.owlCarousel({
-			items: 1,
-			dots: false,
-			nav: true,
-			loop: true,
-			navText: [''],
-			navContainer: '.tTasks__nav'
-		});
+		$blocks
+			.addClass('owl-carousel')
+			.owlCarousel({
+				items: 1,
+				dots: false,
+				nav: true,
+				loop: true,
+				navText: [''],
+				navContainer: '.tTasks__nav'
+			});
 	},
 
 	_initIntroducedSlider: function () {
@@ -25,14 +27,16 @@ module.exports = {
 		var $blocks = $('.jsTIntroducedSlider');
 		if ($blocks.length == 0) return;
 
-		$blocks.owlCarousel({
-			items: 1,
-			dots: false,
-			nav: true,
-			loop: true,
-			navText: [''],
-			navContainer: '.tIntroduced__nav'
-		});
+		$blocks
+			.addClass('owl-carousel')
+			.owlCarousel({
+				items: 1,
+				dots: false,
+				nav: true,
+				loop: true,
+				navText: [''],
+				navContainer: '.tIntroduced__nav'
+			});
 	},
 
 	_initComponentsSlider: function () {
@@ -77,19 +81,23 @@ module.exports = {
 		});
 	},
 
-	_handleWindowResize: function (e) {
-		var self = e.data.self;
+	_renderAdaptiveSliders: function () {
+		var self = this;
 
 		if (window.matchMedia("(min-width: 601px)").matches) {
-			$('.jsTTasksSlider, .jsTIntroducedSlider').addClass('owl-carousel');
-
 			self._initTasksSlider();
 			self._initIntroducedSlider();
-
 		} else {
 			$('.jsTTasksSlider, .jsTIntroducedSlider')
 				.owlCarousel('destroy').removeClass('owl-carousel');
 		}
+
+	},
+
+	_handleWindowResize: function (e) {
+		var self = e.data.self;
+
+		self._renderAdaptiveSliders();
 	},
 
 	_bindUI: function () {
@@ -101,8 +109,7 @@ module.exports = {
 	init: function () {
 		var self = this;
 
-		self._initTasksSlider();
-		self._initIntroducedSlider();
+		self._renderAdaptiveSliders();
 		self._initComponentsSlider();
 		self._initNewsSlider();
 

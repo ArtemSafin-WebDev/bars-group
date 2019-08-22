@@ -39239,7 +39239,7 @@ module.exports = {
     var self = this;
     var $blocks = $('.jsTTasksSlider');
     if ($blocks.length == 0) return;
-    $blocks.owlCarousel({
+    $blocks.addClass('owl-carousel').owlCarousel({
       items: 1,
       dots: false,
       nav: true,
@@ -39252,7 +39252,7 @@ module.exports = {
     var self = this;
     var $blocks = $('.jsTIntroducedSlider');
     if ($blocks.length == 0) return;
-    $blocks.owlCarousel({
+    $blocks.addClass('owl-carousel').owlCarousel({
       items: 1,
       dots: false,
       nav: true,
@@ -39297,18 +39297,21 @@ module.exports = {
       }
     });
   },
-  _handleWindowResize: function _handleWindowResize(e) {
-    var self = e.data.self;
+  _renderAdaptiveSliders: function _renderAdaptiveSliders() {
+    var self = this;
 
     if (window.matchMedia("(min-width: 601px)").matches) {
-      $('.jsTTasksSlider, .jsTIntroducedSlider').addClass('owl-carousel');
-
       self._initTasksSlider();
 
       self._initIntroducedSlider();
     } else {
       $('.jsTTasksSlider, .jsTIntroducedSlider').owlCarousel('destroy').removeClass('owl-carousel');
     }
+  },
+  _handleWindowResize: function _handleWindowResize(e) {
+    var self = e.data.self;
+
+    self._renderAdaptiveSliders();
   },
   _bindUI: function _bindUI() {
     var self = this;
@@ -39319,9 +39322,7 @@ module.exports = {
   init: function init() {
     var self = this;
 
-    self._initTasksSlider();
-
-    self._initIntroducedSlider();
+    self._renderAdaptiveSliders();
 
     self._initComponentsSlider();
 
