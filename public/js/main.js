@@ -36157,6 +36157,7 @@ module.exports = {
     var height = $iLeadershipItem.eq(0).height();
     $iLeadershipItem.width(height * 0.8);
     $(window).resize(function () {
+      var height = $iLeadershipItem.eq(0).height();
       $iLeadershipItem.width(height * 0.8);
     });
     $iLeadership.find('.button-aurora').click(function (e) {
@@ -36206,21 +36207,32 @@ module.exports = {
       e.preventDefault();
       var link = $(this);
       $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
-      $iHistory.find('.iHistory-ruler__item a').removeClass('--from-right --from-left');
-      if (events.find('.owl-item.active').index() < link.parents('.owl-item').index() + 1) link.addClass('--from-left');else link.addClass('--from-right');
-      setTimeout(function () {
-        link.parent().addClass('iHistory-ruler__item--active');
-      }, 10);
+      link.parent().addClass('iHistory-ruler__item--active');
+      $iHistory.find('.iHistory-ruler__pipe').css({
+        'right': 'auto'
+      }).animate({
+        'left': link.parents('.owl-item').position().left + link.position().left - 8
+      }, 300);
       events.trigger('to.owl.carousel', link.parents('.owl-item').index() + 1);
     });
     $iHistory.find('.iHistory-ruler__left').click(function (e) {
       e.preventDefault();
       $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+      $iHistory.find('.iHistory-ruler__pipe').css({
+        'right': 'auto'
+      }).animate({
+        'left': -200
+      }, 300);
       events.trigger('to.owl.carousel', 0);
     });
     $iHistory.find('.iHistory-ruler__right').click(function (e) {
       e.preventDefault();
       $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+      $iHistory.find('.iHistory-ruler__pipe').css({
+        'left': 'auto'
+      }).animate({
+        'right': -200
+      }, 300);
       events.trigger('to.owl.carousel', events.find('.owl-item').length - 1);
     });
   },
