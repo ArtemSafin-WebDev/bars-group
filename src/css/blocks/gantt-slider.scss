@@ -79,7 +79,7 @@
 	&__label {
 		position: relative;
 		display: inline-block;
-		padding: 6px 8px;
+		padding: 7px 8px 6px 8px;
 		font-size: 10px;
 		font-weight: 700;
 		letter-spacing: 1.2px;
@@ -222,15 +222,13 @@
 		}
 
 		&__right {
-			position: relative;
-			top: .33em;
+	
 		}
 	}
 
 	&__desc {
 		display: block;
 		margin-top: 5px;
-		max-width: 75%;
 		max-height: 3em;
 		font-size: 14px;
 		line-height: 1.7;
@@ -347,7 +345,7 @@
 		}
 
 		&__label {
-			padding: 5px 7px;
+			padding: 6px 7px 5px 7px;
 			font-size: 8px;
 		}
 
