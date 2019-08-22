@@ -63,13 +63,22 @@ body {
           }
         }
         &__ctrl {
-          margin-top: -105px;
-          height: 105px;
+          margin-top: -85px;
+          height: 85px;
           padding-bottom: 10px;
         }
         &__range {
-          height: 40px;
-          margin-bottom: 20px;
+          height: 32px;
+          margin-bottom: 12px;
+          .rangeslider__handle {
+            width: 72px;
+            height: 32px;
+            i {
+              height: 32px;
+              font-size: 12px;
+              line-height: 32px;
+            }
+          }
         }
       }
     }
@@ -78,9 +87,20 @@ body {
 
 .iNav {
   display: flex;
-  justify-content: space-between;
   @media @max_small {
     display: none;
+  }
+  a {
+    margin-right: 37px;
+    font-size: 16px;
+    line-height: 24px;
+    @media @max_large {
+      margin-right: 18px;
+      font-size: 13px;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
@@ -872,8 +892,8 @@ body {
   }
   .page {
     &__center {
-      min-height: calc(~"100vh - @{iOffsetTop} - 50px");
-      max-height: calc(~"100vh - @{iOffsetTop} - 50px");
+      min-height: calc(~"100vh - @{iOffsetTop} - 88px");
+      max-height: calc(~"100vh - @{iOffsetTop} - 88px");
       transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
       &.opened {
         max-height: initial;
