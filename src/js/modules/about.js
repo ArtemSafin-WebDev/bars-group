@@ -194,6 +194,7 @@ module.exports = {
         $iLeadershipItem.width(height*0.8);
 
         $(window).resize(function(){
+            var height = $iLeadershipItem.eq(0).height();
             $iLeadershipItem.width(height*0.8);
         });
 
@@ -251,15 +252,9 @@ module.exports = {
             var link = $(this);
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
-            $iHistory.find('.iHistory-ruler__item a').removeClass('--from-right --from-left');
-            if(events.find('.owl-item.active').index() < link.parents('.owl-item').index() + 1)
-                link.addClass('--from-left');
-            else
-                link.addClass('--from-right');
+            link.parent().addClass('iHistory-ruler__item--active');
+            $iHistory.find('.iHistory-ruler__pipe').css({'right': 'auto'}).animate({'left': link.parents('.owl-item').position().left + link.position().left - 8}, 300);
 
-            setTimeout(function(){
-                link.parent().addClass('iHistory-ruler__item--active');
-            }, 10);
             events.trigger('to.owl.carousel', link.parents('.owl-item').index() + 1);
         });
 
@@ -267,6 +262,8 @@ module.exports = {
             e.preventDefault();
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+            $iHistory.find('.iHistory-ruler__pipe').css({'right': 'auto'}).animate({'left': -200}, 300);
+
             events.trigger('to.owl.carousel', 0);
         });
 
@@ -274,6 +271,8 @@ module.exports = {
             e.preventDefault();
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
+            $iHistory.find('.iHistory-ruler__pipe').css({'left': 'auto'}).animate({'right': -200}, 300);
+
             events.trigger('to.owl.carousel', events.find('.owl-item').length - 1);
         });
     },
