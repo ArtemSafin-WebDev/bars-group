@@ -28,17 +28,7 @@
 
 			width: 510px;
 
-			&:hover {
-				padding-left: 0;
-				padding-right: 0;
-
-				.gantt-slider__bg,
-				.gantt-slider__click,
-				.gantt-slider__dash {
-					right: -20px;
-					left: -20px;
-				}
-			}
+			
 
 			.gantt-slider__label {
 				opacity: 1;
@@ -141,12 +131,16 @@
 		padding-bottom: 18px;
 		padding-top: 24px;
 		margin-bottom: 20px;
-		margin-right: 24px;
+		margin-right: 40px;
 
 		&:hover {
 			
-			padding-left: 20px;
-			padding-right: 20px;
+			.gantt-slider__bg,
+			.gantt-slider__click,
+			.gantt-slider__dash {
+				right: -20px;
+				left: -20px;
+			}
 
 			.gantt-slider__bg {
 				height: 100%;

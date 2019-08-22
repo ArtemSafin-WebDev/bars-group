@@ -3213,14 +3213,6 @@ img {
     visibility: hidden; }
   .gantt-slider--gantt-view .gantt-slider__item {
     width: 510px; }
-    .gantt-slider--gantt-view .gantt-slider__item:hover {
-      padding-left: 0;
-      padding-right: 0; }
-      .gantt-slider--gantt-view .gantt-slider__item:hover .gantt-slider__bg,
-      .gantt-slider--gantt-view .gantt-slider__item:hover .gantt-slider__click,
-      .gantt-slider--gantt-view .gantt-slider__item:hover .gantt-slider__dash {
-        right: -20px;
-        left: -20px; }
     .gantt-slider--gantt-view .gantt-slider__item .gantt-slider__label {
       opacity: 1; }
   .gantt-slider--gantt-view .gantt-slider__h1--size-1 {
@@ -3297,21 +3289,23 @@ img {
     padding-bottom: 18px;
     padding-top: 24px;
     margin-bottom: 20px;
-    margin-right: 24px; }
-    .gantt-slider__item:hover {
-      padding-left: 20px;
-      padding-right: 20px; }
-      .gantt-slider__item:hover .gantt-slider__bg {
-        height: 100%;
-        opacity: 1; }
-      .gantt-slider__item:hover .gantt-slider__dash {
-        height: 100%;
-        opacity: 0; }
-      .gantt-slider__item:hover .gantt-slider__h1,
-      .gantt-slider__item:hover .gantt-slider__desc {
-        color: #fff; }
-      .gantt-slider__item:hover .gantt-slider__label {
-        opacity: 1; }
+    margin-right: 40px; }
+    .gantt-slider__item:hover .gantt-slider__bg,
+    .gantt-slider__item:hover .gantt-slider__click,
+    .gantt-slider__item:hover .gantt-slider__dash {
+      right: -20px;
+      left: -20px; }
+    .gantt-slider__item:hover .gantt-slider__bg {
+      height: 100%;
+      opacity: 1; }
+    .gantt-slider__item:hover .gantt-slider__dash {
+      height: 100%;
+      opacity: 0; }
+    .gantt-slider__item:hover .gantt-slider__h1,
+    .gantt-slider__item:hover .gantt-slider__desc {
+      color: #fff; }
+    .gantt-slider__item:hover .gantt-slider__label {
+      opacity: 1; }
     .gantt-slider__item .gantt-slider__label {
       -webkit-transition: opacity .2s ease-out;
       transition: opacity .2s ease-out;
