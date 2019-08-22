@@ -22,7 +22,8 @@ var NewsPhotoSlider = require('./newsPhotoSlider');
 var NewsToggles = require('./newsToggles');
 var NavSticker = require('./navSticker');
 var About = require('./about');
-var Talgat = require('./talgat');
+var TAdvantages = require('./tAdvantages');
+var TSliders = require('./tSliders');
 var Utils = require('./utils');
 var Popup = require('./popup');
 var Arch = require('./arch');
@@ -56,6 +57,7 @@ module.exports = {
 		Hover.init();
 		Popup.init();
 		NavFilter.init();
+		TAdvantages.init();
 
 		// trigger click to start loading lazy videos
 		$('body').trigger('click');
@@ -100,7 +102,7 @@ module.exports = {
 		NewsToggles.init();
 		NavSticker.init();
 		About.init();
-		Talgat.init();
+		TSliders.init();
 		Arch.init();
 	},
 
