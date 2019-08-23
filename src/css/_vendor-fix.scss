@@ -15,6 +15,10 @@
   transform: translateY(0);
 }
 
+.fancybox-button {
+	display: none;
+}
+
 @media all and (max-width: 600px) {
 
 	.fancybox-content {

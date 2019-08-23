@@ -38617,7 +38617,7 @@ module.exports = {
       type: type,
       autoFocus: false,
       animationEffect: 'slide-in-out',
-      modal: true
+      modal: false
     });
   },
   _handleCloseButton: function _handleCloseButton(e) {

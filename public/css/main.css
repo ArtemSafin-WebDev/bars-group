@@ -758,6 +758,9 @@ template {
   -webkit-transform: translateY(0);
           transform: translateY(0); }
 
+.fancybox-button {
+  display: none; }
+
 @media all and (max-width: 600px) {
   .fancybox-content {
     padding: 50px 30px; } }
