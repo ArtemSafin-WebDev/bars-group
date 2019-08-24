@@ -1,7 +1,6 @@
 var $ = require('jquery');
 require("rangeslider.js");
 require('owl.carousel');
-require('smoothscroll-polyfill');
 
 module.exports = {
 
@@ -58,7 +57,7 @@ module.exports = {
 
         $('body').height('auto');
         self._elems.$iScroll.width('');
-        self._elems.$iScroll.parent().scrollLeft(0);
+        self._elems.$scroll.scrollLeft(0);
         self._elems.$_.find('[data-factor]').css({'transform' : 'translate3d(0, 0, 0)'});
     },
 
@@ -90,9 +89,9 @@ module.exports = {
 
                 var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
                 var scrollLeft    = maxScrollLeft / 1000 * value;
-                self._elems.$iScroll.parent().scrollLeft(scrollLeft);
-                if (self._state.scrollType == 'range')
-                    $(window).scrollTop(scrollLeft / self._state.windowRatio);
+                self._elems.$scroll.scrollLeft(scrollLeft);
+                // if (self._state.scrollType == 'range')
+                    // $(window).scrollTop(scrollLeft / self._state.windowRatio);
             }
         });
     },
@@ -328,13 +327,14 @@ module.exports = {
     _handleSliderScroll: function (e) {
         var self = e.data.self;
 
-        if (self._elems.$iScroll.parent().hasClass('window-scroll')) {
-            self._elems.$iScroll.parent().removeClass('window-scroll')
+
+        if (self._elems.$scroll.hasClass('window-scroll')) {
+            self._elems.$scroll.removeClass('window-scroll')
         } else {
             self._state.scrollType = 'range';
         }
 
-        var scrollLeft = self._elems.$iScroll.parent().scrollLeft();
+        var scrollLeft = self._elems.$scroll.scrollLeft();
         var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
         var rangeValue = Math.round(1000 * scrollLeft / maxScrollLeft);
         self._elems.$_.find('.gantt-slider__range input').val(rangeValue).change();
@@ -362,6 +362,34 @@ module.exports = {
             }
         });
     },
+
+    _renderParallaxState: function () {
+        var self = this;
+
+        self._elems.$_.find('[data-factor]').each(function(){
+            var $parent = $(this).parents('.iScroll-item');
+
+            var offsetLeft = $parent.offset().left;
+
+            if ((offsetLeft < $(window).width() + 100) && (offsetLeft + $parent.width()) > -100) {
+                $(this).css({
+                    'transform': 'translate3d(' + offsetLeft * $(this).data('factor') + 'px, 0, 0)'
+                });
+            }
+        });
+
+    },
+
+    _handleWindowResize: function (e) {
+        var self = e.data.self;
+
+        self._setIsMobile();
+        self._resetDesktop();
+        self._setWindowRatio();
+        self._setBodyHeight();
+        self._setScrollWidth();
+    },
+
     _bindUI: function(){
         var self = this;
 
@@ -369,46 +397,25 @@ module.exports = {
             self._initRangeSlider();
         }
 
-        $(window).resize(function(){
-            if ($(window).width() <= 576) {
-                self._state.isMobile = true;
-            } else {
-                self._state.isMobile = false;
-            }
-
-            self._resetDesktop();
-            self._setWindowRatio();
-            self._setBodyHeight();
-            self._setScrollWidth();
-        });
 
         $(window).scroll(function(){
             if(!self._state.isMobile) {
                 var offsetTop = $(window).scrollTop();
 
                 self._state.scrollType = 'window';
-                self._elems.$iScroll.parent().addClass('window-scroll');
-                self._elems.$iScroll.parent().scrollLeft( offsetTop * self._state.windowRatio );
+                self._elems.$scroll.addClass('window-scroll');
+                self._elems.$scroll.scrollLeft( offsetTop * self._state.windowRatio );
 
-                self._elems.$_.find('[data-factor]').each(function(){
-                    var parent = $(this).parents('.iScroll-item');
-                    if(parent.length == 0) return;
-
-                    var offsetLeft = parent.offset().left;
-
-                    if ((offsetLeft < $(window).width() + 100) && (offsetLeft + parent.width()) > -100) {
-                        $(this).css({
-                            'transform': 'translate3d(' + offsetLeft * $(this).data('factor') + 'px, 0, 0)'
-                        });
-                    }
-                });
+                self._renderParallaxState();
             }
         });
 
         if(!self._state.isMobile){
-            self._elems.$iScroll.parent().on('scroll', {self: self}, self._handleSliderScroll);
-            //$(window).on('resize orientationchange', {self: self}, self._handleWindowResize);
+            self._elems.$scroll.on('scroll', {self: self}, self._handleSliderScroll);
         }
+
+        $(window).on('resize', {self: self}, self._handleWindowResize);
+
 
     },
 
@@ -421,6 +428,7 @@ module.exports = {
 
         self._elems.$_ = $_;
         self._elems.$iScroll = $_.find('.iScroll');
+        self._elems.$scroll = $_.find('.gantt-slider__scroll');
 
         self._setIsMobile();
         self._setWindowRatio();
