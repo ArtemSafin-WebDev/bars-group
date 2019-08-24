@@ -91,6 +91,7 @@ module.exports = {
 		var $_ = $("#nav-banner");
 
 		if ( $_.length == 0) return;
+		if ( $('body').hasClass('is-admin') ) return;
 
 		self._elems.$_ = $_;
 
