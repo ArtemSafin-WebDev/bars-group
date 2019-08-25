@@ -66,7 +66,8 @@ module.exports = {
 			items: 1,
 			mouseDrag: false,
 			touchDrag: false,
-			dots: false
+			dots: false,
+			autoHeight: true
 		});
 
 		self._elems.$slider = $wrapper;
