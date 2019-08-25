@@ -47,36 +47,36 @@ module.exports = function(grunt) {
 			}
 		},
 
-		responsive_images: {
-			options: {
-				quality: 60,
-				createNoScaledImage: true
-			},
-		    myTask: {
-		      options: {
-		        sizes: [{
-		        	name: '1000',
-		        	width: 1000
-		        },{
-		        	name: '1500',
-		        	width: 1500
-		        }]
+		// responsive_images: {
+		// 	options: {
+		// 		quality: 60,
+		// 		createNoScaledImage: true
+		// 	},
+		//     myTask: {
+		//       options: {
+		//         sizes: [{
+		//         	name: '1000',
+		//         	width: 1000
+		//         },{
+		//         	name: '1500',
+		//         	width: 1500
+		//         }]
 
-		        // retina example
-		        // {
-		        // 	name: '1000',
-		        // 	suffix: "-2x",
-		        // 	width: 2000
-		        // }
-		      },
-		      files: [{
-		        expand: true,
-		        src: ['img/**/*.{jpg,png}'],
-		        cwd: 'src/',
-		        dest: 'public/'
-		      }]
-		    }
-		  },
+		//         retina example
+		//         {
+		//         	name: '1000',
+		//         	suffix: "-2x",
+		//         	width: 2000
+		//         }
+		//       },
+		//       files: [{
+		//         expand: true,
+		//         src: ['img/**/*.{jpg,png}'],
+		//         cwd: 'src/',
+		//         dest: 'public/'
+		//       }]
+		//     }
+		//   },
 
 	});
 

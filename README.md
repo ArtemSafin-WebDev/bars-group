@@ -8,5 +8,4 @@
 Доступно
 
 - npm run start
-- npm run heavy-tasks (ресайз картинок, modernizr)
-- npm run dev (без тяжелых задач)
+- npm run dev 
