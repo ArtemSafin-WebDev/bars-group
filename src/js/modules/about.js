@@ -1,6 +1,7 @@
 var $ = require('jquery');
 require("rangeslider.js");
 require('owl.carousel');
+require('jquery-mousewheel');
 
 module.exports = {
 
@@ -9,29 +10,37 @@ module.exports = {
         $iScroll: $()
     },
 
-    _state:  {
-        isMobile : false,
-        windowRatio :  1,
-        scrollType : false,
-        run : false
+    _state: {
+        isMobile: false,
+        isTouchDevice: false,
+        windowRatio: 1,
+        scrollType: false,
+        run: false
     },
-    
-    _setIsMobile: function(){
+
+    _setTouchDevice: function () {
+        var self = this;
+
+        self._state.isTouchDevice = typeof window.ontouchstart !== 'undefined';
+    },
+
+    _setIsMobile: function () {
         var self = this;
 
         self._state.isMobile = $(window).width() <= 576;
     },
 
-    _setWindowRatio: function(){
+    _setWindowRatio: function () {
         var self = this;
 
         self._state.windowRatio = $(window).width() / $(window).height();
     },
 
-    _setBodyHeight: function(){
+    _setBodyHeight: function () {
         var self = this;
 
         if (self._state.isMobile) return;
+        if (self._state.isTouchDevice) return;
 
         if ($(window).width() >= self._elems.$iScroll.children().width()) {
             $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
@@ -40,7 +49,7 @@ module.exports = {
         }
     },
 
-    _setScrollWidth: function(){
+    _setScrollWidth: function () {
         var self = this;
 
         if (self._state.isMobile) return;
@@ -50,7 +59,7 @@ module.exports = {
         }
     },
 
-    _resetDesktop: function() {
+    _resetDesktop: function () {
         var self = this;
 
         if (!self._state.isMobile) return;
@@ -58,68 +67,33 @@ module.exports = {
         $('body').height('auto');
         self._elems.$iScroll.width('');
         self._elems.$scroll.scrollLeft(0);
-        self._elems.$_.find('[data-factor]').css({'transform' : 'translate3d(0, 0, 0)'});
+        self._elems.$_.find('[data-factor]').css({'transform': 'translate3d(0, 0, 0)'});
     },
-
-    _initRangeSlider: function () {
-        var self = this;
-
-        var $range = self._elems.$_.find('.gantt-slider__range');
-        $range.data('position', 0);
-        $range.find('input').rangeslider({
-            polyfill: false,
-            onInit: function () {
-                $range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
-            },
-            onSlide: function(position, value) {
-                if (value == self._state.lastRangeValue) return;
-                self._state.lastRangeValue = value;
-
-                if (self._elems.$iScroll.data('direction') == 'right') {
-                    if (position < $range.data('position')) {
-                        self._elems.$iScroll.data('direction', 'left');
-                    }
-                } else if (self._elems.$iScroll.data('direction') == 'left') {
-                    if (position > $range.data('position')) {
-                        self._elems.$iScroll.data('direction', 'right');
-                    }
-                }
-
-                $range.data('position', position);
-
-                var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
-                var scrollLeft    = maxScrollLeft / 1000 * value;
-                self._elems.$scroll.scrollLeft(scrollLeft);
-                // if (self._state.scrollType == 'range')
-                    // $(window).scrollTop(scrollLeft / self._state.windowRatio);
-            }
-        });
-    },
-    _initGeo: function(){
+    _initGeo: function () {
         var self = this;
 
         var $iGeo = self._elems.$_.find('.iGeo');
         if ($iGeo.length == 0) return;
 
-        var $iGeoMap   = $iGeo.find('.iGeo__map');
+        var $iGeoMap = $iGeo.find('.iGeo__map');
         var $iGeoItems = $iGeo.find('.iGeo__items');
-        var $iGeoItem  = $iGeoItems.children('.iGeo__item');
+        var $iGeoItem = $iGeoItems.children('.iGeo__item');
 
         var offsetTop = self._state.isMobile ? 200 : 63;
 
         var iGeoMapHeight = $iGeoMap.height() + offsetTop;
-        var iGeoMapWidth  = $iGeoMap.width();
+        var iGeoMapWidth = $iGeoMap.width();
 
         $iGeoItems.width(!self._state.isMobile ? $iGeoMap.width() : '100%');
 
-        $iGeoItem.each(function(){
+        $iGeoItem.each(function () {
             var top = 0;
             var left = 0;
 
             if ($(this).data('top') > 0) {
                 top = $(this).data('top') / iGeoMapHeight * 100;
             }
-            
+
             if ($(this).data('left') > 0) {
                 left = $(this).data('left') / iGeoMapWidth * 100 + 0.75;
             }
@@ -131,7 +105,7 @@ module.exports = {
             $(this).stop().animate({'top': top + '%', 'left': left + '%'}, 1000).addClass('iGeo__item--active');
         });
     },
-    _initDigits: function(){
+    _initDigits: function () {
         var self = this;
 
         var $iDigits = self._elems.$_.find('.iDigits');
@@ -147,20 +121,20 @@ module.exports = {
             items: 1,
             auto: false,
             responsive: {
-                568 : {
-                    nav : true
+                568: {
+                    nav: true
                 }
             }
         });
 
-        owlDigits.on('changed.owl.carousel', function(e){
+        owlDigits.on('changed.owl.carousel', function (e) {
             $iDigitsValueItem.removeClass($iDigitsValues.data('active'));
             $iDigitsValueItem.eq(e.item.index).addClass($iDigitsValues.data('active'));
         });
 
         $iDigitsValueItem.eq(0).addClass($iDigitsValues.data('active'));
 
-        $iDigitsValueItem.click(function(e){
+        $iDigitsValueItem.click(function (e) {
             e.preventDefault();
 
             $('.iDigits-values__item').removeClass($iDigitsValues.data('active'));
@@ -181,7 +155,7 @@ module.exports = {
             });
         }
     },
-    _initLeadership: function(){
+    _initLeadership: function () {
         var self = this;
 
         var $iLeadership = self._elems.$_.find('.iLeadership');
@@ -191,11 +165,11 @@ module.exports = {
         var $iLeadershipToggle = $iLeadership.find('.button-aurora');
 
         var height = $iLeadershipItem.eq(0).height();
-        $iLeadershipItem.width(height*0.8);
+        $iLeadershipItem.width(height * 0.8);
 
-        $(window).resize(function(){
+        $(window).resize(function () {
             var height = $iLeadershipItem.eq(0).height();
-            $iLeadershipItem.width(height*0.8);
+            $iLeadershipItem.width(height * 0.8);
 
             self._elems.$iScroll.width('');
 
@@ -205,10 +179,10 @@ module.exports = {
             $iLeadershipToggle.children('i').show();
         });
 
-        $iLeadershipToggle.click(function(e){
+        $iLeadershipToggle.click(function (e) {
             e.preventDefault();
 
-            if(self._state.isMobile) {
+            if (self._state.isMobile) {
                 if ($(this).hasClass('opened')) {
                     $iLeadership.find('.page__center').removeClass('opened');
                     $(this).removeClass('opened').children('.button-aurora__text').text('Показать еще');
@@ -247,7 +221,7 @@ module.exports = {
             }
         });
     },
-    _initHistory: function(){
+    _initHistory: function () {
         var self = this;
 
         var $iHistory = self._elems.$_.find('.iHistory');
@@ -256,15 +230,15 @@ module.exports = {
         var ruler = $iHistory.find('.iHistory-ruler__line .owl-carousel');
         var events = $iHistory.find('.iHistory-events .owl-carousel');
 
-        if(ruler.length == 0) return;
-        if(events.length == 0) return;
+        if (ruler.length == 0) return;
+        if (events.length == 0) return;
 
         ruler.owlCarousel({
             nav: false,
             dots: false,
             auto: false,
-            responsive : {
-                576 : {
+            responsive: {
+                576: {
                     items: Math.min(14, ruler.data('count'))
                 }
             }
@@ -278,7 +252,7 @@ module.exports = {
             auto: false
         });
 
-        $iHistory.find('.iHistory-ruler__item a').click(function(e){
+        $iHistory.find('.iHistory-ruler__item a').click(function (e) {
             e.preventDefault();
 
             var link = $(this);
@@ -290,7 +264,7 @@ module.exports = {
             events.trigger('to.owl.carousel', link.parents('.owl-item').index() + 1);
         });
 
-        $iHistory.find('.iHistory-ruler__left').click(function(e){
+        $iHistory.find('.iHistory-ruler__left').click(function (e) {
             e.preventDefault();
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
@@ -299,7 +273,7 @@ module.exports = {
             events.trigger('to.owl.carousel', 0);
         });
 
-        $iHistory.find('.iHistory-ruler__right').click(function(e){
+        $iHistory.find('.iHistory-ruler__right').click(function (e) {
             e.preventDefault();
 
             $iHistory.find('.iHistory-ruler__item').removeClass('iHistory-ruler__item--active');
@@ -308,40 +282,35 @@ module.exports = {
             events.trigger('to.owl.carousel', events.find('.owl-item').length - 1);
         });
     },
-    _initNav: function(){
+    _initNav: function () {
         var self = this;
 
         var $iNav = self._elems.$_.find('.iNav');
         if ($iNav.length == 0) return;
 
-        $iNav.children('a').click(function(e){
+        $iNav.children('a').click(function (e) {
             e.preventDefault();
 
             var $target = $($(this).attr('href'));
-            if($target.length == 0) return;
+            if ($target.length == 0) return;
 
-            //var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
-            //self._elems.$_.find('.gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft + $target.offset().left}, 1200);
+            var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+            self._elems.$_.find('.gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft + $target.offset().left}, 1200);
         });
     },
     _handleSliderScroll: function (e) {
         var self = e.data.self;
 
-
-        if (self._elems.$scroll.hasClass('window-scroll')) {
-            self._elems.$scroll.removeClass('window-scroll')
-        } else {
-            self._state.scrollType = 'range';
-        }
-
         var scrollLeft = self._elems.$scroll.scrollLeft();
-        var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
-        var rangeValue = Math.round(1000 * scrollLeft / maxScrollLeft);
-        self._elems.$_.find('.gantt-slider__range input').val(rangeValue).change();
+        var scrollTop = Math.round(scrollLeft / self._state.windowRatio);
+
+        if (self._state.isTouchDevice) {
+            $(window).scrollTop(scrollTop);
+        }
 
         var img = $('#wrapper .brand-box__image img');
 
-        self._elems.$iScroll.children('.iScroll-item').each(function(){
+        self._elems.$iScroll.children('.iScroll-item').each(function () {
             if (
                 self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
                 ||
@@ -366,9 +335,8 @@ module.exports = {
     _renderParallaxState: function () {
         var self = this;
 
-        self._elems.$_.find('[data-factor]').each(function(){
+        self._elems.$_.find('[data-factor]').each(function () {
             var $parent = $(this).parents('.iScroll-item');
-
             var offsetLeft = $parent.offset().left;
 
             if ((offsetLeft < $(window).width() + 100) && (offsetLeft + $parent.width()) > -100) {
@@ -384,39 +352,38 @@ module.exports = {
         var self = e.data.self;
 
         self._setIsMobile();
+        self._setTouchDevice();
         self._resetDesktop();
         self._setWindowRatio();
-        self._setBodyHeight();
+        //self._setBodyHeight();
         self._setScrollWidth();
     },
 
-    _bindUI: function(){
+    _bindUI: function () {
         var self = this;
 
-        if(!self._state.isMobile) {
+        if (!self._state.isMobile) {
             self._initRangeSlider();
         }
 
-
-        $(window).scroll(function(){
-            if(!self._state.isMobile) {
-                var offsetTop = $(window).scrollTop();
-
-                self._state.scrollType = 'window';
-                self._elems.$scroll.addClass('window-scroll');
-                self._elems.$scroll.scrollLeft( offsetTop * self._state.windowRatio );
+        if(!self._state.isTouchDevice) {
+            self._elems.$scroll.css({'overflow-x': 'hidden'});
+            $(window).on('scroll', {self: self}, function (e) {
+                if (self._state.isMobile) return;
 
                 self._renderParallaxState();
-            }
-        });
-
-        if(!self._state.isMobile){
-            self._elems.$scroll.on('scroll', {self: self}, self._handleSliderScroll);
+                self._handleSliderScroll(e);
+                self._elems.$scroll.scrollLeft($(window).scrollTop() * self._state.windowRatio);
+            });
+        }
+        else {
+            self._elems.$scroll.on('scroll', {self: self}, function(e){
+                self._renderParallaxState();
+                self._handleSliderScroll(e);
+            });
         }
 
         $(window).on('resize', {self: self}, self._handleWindowResize);
-
-
     },
 
     init: function () {
@@ -424,13 +391,14 @@ module.exports = {
 
         var $_ = $('#about-slider');
 
-        if ( $_.length == 0 ) return;
+        if ($_.length == 0) return;
 
         self._elems.$_ = $_;
         self._elems.$iScroll = $_.find('.iScroll');
         self._elems.$scroll = $_.find('.gantt-slider__scroll');
 
         self._setIsMobile();
+        self._setTouchDevice();
         self._setWindowRatio();
         self._setBodyHeight();
         self._setScrollWidth();

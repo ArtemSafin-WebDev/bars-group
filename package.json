@@ -60,6 +60,7 @@
     "dragscroll": "0.0.8",
     "icheck": "^1.0.2",
     "jquery": "^1.12.4",
+    "jquery-mousewheel": "3.1.13",
     "jquery-validation": "^1.19.1",
     "midnight.js": "^1.1.1",
     "notifyjs-browser": "^0.4.2",

@@ -50,11 +50,12 @@ body.with-scrollbar .iScroll__item {
   display: none;
 }
 .about-slider .gantt-slider__ctrl {
-  margin-top: -85px;
-  height: 85px;
+  margin-top: -40px;
+  height: 40px;
   padding-bottom: 10px;
 }
 .about-slider .gantt-slider__range {
+  display: none;
   height: 32px;
   margin-bottom: 12px;
 }
