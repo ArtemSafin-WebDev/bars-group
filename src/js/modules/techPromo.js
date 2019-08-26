@@ -1,6 +1,12 @@
 var $ = require('jquery');
+var NavBanner = require('./navBanner');
+var Utils = require('./utils');
 
 module.exports = {
+
+	_elems: {
+		$_: $()
+	},
 
 	_state: {
 		timers: []
@@ -38,11 +44,26 @@ module.exports = {
 		self._setActiveVideo(0);
 	},
 
+	_handleCircleClick: function (e) {
+		var self = e.data.self;
+
+		e.preventDefault();
+
+		var $target = $( $(this).attr('href') );
+		var tabIndex = $target.parent().index();
+		NavBanner.showTabByIndex(tabIndex);
+
+		var SPACE_BEFORE = 200;
+		var scrollPos = $target.offset().top - SPACE_BEFORE;
+		Utils.scrollTo(scrollPos);
+	},
+
 	_bindUI: function () {
 		var self = this;
 
 		$('#tech-promo .tech-promo__circle').on('mouseenter', {self: self}, self._handleCircleEnter);
 		$('#tech-promo .tech-promo__circle').on('mouseleave', {self: self}, self._handleCircleLeave);
+		self._elems.$_.on('click', '.tech-promo__circle', {self: self}, self._handleCircleClick);
 	},
 
 	init: function () {
@@ -51,6 +72,8 @@ module.exports = {
 		var $_ = $('#tech-promo');
 
 		if ( $_.length == 0) return;
+
+		self._elems.$_ = $_;
 
 		$_.find('.tech-promo__orbit').addClass('--active');
 

@@ -153,6 +153,7 @@
 	&__circle {
 		transition: all .6s;
 		transform: scale(0);
+		display: block;
 		position: relative;
 		z-index: 190;
 		width: 100%;
@@ -360,6 +361,7 @@
 			margin-right: 10px;
 			font-size: 16px;
 			line-height: 1.45;
+			color: #000;
 			height: 0;
 			opacity: 0;
 		}

@@ -8,10 +8,9 @@
     "url": "git@bitbucket.org:ildar-meyker/html-barsgroup.git"
   },
   "scripts": {
-    "start": "gulp clean && grunt responsive_images && grunt modernizr && gulp",
-    "heavy-tasks": "grunt responsive_images && grunt modernizr",
     "deploy": "gulp compress && gulp deploy && rm public/html-barsgroup.zip",
-    "dev": "gulp"
+    "build": "export NODE_ENV=production gulp clean && grunt modernizr && gulp build",
+    "dev": "gulp clean && grunt modernizr && gulp build && gulp browser"
   },
   "browserslist": [
     "last 2 versions",
@@ -35,7 +34,6 @@
     "gulp-filelist": "^1.0.0",
     "gulp-group-css-media-queries": "^1.1.0",
     "gulp-grunt": "^0.5.5",
-    "gulp-header": "^2.0.5",
     "gulp-if": "^2.0.2",
     "gulp-less": "^4.0.1",
     "gulp-postcss": "^7.0.0",
