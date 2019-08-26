@@ -6454,15 +6454,15 @@ img {
       -webkit-transform: scale(1);
               transform: scale(1);
       opacity: 1; }
-    .tech-promo__circle--delay-1 {
-      -webkit-transition-delay: .4s;
-              transition-delay: .4s; }
-    .tech-promo__circle--delay-2 {
-      -webkit-transition-delay: .8s;
-              transition-delay: .8s; }
-    .tech-promo__circle--delay-3 {
-      -webkit-transition-delay: 1.2s;
-              transition-delay: 1.2s; }
+    .tech-promo__circle._delay-1 {
+      -webkit-transition-delay: .1s;
+              transition-delay: .1s; }
+    .tech-promo__circle._delay-2 {
+      -webkit-transition-delay: .2s;
+              transition-delay: .2s; }
+    .tech-promo__circle._delay-3 {
+      -webkit-transition-delay: .3s;
+              transition-delay: .3s; }
     .tech-promo__circle--size-1:hover .tech-promo__circle__decor {
       -webkit-transform: scale(1.2);
               transform: scale(1.2); }

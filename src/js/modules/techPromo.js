@@ -9,7 +9,7 @@ module.exports = {
 	},
 
 	_state: {
-		timers: []
+		timerId: null
 	},
 
 	_setActiveVideo: function (index) {
@@ -26,9 +26,9 @@ module.exports = {
 		e.preventDefault();
 
 		var index = $(this).data('index');
-		var circleId = $(this).data('circle-id');
 
-		self._state.timers[circleId] = setTimeout(function () {
+		clearTimeout(self._state.timerId);
+		self._state.timerId = setTimeout(function () {
 			self._setActiveVideo(index);
 		}, 200);
 	},
@@ -38,10 +38,10 @@ module.exports = {
 
 		e.preventDefault();
 
-		var circleId = $(this).data('circle-id');
-
-		clearTimeout(self._state.timers[circleId]);
-		self._setActiveVideo(0);
+		clearTimeout(self._state.timerId);
+		self._state.timerId = setTimeout(function () {
+			self._setActiveVideo(0);
+		}, 200);
 	},
 
 	_handleCircleClick: function (e) {
@@ -83,11 +83,17 @@ module.exports = {
 
 		setTimeout(function () {
 			$_.find('.tech-promo__center').addClass('_active');
-		}, 3000);
+		}, 2800);
+
+		var $circles = $_.find('.tech-promo__circle');
 
 		setTimeout(function () {
-			$_.find('.tech-promo__circle').addClass('_active');
-		}, 3500);
+			$circles.addClass('_active');
+		}, 3200);
+
+		setTimeout(function () {
+			$circles.removeClass('_delay-1 _delay-2 _delay-3');
+		}, 3800);
 
 		self._bindUI();
 	}
