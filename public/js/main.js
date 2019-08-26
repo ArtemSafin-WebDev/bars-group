@@ -793,7 +793,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   }, e.fn.ajaxSubmit.debug = !1;
 });
 
-},{"jquery":11}],3:[function(require,module,exports){
+},{"jquery":12}],3:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1039,7 +1039,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   });
 });
 
-},{"jquery":11}],4:[function(require,module,exports){
+},{"jquery":12}],4:[function(require,module,exports){
 // ==================================================
 // fancyBox v3.5.7
 //
@@ -7391,7 +7391,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 }));
 
 
-},{"./util.js":7,"jquery":11}],7:[function(require,module,exports){
+},{"./util.js":7,"jquery":12}],7:[function(require,module,exports){
 /*!
   * Bootstrap util.js v4.3.1 (https://getbootstrap.com/)
   * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
@@ -7565,7 +7565,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 }));
 
 
-},{"jquery":11}],8:[function(require,module,exports){
+},{"jquery":12}],8:[function(require,module,exports){
 !function(e,n){"function"==typeof define&&define.amd?define(["exports"],n):n("undefined"!=typeof exports?exports:e.dragscroll={})}(this,function(e){var n,t,o=window,l=document,c="mousemove",r="mouseup",i="mousedown",m="EventListener",d="add"+m,s="remove"+m,f=[],u=function(e,m){for(e=0;e<f.length;)m=f[e++],m=m.container||m,m[s](i,m.md,0),o[s](r,m.mu,0),o[s](c,m.mm,0);for(f=[].slice.call(l.getElementsByClassName("dragscroll")),e=0;e<f.length;)!function(e,m,s,f,u,a){(a=e.container||e)[d](i,a.md=function(n){e.hasAttribute("nochilddrag")&&l.elementFromPoint(n.pageX,n.pageY)!=a||(f=1,m=n.clientX,s=n.clientY,n.preventDefault())},0),o[d](r,a.mu=function(){f=0},0),o[d](c,a.mm=function(o){f&&((u=e.scroller||e).scrollLeft-=n=-m+(m=o.clientX),u.scrollTop-=t=-s+(s=o.clientY),e==l.body&&((u=l.documentElement).scrollLeft-=n,u.scrollTop-=t))},0)}(f[e++])};"complete"==l.readyState?u():o[d]("load",u,0),e.reset=u});
 },{}],9:[function(require,module,exports){
 /*!
@@ -8079,6 +8079,229 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 })(window.jQuery || window.Zepto);
 
 },{}],10:[function(require,module,exports){
+/*!
+ * jQuery Mousewheel 3.1.13
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ */
+
+(function (factory) {
+    if ( typeof define === 'function' && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node/CommonJS style for Browserify
+        module.exports = factory;
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+
+    var toFix  = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'],
+        toBind = ( 'onwheel' in document || document.documentMode >= 9 ) ?
+                    ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'],
+        slice  = Array.prototype.slice,
+        nullLowestDeltaTimeout, lowestDelta;
+
+    if ( $.event.fixHooks ) {
+        for ( var i = toFix.length; i; ) {
+            $.event.fixHooks[ toFix[--i] ] = $.event.mouseHooks;
+        }
+    }
+
+    var special = $.event.special.mousewheel = {
+        version: '3.1.12',
+
+        setup: function() {
+            if ( this.addEventListener ) {
+                for ( var i = toBind.length; i; ) {
+                    this.addEventListener( toBind[--i], handler, false );
+                }
+            } else {
+                this.onmousewheel = handler;
+            }
+            // Store the line height and page height for this particular element
+            $.data(this, 'mousewheel-line-height', special.getLineHeight(this));
+            $.data(this, 'mousewheel-page-height', special.getPageHeight(this));
+        },
+
+        teardown: function() {
+            if ( this.removeEventListener ) {
+                for ( var i = toBind.length; i; ) {
+                    this.removeEventListener( toBind[--i], handler, false );
+                }
+            } else {
+                this.onmousewheel = null;
+            }
+            // Clean up the data we added to the element
+            $.removeData(this, 'mousewheel-line-height');
+            $.removeData(this, 'mousewheel-page-height');
+        },
+
+        getLineHeight: function(elem) {
+            var $elem = $(elem),
+                $parent = $elem['offsetParent' in $.fn ? 'offsetParent' : 'parent']();
+            if (!$parent.length) {
+                $parent = $('body');
+            }
+            return parseInt($parent.css('fontSize'), 10) || parseInt($elem.css('fontSize'), 10) || 16;
+        },
+
+        getPageHeight: function(elem) {
+            return $(elem).height();
+        },
+
+        settings: {
+            adjustOldDeltas: true, // see shouldAdjustOldDeltas() below
+            normalizeOffset: true  // calls getBoundingClientRect for each event
+        }
+    };
+
+    $.fn.extend({
+        mousewheel: function(fn) {
+            return fn ? this.bind('mousewheel', fn) : this.trigger('mousewheel');
+        },
+
+        unmousewheel: function(fn) {
+            return this.unbind('mousewheel', fn);
+        }
+    });
+
+
+    function handler(event) {
+        var orgEvent   = event || window.event,
+            args       = slice.call(arguments, 1),
+            delta      = 0,
+            deltaX     = 0,
+            deltaY     = 0,
+            absDelta   = 0,
+            offsetX    = 0,
+            offsetY    = 0;
+        event = $.event.fix(orgEvent);
+        event.type = 'mousewheel';
+
+        // Old school scrollwheel delta
+        if ( 'detail'      in orgEvent ) { deltaY = orgEvent.detail * -1;      }
+        if ( 'wheelDelta'  in orgEvent ) { deltaY = orgEvent.wheelDelta;       }
+        if ( 'wheelDeltaY' in orgEvent ) { deltaY = orgEvent.wheelDeltaY;      }
+        if ( 'wheelDeltaX' in orgEvent ) { deltaX = orgEvent.wheelDeltaX * -1; }
+
+        // Firefox < 17 horizontal scrolling related to DOMMouseScroll event
+        if ( 'axis' in orgEvent && orgEvent.axis === orgEvent.HORIZONTAL_AXIS ) {
+            deltaX = deltaY * -1;
+            deltaY = 0;
+        }
+
+        // Set delta to be deltaY or deltaX if deltaY is 0 for backwards compatabilitiy
+        delta = deltaY === 0 ? deltaX : deltaY;
+
+        // New school wheel delta (wheel event)
+        if ( 'deltaY' in orgEvent ) {
+            deltaY = orgEvent.deltaY * -1;
+            delta  = deltaY;
+        }
+        if ( 'deltaX' in orgEvent ) {
+            deltaX = orgEvent.deltaX;
+            if ( deltaY === 0 ) { delta  = deltaX * -1; }
+        }
+
+        // No change actually happened, no reason to go any further
+        if ( deltaY === 0 && deltaX === 0 ) { return; }
+
+        // Need to convert lines and pages to pixels if we aren't already in pixels
+        // There are three delta modes:
+        //   * deltaMode 0 is by pixels, nothing to do
+        //   * deltaMode 1 is by lines
+        //   * deltaMode 2 is by pages
+        if ( orgEvent.deltaMode === 1 ) {
+            var lineHeight = $.data(this, 'mousewheel-line-height');
+            delta  *= lineHeight;
+            deltaY *= lineHeight;
+            deltaX *= lineHeight;
+        } else if ( orgEvent.deltaMode === 2 ) {
+            var pageHeight = $.data(this, 'mousewheel-page-height');
+            delta  *= pageHeight;
+            deltaY *= pageHeight;
+            deltaX *= pageHeight;
+        }
+
+        // Store lowest absolute delta to normalize the delta values
+        absDelta = Math.max( Math.abs(deltaY), Math.abs(deltaX) );
+
+        if ( !lowestDelta || absDelta < lowestDelta ) {
+            lowestDelta = absDelta;
+
+            // Adjust older deltas if necessary
+            if ( shouldAdjustOldDeltas(orgEvent, absDelta) ) {
+                lowestDelta /= 40;
+            }
+        }
+
+        // Adjust older deltas if necessary
+        if ( shouldAdjustOldDeltas(orgEvent, absDelta) ) {
+            // Divide all the things by 40!
+            delta  /= 40;
+            deltaX /= 40;
+            deltaY /= 40;
+        }
+
+        // Get a whole, normalized value for the deltas
+        delta  = Math[ delta  >= 1 ? 'floor' : 'ceil' ](delta  / lowestDelta);
+        deltaX = Math[ deltaX >= 1 ? 'floor' : 'ceil' ](deltaX / lowestDelta);
+        deltaY = Math[ deltaY >= 1 ? 'floor' : 'ceil' ](deltaY / lowestDelta);
+
+        // Normalise offsetX and offsetY properties
+        if ( special.settings.normalizeOffset && this.getBoundingClientRect ) {
+            var boundingRect = this.getBoundingClientRect();
+            offsetX = event.clientX - boundingRect.left;
+            offsetY = event.clientY - boundingRect.top;
+        }
+
+        // Add information to the event object
+        event.deltaX = deltaX;
+        event.deltaY = deltaY;
+        event.deltaFactor = lowestDelta;
+        event.offsetX = offsetX;
+        event.offsetY = offsetY;
+        // Go ahead and set deltaMode to 0 since we converted to pixels
+        // Although this is a little odd since we overwrite the deltaX/Y
+        // properties with normalized deltas.
+        event.deltaMode = 0;
+
+        // Add event and delta to the front of the arguments
+        args.unshift(event, delta, deltaX, deltaY);
+
+        // Clearout lowestDelta after sometime to better
+        // handle multiple device types that give different
+        // a different lowestDelta
+        // Ex: trackpad = 3 and mouse wheel = 120
+        if (nullLowestDeltaTimeout) { clearTimeout(nullLowestDeltaTimeout); }
+        nullLowestDeltaTimeout = setTimeout(nullLowestDelta, 200);
+
+        return ($.event.dispatch || $.event.handle).apply(this, args);
+    }
+
+    function nullLowestDelta() {
+        lowestDelta = null;
+    }
+
+    function shouldAdjustOldDeltas(orgEvent, absDelta) {
+        // If this is an older event and the delta is divisable by 120,
+        // then we are assuming that the browser is treating this as an
+        // older mouse wheel event and that we should divide the deltas
+        // by 40 to try and get a more usable deltaFactor.
+        // Side note, this actually impacts the reported scroll distance
+        // in older browsers and can cause scrolling to be slower than native.
+        // Turn this off by setting $.event.special.mousewheel.settings.adjustOldDeltas to false.
+        return special.settings.adjustOldDeltas && orgEvent.type === 'mousewheel' && absDelta % 120 === 0;
+    }
+
+}));
+
+},{}],11:[function(require,module,exports){
 /*!
  * jQuery Validation Plugin v1.19.1
  *
@@ -9729,7 +9952,7 @@ if ( $.ajaxPrefilter ) {
 }
 return $;
 }));
-},{"jquery":11}],11:[function(require,module,exports){
+},{"jquery":12}],12:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.12.4
  * http://jquery.com/
@@ -20739,7 +20962,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /*!
  * Midnight.js 1.1.1
  * jQuery plugin to switch between multiple fixed header designs on the fly, so it looks in line with the content below it.
@@ -20751,7 +20974,7 @@ return jQuery;
  * http://aerolab.github.io/midnight.js/LICENSE.txt
  */
 !function(t){"function"==typeof define&&define.amd?define(["jquery"],t):t(jQuery)}(function(t){var e=0,s=Array.prototype.slice;t.cleanData=function(e){return function(s){var i,n,o;for(o=0;null!=(n=s[o]);o++)try{i=t._data(n,"events"),i&&i.remove&&t(n).triggerHandler("remove")}catch(r){}e(s)}}(t.cleanData),t.widget=function(e,s,i){var n,o,r,a,h={},d=e.split(".")[0];return e=e.split(".")[1],n=d+"-"+e,i||(i=s,s=t.Widget),t.expr[":"][n.toLowerCase()]=function(e){return!!t.data(e,n)},t[d]=t[d]||{},o=t[d][e],r=t[d][e]=function(t,e){return this._createWidget?void(arguments.length&&this._createWidget(t,e)):new r(t,e)},t.extend(r,o,{version:i.version,_proto:t.extend({},i),_childConstructors:[]}),a=new s,a.options=t.widget.extend({},a.options),t.each(i,function(e,i){return t.isFunction(i)?void(h[e]=function(){var t=function(){return s.prototype[e].apply(this,arguments)},n=function(t){return s.prototype[e].apply(this,t)};return function(){var e,s=this._super,o=this._superApply;return this._super=t,this._superApply=n,e=i.apply(this,arguments),this._super=s,this._superApply=o,e}}()):void(h[e]=i)}),r.prototype=t.widget.extend(a,{widgetEventPrefix:o?a.widgetEventPrefix||e:e},h,{constructor:r,namespace:d,widgetName:e,widgetFullName:n}),o?(t.each(o._childConstructors,function(e,s){var i=s.prototype;t.widget(i.namespace+"."+i.widgetName,r,s._proto)}),delete o._childConstructors):s._childConstructors.push(r),t.widget.bridge(e,r),r},t.widget.extend=function(e){for(var i,n,o=s.call(arguments,1),r=0,a=o.length;a>r;r++)for(i in o[r])n=o[r][i],o[r].hasOwnProperty(i)&&void 0!==n&&(e[i]=t.isPlainObject(n)?t.isPlainObject(e[i])?t.widget.extend({},e[i],n):t.widget.extend({},n):n);return e},t.widget.bridge=function(e,i){var n=i.prototype.widgetFullName||e;t.fn[e]=function(o){var r="string"==typeof o,a=s.call(arguments,1),h=this;return o=!r&&a.length?t.widget.extend.apply(null,[o].concat(a)):o,r?this.each(function(){var s,i=t.data(this,n);return"instance"===o?(h=i,!1):i?t.isFunction(i[o])&&"_"!==o.charAt(0)?(s=i[o].apply(i,a),s!==i&&void 0!==s?(h=s&&s.jquery?h.pushStack(s.get()):s,!1):void 0):t.error("no such method '"+o+"' for "+e+" widget instance"):t.error("cannot call methods on "+e+" prior to initialization; attempted to call method '"+o+"'")}):this.each(function(){var e=t.data(this,n);e?(e.option(o||{}),e._init&&e._init()):t.data(this,n,new i(o,this))}),h}},t.Widget=function(){},t.Widget._childConstructors=[],t.Widget.prototype={widgetName:"widget",widgetEventPrefix:"",defaultElement:"<div>",options:{disabled:!1,create:null},_createWidget:function(s,i){i=t(i||this.defaultElement||this)[0],this.element=t(i),this.uuid=e++,this.eventNamespace="."+this.widgetName+this.uuid,this.bindings=t(),this.hoverable=t(),this.focusable=t(),i!==this&&(t.data(i,this.widgetFullName,this),this._on(!0,this.element,{remove:function(t){t.target===i&&this.destroy()}}),this.document=t(i.style?i.ownerDocument:i.document||i),this.window=t(this.document[0].defaultView||this.document[0].parentWindow)),this.options=t.widget.extend({},this.options,this._getCreateOptions(),s),this._create(),this._trigger("create",null,this._getCreateEventData()),this._init()},_getCreateOptions:t.noop,_getCreateEventData:t.noop,_create:t.noop,_init:t.noop,destroy:function(){this._destroy(),this.element.unbind(this.eventNamespace).removeData(this.widgetFullName).removeData(t.camelCase(this.widgetFullName)),this.widget().unbind(this.eventNamespace).removeAttr("aria-disabled").removeClass(this.widgetFullName+"-disabled ui-state-disabled"),this.bindings.unbind(this.eventNamespace),this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus")},_destroy:t.noop,widget:function(){return this.element},option:function(e,s){var i,n,o,r=e;if(0===arguments.length)return t.widget.extend({},this.options);if("string"==typeof e)if(r={},i=e.split("."),e=i.shift(),i.length){for(n=r[e]=t.widget.extend({},this.options[e]),o=0;i.length-1>o;o++)n[i[o]]=n[i[o]]||{},n=n[i[o]];if(e=i.pop(),1===arguments.length)return void 0===n[e]?null:n[e];n[e]=s}else{if(1===arguments.length)return void 0===this.options[e]?null:this.options[e];r[e]=s}return this._setOptions(r),this},_setOptions:function(t){var e;for(e in t)this._setOption(e,t[e]);return this},_setOption:function(t,e){return this.options[t]=e,"disabled"===t&&(this.widget().toggleClass(this.widgetFullName+"-disabled",!!e),e&&(this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus"))),this},enable:function(){return this._setOptions({disabled:!1})},disable:function(){return this._setOptions({disabled:!0})},_on:function(e,s,i){var n,o=this;"boolean"!=typeof e&&(i=s,s=e,e=!1),i?(s=n=t(s),this.bindings=this.bindings.add(s)):(i=s,s=this.element,n=this.widget()),t.each(i,function(i,r){function a(){return e||o.options.disabled!==!0&&!t(this).hasClass("ui-state-disabled")?("string"==typeof r?o[r]:r).apply(o,arguments):void 0}"string"!=typeof r&&(a.guid=r.guid=r.guid||a.guid||t.guid++);var h=i.match(/^([\w:-]*)\s*(.*)$/),d=h[1]+o.eventNamespace,l=h[2];l?n.delegate(l,d,a):s.bind(d,a)})},_off:function(e,s){s=(s||"").split(" ").join(this.eventNamespace+" ")+this.eventNamespace,e.unbind(s).undelegate(s),this.bindings=t(this.bindings.not(e).get()),this.focusable=t(this.focusable.not(e).get()),this.hoverable=t(this.hoverable.not(e).get())},_delay:function(t,e){function s(){return("string"==typeof t?i[t]:t).apply(i,arguments)}var i=this;return setTimeout(s,e||0)},_hoverable:function(e){this.hoverable=this.hoverable.add(e),this._on(e,{mouseenter:function(e){t(e.currentTarget).addClass("ui-state-hover")},mouseleave:function(e){t(e.currentTarget).removeClass("ui-state-hover")}})},_focusable:function(e){this.focusable=this.focusable.add(e),this._on(e,{focusin:function(e){t(e.currentTarget).addClass("ui-state-focus")},focusout:function(e){t(e.currentTarget).removeClass("ui-state-focus")}})},_trigger:function(e,s,i){var n,o,r=this.options[e];if(i=i||{},s=t.Event(s),s.type=(e===this.widgetEventPrefix?e:this.widgetEventPrefix+e).toLowerCase(),s.target=this.element[0],o=s.originalEvent)for(n in o)n in s||(s[n]=o[n]);return this.element.trigger(s,i),!(t.isFunction(r)&&r.apply(this.element[0],[s].concat(i))===!1||s.isDefaultPrevented())}},t.each({show:"fadeIn",hide:"fadeOut"},function(e,s){t.Widget.prototype["_"+e]=function(i,n,o){"string"==typeof n&&(n={effect:n});var r,a=n?n===!0||"number"==typeof n?s:n.effect||s:e;n=n||{},"number"==typeof n&&(n={duration:n}),r=!t.isEmptyObject(n),n.complete=o,n.delay&&i.delay(n.delay),r&&t.effects&&t.effects.effect[a]?i[e](n):a!==e&&i[a]?i[a](n.duration,n.easing,o):i.queue(function(s){t(this)[e](),o&&o.call(i[0]),s()})}}),t.widget}),function(t){"use strict";t.widget("aerolab.midnight",{options:{headerClass:"midnightHeader",innerClass:"midnightInner",defaultClass:"default",classPrefix:""},_headers:{},_headerInfo:{top:0,height:0},_$sections:[],_sections:[],_scrollTop:0,_documentHeight:0,_transformMode:!1,refresh:function(){this._headerInfo={top:0,height:this.element.outerHeight()},this._$sections=t("[data-midnight]"),this._sections=[],this._setupHeaders(),this.recalculate()},_create:function(){var e=this;this._scrollTop=window.pageYOffset||document.documentElement.scrollTop,this._documentHeight=t(document).height(),this._headers={},this._transformMode=this._getSupportedTransform(),this.refresh(),setInterval(function(){e._recalculateSections()},1e3),e.recalculate(),t(window).resize(function(){e.recalculate()}),this._updateHeadersLoop()},recalculate:function(){this._recalculateSections(),this._updateHeaderHeight(),this._recalculateHeaders(),this._updateHeaders()},_getSupportedTransform:function(){for(var t=["transform","WebkitTransform","MozTransform","OTransform","msTransform"],e=0;e<t.length;e++)if(void 0!==document.createElement("div").style[t[e]])return t[e];return!1},_getContainerHeight:function(){var e=this.element.find("> ."+this.options.headerClass),s=0,i=0,n=this;return e.length?e.each(function(){var e=t(this),o=e.find("> ."+n.options.innerClass);o.length?(o.css("bottom","auto").css("overflow","auto"),i=o.outerHeight(),o.css("bottom","0")):(e.css("bottom","auto"),i=e.outerHeight(),e.css("bottom","0")),s=i>s?i:s}):s=i=this.element.outerHeight(),s},_setupHeaders:function(){var e=this;this._headers[this.options.defaultClass]={},this._$sections.each(function(){var s=t(this),i=s.data("midnight");"string"==typeof i&&(i=i.trim(),""!==i&&(e._headers[i]={}))});({top:this.element.css("padding-top"),right:this.element.css("padding-right"),bottom:this.element.css("padding-bottom"),left:this.element.css("padding-left")});this.element.css({position:"fixed",top:0,left:0,right:0,overflow:"hidden"}),this._updateHeaderHeight();var s=this.element.find("> ."+this.options.headerClass);s.length?s.filter("."+this.options.defaultClass).length||s.filter("."+this.options.headerClass+":first").clone(!0,!0).attr("class",this.options.headerClass+" "+this.options.defaultClass):this.element.wrapInner('<div class="'+this.options.headerClass+" "+this.options.defaultClass+'"></div>');var s=this.element.find("> ."+this.options.headerClass),i=s.filter("."+this.options.defaultClass).clone(!0,!0);for(var n in this._headers)if(this._headers.hasOwnProperty(n)&&"undefined"==typeof this._headers[n].element){var o=s.filter("."+n);o.length?this._headers[n].element=o:this._headers[n].element=i.clone(!0,!0).removeClass(this.options.defaultClass).addClass(n).appendTo(this.element);var r={position:"absolute",overflow:"hidden",top:0,left:0,right:0,bottom:0};this._headers[n].element.css(r),this._transformMode!==!1&&this._headers[n].element.css(this._transformMode,"translateZ(0)"),this._headers[n].element.find("> ."+this.options.innerClass).length||this._headers[n].element.wrapInner('<div class="'+this.options.innerClass+'"></div>'),this._headers[n].inner=this._headers[n].element.find("> ."+this.options.innerClass),this._headers[n].inner.css(r),this._transformMode!==!1&&this._headers[n].inner.css(this._transformMode,"translateZ(0)"),this._headers[n].from="",this._headers[n].progress=0}s.each(function(){var s=t(this),i=!1;for(var n in e._headers)e._headers.hasOwnProperty(n)&&s.hasClass(n)&&(i=!0);s.find("> ."+e.options.innerClass).length||s.wrapInner('<div class="'+e.options.innerClass+'"></div>'),i?s.show():s.hide()})},_recalculateHeaders:function(){this._scrollTop=window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop,this._scrollTop=Math.max(this._scrollTop,0),this._scrollTop=Math.min(this._scrollTop,this._documentHeight);var t=this._headerInfo.height,e=this._scrollTop+this._headerInfo.top,s=e+t;if("function"==typeof window.getComputedStyle){var i=window.getComputedStyle(this.element[0],null),n=0,o=0;if(this._transformMode!==!1&&"string"==typeof i.transform){var r=i.transform.match(/(-?[0-9\.]+)/g);null!==r&&r.length>=6&&!isNaN(parseFloat(r[5]))&&(o=parseFloat(r[5]))}i.top.indexOf("px")>=0&&!isNaN(parseFloat(i.top))&&(n=parseFloat(i.top)),e+=n+o,s+=n+o}for(var a in this._headers)this._headers.hasOwnProperty(a)&&(this._headers[a].from="",this._headers[a].progress=0);for(var h=0;h<this._sections.length;h++)s>=this._sections[h].start&&e<=this._sections[h].end&&(this._headers[this._sections[h].className].visible=!0,e>=this._sections[h].start&&s<=this._sections[h].end?(this._headers[this._sections[h].className].from="top",this._headers[this._sections[h].className].progress+=1):s>this._sections[h].end&&e<this._sections[h].end?(this._headers[this._sections[h].className].from="top",this._headers[this._sections[h].className].progress=1-(s-this._sections[h].end)/t):s>this._sections[h].start&&e<this._sections[h].start&&("top"===this._headers[this._sections[h].className].from?this._headers[this._sections[h].className].progress+=(s-this._sections[h].start)/t:(this._headers[this._sections[h].className].from="bottom",this._headers[this._sections[h].className].progress=(s-this._sections[h].start)/t)))},_updateHeaders:function(){if("undefined"!=typeof this._headers[this.options.defaultClass]){var t=0,e="";for(var s in this._headers)this._headers.hasOwnProperty(s)&&""!==!this._headers[s].from&&(t+=this._headers[s].progress,e=s);1>t&&(""===this._headers[this.options.defaultClass].from?(this._headers[this.options.defaultClass].from="top"===this._headers[e].from?"bottom":"top",this._headers[this.options.defaultClass].progress=1-t):this._headers[this.options.defaultClass].progress+=1-t);for(var i in this._headers)if(this._headers.hasOwnProperty(i)&&""!==!this._headers[i].from){var n=100*(1-this._headers[i].progress);n>=100&&(n=110),-100>=n&&(n=-110),"top"===this._headers[i].from?this._transformMode!==!1?(this._headers[i].element[0].style[this._transformMode]="translateY(-"+n+"%) translateZ(0)",this._headers[i].inner[0].style[this._transformMode]="translateY(+"+n+"%) translateZ(0)"):(this._headers[i].element[0].style.top="-"+n+"%",this._headers[i].inner[0].style.top="+"+n+"%"):this._transformMode!==!1?(this._headers[i].element[0].style[this._transformMode]="translateY(+"+n+"%) translateZ(0)",this._headers[i].inner[0].style[this._transformMode]="translateY(-"+n+"%) translateZ(0)"):(this._headers[i].element[0].style.top="+"+n+"%",this._headers[i].inner[0].style.top="-"+n+"%")}}},_recalculateSections:function(){this._documentHeight=t(document).height(),this._sections=[];for(var e=0;e<this._$sections.length;e++){var s=t(this._$sections[e]);this._sections.push({element:s,className:s.data("midnight"),start:s.offset().top,end:s.offset().top+s.outerHeight()})}},_updateHeaderHeight:function(){this._headerInfo.height=this._getContainerHeight(),this.element.css("height",this._headerInfo.height+"px")},_updateHeadersLoop:function(){var t=this;this._requestAnimationFrame(function(){t._updateHeadersLoop()}),this._recalculateHeaders(),this._updateHeaders()},_requestAnimationFrame:function(t){var e=e||function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||function(t){window.setTimeout(t,1e3/60)}}();e(t)}})}(jQuery);
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /* Notify.js - http://notifyjs.com/ Copyright (c) 2015 MIT */
 (function (factory) {
 	// UMD start
@@ -21368,9 +21591,9 @@ return jQuery;
 
 }));
 
-},{"jquery":11}],14:[function(require,module,exports){
+},{"jquery":12}],15:[function(require,module,exports){
 !function(){"use strict";if("undefined"!=typeof window){var t=window.navigator.userAgent.match(/Edge\/(\d{2})\./),n=!!t&&16<=parseInt(t[1],10);if(!("objectFit"in document.documentElement.style!=!1)||n){var o=function(t,e,i){var n,o,l,a,d;if((i=i.split(" ")).length<2&&(i[1]=i[0]),"x"===t)n=i[0],o=i[1],l="left",a="right",d=e.clientWidth;else{if("y"!==t)return;n=i[1],o=i[0],l="top",a="bottom",d=e.clientHeight}if(n!==l&&o!==l){if(n!==a&&o!==a)return"center"===n||"50%"===n?(e.style[l]="50%",void(e.style["margin-"+l]=d/-2+"px")):void(0<=n.indexOf("%")?(n=parseInt(n))<50?(e.style[l]=n+"%",e.style["margin-"+l]=d*(n/-100)+"px"):(n=100-n,e.style[a]=n+"%",e.style["margin-"+a]=d*(n/-100)+"px"):e.style[l]=n);e.style[a]="0"}else e.style[l]="0"},l=function(t){var e=t.dataset?t.dataset.objectFit:t.getAttribute("data-object-fit"),i=t.dataset?t.dataset.objectPosition:t.getAttribute("data-object-position");e=e||"cover",i=i||"50% 50%";var n=t.parentNode;return function(t){var e=window.getComputedStyle(t,null),i=e.getPropertyValue("position"),n=e.getPropertyValue("overflow"),o=e.getPropertyValue("display");i&&"static"!==i||(t.style.position="relative"),"hidden"!==n&&(t.style.overflow="hidden"),o&&"inline"!==o||(t.style.display="block"),0===t.clientHeight&&(t.style.height="100%"),-1===t.className.indexOf("object-fit-polyfill")&&(t.className=t.className+" object-fit-polyfill")}(n),function(t){var e=window.getComputedStyle(t,null),i={"max-width":"none","max-height":"none","min-width":"0px","min-height":"0px",top:"auto",right:"auto",bottom:"auto",left:"auto","margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px"};for(var n in i)e.getPropertyValue(n)!==i[n]&&(t.style[n]=i[n])}(t),t.style.position="absolute",t.style.width="auto",t.style.height="auto","scale-down"===e&&(e=t.clientWidth<n.clientWidth&&t.clientHeight<n.clientHeight?"none":"contain"),"none"===e?(o("x",t,i),void o("y",t,i)):"fill"===e?(t.style.width="100%",t.style.height="100%",o("x",t,i),void o("y",t,i)):(t.style.height="100%",void("cover"===e&&t.clientWidth>n.clientWidth||"contain"===e&&t.clientWidth<n.clientWidth?(t.style.top="0",t.style.marginTop="0",o("x",t,i)):(t.style.width="100%",t.style.height="auto",t.style.left="0",t.style.marginLeft="0",o("y",t,i))))},e=function(t){if(void 0===t||t instanceof Event)t=document.querySelectorAll("[data-object-fit]");else if(t&&t.nodeName)t=[t];else{if("object"!=typeof t||!t.length||!t[0].nodeName)return!1;t=t}for(var e=0;e<t.length;e++)if(t[e].nodeName){var i=t[e].nodeName.toLowerCase();"img"!==i||n?"video"===i?0<t[e].readyState?l(t[e]):t[e].addEventListener("loadedmetadata",function(){l(this)}):l(t[e]):t[e].complete?l(t[e]):t[e].addEventListener("load",function(){l(this)})}return!0};document.addEventListener("DOMContentLoaded",e),window.addEventListener("resize",e),window.objectFitPolyfill=e}else window.objectFitPolyfill=function(){return!1}}}();
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  * Owl Carousel v2.3.4
  * Copyright 2013-2018 David Deutsch
@@ -24820,7 +25043,7 @@ return jQuery;
 
 })(window.Zepto || window.jQuery, window, document);
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /*!
  * perfect-scrollbar v1.4.0
  * (c) 2018 Hyunje Jun
@@ -26140,7 +26363,7 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses () {
 
 module.exports = PerfectScrollbar;
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /*! rangeslider.js - v2.3.2 | (c) 2018 @andreruffert | MIT license | https://github.com/andreruffert/rangeslider.js */
 (function(factory) {
     'use strict';
@@ -26640,7 +26863,7 @@ module.exports = PerfectScrollbar;
 
 }));
 
-},{"jquery":11}],18:[function(require,module,exports){
+},{"jquery":12}],19:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -27400,7 +27623,7 @@ return StickySidebar;
 
 
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /**
  * Swiper 4.5.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -35526,7 +35749,7 @@ return StickySidebar;
 
 }));
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -35537,7 +35760,7 @@ var App = require('./modules/app');
 App.init();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./modules/app":22,"jquery":11}],21:[function(require,module,exports){
+},{"./modules/app":23,"jquery":12}],22:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -35546,6 +35769,8 @@ require("rangeslider.js");
 
 require('owl.carousel');
 
+require('jquery-mousewheel');
+
 module.exports = {
   _elems: {
     $_: $(),
@@ -35553,9 +35778,14 @@ module.exports = {
   },
   _state: {
     isMobile: false,
+    isTouchDevice: false,
     windowRatio: 1,
     scrollType: false,
     run: false
+  },
+  _setTouchDevice: function _setTouchDevice() {
+    var self = this;
+    self._state.isTouchDevice = typeof window.ontouchstart !== 'undefined';
   },
   _setIsMobile: function _setIsMobile() {
     var self = this;
@@ -35568,6 +35798,7 @@ module.exports = {
   _setBodyHeight: function _setBodyHeight() {
     var self = this;
     if (self._state.isMobile) return;
+    if (self._state.isTouchDevice) return;
 
     if ($(window).width() >= self._elems.$iScroll.children().width()) {
       $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
@@ -35594,43 +35825,6 @@ module.exports = {
 
     self._elems.$_.find('[data-factor]').css({
       'transform': 'translate3d(0, 0, 0)'
-    });
-  },
-  _initRangeSlider: function _initRangeSlider() {
-    var self = this;
-
-    var $range = self._elems.$_.find('.gantt-slider__range');
-
-    $range.data('position', 0);
-    $range.find('input').rangeslider({
-      polyfill: false,
-      onInit: function onInit() {
-        $range.find('.rangeslider__handle').html('<i></i><i></i><i></i>');
-      },
-      onSlide: function onSlide(position, value) {
-        if (value == self._state.lastRangeValue) return;
-        self._state.lastRangeValue = value;
-
-        if (self._elems.$iScroll.data('direction') == 'right') {
-          if (position < $range.data('position')) {
-            self._elems.$iScroll.data('direction', 'left');
-          }
-        } else if (self._elems.$iScroll.data('direction') == 'left') {
-          if (position > $range.data('position')) {
-            self._elems.$iScroll.data('direction', 'right');
-          }
-        }
-
-        $range.data('position', position);
-
-        var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
-
-        var scrollLeft = maxScrollLeft / 1000 * value;
-
-        self._elems.$scroll.scrollLeft(scrollLeft); // if (self._state.scrollType == 'range')
-        // $(window).scrollTop(scrollLeft / self._state.windowRatio);
-
-      }
     });
   },
   _initGeo: function _initGeo() {
@@ -35849,26 +36043,25 @@ module.exports = {
     $iNav.children('a').click(function (e) {
       e.preventDefault();
       var $target = $($(this).attr('href'));
-      if ($target.length == 0) return; //var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
-      //self._elems.$_.find('.gantt-slider__scroll').stop().animate({scrollLeft: scrollLeft + $target.offset().left}, 1200);
+      if ($target.length == 0) return;
+
+      var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+
+      self._elems.$_.find('.gantt-slider__scroll').stop().animate({
+        scrollLeft: scrollLeft + $target.offset().left
+      }, 1200);
     });
   },
   _handleSliderScroll: function _handleSliderScroll(e) {
     var self = e.data.self;
 
-    if (self._elems.$scroll.hasClass('window-scroll')) {
-      self._elems.$scroll.removeClass('window-scroll');
-    } else {
-      self._state.scrollType = 'range';
-    }
-
     var scrollLeft = self._elems.$scroll.scrollLeft();
 
-    var maxScrollLeft = self._elems.$iScroll.width() - self._elems.$iScroll.width() / self._elems.$iScroll.children().length;
+    var scrollTop = Math.round(scrollLeft / self._state.windowRatio);
 
-    var rangeValue = Math.round(1000 * scrollLeft / maxScrollLeft);
-
-    self._elems.$_.find('.gantt-slider__range input').val(rangeValue).change();
+    if (self._state.isTouchDevice) {
+      $(window).scrollTop(scrollTop);
+    }
 
     var img = $('#wrapper .brand-box__image img');
 
@@ -35908,11 +36101,12 @@ module.exports = {
 
     self._setIsMobile();
 
+    self._setTouchDevice();
+
     self._resetDesktop();
 
-    self._setWindowRatio();
+    self._setWindowRatio(); //self._setBodyHeight();
 
-    self._setBodyHeight();
 
     self._setScrollWidth();
   },
@@ -35923,23 +36117,30 @@ module.exports = {
       self._initRangeSlider();
     }
 
-    $(window).scroll(function () {
-      if (!self._state.isMobile) {
-        var offsetTop = $(window).scrollTop();
-        self._state.scrollType = 'window';
+    if (!self._state.isTouchDevice) {
+      self._elems.$scroll.css({
+        'overflow-x': 'hidden'
+      });
 
-        self._elems.$scroll.addClass('window-scroll');
-
-        self._elems.$scroll.scrollLeft(offsetTop * self._state.windowRatio);
+      $(window).on('scroll', {
+        self: self
+      }, function (e) {
+        if (self._state.isMobile) return;
 
         self._renderParallaxState();
-      }
-    });
 
-    if (!self._state.isMobile) {
+        self._handleSliderScroll(e);
+
+        self._elems.$scroll.scrollLeft($(window).scrollTop() * self._state.windowRatio);
+      });
+    } else {
       self._elems.$scroll.on('scroll', {
         self: self
-      }, self._handleSliderScroll);
+      }, function (e) {
+        self._renderParallaxState();
+
+        self._handleSliderScroll(e);
+      });
     }
 
     $(window).on('resize', {
@@ -35955,6 +36156,8 @@ module.exports = {
     self._elems.$scroll = $_.find('.gantt-slider__scroll');
 
     self._setIsMobile();
+
+    self._setTouchDevice();
 
     self._setWindowRatio();
 
@@ -35976,7 +36179,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15,"rangeslider.js":17}],22:[function(require,module,exports){
+},{"jquery":12,"jquery-mousewheel":10,"owl.carousel":16,"rangeslider.js":18}],23:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36144,7 +36347,7 @@ module.exports = {
   }
 };
 
-},{"./about":21,"./arch":23,"./catalog":24,"./citiesSlider":25,"./form":26,"./ganttSlider":27,"./header":28,"./hover":29,"./navBanner":30,"./navFilter":31,"./navMobile":32,"./navSticker":33,"./news":34,"./newsPhotoSlider":35,"./newsSlider":36,"./newsToggles":37,"./overview":39,"./popup":40,"./scrollableTable":41,"./sliderContent":42,"./sliderDigits":43,"./sliderTabs":44,"./tAdvantages":45,"./tSliders":46,"./techPromo":47,"./utils":48,"dragscroll":8,"jquery":11,"objectFitPolyfill":14}],23:[function(require,module,exports){
+},{"./about":22,"./arch":24,"./catalog":25,"./citiesSlider":26,"./form":27,"./ganttSlider":28,"./header":29,"./hover":30,"./navBanner":31,"./navFilter":32,"./navMobile":33,"./navSticker":34,"./news":35,"./newsPhotoSlider":36,"./newsSlider":37,"./newsToggles":38,"./overview":40,"./popup":41,"./scrollableTable":42,"./sliderContent":43,"./sliderDigits":44,"./sliderTabs":45,"./tAdvantages":46,"./tSliders":47,"./techPromo":48,"./utils":49,"dragscroll":8,"jquery":12,"objectFitPolyfill":15}],24:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36222,7 +36425,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],24:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],25:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36571,7 +36774,7 @@ module.exports = {
   }
 };
 
-},{"./notify":38,"jquery":11,"sticky-sidebar":18}],25:[function(require,module,exports){
+},{"./notify":39,"jquery":12,"sticky-sidebar":19}],26:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36827,7 +37030,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"rangeslider.js":17}],26:[function(require,module,exports){
+},{"jquery":12,"rangeslider.js":18}],27:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37002,7 +37205,7 @@ module.exports = {
   }
 };
 
-},{"./notify":38,"autosize":5,"icheck":9,"jquery":11,"jquery-form":2,"jquery-validation":10,"jquery.maskedinput":3}],27:[function(require,module,exports){
+},{"./notify":39,"autosize":5,"icheck":9,"jquery":12,"jquery-form":2,"jquery-validation":11,"jquery.maskedinput":3}],28:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37403,7 +37606,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"rangeslider.js":17}],28:[function(require,module,exports){
+},{"jquery":12,"rangeslider.js":18}],29:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37493,7 +37696,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],29:[function(require,module,exports){
+},{"jquery":12}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37523,7 +37726,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],30:[function(require,module,exports){
+},{"jquery":12}],31:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37615,7 +37818,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],31:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],32:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37657,7 +37860,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],32:[function(require,module,exports){
+},{"jquery":12}],33:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37713,7 +37916,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],33:[function(require,module,exports){
+},{"jquery":12}],34:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37833,7 +38036,7 @@ module.exports = {
   }
 };
 
-},{"jQuery-One-Page-Nav":1,"jquery":11,"midnight.js":12}],34:[function(require,module,exports){
+},{"jQuery-One-Page-Nav":1,"jquery":12,"midnight.js":13}],35:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37906,7 +38109,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],35:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],36:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -37976,7 +38179,7 @@ module.exports = {
   }
 };
 
-},{"swiper":19}],36:[function(require,module,exports){
+},{"swiper":20}],37:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -37998,7 +38201,7 @@ module.exports = {
   }
 };
 
-},{"swiper":19}],37:[function(require,module,exports){
+},{"swiper":20}],38:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -38059,7 +38262,7 @@ module.exports = {
   }
 };
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38080,7 +38283,7 @@ module.exports = function (title, text) {
   });
 };
 
-},{"jquery":11,"notifyjs-browser":13}],39:[function(require,module,exports){
+},{"jquery":12,"notifyjs-browser":14}],40:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38171,7 +38374,7 @@ module.exports = {
   }
 };
 
-},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":11}],40:[function(require,module,exports){
+},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":12}],41:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38212,7 +38415,7 @@ module.exports = {
   }
 };
 
-},{"@fancyapps/fancybox":4,"jquery":11}],41:[function(require,module,exports){
+},{"@fancyapps/fancybox":4,"jquery":12}],42:[function(require,module,exports){
 "use strict";
 
 var PerfectScrollbar = require('perfect-scrollbar');
@@ -38336,7 +38539,7 @@ module.exports = {
   }
 };
 
-},{"perfect-scrollbar":16}],42:[function(require,module,exports){
+},{"perfect-scrollbar":17}],43:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38399,7 +38602,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],43:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],44:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38708,7 +38911,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],44:[function(require,module,exports){
+},{"jquery":12}],45:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38766,7 +38969,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],45:[function(require,module,exports){
+},{"jquery":12}],46:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38835,7 +39038,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],46:[function(require,module,exports){
+},{"jquery":12}],47:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38940,7 +39143,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11,"owl.carousel":15}],47:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],48:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39000,7 +39203,7 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],48:[function(require,module,exports){
+},{"jquery":12}],49:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -39009,4 +39212,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[20]);
+},{}]},{},[21]);
