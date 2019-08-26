@@ -350,14 +350,14 @@ module.exports = {
 	_handleItemMouseenter: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video.--active');
+		var $video = $(this).find('video._active');
 		if ($video.length) $video[0].play();
 	},
 
 	_handleItemMouseleave: function (e) {
 		var self = e.data.self;
 
-		var $video = $(this).find('video.--active');
+		var $video = $(this).find('video._active');
 		if ($video.length) $video[0].pause();
 	},
 
@@ -395,7 +395,7 @@ module.exports = {
 		self._switchToGanttView();
 		self._initRangeSlider();
 
-		self._elems.$_.removeClass('gantt-slider--frozen --loading');
+		self._elems.$_.removeClass('gantt-slider--frozen _loading');
 
 		self._bindUI();
 	}

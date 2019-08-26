@@ -11,7 +11,7 @@ layout: default.hbs
 
 		<nav class="nav-sticker__menu" id="nav-sticker-static">
 			<ul class="nav-sticker__list">
-				<li class="nav-sticker__item --active">
+				<li class="nav-sticker__item _active">
 					<a href="#section-1" class="nav-sticker__link">Схема</a>
 				</li>
 				<li class="nav-sticker__item">
@@ -26,9 +26,9 @@ layout: default.hbs
 			</ul>
 		</nav>
 
-		<nav class="nav-sticker__menu --fixed --hidden" id="nav-sticker-fixed">
+		<nav class="nav-sticker__menu _fixed _hidden" id="nav-sticker-fixed">
 			<ul class="nav-sticker__list">
-				<li class="nav-sticker__item --active">
+				<li class="nav-sticker__item _active">
 					<a href="#section-1" class="nav-sticker__link">Схема</a>
 				</li>
 				<li class="nav-sticker__item">
@@ -45,7 +45,7 @@ layout: default.hbs
 		
 	</div>
 
-	<section id="section-1" class="banner banner--fixed-bg banner--dark-text" data-midnight="--dark">
+	<section id="section-1" class="banner banner--fixed-bg banner--dark-text" data-midnight="_dark">
 
 		<div class="banner__image" style="background-image: url(img/banners/001.jpg);">
 			<div class="bg-layer__color" style="opacity: 0.05;"></div>
@@ -61,8 +61,8 @@ layout: default.hbs
 								<img src="img/barsgroup.svg" alt="" width="151" height="63">
 							</div>
 							<div class="brand-box__desc">
-								<div class="page__label">Цифровое портфолио</div>
-								<div class="page__label page__label--green">Здравоохранение</div>
+								<div class="page__label page__label--small">Цифровое портфолио</div>
+								<div class="page__label page__label--small page__label--green">Здравоохранение</div>
 							</div>
 						</div>
 					</div>
@@ -147,9 +147,9 @@ layout: default.hbs
 		</div>
 
 	</section>
-	<section id="section-2" style="height: 800px; background: #63b7de;" data-midnight="--light"></section>
-	<section id="section-3" style="height: 800px;" data-midnight="--dark"></section>
-	<section id="section-4" style="height: 800px; background: #a1c527;" data-midnight="--light"></section>
+	<section id="section-2" style="height: 800px; background: #63b7de;" data-midnight="_light"></section>
+	<section id="section-3" style="height: 800px;" data-midnight="_dark"></section>
+	<section id="section-4" style="height: 800px; background: #a1c527;" data-midnight="_light"></section>
 
 	{{> footer }}
 

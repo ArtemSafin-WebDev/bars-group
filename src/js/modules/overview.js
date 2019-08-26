@@ -27,12 +27,12 @@ module.exports = {
 		if (nextIndex == currIndex) return;
 
 		// set active nav item
-		self._elems.$navItems.eq(currIndex).removeClass('--active');
-		self._elems.$navItems.eq(nextIndex).addClass('--active');
+		self._elems.$navItems.eq(currIndex).removeClass('_active');
+		self._elems.$navItems.eq(nextIndex).addClass('_active');
 
 		// set active about item
-		self._elems.$aboutItems.eq(currIndex).removeClass('--active');
-		self._elems.$aboutItems.eq(nextIndex).addClass('--active');
+		self._elems.$aboutItems.eq(currIndex).removeClass('_active');
+		self._elems.$aboutItems.eq(nextIndex).addClass('_active');
 
 		// collapse bodies
 		self._elems.$navBodies.eq(currIndex).collapse('hide');

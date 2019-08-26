@@ -5,13 +5,13 @@ module.exports = {
 	_handleWingsMouseenter: function (e) {
 		var self = e.data.self;
 
-		$(this).addClass('--hover');
+		$(this).addClass('_hover');
 	},
 
 	_handleWingsMouseleave: function (e) {
 		var self = e.data.self;
 
-		$(this).removeClass('--hover');
+		$(this).removeClass('_hover');
 	},
 
 

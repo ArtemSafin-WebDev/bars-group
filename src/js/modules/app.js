@@ -47,7 +47,7 @@ module.exports = {
 
 		clearInterval(self._state.preloaderTimer);
 
-		$('#loader-main').removeClass('--active');
+		$('#loader-main').removeClass('_active');
 		$('body').removeClass('page__locked');
 
 		TechPromo.init();
@@ -116,7 +116,7 @@ module.exports = {
 		var self = e.data.self;
 
 		objectFitPolyfill(this);
-		$(this).addClass('--active');
+		$(this).addClass('_active');
 
 		if ($(this).data('promo') !== undefined) {
 			self._state.promoVideosLoaded++;

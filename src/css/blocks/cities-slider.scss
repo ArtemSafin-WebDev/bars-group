@@ -7,7 +7,7 @@
 	background: url('../img/map.svg') no-repeat 40% 0;
 	background-size: cover;
 
-	&.--loading {
+	&._loading {
 		.cities-slider__canvas,
 		.cities-slider__ctrl {
 			visibility: hidden;

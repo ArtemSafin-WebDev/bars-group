@@ -36245,7 +36245,7 @@ module.exports = {
     if (self._state.isWindowLoaded === false) return;
     if (self._state.promoVideosLoaded !== self._state.promoVideosTotal) return;
     clearInterval(self._state.preloaderTimer);
-    $('#loader-main').removeClass('--active');
+    $('#loader-main').removeClass('_active');
     $('body').removeClass('page__locked');
     TechPromo.init();
     NavMobile.init();
@@ -36300,7 +36300,7 @@ module.exports = {
   _handleCanPlayEvent: function _handleCanPlayEvent(e) {
     var self = e.data.self;
     objectFitPolyfill(this);
-    $(this).addClass('--active');
+    $(this).addClass('_active');
 
     if ($(this).data('promo') !== undefined) {
       self._state.promoVideosLoaded++;
@@ -36488,7 +36488,7 @@ module.exports = {
         var filterItemId = $(this).data('id');
         var isItemActive = filterState.value == filterItemId;
         $(this).find('.nav-cats__count').html(filterState.counts[filterItemId]);
-        $(this).toggleClass('--active', isItemActive);
+        $(this).toggleClass('_active', isItemActive);
       });
     }); // update popup filter
 
@@ -36520,9 +36520,9 @@ module.exports = {
     self._renderSearchView(); // show common loader
 
 
-    $('#loader-ajax').addClass('--active'); // set industry loader
+    $('#loader-ajax').addClass('_active'); // set industry loader
 
-    self._renderIndustries('--loading');
+    self._renderIndustries('_loading');
 
     $.ajax({
       method: 'get',
@@ -36534,13 +36534,13 @@ module.exports = {
       self._state.filter.type.counts = data.filterCounts.type; // hide content
 
       setTimeout(function () {
-        self._elems.$_.addClass('--replace');
+        self._elems.$_.addClass('_replace');
       }, 200); // update content
 
       setTimeout(function () {
-        self._elems.$names.removeClass('--active');
+        self._elems.$names.removeClass('_active');
 
-        self._elems.$tiles.addClass('--active').html(data.result);
+        self._elems.$tiles.addClass('_active').html(data.result);
 
         self._state.stickySidebar.updateSticky();
 
@@ -36548,16 +36548,16 @@ module.exports = {
       }, 400); // show content
 
       setTimeout(function () {
-        self._elems.$_.removeClass('--replace');
+        self._elems.$_.removeClass('_replace');
       }, 800); // set active class
 
-      self._renderIndustries('--active');
+      self._renderIndustries('_active');
     }).fail(function (jqXHR, textStatus) {
       // notify error
       notify('Ошибка при загрузке.', textStatus);
     }).always(function () {
       // hide common loader
-      $('#loader-ajax').removeClass('--active');
+      $('#loader-ajax').removeClass('_active');
     });
   },
   _renderNamesView: function _renderNamesView() {
@@ -36572,7 +36572,7 @@ module.exports = {
     self._renderIndustries(); // show common loader
 
 
-    $('#loader-ajax').addClass('--active');
+    $('#loader-ajax').addClass('_active');
     $.ajax({
       method: 'get',
       url: url,
@@ -36583,13 +36583,13 @@ module.exports = {
       self._state.filter.type.counts = data.filterCounts.type; // hide content
 
       setTimeout(function () {
-        self._elems.$_.addClass('--replace');
+        self._elems.$_.addClass('_replace');
       }, 200); // update content
 
       setTimeout(function () {
-        self._elems.$tiles.removeClass('--active');
+        self._elems.$tiles.removeClass('_active');
 
-        self._elems.$names.addClass('--active').html(data.result);
+        self._elems.$names.addClass('_active').html(data.result);
 
         self._state.stickySidebar.updateSticky();
 
@@ -36597,32 +36597,32 @@ module.exports = {
       }, 400); // show content
 
       setTimeout(function () {
-        self._elems.$_.removeClass('--replace');
+        self._elems.$_.removeClass('_replace');
       }, 800);
     }).fail(function (jqXHR, textStatus) {
       // notify error
       notify('Ошибка при загрузке.', textStatus);
     }).always(function () {
       // hide common loader
-      $('#loader-ajax').removeClass('--active');
+      $('#loader-ajax').removeClass('_active');
     });
   },
   _renderIndustries: function _renderIndustries(className) {
     var self = this;
     var className = className || '';
 
-    self._elems.$industries.removeClass('--active --loading').filter("[data-id=\"".concat(self._state.industry, "\"]")).addClass(className);
+    self._elems.$industries.removeClass('_active _loading').filter("[data-id=\"".concat(self._state.industry, "\"]")).addClass(className);
   },
   _handleIndustryMouseenter: function _handleIndustryMouseenter(e) {
     var self = e.data.self;
-    if ($(this).hasClass('--active')) return;
-    var $video = $(this).find('video.--active');
+    if ($(this).hasClass('_active')) return;
+    var $video = $(this).find('video._active');
     if ($video.length) $video[0].play();
   },
   _handleIndustryMouseleave: function _handleIndustryMouseleave(e) {
     var self = e.data.self;
-    if ($(this).hasClass('--active')) return;
-    var $video = $(this).find('video.--active');
+    if ($(this).hasClass('_active')) return;
+    var $video = $(this).find('video._active');
     if ($video.length) $video[0].pause();
   },
   _handleIndustryClick: function _handleIndustryClick(e) {
@@ -36636,9 +36636,9 @@ module.exports = {
     var self = e.data.self;
     e.preventDefault();
     var $currItem = $(this).closest('.nav-side__item');
-    if ($currItem.hasClass('--active')) return; // set active class
+    if ($currItem.hasClass('_active')) return; // set active class
 
-    $currItem.addClass('--active').siblings().removeClass('--active'); // set arrow position
+    $currItem.addClass('_active').siblings().removeClass('_active'); // set arrow position
 
     self._elems.$ctrlModes.find('.nav-side__arrow').css({
       transform: 'translateY(' + $currItem.index() * 100 + '%)'
@@ -36647,7 +36647,7 @@ module.exports = {
 
     var isFormActive = !!$currItem.index();
 
-    self._elems.$searchForm.toggleClass('--active', isFormActive); // clear state
+    self._elems.$searchForm.toggleClass('_active', isFormActive); // clear state
 
 
     self._state.searchText = '', self._state.letter = '', self._state.industry = '', self._state.currentMode = $currItem.data('id');
@@ -37016,7 +37016,7 @@ module.exports = {
 
     self._initRangeSlider();
 
-    self._elems.$_.removeClass('cities-slider--frozen --loading');
+    self._elems.$_.removeClass('cities-slider--frozen _loading');
 
     self._bindUI();
   }
@@ -37057,15 +37057,15 @@ module.exports = {
   },
   _handleFocusOnInput: function _handleFocusOnInput(e) {
     var self = e.data.self;
-    $(this).parent().addClass('--focus');
+    $(this).parent().addClass('_focus');
   },
   _handleBlurOnInput: function _handleBlurOnInput(e) {
     var self = e.data.self;
-    $(this).parent().removeClass('--focus');
+    $(this).parent().removeClass('_focus');
   },
   _handleFilledState: function _handleFilledState(e) {
     var self = e.data.self;
-    $(this).parent().toggleClass('--filled', !!$(this).val().length);
+    $(this).parent().toggleClass('_filled', !!$(this).val().length);
   },
   _handleFileChange: function _handleFileChange(e) {
     var self = e.data.self;
@@ -37083,14 +37083,14 @@ module.exports = {
   _handleCheckedState: function _handleCheckedState(e) {
     var self = e.data.self;
     var isChecked = $(this).prop('checked');
-    $(this).closest('.form__check').toggleClass('--active', isChecked);
+    $(this).closest('.form__check').toggleClass('_active', isChecked);
   },
   _handleFormSubmit: function _handleFormSubmit(e) {
     var self = e.data.self;
     e.preventDefault();
     var $form = $(this);
     var action = $form.data('action');
-    $form.addClass('--loading');
+    $form.addClass('_loading');
     setTimeout(function () {
       $form.ajaxSubmit({
         url: action,
@@ -37098,7 +37098,7 @@ module.exports = {
         success: function success(data) {
           if (data.status == 'success') {
             // notify success
-            $form.addClass('--success');
+            $form.addClass('_success');
 
             self._resetForm($form);
           } else {
@@ -37106,12 +37106,12 @@ module.exports = {
             notify('Ошибка при отправке', 'Некорректный ответ от сервера');
           }
 
-          $form.removeClass('--loading');
+          $form.removeClass('_loading');
         },
         error: function error(jqXHR, textStatus) {
           // notify error
           notify('Ошибка при отправке', textStatus);
-          $form.removeClass('--loading');
+          $form.removeClass('_loading');
         }
       });
     }, 500);
@@ -37124,10 +37124,10 @@ module.exports = {
     if ($form.hasClass('popup')) {
       $.fancybox.close();
       setTimeout(function () {
-        $form.removeClass('--success');
+        $form.removeClass('_success');
       }, 500);
     } else {
-      $form.removeClass('--success');
+      $form.removeClass('_success');
     }
   },
   _handleICheckValidation: function _handleICheckValidation(e) {
@@ -37178,7 +37178,7 @@ module.exports = {
     $('.js-form-validate').each(function () {
       $(this).validate({
         focusInvalid: false,
-        errorClass: '--error',
+        errorClass: '_error',
         messages: {
           agree: "Забыли про галочку"
         },
@@ -37537,12 +37537,12 @@ module.exports = {
   },
   _handleItemMouseenter: function _handleItemMouseenter(e) {
     var self = e.data.self;
-    var $video = $(this).find('video.--active');
+    var $video = $(this).find('video._active');
     if ($video.length) $video[0].play();
   },
   _handleItemMouseleave: function _handleItemMouseleave(e) {
     var self = e.data.self;
-    var $video = $(this).find('video.--active');
+    var $video = $(this).find('video._active');
     if ($video.length) $video[0].pause();
   },
   _bindUI: function _bindUI() {
@@ -37592,7 +37592,7 @@ module.exports = {
 
     self._initRangeSlider();
 
-    self._elems.$_.removeClass('gantt-slider--frozen --loading');
+    self._elems.$_.removeClass('gantt-slider--frozen _loading');
 
     self._bindUI();
   }
@@ -37609,7 +37609,7 @@ module.exports = {
     var $_ = $('#header'); // close dropdown during resizing
 
     var $more = $_.find('.header__menu__item--more');
-    $more.removeClass('--opened'); // compare container & items top offsets and find break point
+    $more.removeClass('_opened'); // compare container & items top offsets and find break point
 
     var $crop = $_.find('.header__menu__crop');
     var cropOffset = $crop.offset().top;
@@ -37632,7 +37632,7 @@ module.exports = {
       var lastItemMargin = parseInt($lastItem.css('margin-right'));
       var lastItemWidth = $lastItem.width();
       var moreOffset = lastItemLeft + lastItemMargin + lastItemWidth;
-      $more.addClass('--shown').css({
+      $more.addClass('_shown').css({
         left: moreOffset + 'px'
       }); // show/hide 'more' elements
 
@@ -37645,20 +37645,20 @@ module.exports = {
         }
       });
     } else {
-      $more.removeClass('--shown');
+      $more.removeClass('_shown');
     }
   },
   _handleMoreClick: function _handleMoreClick(e) {
     var self = e.data.self;
     e.preventDefault();
-    $('#header .header__menu__item--more').toggleClass('--opened');
+    $('#header .header__menu__item--more').toggleClass('_opened');
   },
   _handleDocumentClick: function _handleDocumentClick(e) {
     var self = e.data.self;
     var moreSelector = '.header__menu__item--more';
 
     if ($(e.target).closest(moreSelector).length == 0) {
-      $('#header ' + moreSelector).removeClass('--opened');
+      $('#header ' + moreSelector).removeClass('_opened');
     }
   },
   _handleWindowResize: function _handleWindowResize(e) {
@@ -37696,11 +37696,11 @@ var $ = require('jquery');
 module.exports = {
   _handleWingsMouseenter: function _handleWingsMouseenter(e) {
     var self = e.data.self;
-    $(this).addClass('--hover');
+    $(this).addClass('_hover');
   },
   _handleWingsMouseleave: function _handleWingsMouseleave(e) {
     var self = e.data.self;
-    $(this).removeClass('--hover');
+    $(this).removeClass('_hover');
   },
   _bindUI: function _bindUI() {
     var self = this;
@@ -37827,15 +37827,15 @@ module.exports = {
   _handleButtonClick: function _handleButtonClick(e) {
     var self = e.data.self;
     e.preventDefault();
-    var $currItem = $(this).closest('.nav-filter__item').toggleClass('--active');
+    var $currItem = $(this).closest('.nav-filter__item').toggleClass('_active');
 
-    self._elems.$_.find('.nav-filter__item').not($currItem).removeClass('--active');
+    self._elems.$_.find('.nav-filter__item').not($currItem).removeClass('_active');
   },
   _handleDocumentClick: function _handleDocumentClick(e) {
     var self = e.data.self;
 
     if ($(e.target).closest('.nav-filter__button').length == 0) {
-      self._elems.$_.find('.nav-filter__item').removeClass('--active');
+      self._elems.$_.find('.nav-filter__item').removeClass('_active');
     }
   },
   _bindUI: function _bindUI() {
@@ -37934,7 +37934,7 @@ module.exports = {
     var self = this;
 
     self._elems.$static.find('.nav-sticker__list').onePageNav({
-      currentClass: '--active',
+      currentClass: '_active',
       scrollChange: function scrollChange($current) {
         var index = $current.index();
 
@@ -37955,7 +37955,7 @@ module.exports = {
     var self = this;
 
     self._elems.$items.each(function () {
-      $(this).toggleClass('--active', $(this).index() === index);
+      $(this).toggleClass('_active', $(this).index() === index);
     });
   },
   _setNavsHiddenState: function _setNavsHiddenState() {
@@ -37967,9 +37967,9 @@ module.exports = {
     var isStaticHidden = staticOffsetTop - scrollTop < 40;
     var isFixedHidden = !isStaticHidden;
 
-    self._elems.$static.toggleClass('--hidden', isStaticHidden);
+    self._elems.$static.toggleClass('_hidden', isStaticHidden);
 
-    self._elems.$fixed.toggleClass('--hidden', isFixedHidden);
+    self._elems.$fixed.toggleClass('_hidden', isFixedHidden);
   },
   _handleWindowScroll: function _handleWindowScroll() {
     var self = this;
@@ -37990,12 +37990,12 @@ module.exports = {
   _handleListMouseEnter: function _handleListMouseEnter(e) {
     var self = e.data.self;
 
-    self._elems.$_.addClass('--hover');
+    self._elems.$_.addClass('_hover');
   },
   _handleListMouseLeave: function _handleListMouseLeave(e) {
     var self = e.data.self;
 
-    self._elems.$_.removeClass('--hover');
+    self._elems.$_.removeClass('_hover');
   },
   _bindUI: function _bindUI() {
     var self = this;
@@ -38307,14 +38307,14 @@ module.exports = {
     var currIndex = self._state.currIndex;
     if (nextIndex == currIndex) return; // set active nav item
 
-    self._elems.$navItems.eq(currIndex).removeClass('--active');
+    self._elems.$navItems.eq(currIndex).removeClass('_active');
 
-    self._elems.$navItems.eq(nextIndex).addClass('--active'); // set active about item
+    self._elems.$navItems.eq(nextIndex).addClass('_active'); // set active about item
 
 
-    self._elems.$aboutItems.eq(currIndex).removeClass('--active');
+    self._elems.$aboutItems.eq(currIndex).removeClass('_active');
 
-    self._elems.$aboutItems.eq(nextIndex).addClass('--active'); // collapse bodies
+    self._elems.$aboutItems.eq(nextIndex).addClass('_active'); // collapse bodies
 
 
     self._elems.$navBodies.eq(currIndex).collapse('hide');
@@ -39159,8 +39159,8 @@ module.exports = {
   _setActiveVideo: function _setActiveVideo(index) {
     var self = this;
     var $items = $('#tech-promo .bg-layer__item');
-    $items.filter('.--active').removeClass('--active').end().find('video')[0].pause();
-    $items.eq(index).addClass('--active').end().find('video')[0].play();
+    $items.filter('._active').removeClass('_active').end().find('video')[0].pause();
+    $items.eq(index).addClass('_active').end().find('video')[0].play();
   },
   _handleCircleEnter: function _handleCircleEnter(e) {
     var self = e.data.self;
@@ -39207,15 +39207,15 @@ module.exports = {
     var $_ = $('#tech-promo');
     if ($_.length == 0) return;
     self._elems.$_ = $_;
-    $_.find('.tech-promo__orbit').addClass('--active');
+    $_.find('.tech-promo__orbit').addClass('_active');
     setTimeout(function () {
-      $_.find('.tech-promo__point').addClass('--active');
+      $_.find('.tech-promo__point').addClass('_active');
     }, 2000);
     setTimeout(function () {
-      $_.find('.tech-promo__center').addClass('--active');
+      $_.find('.tech-promo__center').addClass('_active');
     }, 3000);
     setTimeout(function () {
-      $_.find('.tech-promo__circle').addClass('--active');
+      $_.find('.tech-promo__circle').addClass('_active');
     }, 3500);
 
     self._bindUI();

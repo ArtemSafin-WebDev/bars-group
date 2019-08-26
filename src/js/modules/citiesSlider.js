@@ -262,7 +262,7 @@ module.exports = {
 		self._setItemsPositions();
 		self._initRangeSlider();
 
-		self._elems.$_.removeClass('cities-slider--frozen --loading');
+		self._elems.$_.removeClass('cities-slider--frozen _loading');
 
 		self._bindUI();
 	}

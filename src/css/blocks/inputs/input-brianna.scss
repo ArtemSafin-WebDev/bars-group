@@ -4,19 +4,19 @@
 	position: relative;
 	border-bottom: 2px solid #dadada;
 
-	&.--focus {
+	&._focus {
 		border-bottom-color: #59b4e6;
 	}
 	
-	&.--focus,
-	&.--filled {
+	&._focus,
+	&._filled {
 		.input-brianna__label {
 			top: 7px;
 			font-size: 10px;
 		}
 	}
 
-	&.--error {
+	&._error {
 		border-bottom-color: #c32118;
 	}
 
@@ -71,8 +71,8 @@
 
 	.input-brianna {
 		
-		&.--focus,
-		&.--filled {
+		&._focus,
+		&._filled {
 			.input-brianna__label {
 				top: 4px;
 			}

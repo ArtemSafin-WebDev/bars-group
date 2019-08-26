@@ -3,7 +3,7 @@
 
 	position: relative;
 
-	&.--loading {
+	&._loading {
 		.gantt-slider__canvas,
 		.gantt-slider__ctrl {
 			visibility: hidden;

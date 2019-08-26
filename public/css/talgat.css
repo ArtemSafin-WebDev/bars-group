@@ -1025,7 +1025,7 @@
 .tPortfolioSearch__form--no-toggle {
   margin-top: 0;
 }
-.tPortfolioSearch__form.--active {
+.tPortfolioSearch__form._active {
   margin-top: 0;
 }
 .tPortfolioSearch__search-instead {

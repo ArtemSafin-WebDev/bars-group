@@ -68,7 +68,7 @@
 
 	position: relative;
 
-	&.--success {
+	&._success {
 		.success {
 			visibility: visible;
 			opacity: 1;
@@ -105,7 +105,7 @@
 	
 	}
 
-	label.--error {
+	label._error {
 		display: block;
 		margin-top: 10px;
 		font-size: 12px;

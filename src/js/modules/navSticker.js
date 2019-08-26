@@ -16,7 +16,7 @@ module.exports = {
 		var self = this;
 
 		self._elems.$static.find('.nav-sticker__list').onePageNav({
-			currentClass: '--active',
+			currentClass: '_active',
 			scrollChange: function ($current) {
 				var index = $current.index();
 				self._setItemsActiveState(index);
@@ -40,7 +40,7 @@ module.exports = {
 		var self = this;
 
 		self._elems.$items.each(function () {
-			$(this).toggleClass('--active', $(this).index() === index);
+			$(this).toggleClass('_active', $(this).index() === index);
 		});
 	},
 
@@ -52,8 +52,8 @@ module.exports = {
 		var isStaticHidden = staticOffsetTop - scrollTop < 40;
 		var isFixedHidden = !isStaticHidden;
 
-		self._elems.$static.toggleClass('--hidden', isStaticHidden);
-		self._elems.$fixed.toggleClass('--hidden', isFixedHidden);
+		self._elems.$static.toggleClass('_hidden', isStaticHidden);
+		self._elems.$fixed.toggleClass('_hidden', isFixedHidden);
 	},
 
 	_handleWindowScroll: function () {
@@ -81,13 +81,13 @@ module.exports = {
 	_handleListMouseEnter: function (e) {
 		var self = e.data.self;
 
-		self._elems.$_.addClass('--hover');
+		self._elems.$_.addClass('_hover');
 	},
 
 	_handleListMouseLeave: function (e) {
 		var self = e.data.self;
 
-		self._elems.$_.removeClass('--hover');
+		self._elems.$_.removeClass('_hover');
 	},
 
 	_bindUI: function () {

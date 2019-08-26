@@ -9,7 +9,7 @@ module.exports = {
 
 		// close dropdown during resizing
 		var $more = $_.find('.header__menu__item--more');
-		$more.removeClass('--opened');
+		$more.removeClass('_opened');
 
 		// compare container & items top offsets and find break point
 		var $crop  = $_.find('.header__menu__crop');
@@ -36,7 +36,7 @@ module.exports = {
 			var lastItemWidth = $lastItem.width();
 
 			var moreOffset = lastItemLeft + lastItemMargin + lastItemWidth;
-			$more.addClass('--shown').css({ left: moreOffset + 'px'});
+			$more.addClass('_shown').css({ left: moreOffset + 'px'});
 
 			// show/hide 'more' elements
 			var $moreItems = $_.find('.header__menu__down__body > div');
@@ -49,7 +49,7 @@ module.exports = {
 			});
 
 		} else {
-			$more.removeClass('--shown');
+			$more.removeClass('_shown');
 		}
 
 	},
@@ -59,7 +59,7 @@ module.exports = {
 
 		e.preventDefault();
 
-		$('#header .header__menu__item--more').toggleClass('--opened');
+		$('#header .header__menu__item--more').toggleClass('_opened');
 	},
 
 	_handleDocumentClick: function (e) {
@@ -67,7 +67,7 @@ module.exports = {
 
 		var moreSelector = '.header__menu__item--more';
 		if ( $(e.target).closest(moreSelector).length == 0 ){
-			$('#header ' + moreSelector).removeClass('--opened');
+			$('#header ' + moreSelector).removeClass('_opened');
 		}
 	},
 

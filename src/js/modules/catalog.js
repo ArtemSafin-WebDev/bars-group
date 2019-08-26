@@ -68,7 +68,7 @@ module.exports = {
 				var filterItemId = $(this).data('id');
 				var isItemActive = filterState.value == filterItemId;
 				$(this).find('.nav-cats__count').html(filterState.counts[filterItemId]);
-				$(this).toggleClass('--active', isItemActive);
+				$(this).toggleClass('_active', isItemActive);
 			});
 		});
 
@@ -111,10 +111,10 @@ module.exports = {
 		self._renderSearchView();
 
 		// show common loader
-		$('#loader-ajax').addClass('--active');
+		$('#loader-ajax').addClass('_active');
 
 		// set industry loader
-		self._renderIndustries('--loading');
+		self._renderIndustries('_loading');
 
 		$.ajax({
             method: 'get',
@@ -129,24 +129,24 @@ module.exports = {
 			
 			// hide content
 			setTimeout(function () {
-				self._elems.$_.addClass('--replace');
+				self._elems.$_.addClass('_replace');
 			}, 200);
 
 			// update content
 			setTimeout(function () {
-				self._elems.$names.removeClass('--active');
-				self._elems.$tiles.addClass('--active').html(data.result);
+				self._elems.$names.removeClass('_active');
+				self._elems.$tiles.addClass('_active').html(data.result);
 				self._state.stickySidebar.updateSticky();
 				self._renderFiltersView();
 			}, 400);
 
 			// show content
 			setTimeout(function () {
-				self._elems.$_.removeClass('--replace');
+				self._elems.$_.removeClass('_replace');
 			}, 800);
 
 			// set active class
-			self._renderIndustries('--active');
+			self._renderIndustries('_active');
 		})
 		.fail(function (jqXHR, textStatus) {
 			// notify error
@@ -154,7 +154,7 @@ module.exports = {
 		})
 		.always(function () {
 			// hide common loader
-			$('#loader-ajax').removeClass('--active');
+			$('#loader-ajax').removeClass('_active');
 		});
 
 	},
@@ -177,7 +177,7 @@ module.exports = {
 		self._renderIndustries();
 
 		// show common loader
-		$('#loader-ajax').addClass('--active');
+		$('#loader-ajax').addClass('_active');
 
 		$.ajax({
             method: 'get',
@@ -192,20 +192,20 @@ module.exports = {
 			
 			// hide content
 			setTimeout(function () {
-				self._elems.$_.addClass('--replace');
+				self._elems.$_.addClass('_replace');
 			}, 200);
 
 			// update content
 			setTimeout(function () {
-				self._elems.$tiles.removeClass('--active');
-				self._elems.$names.addClass('--active').html(data.result);
+				self._elems.$tiles.removeClass('_active');
+				self._elems.$names.addClass('_active').html(data.result);
 				self._state.stickySidebar.updateSticky();
 				self._renderFiltersView();
 			}, 400);
 
 			// show content
 			setTimeout(function () {
-				self._elems.$_.removeClass('--replace');
+				self._elems.$_.removeClass('_replace');
 			}, 800);
 		})
 		.fail(function (jqXHR, textStatus) {
@@ -214,7 +214,7 @@ module.exports = {
 		})
 		.always(function () {
 			// hide common loader
-			$('#loader-ajax').removeClass('--active');
+			$('#loader-ajax').removeClass('_active');
 		});
 
 	},
@@ -225,25 +225,25 @@ module.exports = {
 		var className = className || '';
 
 		self._elems.$industries
-			.removeClass('--active --loading')
+			.removeClass('_active _loading')
 			.filter(`[data-id="${self._state.industry}"]`).addClass(className);
 	},
 
 	_handleIndustryMouseenter: function (e) {
 		var self = e.data.self;
 
-		if ($(this).hasClass('--active')) return;
+		if ($(this).hasClass('_active')) return;
 
-		var $video = $(this).find('video.--active');
+		var $video = $(this).find('video._active');
 		if ($video.length) $video[0].play();
 	},
 
 	_handleIndustryMouseleave: function (e) {
 		var self = e.data.self;
 
-		if ($(this).hasClass('--active')) return;
+		if ($(this).hasClass('_active')) return;
 
-		var $video = $(this).find('video.--active');
+		var $video = $(this).find('video._active');
 		if ($video.length) $video[0].pause();
 	},
 
@@ -261,10 +261,10 @@ module.exports = {
 		e.preventDefault()
 
 		var $currItem = $(this).closest('.nav-side__item');
-		if ($currItem.hasClass('--active')) return;
+		if ($currItem.hasClass('_active')) return;
 
 		// set active class
-		$currItem.addClass('--active').siblings().removeClass('--active');
+		$currItem.addClass('_active').siblings().removeClass('_active');
 
 		// set arrow position
 		self._elems.$ctrlModes.find('.nav-side__arrow').css({
@@ -273,7 +273,7 @@ module.exports = {
 
 		// toggle search form
 		var isFormActive = !!$currItem.index();
-		self._elems.$searchForm.toggleClass('--active', isFormActive);
+		self._elems.$searchForm.toggleClass('_active', isFormActive);
 
 		// clear state
 		self._state.searchText = '',

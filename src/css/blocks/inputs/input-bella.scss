@@ -5,12 +5,12 @@
 	background: #59b4e6;
 	font-size: 22px;
 
-	&.--focus {
+	&._focus {
 		background: darken(#59b4e6, 5%);
 	}
 	
-	&.--focus,
-	&.--filled {
+	&._focus,
+	&._filled {
 		.input-bella__label {
 			top: 25%;
 			font-size: .7em;

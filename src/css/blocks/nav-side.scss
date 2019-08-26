@@ -19,7 +19,7 @@
 		position: relative;
 		padding-right: 40px;
 
-		&.--active {
+		&._active {
 
 			.nav-side__link {
 				color: #000 !important;
@@ -94,7 +94,7 @@
 				display: none;
 			}
 
-			&.--active {
+			&._active {
 				&:after {
 					content: ' ';
 					position: absolute;

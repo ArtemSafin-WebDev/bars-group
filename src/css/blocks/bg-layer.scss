@@ -7,7 +7,7 @@
 	&__item {
 		@include position-fill();
 
-		&.--active {
+		&._active {
 			z-index: 1;
 		}
 	}
@@ -23,7 +23,7 @@
 		object-fit: cover;
 		display: none;
 
-		&.--active {
+		&._active {
 			display: block;
 		}
 	}

@@ -11,15 +11,15 @@ module.exports = {
 
 		e.preventDefault();
 
-		var $currItem = $(this).closest('.nav-filter__item').toggleClass('--active');
-		self._elems.$_.find('.nav-filter__item').not($currItem).removeClass('--active');
+		var $currItem = $(this).closest('.nav-filter__item').toggleClass('_active');
+		self._elems.$_.find('.nav-filter__item').not($currItem).removeClass('_active');
 	},
 
 	_handleDocumentClick: function (e) {
 		var self = e.data.self;
 
 		if ( $(e.target).closest('.nav-filter__button').length == 0 ){
-			self._elems.$_.find('.nav-filter__item').removeClass('--active');
+			self._elems.$_.find('.nav-filter__item').removeClass('_active');
 		}
 	},
 

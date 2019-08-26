@@ -32,19 +32,19 @@ module.exports = {
 	_handleFocusOnInput: function (e) {
 		var self = e.data.self;
 
-		$(this).parent().addClass('--focus');
+		$(this).parent().addClass('_focus');
 	},
 
 	_handleBlurOnInput: function (e) {
 		var self = e.data.self;
 
-		$(this).parent().removeClass('--focus');
+		$(this).parent().removeClass('_focus');
 	},
 
 	_handleFilledState: function (e) {
 		var self = e.data.self;
 
-		$(this).parent().toggleClass('--filled', !!$(this).val().length);
+		$(this).parent().toggleClass('_filled', !!$(this).val().length);
 	},
 
 	_handleFileChange: function (e) {
@@ -71,7 +71,7 @@ module.exports = {
 		var self = e.data.self;
 
 		var isChecked = $(this).prop('checked');
-		$(this).closest('.form__check').toggleClass('--active', isChecked);
+		$(this).closest('.form__check').toggleClass('_active', isChecked);
 	},
 
 	_handleFormSubmit: function (e) {
@@ -82,7 +82,7 @@ module.exports = {
 		var $form = $(this);
 		var action = $form.data('action');
 
-		$form.addClass('--loading');
+		$form.addClass('_loading');
 
 		setTimeout(function () {
 
@@ -93,20 +93,20 @@ module.exports = {
 					if ( data.status == 'success' ) {
 
 						// notify success
-						$form.addClass('--success');
+						$form.addClass('_success');
 						self._resetForm($form);
 
 					} else {
 					     // notify error
 					    notify('Ошибка при отправке', 'Некорректный ответ от сервера');
 					}
-					$form.removeClass('--loading');
+					$form.removeClass('_loading');
 				},
 				error: function (jqXHR, textStatus) {
 					// notify error
 					notify('Ошибка при отправке', textStatus);
 
-					$form.removeClass('--loading');
+					$form.removeClass('_loading');
 				}
 			});
 
@@ -124,10 +124,10 @@ module.exports = {
 		if ($form.hasClass('popup')) {
 			$.fancybox.close();
 			setTimeout(function () {
-				$form.removeClass('--success');
+				$form.removeClass('_success');
 			}, 500);
 		} else {
-			$form.removeClass('--success');
+			$form.removeClass('_success');
 		}
 
 	},
@@ -168,7 +168,7 @@ module.exports = {
 		$('.js-form-validate').each(function () {
 			$(this).validate({
 				focusInvalid: false,
-				errorClass: '--error',
+				errorClass: '_error',
 				messages: {
 				    agree: "Забыли про галочку",
 				},

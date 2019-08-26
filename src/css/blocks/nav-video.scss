@@ -37,8 +37,8 @@
 		}
 
 		.mrkwbr-no-mobile &:hover,
-		&.--loading,
-		&.--active {
+		&._loading,
+		&._active {
 
 			.nav-video__name {
 				color: #fff;
@@ -65,7 +65,7 @@
 
 		}
 
-		&.--active {
+		&._active {
 			.nav-video__close {
 				&:before {
 					transform: rotate(-45deg) translateX(0);

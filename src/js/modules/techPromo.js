@@ -16,8 +16,8 @@ module.exports = {
 		var self = this;
 
 		var $items = $('#tech-promo .bg-layer__item');
-		$items.filter('.--active').removeClass('--active').end().find('video')[0].pause();
-		$items.eq(index).addClass('--active').end().find('video')[0].play();
+		$items.filter('._active').removeClass('_active').end().find('video')[0].pause();
+		$items.eq(index).addClass('_active').end().find('video')[0].play();
 	},
 
 	_handleCircleEnter: function (e) {
@@ -75,18 +75,18 @@ module.exports = {
 
 		self._elems.$_ = $_;
 
-		$_.find('.tech-promo__orbit').addClass('--active');
+		$_.find('.tech-promo__orbit').addClass('_active');
 
 		setTimeout(function () {
-			$_.find('.tech-promo__point').addClass('--active');
+			$_.find('.tech-promo__point').addClass('_active');
 		}, 2000);
 
 		setTimeout(function () {
-			$_.find('.tech-promo__center').addClass('--active');
+			$_.find('.tech-promo__center').addClass('_active');
 		}, 3000);
 
 		setTimeout(function () {
-			$_.find('.tech-promo__circle').addClass('--active');
+			$_.find('.tech-promo__circle').addClass('_active');
 		}, 3500);
 
 		self._bindUI();

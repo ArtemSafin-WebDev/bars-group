@@ -65,7 +65,7 @@
 		z-index: 100;
 		display: inline-block;
 		min-width: 240px;
-		padding: 13px 15px;
+		padding: .8em 1em;
 		background: #5CB3E5;
 		font-size: 16px;
 		font-weight: 600;
@@ -74,6 +74,10 @@
 		white-space: nowrap;
 		letter-spacing: 1.78px;
 		color: #ffffff;
+
+		&--small {
+			font-size: 14px;
+		}
 
 		&--green {
 			background: #A1C527
@@ -181,8 +185,11 @@
 	.page {
 
 		&__label {
-			padding: 12px 14px;
 			font-size: 14px;
+
+			&--small {
+				font-size: 11px;
+			}
 		}
 
 		&__h1 {
@@ -216,9 +223,7 @@
 		}
 
 		&__label {
-			padding: 10px 12px;
 			font-size: 11px;
-			letter-spacing: 1.22px;
 		}
 
 		&__h1,
