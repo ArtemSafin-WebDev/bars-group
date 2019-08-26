@@ -86,6 +86,13 @@ module.exports = {
 		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
 
+	showTabByIndex: function (index) {
+		var self = this;
+
+		self._elems.$_.find('.nav-banner__item')
+			.eq(index).find('.nav-banner__link').trigger('click');
+	},
+
 	init: function () {
 		var self = this;
 

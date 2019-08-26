@@ -37592,6 +37592,11 @@ module.exports = {
       self: self
     }, self._handleWindowResize);
   },
+  showTabByIndex: function showTabByIndex(index) {
+    var self = this;
+
+    self._elems.$_.find('.nav-banner__item').eq(index).find('.nav-banner__link').trigger('click');
+  },
   init: function init() {
     var self = this;
     var $_ = $("#nav-banner");
@@ -38937,7 +38942,14 @@ module.exports = {
 
 var $ = require('jquery');
 
+var NavBanner = require('./navBanner');
+
+var Utils = require('./utils');
+
 module.exports = {
+  _elems: {
+    $_: $()
+  },
   _state: {
     timers: []
   },
@@ -38964,6 +38976,16 @@ module.exports = {
 
     self._setActiveVideo(0);
   },
+  _handleCircleClick: function _handleCircleClick(e) {
+    var self = e.data.self;
+    e.preventDefault();
+    var $target = $($(this).attr('href'));
+    var tabIndex = $target.parent().index();
+    NavBanner.showTabByIndex(tabIndex);
+    var SPACE_BEFORE = 200;
+    var scrollPos = $target.offset().top - SPACE_BEFORE;
+    Utils.scrollTo(scrollPos);
+  },
   _bindUI: function _bindUI() {
     var self = this;
     $('#tech-promo .tech-promo__circle').on('mouseenter', {
@@ -38972,11 +38994,16 @@ module.exports = {
     $('#tech-promo .tech-promo__circle').on('mouseleave', {
       self: self
     }, self._handleCircleLeave);
+
+    self._elems.$_.on('click', '.tech-promo__circle', {
+      self: self
+    }, self._handleCircleClick);
   },
   init: function init() {
     var self = this;
     var $_ = $('#tech-promo');
     if ($_.length == 0) return;
+    self._elems.$_ = $_;
     $_.find('.tech-promo__orbit').addClass('--active');
     setTimeout(function () {
       $_.find('.tech-promo__point').addClass('--active');
@@ -38992,12 +39019,17 @@ module.exports = {
   }
 };
 
-},{"jquery":11}],48:[function(require,module,exports){
+},{"./navBanner":30,"./utils":48,"jquery":11}],48:[function(require,module,exports){
 "use strict";
 
 module.exports = {
   isMobile: function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  },
+  scrollTo: function scrollTo(position) {
+    $('html, body').animate({
+      scrollTop: position
+    });
   }
 };
 
