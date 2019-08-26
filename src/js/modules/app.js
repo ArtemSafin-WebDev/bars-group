@@ -28,6 +28,7 @@ var Utils = require('./utils');
 var Popup = require('./popup');
 var Arch = require('./arch');
 var NavFilter = require('./navFilter');
+require('./scrollbox');
 
 module.exports = {
 

@@ -26856,6 +26856,47 @@ module.exports = PerfectScrollbar;
 }));
 
 },{"jquery":12}],19:[function(require,module,exports){
+/*! scrollbarWidth.js v0.1.3 | felixexter | MIT | https://github.com/felixexter/scrollbarWidth */
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		define([], factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory();
+	} else {
+		(root.jQuery || root).scrollbarWidth = factory();
+	}
+}(this, function () {
+	'use strict';
+
+	function scrollbarWidth() {
+		if (typeof document === 'undefined') {
+			return 0
+		}
+
+		var
+			body = document.body,
+			box = document.createElement('div'),
+			boxStyle = box.style,
+			width;
+
+		boxStyle.position = 'absolute';
+		boxStyle.top = boxStyle.left = '-9999px';
+		boxStyle.width = boxStyle.height = '100px';
+		boxStyle.overflow = 'scroll';
+
+		body.appendChild(box);
+
+		width = box.offsetWidth - box.clientWidth;
+
+		body.removeChild(box);
+
+		return width;
+	}
+
+	return scrollbarWidth;
+}));
+
+},{}],20:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -27615,7 +27656,7 @@ return StickySidebar;
 
 
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /**
  * Swiper 4.5.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -35741,7 +35782,7 @@ return StickySidebar;
 
 }));
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -35752,7 +35793,7 @@ var App = require('./modules/app');
 App.init();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./modules/app":23,"jquery":12}],22:[function(require,module,exports){
+},{"./modules/app":24,"jquery":12}],23:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36171,7 +36212,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"jquery-mousewheel":10,"owl.carousel":16,"rangeslider.js":18}],23:[function(require,module,exports){
+},{"jquery":12,"jquery-mousewheel":10,"owl.carousel":16,"rangeslider.js":18}],24:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36231,6 +36272,8 @@ var Popup = require('./popup');
 var Arch = require('./arch');
 
 var NavFilter = require('./navFilter');
+
+require('./scrollbox');
 
 module.exports = {
   _state: {
@@ -36339,7 +36382,7 @@ module.exports = {
   }
 };
 
-},{"./about":22,"./arch":24,"./catalog":25,"./citiesSlider":26,"./form":27,"./ganttSlider":28,"./header":29,"./hover":30,"./navBanner":31,"./navFilter":32,"./navMobile":33,"./navSticker":34,"./news":35,"./newsPhotoSlider":36,"./newsSlider":37,"./newsToggles":38,"./overview":40,"./popup":41,"./scrollableTable":42,"./sliderContent":43,"./sliderDigits":44,"./sliderTabs":45,"./tAdvantages":46,"./tSliders":47,"./techPromo":48,"./utils":49,"dragscroll":8,"jquery":12,"objectFitPolyfill":15}],24:[function(require,module,exports){
+},{"./about":23,"./arch":25,"./catalog":26,"./citiesSlider":27,"./form":28,"./ganttSlider":29,"./header":30,"./hover":31,"./navBanner":32,"./navFilter":33,"./navMobile":34,"./navSticker":35,"./news":36,"./newsPhotoSlider":37,"./newsSlider":38,"./newsToggles":39,"./overview":41,"./popup":42,"./scrollableTable":43,"./scrollbox":44,"./sliderContent":45,"./sliderDigits":46,"./sliderTabs":47,"./tAdvantages":48,"./tSliders":49,"./techPromo":50,"./utils":51,"dragscroll":8,"jquery":12,"objectFitPolyfill":15}],25:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36417,7 +36460,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],25:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],26:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -36766,7 +36809,7 @@ module.exports = {
   }
 };
 
-},{"./notify":39,"jquery":12,"sticky-sidebar":19}],26:[function(require,module,exports){
+},{"./notify":40,"jquery":12,"sticky-sidebar":20}],27:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37022,7 +37065,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"rangeslider.js":18}],27:[function(require,module,exports){
+},{"jquery":12,"rangeslider.js":18}],28:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37197,7 +37240,7 @@ module.exports = {
   }
 };
 
-},{"./notify":39,"autosize":5,"icheck":9,"jquery":12,"jquery-form":2,"jquery-validation":11,"jquery.maskedinput":3}],28:[function(require,module,exports){
+},{"./notify":40,"autosize":5,"icheck":9,"jquery":12,"jquery-form":2,"jquery-validation":11,"jquery.maskedinput":3}],29:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37598,7 +37641,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"rangeslider.js":18}],29:[function(require,module,exports){
+},{"jquery":12,"rangeslider.js":18}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37688,7 +37731,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],30:[function(require,module,exports){
+},{"jquery":12}],31:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37718,7 +37761,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],31:[function(require,module,exports){
+},{"jquery":12}],32:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37815,7 +37858,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],32:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],33:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37857,7 +37900,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],33:[function(require,module,exports){
+},{"jquery":12}],34:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37913,7 +37956,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],34:[function(require,module,exports){
+},{"jquery":12}],35:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38033,7 +38076,7 @@ module.exports = {
   }
 };
 
-},{"jQuery-One-Page-Nav":1,"jquery":12,"midnight.js":13}],35:[function(require,module,exports){
+},{"jQuery-One-Page-Nav":1,"jquery":12,"midnight.js":13}],36:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38106,7 +38149,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],36:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],37:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -38176,7 +38219,7 @@ module.exports = {
   }
 };
 
-},{"swiper":20}],37:[function(require,module,exports){
+},{"swiper":21}],38:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -38198,7 +38241,7 @@ module.exports = {
   }
 };
 
-},{"swiper":20}],38:[function(require,module,exports){
+},{"swiper":21}],39:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -38259,7 +38302,7 @@ module.exports = {
   }
 };
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38280,7 +38323,7 @@ module.exports = function (title, text) {
   });
 };
 
-},{"jquery":12,"notifyjs-browser":14}],40:[function(require,module,exports){
+},{"jquery":12,"notifyjs-browser":14}],41:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38371,7 +38414,7 @@ module.exports = {
   }
 };
 
-},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":12}],41:[function(require,module,exports){
+},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":12}],42:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38412,7 +38455,7 @@ module.exports = {
   }
 };
 
-},{"@fancyapps/fancybox":4,"jquery":12}],42:[function(require,module,exports){
+},{"@fancyapps/fancybox":4,"jquery":12}],43:[function(require,module,exports){
 "use strict";
 
 var PerfectScrollbar = require('perfect-scrollbar');
@@ -38536,7 +38579,32 @@ module.exports = {
   }
 };
 
-},{"perfect-scrollbar":17}],43:[function(require,module,exports){
+},{"perfect-scrollbar":17}],44:[function(require,module,exports){
+"use strict";
+
+var scrollbarWidth = require('scrollbarWidth');
+
+var elements = document.querySelectorAll('.js-scrollbox');
+var collection = Array.prototype.slice.call(elements);
+var padding = 30;
+
+function isElementScrollable(elem) {
+  return getComputedStyle(elem).overflowX == 'scroll';
+}
+
+function setNegativeOffset() {
+  collection.forEach(function (elem) {
+    var negativeOffset = -(padding + scrollbarWidth()) + 'px';
+    elem.style.marginBottom = isElementScrollable(elem) ? negativeOffset : 0;
+  });
+}
+
+setNegativeOffset();
+window.addEventListener('resize', function () {
+  setNegativeOffset();
+});
+
+},{"scrollbarWidth":19}],45:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38599,7 +38667,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],44:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],46:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38908,7 +38976,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],45:[function(require,module,exports){
+},{"jquery":12}],47:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38966,7 +39034,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],46:[function(require,module,exports){
+},{"jquery":12}],48:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39035,7 +39103,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],47:[function(require,module,exports){
+},{"jquery":12}],49:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39140,7 +39208,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],48:[function(require,module,exports){
+},{"jquery":12,"owl.carousel":16}],50:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39226,7 +39294,7 @@ module.exports = {
   }
 };
 
-},{"./navBanner":31,"./utils":49,"jquery":12}],49:[function(require,module,exports){
+},{"./navBanner":32,"./utils":51,"jquery":12}],51:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -39240,4 +39308,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[21]);
+},{}]},{},[22]);
