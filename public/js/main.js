@@ -36299,8 +36299,8 @@ module.exports = {
   },
   _handleCanPlayEvent: function _handleCanPlayEvent(e) {
     var self = e.data.self;
-    objectFitPolyfill(this);
     $(this).addClass('_active');
+    objectFitPolyfill(this);
 
     if ($(this).data('promo') !== undefined) {
       self._state.promoVideosLoaded++;
