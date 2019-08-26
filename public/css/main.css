@@ -6343,7 +6343,8 @@ img {
     color: #fff; }
   .tech-promo__orbit {
     -webkit-transform: rotate(-90deg);
-            transform: rotate(-90deg); }
+            transform: rotate(-90deg);
+    opacity: .5; }
     .tech-promo__orbit.--active .tech-promo__orbit__circle {
       -webkit-animation: tech-promo-stroke 2s ease-out forwards;
               animation: tech-promo-stroke 2s ease-out forwards; }
@@ -6519,7 +6520,7 @@ img {
       margin-right: -100%;
       width: 100%;
       height: 100%;
-      border: 1px solid #fff;
+      border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 50%; }
     .tech-promo__circle__data {
       position: absolute;
