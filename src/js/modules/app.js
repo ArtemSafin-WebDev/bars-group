@@ -1,6 +1,5 @@
 var $ = require('jquery');
 require('objectFitPolyfill');
-require('dragscroll');
 
 var TechPromo = require('./techPromo');
 var NavMobile = require('./navMobile');

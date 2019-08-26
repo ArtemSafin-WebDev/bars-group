@@ -1,4 +1,5 @@
 var PerfectScrollbar = require('perfect-scrollbar');
+var ScrollBooster = require('ScrollBooster');
 
 module.exports = {
     
@@ -38,41 +39,6 @@ module.exports = {
                 tableGradientWrapper: tableGradientWrapper,
                 tableScrollContainer: tableScrollContainer
             }
-        }
-
-
-
-        window.wrapTable = wrapTable;
-
-
-
-        function addDragScrollHandlers(element) {
-            var pressed = false;
-            var startX;
-            var scrollLeft;
-            element.addEventListener("mousedown", function(event) {
-                pressed = true;
-                element.classList.add("active");
-                startX = event.pageX - element.offsetLeft;
-                scrollLeft = element.scrollLeft;
-            });
-            element.addEventListener("mouseleave", function() {
-                pressed = false;
-                element.classList.remove("active");
-            });
-            element.addEventListener("mouseup", function() {
-                pressed = false;
-                element.classList.remove("active");
-            });
-            element.addEventListener("mousemove", function(event) {
-                if (!pressed) {
-                    return;
-                }
-                event.preventDefault();
-                var x = event.pageX - element.offsetLeft;
-                var walk = x - startX;
-                element.scrollLeft = scrollLeft - walk;
-            });
         }
 
         scrollableTables.forEach(function(item) {
@@ -131,26 +97,28 @@ module.exports = {
 
                 handleGradientsOnStart();
 
-                addDragScrollHandlers(scrollableContainer);
+                var viewport = scrollableContainer;
+                var content = scrollableContainer.querySelector('table');
+
+                new ScrollBooster({
+                    viewport,
+                    content,
+                    textSelection: true,
+                    mode: 'x',
+                    onUpdate: (data) => {
+                        viewport.scrollLeft = data.position.x
+                    }
+                });
 
                 if (initialOverflow) {
-                    scrollableContainer.addEventListener(
-                        "scroll",
-                        handleGradientsOnScroll
-                    );
+                    scrollableContainer.addEventListener('scroll', handleGradientsOnScroll);
                 }
 
                 window.addEventListener("resize", function() {
-                    scrollableContainer.removeEventListener(
-                        "scroll",
-                        handleGradientsOnScroll
-                    );
+                    scrollableContainer.removeEventListener('scroll', handleGradientsOnScroll);
                     handleGradientsOnStart();
                     if (initialOverflow) {
-                        scrollableContainer.addEventListener(
-                            "scroll",
-                            handleGradientsOnScroll
-                        );
+                        scrollableContainer.addEventListener('scroll', handleGradientsOnScroll);
                     }
                 });
             }

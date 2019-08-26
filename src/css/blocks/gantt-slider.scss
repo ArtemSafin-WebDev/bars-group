@@ -28,14 +28,13 @@
 
 			width: 510px;
 
-			
-
 			.gantt-slider__label {
 				opacity: 1;
 			}
 		}
 
 		.gantt-slider__h1--size-1 {
+			margin-top: -.1em;
 			font-size: 40px;
 		}
 
@@ -131,15 +130,15 @@
 		padding-bottom: 18px;
 		padding-top: 24px;
 		margin-bottom: 20px;
-		margin-right: 40px;
+		margin-right: 60px;
 
 		&:hover {
 			
 			.gantt-slider__bg,
 			.gantt-slider__click,
 			.gantt-slider__dash {
-				right: -20px;
-				left: -20px;
+				right: -30px;
+				left: -30px;
 			}
 
 			.gantt-slider__bg {
@@ -330,6 +329,7 @@
 			}
 
 			.gantt-slider__h1--size-1 {
+				margin-top: 0;
 				font-size: 20px;
 			}
 		}
@@ -356,8 +356,18 @@
 			height: 110px;
 			padding-bottom: 15px;
 			padding-top: 15px;
-			margin-bottom: 15px;
-			margin-right: 20px;
+			margin-right: 40px;
+
+			&:hover {
+				
+				.gantt-slider__bg,
+				.gantt-slider__click,
+				.gantt-slider__dash {
+					right: -20px;
+					left: -20px;
+				}
+
+			}
 		}
 
 		&__bg,

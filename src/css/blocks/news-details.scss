@@ -343,19 +343,10 @@
     }
 
     .table-scroll-container {
-        // margin: 0 -16px;
         padding: 0 16px;
         width: 100%;
         position: relative;
         padding-bottom: 40px;
-        cursor: grab;
-        cursor: -webkit-grab;
-        cursor: -moz-grab;
-        &.active {
-            cursor: grabbing;
-            cursor: -moz-grabbing;
-            cursor: -webkit-grabbing;
-        }
         @media screen and (max-width: 600px) {
             padding: 0 20px;
             padding-bottom: 30px;

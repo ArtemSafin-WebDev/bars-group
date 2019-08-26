@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var ScrollBooster = require('ScrollBooster');
 require("rangeslider.js");
 
 module.exports = {
@@ -189,6 +190,23 @@ module.exports = {
 
 	},
 
+	_initScrollBooster: function () {
+		var self = this;
+
+		var viewport = self._elems.$scroll[0];
+		var content = self._elems.$canvas[0];
+
+		new ScrollBooster({
+			viewport,
+			content,
+			textSelection: true,
+			mode: 'x',
+			onUpdate: (data) => {
+				viewport.scrollLeft = data.position.x
+			}
+		});
+	},
+
 	_handleSliderScroll: function (e) {
 		var self = this;
 
@@ -218,7 +236,6 @@ module.exports = {
 		var self = this;
 
 		if (!Modernizr.requestanimationframe) return;
-		if (!Modernizr.hiddenscroll) return;
 
 		if (self._state.timeout) {
 			window.cancelAnimationFrame(self._state.timeout);
@@ -261,6 +278,7 @@ module.exports = {
 		self._createElemsClones();
 		self._setItemsPositions();
 		self._initRangeSlider();
+		self._initScrollBooster();
 
 		self._elems.$_.removeClass('cities-slider--frozen _loading');
 
