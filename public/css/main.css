@@ -6545,7 +6545,7 @@ img {
     .tech-promo__circle__logo {
       -webkit-transition: all .3s .1s;
       transition: all .3s .1s;
-      margin-left: 70px; }
+      margin: 5px 0 5px 70px; }
     .tech-promo__circle__icon {
       position: relative;
       margin: 10px 0; }
