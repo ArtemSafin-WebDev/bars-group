@@ -37553,6 +37553,11 @@ module.exports = {
       }
     });
   },
+  _setInitialOffset: function _setInitialOffset() {
+    var self = this;
+
+    self._elems.$scroll.scrollLeft(100);
+  },
   _handleWindowResize: function _handleWindowResize(e) {
     var self = e.data.self;
 
@@ -37665,6 +37670,8 @@ module.exports = {
     self._initRangeSlider();
 
     self._initScrollBooster();
+
+    self._setInitialOffset();
 
     self._elems.$_.removeClass('gantt-slider--frozen _loading');
 
