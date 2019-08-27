@@ -16,7 +16,7 @@
 		&--about {
 			@media screen and (min-width: 577px) {
 				&.menu--hide {
-					.header, &>.brand-box {
+					.header, .brand-box {
 						transform : translateY(-115px);
 						transition: transform 0.3s linear;
 					}
@@ -26,7 +26,7 @@
 					width: 100%;
 					transition: transform 0.3s linear;
 				}
-				&>.brand-box {
+				.brand-box {
 					position: fixed;
 					top: 134px;
 					padding-top: 0;
