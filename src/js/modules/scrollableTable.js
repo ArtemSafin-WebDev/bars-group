@@ -1,5 +1,5 @@
 var PerfectScrollbar = require('perfect-scrollbar');
-var ScrollBooster = require('ScrollBooster');
+var ScrollBooster = require('scrollbooster');
 
 module.exports = {
     
