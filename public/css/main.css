@@ -2329,16 +2329,31 @@ img {
 .page__wrapper {
   overflow: hidden; }
   @media screen and (min-width: 577px) {
+    .page__wrapper--about.menu--hide .header, .page__wrapper--about.menu--hide .brand-box {
+      -webkit-transform: translateY(-115px);
+              transform: translateY(-115px);
+      -webkit-transition: -webkit-transform 0.3s linear;
+      transition: -webkit-transform 0.3s linear;
+      transition: transform 0.3s linear;
+      transition: transform 0.3s linear, -webkit-transform 0.3s linear; }
     .page__wrapper--about .header {
       position: fixed;
-      width: 100%; }
-    .page__wrapper--about > .brand-box {
+      width: 100%;
+      -webkit-transition: -webkit-transform 0.3s linear;
+      transition: -webkit-transform 0.3s linear;
+      transition: transform 0.3s linear;
+      transition: transform 0.3s linear, -webkit-transform 0.3s linear; }
+    .page__wrapper--about .brand-box {
       position: fixed;
-      top: 74px;
-      padding-top: 10px;
+      top: 134px;
+      padding-top: 0;
       margin-bottom: 0;
       width: 100%;
-      left: 0; } }
+      left: 0;
+      -webkit-transition: -webkit-transform 0.3s linear;
+      transition: -webkit-transform 0.3s linear;
+      transition: transform 0.3s linear;
+      transition: transform 0.3s linear, -webkit-transform 0.3s linear; } }
 
 .page__center {
   max-width: 1600px;

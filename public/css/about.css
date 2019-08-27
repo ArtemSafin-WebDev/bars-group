@@ -3,13 +3,12 @@ body.with-scrollbar .iScroll__item {
 }
 [data-factor] {
   will-change: transform;
-  -webkit-transition: -webkit-transform 0.5s linear 0s;
-  transition: -webkit-transform 0.5s linear 0s;
-  transition: transform 0.5s linear 0s;
-  transition: transform 0.5s linear 0s, -webkit-transform 0.5s linear 0s;
+  -webkit-transition: -webkit-transform 0.25s ease-out 0s;
+  transition: -webkit-transform 0.25s ease-out 0s;
+  transition: transform 0.25s ease-out 0s;
+  transition: transform 0.25s ease-out 0s, -webkit-transform 0.25s ease-out 0s;
 }
 .page-center-h100 {
-  min-height: calc(100vh - 155px - 105px);
   height: 100%;
 }
 .about-slider {
@@ -42,8 +41,8 @@ body.with-scrollbar .iScroll__item {
   display: none;
 }
 .about-slider .gantt-slider__ctrl {
-  margin-top: -40px;
-  height: 40px;
+  margin-top: -50px;
+  height: 50px;
   padding-bottom: 10px;
 }
 .about-slider .gantt-slider__range {
@@ -132,7 +131,7 @@ body.with-scrollbar .iScroll__item {
   position: relative;
   min-width: 100vw;
   width: 1600px;
-  margin-top: 155px;
+  padding-top: 115px;
   padding-bottom: 105px;
 }
 @media screen and (max-width: 1600px) {
@@ -170,8 +169,6 @@ body.with-scrollbar .iScroll__item {
 }
 .iScroll-item__parallax {
   position: absolute;
-  /*transition: 4.75s linear;
-      transition-delay: 0.12s;*/
   background-repeat: no-repeat;
 }
 @media screen and (max-width: 576px) {
@@ -191,7 +188,7 @@ body.with-scrollbar .iScroll__item {
   height: 526px;
   background-image: url('../img/about/parallax/2.png');
   left: -200px;
-  bottom: 25%;
+  top: 50px;
 }
 .iScroll-item__parallax-3 {
   width: 648px;
@@ -226,21 +223,25 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iScroll .page__center {
-    min-height: calc(100vh - 155px - 105px);
     height: 100%;
   }
 }
 .iScroll .page__inner {
   position: relative;
+  height: 100%;
 }
 @media screen and (min-width: 577px) {
   .iScroll .page__inner {
-    min-height: calc(100vh - 155px - 105px);
     height: 100%;
   }
 }
 .iStart {
   position: relative;
+}
+@media screen and (min-width: 577px) {
+  .iStart {
+    padding-top: 235px;
+  }
 }
 @media screen and (min-width: 577px) {
   .iStart__img {
@@ -298,8 +299,19 @@ body.with-scrollbar .iScroll__item {
 @media screen and (max-width: 576px) {
   .iStart__subtitle {
     padding-left: 25px;
-    text-align: right;
   }
+}
+.iStart .page__center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.iStart .page__inner {
+  max-height: 580px;
+  width: 100%;
 }
 .iMission {
   position: relative;
@@ -327,13 +339,11 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (max-width: 576px) {
   .iMission__pretitle {
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
     font-size: 22px;
     line-height: 27px;
     width: 100%;
     padding-left: 50px;
+    margin-bottom: 30px;
   }
   .iMission__pretitle + .iMission__title {
     margin-bottom: 25px;
@@ -361,9 +371,6 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (max-width: 576px) {
   .iMission__title {
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
     font-size: 26px;
     line-height: 36px;
   }
@@ -383,12 +390,26 @@ body.with-scrollbar .iScroll__item {
         flex-wrap: wrap;
   }
 }
+@media screen and (min-width: 577px) {
+  .iMission .page__center {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .iMission .page__inner {
+    width: 100%;
+    max-height: 450px;
+  }
+}
 .iGeo {
   margin-top: 0;
 }
 @media screen and (min-width: 577px) {
   .iGeo {
-    padding-top: 155px;
+    padding-top: 115px;
     min-height: 100vh;
   }
 }
@@ -435,7 +456,6 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iGeo__map img {
-    display: none;
     min-width: 896px;
     margin-top: 63px;
   }
@@ -458,7 +478,7 @@ body.with-scrollbar .iScroll__item {
     position: absolute;
     top: 0;
     width: 100%;
-    height: calc(100% - 125px);
+    height: calc(100% - 105px);
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
@@ -485,7 +505,7 @@ body.with-scrollbar .iScroll__item {
           align-items: center;
   color: #ffffff;
   background: #5CB3E5;
-  padding: 0 50px;
+  padding: 0 38px;
   min-width: 277px;
   min-height: 72px;
   background-repeat: no-repeat;
@@ -561,6 +581,16 @@ body.with-scrollbar .iScroll__item {
 .iAdvantages {
   z-index: 5;
 }
+@media screen and (min-width: 577px) {
+  .iAdvantages .page__inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
 .iAdvantages-items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -570,11 +600,7 @@ body.with-scrollbar .iScroll__item {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-}
-@media screen and (min-width: 577px) {
-  .iAdvantages-items {
-    height: 100%;
-  }
+  padding-bottom: 75px;
 }
 @media screen and (max-width: 576px) {
   .iAdvantages-items {
@@ -603,8 +629,13 @@ body.with-scrollbar .iScroll__item {
   .iAdvantages-item:nth-child(3) {
     margin-top: 85px;
   }
+  .iAdvantages-item:nth-child(4) {
+    position: relative;
+    bottom: -35px;
+  }
   .iAdvantages-item:nth-child(5) {
-    margin-top: 25px;
+    position: relative;
+    bottom: -75px;
   }
 }
 @media screen and (max-width: 576px) {
@@ -655,12 +686,33 @@ body.with-scrollbar .iScroll__item {
 .iDigits {
   max-width: 100%;
 }
+.iDigits .page__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+@media screen and (min-width: 577px) {
+  .iDigits .page__inner {
+    padding-left: 200px;
+  }
+}
 .iDigits .page__center {
   background: transparent;
 }
 @media screen and (min-width: 577px) {
   .iDigits-slides {
-    height: calc(100% - 165px);
+    padding: 0 0 50px;
   }
   .iDigits-slides.owl-carousel {
     display: -webkit-box;
@@ -685,9 +737,6 @@ body.with-scrollbar .iScroll__item {
           justify-content: space-between;
 }
 @media screen and (min-width: 577px) {
-  .iDigits-item {
-    padding-left: 200px;
-  }
 }
 @media screen and (max-width: 576px) {
   .iDigits-item {
@@ -835,7 +884,7 @@ body.with-scrollbar .iScroll__item {
 }
 @media screen and (min-width: 577px) {
   .iRatings {
-    padding-top: 155px;
+    padding-top: 115px;
     height: 100vh;
   }
   .iRatings.active .iRatings-item {
@@ -998,6 +1047,16 @@ body.with-scrollbar .iScroll__item {
   opacity: 0.8;
 }
 @media screen and (min-width: 577px) {
+  .iRatings .page__inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+@media screen and (min-width: 577px) {
   .iLeadership {
     overflow: hidden;
   }
@@ -1021,8 +1080,8 @@ body.with-scrollbar .iScroll__item {
   max-width: inherit;
 }
 .iLeadership .page__center {
-  min-height: calc(100vh - 155px - 88px);
-  max-height: calc(100vh - 155px - 88px);
+  min-height: calc(100vh - 115px - 88px);
+  max-height: calc(100vh - 115px - 88px);
   -webkit-transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
   transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
 }
@@ -1257,8 +1316,8 @@ body.with-scrollbar .iScroll__item {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 55px;
-  min-height: calc(100vh - 155px - 105px);
-  max-height: calc(100vh - 155px - 105px);
+  min-height: calc(100vh - 115px - 105px);
+  max-height: calc(100vh - 115px - 105px);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
