@@ -38944,7 +38944,7 @@ module.exports = {
   },
   _initScrollBooster: function _initScrollBooster() {
     var self = this;
-    if (Modernizr.touchevents) return;
+    if (Modernizr.hiddenscroll) return;
     var viewport = self._elems.$scroll[0];
     var content = self._elems.$canvas[0];
     new ScrollBooster({
@@ -39502,7 +39502,7 @@ module.exports = {
   },
   _initScrollBooster: function _initScrollBooster() {
     var self = this;
-    if (Modernizr.touchevents) return;
+    if (Modernizr.hiddenscroll) return;
     var viewport = self._elems.$scroll[0];
     var content = self._elems.$canvas[0];
     new ScrollBooster({
@@ -40531,7 +40531,7 @@ module.exports = {
         });
         handleGradientsOnStart();
 
-        if (Modernizr.touchevents == false) {
+        if (Modernizr.hiddenscroll == false) {
           var viewport = scrollableContainer;
           var content = scrollableContainer.querySelector('table');
           new ScrollBooster({

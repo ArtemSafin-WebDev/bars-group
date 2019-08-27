@@ -97,7 +97,7 @@ module.exports = {
 
                 handleGradientsOnStart();
 
-                if (Modernizr.touchevents == false)  {
+                if (Modernizr.hiddenscroll == false)  {
                     var viewport = scrollableContainer;
                     var content = scrollableContainer.querySelector('table');
 

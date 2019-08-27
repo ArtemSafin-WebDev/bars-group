@@ -193,7 +193,7 @@ module.exports = {
 	_initScrollBooster: function () {
 		var self = this;
 
-		if (Modernizr.touchevents) return;
+		if (Modernizr.hiddenscroll) return;
 
 		var viewport = self._elems.$scroll[0];
 		var content = self._elems.$canvas[0];
