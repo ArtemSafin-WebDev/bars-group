@@ -22,6 +22,7 @@
 @import '_fonts';
 @import '_helpers';
 @import '_mixins';
+@import '_defaults';
 
 html {
 	&.vh100 {
@@ -40,9 +41,7 @@ body {
 	color: #000000;
 }
 
-*:focus {
-	outline: none;
-}
+
 
 a {
 	transition: color .2s;
