@@ -35830,6 +35830,7 @@ module.exports = {
   },
   _setBodyHeight: function _setBodyHeight() {
     var self = this;
+    $('body').height('auto');
     if (self._state.isMobile) return;
     if (self._state.isTouchDevice) return;
 
@@ -36078,10 +36079,11 @@ module.exports = {
       var $target = $($(this).attr('href'));
       if ($target.length == 0) return;
 
-      var scrollLeft = self._elems.$_.find('.gantt-slider__scroll').scrollLeft();
+      var scrollLeft = self._elems.$scroll.scrollLeft();
 
-      self._elems.$_.find('.gantt-slider__scroll').stop().animate({
-        scrollLeft: scrollLeft + $target.offset().left
+      var scrollTop = Math.round((scrollLeft + $target.offset().left) / self._state.windowRatio);
+      $('html, body').stop().animate({
+        'scrollTop': scrollTop
       }, 1200);
     });
   },
@@ -36138,16 +36140,16 @@ module.exports = {
 
     self._resetDesktop();
 
-    self._setWindowRatio(); //self._setBodyHeight();
+    self._setWindowRatio();
 
+    self._setBodyHeight();
 
     self._setScrollWidth();
   },
   _bindUI: function _bindUI() {
     var self = this;
 
-    if (!self._state.isMobile) {
-      self._initRangeSlider();
+    if (!self._state.isMobile) {//self._initRangeSlider();
     }
 
     if (!self._state.isTouchDevice) {
@@ -36165,6 +36167,12 @@ module.exports = {
         self._handleSliderScroll(e);
 
         self._elems.$scroll.scrollLeft($(window).scrollTop() * self._state.windowRatio);
+
+        if ($(window).scrollTop() * self._state.windowRatio > 800) {
+          $('#wrapper').addClass('menu--hide');
+        } else {
+          $('#wrapper').removeClass('menu--hide');
+        }
       });
     } else {
       self._elems.$scroll.on('scroll', {
