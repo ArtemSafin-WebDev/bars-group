@@ -311,6 +311,12 @@ module.exports = {
 		});
 	},
 
+	_setInitialOffset: function () {
+		var self = this;
+
+		self._elems.$scroll.scrollLeft(100);
+	},
+
 	_handleWindowResize: function (e) {
 		var self = e.data.self;
 
@@ -411,6 +417,7 @@ module.exports = {
 		self._switchToGanttView();
 		self._initRangeSlider();
 		self._initScrollBooster();
+		self._setInitialOffset();
 
 		self._elems.$_.removeClass('gantt-slider--frozen _loading');
 
