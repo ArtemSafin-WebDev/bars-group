@@ -377,6 +377,12 @@ module.exports = {
                 self._renderParallaxState();
                 self._handleSliderScroll(e);
                 self._elems.$scroll.scrollLeft($(window).scrollTop() * self._state.windowRatio);
+
+                if ($(window).scrollTop() * self._state.windowRatio > 800) {
+                    $('#wrapper').addClass('menu--hide');
+                } else {
+                    $('#wrapper').removeClass('menu--hide');
+                }
             });
         }
         else {

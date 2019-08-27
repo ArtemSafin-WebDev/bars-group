@@ -1,4 +1,23 @@
 /**** TT ****/
+.scrollable-content::-webkit-scrollbar {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  background-color: transparent !important;
+}
+.scrollable-content::-webkit-track {
+  background-color: transparent !important;
+}
+.scrollable-content::-webkit-thumb {
+  background-color: transparent !important;
+}
+.scrollable-content {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: transparent transparent !important;
+}
 .tBlocks__title {
   font-size: 30px;
   font-weight: 700;
@@ -89,7 +108,7 @@
 .tAdvantagesNav__item {
   font-size: 16px;
   line-height: 1.6;
-  padding: 20px 0 16px;
+  padding: 25px 0;
 }
 .tAdvantagesSlider__nav {
   position: absolute;
@@ -135,7 +154,7 @@
   width: 100%;
   height: 100%;
   content: '';
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.33);
 }
 .tAdvantagesSlider__thumb {
   position: absolute;
@@ -176,8 +195,8 @@
 .tShowMore__button .arrow-ciara span {
   background: #333;
 }
-.tShowMore__button .arrow-ciara span:before,
-.tShowMore__button .arrow-ciara span:after {
+.tShowMore__button .arrow-ciara span:after,
+.tShowMore__button .arrow-ciara span:before {
   background: #333;
 }
 .tShowMore__button:before {
@@ -253,8 +272,8 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 33.3333%;
 }
 .tProducts__column--big {
@@ -379,30 +398,16 @@
   content: '';
   background-color: #59b4e6;
 }
-.tTechnicalIssues__title {
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.45;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.tTechnicalIssues__item--text > * {
+  margin-bottom: 20px;
 }
-.tTechnicalIssues__title > i {
-  font-size: 40px;
-  position: relative;
-  top: 11px;
-  margin-right: 30px;
-  color: #59b4e6;
-}
-.tTechnicalIssues ul li {
-  position: relative;
-  margin-bottom: 15px;
-  padding-left: 30px;
-}
-.tTechnicalIssues ul li:last-child {
+.tTechnicalIssues__item--text > *:last-child {
   margin-bottom: 0;
 }
-.tTechnicalIssues ul li:before {
+.tTechnicalIssues__item--list ul li {
+  padding-left: 30px;
+}
+.tTechnicalIssues__item--list ul li:before {
   position: absolute;
   top: 12px;
   left: 0;
@@ -410,6 +415,33 @@
   height: 2px;
   content: '';
   background-color: #59b4e6;
+}
+.tTechnicalIssues__title-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.tTechnicalIssues__title-wrapper > i {
+  font-size: 40px;
+  margin-right: 20px;
+  color: #59b4e6;
+}
+.tTechnicalIssues__title-wrapper > img {
+  max-width: 160px;
+  margin-right: 20px;
+}
+.tTechnicalIssues__title {
+  margin-bottom: 0;
+}
+.tTechnicalIssues ul li {
+  position: relative;
+  margin-bottom: 15px;
+}
+.tTechnicalIssues ul li:last-child {
+  margin-bottom: 0;
 }
 .tTechnicalIssues {
   position: relative;
@@ -428,8 +460,8 @@
 .tTechnicalIssues:hover .tTechnicalIssues__arrow span {
   background: #fff;
 }
-.tTechnicalIssues:hover .tTechnicalIssues__arrow span:before,
-.tTechnicalIssues:hover .tTechnicalIssues__arrow span:after {
+.tTechnicalIssues:hover .tTechnicalIssues__arrow span:after,
+.tTechnicalIssues:hover .tTechnicalIssues__arrow span:before {
   background: #fff;
 }
 .tTechnicalIssues:hover .tTechnicalIssues__arrow span:before {
@@ -478,8 +510,8 @@
 .tTechnicalIssues__arrow span {
   background: #59b4e6;
 }
-.tTechnicalIssues__arrow span:before,
-.tTechnicalIssues__arrow span:after {
+.tTechnicalIssues__arrow span:after,
+.tTechnicalIssues__arrow span:before {
   background: #59b4e6;
 }
 .tTechnicalIssues__item--text:after {
@@ -498,8 +530,8 @@
 }
 .tDescription__right {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 440px;
-          flex: 0 0 440px;
+  -ms-flex: 0 0 440px;
+  flex: 0 0 440px;
 }
 .tDescription__right > p {
   position: relative;
@@ -531,8 +563,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin: 0 -45px;
 }
 .tForWhom__item {
@@ -557,8 +589,8 @@
 }
 .tForWhom__thumb {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 35%;
-          flex: 0 0 35%;
+  -ms-flex: 0 0 35%;
+  flex: 0 0 35%;
   margin-left: auto;
   max-width: 170px;
   padding-left: 20px;
@@ -691,8 +723,8 @@
   .tForWhom__wrapper {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     margin-right: 0;
     margin-left: 0;
   }
@@ -709,8 +741,8 @@
   .tTechnicalIssues__wrapper {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
   .tTechnicalIssues__item {
     width: 100%;
@@ -832,8 +864,8 @@
   .tBlocks__subtitle {
     font-size: 14px;
   }
-  .tTasks__item,
-  .tIntroduced__item {
+  .tIntroduced__item,
+  .tTasks__item {
     padding-right: 10px;
     padding-left: 10px;
   }
@@ -1031,8 +1063,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: 95px;
   padding: 0 40px;
   background: #eff4fd;
@@ -1056,8 +1088,8 @@
 }
 .tPortfolioSearch__results {
   -webkit-column-count: 3;
-     -moz-column-count: 3;
-          column-count: 3;
+  -moz-column-count: 3;
+       column-count: 3;
 }
 @media all and (max-width: 1600px) {
   .tPortfolioSearch__form {
@@ -1266,15 +1298,21 @@
 @media screen and (max-width: 900px) {
   .tPortfolioSearch__results {
     -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
+    -moz-column-count: 2;
+         column-count: 2;
+  }
+  .tTechnicalIssues__title-wrapper > img {
+    max-width: 120px;
   }
 }
 @media screen and (max-width: 600px) {
+  .tTechnicalIssues__title-wrapper > img {
+    max-width: 80px;
+  }
   .tPortfolioSearch__results {
     -webkit-column-count: 1;
-       -moz-column-count: 1;
-            column-count: 1;
+    -moz-column-count: 1;
+         column-count: 1;
   }
   .tPortfolioSearch__shoose {
     height: 65px;
