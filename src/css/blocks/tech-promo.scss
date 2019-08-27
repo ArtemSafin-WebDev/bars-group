@@ -51,12 +51,6 @@
 		transform: rotate(-90deg);
 		opacity: .5;
 
-		&._active {
-			.tech-promo__orbit__circle {
-				animation: tech-promo-stroke 2s ease-out forwards;
-			}
-		}
-
 		&__circle {
 			stroke-dasharray: 2000;
 			stroke-dashoffset: 2000;
@@ -532,10 +526,4 @@
 			text-align: center;
 		}
 	}
-}
-
-@keyframes tech-promo-stroke {
-  to {
-    stroke-dashoffset: 0;
-  }
 }

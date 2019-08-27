@@ -1,4 +1,6 @@
 var $ = require('jquery');
+var TweenLite = require('TweenLite');
+var DrawSVGPlugin = require('DrawSVGPlugin');
 var NavBanner = require('./navBanner');
 var Utils = require('./utils');
 
@@ -75,7 +77,7 @@ module.exports = {
 
 		self._elems.$_ = $_;
 
-		$_.find('.tech-promo__orbit').addClass('_active');
+		TweenLite.fromTo($_.find('.tech-promo__orbit circle')[0], 2, {drawSVG:"0%"}, {drawSVG:"100%"});
 
 		setTimeout(function () {
 			$_.find('.tech-promo__point').addClass('_active');

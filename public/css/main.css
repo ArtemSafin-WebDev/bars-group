@@ -6368,9 +6368,6 @@ img {
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg);
     opacity: .5; }
-    .tech-promo__orbit._active .tech-promo__orbit__circle {
-      -webkit-animation: tech-promo-stroke 2s ease-out forwards;
-              animation: tech-promo-stroke 2s ease-out forwards; }
     .tech-promo__orbit__circle {
       stroke-dasharray: 2000;
       stroke-dashoffset: 2000; }
@@ -6691,14 +6688,6 @@ img {
     max-width: 450px;
     margin: 70px auto 100px auto;
     text-align: center; } }
-
-@-webkit-keyframes tech-promo-stroke {
-  to {
-    stroke-dashoffset: 0; } }
-
-@keyframes tech-promo-stroke {
-  to {
-    stroke-dashoffset: 0; } }
 
 .popup {
   position: relative;
