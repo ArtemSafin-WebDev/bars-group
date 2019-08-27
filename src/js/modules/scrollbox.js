@@ -1,4 +1,4 @@
-const scrollbarWidth = require('scrollbarWidth');
+const scrollbarWidth = require('scrollbarwidth');
 
 const elements = document.querySelectorAll('.js-scrollbox');
 const collection = Array.prototype.slice.call(elements);

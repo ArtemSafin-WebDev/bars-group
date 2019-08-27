@@ -38593,7 +38593,7 @@ module.exports = {
 },{"perfect-scrollbar":16,"scrollbooster":19}],44:[function(require,module,exports){
 "use strict";
 
-var scrollbarWidth = require('scrollbarWidth');
+var scrollbarWidth = require('scrollbarwidth');
 
 var elements = document.querySelectorAll('.js-scrollbox');
 var collection = Array.prototype.slice.call(elements);
@@ -38615,7 +38615,7 @@ window.addEventListener('resize', function () {
   setNegativeOffset();
 });
 
-},{"scrollbarWidth":18}],45:[function(require,module,exports){
+},{"scrollbarwidth":18}],45:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
