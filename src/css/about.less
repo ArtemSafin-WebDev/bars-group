@@ -11,7 +11,7 @@
 @min_mini:   	~"screen and (min-width: 379px)";
 
 @iScrollWidth: 1600px;
-@iOffsetTop: 155px;
+@iOffsetTop: 115px;
 @iOffsetBottom: 155px;
 @iPageLabelLeft: 200px;
 @iPageInnerPadding: 40px;
@@ -28,11 +28,10 @@ body {
 
 [data-factor] {
   will-change: transform;
-  transition: transform 0.5s linear 0s;
+  transition: transform 0.25s ease-out 0s;
 }
 
 .page-center-h100 {
-  min-height: calc(~'100vh - @{iOffsetTop} - 105px');
   height: 100%;
 }
 
@@ -63,8 +62,8 @@ body {
           }
         }
         &__ctrl {
-          margin-top: -40px;
-          height: 40px;
+          margin-top: -50px;
+          height: 50px;
           padding-bottom: 10px;
         }
         &__range {
@@ -154,7 +153,7 @@ body {
     position: relative;
     min-width: 100vw;
     width: @iScrollWidth;
-    margin-top: @iOffsetTop;
+    padding-top: @iOffsetTop;
     padding-bottom: 105px;
     @media screen and (max-width: @iScrollWidth){
       min-width: @iScrollWidth;
@@ -188,8 +187,6 @@ body {
         display: none;
       }
       position: absolute;
-      /*transition: 4.75s linear;
-      transition-delay: 0.12s;*/
       background-repeat: no-repeat;
       &-1 {
         width: 231px;
@@ -203,7 +200,7 @@ body {
         height: 526px;
         background-image: url('../img/about/parallax/2.png');
         left: -200px;
-        bottom: 25%;
+        top: 50px;
       }
       &-3 {
         width: 648px;
@@ -244,6 +241,7 @@ body {
     }
     &__inner {
       position: relative;
+      height: 100%;
       @media @min_small {
         .page-center-h100;
       }
@@ -253,6 +251,9 @@ body {
 
 .iStart {
   position: relative;
+  @media @min_small {
+    padding-top: 235px;
+  }
   &__img {
     @media @min_small {
       position: absolute;
@@ -301,7 +302,16 @@ body {
     }
     @media @max_small {
       padding-left: 25px;
-      text-align: right;
+    }
+  }
+  .page {
+    &__center {
+      display: flex;
+      align-items: center;
+    }
+    &__inner {
+      max-height: 580px;
+      width: 100%;
     }
   }
 }
@@ -326,11 +336,11 @@ body {
       font-size: 30px;
     }
     @media @max_small {
-      order: 2;
       font-size: 22px;
       line-height: 27px;
       width: 100%;
       padding-left: 50px;
+      margin-bottom: 30px;
       & + .iMission__title {
         margin-bottom: 25px;
       }
@@ -352,7 +362,6 @@ body {
       font-size: 50px;
     }
     @media @max_small {
-      order: 1;
       font-size: 26px;
       line-height: 36px;
     }
@@ -366,6 +375,19 @@ body {
       &__inner {
         display: flex;
         flex-wrap: wrap;
+      }
+    }
+  }
+  @media @min_small {
+    .page {
+      &__center {
+        display: flex;
+        align-items: center;
+      }
+
+      &__inner {
+        width: 100%;
+        max-height: 450px;
       }
     }
   }
@@ -412,7 +434,6 @@ body {
     }
     img {
       @media @min_small {
-        display: none;
         min-width: 896px;
         margin-top: 63px;
       }
@@ -435,7 +456,7 @@ body {
       position: absolute;
       top: 0;
       width: 100%;
-      height: calc(~'100% - 125px');
+      height: calc(~'100% - 105px');
       left: 50%;
       transform: translateX(-50%);
     }
@@ -454,7 +475,7 @@ body {
     align-items: center;
     color: #ffffff;
     background: #5CB3E5;
-    padding: 0 50px;
+    padding: 0 38px;
     min-width: 277px;
     min-height: 72px;
     background-repeat: no-repeat;
@@ -521,13 +542,19 @@ body {
 
 .iAdvantages {
   z-index: 5;
+  @media @min_small {
+    .page {
+      &__inner {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
   &-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    @media @min_small {
-      height: 100%;
-    }
+    padding-bottom: 75px;
     @media @max_small {
       justify-content: space-between;
     }
@@ -549,8 +576,14 @@ body {
         margin-top: 85px;
       }
 
+      &:nth-child(4) {
+        position: relative;
+        bottom: -35px;
+      }
+
       &:nth-child(5) {
-        margin-top: 25px;
+        position: relative;
+        bottom: -75px;
       }
     }
     @media @max_small {
@@ -597,8 +630,20 @@ body {
 
 .iDigits {
   max-width: 100%;
-  .page__center {
-    background: transparent;
+  .page {
+    &__inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+      flex-direction: column;
+      @media @min_small {
+        padding-left: @iPageLabelLeft;
+      }
+    }
+    &__center {
+      background: transparent;
+    }
   }
   @media @min_small {
     &-slides {
@@ -606,7 +651,7 @@ body {
         display: flex;
         align-items: center;
       }
-      height: calc(~'100% - 165px');
+      padding: 0 0 50px;
     }
   }
   @media @max_small {
@@ -620,8 +665,7 @@ body {
     display: flex;
     justify-content: space-between;
     @media @min_small {
-      //padding: 100px 0 100px @iPageLabelLeft;
-      padding-left: @iPageLabelLeft;
+      //padding-left: @iPageLabelLeft;
     }
     @media @max_small {
       flex-wrap: wrap;
@@ -870,6 +914,14 @@ body {
       img {
         max-width: 93px;
         opacity: 0.8;
+      }
+    }
+  }
+  @media @min_small {
+    .page {
+      &__inner {
+        display: flex;
+        align-items: center;
       }
     }
   }
