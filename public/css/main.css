@@ -1047,6 +1047,11 @@ img {
   border-radius: 50%;
   background: #fbd233; }
 
+@media all and (max-width: 600px) {
+  .loader > div > div {
+    width: 14px;
+    height: 14px; } }
+
 @-webkit-keyframes loader-scale {
   0%, 80% {
     -webkit-transform: scale(1);
