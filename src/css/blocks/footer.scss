@@ -163,8 +163,6 @@
 
 	.footer {
 
-		padding: 0.8*100px 0;
-
 		&__logo {
 
 			&--for-info {
@@ -243,10 +241,9 @@
 	
 	.footer {
 
-		padding: 0.6*100px 0;
+		padding: 0.7*100px 0;
 
 		&__logo {
-			margin-bottom: 23px;
 
 			&__size {
 				width: 90px;
@@ -271,9 +268,7 @@
 			}
 		}
 
-		&__find {
-			margin-top: 30px;
-		}
+	
 
 		&__place {
 			font-size: 12px;
@@ -293,12 +288,8 @@
 			margin-top: 30px;
 		}
 
-		&__info {
-			margin-top: 35px;
-		}
-
 		&__dev {
-			margin-top: 31px;
+			margin-top: 20px;
 		}
 
 	}

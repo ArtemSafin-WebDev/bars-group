@@ -5,7 +5,7 @@ module.exports = {
 	},
 
 	scrollTo: function (position) {
-		$('html, body').animate({ scrollTop: position});
+		$('html, body').stop().animate({ scrollTop: position});
 	}
 
 };

@@ -795,9 +795,7 @@ body.with-scrollbar .iScroll__item {
   }
 }
 .iDigits-item__value span {
-  margin-left: -1px;
-  margin-top: -1px;
-  margin-bottom: -1px;
+  margin: -1px;
 }
 .iDigits-values {
   display: -webkit-box;

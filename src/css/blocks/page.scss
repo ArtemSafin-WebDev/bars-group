@@ -212,7 +212,7 @@
 	
 		@for $i from 1 through 20 {
 			&__gap-#{$i*10} {
-				height: #{$i*10*0.6}px;
+				height: #{$i*10*0.7}px;
 			}
 		}
 

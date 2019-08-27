@@ -39,6 +39,8 @@
 @media all and (max-width: 600px) {
 
 	.loader-main {
+		display: none;
+		
 		&__line {
 			margin-top: 50px;
 		}
