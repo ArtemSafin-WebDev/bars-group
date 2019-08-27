@@ -97,18 +97,20 @@ module.exports = {
 
                 handleGradientsOnStart();
 
-                var viewport = scrollableContainer;
-                var content = scrollableContainer.querySelector('table');
+                if (Modernizr.touchevents == false)  {
+                    var viewport = scrollableContainer;
+                    var content = scrollableContainer.querySelector('table');
 
-                new ScrollBooster({
-                    viewport,
-                    content,
-                    textSelection: true,
-                    mode: 'x',
-                    onUpdate: (data) => {
-                        viewport.scrollLeft = data.position.x
-                    }
-                });
+                    new ScrollBooster({
+                        viewport,
+                        content,
+                        textSelection: true,
+                        mode: 'x',
+                        onUpdate: (data) => {
+                            viewport.scrollLeft = data.position.x
+                        }
+                    });
+                }
 
                 if (initialOverflow) {
                     scrollableContainer.addEventListener('scroll', handleGradientsOnScroll);

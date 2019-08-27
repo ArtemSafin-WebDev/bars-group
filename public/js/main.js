@@ -36984,6 +36984,7 @@ module.exports = {
   },
   _initScrollBooster: function _initScrollBooster() {
     var self = this;
+    if (Modernizr.touchevents) return;
     var viewport = self._elems.$scroll[0];
     var content = self._elems.$canvas[0];
     new ScrollBooster({
@@ -37541,6 +37542,7 @@ module.exports = {
   },
   _initScrollBooster: function _initScrollBooster() {
     var self = this;
+    if (Modernizr.touchevents) return;
     var viewport = self._elems.$scroll[0];
     var content = self._elems.$canvas[0];
     new ScrollBooster({
@@ -38568,17 +38570,20 @@ module.exports = {
           maxScrollbarLength: 105
         });
         handleGradientsOnStart();
-        var viewport = scrollableContainer;
-        var content = scrollableContainer.querySelector('table');
-        new ScrollBooster({
-          viewport: viewport,
-          content: content,
-          textSelection: true,
-          mode: 'x',
-          onUpdate: function onUpdate(data) {
-            viewport.scrollLeft = data.position.x;
-          }
-        });
+
+        if (Modernizr.touchevents == false) {
+          var viewport = scrollableContainer;
+          var content = scrollableContainer.querySelector('table');
+          new ScrollBooster({
+            viewport: viewport,
+            content: content,
+            textSelection: true,
+            mode: 'x',
+            onUpdate: function onUpdate(data) {
+              viewport.scrollLeft = data.position.x;
+            }
+          });
+        }
 
         if (initialOverflow) {
           scrollableContainer.addEventListener('scroll', handleGradientsOnScroll);
