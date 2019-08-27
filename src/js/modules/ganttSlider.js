@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var ScrollBooster = require('ScrollBooster');
+var ScrollBooster = require('scrollbooster');
 require('rangeslider.js');
 
 module.exports = {
