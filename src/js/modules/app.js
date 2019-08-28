@@ -1,5 +1,6 @@
 var $ = require('jquery');
 require('objectFitPolyfill');
+require('jquery-lazy');
 
 var TechPromo = require('./techPromo');
 var NavMobile = require('./navMobile');
@@ -37,6 +38,14 @@ module.exports = {
 		promoVideosLoaded: 0,
 		isUserActivityHandled: false,
 		isWindowLoaded: false
+	},
+
+	_initLazyLoader: function () {
+		$("#gantt-slider .bg-layer__image").Lazy({
+			appendScroll: $('#gantt-slider .gantt-slider__scroll')[0]
+		});
+
+		$('.lazy').Lazy();
 	},
 
 	_showContent: function () {
@@ -151,6 +160,8 @@ module.exports = {
 
 		// run preloader timer
 		self._state.preloaderTimer = setInterval(self._showContent.bind(self), 50);
+
+		self._initLazyLoader();
 
 		self._bindUI();
 	}

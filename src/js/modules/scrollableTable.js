@@ -1,5 +1,6 @@
 var PerfectScrollbar = require('perfect-scrollbar');
 var ScrollBooster = require('scrollbooster');
+var Utils = require('./utils');
 
 module.exports = {
     
@@ -97,7 +98,7 @@ module.exports = {
 
                 handleGradientsOnStart();
 
-                if (Modernizr.hiddenscroll == false)  {
+                if (!Utils.isTouchDevice)  {
                     var viewport = scrollableContainer;
                     var content = scrollableContainer.querySelector('table');
 

@@ -785,7 +785,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   }, e.fn.ajaxSubmit.debug = !1;
 });
 
-},{"jquery":12}],3:[function(require,module,exports){
+},{"jquery":13}],3:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1031,7 +1031,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   });
 });
 
-},{"jquery":12}],4:[function(require,module,exports){
+},{"jquery":13}],4:[function(require,module,exports){
 // ==================================================
 // fancyBox v3.5.7
 //
@@ -7383,7 +7383,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 }));
 
 
-},{"./util.js":7,"jquery":12}],7:[function(require,module,exports){
+},{"./util.js":7,"jquery":13}],7:[function(require,module,exports){
 /*!
   * Bootstrap util.js v4.3.1 (https://getbootstrap.com/)
   * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
@@ -7557,7 +7557,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 }));
 
 
-},{"jquery":12}],8:[function(require,module,exports){
+},{"jquery":13}],8:[function(require,module,exports){
 (function (global){
 /*!
  * VERSION: 2.1.3
@@ -10022,6 +10022,879 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 },{}],10:[function(require,module,exports){
 /*!
+ * jQuery & Zepto Lazy - v1.7.10
+ * http://jquery.eisbehr.de/lazy/
+ *
+ * Copyright 2012 - 2018, Daniel 'Eisbehr' Kern
+ *
+ * Dual licensed under the MIT and GPL-2.0 licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * $("img.lazy").lazy();
+ */
+
+;(function(window, undefined) {
+    "use strict";
+
+    // noinspection JSUnresolvedVariable
+    /**
+     * library instance - here and not in construct to be shorter in minimization
+     * @return void
+     */
+    var $ = window.jQuery || window.Zepto,
+
+    /**
+     * unique plugin instance id counter
+     * @type {number}
+     */
+    lazyInstanceId = 0,
+
+    /**
+     * helper to register window load for jQuery 3
+     * @type {boolean}
+     */    
+    windowLoaded = false;
+
+    /**
+     * make lazy available to jquery - and make it a bit more case-insensitive :)
+     * @access public
+     * @type {function}
+     * @param {object} settings
+     * @return {LazyPlugin}
+     */
+    $.fn.Lazy = $.fn.lazy = function(settings) {
+        return new LazyPlugin(this, settings);
+    };
+
+    /**
+     * helper to add plugins to lazy prototype configuration
+     * @access public
+     * @type {function}
+     * @param {string|Array} names
+     * @param {string|Array|function} [elements]
+     * @param {function} loader
+     * @return void
+     */
+    $.Lazy = $.lazy = function(names, elements, loader) {
+        // make second parameter optional
+        if ($.isFunction(elements)) {
+            loader = elements;
+            elements = [];
+        }
+
+        // exit here if parameter is not a callable function
+        if (!$.isFunction(loader)) {
+            return;
+        }
+
+        // make parameters an array of names to be sure
+        names = $.isArray(names) ? names : [names];
+        elements = $.isArray(elements) ? elements : [elements];
+
+        var config = LazyPlugin.prototype.config,
+            forced = config._f || (config._f = {});
+
+        // add the loader plugin for every name
+        for (var i = 0, l = names.length; i < l; i++) {
+            if (config[names[i]] === undefined || $.isFunction(config[names[i]])) {
+                config[names[i]] = loader;
+            }
+        }
+
+        // add forced elements loader
+        for (var c = 0, a = elements.length; c < a; c++) {
+            forced[elements[c]] = names[0];
+        }
+    };
+
+    /**
+     * contains all logic and the whole element handling
+     * is packed in a private function outside class to reduce memory usage, because it will not be created on every plugin instance
+     * @access private
+     * @type {function}
+     * @param {LazyPlugin} instance
+     * @param {object} config
+     * @param {object|Array} items
+     * @param {object} events
+     * @param {string} namespace
+     * @return void
+     */
+    function _executeLazy(instance, config, items, events, namespace) {
+        /**
+         * a helper to trigger the 'onFinishedAll' callback after all other events
+         * @access private
+         * @type {number}
+         */
+        var _awaitingAfterLoad = 0,
+
+        /**
+         * visible content width
+         * @access private
+         * @type {number}
+         */
+        _actualWidth = -1,
+
+        /**
+         * visible content height
+         * @access private
+         * @type {number}
+         */
+        _actualHeight = -1,
+
+        /**
+         * determine possibly detected high pixel density
+         * @access private
+         * @type {boolean}
+         */
+        _isRetinaDisplay = false, 
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _afterLoad = 'afterLoad',
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _load = 'load',
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _error = 'error',
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _img = 'img',
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _src = 'src',
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _srcset = 'srcset',
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _sizes = 'sizes',
+
+        /**
+         * dictionary entry for better minimization
+         * @access private
+         * @type {string}
+         */
+        _backgroundImage = 'background-image';
+
+        /**
+         * initialize plugin
+         * bind loading to events or set delay time to load all items at once
+         * @access private
+         * @return void
+         */
+        function _initialize() {
+            // detect actual device pixel ratio
+            // noinspection JSUnresolvedVariable
+            _isRetinaDisplay = window.devicePixelRatio > 1;
+
+            // prepare all initial items
+            items = _prepareItems(items);
+
+            // if delay time is set load all items at once after delay time
+            if (config.delay >= 0) {
+                setTimeout(function() {
+                    _lazyLoadItems(true);
+                }, config.delay);
+            }
+
+            // if no delay is set or combine usage is active bind events
+            if (config.delay < 0 || config.combined) {
+                // create unique event function
+                events.e = _throttle(config.throttle, function(event) {
+                    // reset detected window size on resize event
+                    if (event.type === 'resize') {
+                        _actualWidth = _actualHeight = -1;
+                    }
+
+                    // execute 'lazy magic'
+                    _lazyLoadItems(event.all);
+                });
+
+                // create function to add new items to instance
+                events.a = function(additionalItems) {
+                    additionalItems = _prepareItems(additionalItems);
+                    items.push.apply(items, additionalItems);
+                };
+
+                // create function to get all instance items left
+                events.g = function() {
+                    // filter loaded items before return in case internal filter was not running until now
+                    return (items = $(items).filter(function() {
+                        return !$(this).data(config.loadedName);
+                    }));
+                };
+
+                // create function to force loading elements
+                events.f = function(forcedItems) {
+                    for (var i = 0; i < forcedItems.length; i++) {
+                        // only handle item if available in current instance
+                        // use a compare function, because Zepto can't handle object parameter for filter
+                        // var item = items.filter(forcedItems[i]);
+                        /* jshint loopfunc: true */
+                        var item = items.filter(function() {
+                            return this === forcedItems[i];
+                        });
+
+                        if (item.length) {
+                            _lazyLoadItems(false, item);   
+                        }
+                    }
+                };
+
+                // load initial items
+                _lazyLoadItems();
+
+                // bind lazy load functions to scroll and resize event
+                // noinspection JSUnresolvedVariable
+                $(config.appendScroll).on('scroll.' + namespace + ' resize.' + namespace, events.e);
+            }
+        }
+
+        /**
+         * prepare items before handle them
+         * @access private
+         * @param {Array|object|jQuery} items
+         * @return {Array|object|jQuery}
+         */
+        function _prepareItems(items) {
+            // fetch used configurations before loops
+            var defaultImage = config.defaultImage,
+                placeholder = config.placeholder,
+                imageBase = config.imageBase,
+                srcsetAttribute = config.srcsetAttribute,
+                loaderAttribute = config.loaderAttribute,
+                forcedTags = config._f || {};
+
+            // filter items and only add those who not handled yet and got needed attributes available
+            items = $(items).filter(function() {
+                var element = $(this),
+                    tag = _getElementTagName(this);
+
+                return !element.data(config.handledName) && 
+                       (element.attr(config.attribute) || element.attr(srcsetAttribute) || element.attr(loaderAttribute) || forcedTags[tag] !== undefined);
+            })
+
+            // append plugin instance to all elements
+            .data('plugin_' + config.name, instance);
+
+            for (var i = 0, l = items.length; i < l; i++) {
+                var element = $(items[i]),
+                    tag = _getElementTagName(items[i]),
+                    elementImageBase = element.attr(config.imageBaseAttribute) || imageBase;
+
+                // generate and update source set if an image base is set
+                if (tag === _img && elementImageBase && element.attr(srcsetAttribute)) {
+                    element.attr(srcsetAttribute, _getCorrectedSrcSet(element.attr(srcsetAttribute), elementImageBase));
+                }
+
+                // add loader to forced element types
+                if (forcedTags[tag] !== undefined && !element.attr(loaderAttribute)) {
+                    element.attr(loaderAttribute, forcedTags[tag]);
+                }
+
+                // set default image on every element without source
+                if (tag === _img && defaultImage && !element.attr(_src)) {
+                    element.attr(_src, defaultImage);
+                }
+
+                // set placeholder on every element without background image
+                else if (tag !== _img && placeholder && (!element.css(_backgroundImage) || element.css(_backgroundImage) === 'none')) {
+                    element.css(_backgroundImage, "url('" + placeholder + "')");
+                }
+            }
+
+            return items;
+        }
+
+        /**
+         * the 'lazy magic' - check all items
+         * @access private
+         * @param {boolean} [allItems]
+         * @param {object} [forced]
+         * @return void
+         */
+        function _lazyLoadItems(allItems, forced) {
+            // skip if no items where left
+            if (!items.length) {
+                // destroy instance if option is enabled
+                if (config.autoDestroy) {
+                    // noinspection JSUnresolvedFunction
+                    instance.destroy();
+                }
+
+                return;
+            }
+
+            var elements = forced || items,
+                loadTriggered = false,
+                imageBase = config.imageBase || '',
+                srcsetAttribute = config.srcsetAttribute,
+                handledName = config.handledName;
+
+            // loop all available items
+            for (var i = 0; i < elements.length; i++) {
+                // item is at least in loadable area
+                if (allItems || forced || _isInLoadableArea(elements[i])) {
+                    var element = $(elements[i]),
+                        tag = _getElementTagName(elements[i]),
+                        attribute = element.attr(config.attribute),
+                        elementImageBase = element.attr(config.imageBaseAttribute) || imageBase,
+                        customLoader = element.attr(config.loaderAttribute);
+
+                        // is not already handled 
+                    if (!element.data(handledName) &&
+                        // and is visible or visibility doesn't matter
+                        (!config.visibleOnly || element.is(':visible')) && (
+                        // and image source or source set attribute is available
+                        (attribute || element.attr(srcsetAttribute)) && (
+                            // and is image tag where attribute is not equal source or source set
+                            (tag === _img && (elementImageBase + attribute !== element.attr(_src) || element.attr(srcsetAttribute) !== element.attr(_srcset))) ||
+                            // or is non image tag where attribute is not equal background
+                            (tag !== _img && elementImageBase + attribute !== element.css(_backgroundImage))
+                        ) ||
+                        // or custom loader is available
+                        customLoader))
+                    {
+                        // mark element always as handled as this point to prevent double handling
+                        loadTriggered = true;
+                        element.data(handledName, true);
+
+                        // load item
+                        _handleItem(element, tag, elementImageBase, customLoader);
+                    }
+                }
+            }
+
+            // when something was loaded remove them from remaining items
+            if (loadTriggered) {
+                items = $(items).filter(function() {
+                    return !$(this).data(handledName);
+                });
+            }
+        }
+
+        /**
+         * load the given element the lazy way
+         * @access private
+         * @param {object} element
+         * @param {string} tag
+         * @param {string} imageBase
+         * @param {function} [customLoader]
+         * @return void
+         */
+        function _handleItem(element, tag, imageBase, customLoader) {
+            // increment count of items waiting for after load
+            ++_awaitingAfterLoad;
+
+            // extended error callback for correct 'onFinishedAll' handling
+            var errorCallback = function() {
+                _triggerCallback('onError', element);
+                _reduceAwaiting();
+
+                // prevent further callback calls
+                errorCallback = $.noop;
+            };
+
+            // trigger function before loading image
+            _triggerCallback('beforeLoad', element);
+
+            // fetch all double used data here for better code minimization
+            var srcAttribute = config.attribute,
+                srcsetAttribute = config.srcsetAttribute,
+                sizesAttribute = config.sizesAttribute,
+                retinaAttribute = config.retinaAttribute,
+                removeAttribute = config.removeAttribute,
+                loadedName = config.loadedName,
+                elementRetina = element.attr(retinaAttribute);
+
+            // handle custom loader
+            if (customLoader) {
+                // on load callback
+                var loadCallback = function() {
+                    // remove attribute from element
+                    if (removeAttribute) {
+                        element.removeAttr(config.loaderAttribute);
+                    }
+
+                    // mark element as loaded
+                    element.data(loadedName, true);
+
+                    // call after load event
+                    _triggerCallback(_afterLoad, element);
+
+                    // remove item from waiting queue and possibly trigger finished event
+                    // it's needed to be asynchronous to run after filter was in _lazyLoadItems
+                    setTimeout(_reduceAwaiting, 1);
+
+                    // prevent further callback calls
+                    loadCallback = $.noop;
+                };
+
+                // bind error event to trigger callback and reduce waiting amount
+                element.off(_error).one(_error, errorCallback)
+
+                // bind after load callback to element
+                .one(_load, loadCallback);
+
+                // trigger custom loader and handle response
+                if (!_triggerCallback(customLoader, element, function(response) {
+                    if(response) {
+                        element.off(_load);
+                        loadCallback();
+                    }
+                    else {
+                        element.off(_error);
+                        errorCallback();
+                    }
+                })) {
+                    element.trigger(_error);
+                }
+            }
+
+            // handle images
+            else {
+                // create image object
+                var imageObj = $(new Image());
+
+                // bind error event to trigger callback and reduce waiting amount
+                imageObj.one(_error, errorCallback)
+
+                // bind after load callback to image
+                .one(_load, function() {
+                    // remove element from view
+                    element.hide();
+
+                    // set image back to element
+                    // do it as single 'attr' calls, to be sure 'src' is set after 'srcset'
+                    if (tag === _img) {
+                        element.attr(_sizes, imageObj.attr(_sizes))
+                               .attr(_srcset, imageObj.attr(_srcset))
+                               .attr(_src, imageObj.attr(_src));
+                    }
+                    else {
+                        element.css(_backgroundImage, "url('" + imageObj.attr(_src) + "')");
+                    }
+
+                    // bring it back with some effect!
+                    element[config.effect](config.effectTime);
+
+                    // remove attribute from element
+                    if (removeAttribute) {
+                        element.removeAttr(srcAttribute + ' ' + srcsetAttribute + ' ' + retinaAttribute + ' ' + config.imageBaseAttribute);
+
+                        // only remove 'sizes' attribute, if it was a custom one
+                        if (sizesAttribute !== _sizes) {
+                            element.removeAttr(sizesAttribute);
+                        }
+                    }
+
+                    // mark element as loaded
+                    element.data(loadedName, true);
+
+                    // call after load event
+                    _triggerCallback(_afterLoad, element);
+
+                    // cleanup image object
+                    imageObj.remove();
+
+                    // remove item from waiting queue and possibly trigger finished event
+                    _reduceAwaiting();
+                });
+
+                // set sources
+                // do it as single 'attr' calls, to be sure 'src' is set after 'srcset'
+                var imageSrc = (_isRetinaDisplay && elementRetina ? elementRetina : element.attr(srcAttribute)) || '';
+                imageObj.attr(_sizes, element.attr(sizesAttribute))
+                        .attr(_srcset, element.attr(srcsetAttribute))
+                        .attr(_src, imageSrc ? imageBase + imageSrc : null);
+
+                // call after load even on cached image
+                imageObj.complete && imageObj.trigger(_load); // jshint ignore : line
+            }
+        }
+
+        /**
+         * check if the given element is inside the current viewport or threshold
+         * @access private
+         * @param {object} element
+         * @return {boolean}
+         */
+        function _isInLoadableArea(element) {
+            var elementBound = element.getBoundingClientRect(),
+                direction    = config.scrollDirection,
+                threshold    = config.threshold,
+                vertical     = // check if element is in loadable area from top
+                               ((_getActualHeight() + threshold) > elementBound.top) &&
+                               // check if element is even in loadable are from bottom
+                               (-threshold < elementBound.bottom),
+                horizontal   = // check if element is in loadable area from left
+                               ((_getActualWidth() + threshold) > elementBound.left) &&
+                               // check if element is even in loadable area from right
+                               (-threshold < elementBound.right);
+
+            if (direction === 'vertical') {
+                return vertical;
+            }
+            else if (direction === 'horizontal') {
+                return horizontal;
+            }
+
+            return vertical && horizontal;
+        }
+
+        /**
+         * receive the current viewed width of the browser
+         * @access private
+         * @return {number}
+         */
+        function _getActualWidth() {
+            return _actualWidth >= 0 ? _actualWidth : (_actualWidth = $(window).width());
+        }
+
+        /**
+         * receive the current viewed height of the browser
+         * @access private
+         * @return {number}
+         */
+        function _getActualHeight() {
+            return _actualHeight >= 0 ? _actualHeight : (_actualHeight = $(window).height());
+        }
+
+        /**
+         * get lowercase tag name of an element
+         * @access private
+         * @param {object} element
+         * @returns {string}
+         */
+        function _getElementTagName(element) {
+            return element.tagName.toLowerCase();
+        }
+
+        /**
+         * prepend image base to all srcset entries
+         * @access private
+         * @param {string} srcset
+         * @param {string} imageBase
+         * @returns {string}
+         */
+        function _getCorrectedSrcSet(srcset, imageBase) {
+            if (imageBase) {
+                // trim, remove unnecessary spaces and split entries
+                var entries = srcset.split(',');
+                srcset = '';
+
+                for (var i = 0, l = entries.length; i < l; i++) {
+                    srcset += imageBase + entries[i].trim() + (i !== l - 1 ? ',' : '');
+                }
+            }
+
+            return srcset;
+        }
+
+        /**
+         * helper function to throttle down event triggering
+         * @access private
+         * @param {number} delay
+         * @param {function} callback
+         * @return {function}
+         */
+        function _throttle(delay, callback) {
+            var timeout,
+                lastExecute = 0;
+
+            return function(event, ignoreThrottle) {
+                var elapsed = +new Date() - lastExecute;
+
+                function run() {
+                    lastExecute = +new Date();
+                    // noinspection JSUnresolvedFunction
+                    callback.call(instance, event);
+                }
+
+                timeout && clearTimeout(timeout); // jshint ignore : line
+
+                if (elapsed > delay || !config.enableThrottle || ignoreThrottle) {
+                    run();
+                }
+                else {
+                    timeout = setTimeout(run, delay - elapsed);
+                }
+            };
+        }
+
+        /**
+         * reduce count of awaiting elements to 'afterLoad' event and fire 'onFinishedAll' if reached zero
+         * @access private
+         * @return void
+         */
+        function _reduceAwaiting() {
+            --_awaitingAfterLoad;
+
+            // if no items were left trigger finished event
+            if (!items.length && !_awaitingAfterLoad) {
+                _triggerCallback('onFinishedAll');
+            }
+        }
+
+        /**
+         * single implementation to handle callbacks, pass element and set 'this' to current instance
+         * @access private
+         * @param {string|function} callback
+         * @param {object} [element]
+         * @param {*} [args]
+         * @return {boolean}
+         */
+        function _triggerCallback(callback, element, args) {
+            if ((callback = config[callback])) {
+                // jQuery's internal '$(arguments).slice(1)' are causing problems at least on old iPads
+                // below is shorthand of 'Array.prototype.slice.call(arguments, 1)'
+                callback.apply(instance, [].slice.call(arguments, 1));
+                return true;
+            }
+
+            return false;
+        }
+
+        // if event driven or window is already loaded don't wait for page loading
+        if (config.bind === 'event' || windowLoaded) {
+            _initialize();
+        }
+
+        // otherwise load initial items and start lazy after page load
+        else {
+            // noinspection JSUnresolvedVariable
+            $(window).on(_load + '.' + namespace, _initialize);
+        }  
+    }
+
+    /**
+     * lazy plugin class constructor
+     * @constructor
+     * @access private
+     * @param {object} elements
+     * @param {object} settings
+     * @return {object|LazyPlugin}
+     */
+    function LazyPlugin(elements, settings) {
+        /**
+         * this lazy plugin instance
+         * @access private
+         * @type {object|LazyPlugin|LazyPlugin.prototype}
+         */
+        var _instance = this,
+
+        /**
+         * this lazy plugin instance configuration
+         * @access private
+         * @type {object}
+         */
+        _config = $.extend({}, _instance.config, settings),
+
+        /**
+         * instance generated event executed on container scroll or resize
+         * packed in an object to be referenceable and short named because properties will not be minified
+         * @access private
+         * @type {object}
+         */
+        _events = {},
+
+        /**
+         * unique namespace for instance related events
+         * @access private
+         * @type {string}
+         */
+        _namespace = _config.name + '-' + (++lazyInstanceId);
+
+        // noinspection JSUndefinedPropertyAssignment
+        /**
+         * wrapper to get or set an entry from plugin instance configuration
+         * much smaller on minify as direct access
+         * @access public
+         * @type {function}
+         * @param {string} entryName
+         * @param {*} [value]
+         * @return {LazyPlugin|*}
+         */
+        _instance.config = function(entryName, value) {
+            if (value === undefined) {
+                return _config[entryName];
+            }
+
+            _config[entryName] = value;
+            return _instance;
+        };
+
+        // noinspection JSUndefinedPropertyAssignment
+        /**
+         * add additional items to current instance
+         * @access public
+         * @param {Array|object|string} items
+         * @return {LazyPlugin}
+         */
+        _instance.addItems = function(items) {
+            _events.a && _events.a($.type(items) === 'string' ? $(items) : items); // jshint ignore : line
+            return _instance;
+        };
+
+        // noinspection JSUndefinedPropertyAssignment
+        /**
+         * get all left items of this instance
+         * @access public
+         * @returns {object}
+         */
+        _instance.getItems = function() {
+            return _events.g ? _events.g() : {};
+        };
+
+        // noinspection JSUndefinedPropertyAssignment
+        /**
+         * force lazy to load all items in loadable area right now
+         * by default without throttle
+         * @access public
+         * @type {function}
+         * @param {boolean} [useThrottle]
+         * @return {LazyPlugin}
+         */
+        _instance.update = function(useThrottle) {
+            _events.e && _events.e({}, !useThrottle); // jshint ignore : line
+            return _instance;
+        };
+
+        // noinspection JSUndefinedPropertyAssignment
+        /**
+         * force element(s) to load directly, ignoring the viewport
+         * @access public
+         * @param {Array|object|string} items
+         * @return {LazyPlugin}
+         */
+        _instance.force = function(items) {
+            _events.f && _events.f($.type(items) === 'string' ? $(items) : items); // jshint ignore : line
+            return _instance;
+        };
+
+        // noinspection JSUndefinedPropertyAssignment
+        /**
+         * force lazy to load all available items right now
+         * this call ignores throttling
+         * @access public
+         * @type {function}
+         * @return {LazyPlugin}
+         */
+        _instance.loadAll = function() {
+            _events.e && _events.e({all: true}, true); // jshint ignore : line
+            return _instance;
+        };
+
+        // noinspection JSUndefinedPropertyAssignment
+        /**
+         * destroy this plugin instance
+         * @access public
+         * @type {function}
+         * @return undefined
+         */
+        _instance.destroy = function() {
+            // unbind instance generated events
+            // noinspection JSUnresolvedFunction, JSUnresolvedVariable
+            $(_config.appendScroll).off('.' + _namespace, _events.e);
+            // noinspection JSUnresolvedVariable
+            $(window).off('.' + _namespace);
+
+            // clear events
+            _events = {};
+
+            return undefined;
+        };
+
+        // start using lazy and return all elements to be chainable or instance for further use
+        // noinspection JSUnresolvedVariable
+        _executeLazy(_instance, _config, elements, _events, _namespace);
+        return _config.chainable ? elements : _instance;
+    }
+
+    /**
+     * settings and configuration data
+     * @access public
+     * @type {object|*}
+     */
+    LazyPlugin.prototype.config = {
+        // general
+        name               : 'lazy',
+        chainable          : true,
+        autoDestroy        : true,
+        bind               : 'load',
+        threshold          : 500,
+        visibleOnly        : false,
+        appendScroll       : window,
+        scrollDirection    : 'both',
+        imageBase          : null,
+        defaultImage       : 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
+        placeholder        : null,
+        delay              : -1,
+        combined           : false,
+
+        // attributes
+        attribute          : 'data-src',
+        srcsetAttribute    : 'data-srcset',
+        sizesAttribute     : 'data-sizes',
+        retinaAttribute    : 'data-retina',
+        loaderAttribute    : 'data-loader',
+        imageBaseAttribute : 'data-imagebase',
+        removeAttribute    : true,
+        handledName        : 'handled',
+        loadedName         : 'loaded',
+
+        // effect
+        effect             : 'show',
+        effectTime         : 0,
+
+        // throttle
+        enableThrottle     : true,
+        throttle           : 250,
+
+        // callbacks
+        beforeLoad         : undefined,
+        afterLoad          : undefined,
+        onError            : undefined,
+        onFinishedAll      : undefined
+    };
+
+    // register window load event globally to prevent not loading elements
+    // since jQuery 3.X ready state is fully async and may be executed after 'load' 
+    $(window).on('load', function() {
+        windowLoaded = true;
+    });
+})(window);
+},{}],11:[function(require,module,exports){
+/*!
  * jQuery Mousewheel 3.1.13
  *
  * Copyright jQuery Foundation and other contributors
@@ -10243,7 +11116,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 }));
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /*!
  * jQuery Validation Plugin v1.19.1
  *
@@ -11894,7 +12767,7 @@ if ( $.ajaxPrefilter ) {
 }
 return $;
 }));
-},{"jquery":12}],12:[function(require,module,exports){
+},{"jquery":13}],13:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.12.4
  * http://jquery.com/
@@ -22904,7 +23777,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /*!
  * Midnight.js 1.1.1
  * jQuery plugin to switch between multiple fixed header designs on the fly, so it looks in line with the content below it.
@@ -22916,7 +23789,7 @@ return jQuery;
  * http://aerolab.github.io/midnight.js/LICENSE.txt
  */
 !function(t){"function"==typeof define&&define.amd?define(["jquery"],t):t(jQuery)}(function(t){var e=0,s=Array.prototype.slice;t.cleanData=function(e){return function(s){var i,n,o;for(o=0;null!=(n=s[o]);o++)try{i=t._data(n,"events"),i&&i.remove&&t(n).triggerHandler("remove")}catch(r){}e(s)}}(t.cleanData),t.widget=function(e,s,i){var n,o,r,a,h={},d=e.split(".")[0];return e=e.split(".")[1],n=d+"-"+e,i||(i=s,s=t.Widget),t.expr[":"][n.toLowerCase()]=function(e){return!!t.data(e,n)},t[d]=t[d]||{},o=t[d][e],r=t[d][e]=function(t,e){return this._createWidget?void(arguments.length&&this._createWidget(t,e)):new r(t,e)},t.extend(r,o,{version:i.version,_proto:t.extend({},i),_childConstructors:[]}),a=new s,a.options=t.widget.extend({},a.options),t.each(i,function(e,i){return t.isFunction(i)?void(h[e]=function(){var t=function(){return s.prototype[e].apply(this,arguments)},n=function(t){return s.prototype[e].apply(this,t)};return function(){var e,s=this._super,o=this._superApply;return this._super=t,this._superApply=n,e=i.apply(this,arguments),this._super=s,this._superApply=o,e}}()):void(h[e]=i)}),r.prototype=t.widget.extend(a,{widgetEventPrefix:o?a.widgetEventPrefix||e:e},h,{constructor:r,namespace:d,widgetName:e,widgetFullName:n}),o?(t.each(o._childConstructors,function(e,s){var i=s.prototype;t.widget(i.namespace+"."+i.widgetName,r,s._proto)}),delete o._childConstructors):s._childConstructors.push(r),t.widget.bridge(e,r),r},t.widget.extend=function(e){for(var i,n,o=s.call(arguments,1),r=0,a=o.length;a>r;r++)for(i in o[r])n=o[r][i],o[r].hasOwnProperty(i)&&void 0!==n&&(e[i]=t.isPlainObject(n)?t.isPlainObject(e[i])?t.widget.extend({},e[i],n):t.widget.extend({},n):n);return e},t.widget.bridge=function(e,i){var n=i.prototype.widgetFullName||e;t.fn[e]=function(o){var r="string"==typeof o,a=s.call(arguments,1),h=this;return o=!r&&a.length?t.widget.extend.apply(null,[o].concat(a)):o,r?this.each(function(){var s,i=t.data(this,n);return"instance"===o?(h=i,!1):i?t.isFunction(i[o])&&"_"!==o.charAt(0)?(s=i[o].apply(i,a),s!==i&&void 0!==s?(h=s&&s.jquery?h.pushStack(s.get()):s,!1):void 0):t.error("no such method '"+o+"' for "+e+" widget instance"):t.error("cannot call methods on "+e+" prior to initialization; attempted to call method '"+o+"'")}):this.each(function(){var e=t.data(this,n);e?(e.option(o||{}),e._init&&e._init()):t.data(this,n,new i(o,this))}),h}},t.Widget=function(){},t.Widget._childConstructors=[],t.Widget.prototype={widgetName:"widget",widgetEventPrefix:"",defaultElement:"<div>",options:{disabled:!1,create:null},_createWidget:function(s,i){i=t(i||this.defaultElement||this)[0],this.element=t(i),this.uuid=e++,this.eventNamespace="."+this.widgetName+this.uuid,this.bindings=t(),this.hoverable=t(),this.focusable=t(),i!==this&&(t.data(i,this.widgetFullName,this),this._on(!0,this.element,{remove:function(t){t.target===i&&this.destroy()}}),this.document=t(i.style?i.ownerDocument:i.document||i),this.window=t(this.document[0].defaultView||this.document[0].parentWindow)),this.options=t.widget.extend({},this.options,this._getCreateOptions(),s),this._create(),this._trigger("create",null,this._getCreateEventData()),this._init()},_getCreateOptions:t.noop,_getCreateEventData:t.noop,_create:t.noop,_init:t.noop,destroy:function(){this._destroy(),this.element.unbind(this.eventNamespace).removeData(this.widgetFullName).removeData(t.camelCase(this.widgetFullName)),this.widget().unbind(this.eventNamespace).removeAttr("aria-disabled").removeClass(this.widgetFullName+"-disabled ui-state-disabled"),this.bindings.unbind(this.eventNamespace),this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus")},_destroy:t.noop,widget:function(){return this.element},option:function(e,s){var i,n,o,r=e;if(0===arguments.length)return t.widget.extend({},this.options);if("string"==typeof e)if(r={},i=e.split("."),e=i.shift(),i.length){for(n=r[e]=t.widget.extend({},this.options[e]),o=0;i.length-1>o;o++)n[i[o]]=n[i[o]]||{},n=n[i[o]];if(e=i.pop(),1===arguments.length)return void 0===n[e]?null:n[e];n[e]=s}else{if(1===arguments.length)return void 0===this.options[e]?null:this.options[e];r[e]=s}return this._setOptions(r),this},_setOptions:function(t){var e;for(e in t)this._setOption(e,t[e]);return this},_setOption:function(t,e){return this.options[t]=e,"disabled"===t&&(this.widget().toggleClass(this.widgetFullName+"-disabled",!!e),e&&(this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus"))),this},enable:function(){return this._setOptions({disabled:!1})},disable:function(){return this._setOptions({disabled:!0})},_on:function(e,s,i){var n,o=this;"boolean"!=typeof e&&(i=s,s=e,e=!1),i?(s=n=t(s),this.bindings=this.bindings.add(s)):(i=s,s=this.element,n=this.widget()),t.each(i,function(i,r){function a(){return e||o.options.disabled!==!0&&!t(this).hasClass("ui-state-disabled")?("string"==typeof r?o[r]:r).apply(o,arguments):void 0}"string"!=typeof r&&(a.guid=r.guid=r.guid||a.guid||t.guid++);var h=i.match(/^([\w:-]*)\s*(.*)$/),d=h[1]+o.eventNamespace,l=h[2];l?n.delegate(l,d,a):s.bind(d,a)})},_off:function(e,s){s=(s||"").split(" ").join(this.eventNamespace+" ")+this.eventNamespace,e.unbind(s).undelegate(s),this.bindings=t(this.bindings.not(e).get()),this.focusable=t(this.focusable.not(e).get()),this.hoverable=t(this.hoverable.not(e).get())},_delay:function(t,e){function s(){return("string"==typeof t?i[t]:t).apply(i,arguments)}var i=this;return setTimeout(s,e||0)},_hoverable:function(e){this.hoverable=this.hoverable.add(e),this._on(e,{mouseenter:function(e){t(e.currentTarget).addClass("ui-state-hover")},mouseleave:function(e){t(e.currentTarget).removeClass("ui-state-hover")}})},_focusable:function(e){this.focusable=this.focusable.add(e),this._on(e,{focusin:function(e){t(e.currentTarget).addClass("ui-state-focus")},focusout:function(e){t(e.currentTarget).removeClass("ui-state-focus")}})},_trigger:function(e,s,i){var n,o,r=this.options[e];if(i=i||{},s=t.Event(s),s.type=(e===this.widgetEventPrefix?e:this.widgetEventPrefix+e).toLowerCase(),s.target=this.element[0],o=s.originalEvent)for(n in o)n in s||(s[n]=o[n]);return this.element.trigger(s,i),!(t.isFunction(r)&&r.apply(this.element[0],[s].concat(i))===!1||s.isDefaultPrevented())}},t.each({show:"fadeIn",hide:"fadeOut"},function(e,s){t.Widget.prototype["_"+e]=function(i,n,o){"string"==typeof n&&(n={effect:n});var r,a=n?n===!0||"number"==typeof n?s:n.effect||s:e;n=n||{},"number"==typeof n&&(n={duration:n}),r=!t.isEmptyObject(n),n.complete=o,n.delay&&i.delay(n.delay),r&&t.effects&&t.effects.effect[a]?i[e](n):a!==e&&i[a]?i[a](n.duration,n.easing,o):i.queue(function(s){t(this)[e](),o&&o.call(i[0]),s()})}}),t.widget}),function(t){"use strict";t.widget("aerolab.midnight",{options:{headerClass:"midnightHeader",innerClass:"midnightInner",defaultClass:"default",classPrefix:""},_headers:{},_headerInfo:{top:0,height:0},_$sections:[],_sections:[],_scrollTop:0,_documentHeight:0,_transformMode:!1,refresh:function(){this._headerInfo={top:0,height:this.element.outerHeight()},this._$sections=t("[data-midnight]"),this._sections=[],this._setupHeaders(),this.recalculate()},_create:function(){var e=this;this._scrollTop=window.pageYOffset||document.documentElement.scrollTop,this._documentHeight=t(document).height(),this._headers={},this._transformMode=this._getSupportedTransform(),this.refresh(),setInterval(function(){e._recalculateSections()},1e3),e.recalculate(),t(window).resize(function(){e.recalculate()}),this._updateHeadersLoop()},recalculate:function(){this._recalculateSections(),this._updateHeaderHeight(),this._recalculateHeaders(),this._updateHeaders()},_getSupportedTransform:function(){for(var t=["transform","WebkitTransform","MozTransform","OTransform","msTransform"],e=0;e<t.length;e++)if(void 0!==document.createElement("div").style[t[e]])return t[e];return!1},_getContainerHeight:function(){var e=this.element.find("> ."+this.options.headerClass),s=0,i=0,n=this;return e.length?e.each(function(){var e=t(this),o=e.find("> ."+n.options.innerClass);o.length?(o.css("bottom","auto").css("overflow","auto"),i=o.outerHeight(),o.css("bottom","0")):(e.css("bottom","auto"),i=e.outerHeight(),e.css("bottom","0")),s=i>s?i:s}):s=i=this.element.outerHeight(),s},_setupHeaders:function(){var e=this;this._headers[this.options.defaultClass]={},this._$sections.each(function(){var s=t(this),i=s.data("midnight");"string"==typeof i&&(i=i.trim(),""!==i&&(e._headers[i]={}))});({top:this.element.css("padding-top"),right:this.element.css("padding-right"),bottom:this.element.css("padding-bottom"),left:this.element.css("padding-left")});this.element.css({position:"fixed",top:0,left:0,right:0,overflow:"hidden"}),this._updateHeaderHeight();var s=this.element.find("> ."+this.options.headerClass);s.length?s.filter("."+this.options.defaultClass).length||s.filter("."+this.options.headerClass+":first").clone(!0,!0).attr("class",this.options.headerClass+" "+this.options.defaultClass):this.element.wrapInner('<div class="'+this.options.headerClass+" "+this.options.defaultClass+'"></div>');var s=this.element.find("> ."+this.options.headerClass),i=s.filter("."+this.options.defaultClass).clone(!0,!0);for(var n in this._headers)if(this._headers.hasOwnProperty(n)&&"undefined"==typeof this._headers[n].element){var o=s.filter("."+n);o.length?this._headers[n].element=o:this._headers[n].element=i.clone(!0,!0).removeClass(this.options.defaultClass).addClass(n).appendTo(this.element);var r={position:"absolute",overflow:"hidden",top:0,left:0,right:0,bottom:0};this._headers[n].element.css(r),this._transformMode!==!1&&this._headers[n].element.css(this._transformMode,"translateZ(0)"),this._headers[n].element.find("> ."+this.options.innerClass).length||this._headers[n].element.wrapInner('<div class="'+this.options.innerClass+'"></div>'),this._headers[n].inner=this._headers[n].element.find("> ."+this.options.innerClass),this._headers[n].inner.css(r),this._transformMode!==!1&&this._headers[n].inner.css(this._transformMode,"translateZ(0)"),this._headers[n].from="",this._headers[n].progress=0}s.each(function(){var s=t(this),i=!1;for(var n in e._headers)e._headers.hasOwnProperty(n)&&s.hasClass(n)&&(i=!0);s.find("> ."+e.options.innerClass).length||s.wrapInner('<div class="'+e.options.innerClass+'"></div>'),i?s.show():s.hide()})},_recalculateHeaders:function(){this._scrollTop=window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop,this._scrollTop=Math.max(this._scrollTop,0),this._scrollTop=Math.min(this._scrollTop,this._documentHeight);var t=this._headerInfo.height,e=this._scrollTop+this._headerInfo.top,s=e+t;if("function"==typeof window.getComputedStyle){var i=window.getComputedStyle(this.element[0],null),n=0,o=0;if(this._transformMode!==!1&&"string"==typeof i.transform){var r=i.transform.match(/(-?[0-9\.]+)/g);null!==r&&r.length>=6&&!isNaN(parseFloat(r[5]))&&(o=parseFloat(r[5]))}i.top.indexOf("px")>=0&&!isNaN(parseFloat(i.top))&&(n=parseFloat(i.top)),e+=n+o,s+=n+o}for(var a in this._headers)this._headers.hasOwnProperty(a)&&(this._headers[a].from="",this._headers[a].progress=0);for(var h=0;h<this._sections.length;h++)s>=this._sections[h].start&&e<=this._sections[h].end&&(this._headers[this._sections[h].className].visible=!0,e>=this._sections[h].start&&s<=this._sections[h].end?(this._headers[this._sections[h].className].from="top",this._headers[this._sections[h].className].progress+=1):s>this._sections[h].end&&e<this._sections[h].end?(this._headers[this._sections[h].className].from="top",this._headers[this._sections[h].className].progress=1-(s-this._sections[h].end)/t):s>this._sections[h].start&&e<this._sections[h].start&&("top"===this._headers[this._sections[h].className].from?this._headers[this._sections[h].className].progress+=(s-this._sections[h].start)/t:(this._headers[this._sections[h].className].from="bottom",this._headers[this._sections[h].className].progress=(s-this._sections[h].start)/t)))},_updateHeaders:function(){if("undefined"!=typeof this._headers[this.options.defaultClass]){var t=0,e="";for(var s in this._headers)this._headers.hasOwnProperty(s)&&""!==!this._headers[s].from&&(t+=this._headers[s].progress,e=s);1>t&&(""===this._headers[this.options.defaultClass].from?(this._headers[this.options.defaultClass].from="top"===this._headers[e].from?"bottom":"top",this._headers[this.options.defaultClass].progress=1-t):this._headers[this.options.defaultClass].progress+=1-t);for(var i in this._headers)if(this._headers.hasOwnProperty(i)&&""!==!this._headers[i].from){var n=100*(1-this._headers[i].progress);n>=100&&(n=110),-100>=n&&(n=-110),"top"===this._headers[i].from?this._transformMode!==!1?(this._headers[i].element[0].style[this._transformMode]="translateY(-"+n+"%) translateZ(0)",this._headers[i].inner[0].style[this._transformMode]="translateY(+"+n+"%) translateZ(0)"):(this._headers[i].element[0].style.top="-"+n+"%",this._headers[i].inner[0].style.top="+"+n+"%"):this._transformMode!==!1?(this._headers[i].element[0].style[this._transformMode]="translateY(+"+n+"%) translateZ(0)",this._headers[i].inner[0].style[this._transformMode]="translateY(-"+n+"%) translateZ(0)"):(this._headers[i].element[0].style.top="+"+n+"%",this._headers[i].inner[0].style.top="-"+n+"%")}}},_recalculateSections:function(){this._documentHeight=t(document).height(),this._sections=[];for(var e=0;e<this._$sections.length;e++){var s=t(this._$sections[e]);this._sections.push({element:s,className:s.data("midnight"),start:s.offset().top,end:s.offset().top+s.outerHeight()})}},_updateHeaderHeight:function(){this._headerInfo.height=this._getContainerHeight(),this.element.css("height",this._headerInfo.height+"px")},_updateHeadersLoop:function(){var t=this;this._requestAnimationFrame(function(){t._updateHeadersLoop()}),this._recalculateHeaders(),this._updateHeaders()},_requestAnimationFrame:function(t){var e=e||function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||function(t){window.setTimeout(t,1e3/60)}}();e(t)}})}(jQuery);
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /* Notify.js - http://notifyjs.com/ Copyright (c) 2015 MIT */
 (function (factory) {
 	// UMD start
@@ -23533,9 +24406,9 @@ return jQuery;
 
 }));
 
-},{"jquery":12}],15:[function(require,module,exports){
+},{"jquery":13}],16:[function(require,module,exports){
 !function(){"use strict";if("undefined"!=typeof window){var t=window.navigator.userAgent.match(/Edge\/(\d{2})\./),n=!!t&&16<=parseInt(t[1],10);if(!("objectFit"in document.documentElement.style!=!1)||n){var o=function(t,e,i){var n,o,l,a,d;if((i=i.split(" ")).length<2&&(i[1]=i[0]),"x"===t)n=i[0],o=i[1],l="left",a="right",d=e.clientWidth;else{if("y"!==t)return;n=i[1],o=i[0],l="top",a="bottom",d=e.clientHeight}if(n!==l&&o!==l){if(n!==a&&o!==a)return"center"===n||"50%"===n?(e.style[l]="50%",void(e.style["margin-"+l]=d/-2+"px")):void(0<=n.indexOf("%")?(n=parseInt(n))<50?(e.style[l]=n+"%",e.style["margin-"+l]=d*(n/-100)+"px"):(n=100-n,e.style[a]=n+"%",e.style["margin-"+a]=d*(n/-100)+"px"):e.style[l]=n);e.style[a]="0"}else e.style[l]="0"},l=function(t){var e=t.dataset?t.dataset.objectFit:t.getAttribute("data-object-fit"),i=t.dataset?t.dataset.objectPosition:t.getAttribute("data-object-position");e=e||"cover",i=i||"50% 50%";var n=t.parentNode;return function(t){var e=window.getComputedStyle(t,null),i=e.getPropertyValue("position"),n=e.getPropertyValue("overflow"),o=e.getPropertyValue("display");i&&"static"!==i||(t.style.position="relative"),"hidden"!==n&&(t.style.overflow="hidden"),o&&"inline"!==o||(t.style.display="block"),0===t.clientHeight&&(t.style.height="100%"),-1===t.className.indexOf("object-fit-polyfill")&&(t.className=t.className+" object-fit-polyfill")}(n),function(t){var e=window.getComputedStyle(t,null),i={"max-width":"none","max-height":"none","min-width":"0px","min-height":"0px",top:"auto",right:"auto",bottom:"auto",left:"auto","margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px"};for(var n in i)e.getPropertyValue(n)!==i[n]&&(t.style[n]=i[n])}(t),t.style.position="absolute",t.style.width="auto",t.style.height="auto","scale-down"===e&&(e=t.clientWidth<n.clientWidth&&t.clientHeight<n.clientHeight?"none":"contain"),"none"===e?(o("x",t,i),void o("y",t,i)):"fill"===e?(t.style.width="100%",t.style.height="100%",o("x",t,i),void o("y",t,i)):(t.style.height="100%",void("cover"===e&&t.clientWidth>n.clientWidth||"contain"===e&&t.clientWidth<n.clientWidth?(t.style.top="0",t.style.marginTop="0",o("x",t,i)):(t.style.width="100%",t.style.height="auto",t.style.left="0",t.style.marginLeft="0",o("y",t,i))))},e=function(t){if(void 0===t||t instanceof Event)t=document.querySelectorAll("[data-object-fit]");else if(t&&t.nodeName)t=[t];else{if("object"!=typeof t||!t.length||!t[0].nodeName)return!1;t=t}for(var e=0;e<t.length;e++)if(t[e].nodeName){var i=t[e].nodeName.toLowerCase();"img"!==i||n?"video"===i?0<t[e].readyState?l(t[e]):t[e].addEventListener("loadedmetadata",function(){l(this)}):l(t[e]):t[e].complete?l(t[e]):t[e].addEventListener("load",function(){l(this)})}return!0};document.addEventListener("DOMContentLoaded",e),window.addEventListener("resize",e),window.objectFitPolyfill=e}else window.objectFitPolyfill=function(){return!1}}}();
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * Owl Carousel v2.3.4
  * Copyright 2013-2018 David Deutsch
@@ -26985,7 +27858,7 @@ return jQuery;
 
 })(window.Zepto || window.jQuery, window, document);
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /*!
  * perfect-scrollbar v1.4.0
  * (c) 2018 Hyunje Jun
@@ -28305,7 +29178,7 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses () {
 
 module.exports = PerfectScrollbar;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /*! rangeslider.js - v2.3.2 | (c) 2018 @andreruffert | MIT license | https://github.com/andreruffert/rangeslider.js */
 (function(factory) {
     'use strict';
@@ -28805,7 +29678,7 @@ module.exports = PerfectScrollbar;
 
 }));
 
-},{"jquery":12}],19:[function(require,module,exports){
+},{"jquery":13}],20:[function(require,module,exports){
 /*! scrollbarWidth.js v0.1.3 | felixexter | MIT | https://github.com/felixexter/scrollbarWidth */
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -28846,9 +29719,9 @@ module.exports = PerfectScrollbar;
 	return scrollbarWidth;
 }));
 
-},{}],20:[function(require,module,exports){
-!function(t,i){"object"==typeof exports&&"object"==typeof module?module.exports=i():"function"==typeof define&&define.amd?define("ScrollBooster",[],i):"object"==typeof exports?exports.ScrollBooster=i():t.ScrollBooster=i()}("undefined"!=typeof self?self:this,function(){return function(t){function i(o){if(e[o])return e[o].exports;var n=e[o]={i:o,l:!1,exports:{}};return t[o].call(n.exports,n,n.exports,i),n.l=!0,n.exports}var e={};return i.m=t,i.c=e,i.d=function(t,e,o){i.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:o})},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,i){return Object.prototype.hasOwnProperty.call(t,i)},i.p="/dist/",i(i.s=0)}([function(t,i,e){"use strict";function o(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}function n(t){return Math.max(t.offsetWidth,t.scrollWidth)}function s(t){return Math.max(t.offsetHeight,t.scrollHeight)}function r(t,i,e){for(var o=void 0,n=t.childNodes,s=document.createRange(),r=0;o=n[r],r<n.length;r++)if(3===o.nodeType){s.selectNodeContents(o);var h=s.getBoundingClientRect();if(i>=h.left&&e>=h.top&&i<=h.right&&e<=h.bottom)return o}return!1}function h(){var t=window.getSelection?window.getSelection():document.selection;t&&(t.removeAllRanges?t.removeAllRanges():t.empty&&t.empty())}Object.defineProperty(i,"__esModule",{value:!0});var c=Object.assign||function(t){for(var i=1;i<arguments.length;i++){var e=arguments[i];for(var o in e)Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o])}return t},l=function(){function t(t,i){for(var e=0;e<i.length;e++){var o=i[e];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(i,e,o){return e&&t(i.prototype,e),o&&t(i,o),i}}(),p=function(){function t(){var i=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(o(this,t),!(i.viewport&&i.viewport instanceof Element))return void console.error('"viewport" config property must be present and must be Element');var e={handle:i.viewport,content:i.viewport.children[0],bounce:!0,friction:.05,bounceForce:.1,textSelection:!1,onClick:function(){},shouldScroll:function(){return!0},onUpdate:function(){}};if(this.props=c({},e,i),!this.props.content)return void console.error("Viewport does not have any content");this.viewport={width:this.props.viewport.clientWidth,height:this.props.viewport.clientHeight},this.content={width:n(this.props.content),height:s(this.props.content)},this.position={x:0,y:0},this.velocity={x:0,y:0},this.friction=1-this.props.friction,this.bounceForce=this.props.bounceForce,this.isDragging=!1,this.dragStartPosition={x:0,y:0},this.dragOffsetPosition=c({},this.dragStartPosition),this.dragPosition=c({},this.position),this.isScrollEnabled=!!this.props.emulateScroll,this.isScrolling=!1,this.scrollOffset={x:0,y:0},this.bounce=this.props.bounce,this.textSelection=this.props.textSelection,this.boundX={from:Math.min(-this.content.width+this.viewport.width,0),to:0},this.boundY={from:Math.min(-this.content.height+this.viewport.height,0),to:0},this.mode={x:"x"==this.props.mode,y:"y"==this.props.mode,xy:"x"!==this.props.mode&&"y"!==this.props.mode},this.isRunning=!1,this.rafID=null,this.events={},this.animate(),this.handleEvents()}return l(t,[{key:"run",value:function(){var t=this;this.isRunning=!0,cancelAnimationFrame(this.rafID),this.rafID=requestAnimationFrame(function(){return t.animate()})}},{key:"animate",value:function(){var t=this;this.isRunning&&(this.update(),this.notify(),this.rafID=requestAnimationFrame(function(){return t.animate()}))}},{key:"update",value:function(){this.applyBoundForce(),this.applyDragForce(),this.applyScrollForce(),this.velocity.x*=this.friction,this.velocity.y*=this.friction,this.mode.y||(this.position.x+=this.velocity.x),this.mode.x||(this.position.y+=this.velocity.y),this.bounce&&!this.isScrolling||(this.position.x=Math.max(Math.min(this.position.x,this.boundX.to),this.boundX.from),this.position.y=Math.max(Math.min(this.position.y,this.boundY.to),this.boundY.from)),!this.isDragging&&!this.isScrolling&&Math.abs(this.velocity.x)<.1&&Math.abs(this.velocity.y)<.1&&(this.isRunning=!1)}},{key:"applyForce",value:function(t){this.velocity.x+=t.x,this.velocity.y+=t.y}},{key:"applyBoundForce",value:function(){if(this.bounce&&!this.isDragging){var t=this.position.x<this.boundX.from,i=this.position.x>this.boundX.to,e=this.position.y<this.boundY.from,o=this.position.y>this.boundY.to,n={x:0,y:0};if(t||i){var s=t?this.boundX.from:this.boundX.to,r=s-this.position.x,h=r*this.bounceForce,c=this.position.x+(this.velocity.x+h)/(1-this.friction);t&&c<this.boundX.from||i&&c>this.boundX.to||(h=r*this.bounceForce-this.velocity.x),n.x=h}if(e||o){var l=e?this.boundY.from:this.boundY.to,p=l-this.position.y,a=p*this.bounceForce,u=this.position.y+(this.velocity.y+a)/(1-this.friction);e&&u<this.boundY.from||o&&u>this.boundY.to||(a=p*this.bounceForce-this.velocity.y),n.y=a}this.applyForce(n)}}},{key:"applyDragForce",value:function(){if(this.isDragging){var t={x:this.dragPosition.x-this.position.x,y:this.dragPosition.y-this.position.y},i={x:t.x-this.velocity.x,y:t.y-this.velocity.y};this.applyForce(i)}}},{key:"applyScrollForce",value:function(){if(this.isScrolling){var t={x:this.scrollOffset.x-this.velocity.x,y:this.scrollOffset.y-this.velocity.y};this.scrollOffset.x=0,this.scrollOffset.y=0,this.applyForce(t)}}},{key:"setPosition",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.velocity.x=0,this.velocity.y=0,this.position.x=-t.x||0,this.position.y=-t.y||0,this.run()}},{key:"getUpdate",value:function(){return{isRunning:this.isRunning,isDragging:this.isDragging,isScrolling:this.isScrolling,position:{x:-this.position.x,y:-this.position.y},dragOffsetPosition:this.dragOffsetPosition,viewport:c({},this.viewport),content:c({},this.content)}}},{key:"notify",value:function(){this.props.onUpdate(this.getUpdate())}},{key:"updateMetrics",value:function(){this.viewport.width=this.props.viewport.clientWidth,this.viewport.height=this.props.viewport.clientHeight,this.content.width=n(this.props.content),this.content.height=s(this.props.content),this.boundX.from=Math.min(-this.content.width+this.viewport.width,0),this.boundY.from=Math.min(-this.content.height+this.viewport.height,0),this.run()}},{key:"handleEvents",value:function(){var t=this,i=this.props.viewport,e={x:0,y:0},o={x:0,y:0},n=!1,s=function(i){var e=void 0,s=void 0;n?(e=i.touches[0].pageX,s=i.touches[0].pageY):(e=i.pageX,s=i.pageY),t.dragOffsetPosition.x=e-o.x,t.dragOffsetPosition.y=s-o.y,t.dragPosition.x=t.dragStartPosition.x+t.dragOffsetPosition.x,t.dragPosition.y=t.dragStartPosition.y+t.dragOffsetPosition.y,n||i.preventDefault()};this.events.pointerdown=function(c){var l=void 0,p=void 0,a=void 0,u=void 0;n=!(!c.touches||!c.touches[0]),n?(l=c.touches[0].pageX,p=c.touches[0].pageY,a=c.touches[0].clientX,u=c.touches[0].clientY):(l=c.pageX,p=c.pageY,a=c.clientX,u=c.clientY);var d=i.getBoundingClientRect();if(!(a-d.left>=i.clientLeft+i.clientWidth)&&!(u-d.top>=i.clientTop+i.clientHeight)&&t.props.shouldScroll(t.getUpdate(),c)){if(t.textSelection){if(r(c.target,a,u))return;h()}t.isDragging=!0,(e.x||e.y)&&(t.position.x=e.x,t.position.y=e.y,e.x=0,e.y=0),o.x=l,o.y=p,t.dragStartPosition.x=t.position.x,t.dragStartPosition.y=t.position.y,s(c),t.run();var v=void 0,f=void 0;f=function(i){t.isDragging=!1,n?(window.removeEventListener("touchmove",s),window.removeEventListener("touchend",v)):(window.removeEventListener("mousemove",s),window.removeEventListener("mouseup",v))},n?(v=window.addEventListener("touchend",f),window.addEventListener("touchmove",s)):(v=window.addEventListener("mouseup",f),window.addEventListener("mousemove",s))}};var c=null;this.events.wheel=function(i){t.velocity.x=0,t.isScrollEnabled&&(t.isScrolling=!0,t.scrollOffset.x=-i.deltaX,t.scrollOffset.y=-i.deltaY,t.run(),clearTimeout(c),c=setTimeout(function(){return t.isScrolling=!1},80),i.preventDefault())},this.events.scroll=function(i){var o=t.props.viewport.scrollLeft,n=t.props.viewport.scrollTop;Math.abs(t.position.x+o)>3&&(t.position.x=-o,t.velocity.x=0),Math.abs(t.position.y+n)>3&&(t.position.y=-n,t.velocity.y=0),e.x=-t.props.viewport.scrollLeft,e.y=-t.props.viewport.scrollTop},this.events.click=function(i){t.props.onClick(t.getUpdate(),i)},this.events.resize=this.updateMetrics.bind(this),this.props.handle.addEventListener("mousedown",this.events.pointerdown),this.props.handle.addEventListener("touchstart",this.events.pointerdown),this.props.handle.addEventListener("click",this.events.click),this.props.viewport.addEventListener("wheel",this.events.wheel),this.props.viewport.addEventListener("scroll",this.events.scroll),window.addEventListener("resize",this.events.resize)}},{key:"destroy",value:function(){this.props.handle.removeEventListener("mousedown",this.events.pointerdown),this.props.handle.removeEventListener("touchstart",this.events.pointerdown),this.props.handle.removeEventListener("click",this.events.click),this.props.viewport.removeEventListener("wheel",this.events.wheel),this.props.viewport.removeEventListener("scroll",this.events.scroll),window.removeEventListener("resize",this.events.resize)}}]),t}();i.default=p,t.exports=i.default}])});
 },{}],21:[function(require,module,exports){
+!function(t,i){"object"==typeof exports&&"object"==typeof module?module.exports=i():"function"==typeof define&&define.amd?define("ScrollBooster",[],i):"object"==typeof exports?exports.ScrollBooster=i():t.ScrollBooster=i()}("undefined"!=typeof self?self:this,function(){return function(t){function i(o){if(e[o])return e[o].exports;var n=e[o]={i:o,l:!1,exports:{}};return t[o].call(n.exports,n,n.exports,i),n.l=!0,n.exports}var e={};return i.m=t,i.c=e,i.d=function(t,e,o){i.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:o})},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,i){return Object.prototype.hasOwnProperty.call(t,i)},i.p="/dist/",i(i.s=0)}([function(t,i,e){"use strict";function o(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}function n(t){return Math.max(t.offsetWidth,t.scrollWidth)}function s(t){return Math.max(t.offsetHeight,t.scrollHeight)}function r(t,i,e){for(var o=void 0,n=t.childNodes,s=document.createRange(),r=0;o=n[r],r<n.length;r++)if(3===o.nodeType){s.selectNodeContents(o);var h=s.getBoundingClientRect();if(i>=h.left&&e>=h.top&&i<=h.right&&e<=h.bottom)return o}return!1}function h(){var t=window.getSelection?window.getSelection():document.selection;t&&(t.removeAllRanges?t.removeAllRanges():t.empty&&t.empty())}Object.defineProperty(i,"__esModule",{value:!0});var c=Object.assign||function(t){for(var i=1;i<arguments.length;i++){var e=arguments[i];for(var o in e)Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o])}return t},l=function(){function t(t,i){for(var e=0;e<i.length;e++){var o=i[e];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(i,e,o){return e&&t(i.prototype,e),o&&t(i,o),i}}(),p=function(){function t(){var i=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(o(this,t),!(i.viewport&&i.viewport instanceof Element))return void console.error('"viewport" config property must be present and must be Element');var e={handle:i.viewport,content:i.viewport.children[0],bounce:!0,friction:.05,bounceForce:.1,textSelection:!1,onClick:function(){},shouldScroll:function(){return!0},onUpdate:function(){}};if(this.props=c({},e,i),!this.props.content)return void console.error("Viewport does not have any content");this.viewport={width:this.props.viewport.clientWidth,height:this.props.viewport.clientHeight},this.content={width:n(this.props.content),height:s(this.props.content)},this.position={x:0,y:0},this.velocity={x:0,y:0},this.friction=1-this.props.friction,this.bounceForce=this.props.bounceForce,this.isDragging=!1,this.dragStartPosition={x:0,y:0},this.dragOffsetPosition=c({},this.dragStartPosition),this.dragPosition=c({},this.position),this.isScrollEnabled=!!this.props.emulateScroll,this.isScrolling=!1,this.scrollOffset={x:0,y:0},this.bounce=this.props.bounce,this.textSelection=this.props.textSelection,this.boundX={from:Math.min(-this.content.width+this.viewport.width,0),to:0},this.boundY={from:Math.min(-this.content.height+this.viewport.height,0),to:0},this.mode={x:"x"==this.props.mode,y:"y"==this.props.mode,xy:"x"!==this.props.mode&&"y"!==this.props.mode},this.isRunning=!1,this.rafID=null,this.events={},this.animate(),this.handleEvents()}return l(t,[{key:"run",value:function(){var t=this;this.isRunning=!0,cancelAnimationFrame(this.rafID),this.rafID=requestAnimationFrame(function(){return t.animate()})}},{key:"animate",value:function(){var t=this;this.isRunning&&(this.update(),this.notify(),this.rafID=requestAnimationFrame(function(){return t.animate()}))}},{key:"update",value:function(){this.applyBoundForce(),this.applyDragForce(),this.applyScrollForce(),this.velocity.x*=this.friction,this.velocity.y*=this.friction,this.mode.y||(this.position.x+=this.velocity.x),this.mode.x||(this.position.y+=this.velocity.y),this.bounce&&!this.isScrolling||(this.position.x=Math.max(Math.min(this.position.x,this.boundX.to),this.boundX.from),this.position.y=Math.max(Math.min(this.position.y,this.boundY.to),this.boundY.from)),!this.isDragging&&!this.isScrolling&&Math.abs(this.velocity.x)<.1&&Math.abs(this.velocity.y)<.1&&(this.isRunning=!1)}},{key:"applyForce",value:function(t){this.velocity.x+=t.x,this.velocity.y+=t.y}},{key:"applyBoundForce",value:function(){if(this.bounce&&!this.isDragging){var t=this.position.x<this.boundX.from,i=this.position.x>this.boundX.to,e=this.position.y<this.boundY.from,o=this.position.y>this.boundY.to,n={x:0,y:0};if(t||i){var s=t?this.boundX.from:this.boundX.to,r=s-this.position.x,h=r*this.bounceForce,c=this.position.x+(this.velocity.x+h)/(1-this.friction);t&&c<this.boundX.from||i&&c>this.boundX.to||(h=r*this.bounceForce-this.velocity.x),n.x=h}if(e||o){var l=e?this.boundY.from:this.boundY.to,p=l-this.position.y,a=p*this.bounceForce,u=this.position.y+(this.velocity.y+a)/(1-this.friction);e&&u<this.boundY.from||o&&u>this.boundY.to||(a=p*this.bounceForce-this.velocity.y),n.y=a}this.applyForce(n)}}},{key:"applyDragForce",value:function(){if(this.isDragging){var t={x:this.dragPosition.x-this.position.x,y:this.dragPosition.y-this.position.y},i={x:t.x-this.velocity.x,y:t.y-this.velocity.y};this.applyForce(i)}}},{key:"applyScrollForce",value:function(){if(this.isScrolling){var t={x:this.scrollOffset.x-this.velocity.x,y:this.scrollOffset.y-this.velocity.y};this.scrollOffset.x=0,this.scrollOffset.y=0,this.applyForce(t)}}},{key:"setPosition",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.velocity.x=0,this.velocity.y=0,this.position.x=-t.x||0,this.position.y=-t.y||0,this.run()}},{key:"getUpdate",value:function(){return{isRunning:this.isRunning,isDragging:this.isDragging,isScrolling:this.isScrolling,position:{x:-this.position.x,y:-this.position.y},dragOffsetPosition:this.dragOffsetPosition,viewport:c({},this.viewport),content:c({},this.content)}}},{key:"notify",value:function(){this.props.onUpdate(this.getUpdate())}},{key:"updateMetrics",value:function(){this.viewport.width=this.props.viewport.clientWidth,this.viewport.height=this.props.viewport.clientHeight,this.content.width=n(this.props.content),this.content.height=s(this.props.content),this.boundX.from=Math.min(-this.content.width+this.viewport.width,0),this.boundY.from=Math.min(-this.content.height+this.viewport.height,0),this.run()}},{key:"handleEvents",value:function(){var t=this,i=this.props.viewport,e={x:0,y:0},o={x:0,y:0},n=!1,s=function(i){var e=void 0,s=void 0;n?(e=i.touches[0].pageX,s=i.touches[0].pageY):(e=i.pageX,s=i.pageY),t.dragOffsetPosition.x=e-o.x,t.dragOffsetPosition.y=s-o.y,t.dragPosition.x=t.dragStartPosition.x+t.dragOffsetPosition.x,t.dragPosition.y=t.dragStartPosition.y+t.dragOffsetPosition.y,n||i.preventDefault()};this.events.pointerdown=function(c){var l=void 0,p=void 0,a=void 0,u=void 0;n=!(!c.touches||!c.touches[0]),n?(l=c.touches[0].pageX,p=c.touches[0].pageY,a=c.touches[0].clientX,u=c.touches[0].clientY):(l=c.pageX,p=c.pageY,a=c.clientX,u=c.clientY);var d=i.getBoundingClientRect();if(!(a-d.left>=i.clientLeft+i.clientWidth)&&!(u-d.top>=i.clientTop+i.clientHeight)&&t.props.shouldScroll(t.getUpdate(),c)){if(t.textSelection){if(r(c.target,a,u))return;h()}t.isDragging=!0,(e.x||e.y)&&(t.position.x=e.x,t.position.y=e.y,e.x=0,e.y=0),o.x=l,o.y=p,t.dragStartPosition.x=t.position.x,t.dragStartPosition.y=t.position.y,s(c),t.run();var v=void 0,f=void 0;f=function(i){t.isDragging=!1,n?(window.removeEventListener("touchmove",s),window.removeEventListener("touchend",v)):(window.removeEventListener("mousemove",s),window.removeEventListener("mouseup",v))},n?(v=window.addEventListener("touchend",f),window.addEventListener("touchmove",s)):(v=window.addEventListener("mouseup",f),window.addEventListener("mousemove",s))}};var c=null;this.events.wheel=function(i){t.velocity.x=0,t.isScrollEnabled&&(t.isScrolling=!0,t.scrollOffset.x=-i.deltaX,t.scrollOffset.y=-i.deltaY,t.run(),clearTimeout(c),c=setTimeout(function(){return t.isScrolling=!1},80),i.preventDefault())},this.events.scroll=function(i){var o=t.props.viewport.scrollLeft,n=t.props.viewport.scrollTop;Math.abs(t.position.x+o)>3&&(t.position.x=-o,t.velocity.x=0),Math.abs(t.position.y+n)>3&&(t.position.y=-n,t.velocity.y=0),e.x=-t.props.viewport.scrollLeft,e.y=-t.props.viewport.scrollTop},this.events.click=function(i){t.props.onClick(t.getUpdate(),i)},this.events.resize=this.updateMetrics.bind(this),this.props.handle.addEventListener("mousedown",this.events.pointerdown),this.props.handle.addEventListener("touchstart",this.events.pointerdown),this.props.handle.addEventListener("click",this.events.click),this.props.viewport.addEventListener("wheel",this.events.wheel),this.props.viewport.addEventListener("scroll",this.events.scroll),window.addEventListener("resize",this.events.resize)}},{key:"destroy",value:function(){this.props.handle.removeEventListener("mousedown",this.events.pointerdown),this.props.handle.removeEventListener("touchstart",this.events.pointerdown),this.props.handle.removeEventListener("click",this.events.click),this.props.viewport.removeEventListener("wheel",this.events.wheel),this.props.viewport.removeEventListener("scroll",this.events.scroll),window.removeEventListener("resize",this.events.resize)}}]),t}();i.default=p,t.exports=i.default}])});
+},{}],22:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -29608,7 +30481,7 @@ return StickySidebar;
 
 
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /**
  * Swiper 4.5.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -37734,7 +38607,7 @@ return StickySidebar;
 
 }));
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -37745,7 +38618,7 @@ var App = require('./modules/app');
 App.init();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./modules/app":25,"jquery":12}],24:[function(require,module,exports){
+},{"./modules/app":26,"jquery":13}],25:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -37756,6 +38629,8 @@ require('owl.carousel');
 
 require('jquery-mousewheel');
 
+var Utils = require('./utils');
+
 module.exports = {
   _elems: {
     $_: $(),
@@ -37763,14 +38638,9 @@ module.exports = {
   },
   _state: {
     isMobile: false,
-    isTouchDevice: false,
     windowRatio: 1,
     scrollType: false,
     run: false
-  },
-  _setTouchDevice: function _setTouchDevice() {
-    var self = this;
-    self._state.isTouchDevice = typeof window.ontouchstart !== 'undefined';
   },
   _setIsMobile: function _setIsMobile() {
     var self = this;
@@ -37784,7 +38654,7 @@ module.exports = {
     var self = this;
     $('body').height('auto');
     if (self._state.isMobile) return;
-    if (self._state.isTouchDevice) return;
+    if (Utils.isTouchDevice) return;
 
     if ($(window).width() >= self._elems.$iScroll.children().width()) {
       $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
@@ -38046,7 +38916,7 @@ module.exports = {
 
     var scrollTop = Math.round(scrollLeft / self._state.windowRatio);
 
-    if (self._state.isTouchDevice) {
+    if (Utils.isTouchDevice) {
       $(window).scrollTop(scrollTop);
     }
 
@@ -38088,8 +38958,6 @@ module.exports = {
 
     self._setIsMobile();
 
-    self._setTouchDevice();
-
     self._resetDesktop();
 
     self._setWindowRatio();
@@ -38104,7 +38972,15 @@ module.exports = {
     if (!self._state.isMobile) {//self._initRangeSlider();
     }
 
-    if (!self._state.isTouchDevice) {
+    if (Utils.isTouchDevice) {
+      self._elems.$scroll.on('scroll', {
+        self: self
+      }, function (e) {
+        self._renderParallaxState();
+
+        self._handleSliderScroll(e);
+      });
+    } else {
       self._elems.$scroll.css({
         'overflow-x': 'hidden'
       });
@@ -38126,14 +39002,6 @@ module.exports = {
           $('#wrapper').removeClass('menu--hide');
         }
       });
-    } else {
-      self._elems.$scroll.on('scroll', {
-        self: self
-      }, function (e) {
-        self._renderParallaxState();
-
-        self._handleSliderScroll(e);
-      });
     }
 
     $(window).on('resize', {
@@ -38149,8 +39017,6 @@ module.exports = {
     self._elems.$scroll = $_.find('.gantt-slider__scroll');
 
     self._setIsMobile();
-
-    self._setTouchDevice();
 
     self._setWindowRatio();
 
@@ -38172,12 +39038,14 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"jquery-mousewheel":10,"owl.carousel":16,"rangeslider.js":18}],25:[function(require,module,exports){
+},{"./utils":53,"jquery":13,"jquery-mousewheel":11,"owl.carousel":17,"rangeslider.js":19}],26:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
 
 require('objectFitPolyfill');
+
+require('jquery-lazy');
 
 var TechPromo = require('./techPromo');
 
@@ -38240,6 +39108,12 @@ module.exports = {
     promoVideosLoaded: 0,
     isUserActivityHandled: false,
     isWindowLoaded: false
+  },
+  _initLazyLoader: function _initLazyLoader() {
+    $("#gantt-slider .bg-layer__image").Lazy({
+      appendScroll: $('#gantt-slider .gantt-slider__scroll')[0]
+    });
+    $('.lazy').Lazy();
   },
   _showContent: function _showContent() {
     var self = this;
@@ -38336,11 +39210,13 @@ module.exports = {
 
     self._state.preloaderTimer = setInterval(self._showContent.bind(self), 50);
 
+    self._initLazyLoader();
+
     self._bindUI();
   }
 };
 
-},{"./about":24,"./arch":26,"./catalog":27,"./citiesSlider":28,"./form":29,"./ganttSlider":30,"./header":31,"./hover":32,"./navBanner":33,"./navFilter":34,"./navMobile":35,"./navSticker":36,"./news":37,"./newsPhotoSlider":38,"./newsSlider":39,"./newsToggles":40,"./overview":42,"./popup":43,"./scrollableTable":44,"./scrollbox":45,"./sliderContent":46,"./sliderDigits":47,"./sliderTabs":48,"./tAdvantages":49,"./tSliders":50,"./techPromo":51,"./utils":52,"jquery":12,"objectFitPolyfill":15}],26:[function(require,module,exports){
+},{"./about":25,"./arch":27,"./catalog":28,"./citiesSlider":29,"./form":30,"./ganttSlider":31,"./header":32,"./hover":33,"./navBanner":34,"./navFilter":35,"./navMobile":36,"./navSticker":37,"./news":38,"./newsPhotoSlider":39,"./newsSlider":40,"./newsToggles":41,"./overview":43,"./popup":44,"./scrollableTable":45,"./scrollbox":46,"./sliderContent":47,"./sliderDigits":48,"./sliderTabs":49,"./tAdvantages":50,"./tSliders":51,"./techPromo":52,"./utils":53,"jquery":13,"jquery-lazy":10,"objectFitPolyfill":16}],27:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38418,7 +39294,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],27:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],28:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38767,7 +39643,7 @@ module.exports = {
   }
 };
 
-},{"./notify":41,"jquery":12,"sticky-sidebar":21}],28:[function(require,module,exports){
+},{"./notify":42,"jquery":13,"sticky-sidebar":22}],29:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -38775,6 +39651,8 @@ var $ = require('jquery');
 var ScrollBooster = require('scrollbooster');
 
 require("rangeslider.js");
+
+var Utils = require('./utils');
 
 module.exports = {
   _cache: {
@@ -38944,7 +39822,7 @@ module.exports = {
   },
   _initScrollBooster: function _initScrollBooster() {
     var self = this;
-    if (Modernizr.hiddenscroll) return;
+    if (Utils.isTouchDevice) return;
     var viewport = self._elems.$scroll[0];
     var content = self._elems.$canvas[0];
     new ScrollBooster({
@@ -39041,7 +39919,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"rangeslider.js":18,"scrollbooster":20}],29:[function(require,module,exports){
+},{"./utils":53,"jquery":13,"rangeslider.js":19,"scrollbooster":21}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39216,7 +40094,7 @@ module.exports = {
   }
 };
 
-},{"./notify":41,"autosize":5,"icheck":9,"jquery":12,"jquery-form":2,"jquery-validation":11,"jquery.maskedinput":3}],30:[function(require,module,exports){
+},{"./notify":42,"autosize":5,"icheck":9,"jquery":13,"jquery-form":2,"jquery-validation":12,"jquery.maskedinput":3}],31:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39224,6 +40102,8 @@ var $ = require('jquery');
 var ScrollBooster = require('scrollbooster');
 
 require('rangeslider.js');
+
+var Utils = require('./utils');
 
 module.exports = {
   _cache: {
@@ -39502,7 +40382,7 @@ module.exports = {
   },
   _initScrollBooster: function _initScrollBooster() {
     var self = this;
-    if (Modernizr.hiddenscroll) return;
+    if (Utils.isTouchDevice) return;
     var viewport = self._elems.$scroll[0];
     var content = self._elems.$canvas[0];
     new ScrollBooster({
@@ -39641,7 +40521,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"rangeslider.js":18,"scrollbooster":20}],31:[function(require,module,exports){
+},{"./utils":53,"jquery":13,"rangeslider.js":19,"scrollbooster":21}],32:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39731,7 +40611,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],32:[function(require,module,exports){
+},{"jquery":13}],33:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39761,7 +40641,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],33:[function(require,module,exports){
+},{"jquery":13}],34:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39858,7 +40738,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],34:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],35:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39900,7 +40780,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],35:[function(require,module,exports){
+},{"jquery":13}],36:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39956,7 +40836,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],36:[function(require,module,exports){
+},{"jquery":13}],37:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40076,7 +40956,7 @@ module.exports = {
   }
 };
 
-},{"jQuery-One-Page-Nav":1,"jquery":12,"midnight.js":13}],37:[function(require,module,exports){
+},{"jQuery-One-Page-Nav":1,"jquery":13,"midnight.js":14}],38:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40149,7 +41029,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],38:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],39:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -40219,7 +41099,7 @@ module.exports = {
   }
 };
 
-},{"swiper":22}],39:[function(require,module,exports){
+},{"swiper":23}],40:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -40241,7 +41121,7 @@ module.exports = {
   }
 };
 
-},{"swiper":22}],40:[function(require,module,exports){
+},{"swiper":23}],41:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -40302,7 +41182,7 @@ module.exports = {
   }
 };
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40323,7 +41203,7 @@ module.exports = function (title, text) {
   });
 };
 
-},{"jquery":12,"notifyjs-browser":14}],42:[function(require,module,exports){
+},{"jquery":13,"notifyjs-browser":15}],43:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40414,7 +41294,7 @@ module.exports = {
   }
 };
 
-},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":12}],43:[function(require,module,exports){
+},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":13}],44:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40455,12 +41335,14 @@ module.exports = {
   }
 };
 
-},{"@fancyapps/fancybox":4,"jquery":12}],44:[function(require,module,exports){
+},{"@fancyapps/fancybox":4,"jquery":13}],45:[function(require,module,exports){
 "use strict";
 
 var PerfectScrollbar = require('perfect-scrollbar');
 
 var ScrollBooster = require('scrollbooster');
+
+var Utils = require('./utils');
 
 module.exports = {
   init: function init() {
@@ -40531,7 +41413,7 @@ module.exports = {
         });
         handleGradientsOnStart();
 
-        if (Modernizr.hiddenscroll == false) {
+        if (!Utils.isTouchDevice) {
           var viewport = scrollableContainer;
           var content = scrollableContainer.querySelector('table');
           new ScrollBooster({
@@ -40562,7 +41444,7 @@ module.exports = {
   }
 };
 
-},{"perfect-scrollbar":17,"scrollbooster":20}],45:[function(require,module,exports){
+},{"./utils":53,"perfect-scrollbar":18,"scrollbooster":21}],46:[function(require,module,exports){
 "use strict";
 
 var scrollbarWidth = require('scrollbarwidth');
@@ -40587,7 +41469,7 @@ window.addEventListener('resize', function () {
   setNegativeOffset();
 });
 
-},{"scrollbarwidth":19}],46:[function(require,module,exports){
+},{"scrollbarwidth":20}],47:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40650,7 +41532,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],47:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],48:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40959,7 +41841,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],48:[function(require,module,exports){
+},{"jquery":13}],49:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41017,7 +41899,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],49:[function(require,module,exports){
+},{"jquery":13}],50:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41086,7 +41968,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12}],50:[function(require,module,exports){
+},{"jquery":13}],51:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41191,7 +42073,7 @@ module.exports = {
   }
 };
 
-},{"jquery":12,"owl.carousel":16}],51:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],52:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41285,12 +42167,15 @@ module.exports = {
   }
 };
 
-},{"./navBanner":33,"./utils":52,"DrawSVGPlugin":53,"TweenLite":8,"jquery":12}],52:[function(require,module,exports){
+},{"./navBanner":34,"./utils":53,"DrawSVGPlugin":54,"TweenLite":8,"jquery":13}],53:[function(require,module,exports){
 "use strict";
 
 module.exports = {
   isMobile: function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  },
+  isTouchDevice: function isTouchDevice() {
+    return typeof window.ontouchstart !== 'undefined';
   },
   scrollTo: function scrollTo(position) {
     $('html, body').stop().animate({
@@ -41299,7 +42184,7 @@ module.exports = {
   }
 };
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -41424,4 +42309,4 @@ var _gsScope = "undefined" != typeof module && module.exports && "undefined" != 
 }();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"TweenLite":8}]},{},[23]);
+},{"TweenLite":8}]},{},[24]);

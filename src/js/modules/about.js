@@ -3,6 +3,8 @@ require("rangeslider.js");
 require('owl.carousel');
 require('jquery-mousewheel');
 
+var Utils = require('./utils');
+
 module.exports = {
 
     _elems: {
@@ -12,16 +14,9 @@ module.exports = {
 
     _state: {
         isMobile: false,
-        isTouchDevice: false,
         windowRatio: 1,
         scrollType: false,
         run: false
-    },
-
-    _setTouchDevice: function () {
-        var self = this;
-
-        self._state.isTouchDevice = typeof window.ontouchstart !== 'undefined';
     },
 
     _setIsMobile: function () {
@@ -42,7 +37,7 @@ module.exports = {
         $('body').height('auto');
 
         if (self._state.isMobile) return;
-        if (self._state.isTouchDevice) return;
+        if (Utils.isTouchDevice) return;
 
         if ($(window).width() >= self._elems.$iScroll.children().width()) {
             $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
@@ -307,7 +302,7 @@ module.exports = {
         var scrollLeft = self._elems.$scroll.scrollLeft();
         var scrollTop = Math.round(scrollLeft / self._state.windowRatio);
 
-        if (self._state.isTouchDevice) {
+        if (Utils.isTouchDevice) {
             $(window).scrollTop(scrollTop);
         }
 
@@ -355,7 +350,6 @@ module.exports = {
         var self = e.data.self;
 
         self._setIsMobile();
-        self._setTouchDevice();
         self._resetDesktop();
         self._setWindowRatio();
         self._setBodyHeight();
@@ -369,7 +363,13 @@ module.exports = {
             //self._initRangeSlider();
         }
 
-        if(!self._state.isTouchDevice) {
+        if( Utils.isTouchDevice ) {
+            self._elems.$scroll.on('scroll', {self: self}, function(e){
+                self._renderParallaxState();
+                self._handleSliderScroll(e);
+            });
+        }
+        else {
             self._elems.$scroll.css({'overflow-x': 'hidden'});
             $(window).on('scroll', {self: self}, function (e) {
                 if (self._state.isMobile) return;
@@ -383,12 +383,6 @@ module.exports = {
                 } else {
                     $('#wrapper').removeClass('menu--hide');
                 }
-            });
-        }
-        else {
-            self._elems.$scroll.on('scroll', {self: self}, function(e){
-                self._renderParallaxState();
-                self._handleSliderScroll(e);
             });
         }
 
@@ -407,7 +401,6 @@ module.exports = {
         self._elems.$scroll = $_.find('.gantt-slider__scroll');
 
         self._setIsMobile();
-        self._setTouchDevice();
         self._setWindowRatio();
         self._setBodyHeight();
         self._setScrollWidth();

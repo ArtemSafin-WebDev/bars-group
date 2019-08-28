@@ -2,6 +2,8 @@ var $ = require('jquery');
 var ScrollBooster = require('scrollbooster');
 require("rangeslider.js");
 
+var Utils = require('./utils');
+
 module.exports = {
 
 	_cache: {
@@ -193,7 +195,7 @@ module.exports = {
 	_initScrollBooster: function () {
 		var self = this;
 
-		if (Modernizr.hiddenscroll) return;
+		if (Utils.isTouchDevice) return;
 
 		var viewport = self._elems.$scroll[0];
 		var content = self._elems.$canvas[0];
