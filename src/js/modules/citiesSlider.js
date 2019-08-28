@@ -25,7 +25,6 @@ module.exports = {
 		maxScrollLeft: 0,
 		lastRangeValue: 0,
 		lastZIndex: 50,
-		lastScrollTop: 0,
 		timeout: null
 	},
 
@@ -236,24 +235,6 @@ module.exports = {
 		self._setItemsPositions();
 	},
 
-	_handleWindowScroll: function (e) {
-		var self = this;
-
-		if (!Modernizr.requestanimationframe) return;
-
-		if (self._state.timeout) {
-			window.cancelAnimationFrame(self._state.timeout);
-		}
-
-		self._state.timeout = window.requestAnimationFrame(function () {
-			var scrollTop  = $(window).scrollTop();
-			var delta  = self._state.lastScrollTop - scrollTop;
-			var scrollLeft = self._elems.$scroll.scrollLeft() - delta;
-			self._elems.$scroll.scrollLeft(scrollLeft)
-			self._state.lastScrollTop = scrollTop;
-		});
-	},
-
 	_bindUI: function () {
 		var self = this;
 
@@ -262,7 +243,6 @@ module.exports = {
 		$(window).on('resize', {self: self}, self._handleWindowResize);
 
 		self._elems.$scroll[0].addEventListener('scroll', self._handleSliderScroll.bind(self), false);
-		window.addEventListener('scroll', self._handleWindowScroll.bind(self), false);
 	},
 
 	init: function () {
