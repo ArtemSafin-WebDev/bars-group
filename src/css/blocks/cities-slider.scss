@@ -71,7 +71,7 @@
 
 		&__image {
 			@include position-fill();
-			background: #cbd9e1 no-repeat 50% 50%;
+			background: $base-gray no-repeat 50% 50%;
 		}
 
 		&__body {

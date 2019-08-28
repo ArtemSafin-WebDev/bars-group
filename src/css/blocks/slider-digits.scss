@@ -36,7 +36,7 @@
 
 		&__item {
 			@include position-fill();
-			background: #cbd9e1 50% 50% no-repeat;
+			background: $base-gray 50% 50% no-repeat;
 			background-size: cover;
 			opacity: 0;
 

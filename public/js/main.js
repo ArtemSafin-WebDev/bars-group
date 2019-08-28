@@ -39048,14 +39048,12 @@ module.exports = {
   }
 };
 
-},{"./utils":53,"jquery":13,"jquery-mousewheel":11,"owl.carousel":17,"rangeslider.js":19}],26:[function(require,module,exports){
+},{"./utils":54,"jquery":13,"jquery-mousewheel":11,"owl.carousel":17,"rangeslider.js":19}],26:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
 
 require('objectFitPolyfill');
-
-require('jquery-lazy');
 
 var TechPromo = require('./techPromo');
 
@@ -39109,6 +39107,8 @@ var Arch = require('./arch');
 
 var NavFilter = require('./navFilter');
 
+var Lazyload = require('./lazyload');
+
 require('./scrollbox');
 
 module.exports = {
@@ -39118,12 +39118,6 @@ module.exports = {
     promoVideosLoaded: 0,
     isUserActivityHandled: false,
     isWindowLoaded: false
-  },
-  _initLazyLoader: function _initLazyLoader() {
-    $("#gantt-slider .bg-layer__image").Lazy({
-      appendScroll: $('#gantt-slider .gantt-slider__scroll')[0]
-    });
-    $('.lazy').Lazy();
   },
   _showContent: function _showContent() {
     var self = this;
@@ -39139,7 +39133,8 @@ module.exports = {
     Hover.init();
     Popup.init();
     NavFilter.init();
-    TAdvantages.init(); // trigger click to start loading lazy videos
+    TAdvantages.init();
+    Lazyload.init(); // trigger click to start loading lazy videos
 
     $('body').trigger('click');
   },
@@ -39220,13 +39215,11 @@ module.exports = {
 
     self._state.preloaderTimer = setInterval(self._showContent.bind(self), 50);
 
-    self._initLazyLoader();
-
     self._bindUI();
   }
 };
 
-},{"./about":25,"./arch":27,"./catalog":28,"./citiesSlider":29,"./form":30,"./ganttSlider":31,"./header":32,"./hover":33,"./navBanner":34,"./navFilter":35,"./navMobile":36,"./navSticker":37,"./news":38,"./newsPhotoSlider":39,"./newsSlider":40,"./newsToggles":41,"./overview":43,"./popup":44,"./scrollableTable":45,"./scrollbox":46,"./sliderContent":47,"./sliderDigits":48,"./sliderTabs":49,"./tAdvantages":50,"./tSliders":51,"./techPromo":52,"./utils":53,"jquery":13,"jquery-lazy":10,"objectFitPolyfill":16}],27:[function(require,module,exports){
+},{"./about":25,"./arch":27,"./catalog":28,"./citiesSlider":29,"./form":30,"./ganttSlider":31,"./header":32,"./hover":33,"./lazyload":34,"./navBanner":35,"./navFilter":36,"./navMobile":37,"./navSticker":38,"./news":39,"./newsPhotoSlider":40,"./newsSlider":41,"./newsToggles":42,"./overview":44,"./popup":45,"./scrollableTable":46,"./scrollbox":47,"./sliderContent":48,"./sliderDigits":49,"./sliderTabs":50,"./tAdvantages":51,"./tSliders":52,"./techPromo":53,"./utils":54,"jquery":13,"objectFitPolyfill":16}],27:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39653,7 +39646,7 @@ module.exports = {
   }
 };
 
-},{"./notify":42,"jquery":13,"sticky-sidebar":22}],29:[function(require,module,exports){
+},{"./notify":43,"jquery":13,"sticky-sidebar":22}],29:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39929,7 +39922,7 @@ module.exports = {
   }
 };
 
-},{"./utils":53,"jquery":13,"rangeslider.js":19,"scrollbooster":21}],30:[function(require,module,exports){
+},{"./utils":54,"jquery":13,"rangeslider.js":19,"scrollbooster":21}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40104,7 +40097,7 @@ module.exports = {
   }
 };
 
-},{"./notify":42,"autosize":5,"icheck":9,"jquery":13,"jquery-form":2,"jquery-validation":12,"jquery.maskedinput":3}],31:[function(require,module,exports){
+},{"./notify":43,"autosize":5,"icheck":9,"jquery":13,"jquery-form":2,"jquery-validation":12,"jquery.maskedinput":3}],31:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40532,7 +40525,7 @@ module.exports = {
   }
 };
 
-},{"./utils":53,"jquery":13,"rangeslider.js":19,"scrollbooster":21}],32:[function(require,module,exports){
+},{"./utils":54,"jquery":13,"rangeslider.js":19,"scrollbooster":21}],32:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40657,6 +40650,22 @@ module.exports = {
 
 var $ = require('jquery');
 
+require('jquery-lazy');
+
+module.exports = {
+  init: function init() {
+    $("#gantt-slider .bg-layer__image").Lazy({
+      appendScroll: $('#gantt-slider .gantt-slider__scroll')[0]
+    });
+    $('.lazy').Lazy();
+  }
+};
+
+},{"jquery":13,"jquery-lazy":10}],35:[function(require,module,exports){
+"use strict";
+
+var $ = require('jquery');
+
 require('owl.carousel');
 
 module.exports = {
@@ -40749,7 +40758,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13,"owl.carousel":17}],35:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],36:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40791,7 +40800,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13}],36:[function(require,module,exports){
+},{"jquery":13}],37:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40847,7 +40856,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13}],37:[function(require,module,exports){
+},{"jquery":13}],38:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40967,7 +40976,7 @@ module.exports = {
   }
 };
 
-},{"jQuery-One-Page-Nav":1,"jquery":13,"midnight.js":14}],38:[function(require,module,exports){
+},{"jQuery-One-Page-Nav":1,"jquery":13,"midnight.js":14}],39:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41040,7 +41049,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13,"owl.carousel":17}],39:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],40:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -41110,7 +41119,7 @@ module.exports = {
   }
 };
 
-},{"swiper":23}],40:[function(require,module,exports){
+},{"swiper":23}],41:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -41132,7 +41141,7 @@ module.exports = {
   }
 };
 
-},{"swiper":23}],41:[function(require,module,exports){
+},{"swiper":23}],42:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -41193,7 +41202,7 @@ module.exports = {
   }
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41214,7 +41223,7 @@ module.exports = function (title, text) {
   });
 };
 
-},{"jquery":13,"notifyjs-browser":15}],43:[function(require,module,exports){
+},{"jquery":13,"notifyjs-browser":15}],44:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41305,7 +41314,7 @@ module.exports = {
   }
 };
 
-},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":13}],44:[function(require,module,exports){
+},{"./../../../node_modules/bootstrap/js/dist/collapse":6,"./../../../node_modules/bootstrap/js/dist/util":7,"jquery":13}],45:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41346,7 +41355,7 @@ module.exports = {
   }
 };
 
-},{"@fancyapps/fancybox":4,"jquery":13}],45:[function(require,module,exports){
+},{"@fancyapps/fancybox":4,"jquery":13}],46:[function(require,module,exports){
 "use strict";
 
 var PerfectScrollbar = require('perfect-scrollbar');
@@ -41455,7 +41464,7 @@ module.exports = {
   }
 };
 
-},{"./utils":53,"perfect-scrollbar":18,"scrollbooster":21}],46:[function(require,module,exports){
+},{"./utils":54,"perfect-scrollbar":18,"scrollbooster":21}],47:[function(require,module,exports){
 "use strict";
 
 var scrollbarWidth = require('scrollbarwidth');
@@ -41480,7 +41489,7 @@ window.addEventListener('resize', function () {
   setNegativeOffset();
 });
 
-},{"scrollbarwidth":20}],47:[function(require,module,exports){
+},{"scrollbarwidth":20}],48:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41543,7 +41552,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13,"owl.carousel":17}],48:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],49:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41852,7 +41861,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13}],49:[function(require,module,exports){
+},{"jquery":13}],50:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41910,7 +41919,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13}],50:[function(require,module,exports){
+},{"jquery":13}],51:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41979,7 +41988,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13}],51:[function(require,module,exports){
+},{"jquery":13}],52:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42084,7 +42093,7 @@ module.exports = {
   }
 };
 
-},{"jquery":13,"owl.carousel":17}],52:[function(require,module,exports){
+},{"jquery":13,"owl.carousel":17}],53:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42178,7 +42187,7 @@ module.exports = {
   }
 };
 
-},{"./navBanner":34,"./utils":53,"DrawSVGPlugin":54,"TweenLite":8,"jquery":13}],53:[function(require,module,exports){
+},{"./navBanner":35,"./utils":54,"DrawSVGPlugin":55,"TweenLite":8,"jquery":13}],54:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -42195,7 +42204,7 @@ module.exports = {
   }
 };
 
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 (function (global){
 "use strict";
 

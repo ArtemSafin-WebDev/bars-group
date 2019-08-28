@@ -18,6 +18,7 @@
 @include retina-sprites($retina-groups);
 
 // partials
+@import '_variables';
 @import '_vendor-fix';
 @import '_fonts';
 @import '_helpers';

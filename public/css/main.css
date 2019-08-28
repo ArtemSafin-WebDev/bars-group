@@ -3328,7 +3328,8 @@ img {
     width: auto;
     right: 0;
     height: 7px;
-    opacity: 0; }
+    opacity: 0;
+    background: #eff4fd; }
   .gantt-slider__click {
     position: absolute;
     top: 0;
@@ -3524,7 +3525,7 @@ img {
       left: 0;
       width: 100%;
       height: 100%;
-      background: #cbd9e1 no-repeat 50% 50%; }
+      background: #eff4fd no-repeat 50% 50%; }
     .cities-slider__item__body {
       position: relative;
       min-height: 160px;
@@ -3631,7 +3632,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #cbd9e1 50% 50% no-repeat;
+    background: #eff4fd 50% 50% no-repeat;
     background-size: cover;
     opacity: 0; }
     .slider-digits__pics__item._active {
@@ -3944,7 +3945,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #cbd9e1 50% 50% no-repeat;
+    background: #eff4fd 50% 50% no-repeat;
     background-size: cover; }
   .slider-content__desc {
     position: relative;
@@ -4037,7 +4038,7 @@ img {
       left: 0;
       width: 100%;
       height: 100%;
-      background: #cbd9e1 50% 50% no-repeat;
+      background: #eff4fd 50% 50% no-repeat;
       background-size: cover; }
   .slider-tabs__ctrl {
     position: absolute;
@@ -4481,7 +4482,7 @@ img {
     transition: all .2s ease-out;
     display: block;
     padding-top: 66.66%;
-    background: #cbd9e1 50% 50% no-repeat;
+    background: #eff4fd 50% 50% no-repeat;
     background-size: cover; }
 
 .article-cards__desc {
@@ -4789,7 +4790,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #cbd9e1 50% 50% no-repeat;
+    background: #eff4fd 50% 50% no-repeat;
     background-size: cover; }
   .banner__text {
     position: relative;
