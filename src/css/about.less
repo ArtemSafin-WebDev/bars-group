@@ -24,6 +24,38 @@ body {
       }
     }
   }
+  &.is-admin {
+    .page {
+      &__wrapper {
+        &--about {
+          .brand {
+            &-box {
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+    .about {
+      &-slider {
+        position: relative;
+        height: auto;
+      }
+    }
+    .iScroll {
+      width: @iScrollWidth;
+      flex-wrap: wrap;
+      &-item {
+        height: 100vh;
+      }
+    }
+    .iRatings {
+      &-item {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
 }
 
 [data-factor] {
@@ -257,7 +289,7 @@ body {
   &__img {
     @media @min_small {
       position: absolute;
-      top: 30px;
+      top: 0;
       left: @iPageInnerPadding + @iPageLabelLeft + 100px;
     }
     @media @max_small {
@@ -310,7 +342,7 @@ body {
       align-items: center;
     }
     &__inner {
-      max-height: 580px;
+      max-height: 650px;
       width: 100%;
     }
   }
@@ -748,7 +780,7 @@ body {
   .owl {
     &-nav {
       position: absolute;
-      bottom: 25px;
+      bottom: 10px;
       right: 0;
       button {
         &.owl {

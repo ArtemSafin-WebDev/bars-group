@@ -13,12 +13,18 @@ module.exports = {
     },
 
     _state: {
+        isAdminPage: false,
         isMobile: false,
         windowRatio: 1,
         scrollType: false,
         run: false
     },
 
+    _setIsAdminPage: function () {
+        var self = this;
+
+        self._state.isAdminPage = $('body').hasClass('is-admin');
+    },
     _setIsMobile: function () {
         var self = this;
 
@@ -36,6 +42,7 @@ module.exports = {
 
         $('body').height('auto');
 
+        if (self._state.isAdminPage) return;
         if (self._state.isMobile) return;
         if (Utils.isTouchDevice) return;
 
@@ -50,6 +57,7 @@ module.exports = {
         var self = this;
 
         if (self._state.isMobile) return;
+        if (self._state.isAdminPage) return;
 
         if ($(window).width() >= self._elems.$iScroll.children().width()) {
             self._elems.$iScroll.width($(window).width() * self._elems.$iScroll.children().length);
@@ -88,7 +96,7 @@ module.exports = {
             var left = 0;
 
             if ($(this).data('top') > 0) {
-                top = $(this).data('top') / iGeoMapHeight * 100;
+                top = $(this).data('top') * (iGeoMapHeight / 987) / iGeoMapHeight * 100;
             }
 
             if ($(this).data('left') > 0) {
@@ -373,6 +381,7 @@ module.exports = {
             self._elems.$scroll.css({'overflow-x': 'hidden'});
             $(window).on('scroll', {self: self}, function (e) {
                 if (self._state.isMobile) return;
+                if (self._state.isAdminPage) return;
 
                 self._renderParallaxState();
                 self._handleSliderScroll(e);
@@ -400,6 +409,7 @@ module.exports = {
         self._elems.$iScroll = $_.find('.iScroll');
         self._elems.$scroll = $_.find('.gantt-slider__scroll');
 
+        self._setIsAdminPage();
         self._setIsMobile();
         self._setWindowRatio();
         self._setBodyHeight();
