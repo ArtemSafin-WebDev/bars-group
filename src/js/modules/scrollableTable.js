@@ -98,7 +98,7 @@ module.exports = {
 
                 handleGradientsOnStart();
 
-                if (!Utils.isTouchDevice)  {
+                if (!Utils.isTouchDevice())  {
                     var viewport = scrollableContainer;
                     var content = scrollableContainer.querySelector('table');
 

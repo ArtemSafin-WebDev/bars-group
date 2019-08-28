@@ -44,7 +44,7 @@ module.exports = {
 
         if (self._state.isAdminPage) return;
         if (self._state.isMobile) return;
-        if (Utils.isTouchDevice) return;
+        if (Utils.isTouchDevice()) return;
 
         if ($(window).width() >= self._elems.$iScroll.children().width()) {
             $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
@@ -310,7 +310,7 @@ module.exports = {
         var scrollLeft = self._elems.$scroll.scrollLeft();
         var scrollTop = Math.round(scrollLeft / self._state.windowRatio);
 
-        if (Utils.isTouchDevice) {
+        if (Utils.isTouchDevice()) {
             $(window).scrollTop(scrollTop);
         }
 
@@ -371,7 +371,7 @@ module.exports = {
             //self._initRangeSlider();
         }
 
-        if( Utils.isTouchDevice ) {
+        if( Utils.isTouchDevice() ) {
             self._elems.$scroll.on('scroll', {self: self}, function(e){
                 self._renderParallaxState();
                 self._handleSliderScroll(e);

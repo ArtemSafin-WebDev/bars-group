@@ -195,7 +195,7 @@ module.exports = {
 	_initScrollBooster: function () {
 		var self = this;
 
-		if (Utils.isTouchDevice) return;
+		if (Utils.isTouchDevice()) return;
 
 		var viewport = self._elems.$scroll[0];
 		var content = self._elems.$canvas[0];
