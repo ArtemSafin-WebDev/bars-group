@@ -41771,7 +41771,7 @@ module.exports = {
     var deltaX = touchStartX - e.originalEvent.touches[0].clientX;
     var deltaY = touchStartY - e.originalEvent.touches[0].clientY;
 
-    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+    if (Math.abs(deltaX) > 70 && Math.abs(deltaX) > Math.abs(deltaY)) {
       if (deltaX > 0) {
         // swipe left
         var nextIndex = self._state.currentIndex + 1;
