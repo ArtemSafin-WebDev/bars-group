@@ -38916,11 +38916,18 @@ module.exports = {
       }, 1200);
     });
     setTimeout(function () {
+      $iNav.children('a').removeClass('active');
       $iNav.children('a').each(function () {
         var link = $(this);
 
         if ($(link.attr('href')).offset().left < $(window).width() / 2 && $(link.attr('href')).offset().left > -1 * $(window).width() / 2) {
           link.addClass('active');
+
+          if ($(link.attr('href')).find('.iScroll-item__label').length) {
+            $('#wrapper .page__label').stop().text($(link.attr('href')).find('.iScroll-item__label').text());
+          } else {
+            $('#wrapper .page__label').text('О компании');
+          }
         }
       });
     }, 200);
