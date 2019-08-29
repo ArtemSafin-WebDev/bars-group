@@ -1195,11 +1195,11 @@ img {
 
 @media all and (max-width: 600px) {
   .rangeslider__handle {
-    height: 34px;
+    height: 36px;
     width: 80px; }
     .rangeslider__handle i {
-      height: 34px;
-      line-height: 34px;
+      height: 36px;
+      line-height: 36px;
       font-size: 13px; } }
 
 .button-aurora {
@@ -3454,8 +3454,8 @@ img {
   .gantt-slider__desc {
     font-size: 12px; }
   .gantt-slider__toggle {
-    width: 34px;
-    height: 34px; } }
+    width: 36px;
+    height: 36px; } }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .gantt-slider__body {
