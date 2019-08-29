@@ -93,6 +93,7 @@ body.is-admin .iRatings-item {
   margin-right: 37px;
   font-size: 16px;
   line-height: 24px;
+  opacity: 0.6;
 }
 @media screen and (max-width: 992px) {
   .iNav a {
@@ -100,8 +101,14 @@ body.is-admin .iRatings-item {
     font-size: 13px;
   }
 }
+.iNav a:hover {
+  opacity: 0.8;
+}
 .iNav a:last-child {
   margin-right: 0;
+}
+.iNav a.active {
+  opacity: 1;
 }
 .iScroll {
   display: -webkit-box;
@@ -1324,6 +1331,11 @@ body.is-admin .iRatings-item {
 .iLeadership-modal__text + .iLeadership-modal__text {
   margin-top: 23px;
 }
+@media screen and (max-width: 576px) {
+  .iPartners {
+    padding-bottom: 0;
+  }
+}
 .iPartners__items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1355,7 +1367,12 @@ body.is-admin .iRatings-item {
 }
 @media screen and (max-width: 576px) {
   .iPartners__item {
+    height: 60px;
     width: calc(100%/2 - 25px);
+  }
+  .iPartners__item img {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
   }
 }
 @media screen and (max-width: 378px) {
@@ -1368,6 +1385,11 @@ body.is-admin .iRatings-item {
 }
 .iHistory .page__center {
   padding: 50px 0;
+}
+@media screen and (max-width: 576px) {
+  .iHistory .page__center {
+    padding: 0;
+  }
 }
 .iHistory-ruler {
   margin-bottom: 90px;
@@ -1432,6 +1454,11 @@ body.is-admin .iRatings-item {
   height: 40px;
   background: #DCE7FC;
   z-index: -10;
+}
+@media screen and (max-width: 576px) {
+  .iHistory-ruler__pipe {
+    width: 60px;
+  }
 }
 .iHistory-ruler__item {
   min-width: 120px;

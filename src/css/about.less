@@ -126,12 +126,19 @@ body {
     margin-right: 37px;
     font-size: 16px;
     line-height: 24px;
+    opacity: 0.6;
     @media @max_large {
       margin-right: 18px;
       font-size: 13px;
     }
+    &:hover {
+      opacity: 0.8;
+    }
     &:last-child {
       margin-right: 0;
+    }
+    &.active {
+      opacity: 1;
     }
   }
 }
@@ -1175,6 +1182,9 @@ body {
 }
 
 .iPartners {
+  @media @max_small {
+    padding-bottom: 0;
+  }
   &__items {
     display: flex;
     flex-wrap: wrap;
@@ -1192,7 +1202,11 @@ body {
     height: 100px;
 
     @media @max_small {
+      height: 60px;
       width: calc(~"100%/2 - 25px");
+      img {
+        transform: scale(0.8);
+      }
     }
     @media @max_mini {
       padding: 0 10px;
@@ -1207,6 +1221,9 @@ body {
     }
     &__center {
       padding: 50px 0;
+      @media @max_small {
+        padding: 0;
+      }
     }
   }
   &-ruler {
@@ -1259,6 +1276,9 @@ body {
       height: 40px;
       background: #DCE7FC;
       z-index: -10;
+      @media @max_small {
+        width: 60px;
+      }
     }
     &__item {
       min-width: 120px;

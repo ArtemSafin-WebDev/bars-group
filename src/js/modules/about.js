@@ -303,6 +303,17 @@ module.exports = {
             var scrollTop = Math.round((scrollLeft + $target.offset().left )/ self._state.windowRatio);
             $('html, body').stop().animate({'scrollTop': scrollTop}, 1200);
         });
+
+        setTimeout(function(){
+            $iNav.children('a').each(function(){
+                var link = $(this);
+                if (
+                    $(link.attr('href')).offset().left < $(window).width() / 2 && $(link.attr('href')).offset().left > -1 * $(window).width() / 2
+                ) {
+                    link.addClass('active');
+                }
+            });
+        }, 200);
     },
     _handleSliderScroll: function (e) {
         var self = e.data.self;
@@ -310,12 +321,13 @@ module.exports = {
         var scrollLeft = self._elems.$scroll.scrollLeft();
         var scrollTop = Math.round(scrollLeft / self._state.windowRatio);
 
+        console.log(scrollLeft);
+
         if (Utils.isTouchDevice()) {
             $(window).scrollTop(scrollTop);
         }
 
         var img = $('#wrapper .brand-box__image img');
-
         self._elems.$iScroll.children('.iScroll-item').each(function () {
             if (
                 self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360
@@ -330,10 +342,23 @@ module.exports = {
 
                 if ($(this).hasClass('iRatings')) {
                     img.attr('src', img.data('white'));
-                    $(this).addClass('active');
                 } else {
                     img.attr('src', img.data('original'));
                 }
+            }
+            if (
+                self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 200 && $(this).offset().left < $(window).width()
+            ) {
+                $(this).addClass('active');
+            }
+            if (
+                $(this).offset().left < $(window).width() / 2 && $(this).offset().left > -1 * $(window).width() / 2
+            ) {
+                var $iNav = self._elems.$_.find('.iNav');
+                if ($iNav.length == 0) return;
+
+                $iNav.children('a').removeClass('active');
+                $iNav.children('a[href="#' + $(this).attr('id') + '"]').addClass('active');
             }
         });
     },
@@ -367,10 +392,6 @@ module.exports = {
     _bindUI: function () {
         var self = this;
 
-        if (!self._state.isMobile) {
-            //self._initRangeSlider();
-        }
-
         if( Utils.isTouchDevice() ) {
             self._elems.$scroll.on('scroll', {self: self}, function(e){
                 self._renderParallaxState();
@@ -385,7 +406,14 @@ module.exports = {
 
                 self._renderParallaxState();
                 self._handleSliderScroll(e);
+
+                var scrollLeft = self._elems.$scroll.scrollLeft();
                 self._elems.$scroll.scrollLeft($(window).scrollTop() * self._state.windowRatio);
+                if (scrollLeft < self._elems.$scroll.scrollLeft()) {
+                    self._elems.$iScroll.data('direction', 'right');
+                } else {
+                    self._elems.$iScroll.data('direction', 'left');
+                }
 
                 if ($(window).scrollTop() * self._state.windowRatio > 800) {
                     $('#wrapper').addClass('menu--hide');
