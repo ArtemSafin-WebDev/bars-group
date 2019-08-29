@@ -38931,7 +38931,6 @@ module.exports = {
     var scrollLeft = self._elems.$scroll.scrollLeft();
 
     var scrollTop = Math.round(scrollLeft / self._state.windowRatio);
-    console.log(scrollLeft);
 
     if (Utils.isTouchDevice()) {
       $(window).scrollTop(scrollTop);
@@ -38942,7 +38941,8 @@ module.exports = {
     self._elems.$iScroll.children('.iScroll-item').each(function () {
       if (self._elems.$iScroll.data('direction') == 'right' && $(this).offset().left >= 0 && $(this).offset().left < 360 || self._elems.$iScroll.data('direction') == 'left' && $(this).width() + $(this).offset().left > 200 && $(this).width() + $(this).offset().left < 1600) {
         if ($(this).find('.iScroll-item__label').length) {
-          $('#wrapper .page__label').text($(this).find('.iScroll-item__label').text());
+          var item = $(this);
+          $('#wrapper .page__label').stop().text(item.find('.iScroll-item__label').text());
         } else {
           $('#wrapper .page__label').text('О компании');
         }
