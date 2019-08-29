@@ -5,7 +5,7 @@
 	
 	&__content {
 		position: relative;
-		padding: 70px 0;
+		padding: 90px 0;
 	}
 
 	&__label {
@@ -27,15 +27,14 @@
 	}
 
 	&__item {
-		border-top: 2px solid #59b4e6;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
 		padding-right: 40px;
-		padding-top: 25px;
 	}
 
 	&__desc {
+		margin-top: -0.2em;
 		margin-bottom: 20px;
 		line-height: 1.55;
 	}
@@ -137,13 +136,6 @@
 		&__col {
 			max-width: none;
 			margin-top: 50px;
-
-			&:first-child {
-				.press-center__item {
-					border-top: 0;
-					padding-top: 0;
-				}
-			}
 		}
 
 		&__call-sm,
@@ -161,7 +153,7 @@
 		font-size: 14px;
 
 		&__content {
-			padding: 50px 0;
+			padding: 0.7*90px 0;
 		}
 
 		&__list {

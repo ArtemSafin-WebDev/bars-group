@@ -2623,7 +2623,7 @@ img {
         height: 50px;
         line-height: 50px;
         white-space: nowrap; }
-        .header__menu__item > a:before {
+        .header__menu__item > a:after {
           -webkit-transition: all .2s;
           transition: all .2s;
           content: ' ';
@@ -2635,7 +2635,7 @@ img {
           background: #59b4e6; }
       .header__menu__item:hover > a, .header__menu__item._active > a {
         color: #000 !important; }
-        .header__menu__item:hover > a:before, .header__menu__item._active > a:before {
+        .header__menu__item:hover > a:after, .header__menu__item._active > a:after {
           right: 0; }
       .header__menu__item--more {
         position: absolute;
@@ -4230,7 +4230,7 @@ img {
   background: #eff4fd; }
   .press-center__content {
     position: relative;
-    padding: 70px 0; }
+    padding: 90px 0; }
   .press-center__label {
     position: absolute;
     top: 70px;
@@ -4250,7 +4250,6 @@ img {
     max-width: 33.33%;
     padding: 0 12px; }
   .press-center__item {
-    border-top: 2px solid #59b4e6;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4259,9 +4258,9 @@ img {
         -ms-flex-direction: column;
             flex-direction: column;
     height: 100%;
-    padding-right: 40px;
-    padding-top: 25px; }
+    padding-right: 40px; }
   .press-center__desc {
+    margin-top: -0.2em;
     margin-bottom: 20px;
     line-height: 1.55; }
   .press-center__human {
@@ -4320,9 +4319,6 @@ img {
   .press-center__col {
     max-width: none;
     margin-top: 50px; }
-    .press-center__col:first-child .press-center__item {
-      border-top: 0;
-      padding-top: 0; }
   .press-center__call-sm, .press-center__order {
     margin-top: 10px; } }
 
@@ -4330,7 +4326,7 @@ img {
   .press-center {
     font-size: 14px; }
     .press-center__content {
-      padding: 50px 0; }
+      padding: 63px 0; }
     .press-center__list {
       margin-top: -40px; }
     .press-center__col {
@@ -4518,7 +4514,7 @@ img {
   right: 25px;
   bottom: 25px; }
 
-@media all and (max-width: 1300px) {
+@media all and (max-width: 1050px) {
   .article-cards__col {
     width: 50%;
     max-width: 50%; } }
@@ -6295,6 +6291,9 @@ img {
           flex: 0 0 440px;
   max-width: 440px;
   padding: 0 12px; }
+
+.news-slider .swiper-button-disabled {
+  opacity: .5; }
 
 @media all and (max-width: 1050px) {
   .news-slider__lable {
