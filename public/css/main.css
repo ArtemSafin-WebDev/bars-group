@@ -572,7 +572,7 @@ template {
 .notifyjs-global-title {
   margin-bottom: 5px; }
 
-.icon, .slider-nav button:before, .slider-nav button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
+.icon, .slider-nav button:before, .slider-nav button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__text:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
   display: inline-block; }
 
 .icon-sprite-png-alpha-bi-white {
@@ -764,7 +764,7 @@ template {
   font-weight: normal;
   font-style: normal; }
 
-.icon, .slider-nav button:before, .slider-nav button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__link:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
+.icon, .slider-nav button:before, .slider-nav button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__text:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -877,7 +877,7 @@ template {
 .icon-arrow-left:before, .rangeslider__handle i:first-child:before, .nav-pager__prev:before, .header__menu__item--more > a:before {
   content: "\e904"; }
 
-.icon-arrow-right:before, .rangeslider__handle i:last-child:before, .nav-pager__next:before, .nav-side__arrow:before, .overview__nav__link:before {
+.icon-arrow-right:before, .rangeslider__handle i:last-child:before, .nav-pager__next:before, .nav-side__arrow:before, .overview__nav__text:before {
   content: "\e905"; }
 
 .icon-pause:before, .rangeslider__handle i:nth-child(2):before {
@@ -3065,7 +3065,7 @@ img {
       width: 25%; }
       .overview__nav__item:nth-child(-n+4) {
         margin-top: 0; }
-      .overview__nav__item._active .overview__nav__link:before {
+      .overview__nav__item._active .overview__nav__text:before {
         -webkit-transform: translateX(0);
                 transform: translateX(0);
         opacity: 1; }
@@ -3073,9 +3073,26 @@ img {
         opacity: 1; }
     .overview__nav__link {
       position: relative;
-      display: table-cell;
-      vertical-align: middle;
+      display: inline-block;
       height: 100px;
+      font-size: 0; }
+      .overview__nav__link:before {
+        content: " ";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+        font-size: 0;
+        width: 0; }
+      .overview__nav__link:hover {
+        color: #fff; }
+      .overview__nav__link--wheat .overview__nav__icon, .overview__nav__link--factory .overview__nav__icon, .overview__nav__link--city .overview__nav__icon {
+        margin-top: -35px; }
+      .overview__nav__link--ruble .overview__nav__icon {
+        margin-top: -27px; }
+    .overview__nav__text {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
       padding-left: 80px;
       font-size: 16px;
       line-height: 1.5;
@@ -3084,9 +3101,7 @@ img {
          -moz-user-select: none;
           -ms-user-select: none;
               user-select: none; }
-      .overview__nav__link:hover {
-        color: #fff; }
-      .overview__nav__link:before {
+      .overview__nav__text:before {
         -webkit-transition: opacity .2s, -webkit-transform .2s;
         transition: opacity .2s, -webkit-transform .2s;
         transition: transform .2s, opacity .2s;
@@ -3099,10 +3114,6 @@ img {
         margin-top: -7px;
         margin-left: 10px;
         opacity: 0; }
-      .overview__nav__link--wheat .overview__nav__icon, .overview__nav__link--factory .overview__nav__icon, .overview__nav__link--city .overview__nav__icon {
-        margin-top: -35px; }
-      .overview__nav__link--ruble .overview__nav__icon {
-        margin-top: -27px; }
     .overview__nav__icon {
       -webkit-transition: opacity .2s;
       transition: opacity .2s;
@@ -3204,20 +3215,17 @@ img {
       width: 100%; }
       .overview__nav__item:first-child {
         border-top: 0; }
-      .overview__nav__item._active .overview__nav__link:before {
+      .overview__nav__item._active .overview__nav__text:before {
         -webkit-transform: rotate(90deg) scaleX(-1) !important;
                 transform: rotate(90deg) scaleX(-1) !important; }
     .overview__nav__link {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
+      width: 100%;
+      height: 70px; }
+    .overview__nav__text {
+      width: 100%;
       padding-left: 50px;
-      height: 70px;
       font-size: 13px; }
-      .overview__nav__link:before {
+      .overview__nav__text:before {
         -webkit-transform: rotate(90deg) !important;
                 transform: rotate(90deg) !important;
         opacity: 1;
@@ -5647,7 +5655,7 @@ img {
   @media screen and (max-width: 400px) {
     .news-details__content blockquote {
       padding: 10px 20px; } }
-  .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
+  .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__text:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
     position: absolute;
     top: 60px;
     left: 55px;
@@ -5655,19 +5663,19 @@ img {
     color: #59b4e6;
     opacity: 0.3; }
     @media screen and (max-width: 1024px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__text:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
         font-size: 70px;
         top: 35px; } }
     @media screen and (max-width: 800px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__text:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
         top: 35px;
         font-size: 50px;
         left: 40px; } }
     @media screen and (max-width: 600px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__text:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
         left: 30px; } }
     @media screen and (max-width: 400px) {
-      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__link:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
+      .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__text:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
         opacity: 0.15;
         font-size: 100px;
         top: auto;
@@ -5948,11 +5956,11 @@ img {
       right: auto;
       left: 20px;
       bottom: 20px; } }
-  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
+  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__text:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
     font-size: 18px;
     margin-right: 12px; }
     @media screen and (max-width: 600px) {
-      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__link:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
+      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__text:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
         font-size: 16px; } }
   .news-details__photo-slider-download:link, .news-details__photo-slider-download:visited {
     color: white; }
@@ -6144,7 +6152,7 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .slider-nav button:before, .slider-nav .news-details__next-article-arrow button:before, .news-details__next-article-arrow .slider-nav button:after, .slider-nav .news-details__next-article-arrow button:after, .news-details__next-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__arrow, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__link:before, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before, .news-details__next-article-arrow .form-filter__reset:before, .news-details__next-article-arrow .catalog__button-filter:before, .news-details__next-article-arrow .popup__close, .news-details__next-article-arrow .success__close, .news-details__next-article-arrow .success__title:before {
+  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .slider-nav button:before, .slider-nav .news-details__next-article-arrow button:before, .news-details__next-article-arrow .slider-nav button:after, .slider-nav .news-details__next-article-arrow button:after, .news-details__next-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__arrow, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__text:before, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before, .news-details__next-article-arrow .form-filter__reset:before, .news-details__next-article-arrow .catalog__button-filter:before, .news-details__next-article-arrow .popup__close, .news-details__next-article-arrow .success__close, .news-details__next-article-arrow .success__title:before {
     color: #6e7f95; }
   .active .news-details__next-article-arrow {
     -webkit-transform: translateZ(0) translateX(100%);
@@ -6159,7 +6167,7 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .slider-nav button:before, .slider-nav .news-details__previous-article-arrow button:before, .news-details__previous-article-arrow .slider-nav button:after, .slider-nav .news-details__previous-article-arrow button:after, .news-details__previous-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__arrow, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__link:before, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before, .news-details__previous-article-arrow .form-filter__reset:before, .news-details__previous-article-arrow .catalog__button-filter:before, .news-details__previous-article-arrow .popup__close, .news-details__previous-article-arrow .success__close, .news-details__previous-article-arrow .success__title:before {
+  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .slider-nav button:before, .slider-nav .news-details__previous-article-arrow button:before, .news-details__previous-article-arrow .slider-nav button:after, .slider-nav .news-details__previous-article-arrow button:after, .news-details__previous-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__arrow, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__text:before, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before, .news-details__previous-article-arrow .form-filter__reset:before, .news-details__previous-article-arrow .catalog__button-filter:before, .news-details__previous-article-arrow .popup__close, .news-details__previous-article-arrow .success__close, .news-details__previous-article-arrow .success__title:before {
     color: #6e7f95;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg); }

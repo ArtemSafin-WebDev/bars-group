@@ -60,7 +60,7 @@
 
 			&._active {
 				
-				.overview__nav__link{
+				.overview__nav__text{
 					&:before {
 						transform: translateX(0);
 						opacity: 1;
@@ -75,30 +75,21 @@
 
 		&__link {
 			position: relative;
-			display: table-cell;
-			vertical-align: middle;
+			display: inline-block;
 			height: 100px;
-			padding-left: 80px;
-			font-size: 16px;
-			line-height: 1.5;
-			color: #fff;
-			user-select: none;
-
-			&:hover {
-				color: #fff;
-			}
+			font-size: 0;
 
 			&:before {
-				@extend .icon;
-				@extend .icon-arrow-right;
-				transition: transform .2s, opacity .2s;
-				transform: translateX(-10px);
-				position: absolute;
-				left: 100%;
-				top: 50%;
-				margin-top: -7px;
-				margin-left: 10px;
-				opacity: 0;
+				content: " ";
+				display: inline-block;
+				vertical-align: middle;
+				height: 100%;
+				font-size: 0;
+				width: 0;
+			}
+			
+			&:hover {
+				color: #fff;
 			}
 
 			&--wheat,
@@ -113,6 +104,30 @@
 				.overview__nav__icon {
 					margin-top: -27px;
 				}
+			}
+		}
+
+		&__text {
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			padding-left: 80px;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #fff;
+			user-select: none;
+
+			&:before {
+				@extend .icon;
+				@extend .icon-arrow-right;
+				transition: transform .2s, opacity .2s;
+				transform: translateX(-10px);
+				position: absolute;
+				left: 100%;
+				top: 50%;
+				margin-top: -7px;
+				margin-left: 10px;
+				opacity: 0;
 			}
 		}
 
@@ -305,7 +320,7 @@
 				}
 
 				&._active {
-					.overview__nav__link {
+					.overview__nav__text {
 						&:before {
 							transform: rotate(90deg) scaleX(-1) !important;
 						}
@@ -314,10 +329,13 @@
 			}
 
 			&__link {
-				display: flex;
-				align-items: center;
-				padding-left: 50px;
+				width: 100%;
 				height: 70px;
+			}
+
+			&__text {
+				width: 100%;
+				padding-left: 50px;
 				font-size: 13px;
 
 				&:before {
