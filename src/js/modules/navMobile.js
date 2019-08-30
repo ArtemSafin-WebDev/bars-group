@@ -1,6 +1,12 @@
 var $ = require('jquery');
+const bodyScrollLock = require('body-scroll-lock');
 
 module.exports = {
+
+	_elems: {
+		$_: $(),
+		$scroll: $()
+	},
 
 	_state: {
 		isOpened: false
@@ -12,7 +18,8 @@ module.exports = {
 		if (self._state.isOpened) return;
 
 		$('body').addClass('page__locked');
-		$('#nav-mobile').addClass('_active');
+		self._elems.$_.addClass('_active');
+		bodyScrollLock.disableBodyScroll(self._elems.$scroll[0]);
 
 		self._state.isOpened = true;
 	},
@@ -23,7 +30,8 @@ module.exports = {
 		if (!self._state.isOpened) return;
 
 		$('body').removeClass('page__locked');
-		$('#nav-mobile').removeClass('_active');
+		self._elems.$_.removeClass('_active');
+		bodyScrollLock.enableBodyScroll(self._elems.$scroll[0]);
 
 		self._state.isOpened = false;
 	},
@@ -60,6 +68,13 @@ module.exports = {
 
 	init: function () {
 		var self = this;
+
+		var $_ = $('#nav-mobile');
+
+		if ($_.length == 0) return;
+
+		self._elems.$_ = $_;
+		self._elems.$scroll = $_.find('.nav-mobile__side__inner');
 
 		self._bindUI();
 	}

@@ -2086,6 +2086,7 @@ img {
   background: #fff; }
   .nav-mobile__side__inner {
     height: 100%;
+    -webkit-overflow-scrolling: touch;
     overflow-y: scroll; }
 
 .nav-mobile__header {
@@ -3130,8 +3131,7 @@ img {
     .overview__nav__body {
       display: none; }
   .overview__about {
-    padding-top: 140px;
-    padding-bottom: 100px;
+    padding: 80px 0;
     margin-left: 260px;
     max-width: 480px; }
     .overview__about__item {
@@ -3157,15 +3157,13 @@ img {
     font-size: 14px;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.8); }
-  .overview__more {
-    position: absolute;
-    bottom: 70px;
-    right: 0; }
-  .overview__arrow {
-    position: absolute;
-    padding: 20px 0;
-    right: 0;
-    bottom: 20px; }
+  .overview__button-arrow {
+    margin-top: 60px;
+    margin-bottom: 10px;
+    text-align: right; }
+  .overview__button-more {
+    margin-bottom: 20px;
+    margin-top: 50px; }
 
 @media all and (max-width: 1500px) {
   .overview__nav {
@@ -3190,10 +3188,9 @@ img {
     .overview__nav__item {
       width: 50%; }
   .overview__about {
-    padding: 80px 0;
     margin-left: 0; }
-  .overview__more {
-    bottom: 60px; } }
+  .overview__button-more {
+    margin-top: 40px; } }
 
 @media all and (max-width: 850px) {
   .overview__nav {
@@ -3238,15 +3235,15 @@ img {
               transform-origin: 0 50%; }
     .overview__nav__body {
       display: block; }
-  .overview__about, .overview__more {
+      .overview__nav__body__inner {
+        padding: 15px 0; }
+  .overview__about {
     display: none; }
   .overview__title {
-    padding-top: 15px;
     font-size: 17px; }
   .overview__desc {
     position: relative;
     margin-top: 17px;
-    padding-bottom: 100px;
     font-size: 12px;
     line-height: 1.7; } }
 
@@ -4613,8 +4610,8 @@ img {
       height: 100%;
       margin-right: -100px;
       padding-right: 100px;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch; }
+      -webkit-overflow-scrolling: touch;
+      overflow-y: scroll; }
       .cats-scroll__list__box div {
         margin-top: 10px; }
         .cats-scroll__list__box div:first-child {
