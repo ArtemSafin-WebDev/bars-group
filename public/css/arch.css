@@ -44,45 +44,6 @@
   font-size: 14px;
   line-height: 21px;
 }
-.iArch-slider .owl-nav {
-  position: absolute;
-  bottom: -55px;
-  right: 0;
-}
-.iArch-slider .owl-nav button.owl-prev,
-.iArch-slider .owl-nav button.owl-next {
-  width: 35px;
-  height: 35px;
-  border-radius: 100%;
-  background: #EFF4FD;
-  color: #6E7F95;
-  font-family: icomoon!important;
-  text-align: center;
-}
-.iArch-slider .owl-nav button.owl-prev.disabled,
-.iArch-slider .owl-nav button.owl-next.disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-.iArch-slider .owl-nav button.owl-prev span,
-.iArch-slider .owl-nav button.owl-next span {
-  display: none;
-}
-.iArch-slider .owl-nav button.owl-prev:before,
-.iArch-slider .owl-nav button.owl-next:before {
-  position: relative;
-  top: -2px;
-  font-size: 14px;
-}
-.iArch-slider .owl-nav button.owl-prev:before {
-  content: '\e904';
-}
-.iArch-slider .owl-nav button.owl-next {
-  margin-left: 5px;
-}
-.iArch-slider .owl-nav button.owl-next:before {
-  content: '\e905';
-}
 .iArch-layers {
   position: relative;
   max-width: 1000px;

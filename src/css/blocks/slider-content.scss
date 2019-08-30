@@ -51,7 +51,7 @@
 		color: rgba(#fff, .8);
 	}
 
-	&__ctrl {
+	&__nav {
 		position: absolute;
 		z-index: 10;
 		bottom: 50px;
@@ -70,7 +70,7 @@
 			margin-right: 0;
 		}
 
-		&__ctrl {
+		&__nav {
 			right: 60px;
 		}
 	}
@@ -82,7 +82,7 @@
 			margin-right: -40px;
 		}
 
-		&__ctrl {
+		&__nav {
 			right: 20px;
 		}
 	}
@@ -104,7 +104,7 @@
 			margin-top: 0;
 		}
 
-		&__ctrl {
+		&__nav {
 			bottom: 40px;
 			right: 0;
 		}
@@ -120,7 +120,7 @@
 			font-size: 24px;
 		}
 
-		&__ctrl {
+		&__nav {
 			right: 20px;
 		}
 		

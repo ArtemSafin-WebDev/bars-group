@@ -86,7 +86,7 @@
 		}
 
 		&__self {
-			transition: all .2s ease-out;
+			transition: all .2s ease-out .1s;
 			display: block;
 			padding-top: 66.66%;
 			background: $base-gray 50% 50% no-repeat;

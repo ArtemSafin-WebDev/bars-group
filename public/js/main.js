@@ -39294,7 +39294,8 @@ module.exports = {
       nav: true,
       dots: false,
       items: 1,
-      auto: false
+      auto: false,
+      navContainer: '.iArch-slider__nav'
     });
     if (self._elems.$layers.length == 0) return;
 
@@ -39319,7 +39320,7 @@ module.exports = {
     var $_ = $('.iArch');
     if ($_.length == 0) return;
     self._elems.$_ = $_;
-    self._elems.$slider = $_.find('.iArch-slider');
+    self._elems.$slider = $_.find('.iArch-slider__list');
     self._elems.$layers = $_.find('.iArch-layers');
 
     self._setIsMobile();
@@ -40980,18 +40981,6 @@ module.exports = {
     $_: $(),
     $slider: $()
   },
-  _handleNextButton: function _handleNextButton(e) {
-    var self = e.data.self;
-    e.preventDefault();
-
-    self._elems.$slider.trigger('next.owl.carousel');
-  },
-  _handlePrevButton: function _handlePrevButton(e) {
-    var self = e.data.self;
-    e.preventDefault();
-
-    self._elems.$slider.trigger('prev.owl.carousel');
-  },
   _handleChangedEvent: function _handleChangedEvent(e) {
     var self = e.data.self;
     var activeClass = 'news__item--active';
@@ -41007,14 +40996,6 @@ module.exports = {
   },
   _bindUI: function _bindUI() {
     var self = this;
-
-    self._elems.$_.on('click', '.js-news-next', {
-      self: self
-    }, self._handleNextButton);
-
-    self._elems.$_.on('click', '.js-news-prev', {
-      self: self
-    }, self._handlePrevButton);
 
     self._elems.$_.on('changed.owl.carousel', {
       self: self
@@ -41036,7 +41017,9 @@ module.exports = {
     self._elems.$slider.owlCarousel({
       loop: true,
       autoWidth: true,
-      smartSpeed: 500
+      smartSpeed: 500,
+      nav: true,
+      navContainer: '.news__nav'
     });
   }
 };
@@ -41499,29 +41482,8 @@ module.exports = {
 
     self._elems.$slider.trigger('refresh.owl.carousel');
   },
-  _handlePrevButton: function _handlePrevButton(e) {
-    var self = e.data.self;
-    e.preventDefault();
-
-    self._elems.$slider.trigger('prev.owl.carousel');
-  },
-  _handleNextButton: function _handleNextButton(e) {
-    var self = e.data.self;
-    e.preventDefault();
-
-    self._elems.$slider.trigger('next.owl.carousel');
-  },
   _bindUI: function _bindUI() {
     var self = this;
-
-    self._elems.$_.on('click', '.js-slider-content-prev', {
-      self: self
-    }, self._handlePrevButton);
-
-    self._elems.$_.on('click', '.js-slider-content-next', {
-      self: self
-    }, self._handleNextButton);
-
     $(window).on('resize', {
       self: self
     }, self._handleWindowResize);
@@ -41537,7 +41499,9 @@ module.exports = {
 
     self._elems.$slider.owlCarousel({
       items: 1,
-      dots: false
+      dots: false,
+      nav: true,
+      navContainer: '.slider-content__nav'
     });
 
     self._bindUI();

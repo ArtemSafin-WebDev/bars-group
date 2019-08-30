@@ -8,22 +8,6 @@ module.exports = {
 		$slider: $()
 	},
 
-	_handleNextButton: function (e) {
-		var self = e.data.self;
-
-		e.preventDefault();
-
-		self._elems.$slider.trigger('next.owl.carousel');
-	},
-
-	_handlePrevButton: function (e) {
-		var self = e.data.self;
-
-		e.preventDefault();
-		
-		self._elems.$slider.trigger('prev.owl.carousel');
-	},
-
 	_handleChangedEvent: function (e) {
 		var self = e.data.self;
 
@@ -45,8 +29,6 @@ module.exports = {
 	_bindUI: function () {
 		var self = this;
 
-		self._elems.$_.on('click', '.js-news-next', {self: self}, self._handleNextButton);
-		self._elems.$_.on('click', '.js-news-prev', {self: self}, self._handlePrevButton);
 		self._elems.$_.on('changed.owl.carousel', {self: self}, self._handleChangedEvent);
 		$(window).on('resize', {self: self}, self._handleWindowResize);
 	},
@@ -66,7 +48,9 @@ module.exports = {
 		self._elems.$slider.owlCarousel({
 		    loop: true,
 		    autoWidth: true,
-		    smartSpeed: 500
+		    smartSpeed: 500,
+		    nav: true,
+		    navContainer: '.news__nav'
 		});	
 	}
 };

@@ -586,48 +586,6 @@
 .tComponents__item > img {
   width: auto !important;
 }
-.slider-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 30px;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-.slider-nav > button {
-  font-size: 15px;
-  line-height: 36px;
-  position: relative;
-  width: 36px;
-  height: 36px;
-  -webkit-transition: all 0.22s ease-out;
-  transition: all 0.22s ease-out;
-  text-align: center;
-  color: #6e7f95;
-  border-radius: 100%;
-  background-color: #eff4fd;
-}
-.slider-nav > button:hover {
-  background-color: #e1ebfb;
-}
-.slider-nav > button:before {
-  font-family: 'icomoon';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-.slider-nav > button.owl-prev:before {
-  content: '\e904';
-}
-.slider-nav > button.owl-next {
-  margin-left: 11px;
-}
-.slider-nav > button.owl-next:before {
-  content: '\e905';
-}
 @media (max-width: 1100px) {
   .tProductsItem__description {
     display: none;

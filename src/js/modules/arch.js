@@ -42,7 +42,8 @@ module.exports = {
             nav: true,
             dots: false,
             items: 1,
-            auto: false
+            auto: false,
+            navContainer: '.iArch-slider__nav'
         });
 
         if ( self._elems.$layers.length == 0 ) return;
@@ -77,7 +78,7 @@ module.exports = {
         if ( $_.length == 0 ) return;
 
         self._elems.$_ = $_;
-        self._elems.$slider = $_.find('.iArch-slider');
+        self._elems.$slider = $_.find('.iArch-slider__list');
         self._elems.$layers = $_.find('.iArch-layers');
 
         self._setIsMobile();
