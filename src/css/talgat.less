@@ -1188,79 +1188,6 @@
 
 .tPortfolioSearch
 {
-
-    margin-bottom: 180px;
-
-    &__form {
-        transition: all .2s;
-        margin-top: -190px;
-        margin-right: calc(-1 * (100vw - 1520px)/ 2);
-
-        &--no-toggle {
-            margin-top: 0;
-        }
-
-        &._active {
-            margin-top: 0;
-        }
-    }
-
-    &__search-instead
-    {
-        font-size: 15px;
-        line-height: 24px;
-
-        margin-top: 20px;
-        padding: 0 40px;
-
-        & > span {
-            transition: all .22s ease-out;
-            border-bottom: 1px dotted #5cb3e5;
-            padding-bottom: 3px;
-            cursor: pointer;
-            color: #5cb3e5;
-
-            &:hover {
-                border-bottom-color: transparent;
-            }
-        }
-    }
-
-    &__choose {
-        display: flex;
-        align-items: center;
-        height: 95px;
-        padding: 0 40px;
-        background: #eff4fd;
-    }
-
-    &__lang
-    {
-        display: flex;
-        margin-right: 44px;
-
-        &:last-child
-        {
-            & > a
-            {
-                &:last-child
-                {
-                    margin-right: 40px;
-                }
-            }
-        }
-
-        & > a {
-            font-size: 18px;
-            margin-right: 11px;
-            color: #59b4e6;
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-    }
-
     &__results
     {
         column-count: 3;
@@ -1268,11 +1195,6 @@
 }
 
 @media all and (max-width: 1600px) {
-    .tPortfolioSearch {
-        &__form {
-            margin-right: -40px;
-        }
-    }
     .tAdvantagesSlider__nav {
         right: 40px;
     }
@@ -1519,13 +1441,6 @@
 }
 @media screen and (max-width: 1300px)
 {
-    .tPortfolioSearch
-    {
-        &__form
-        {
-            display: none;
-        }
-    }
 
     .tSiteSearch__news,
     .tSiteSearch__results
@@ -1547,11 +1462,6 @@
         &__results
         {
             column-count: 1;
-        }
-
-        &__shoose
-        {
-            height: 65px;
         }
     }
 

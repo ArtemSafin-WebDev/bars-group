@@ -23,7 +23,6 @@
 		width: 20%;
 		overflow: hidden;
 		cursor: pointer;
-		
 
 		&:before {
 			content: ' ';
@@ -153,8 +152,19 @@
 
 	
 	.nav-video {
+		
+		background: none;
 
-		margin: 0 -40px;
+		&:before {
+			content: ' ';
+			position: absolute;
+			background: #e6ebfe;
+			height: 1px;
+			margin-top: -1px;
+			top: 100%;
+			left: 0;
+			width: 100%;
+		}
 
 		&__crop {
 			overflow: hidden;
@@ -172,25 +182,15 @@
 			width: 270px !important;
 
 			&:before {
-				width: 1px;
-				height: 100%;
-				left: auto;
-				right: 0;
-			}
-
-			&:last-child {
-				&:before {
-					display: none;
-				}
+				display: none;
 			}
 		}
 
 		&__name {
-			margin-left: 40px;
+			margin-left: 30px;
 			margin-top: 25px;
 			white-space: normal;
 		}
-
 
 	}
 
@@ -199,8 +199,6 @@
 @media all and (max-width: 600px) {
 
 	.nav-video {
-
-		margin: 0 -20px;
 
 		&__item {
 			height: 85px;

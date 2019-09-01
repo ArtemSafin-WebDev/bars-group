@@ -202,6 +202,7 @@ module.exports = {
 		new ScrollBooster({
 			viewport,
 			content,
+			bounce: false,
 			textSelection: true,
 			mode: 'x',
 			onUpdate: (data) => {

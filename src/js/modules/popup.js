@@ -15,7 +15,7 @@ module.exports = {
 			type: type,
 			autoFocus: false,
 			animationEffect: 'slide-in-out',
-			modal: false
+			modal: true
 		});
 	},
 

@@ -39339,6 +39339,8 @@ module.exports = {
 
 var $ = require('jquery');
 
+var ScrollBooster = require('scrollbooster');
+
 var StickySidebar = require('sticky-sidebar');
 
 var notify = require('./notify');
@@ -39348,11 +39350,13 @@ module.exports = {
     $_: $(),
     $ctrlFilter: $(),
     $ctrlModes: $(),
-    $searchForm: $(),
+    $search: $(),
     $tiles: $(),
     $names: $(),
     $popup: $(),
-    $industries: $()
+    $industries: $(),
+    $input: $(),
+    $letters: $()
   },
   _state: {
     stickySidebar: null,
@@ -39378,6 +39382,23 @@ module.exports = {
       bottomSpacing: 20,
       innerWrapperSelector: '.js-sidebar-inner',
       containerSelector: '.js-sidebar-root'
+    });
+  },
+  _initLettersScroll: function _initLettersScroll() {
+    var self = this;
+
+    var viewport = self._elems.$_.find('.search__letters')[0];
+
+    var content = viewport.querySelector('.search__letters__inner');
+    new ScrollBooster({
+      viewport: viewport,
+      content: content,
+      bounce: false,
+      emulateScroll: true,
+      mode: 'x',
+      onUpdate: function onUpdate(data) {
+        content.style.transform = "translateX(".concat(-data.position.x, "px)");
+      }
     });
   },
   _renderCurrentView: function _renderCurrentView() {
@@ -39421,18 +39442,22 @@ module.exports = {
   _renderSearchView: function _renderSearchView() {
     var self = this;
 
-    self._elems.$_.find('.js-catalog-search').each(function () {
+    self._elems.$input.each(function () {
       if ($(this).val() == self._state.searchText) return;
       $(this).val(self._state.searchText).trigger('change');
+    });
+
+    self._elems.$letters.find('a').each(function () {
+      var isLetterActive = $(this).text() == self._state.letter;
+
+      $(this).toggleClass('_active', isLetterActive);
     });
   },
   _renderTilesView: function _renderTilesView() {
     var self = this; // prepare url
 
-    var url = self._elems.$_.data('tiles-url').replace('{industry}', self._state.industry).replace('{customer}', self._state.filter.customer.value).replace('{type}', self._state.filter.type.value); // clear state
+    var url = self._elems.$_.data('tiles-url').replace('{industry}', self._state.industry).replace('{customer}', self._state.filter.customer.value).replace('{type}', self._state.filter.type.value); // reset search forms view
 
-
-    self._state.searchText = ''; // reset search forms view
 
     self._renderSearchView(); // show common loader
 
@@ -39480,11 +39505,8 @@ module.exports = {
   _renderNamesView: function _renderNamesView() {
     var self = this; // prepare url
 
-    var url = self._elems.$_.data('names-url').replace('{searchText}', self._state.searchText).replace('{letter}', self._state.letter).replace('{customer}', self._state.filter.customer.value).replace('{type}', self._state.filter.type.value); // clear state 
+    var url = self._elems.$_.data('names-url').replace('{searchText}', self._state.searchText).replace('{letter}', self._state.letter).replace('{customer}', self._state.filter.customer.value).replace('{type}', self._state.filter.type.value); // reset industry view
 
-
-    self._state.letter = '';
-    self._state.industry = ''; // reset industry view
 
     self._renderIndustries(); // show common loader
 
@@ -39546,6 +39568,8 @@ module.exports = {
     var self = e.data.self;
     var id = $(this).data('id');
     self._state.industry = self._state.industry === id ? '' : id;
+    self._state.searchText = '';
+    self._state.letter = '';
 
     self._renderTilesView();
   },
@@ -39564,7 +39588,7 @@ module.exports = {
 
     var isFormActive = !!$currItem.index();
 
-    self._elems.$searchForm.toggleClass('_active', isFormActive); // clear state
+    self._elems.$search.toggleClass('_active', isFormActive); // clear state
 
 
     self._state.searchText = '', self._state.letter = '', self._state.industry = '', self._state.currentMode = $currItem.data('id');
@@ -39578,17 +39602,29 @@ module.exports = {
     self._state.searchText = $(this).val();
 
     self._renderSearchView();
+
+    var ENTER_CODE = 13;
+
+    if (e.which == ENTER_CODE) {
+      $(this).blur();
+    }
   },
   _handleLetterClick: function _handleLetterClick(e) {
     var self = e.data.self;
     e.preventDefault();
     self._state.letter = $(this).text();
+    self._state.searchText = '';
 
     self._renderNamesView();
+
+    self._renderSearchView();
+
+    self._elems.$input.blur();
   },
   _handleFormSubmit: function _handleFormSubmit(e) {
     var self = e.data.self;
     e.preventDefault();
+    self._state.letter = '';
 
     self._renderNamesView();
   },
@@ -39644,7 +39680,7 @@ module.exports = {
       self: self
     }, self._handleSearchKeyup);
 
-    self._elems.$_.on('click', '.tPortfolioSearch__lang a', {
+    self._elems.$_.on('click', '.search__letters a', {
       self: self
     }, self._handleLetterClick);
 
@@ -39671,19 +39707,23 @@ module.exports = {
     self._elems.$_ = $_;
     self._elems.$ctrlModes = $('#catalog-ctrl-modes');
     self._elems.$ctrlFilter = $('#catalog-ctrl-filter');
-    self._elems.$searchForm = $('#catalog-search-form');
+    self._elems.$search = $('#catalog-search');
     self._elems.$tiles = $('#catalog-tiles');
     self._elems.$names = $('#catalog-names');
     self._elems.$popup = $('#catalog-popup');
     self._elems.$industries = $_.find('.nav-video__item');
+    self._elems.$input = $_.find('.js-catalog-search');
+    self._elems.$letters = $_.find('.search__letters');
 
     self._stickSidebar();
+
+    self._initLettersScroll();
 
     self._bindUI();
   }
 };
 
-},{"./notify":44,"jquery":14,"sticky-sidebar":23}],30:[function(require,module,exports){
+},{"./notify":44,"jquery":14,"scrollbooster":22,"sticky-sidebar":23}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39867,6 +39907,7 @@ module.exports = {
     new ScrollBooster({
       viewport: viewport,
       content: content,
+      bounce: false,
       textSelection: true,
       mode: 'x',
       onUpdate: function onUpdate(data) {
@@ -40124,7 +40165,6 @@ require('rangeslider.js');
 
 var Utils = require('./utils');
 
-window.Utils = Utils;
 module.exports = {
   _cache: {
     gantt: {}
@@ -40407,6 +40447,7 @@ module.exports = {
     new ScrollBooster({
       viewport: viewport,
       content: content,
+      bounce: false,
       textSelection: true,
       mode: 'x',
       onUpdate: function onUpdate(data) {
@@ -41325,7 +41366,7 @@ module.exports = {
       type: type,
       autoFocus: false,
       animationEffect: 'slide-in-out',
-      modal: false
+      modal: true
     });
   },
   _handleCloseButton: function _handleCloseButton(e) {
@@ -41433,6 +41474,7 @@ module.exports = {
           new ScrollBooster({
             viewport: viewport,
             content: content,
+            bounce: false,
             textSelection: true,
             mode: 'x',
             onUpdate: function onUpdate(data) {

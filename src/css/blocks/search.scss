@@ -1,0 +1,247 @@
+
+.search {
+    
+    transition: all .2s;
+    margin-right: calc(-1 * (100vw - 1520px)/ 2);
+    padding-right: calc(1 * (100vw - 1520px)/ 2);
+    
+
+    &__form {
+        transition: all .2s;
+        margin-right: calc(-1 * (100vw - 1520px)/ 2);
+    }
+
+    &__input {
+        transition: background .2s;
+        position: relative;
+        background: #59b4e6;
+        font-size: 22px;
+
+        &._focus {
+            background: darken(#59b4e6, 5%);
+        }
+        
+        &._focus,
+        &._filled {
+            .search__input__label {
+                top: 25%;
+                font-size: .7em;
+            }
+        }
+
+        &__label {
+            transition: all .2s;
+            position: absolute;
+            top: 50%;
+            margin-top: -.5em;
+            left: 40px;
+            opacity: .5;
+            color: #fff;
+        }
+
+        &__field {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 35px 40px 25px 40px;
+            padding-right: calc(1 * (100vw - 1520px)/ 2);
+            height: 95px;
+            line-height: 35px;
+            color: #fff;
+        }
+    }
+
+    &__letters {
+        overflow: hidden;
+        background: #eff4fd;
+        
+        &__inner {
+            @extend .page__inner;
+            display: flex;
+            align-items: center;
+            height: 95px;
+        }
+
+        &__lang {
+            display: flex;
+            margin-right: 44px;
+
+            &:last-child {
+                & > a {
+                    &:last-child {
+                        margin-right: 40px;
+                    }
+                }
+            }
+
+            & > a {
+                position: relative;
+                margin-right: 11px;
+                color: #59b4e6;
+
+                &:before {
+                    transition: all .2s;
+                    content: " ";
+                    position: absolute;
+                    bottom: -10px;
+                    left: -3px;
+                    right: -3px;
+                    border-bottom: 3px solid #58b4e7;
+                    opacity: 0;
+                }
+
+                &._active {
+
+                    &:before {
+                        opacity: .7;
+                    }
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+    }
+
+    &__example {
+        @extend .page__inner;
+        font-size: 15px;
+        line-height: 24px;
+        margin-top: 20px;
+
+        & > span {
+            transition: all .22s ease-out;
+            border-bottom: 1px dotted #5cb3e5;
+            padding-bottom: 3px;
+            cursor: pointer;
+            color: #5cb3e5;
+
+            &:hover {
+                border-bottom-color: transparent;
+            }
+        }
+    }
+
+    &--toggle {
+        overflow: hidden;
+        height: 190px;
+
+        .search__form {
+            margin-top: -190px;
+        }
+
+        &._active {
+            .search__form {
+                margin-top: 0;
+            }
+        }
+    }
+
+}
+
+@media all and (max-width: 1600px) {
+    .search {
+
+        margin-right: -40px;
+        padding-right: 40px;
+
+        &__form {
+            margin-right: -40px;
+        }
+
+        &__input {
+            &__field {
+                padding-right: 40px;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1300px) {
+    .search {
+
+        margin-left: -30px;
+        margin-right: -30px;
+        padding-right: 0;
+        
+        
+        &__form {
+            margin-right: 0;
+        }
+
+
+        &__input {
+
+            &__field {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            &__label {
+                left: 30px;
+            }
+
+        }
+
+        &--toggle {
+            height: 120px;
+
+            &._active {
+                height: 190px;
+            }
+        }
+
+    }
+}
+
+@media all and (max-width: 600px) {
+    .search {
+
+        margin-left: -20px;
+        margin-right: -20px;
+        
+        &__input {
+
+            &._focus,
+            &._filled {
+                .search__input__label {
+                    font-size: 10px;
+                }
+            }
+            
+            &__field {
+                height: 80px;
+                padding: 35px 20px 25px 20px;
+                font-size: 16px;
+                line-height: 20px;
+            }
+
+            &__label {
+                font-size: 16px;
+                left: 20px;
+            }
+        }
+
+        &__letters {
+            &__inner {
+                height: 80px;
+                font-size: 16px;
+            }
+        }
+
+        &--toggle {
+            height: 90px;
+
+            &._active {
+                height: 160px;
+            }
+
+            .search__form {
+                margin-top: -160px;
+            }
+        }
+    }
+}
+
