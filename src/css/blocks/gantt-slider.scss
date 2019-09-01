@@ -77,7 +77,6 @@
 	}
 
 	&__line {
-		transition-delay: .5s;
 		position: absolute;
 		border-top: 1px solid #d4ddea;
 		margin-top: 3px;
@@ -116,14 +115,12 @@
 	}
 
 	&__type {
-		transition-delay: .5s;
 		position: absolute;
 		width: 200px;
 		font-size: 0;
 	}
 
 	&__item {
-		transition: all .5s ease-out .1s;
 		position: absolute;
 		width: 410px;
 		height: 160px;
@@ -197,7 +194,7 @@
 
 	&__h1,
 	&__desc {
-		transition: all .2s ease-out .1s;
+		transition: color .2s ease-out .1s;
 		position: relative;
 		overflow: hidden;
 		text-overflow: ellipsis;

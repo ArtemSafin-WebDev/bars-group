@@ -29931,6 +29931,403 @@ module.exports = PerfectScrollbar;
 }));
 
 },{"jquery":15}],22:[function(require,module,exports){
+(function (global){
+
+// ------------------------------------------
+// Rellax.js
+// Buttery smooth parallax library
+// Copyright (c) 2016 Moe Amaya (@moeamaya)
+// MIT license
+//
+// Thanks to Paraxify.js and Jaime Cabllero
+// for parallax concepts
+// ------------------------------------------
+
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals (root is window)
+    root.Rellax = factory();
+  }
+}(typeof window !== "undefined" ? window : global, function () {
+  var Rellax = function(el, options){
+    "use strict";
+
+    var self = Object.create(Rellax.prototype);
+
+    var posY = 0;
+    var screenY = 0;
+    var posX = 0;
+    var screenX = 0;
+    var blocks = [];
+    var pause = true;
+
+    // check what requestAnimationFrame to use, and if
+    // it's not supported, use the onscroll event
+    var loop = window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      function(callback){ return setTimeout(callback, 1000 / 60); };
+
+    // store the id for later use
+    var loopId = null;
+
+    // Test via a getter in the options object to see if the passive property is accessed
+    var supportsPassive = false;
+    try {
+      var opts = Object.defineProperty({}, 'passive', {
+        get: function() {
+          supportsPassive = true;
+        }
+      });
+      window.addEventListener("testPassive", null, opts);
+      window.removeEventListener("testPassive", null, opts);
+    } catch (e) {}
+
+    // check what cancelAnimation method to use
+    var clearLoop = window.cancelAnimationFrame || window.mozCancelAnimationFrame || clearTimeout;
+
+    // check which transform property to use
+    var transformProp = window.transformProp || (function(){
+        var testEl = document.createElement('div');
+        if (testEl.style.transform === null) {
+          var vendors = ['Webkit', 'Moz', 'ms'];
+          for (var vendor in vendors) {
+            if (testEl.style[ vendors[vendor] + 'Transform' ] !== undefined) {
+              return vendors[vendor] + 'Transform';
+            }
+          }
+        }
+        return 'transform';
+      })();
+
+    // Default Settings
+    self.options = {
+      speed: -2,
+      center: false,
+      wrapper: null,
+      relativeToWrapper: false,
+      round: true,
+      vertical: true,
+      horizontal: false,
+      callback: function() {},
+    };
+
+    // User defined options (might have more in the future)
+    if (options){
+      Object.keys(options).forEach(function(key){
+        self.options[key] = options[key];
+      });
+    }
+
+    // By default, rellax class
+    if (!el) {
+      el = '.rellax';
+    }
+
+    // check if el is a className or a node
+    var elements = typeof el === 'string' ? document.querySelectorAll(el) : [el];
+
+    // Now query selector
+    if (elements.length > 0) {
+      self.elems = elements;
+    }
+
+    // The elements don't exist
+    else {
+      console.warn("Rellax: The elements you're trying to select don't exist.");
+      return;
+    }
+
+    // Has a wrapper and it exists
+    if (self.options.wrapper) {
+      if (!self.options.wrapper.nodeType) {
+        var wrapper = document.querySelector(self.options.wrapper);
+
+        if (wrapper) {
+          self.options.wrapper = wrapper;
+        } else {
+          console.warn("Rellax: The wrapper you're trying to use doesn't exist.");
+          return;
+        }
+      }
+    }
+
+
+    // Get and cache initial position of all elements
+    var cacheBlocks = function() {
+      for (var i = 0; i < self.elems.length; i++){
+        var block = createBlock(self.elems[i]);
+        blocks.push(block);
+      }
+    };
+
+
+    // Let's kick this script off
+    // Build array for cached element values
+    var init = function() {
+      for (var i = 0; i < blocks.length; i++){
+        self.elems[i].style.cssText = blocks[i].style;
+      }
+
+      blocks = [];
+
+      screenY = window.innerHeight;
+      screenX = window.innerWidth;
+      setPosition();
+
+      cacheBlocks();
+
+      animate();
+
+      // If paused, unpause and set listener for window resizing events
+      if (pause) {
+        window.addEventListener('resize', init);
+        pause = false;
+        // Start the loop
+        update();
+      }
+    };
+
+    // We want to cache the parallax blocks'
+    // values: base, top, height, speed
+    // el: is dom object, return: el cache values
+    var createBlock = function(el) {
+      var dataPercentage = el.getAttribute( 'data-rellax-percentage' );
+      var dataSpeed = el.getAttribute( 'data-rellax-speed' );
+      var dataZindex = el.getAttribute( 'data-rellax-zindex' ) || 0;
+      var dataMin = el.getAttribute( 'data-rellax-min' );
+      var dataMax = el.getAttribute( 'data-rellax-max' );
+
+      // initializing at scrollY = 0 (top of browser), scrollX = 0 (left of browser)
+      // ensures elements are positioned based on HTML layout.
+      //
+      // If the element has the percentage attribute, the posY and posX needs to be
+      // the current scroll position's value, so that the elements are still positioned based on HTML layout
+      var wrapperPosY = self.options.wrapper ? self.options.wrapper.scrollTop : (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop);
+      // If the option relativeToWrapper is true, use the wrappers offset to top, subtracted from the current page scroll.
+      if (self.options.relativeToWrapper) {
+        var scrollPosY = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop);
+        wrapperPosY = scrollPosY - self.options.wrapper.offsetTop;
+      }
+      var posY = self.options.vertical ? ( dataPercentage || self.options.center ? wrapperPosY : 0 ) : 0;
+      var posX = self.options.horizontal ? ( dataPercentage || self.options.center ? self.options.wrapper ? self.options.wrapper.scrollLeft : (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft) : 0 ) : 0;
+
+      var blockTop = posY + el.getBoundingClientRect().top;
+      var blockHeight = el.clientHeight || el.offsetHeight || el.scrollHeight;
+
+      var blockLeft = posX + el.getBoundingClientRect().left;
+      var blockWidth = el.clientWidth || el.offsetWidth || el.scrollWidth;
+
+      // apparently parallax equation everyone uses
+      var percentageY = dataPercentage ? dataPercentage : (posY - blockTop + screenY) / (blockHeight + screenY);
+      var percentageX = dataPercentage ? dataPercentage : (posX - blockLeft + screenX) / (blockWidth + screenX);
+      if(self.options.center){ percentageX = 0.5; percentageY = 0.5; }
+
+      // Optional individual block speed as data attr, otherwise global speed
+      var speed = dataSpeed ? dataSpeed : self.options.speed;
+
+      var bases = updatePosition(percentageX, percentageY, speed);
+
+      // ~~Store non-translate3d transforms~~
+      // Store inline styles and extract transforms
+      var style = el.style.cssText;
+      var transform = '';
+
+      // Check if there's an inline styled transform
+      var searchResult = /transform\s*:/i.exec(style);
+      if (searchResult) {
+        // Get the index of the transform
+        var index = searchResult.index;
+
+        // Trim the style to the transform point and get the following semi-colon index
+        var trimmedStyle = style.slice(index);
+        var delimiter = trimmedStyle.indexOf(';');
+
+        // Remove "transform" string and save the attribute
+        if (delimiter) {
+          transform = " " + trimmedStyle.slice(11, delimiter).replace(/\s/g,'');
+        } else {
+          transform = " " + trimmedStyle.slice(11).replace(/\s/g,'');
+        }
+      }
+
+      return {
+        baseX: bases.x,
+        baseY: bases.y,
+        top: blockTop,
+        left: blockLeft,
+        height: blockHeight,
+        width: blockWidth,
+        speed: speed,
+        style: style,
+        transform: transform,
+        zindex: dataZindex,
+        min: dataMin,
+        max: dataMax
+      };
+    };
+
+    // set scroll position (posY, posX)
+    // side effect method is not ideal, but okay for now
+    // returns true if the scroll changed, false if nothing happened
+    var setPosition = function() {
+      var oldY = posY;
+      var oldX = posX;
+
+      posY = self.options.wrapper ? self.options.wrapper.scrollTop : (document.documentElement || document.body.parentNode || document.body).scrollTop || window.pageYOffset;
+      posX = self.options.wrapper ? self.options.wrapper.scrollLeft : (document.documentElement || document.body.parentNode || document.body).scrollLeft || window.pageXOffset;
+      // If option relativeToWrapper is true, use relative wrapper value instead.
+      if (self.options.relativeToWrapper) {
+        var scrollPosY = (document.documentElement || document.body.parentNode || document.body).scrollTop || window.pageYOffset;
+        posY = scrollPosY - self.options.wrapper.offsetTop;
+      }
+
+
+      if (oldY != posY && self.options.vertical) {
+        // scroll changed, return true
+        return true;
+      }
+
+      if (oldX != posX && self.options.horizontal) {
+        // scroll changed, return true
+        return true;
+      }
+
+      // scroll did not change
+      return false;
+    };
+
+    // Ahh a pure function, gets new transform value
+    // based on scrollPosition and speed
+    // Allow for decimal pixel values
+    var updatePosition = function(percentageX, percentageY, speed) {
+      var result = {};
+      var valueX = (speed * (100 * (1 - percentageX)));
+      var valueY = (speed * (100 * (1 - percentageY)));
+
+      result.x = self.options.round ? Math.round(valueX) : Math.round(valueX * 100) / 100;
+      result.y = self.options.round ? Math.round(valueY) : Math.round(valueY * 100) / 100;
+
+      return result;
+    };
+
+    // Remove event listeners and loop again
+    var deferredUpdate = function() {
+      window.removeEventListener('resize', deferredUpdate);
+      window.removeEventListener('orientationchange', deferredUpdate);
+      (self.options.wrapper ? self.options.wrapper : window).removeEventListener('scroll', deferredUpdate);
+      (self.options.wrapper ? self.options.wrapper : document).removeEventListener('touchmove', deferredUpdate);
+
+      // loop again
+      loopId = loop(update);
+    };
+
+    // Loop
+    var update = function() {
+      if (setPosition() && pause === false) {
+        animate();
+
+        // loop again
+        loopId = loop(update);
+      } else {
+        loopId = null;
+
+        // Don't animate until we get a position updating event
+        window.addEventListener('resize', deferredUpdate);
+        window.addEventListener('orientationchange', deferredUpdate);
+        (self.options.wrapper ? self.options.wrapper : window).addEventListener('scroll', deferredUpdate, supportsPassive ? { passive: true } : false);
+        (self.options.wrapper ? self.options.wrapper : document).addEventListener('touchmove', deferredUpdate, supportsPassive ? { passive: true } : false);
+      }
+    };
+
+    // Transform3d on parallax element
+    var animate = function() {
+      var positions;
+      for (var i = 0; i < self.elems.length; i++){
+        var percentageY = ((posY - blocks[i].top + screenY) / (blocks[i].height + screenY));
+        var percentageX = ((posX - blocks[i].left + screenX) / (blocks[i].width + screenX));
+
+        // Subtracting initialize value, so element stays in same spot as HTML
+        positions = updatePosition(percentageX, percentageY, blocks[i].speed);// - blocks[i].baseX;
+        var positionY = positions.y - blocks[i].baseY;
+        var positionX = positions.x - blocks[i].baseX;
+
+        // The next two "if" blocks go like this:
+        // Check if a limit is defined (first "min", then "max");
+        // Check if we need to change the Y or the X
+        // (Currently working only if just one of the axes is enabled)
+        // Then, check if the new position is inside the allowed limit
+        // If so, use new position. If not, set position to limit.
+
+        // Check if a min limit is defined
+        if (blocks[i].min !== null) {
+          if (self.options.vertical && !self.options.horizontal) {
+            positionY = positionY <= blocks[i].min ? blocks[i].min : positionY;
+          }
+          if (self.options.horizontal && !self.options.vertical) {
+            positionX = positionX <= blocks[i].min ? blocks[i].min : positionX;
+          }
+        }
+
+        // Check if a max limit is defined
+        if (blocks[i].max !== null) {
+          if (self.options.vertical && !self.options.horizontal) {
+            positionY = positionY >= blocks[i].max ? blocks[i].max : positionY;
+          }
+          if (self.options.horizontal && !self.options.vertical) {
+            positionX = positionX >= blocks[i].max ? blocks[i].max : positionX;
+          }
+        }
+
+        var zindex = blocks[i].zindex;
+
+        // Move that element
+        // (Set the new translation and append initial inline transforms.)
+        var translate = 'translate3d(' + (self.options.horizontal ? positionX : '0') + 'px,' + (self.options.vertical ? positionY : '0') + 'px,' + zindex + 'px) ' + blocks[i].transform;
+        self.elems[i].style[transformProp] = translate;
+      }
+      self.options.callback(positions);
+    };
+
+    self.destroy = function() {
+      for (var i = 0; i < self.elems.length; i++){
+        self.elems[i].style.cssText = blocks[i].style;
+      }
+
+      // Remove resize event listener if not pause, and pause
+      if (!pause) {
+        window.removeEventListener('resize', init);
+        pause = true;
+      }
+
+      // Clear the animation loop to prevent possible memory leak
+      clearLoop(loopId);
+      loopId = null;
+    };
+
+    // Init
+    init();
+
+    // Allow to recalculate the initial values whenever we want
+    self.refresh = init;
+
+    return self;
+  };
+  return Rellax;
+}));
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],23:[function(require,module,exports){
 /*! scrollbarWidth.js v0.1.3 | felixexter | MIT | https://github.com/felixexter/scrollbarWidth */
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -29971,9 +30368,9 @@ module.exports = PerfectScrollbar;
 	return scrollbarWidth;
 }));
 
-},{}],23:[function(require,module,exports){
-!function(t,i){"object"==typeof exports&&"object"==typeof module?module.exports=i():"function"==typeof define&&define.amd?define("ScrollBooster",[],i):"object"==typeof exports?exports.ScrollBooster=i():t.ScrollBooster=i()}("undefined"!=typeof self?self:this,function(){return function(t){function i(o){if(e[o])return e[o].exports;var n=e[o]={i:o,l:!1,exports:{}};return t[o].call(n.exports,n,n.exports,i),n.l=!0,n.exports}var e={};return i.m=t,i.c=e,i.d=function(t,e,o){i.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:o})},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,i){return Object.prototype.hasOwnProperty.call(t,i)},i.p="/dist/",i(i.s=0)}([function(t,i,e){"use strict";function o(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}function n(t){return Math.max(t.offsetWidth,t.scrollWidth)}function s(t){return Math.max(t.offsetHeight,t.scrollHeight)}function r(t,i,e){for(var o=void 0,n=t.childNodes,s=document.createRange(),r=0;o=n[r],r<n.length;r++)if(3===o.nodeType){s.selectNodeContents(o);var h=s.getBoundingClientRect();if(i>=h.left&&e>=h.top&&i<=h.right&&e<=h.bottom)return o}return!1}function h(){var t=window.getSelection?window.getSelection():document.selection;t&&(t.removeAllRanges?t.removeAllRanges():t.empty&&t.empty())}Object.defineProperty(i,"__esModule",{value:!0});var c=Object.assign||function(t){for(var i=1;i<arguments.length;i++){var e=arguments[i];for(var o in e)Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o])}return t},l=function(){function t(t,i){for(var e=0;e<i.length;e++){var o=i[e];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(i,e,o){return e&&t(i.prototype,e),o&&t(i,o),i}}(),p=function(){function t(){var i=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(o(this,t),!(i.viewport&&i.viewport instanceof Element))return void console.error('"viewport" config property must be present and must be Element');var e={handle:i.viewport,content:i.viewport.children[0],bounce:!0,friction:.05,bounceForce:.1,textSelection:!1,onClick:function(){},shouldScroll:function(){return!0},onUpdate:function(){}};if(this.props=c({},e,i),!this.props.content)return void console.error("Viewport does not have any content");this.viewport={width:this.props.viewport.clientWidth,height:this.props.viewport.clientHeight},this.content={width:n(this.props.content),height:s(this.props.content)},this.position={x:0,y:0},this.velocity={x:0,y:0},this.friction=1-this.props.friction,this.bounceForce=this.props.bounceForce,this.isDragging=!1,this.dragStartPosition={x:0,y:0},this.dragOffsetPosition=c({},this.dragStartPosition),this.dragPosition=c({},this.position),this.isScrollEnabled=!!this.props.emulateScroll,this.isScrolling=!1,this.scrollOffset={x:0,y:0},this.bounce=this.props.bounce,this.textSelection=this.props.textSelection,this.boundX={from:Math.min(-this.content.width+this.viewport.width,0),to:0},this.boundY={from:Math.min(-this.content.height+this.viewport.height,0),to:0},this.mode={x:"x"==this.props.mode,y:"y"==this.props.mode,xy:"x"!==this.props.mode&&"y"!==this.props.mode},this.isRunning=!1,this.rafID=null,this.events={},this.animate(),this.handleEvents()}return l(t,[{key:"run",value:function(){var t=this;this.isRunning=!0,cancelAnimationFrame(this.rafID),this.rafID=requestAnimationFrame(function(){return t.animate()})}},{key:"animate",value:function(){var t=this;this.isRunning&&(this.update(),this.notify(),this.rafID=requestAnimationFrame(function(){return t.animate()}))}},{key:"update",value:function(){this.applyBoundForce(),this.applyDragForce(),this.applyScrollForce(),this.velocity.x*=this.friction,this.velocity.y*=this.friction,this.mode.y||(this.position.x+=this.velocity.x),this.mode.x||(this.position.y+=this.velocity.y),this.bounce&&!this.isScrolling||(this.position.x=Math.max(Math.min(this.position.x,this.boundX.to),this.boundX.from),this.position.y=Math.max(Math.min(this.position.y,this.boundY.to),this.boundY.from)),!this.isDragging&&!this.isScrolling&&Math.abs(this.velocity.x)<.1&&Math.abs(this.velocity.y)<.1&&(this.isRunning=!1)}},{key:"applyForce",value:function(t){this.velocity.x+=t.x,this.velocity.y+=t.y}},{key:"applyBoundForce",value:function(){if(this.bounce&&!this.isDragging){var t=this.position.x<this.boundX.from,i=this.position.x>this.boundX.to,e=this.position.y<this.boundY.from,o=this.position.y>this.boundY.to,n={x:0,y:0};if(t||i){var s=t?this.boundX.from:this.boundX.to,r=s-this.position.x,h=r*this.bounceForce,c=this.position.x+(this.velocity.x+h)/(1-this.friction);t&&c<this.boundX.from||i&&c>this.boundX.to||(h=r*this.bounceForce-this.velocity.x),n.x=h}if(e||o){var l=e?this.boundY.from:this.boundY.to,p=l-this.position.y,a=p*this.bounceForce,u=this.position.y+(this.velocity.y+a)/(1-this.friction);e&&u<this.boundY.from||o&&u>this.boundY.to||(a=p*this.bounceForce-this.velocity.y),n.y=a}this.applyForce(n)}}},{key:"applyDragForce",value:function(){if(this.isDragging){var t={x:this.dragPosition.x-this.position.x,y:this.dragPosition.y-this.position.y},i={x:t.x-this.velocity.x,y:t.y-this.velocity.y};this.applyForce(i)}}},{key:"applyScrollForce",value:function(){if(this.isScrolling){var t={x:this.scrollOffset.x-this.velocity.x,y:this.scrollOffset.y-this.velocity.y};this.scrollOffset.x=0,this.scrollOffset.y=0,this.applyForce(t)}}},{key:"setPosition",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.velocity.x=0,this.velocity.y=0,this.position.x=-t.x||0,this.position.y=-t.y||0,this.run()}},{key:"getUpdate",value:function(){return{isRunning:this.isRunning,isDragging:this.isDragging,isScrolling:this.isScrolling,position:{x:-this.position.x,y:-this.position.y},dragOffsetPosition:this.dragOffsetPosition,viewport:c({},this.viewport),content:c({},this.content)}}},{key:"notify",value:function(){this.props.onUpdate(this.getUpdate())}},{key:"updateMetrics",value:function(){this.viewport.width=this.props.viewport.clientWidth,this.viewport.height=this.props.viewport.clientHeight,this.content.width=n(this.props.content),this.content.height=s(this.props.content),this.boundX.from=Math.min(-this.content.width+this.viewport.width,0),this.boundY.from=Math.min(-this.content.height+this.viewport.height,0),this.run()}},{key:"handleEvents",value:function(){var t=this,i=this.props.viewport,e={x:0,y:0},o={x:0,y:0},n=!1,s=function(i){var e=void 0,s=void 0;n?(e=i.touches[0].pageX,s=i.touches[0].pageY):(e=i.pageX,s=i.pageY),t.dragOffsetPosition.x=e-o.x,t.dragOffsetPosition.y=s-o.y,t.dragPosition.x=t.dragStartPosition.x+t.dragOffsetPosition.x,t.dragPosition.y=t.dragStartPosition.y+t.dragOffsetPosition.y,n||i.preventDefault()};this.events.pointerdown=function(c){var l=void 0,p=void 0,a=void 0,u=void 0;n=!(!c.touches||!c.touches[0]),n?(l=c.touches[0].pageX,p=c.touches[0].pageY,a=c.touches[0].clientX,u=c.touches[0].clientY):(l=c.pageX,p=c.pageY,a=c.clientX,u=c.clientY);var d=i.getBoundingClientRect();if(!(a-d.left>=i.clientLeft+i.clientWidth)&&!(u-d.top>=i.clientTop+i.clientHeight)&&t.props.shouldScroll(t.getUpdate(),c)){if(t.textSelection){if(r(c.target,a,u))return;h()}t.isDragging=!0,(e.x||e.y)&&(t.position.x=e.x,t.position.y=e.y,e.x=0,e.y=0),o.x=l,o.y=p,t.dragStartPosition.x=t.position.x,t.dragStartPosition.y=t.position.y,s(c),t.run();var v=void 0,f=void 0;f=function(i){t.isDragging=!1,n?(window.removeEventListener("touchmove",s),window.removeEventListener("touchend",v)):(window.removeEventListener("mousemove",s),window.removeEventListener("mouseup",v))},n?(v=window.addEventListener("touchend",f),window.addEventListener("touchmove",s)):(v=window.addEventListener("mouseup",f),window.addEventListener("mousemove",s))}};var c=null;this.events.wheel=function(i){t.velocity.x=0,t.isScrollEnabled&&(t.isScrolling=!0,t.scrollOffset.x=-i.deltaX,t.scrollOffset.y=-i.deltaY,t.run(),clearTimeout(c),c=setTimeout(function(){return t.isScrolling=!1},80),i.preventDefault())},this.events.scroll=function(i){var o=t.props.viewport.scrollLeft,n=t.props.viewport.scrollTop;Math.abs(t.position.x+o)>3&&(t.position.x=-o,t.velocity.x=0),Math.abs(t.position.y+n)>3&&(t.position.y=-n,t.velocity.y=0),e.x=-t.props.viewport.scrollLeft,e.y=-t.props.viewport.scrollTop},this.events.click=function(i){t.props.onClick(t.getUpdate(),i)},this.events.resize=this.updateMetrics.bind(this),this.props.handle.addEventListener("mousedown",this.events.pointerdown),this.props.handle.addEventListener("touchstart",this.events.pointerdown),this.props.handle.addEventListener("click",this.events.click),this.props.viewport.addEventListener("wheel",this.events.wheel),this.props.viewport.addEventListener("scroll",this.events.scroll),window.addEventListener("resize",this.events.resize)}},{key:"destroy",value:function(){this.props.handle.removeEventListener("mousedown",this.events.pointerdown),this.props.handle.removeEventListener("touchstart",this.events.pointerdown),this.props.handle.removeEventListener("click",this.events.click),this.props.viewport.removeEventListener("wheel",this.events.wheel),this.props.viewport.removeEventListener("scroll",this.events.scroll),window.removeEventListener("resize",this.events.resize)}}]),t}();i.default=p,t.exports=i.default}])});
 },{}],24:[function(require,module,exports){
+!function(t,i){"object"==typeof exports&&"object"==typeof module?module.exports=i():"function"==typeof define&&define.amd?define("ScrollBooster",[],i):"object"==typeof exports?exports.ScrollBooster=i():t.ScrollBooster=i()}("undefined"!=typeof self?self:this,function(){return function(t){function i(o){if(e[o])return e[o].exports;var n=e[o]={i:o,l:!1,exports:{}};return t[o].call(n.exports,n,n.exports,i),n.l=!0,n.exports}var e={};return i.m=t,i.c=e,i.d=function(t,e,o){i.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:o})},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,i){return Object.prototype.hasOwnProperty.call(t,i)},i.p="/dist/",i(i.s=0)}([function(t,i,e){"use strict";function o(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}function n(t){return Math.max(t.offsetWidth,t.scrollWidth)}function s(t){return Math.max(t.offsetHeight,t.scrollHeight)}function r(t,i,e){for(var o=void 0,n=t.childNodes,s=document.createRange(),r=0;o=n[r],r<n.length;r++)if(3===o.nodeType){s.selectNodeContents(o);var h=s.getBoundingClientRect();if(i>=h.left&&e>=h.top&&i<=h.right&&e<=h.bottom)return o}return!1}function h(){var t=window.getSelection?window.getSelection():document.selection;t&&(t.removeAllRanges?t.removeAllRanges():t.empty&&t.empty())}Object.defineProperty(i,"__esModule",{value:!0});var c=Object.assign||function(t){for(var i=1;i<arguments.length;i++){var e=arguments[i];for(var o in e)Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o])}return t},l=function(){function t(t,i){for(var e=0;e<i.length;e++){var o=i[e];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(i,e,o){return e&&t(i.prototype,e),o&&t(i,o),i}}(),p=function(){function t(){var i=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(o(this,t),!(i.viewport&&i.viewport instanceof Element))return void console.error('"viewport" config property must be present and must be Element');var e={handle:i.viewport,content:i.viewport.children[0],bounce:!0,friction:.05,bounceForce:.1,textSelection:!1,onClick:function(){},shouldScroll:function(){return!0},onUpdate:function(){}};if(this.props=c({},e,i),!this.props.content)return void console.error("Viewport does not have any content");this.viewport={width:this.props.viewport.clientWidth,height:this.props.viewport.clientHeight},this.content={width:n(this.props.content),height:s(this.props.content)},this.position={x:0,y:0},this.velocity={x:0,y:0},this.friction=1-this.props.friction,this.bounceForce=this.props.bounceForce,this.isDragging=!1,this.dragStartPosition={x:0,y:0},this.dragOffsetPosition=c({},this.dragStartPosition),this.dragPosition=c({},this.position),this.isScrollEnabled=!!this.props.emulateScroll,this.isScrolling=!1,this.scrollOffset={x:0,y:0},this.bounce=this.props.bounce,this.textSelection=this.props.textSelection,this.boundX={from:Math.min(-this.content.width+this.viewport.width,0),to:0},this.boundY={from:Math.min(-this.content.height+this.viewport.height,0),to:0},this.mode={x:"x"==this.props.mode,y:"y"==this.props.mode,xy:"x"!==this.props.mode&&"y"!==this.props.mode},this.isRunning=!1,this.rafID=null,this.events={},this.animate(),this.handleEvents()}return l(t,[{key:"run",value:function(){var t=this;this.isRunning=!0,cancelAnimationFrame(this.rafID),this.rafID=requestAnimationFrame(function(){return t.animate()})}},{key:"animate",value:function(){var t=this;this.isRunning&&(this.update(),this.notify(),this.rafID=requestAnimationFrame(function(){return t.animate()}))}},{key:"update",value:function(){this.applyBoundForce(),this.applyDragForce(),this.applyScrollForce(),this.velocity.x*=this.friction,this.velocity.y*=this.friction,this.mode.y||(this.position.x+=this.velocity.x),this.mode.x||(this.position.y+=this.velocity.y),this.bounce&&!this.isScrolling||(this.position.x=Math.max(Math.min(this.position.x,this.boundX.to),this.boundX.from),this.position.y=Math.max(Math.min(this.position.y,this.boundY.to),this.boundY.from)),!this.isDragging&&!this.isScrolling&&Math.abs(this.velocity.x)<.1&&Math.abs(this.velocity.y)<.1&&(this.isRunning=!1)}},{key:"applyForce",value:function(t){this.velocity.x+=t.x,this.velocity.y+=t.y}},{key:"applyBoundForce",value:function(){if(this.bounce&&!this.isDragging){var t=this.position.x<this.boundX.from,i=this.position.x>this.boundX.to,e=this.position.y<this.boundY.from,o=this.position.y>this.boundY.to,n={x:0,y:0};if(t||i){var s=t?this.boundX.from:this.boundX.to,r=s-this.position.x,h=r*this.bounceForce,c=this.position.x+(this.velocity.x+h)/(1-this.friction);t&&c<this.boundX.from||i&&c>this.boundX.to||(h=r*this.bounceForce-this.velocity.x),n.x=h}if(e||o){var l=e?this.boundY.from:this.boundY.to,p=l-this.position.y,a=p*this.bounceForce,u=this.position.y+(this.velocity.y+a)/(1-this.friction);e&&u<this.boundY.from||o&&u>this.boundY.to||(a=p*this.bounceForce-this.velocity.y),n.y=a}this.applyForce(n)}}},{key:"applyDragForce",value:function(){if(this.isDragging){var t={x:this.dragPosition.x-this.position.x,y:this.dragPosition.y-this.position.y},i={x:t.x-this.velocity.x,y:t.y-this.velocity.y};this.applyForce(i)}}},{key:"applyScrollForce",value:function(){if(this.isScrolling){var t={x:this.scrollOffset.x-this.velocity.x,y:this.scrollOffset.y-this.velocity.y};this.scrollOffset.x=0,this.scrollOffset.y=0,this.applyForce(t)}}},{key:"setPosition",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.velocity.x=0,this.velocity.y=0,this.position.x=-t.x||0,this.position.y=-t.y||0,this.run()}},{key:"getUpdate",value:function(){return{isRunning:this.isRunning,isDragging:this.isDragging,isScrolling:this.isScrolling,position:{x:-this.position.x,y:-this.position.y},dragOffsetPosition:this.dragOffsetPosition,viewport:c({},this.viewport),content:c({},this.content)}}},{key:"notify",value:function(){this.props.onUpdate(this.getUpdate())}},{key:"updateMetrics",value:function(){this.viewport.width=this.props.viewport.clientWidth,this.viewport.height=this.props.viewport.clientHeight,this.content.width=n(this.props.content),this.content.height=s(this.props.content),this.boundX.from=Math.min(-this.content.width+this.viewport.width,0),this.boundY.from=Math.min(-this.content.height+this.viewport.height,0),this.run()}},{key:"handleEvents",value:function(){var t=this,i=this.props.viewport,e={x:0,y:0},o={x:0,y:0},n=!1,s=function(i){var e=void 0,s=void 0;n?(e=i.touches[0].pageX,s=i.touches[0].pageY):(e=i.pageX,s=i.pageY),t.dragOffsetPosition.x=e-o.x,t.dragOffsetPosition.y=s-o.y,t.dragPosition.x=t.dragStartPosition.x+t.dragOffsetPosition.x,t.dragPosition.y=t.dragStartPosition.y+t.dragOffsetPosition.y,n||i.preventDefault()};this.events.pointerdown=function(c){var l=void 0,p=void 0,a=void 0,u=void 0;n=!(!c.touches||!c.touches[0]),n?(l=c.touches[0].pageX,p=c.touches[0].pageY,a=c.touches[0].clientX,u=c.touches[0].clientY):(l=c.pageX,p=c.pageY,a=c.clientX,u=c.clientY);var d=i.getBoundingClientRect();if(!(a-d.left>=i.clientLeft+i.clientWidth)&&!(u-d.top>=i.clientTop+i.clientHeight)&&t.props.shouldScroll(t.getUpdate(),c)){if(t.textSelection){if(r(c.target,a,u))return;h()}t.isDragging=!0,(e.x||e.y)&&(t.position.x=e.x,t.position.y=e.y,e.x=0,e.y=0),o.x=l,o.y=p,t.dragStartPosition.x=t.position.x,t.dragStartPosition.y=t.position.y,s(c),t.run();var v=void 0,f=void 0;f=function(i){t.isDragging=!1,n?(window.removeEventListener("touchmove",s),window.removeEventListener("touchend",v)):(window.removeEventListener("mousemove",s),window.removeEventListener("mouseup",v))},n?(v=window.addEventListener("touchend",f),window.addEventListener("touchmove",s)):(v=window.addEventListener("mouseup",f),window.addEventListener("mousemove",s))}};var c=null;this.events.wheel=function(i){t.velocity.x=0,t.isScrollEnabled&&(t.isScrolling=!0,t.scrollOffset.x=-i.deltaX,t.scrollOffset.y=-i.deltaY,t.run(),clearTimeout(c),c=setTimeout(function(){return t.isScrolling=!1},80),i.preventDefault())},this.events.scroll=function(i){var o=t.props.viewport.scrollLeft,n=t.props.viewport.scrollTop;Math.abs(t.position.x+o)>3&&(t.position.x=-o,t.velocity.x=0),Math.abs(t.position.y+n)>3&&(t.position.y=-n,t.velocity.y=0),e.x=-t.props.viewport.scrollLeft,e.y=-t.props.viewport.scrollTop},this.events.click=function(i){t.props.onClick(t.getUpdate(),i)},this.events.resize=this.updateMetrics.bind(this),this.props.handle.addEventListener("mousedown",this.events.pointerdown),this.props.handle.addEventListener("touchstart",this.events.pointerdown),this.props.handle.addEventListener("click",this.events.click),this.props.viewport.addEventListener("wheel",this.events.wheel),this.props.viewport.addEventListener("scroll",this.events.scroll),window.addEventListener("resize",this.events.resize)}},{key:"destroy",value:function(){this.props.handle.removeEventListener("mousedown",this.events.pointerdown),this.props.handle.removeEventListener("touchstart",this.events.pointerdown),this.props.handle.removeEventListener("click",this.events.click),this.props.viewport.removeEventListener("wheel",this.events.wheel),this.props.viewport.removeEventListener("scroll",this.events.scroll),window.removeEventListener("resize",this.events.resize)}}]),t}();i.default=p,t.exports=i.default}])});
+},{}],25:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -30733,7 +31130,7 @@ return StickySidebar;
 
 
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /**
  * Swiper 4.5.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -38859,7 +39256,7 @@ return StickySidebar;
 
 }));
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -38870,7 +39267,7 @@ var App = require('./modules/app');
 App.init();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./modules/app":28,"jquery":15}],27:[function(require,module,exports){
+},{"./modules/app":29,"jquery":15}],28:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39333,7 +39730,7 @@ module.exports = {
   }
 };
 
-},{"./utils":56,"jquery":15,"jquery-mousewheel":13,"owl.carousel":19,"rangeslider.js":21}],28:[function(require,module,exports){
+},{"./utils":57,"jquery":15,"jquery-mousewheel":13,"owl.carousel":19,"rangeslider.js":21}],29:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39504,7 +39901,7 @@ module.exports = {
   }
 };
 
-},{"./about":27,"./arch":29,"./catalog":30,"./citiesSlider":31,"./form":32,"./ganttSlider":33,"./header":34,"./hover":35,"./lazyload":36,"./navBanner":37,"./navFilter":38,"./navMobile":39,"./navSticker":40,"./news":41,"./newsPhotoSlider":42,"./newsSlider":43,"./newsToggles":44,"./overview":46,"./popup":47,"./scrollableTable":48,"./scrollbox":49,"./sliderContent":50,"./sliderDigits":51,"./sliderTabs":52,"./tAdvantages":53,"./tSliders":54,"./techPromo":55,"./utils":56,"jquery":15,"objectFitPolyfill":18}],29:[function(require,module,exports){
+},{"./about":28,"./arch":30,"./catalog":31,"./citiesSlider":32,"./form":33,"./ganttSlider":34,"./header":35,"./hover":36,"./lazyload":37,"./navBanner":38,"./navFilter":39,"./navMobile":40,"./navSticker":41,"./news":42,"./newsPhotoSlider":43,"./newsSlider":44,"./newsToggles":45,"./overview":47,"./popup":48,"./scrollableTable":49,"./scrollbox":50,"./sliderContent":51,"./sliderDigits":52,"./sliderTabs":53,"./tAdvantages":54,"./tSliders":55,"./techPromo":56,"./utils":57,"jquery":15,"objectFitPolyfill":18}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39583,7 +39980,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15,"owl.carousel":19}],30:[function(require,module,exports){
+},{"jquery":15,"owl.carousel":19}],31:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39972,10 +40369,12 @@ module.exports = {
   }
 };
 
-},{"./notify":45,"jquery":15,"scrollbooster":23,"sticky-sidebar":24}],31:[function(require,module,exports){
+},{"./notify":46,"jquery":15,"scrollbooster":24,"sticky-sidebar":25}],32:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
+
+var Rellax = require('rellax');
 
 var ScrollBooster = require('scrollbooster');
 
@@ -40005,7 +40404,23 @@ module.exports = {
     maxScrollLeft: 0,
     lastRangeValue: 0,
     lastZIndex: 50,
-    timeout: null
+    timeout: null,
+    rellax: null
+  },
+  _initParallax: function _initParallax() {
+    var self = this;
+    self._state.rellax = new Rellax('[data-rellax-speed]', {
+      horizontal: true,
+      vertical: false,
+      wrapper: '#cities-slider .cities-slider__scroll',
+      center: true
+    });
+  },
+  _destroyParallax: function _destroyParallax() {
+    var self = this;
+    if (self._state.rellax == null) return;
+
+    self._state.rellax.destroy();
   },
   _setInitialOffset: function _setInitialOffset() {
     var self = this;
@@ -40013,9 +40428,9 @@ module.exports = {
     self._elems.$scroll.scrollLeft($(window).width() * 2);
 
     setTimeout(function () {
-      TweenLite.to(self._elems.$scroll[0], 1, {
+      TweenLite.to(self._elems.$scroll[0], 2, {
         scrollTo: {
-          x: 0
+          x: 100
         }
       });
     }, 200);
@@ -40239,6 +40654,8 @@ module.exports = {
 
     self._initScrollBooster();
 
+    self._initParallax();
+
     self._elems.$_.removeClass('cities-slider--frozen _loading');
 
     self._setInitialOffset();
@@ -40247,7 +40664,7 @@ module.exports = {
   }
 };
 
-},{"./utils":56,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"scrollbooster":23}],32:[function(require,module,exports){
+},{"./utils":57,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"rellax":22,"scrollbooster":24}],33:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40422,10 +40839,12 @@ module.exports = {
   }
 };
 
-},{"./notify":45,"autosize":5,"icheck":11,"jquery":15,"jquery-form":2,"jquery-validation":14,"jquery.maskedinput":3}],33:[function(require,module,exports){
+},{"./notify":46,"autosize":5,"icheck":11,"jquery":15,"jquery-form":2,"jquery-validation":14,"jquery.maskedinput":3}],34:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
+
+var Rellax = require('rellax');
 
 var ScrollBooster = require('scrollbooster');
 
@@ -40461,7 +40880,23 @@ module.exports = {
     randomItems: [],
     maxScrollLeft: 0,
     lastRangeValue: 0,
-    timeout: null
+    timeout: null,
+    rellax: null
+  },
+  _initParallax: function _initParallax() {
+    var self = this;
+    self._state.rellax = new Rellax('[data-rellax-speed]', {
+      horizontal: true,
+      vertical: false,
+      wrapper: '#gantt-slider .gantt-slider__scroll',
+      center: true
+    });
+  },
+  _destroyParallax: function _destroyParallax() {
+    var self = this;
+    if (self._state.rellax == null) return;
+
+    self._state.rellax.destroy();
   },
   _getGanttPattern: function _getGanttPattern(width, height) {
     var self = this; // imagine, that we have some picture, which contains 7 rectangles.
@@ -40575,7 +41010,7 @@ module.exports = {
 
     return self._cache.gantt[cacheId];
   },
-  _switchToGanttView: function _switchToGanttView() {
+  _switchToGanttView: function _switchToGanttView(initial) {
     var self = this;
 
     self._elems.$_.addClass('gantt-slider--gantt-view');
@@ -40598,11 +41033,15 @@ module.exports = {
       height: calcs.canvas.height
     });
 
+    if (!initial) {
+      self._elems.$scroll.scrollLeft(0);
+    }
+
     self._state.currentView = 'gantt';
 
     self._updateScrollCalcs();
   },
-  _switchToLinesView: function _switchToLinesView() {
+  _switchToLinesView: function _switchToLinesView(initial) {
     var self = this;
 
     self._elems.$_.removeClass('gantt-slider--gantt-view');
@@ -40665,6 +41104,10 @@ module.exports = {
       width: maxLeftPos + itemWidth + innerOffset,
       height: maxTopPos + itemHeight + itemOffsetY
     });
+
+    if (!initial) {
+      self._elems.$scroll.scrollLeft(0);
+    }
 
     self._state.currentView = 'lines';
 
@@ -40733,7 +41176,7 @@ module.exports = {
     self._elems.$scroll.scrollLeft($(window).width() * 2);
 
     setTimeout(function () {
-      TweenLite.to(self._elems.$scroll[0], 1, {
+      TweenLite.to(self._elems.$scroll[0], 2, {
         scrollTo: {
           x: 100
         }
@@ -40761,12 +41204,20 @@ module.exports = {
 
     switch (self._state.currentView) {
       case 'gantt':
+        self._destroyParallax();
+
+        self._elems.$items.each(function () {
+          this.style.transform = '';
+        });
+
         self._switchToLinesView();
 
         break;
 
       case 'lines':
         self._switchToGanttView();
+
+        self._initParallax();
 
         break;
     }
@@ -40828,11 +41279,13 @@ module.exports = {
 
     self._sortItemsRandomly();
 
-    self._switchToGanttView();
+    self._switchToGanttView(true);
 
     self._initRangeSlider();
 
     self._initScrollBooster();
+
+    self._initParallax();
 
     self._elems.$_.removeClass('gantt-slider--frozen _loading');
 
@@ -40842,7 +41295,7 @@ module.exports = {
   }
 };
 
-},{"./utils":56,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"scrollbooster":23}],34:[function(require,module,exports){
+},{"./utils":57,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"rellax":22,"scrollbooster":24}],35:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40932,7 +41385,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15}],35:[function(require,module,exports){
+},{"jquery":15}],36:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40962,7 +41415,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15}],36:[function(require,module,exports){
+},{"jquery":15}],37:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40978,7 +41431,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15,"jquery-lazy":12}],37:[function(require,module,exports){
+},{"jquery":15,"jquery-lazy":12}],38:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41075,7 +41528,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15,"owl.carousel":19}],38:[function(require,module,exports){
+},{"jquery":15,"owl.carousel":19}],39:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41117,7 +41570,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15}],39:[function(require,module,exports){
+},{"jquery":15}],40:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41189,7 +41642,7 @@ module.exports = {
   }
 };
 
-},{"body-scroll-lock":6,"jquery":15}],40:[function(require,module,exports){
+},{"body-scroll-lock":6,"jquery":15}],41:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41309,7 +41762,7 @@ module.exports = {
   }
 };
 
-},{"jQuery-One-Page-Nav":1,"jquery":15,"midnight.js":16}],41:[function(require,module,exports){
+},{"jQuery-One-Page-Nav":1,"jquery":15,"midnight.js":16}],42:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41364,7 +41817,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15,"owl.carousel":19}],42:[function(require,module,exports){
+},{"jquery":15,"owl.carousel":19}],43:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -41434,7 +41887,7 @@ module.exports = {
   }
 };
 
-},{"swiper":25}],43:[function(require,module,exports){
+},{"swiper":26}],44:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -41456,7 +41909,7 @@ module.exports = {
   }
 };
 
-},{"swiper":25}],44:[function(require,module,exports){
+},{"swiper":26}],45:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -41517,7 +41970,7 @@ module.exports = {
   }
 };
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41538,7 +41991,7 @@ module.exports = function (title, text) {
   });
 };
 
-},{"jquery":15,"notifyjs-browser":17}],46:[function(require,module,exports){
+},{"jquery":15,"notifyjs-browser":17}],47:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41629,7 +42082,7 @@ module.exports = {
   }
 };
 
-},{"./../../../node_modules/bootstrap/js/dist/collapse":7,"./../../../node_modules/bootstrap/js/dist/util":8,"jquery":15}],47:[function(require,module,exports){
+},{"./../../../node_modules/bootstrap/js/dist/collapse":7,"./../../../node_modules/bootstrap/js/dist/util":8,"jquery":15}],48:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41670,7 +42123,7 @@ module.exports = {
   }
 };
 
-},{"@fancyapps/fancybox":4,"jquery":15}],48:[function(require,module,exports){
+},{"@fancyapps/fancybox":4,"jquery":15}],49:[function(require,module,exports){
 "use strict";
 
 var PerfectScrollbar = require('perfect-scrollbar');
@@ -41780,7 +42233,7 @@ module.exports = {
   }
 };
 
-},{"./utils":56,"perfect-scrollbar":20,"scrollbooster":23}],49:[function(require,module,exports){
+},{"./utils":57,"perfect-scrollbar":20,"scrollbooster":24}],50:[function(require,module,exports){
 "use strict";
 
 var scrollbarWidth = require('scrollbarwidth');
@@ -41805,7 +42258,7 @@ window.addEventListener('resize', function () {
   setNegativeOffset();
 });
 
-},{"scrollbarwidth":22}],50:[function(require,module,exports){
+},{"scrollbarwidth":23}],51:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41849,7 +42302,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15,"owl.carousel":19}],51:[function(require,module,exports){
+},{"jquery":15,"owl.carousel":19}],52:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42158,7 +42611,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15}],52:[function(require,module,exports){
+},{"jquery":15}],53:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42216,7 +42669,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15}],53:[function(require,module,exports){
+},{"jquery":15}],54:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42285,7 +42738,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15}],54:[function(require,module,exports){
+},{"jquery":15}],55:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42390,7 +42843,7 @@ module.exports = {
   }
 };
 
-},{"jquery":15,"owl.carousel":19}],55:[function(require,module,exports){
+},{"jquery":15,"owl.carousel":19}],56:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42484,7 +42937,7 @@ module.exports = {
   }
 };
 
-},{"./navBanner":37,"./utils":56,"DrawSVGPlugin":57,"TweenLite":10,"jquery":15}],56:[function(require,module,exports){
+},{"./navBanner":38,"./utils":57,"DrawSVGPlugin":58,"TweenLite":10,"jquery":15}],57:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -42501,7 +42954,7 @@ module.exports = {
   }
 };
 
-},{}],57:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -42626,4 +43079,4 @@ var _gsScope = "undefined" != typeof module && module.exports && "undefined" != 
 }();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"TweenLite":10}]},{},[26]);
+},{"TweenLite":10}]},{},[27]);

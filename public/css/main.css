@@ -3435,8 +3435,6 @@ img {
     text-transform: uppercase;
     color: #ffffff; }
   .gantt-slider__line {
-    -webkit-transition-delay: .5s;
-            transition-delay: .5s;
     position: absolute;
     border-top: 1px solid #d4ddea;
     margin-top: 3px; }
@@ -3457,14 +3455,10 @@ img {
   .gantt-slider__item--red .gantt-slider__dash {
     background: #c32118; }
   .gantt-slider__type {
-    -webkit-transition-delay: .5s;
-            transition-delay: .5s;
     position: absolute;
     width: 200px;
     font-size: 0; }
   .gantt-slider__item {
-    -webkit-transition: all .5s ease-out .1s;
-    transition: all .5s ease-out .1s;
     position: absolute;
     width: 410px;
     height: 160px;
@@ -3517,8 +3511,8 @@ img {
     height: 100%;
     z-index: 30; }
   .gantt-slider__h1, .gantt-slider__desc {
-    -webkit-transition: all .2s ease-out .1s;
-    transition: all .2s ease-out .1s;
+    -webkit-transition: color .2s ease-out .1s;
+    transition: color .2s ease-out .1s;
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis; }

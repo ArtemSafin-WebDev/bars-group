@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var Rellax = require('rellax');
 var ScrollBooster = require('scrollbooster');
 var TweenLite = require('TweenLite');
 require('gsap/umd/ScrollToPlugin');
@@ -27,7 +28,26 @@ module.exports = {
 		maxScrollLeft: 0,
 		lastRangeValue: 0,
 		lastZIndex: 50,
-		timeout: null
+		timeout: null,
+		rellax: null
+	},
+
+	_initParallax: function () {
+		var self = this; 
+
+		self._state.rellax = new Rellax('[data-rellax-speed]', {
+			horizontal: true,
+			vertical: false,
+			wrapper: '#cities-slider .cities-slider__scroll',
+			center: true
+		});
+	},
+
+	_destroyParallax: function () {
+		var self = this; 
+
+		if (self._state.rellax == null) return;
+		self._state.rellax.destroy();
 	},
 
 	_setInitialOffset: function () {
@@ -35,7 +55,7 @@ module.exports = {
 
 		self._elems.$scroll.scrollLeft( $(window).width() * 2 );
 		setTimeout(function () {
-			TweenLite.to(self._elems.$scroll[0], 1, {scrollTo:{ x:0 }});
+			TweenLite.to(self._elems.$scroll[0], 2, {scrollTo:{ x:100 }});
 		}, 200);
 	},
 
@@ -275,6 +295,7 @@ module.exports = {
 		self._setItemsPositions();
 		self._initRangeSlider();
 		self._initScrollBooster();
+		self._initParallax();
 
 		self._elems.$_.removeClass('cities-slider--frozen _loading');
 

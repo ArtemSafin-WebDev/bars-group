@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var Rellax = require('rellax');
 var ScrollBooster = require('scrollbooster');
 var TweenLite = require('TweenLite');
 require('gsap/umd/ScrollToPlugin');
@@ -33,7 +34,26 @@ module.exports = {
 		randomItems: [],
 		maxScrollLeft: 0,
 		lastRangeValue: 0,
-		timeout: null
+		timeout: null,
+		rellax: null
+	},
+
+	_initParallax: function () {
+		var self = this; 
+
+		self._state.rellax = new Rellax('[data-rellax-speed]', {
+			horizontal: true,
+			vertical: false,
+			wrapper: '#gantt-slider .gantt-slider__scroll',
+			center: true
+		});
+	},
+
+	_destroyParallax: function () {
+		var self = this; 
+
+		if (self._state.rellax == null) return;
+		self._state.rellax.destroy();
 	},
 
 	_getGanttPattern: function (width, height) {
@@ -158,7 +178,7 @@ module.exports = {
 		return self._cache.gantt[cacheId];
 	},
 
-	_switchToGanttView: function () {
+	_switchToGanttView: function (initial) {
 		var self = this;
 
 		self._elems.$_.addClass('gantt-slider--gantt-view');
@@ -180,12 +200,15 @@ module.exports = {
 			height: calcs.canvas.height
 		});
 
+		if (!initial) {
+			self._elems.$scroll.scrollLeft(0);
+		}
 
 		self._state.currentView = 'gantt';
 		self._updateScrollCalcs();
 	},
 
-	_switchToLinesView: function () {
+	_switchToLinesView: function (initial) {
 		var self = this;
 
 		self._elems.$_.removeClass('gantt-slider--gantt-view');
@@ -247,6 +270,11 @@ module.exports = {
 			width: maxLeftPos + itemWidth + innerOffset,
 			height: maxTopPos + itemHeight + itemOffsetY
 		});
+
+
+		if (!initial) {
+			self._elems.$scroll.scrollLeft(0);
+		}
 
 		self._state.currentView = 'lines';
 		self._updateScrollCalcs();
@@ -322,7 +350,7 @@ module.exports = {
 
 		self._elems.$scroll.scrollLeft( $(window).width() * 2 );
 		setTimeout(function () {
-			TweenLite.to(self._elems.$scroll[0], 1, {scrollTo:{x:100}});
+			TweenLite.to(self._elems.$scroll[0], 2, {scrollTo:{x:100}});
 		}, 200);
 	},
 
@@ -346,10 +374,15 @@ module.exports = {
 
 		switch (self._state.currentView) {
 			case 'gantt': 
+				self._destroyParallax();
+				self._elems.$items.each(function () {
+					this.style.transform = '';
+				});
 				self._switchToLinesView();
 			break;
 			case 'lines': 
 				self._switchToGanttView();
+				self._initParallax();
 			break;
 		}
 	},
@@ -404,9 +437,10 @@ module.exports = {
 		self._createElemsClones();
 		self._sortItemsByGroup();
 		self._sortItemsRandomly();
-		self._switchToGanttView();
+		self._switchToGanttView(true);
 		self._initRangeSlider();
 		self._initScrollBooster();
+		self._initParallax();
 
 		self._elems.$_.removeClass('gantt-slider--frozen _loading');
 
