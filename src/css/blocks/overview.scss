@@ -5,7 +5,7 @@
 	&__label {
 		position: absolute;
 		z-index: 30;
-		top: 49px;
+		top: -20px;
 		left: 0;
 	}
 
@@ -41,8 +41,8 @@
 
 	&__nav {
 
-		margin-left: 300px;
-		padding-top: 20px;
+		margin-left: 260px;
+		padding-top: 80px;
 
 		&__list {
 			font-size: 0;
@@ -157,8 +157,8 @@
 	&__about {
 		
 		@extend .clearfix;
-		padding: 80px 0;
-		margin-left: 260px;
+		padding: 60px 0;
+		margin-left: 200px;
 		max-width: 480px;
 
 		&__item {
@@ -181,7 +181,7 @@
 	}
 
 	&__title {
-		margin-bottom: 20px;
+		margin-bottom: 1.4em;
 		font-size: 24px;
 		font-weight: 700;
 		line-height: 1.35;
@@ -202,9 +202,8 @@
 
 	&__button-more {
 	 	margin-bottom: 20px;
-	 	margin-top: 50px;
+	 	margin-top: 40px;
 	}
-
 
 
 }
@@ -214,7 +213,6 @@
 	.overview {
 
 		&__nav {
-			padding-top: 30px;
 
 			&__link {
 				height: 80px;
@@ -234,13 +232,8 @@
 
 	.overview {
 
-		&__label {
-			top: -20px;
-		}
-
 		&__nav {
 			margin-left: 60px;
-			padding-top: 60px;
 		}
 
 		&__about {
@@ -266,12 +259,6 @@
 
 		&__about {
 			margin-left: 0;
-		}
-
-
-
-		&__button-more {
-			margin-top: 40px;
 		}
 
 	}

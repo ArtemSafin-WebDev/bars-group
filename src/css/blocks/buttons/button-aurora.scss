@@ -1,6 +1,6 @@
 
 .button-aurora {
-	transition: background .2s ease-in;
+	transition: background .2s ease-in .1s;
 	display: inline-block;
 	user-select: none;
 	position: relative;
@@ -17,7 +17,7 @@
 	&:before {
 		@include position-fill();
 		left: -100%;
-		transition: left .2s ease-in;
+		transition: left .2s ease-in .1s;
 		background: darken(#59b4e6, 10%);
 		content: ' ';
 	}

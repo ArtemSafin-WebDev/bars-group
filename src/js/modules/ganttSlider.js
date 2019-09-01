@@ -1,5 +1,7 @@
 var $ = require('jquery');
 var ScrollBooster = require('scrollbooster');
+var TweenLite = require('TweenLite');
+require('gsap/umd/ScrollToPlugin');
 require('rangeslider.js');
 
 var Utils = require('./utils');
@@ -318,7 +320,10 @@ module.exports = {
 	_setInitialOffset: function () {
 		var self = this;
 
-		self._elems.$scroll.scrollLeft(100);
+		self._elems.$scroll.scrollLeft( $(window).width() * 2 );
+		setTimeout(function () {
+			TweenLite.to(self._elems.$scroll[0], 1, {scrollTo:{x:100}});
+		}, 200);
 	},
 
 	_handleWindowResize: function (e) {
@@ -402,9 +407,10 @@ module.exports = {
 		self._switchToGanttView();
 		self._initRangeSlider();
 		self._initScrollBooster();
-		self._setInitialOffset();
 
 		self._elems.$_.removeClass('gantt-slider--frozen _loading');
+
+		self._setInitialOffset();
 
 		self._bindUI();
 

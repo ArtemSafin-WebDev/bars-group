@@ -123,12 +123,12 @@
 	}
 
 	&__item {
-		transition: all .5s ease-out, padding .2s ease-out;
+		transition: all .5s ease-out .1s;
 		position: absolute;
 		width: 410px;
 		height: 160px;
-		padding-bottom: 18px;
-		padding-top: 24px;
+		padding-bottom: 30px;
+		padding-top: 30px;
 		margin-bottom: 20px;
 		margin-right: 60px;
 
@@ -169,7 +169,7 @@
 	}
 
 	&__dash {
-		transition: all .2s ease-out;
+		transition: all .2s ease-out .1s;
 		position: absolute;
 	    top: 0;
 	    right: 0;
@@ -178,7 +178,7 @@
 	}
 
 	&__bg {
-		transition: all .2s ease-out;
+		transition: all .2s ease-out .1s;
 		width: auto;
 		right: 0;
 		height: 7px;
@@ -197,7 +197,7 @@
 
 	&__h1,
 	&__desc {
-		transition: all .2s ease-out;
+		transition: all .2s ease-out .1s;
 		position: relative;
 		overflow: hidden;
 		text-overflow: ellipsis;

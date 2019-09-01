@@ -23,7 +23,7 @@
 
 		&:before,
 		&:after {
-			transition: transform .2s;
+			transition: transform .2s .1s;
 			content: ' ';
 			position: absolute;
 			right: 0;
