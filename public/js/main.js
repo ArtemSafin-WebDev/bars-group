@@ -39816,7 +39816,9 @@ module.exports = {
     Popup.init();
     NavFilter.init();
     TAdvantages.init();
-    Lazyload.init(); // trigger click to start loading lazy videos
+    Lazyload.init();
+    GanttSlider.init();
+    CitiesSlider.init(); // trigger click to start loading lazy videos
 
     $('body').trigger('click');
   },
@@ -39838,8 +39840,6 @@ module.exports = {
     // because tabs content can contain other sliders inside
 
     NavBanner.init();
-    GanttSlider.init();
-    CitiesSlider.init();
     SliderContent.init();
     SliderDigits.init();
     SliderTabs.init();
