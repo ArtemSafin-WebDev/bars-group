@@ -2066,6 +2066,7 @@ img {
     .nav-video__item {
       float: none;
       display: inline-block;
+      vertical-align: top;
       width: 270px !important; }
       .nav-video__item:before {
         display: none; }
