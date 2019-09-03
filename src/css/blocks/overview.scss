@@ -157,9 +157,8 @@
 	&__about {
 		
 		@extend .clearfix;
-		padding: 60px 0;
+		padding-top: 80px;
 		margin-left: 200px;
-		max-width: 480px;
 
 		&__item {
 			transition: opacity .3s;
@@ -167,6 +166,7 @@
 			float: left;
 			margin-left: -100%;
 			width: 100%;
+			min-height: 320px;
 			opacity: 0;
 
 			&:first-child {
@@ -181,6 +181,7 @@
 	}
 
 	&__title {
+		max-width: 480px;
 		margin-bottom: 1.4em;
 		font-size: 24px;
 		font-weight: 700;
@@ -189,6 +190,7 @@
 	}
 
 	&__desc {
+		max-width: 480px;
 		font-size: 14px;
 		line-height: 1.5;
 		color: rgba(#fff, .8);
@@ -201,10 +203,10 @@
 	}
 
 	&__button-more {
-	 	margin-bottom: 20px;
-	 	margin-top: 40px;
+	 	position: absolute;
+	 	bottom: 80px;
+	 	right: 0;
 	}
-
 
 }
 
@@ -258,7 +260,17 @@
 		}
 
 		&__about {
+			padding: 60px 0;
 			margin-left: 0;
+
+			&__item {
+				min-height: auto;
+			}
+		}
+
+		&__button-more {
+		 	position: static;
+		 	margin-top: 40px;
 		}
 
 	}
@@ -362,6 +374,10 @@
 			margin-top: 17px;
 			font-size: 12px;
 			line-height: 1.7;
+		}
+
+		&__button-more {
+			margin-bottom: 10px;
 		}
 	}
 
