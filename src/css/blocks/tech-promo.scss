@@ -12,7 +12,7 @@
 		width: 600px;
 		height: 600px;
 		margin-top: -50px;
-		margin-bottom: 250px;
+		margin-bottom: 200px;
 		margin-left: 45%;
 	}
 
@@ -75,22 +75,20 @@
 		border-radius: 50%;
 	}
 
-	&__elem-3 {
-		position: absolute;
-		top: -11%;
-		left: -22%;
-		width: 37%;
-		height: 37%;
-		border-radius: 50%;
+	// &__elem-3 {
+	// 	position: absolute;
+	// 	top: -11%;
+	// 	left: -22%;
+	// 	width: 37%;
+	// 	height: 37%;
+	// 	border-radius: 50%;
 
-		.tech-promo__circle__decor {
-			border-color: transparent;
-			background: rgba(#19142d, .7);
-		}
-
-
+	// 	.tech-promo__circle__decor {
+	// 		border-color: transparent;
+	// 		background: rgba(#19142d, .7);
+	// 	}
 		
-	}
+	// }
 
 	&__elem-4 {
 		position: absolute;
@@ -122,8 +120,8 @@
 
 	&__elem-6 {
 		position: absolute;
-		top: 93.5%;
-		left: 7%;
+		top: -2.8%;
+		left: -17.8%;
 		width: 30%;
 		height: 30%;
 		border-radius: 50%;
@@ -395,26 +393,26 @@
 			left: 91%;
 		}
 
-		&--4 {
-			transition-delay: 0.3s;
-			top: 93%;
-			left: 26%;
-		}
+		// &--4 {
+		// 	transition-delay: 0.3s;
+		// 	top: 93%;
+		// 	left: 26%;
+		// }
 
 		&--5 {
-			transition-delay: 0.4s;
+			transition-delay: 0.3s;
 			top: 78%;
 			left: 8%;
 		}
 
 		&--6 {
-			transition-delay: 0.5s;
+			transition-delay: 0.4s;
 			top: 47%;
 			left: -1.5%;
 		}
 
 		&--7 {
-			transition-delay: 0.6s;
+			transition-delay: 0.5s;
 			top: 18%;
 			left: 9%;
 		}

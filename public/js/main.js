@@ -42889,7 +42889,7 @@ module.exports = {
   _handleCircleClick: function _handleCircleClick(e) {
     var self = e.data.self;
     e.preventDefault();
-    var $target = $($(this).attr('href'));
+    var $target = $('#' + $(this).data('target'));
     var tabIndex = $target.parent().index();
     NavBanner.showTabByIndex(tabIndex);
     var SPACE_BEFORE = 200;

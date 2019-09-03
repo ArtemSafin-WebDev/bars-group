@@ -51,7 +51,7 @@ module.exports = {
 
 		e.preventDefault();
 
-		var $target = $( $(this).attr('href') );
+		var $target = $('#' + $(this).data('target') );
 		var tabIndex = $target.parent().index();
 		NavBanner.showTabByIndex(tabIndex);
 
