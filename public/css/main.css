@@ -3389,7 +3389,9 @@ img {
     font-size: 12px;
     line-height: 1.7; }
   .overview__button-more {
-    margin-bottom: 10px; } }
+    margin-bottom: 10px; }
+  .bg-layer__video {
+    display: none !important; } }
 
 .gantt-slider {
   position: relative; }
