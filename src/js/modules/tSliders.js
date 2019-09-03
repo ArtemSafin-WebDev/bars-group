@@ -3,42 +3,6 @@ require('owl.carousel');
 
 module.exports = {
 
-	_initTasksSlider: function () {
-		var self = this;
-
-		var $blocks = $('.jsTTasksSlider');
-		if ($blocks.length == 0) return;
-
-		$blocks
-			.addClass('owl-carousel')
-			.owlCarousel({
-				items: 1,
-				dots: false,
-				nav: true,
-				loop: true,
-				navText: [''],
-				navContainer: '.tTasks__nav'
-			});
-	},
-
-	_initIntroducedSlider: function () {
-		var self = this;
-
-		var $blocks = $('.jsTIntroducedSlider');
-		if ($blocks.length == 0) return;
-
-		$blocks
-			.addClass('owl-carousel')
-			.owlCarousel({
-				items: 1,
-				dots: false,
-				nav: true,
-				loop: true,
-				navText: [''],
-				navContainer: '.tIntroduced__nav'
-			});
-	},
-
 	_initComponentsSlider: function () {
 		var self = this;
 
@@ -81,39 +45,10 @@ module.exports = {
 		});
 	},
 
-	_renderAdaptiveSliders: function () {
-		var self = this;
-
-		if (window.matchMedia("(min-width: 601px)").matches) {
-			self._initTasksSlider();
-			self._initIntroducedSlider();
-		} else {
-			$('.jsTTasksSlider, .jsTIntroducedSlider')
-				.owlCarousel('destroy').removeClass('owl-carousel');
-		}
-
-	},
-
-	_handleWindowResize: function (e) {
-		var self = e.data.self;
-
-		self._renderAdaptiveSliders();
-	},
-
-	_bindUI: function () {
-		var self = this;
-
-		$(window).on('resize', {self: self}, self._handleWindowResize);
-	},
-
 	init: function () {
 		var self = this;
 
-		self._renderAdaptiveSliders();
 		self._initComponentsSlider();
 		self._initNewsSlider();
-
-		self._bindUI();
-
 	}
 };

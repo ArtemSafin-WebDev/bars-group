@@ -184,17 +184,27 @@
   background: #cad4da;
 }
 .tTasks__wrapper {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  display: none;
+}
+.tTasks__wrapper:first-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 .tTasks__item {
   position: relative;
   width: 33.3333%;
   padding-top: 90px;
   padding-right: 60px;
+  display: none;
+}
+.tTasks__item:nth-child(-n+6) {
+  display: block;
+}
+.is-admin .tTasks__item {
+  display: block !important;
 }
 .tTasks__digit {
   font-size: 80px;
@@ -213,19 +223,29 @@
   background-color: #fff;
 }
 .tIntroduced__wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 .tIntroduced__wrapper:first-of-type {
   margin-top: -40px;
 }
+.tIntroduced__wrapper:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 .tIntroduced__item {
   width: 33.3333%;
   margin-top: 90px;
   padding-right: 35px;
+  display: none;
+}
+.tIntroduced__item:nth-child(-n+6) {
+  display: block;
+}
+.is-admin .tIntroduced__item {
+  display: block !important;
 }
 .tIntroduced__description {
   line-height: 1.75;
@@ -691,6 +711,11 @@
   .tForWhom__title {
     font-size: 17px;
   }
+  .tTasks._opened .tTasks__wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
   .tTasks__digit {
     font-size: 50px;
     line-height: 50px;
@@ -700,6 +725,11 @@
   .tTasks__item {
     margin-top: 0;
     padding-top: 75px;
+  }
+  .tIntroduced._opened .tIntroduced__wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   .tIntroduced__item {
     margin-top: 50px;

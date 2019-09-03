@@ -39730,7 +39730,7 @@ module.exports = {
   }
 };
 
-},{"./utils":57,"jquery":15,"jquery-mousewheel":13,"owl.carousel":19,"rangeslider.js":21}],29:[function(require,module,exports){
+},{"./utils":58,"jquery":15,"jquery-mousewheel":13,"owl.carousel":19,"rangeslider.js":21}],29:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -39790,6 +39790,8 @@ var Arch = require('./arch');
 var NavFilter = require('./navFilter');
 
 var Lazyload = require('./lazyload');
+
+var TasksSliders = require('./tTasks');
 
 require('./scrollbox');
 
@@ -39854,6 +39856,7 @@ module.exports = {
     About.init();
     TSliders.init();
     Arch.init();
+    TasksSliders.init();
   },
   _handleWindowLoad: function _handleWindowLoad() {
     var self = this;
@@ -39901,7 +39904,7 @@ module.exports = {
   }
 };
 
-},{"./about":28,"./arch":30,"./catalog":31,"./citiesSlider":32,"./form":33,"./ganttSlider":34,"./header":35,"./hover":36,"./lazyload":37,"./navBanner":38,"./navFilter":39,"./navMobile":40,"./navSticker":41,"./news":42,"./newsPhotoSlider":43,"./newsSlider":44,"./newsToggles":45,"./overview":47,"./popup":48,"./scrollableTable":49,"./scrollbox":50,"./sliderContent":51,"./sliderDigits":52,"./sliderTabs":53,"./tAdvantages":54,"./tSliders":55,"./techPromo":56,"./utils":57,"jquery":15,"objectFitPolyfill":18}],30:[function(require,module,exports){
+},{"./about":28,"./arch":30,"./catalog":31,"./citiesSlider":32,"./form":33,"./ganttSlider":34,"./header":35,"./hover":36,"./lazyload":37,"./navBanner":38,"./navFilter":39,"./navMobile":40,"./navSticker":41,"./news":42,"./newsPhotoSlider":43,"./newsSlider":44,"./newsToggles":45,"./overview":47,"./popup":48,"./scrollableTable":49,"./scrollbox":50,"./sliderContent":51,"./sliderDigits":52,"./sliderTabs":53,"./tAdvantages":54,"./tSliders":55,"./tTasks":56,"./techPromo":57,"./utils":58,"jquery":15,"objectFitPolyfill":18}],30:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -40664,7 +40667,7 @@ module.exports = {
   }
 };
 
-},{"./utils":57,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"rellax":22,"scrollbooster":24}],33:[function(require,module,exports){
+},{"./utils":58,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"rellax":22,"scrollbooster":24}],33:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -41295,7 +41298,7 @@ module.exports = {
   }
 };
 
-},{"./utils":57,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"rellax":22,"scrollbooster":24}],35:[function(require,module,exports){
+},{"./utils":58,"TweenLite":10,"gsap/umd/ScrollToPlugin":9,"jquery":15,"rangeslider.js":21,"rellax":22,"scrollbooster":24}],35:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42233,7 +42236,7 @@ module.exports = {
   }
 };
 
-},{"./utils":57,"perfect-scrollbar":20,"scrollbooster":24}],50:[function(require,module,exports){
+},{"./utils":58,"perfect-scrollbar":20,"scrollbooster":24}],50:[function(require,module,exports){
 "use strict";
 
 var scrollbarWidth = require('scrollbarwidth');
@@ -42746,32 +42749,6 @@ var $ = require('jquery');
 require('owl.carousel');
 
 module.exports = {
-  _initTasksSlider: function _initTasksSlider() {
-    var self = this;
-    var $blocks = $('.jsTTasksSlider');
-    if ($blocks.length == 0) return;
-    $blocks.addClass('owl-carousel').owlCarousel({
-      items: 1,
-      dots: false,
-      nav: true,
-      loop: true,
-      navText: [''],
-      navContainer: '.tTasks__nav'
-    });
-  },
-  _initIntroducedSlider: function _initIntroducedSlider() {
-    var self = this;
-    var $blocks = $('.jsTIntroducedSlider');
-    if ($blocks.length == 0) return;
-    $blocks.addClass('owl-carousel').owlCarousel({
-      items: 1,
-      dots: false,
-      nav: true,
-      loop: true,
-      navText: [''],
-      navContainer: '.tIntroduced__nav'
-    });
-  },
   _initComponentsSlider: function _initComponentsSlider() {
     var self = this;
     var $blocks = $('.jsTComponentsSlider');
@@ -42808,42 +42785,124 @@ module.exports = {
       }
     });
   },
-  _renderAdaptiveSliders: function _renderAdaptiveSliders() {
+  init: function init() {
     var self = this;
 
-    if (window.matchMedia("(min-width: 601px)").matches) {
-      self._initTasksSlider();
+    self._initComponentsSlider();
 
-      self._initIntroducedSlider();
-    } else {
-      $('.jsTTasksSlider, .jsTIntroducedSlider').owlCarousel('destroy').removeClass('owl-carousel');
-    }
+    self._initNewsSlider();
+  }
+};
+
+},{"jquery":15,"owl.carousel":19}],56:[function(require,module,exports){
+"use strict";
+
+var $ = require('jquery');
+
+require('owl.carousel');
+
+var Utils = require('./utils');
+
+module.exports = {
+  _state: {
+    isInited: false
+  },
+  _elems: {
+    $blocks: $()
+  },
+  _wrapTasksByGroups: function _wrapTasksByGroups() {
+    var self = this;
+
+    self._elems.$blocks.each(function () {
+      var $block = $(this);
+      var $slider = $block.find('.js-tasks-slider');
+      var itemClass = $block.data('item');
+      var wrapperClass = $block.data('wrapper');
+      var items = $block.find('.' + itemClass).detach().toArray();
+      $block.find('.' + wrapperClass).remove();
+
+      do {
+        var $wrapper = $('<div class="' + wrapperClass + '"></div>');
+        var portion = items.splice(0, 6);
+        portion.forEach(function (item) {
+          $(item).appendTo($wrapper);
+        });
+        $wrapper.appendTo($slider);
+      } while (items.length);
+    });
+  },
+  _initTasksSliders: function _initTasksSliders() {
+    var self = this;
+    if (self._state.isInited) return;
+
+    self._elems.$blocks.each(function () {
+      $(this).find('.js-tasks-slider').addClass('owl-carousel').owlCarousel({
+        items: 1,
+        loop: true,
+        nav: true,
+        navContainer: $(this).find('.js-tasks-nav'),
+        navText: [''],
+        dots: false
+      });
+    });
+
+    self._state.isInited = true;
+  },
+  _destroySliders: function _destroySliders() {
+    var self = this;
+    if (!self._state.isInited) return;
+
+    self._elems.$blocks.each(function () {
+      $(this).find('.js-tasks-slider').removeClass('owl-carousel').owlCarousel('destroy');
+    });
+
+    self._state.isInited = false;
   },
   _handleWindowResize: function _handleWindowResize(e) {
-    var self = e.data.self;
+    var self = e && e.data.self || this;
 
-    self._renderAdaptiveSliders();
+    if (window.matchMedia("(min-width: 601px)").matches) {
+      self._initTasksSliders();
+    } else {
+      self._destroySliders();
+    }
+  },
+  _handleShowMoreClick: function _handleShowMoreClick(e) {
+    var self = e.data.self;
+    e.preventDefault();
+    var $block = $(this).closest('.js-tasks');
+    var $button = $(this);
+    $block.add($button).toggleClass('_opened');
+
+    if ($button.hasClass('_opened') == false) {
+      Utils.scrollTo($block.offset().top);
+    }
   },
   _bindUI: function _bindUI() {
     var self = this;
+    $(document).on('click', '.js-tasks-toggle', {
+      self: self
+    }, self._handleShowMoreClick);
     $(window).on('resize', {
       self: self
     }, self._handleWindowResize);
   },
   init: function init() {
     var self = this;
+    var $blocks = $('.js-tasks');
+    if ($('body').hasClass('is-admin')) return;
+    if ($blocks.length == 0) return;
+    self._elems.$blocks = $blocks;
 
-    self._renderAdaptiveSliders();
+    self._wrapTasksByGroups();
 
-    self._initComponentsSlider();
-
-    self._initNewsSlider();
+    self._handleWindowResize();
 
     self._bindUI();
   }
 };
 
-},{"jquery":15,"owl.carousel":19}],56:[function(require,module,exports){
+},{"./utils":58,"jquery":15,"owl.carousel":19}],57:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -42937,7 +42996,7 @@ module.exports = {
   }
 };
 
-},{"./navBanner":38,"./utils":57,"DrawSVGPlugin":58,"TweenLite":10,"jquery":15}],57:[function(require,module,exports){
+},{"./navBanner":38,"./utils":58,"DrawSVGPlugin":59,"TweenLite":10,"jquery":15}],58:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -42954,7 +43013,7 @@ module.exports = {
   }
 };
 
-},{}],58:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 (function (global){
 "use strict";
 

@@ -14,6 +14,19 @@
 	color: #fff !important;
 	overflow: hidden;
 
+	&._opened {
+		.button-aurora__text {
+			span {
+				&:first-child {
+					display: none;
+				}
+				&:last-child {
+					display: block;
+				}
+			}
+		}
+	}
+
 	&:before {
 		@include position-fill();
 		left: -100%;
@@ -33,6 +46,12 @@
 		display: inline-block;
 		vertical-align: middle;
 		line-height: 1.45;
+
+		span {
+			&:last-child {
+				display: none;
+			}
+		}
 	}
 
 	&__icon {

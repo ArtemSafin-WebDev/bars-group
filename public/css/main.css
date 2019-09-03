@@ -1157,7 +1157,7 @@ img {
     .slider-nav button span {
       display: none; }
   .slider-nav--bottom {
-    margin-top: 20px; }
+    margin-top: 30px; }
   .slider-nav--white button {
     background: #fff; }
     .slider-nav--white button:hover {
@@ -1439,6 +1439,10 @@ img {
   font-weight: 600;
   color: #fff !important;
   overflow: hidden; }
+  .button-aurora._opened .button-aurora__text span:first-child {
+    display: none; }
+  .button-aurora._opened .button-aurora__text span:last-child {
+    display: block; }
   .button-aurora:before {
     position: absolute;
     top: 0;
@@ -1457,6 +1461,8 @@ img {
     display: inline-block;
     vertical-align: middle;
     line-height: 1.45; }
+    .button-aurora__text span:last-child {
+      display: none; }
   .button-aurora__icon {
     position: absolute;
     top: 50%;

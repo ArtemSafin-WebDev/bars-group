@@ -209,10 +209,17 @@
 
 .tTasks
 {
+
+
+
     &__wrapper
     {
-        display: flex;
         flex-wrap: wrap;
+        display: none;
+
+        &:first-child {
+            display: flex;
+        }
     }
 
     &__item
@@ -221,6 +228,15 @@
         width: 33.3333%;
         padding-top: 90px;
         padding-right: 60px;
+        display: none;
+
+        &:nth-child(-n+6) {
+            display: block;
+        }
+
+        .is-admin & {
+            display: block !important;
+        }
     }
 
     &__digit
@@ -256,12 +272,17 @@
 {
     &__wrapper
     {
-        display: flex;
+        display: none;
         flex-wrap: wrap;
 
         &:first-of-type {
             margin-top: -40px;
         }
+
+        &:first-child {
+            display: flex;
+        }
+
     }
 
     &__item
@@ -269,6 +290,16 @@
         width: 33.3333%;
         margin-top: 90px;
         padding-right: 35px;
+        display: none;
+
+        &:nth-child(-n+6) {
+            display: block;
+        }
+
+        .is-admin & {
+            display: block !important;
+        }
+
     }
 
     &__description
@@ -895,6 +926,13 @@
 
     .tTasks
     {
+
+        &._opened {
+            .tTasks__wrapper {
+                display: flex;
+            }
+        }
+
         &__digit
         {
             font-size: 50px;
@@ -912,6 +950,13 @@
 
     .tIntroduced
     {
+
+        &._opened {
+            .tIntroduced__wrapper {
+                display: flex;
+            }
+        }
+
         &__item
         {
             margin-top: 50px;
