@@ -1491,7 +1491,7 @@ img {
   -webkit-transition: border-color .2s;
   transition: border-color .2s;
   position: relative;
-  border-bottom: 2px solid #dadada; }
+  border-bottom: 1px solid #dadada; }
   .input-brianna._focus {
     border-bottom-color: #59b4e6; }
   .input-brianna._focus .input-brianna__label, .input-brianna._filled .input-brianna__label {
