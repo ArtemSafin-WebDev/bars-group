@@ -1,7 +1,6 @@
 var $ = require('jquery');
 require("rangeslider.js");
 require('owl.carousel');
-require('jquery-mousewheel');
 
 var Utils = require('./utils');
 
