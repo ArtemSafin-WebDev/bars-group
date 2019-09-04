@@ -3422,6 +3422,11 @@ img {
   .gantt-slider--frozen * {
     -webkit-transition: none !important;
     transition: none !important; }
+  .gantt-slider--parallax-inition .gantt-slider__item {
+    -webkit-transition: -webkit-transform .5s;
+    transition: -webkit-transform .5s;
+    transition: transform .5s;
+    transition: transform .5s, -webkit-transform .5s; }
   .gantt-slider--gantt-view .gantt-slider__line,
   .gantt-slider--gantt-view .gantt-slider__type {
     -webkit-transition-delay: 0s;
@@ -3470,6 +3475,8 @@ img {
     text-transform: uppercase;
     color: #ffffff; }
   .gantt-slider__line {
+    -webkit-transition-delay: .5s;
+            transition-delay: .5s;
     position: absolute;
     border-top: 1px solid #d4ddea;
     margin-top: 3px; }
@@ -3490,6 +3497,8 @@ img {
   .gantt-slider__item--red .gantt-slider__dash {
     background: #c32118; }
   .gantt-slider__type {
+    -webkit-transition-delay: .5s;
+            transition-delay: .5s;
     position: absolute;
     width: 200px;
     font-size: 0; }

@@ -3,6 +3,7 @@ var Rellax = require('rellax');
 var ScrollBooster = require('scrollbooster');
 var TweenLite = require('TweenLite');
 require('gsap/umd/ScrollToPlugin');
+require('gsap/umd/CSSPlugin');
 require('rangeslider.js');
 
 var Utils = require('./utils');
@@ -188,10 +189,17 @@ module.exports = {
 
 		// set items positions
 		self._state.randomItems.forEach(function (item, index) {
-			$(item).css({ 
-				left: calcs.items[index].left, 
-				top: calcs.items[index].top 
-			});
+			if (initial) {
+				$(item).css({ 
+					left: calcs.items[index].left, 
+					top: calcs.items[index].top 
+				});
+			} else {
+				TweenLite.to(item, .5, {
+					left: calcs.items[index].left, 
+					top: calcs.items[index].top 
+				});
+			}
 		});
 
 		// set canvas size
@@ -239,7 +247,18 @@ module.exports = {
 			// items
 			items.forEach(function (item, index) {
 				var leftPos = centerStart + typeWidth + index * (itemWidth + itemOffsetX);
-				$(item).css({ top: topPos, left: leftPos });
+				
+				if (initial) {
+					$(item).css({ 
+						top: topPos, 
+						left: leftPos 
+					});
+				} else {
+					TweenLite.to(item, .5, {
+						top: topPos, 
+						left: leftPos 
+					});
+				}
 
 				if (leftPos > maxLeftPos) maxLeftPos = leftPos;
 			});
@@ -382,7 +401,13 @@ module.exports = {
 			break;
 			case 'lines': 
 				self._switchToGanttView();
-				self._initParallax();
+				setTimeout(function () {
+					self._elems.$_.addClass('gantt-slider--parallax-inition');
+					self._initParallax();
+				}, 500);
+				setTimeout(function () {
+					self._elems.$_.removeClass('gantt-slider--parallax-inition');
+				}, 1000);
 			break;
 		}
 	},
