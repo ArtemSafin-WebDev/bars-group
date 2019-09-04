@@ -3446,6 +3446,7 @@ img {
     background: url("../img/gantt-slider/dots.png");
     padding: 7px 0; }
   .gantt-slider__crop {
+    margin-bottom: 30px;
     position: relative;
     overflow: hidden; }
   .gantt-slider__scroll {
