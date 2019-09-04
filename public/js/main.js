@@ -42613,7 +42613,6 @@ module.exports = {
     self._elems.$blocks.each(function () {
       $(this).find('.js-tasks-slider').addClass('owl-carousel').owlCarousel({
         items: 1,
-        loop: true,
         nav: true,
         navContainer: $(this).find('.js-tasks-nav'),
         navText: [''],

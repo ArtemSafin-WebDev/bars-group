@@ -51,7 +51,6 @@ module.exports = {
 				.addClass('owl-carousel')
 				.owlCarousel({
 					items: 1,
-					loop: true,
 					nav: true,
 					navContainer: $(this).find('.js-tasks-nav'),
 					navText: [''],
