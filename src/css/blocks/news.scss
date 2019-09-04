@@ -17,7 +17,6 @@
 		margin-right: calc(-1 * (100vw - 1520px)/2);
 		min-height: 360px;
 		background: #eff4fd;
-		padding: 80px 0;
 	}
 
 	&__nav {
@@ -38,7 +37,7 @@
 		display: inline-block;
 		vertical-align: top;
 		width: 520px;
-		padding-left: 60px;
+		padding: 60px 0 60px 60px;
 		white-space: normal;
 
 		&--active {
@@ -54,6 +53,7 @@
 	}
 
 	&__date {
+		margin-top: -10px;
 		margin-bottom: 20px;
 	}
 

@@ -5,13 +5,14 @@
 	&__label {
 		position: absolute;
 		z-index: 30;
-		top: -20px;
+		top: 49px;
 		left: 0;
 	}
 
 	&__center {
 		position: relative;
 		z-index: 20;
+		height: 660px;
 	}
 
 	&__bg {
@@ -41,8 +42,8 @@
 
 	&__nav {
 
-		margin-left: 260px;
-		padding-top: 80px;
+		margin-left: 300px;
+		padding-top: 20px;
 
 		&__list {
 			font-size: 0;
@@ -155,18 +156,18 @@
 	}
 
 	&__about {
-		
-		@extend .clearfix;
-		padding-top: 80px;
-		margin-left: 200px;
+		position: absolute;
+		left: 0;
+		bottom: 80px;
+		width: 100%;
 
 		&__item {
 			transition: opacity .3s;
-			position: relative;
-			float: left;
-			margin-left: -100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
 			width: 100%;
-			min-height: 320px;
+			padding-left: 300px;
 			opacity: 0;
 
 			&:first-child {
@@ -204,7 +205,7 @@
 
 	&__button-more {
 	 	position: absolute;
-	 	bottom: 80px;
+	 	bottom: 0;
 	 	right: 0;
 	}
 
@@ -215,6 +216,7 @@
 	.overview {
 
 		&__nav {
+			padding-top: 30px;
 
 			&__link {
 				height: 80px;
@@ -234,12 +236,19 @@
 
 	.overview {
 
+		&__label {
+			top: -20px;
+		}
+
 		&__nav {
 			margin-left: 60px;
+			padding-top: 60px;
 		}
 
 		&__about {
-			margin-left: 60px;
+			&__item {
+				padding-left: 60px;
+			}
 		}
 	}
 
@@ -250,8 +259,11 @@
 	
 	.overview {
 
-		&__nav {
+		&__center {
+			height: 850px;
+		}
 
+		&__nav {
 			margin-left: 0;
 
 			&__item {
@@ -260,11 +272,8 @@
 		}
 
 		&__about {
-			padding: 60px 0;
-			margin-left: 0;
-
 			&__item {
-				min-height: auto;
+				padding-left: 0;
 			}
 		}
 
@@ -285,9 +294,6 @@
 			margin-left: 0;
 		}
 
-		&__about {
-			margin-left: 0;
-		}
 	}
 
 }
