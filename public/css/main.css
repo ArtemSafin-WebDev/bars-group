@@ -3707,6 +3707,7 @@ img {
     overflow: hidden;
     height: 0; }
   .cities-slider__crop {
+    margin-bottom: 30px;
     position: relative;
     overflow: hidden; }
   .cities-slider__scroll {
