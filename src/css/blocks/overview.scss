@@ -203,10 +203,18 @@
 		text-align: right;
 	}
 
-	&__button-more {
+	&__btn-more {
 	 	position: absolute;
 	 	bottom: 0;
 	 	right: 0;
+
+	 	&__self {
+	 		min-width: 290px;
+	 		height: 5.3em;
+	 		line-height: 5.3em;
+	 		padding-bottom: 0;
+	 		padding-top: 0;
+	 	}
 	}
 
 }
@@ -277,9 +285,15 @@
 			}
 		}
 
-		&__button-more {
+		&__btn-more {
 		 	position: static;
 		 	margin-top: 40px;
+
+		 	&__self {
+ 			 	height: 4.5em;
+ 			 	line-height: 4.5em;
+ 		 		min-width: auto;
+		 	}
 		}
 
 	}
@@ -382,7 +396,7 @@
 			line-height: 1.7;
 		}
 
-		&__button-more {
+		&__btn-more {
 			margin-bottom: 10px;
 		}
 	}

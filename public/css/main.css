@@ -3312,10 +3312,16 @@ img {
     margin-top: 60px;
     margin-bottom: 10px;
     text-align: right; }
-  .overview__button-more {
+  .overview__btn-more {
     position: absolute;
     bottom: 0;
     right: 0; }
+    .overview__btn-more__self {
+      min-width: 290px;
+      height: 5.3em;
+      line-height: 5.3em;
+      padding-bottom: 0;
+      padding-top: 0; }
 
 @media all and (max-width: 1500px) {
   .overview__nav {
@@ -3343,9 +3349,13 @@ img {
       width: 50%; }
   .overview__about__item {
     padding-left: 0; }
-  .overview__button-more {
+  .overview__btn-more {
     position: static;
-    margin-top: 40px; } }
+    margin-top: 40px; }
+    .overview__btn-more__self {
+      height: 4.5em;
+      line-height: 4.5em;
+      min-width: auto; } }
 
 @media all and (max-width: 850px) {
   .overview__nav {
@@ -3399,7 +3409,7 @@ img {
     margin-top: 17px;
     font-size: 12px;
     line-height: 1.7; }
-  .overview__button-more {
+  .overview__btn-more {
     margin-bottom: 10px; }
   .bg-layer__video {
     display: none !important; } }
