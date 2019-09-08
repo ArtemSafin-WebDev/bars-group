@@ -583,7 +583,7 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-alpha-bi-white {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-alpha-bi {
   background-image: url(../img/sprite.png);
@@ -593,27 +593,27 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-alpha-bi {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-barsup-ag-white {
-  background-image: url(../img/sprite.png);
-  background-position: -181px -209px;
-  width: 161px;
-  height: 26px; }
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .icon-sprite-png-barsup-ag-white {
-      background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
-
-.icon-sprite-png-barsup-ag {
   background-image: url(../img/sprite.png);
   background-position: 0px -209px;
   width: 161px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .icon-sprite-png-barsup-ag-white {
+      background-image: url(../img/sprite@2x.png);
+      background-size: 493px 324px; } }
+
+.icon-sprite-png-barsup-ag {
+  background-image: url(../img/sprite.png);
+  background-position: -181px -209px;
+  width: 161px;
+  height: 26px; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-ag {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-barsup-ai-white {
   background-image: url(../img/sprite.png);
@@ -623,7 +623,7 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-ai-white {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-barsup-ai {
   background-image: url(../img/sprite.png);
@@ -633,27 +633,27 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-ai {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-barsup-am-white {
-  background-image: url(../img/sprite.png);
-  background-position: -180px -255px;
-  width: 160px;
-  height: 26px; }
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .icon-sprite-png-barsup-am-white {
-      background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
-
-.icon-sprite-png-barsup-am {
   background-image: url(../img/sprite.png);
   background-position: 0px -255px;
   width: 160px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .icon-sprite-png-barsup-am-white {
+      background-image: url(../img/sprite@2x.png);
+      background-size: 493px 324px; } }
+
+.icon-sprite-png-barsup-am {
+  background-image: url(../img/sprite.png);
+  background-position: -180px -255px;
+  width: 160px;
+  height: 26px; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup-am {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-barsup {
   background-image: url(../img/sprite.png);
@@ -663,7 +663,7 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-barsup {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-biux-white {
   background-image: url(../img/sprite.png);
@@ -673,7 +673,7 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-biux-white {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-biux {
   background-image: url(../img/sprite.png);
@@ -683,57 +683,57 @@ template {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-biux {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-clip {
   background-image: url(../img/sprite.png);
-  background-position: -405px -120px;
+  background-position: -405px -126px;
   width: 11px;
   height: 22px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-clip {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-habrahabr {
   background-image: url(../img/sprite.png);
-  background-position: -362px -120px;
+  background-position: -362px -126px;
   width: 23px;
   height: 27px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-habrahabr {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-markweber, .footer__dev__logo {
   background-image: url(../img/sprite.png);
-  background-position: -362px -84px;
+  background-position: -362px -90px;
   width: 66px;
   height: 16px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-markweber, .footer__dev__logo {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-svody-white {
   background-image: url(../img/sprite.png);
   background-position: -362px 0px;
-  width: 126px;
-  height: 22px; }
+  width: 131px;
+  height: 25px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-svody-white {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .icon-sprite-png-svody {
   background-image: url(../img/sprite.png);
-  background-position: -362px -42px;
-  width: 126px;
-  height: 22px; }
+  background-position: -362px -45px;
+  width: 131px;
+  height: 25px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .icon-sprite-png-svody {
       background-image: url(../img/sprite@2x.png);
-      background-size: 488px 324px; } }
+      background-size: 493px 324px; } }
 
 .fancybox-content {
   padding: 70px 50px; }
@@ -2374,7 +2374,6 @@ img {
 .nav-sticker__item {
   position: relative;
   padding: 12px 0;
-  white-space: nowrap;
   font-size: 14px; }
   .nav-sticker__item._active {
     font-weight: 700; }
@@ -2565,7 +2564,13 @@ img {
   text-transform: uppercase;
   white-space: nowrap;
   letter-spacing: 1.78px;
-  color: #ffffff; }
+  color: #ffffff;
+  -webkit-transition: opacity .2;
+  transition: opacity .2; }
+  .page__label:link, .page__label:visited {
+    color: white; }
+  .page__label:hover, .page__label:active {
+    opacity: .9; }
   .page__label--small {
     font-size: 14px; }
   .page__label--green {
