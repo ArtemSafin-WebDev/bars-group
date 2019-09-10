@@ -62,12 +62,20 @@ module.exports = {
 
 		// imagine, that we have some picture, which contains 7 rectangles.
 		// pattern object properties describe how we can draw the picture
+
+		// var PATTERN = {
+		// 	canvasWidth: 2440,
+		// 	canvasHeight: 600,
+		// 	rectWidth: 510,
+		// 	rectHeight: 160,
+		// 	coords: [ [60, 310], [355, 25], [775, 200], [1070, 370], [1435, 100], [1760, 410], [2115, 120] ]
+		// };
 		var PATTERN = {
-			canvasWidth: 2440,
+			canvasWidth: 2000,
 			canvasHeight: 600,
 			rectWidth: 510,
 			rectHeight: 160,
-			coords: [ [60, 310], [355, 25], [775, 200], [1070, 370], [1435, 100], [1760, 410], [2115, 120] ]
+			coords: [ [100, 400], [400, 0], [675, 170], [870, 370], [1135, 40], [1420, 340], [1650, 180] ]
 		};
 
 		// items' width and height will change on different screen sizes
