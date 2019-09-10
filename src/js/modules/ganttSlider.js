@@ -75,7 +75,7 @@ module.exports = {
 			canvasHeight: 600,
 			rectWidth: 510,
 			rectHeight: 160,
-			coords: [ [100, 400], [400, 0], [675, 170], [870, 370], [1135, 40], [1420, 340], [1650, 180] ]
+			coords: [ [100, 400], [400, 0], [675, 170], [870, 340], [1135, 10], [1420, 370], [1650, 180] ]
 		};
 
 		// items' width and height will change on different screen sizes
