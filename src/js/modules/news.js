@@ -25,7 +25,8 @@ module.exports = {
 			const mainContentSlider = new Swiper(mainContentSliderContainer, {
                 slidesPerView: "auto",
                 spaceBetween: 60,
-                loop: true,
+				loop: true,
+				slideToClickedSlide: true,
                 breakpoints: {
                     1050: {
                         spaceBetween: 40
@@ -41,18 +42,18 @@ module.exports = {
 			});
 
 
-			mainSliderNext.addEventListener('mouseenter', function() {
-				slider.classList.add('images-shown');
-			})
-			mainSliderPrev.addEventListener('mouseenter', function() {
-				slider.classList.add('images-shown');
-			})
-			slider.addEventListener('mouseenter', function() {
-				slider.classList.add('images-shown');
-			})
-			slider.addEventListener('mouseleave', function() {
-				slider.classList.remove('images-shown');
-			})
+			// mainSliderNext.addEventListener('mouseenter', function() {
+			// 	slider.classList.add('images-shown');
+			// })
+			// mainSliderPrev.addEventListener('mouseenter', function() {
+			// 	slider.classList.add('images-shown');
+			// })
+			// slider.addEventListener('mouseenter', function() {
+			// 	slider.classList.add('images-shown');
+			// })
+			// slider.addEventListener('mouseleave', function() {
+			// 	slider.classList.remove('images-shown');
+			// })
         });
     }
 };

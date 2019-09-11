@@ -4475,7 +4475,9 @@ img {
   height: 5.3em;
   line-height: 5.3em;
   padding-bottom: 0;
-  padding-top: 0; }
+  padding-top: 0;
+  position: relative;
+  z-index: 7; }
 
 @media all and (max-width: 1600px) {
   .news__slider {
