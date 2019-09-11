@@ -1,6 +1,6 @@
 
 .news-slider {
-
+    
     &__center {
         position: relative;
     }
@@ -22,12 +22,14 @@
 
     .swiper-container {
         overflow: visible;
+        
     }
 
     .swiper-slide {
         flex: 0 0 440px;
         max-width: 440px;
         padding: 0 12px;
+       
     }
 
     .swiper-button-disabled {
