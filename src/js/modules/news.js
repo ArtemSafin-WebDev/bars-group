@@ -8,11 +8,18 @@ module.exports = {
 
         newsSliderContainer.forEach(function(slider) {
 			const mainContentSliderContainer = slider.querySelector('.js-news-slider-container');
+			const mainSliderNext = slider.parentElement.querySelector(
+				".js-news-slider-next"
+			);
+			const mainSliderPrev = slider.parentElement.querySelector(
+				".js-news-slider-prev"
+			);
 			const BGimagesSliderContainer = slider.querySelector('.js-news-bg-images-slider-container');
             
 			const BGImageSlider = new Swiper(BGimagesSliderContainer, {
 				effect: "fade",
-				loop: true
+				loop: true,
+				allowTouchMove: false
 			})
 
 			const mainContentSlider = new Swiper(mainContentSliderContainer, {
@@ -28,18 +35,24 @@ module.exports = {
 					swiper: BGImageSlider
 				},
 				navigation: {
-					nextEl: slider.parentElement.querySelector(
-						".js-news-slider-next"
-					),
-					prevEl: slider.parentElement.querySelector(
-						".js-news-slider-prev"
-					)
+					nextEl: mainSliderNext,
+					prevEl: mainSliderPrev
 				}
 			});
 
 
-			// mainContentSlider.controller.control = BGImageSlider;
-    		// BGImageSlider.controller.control = mainContentSlider;
+			mainSliderNext.addEventListener('mouseenter', function() {
+				slider.classList.add('images-shown');
+			})
+			mainSliderPrev.addEventListener('mouseenter', function() {
+				slider.classList.add('images-shown');
+			})
+			slider.addEventListener('mouseenter', function() {
+				slider.classList.add('images-shown');
+			})
+			slider.addEventListener('mouseleave', function() {
+				slider.classList.remove('images-shown');
+			})
         });
     }
 };
