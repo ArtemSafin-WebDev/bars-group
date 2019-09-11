@@ -996,15 +996,6 @@ body {
   @iLeadership_margin: 15px;
   @media @min_small {
     overflow: hidden;
-    &:after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 200px;
-      height: 100%;
-      background-image: linear-gradient(to right, rgba(white, 0) 16px, white);
-    }
   }
   &.opened {
     width: inherit;
@@ -1037,7 +1028,7 @@ body {
         z-index: 50;
         @media @min_small {
           position: absolute;
-          right: 0;
+          right: 40px;
           bottom: 0;
         }
         @media @max_small {
@@ -1231,15 +1222,70 @@ body {
   @media @max_small {
     padding-bottom: 0;
   }
+  @media @min_small {
+    overflow: hidden;
+  }
+  &.opened {
+    width: inherit;
+    &:after {
+      display: none;
+    }
+    .page {
+      &__center {
+        max-width: inherit;
+      }
+    }
+  }
+  .page {
+    &__center {
+      @media @min_small {
+        min-height: calc(~'100vh - @{iOffsetTop} - 70px');
+        max-height: calc(~'100vh - @{iOffsetTop} - 70px');
+        padding: 55px 0;
+      }
+      &.opened {
+        max-height: initial;
+        transition: max-height 0.3s ease-in-out;
+        .page {
+          &__inner {
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+      .button-aurora {
+        z-index: 50;
+        @media @min_small {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+        @media @max_small {
+          position: relative;
+          margin-top: 25px;
+          margin-right: 20px;
+          margin-left: auto;
+          float: right;
+          &.opened {
+            padding-right: 20px;
+            text-align: right;
+            min-width: initial;
+          }
+        }
+      }
+    }
+  }
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
+    @media @max_small {
+      justify-content: space-between;
+    }
     @media @min_small {
-      margin-top: 55px;
-      min-height: calc(~'100vh - @{iOffsetTop} - 105px');
-      max-height: calc(~'100vh - @{iOffsetTop} - 105px');
+      height: 100%;
+      flex-direction: column;
     }
   }
   &__item {
@@ -1248,6 +1294,12 @@ body {
     justify-content: center;
     width: calc(~"100%/5 - 15px");
     height: 100px;
+
+    @media @min_small {
+      a {
+        margin-bottom: 25px;
+      }
+    }
 
     @media @max_small {
       margin: 10px 0;
