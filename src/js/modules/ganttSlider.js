@@ -70,12 +70,21 @@ module.exports = {
 		// 	rectHeight: 160,
 		// 	coords: [ [60, 310], [355, 25], [775, 200], [1070, 370], [1435, 100], [1760, 410], [2115, 120] ]
 		// };
+
+		// var PATTERN = {
+		// 	canvasWidth: 2000,
+		// 	canvasHeight: 600,
+		// 	rectWidth: 510,
+		// 	rectHeight: 160,
+		// 	coords: [ [100, 400], [400, 0], [675, 170], [870, 340], [1135, 10], [1420, 370], [1650, 180] ]
+		// };
+
 		var PATTERN = {
 			canvasWidth: 2000,
 			canvasHeight: 600,
 			rectWidth: 510,
 			rectHeight: 160,
-			coords: [ [100, 400], [400, 0], [675, 170], [870, 340], [1135, 10], [1420, 370], [1650, 180] ]
+			coords: [ [100, 400], [400, 0], [675, 170], [870, 340], [1135, 0], [1440, 370], [1650, 180] ]
 		};
 
 		// items' width and height will change on different screen sizes

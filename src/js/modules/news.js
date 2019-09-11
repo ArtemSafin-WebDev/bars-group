@@ -1,56 +1,45 @@
-var $ = require('jquery');
-require('owl.carousel');
+var Swiper = require("swiper");
 
 module.exports = {
+    init: function() {
+        const newsSliderContainer = Array.prototype.slice.call(
+            document.querySelectorAll(".js-news-slider")
+        );
 
-	_elems: {
-		$_: $(),
-		$slider: $()
-	},
+        newsSliderContainer.forEach(function(slider) {
+			const mainContentSliderContainer = slider.querySelector('.js-news-slider-container');
+			const BGimagesSliderContainer = slider.querySelector('.js-news-bg-images-slider-container');
+            
+			const BGImageSlider = new Swiper(BGimagesSliderContainer, {
+				effect: "fade",
+				loop: true
+			})
 
-	_handleChangedEvent: function (e) {
-		var self = e.data.self;
+			const mainContentSlider = new Swiper(mainContentSliderContainer, {
+                slidesPerView: "auto",
+                spaceBetween: 60,
+                loop: true,
+                breakpoints: {
+                    1050: {
+                        spaceBetween: 40
+                    }
+				},
+				thumbs: {
+					swiper: BGImageSlider
+				},
+				navigation: {
+					nextEl: slider.parentElement.querySelector(
+						".js-news-slider-next"
+					),
+					prevEl: slider.parentElement.querySelector(
+						".js-news-slider-prev"
+					)
+				}
+			});
 
-		var activeClass = 'news__item--active';
-		var nextIndex = e.item.index;
 
-		self._elems.$slider.find('.news__item').removeClass(activeClass)
-			.eq(nextIndex).addClass(activeClass);
-	},
-
-	_handleWindowResize: function (e) {
-		var self = e.data.self;
-
-		setTimeout(function () {
-			self._elems.$slider.trigger('refresh.owl.carousel');
-		}, 500);
-	},
-
-	_bindUI: function () {
-		var self = this;
-
-		self._elems.$_.on('changed.owl.carousel', {self: self}, self._handleChangedEvent);
-		$(window).on('resize', {self: self}, self._handleWindowResize);
-	},
-
-	init: function () {
-		var self = this;
-
-		var $_ = $('#news');
-
-		if ( $_.length == 0 ) return;
-
-		self._elems.$_ = $_;
-		self._elems.$slider = $_.find('.news__list');
-
-		self._bindUI();
-
-		self._elems.$slider.owlCarousel({
-		    loop: true,
-		    autoWidth: true,
-		    smartSpeed: 500,
-		    nav: true,
-		    navContainer: '.news__nav'
-		});	
-	}
+			// mainContentSlider.controller.control = BGImageSlider;
+    		// BGImageSlider.controller.control = mainContentSlider;
+        });
+    }
 };
