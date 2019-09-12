@@ -1,6 +1,7 @@
 var $ = require('jquery');
 require("rangeslider.js");
 require('owl.carousel');
+require('jquery.nicescroll');
 
 var Utils = require('./utils');
 
@@ -95,7 +96,11 @@ module.exports = {
             var left = 0;
 
             if ($(this).data('top') > 0) {
-                top = $(this).data('top') * (iGeoMapHeight / 987) / iGeoMapHeight * 100;
+                if (self._state.isMobile) {
+                    top = $(this).data('top') * (iGeoMapHeight / 765) / iGeoMapHeight * 100;
+                } else {
+                    top = $(this).data('top') * (iGeoMapHeight / 987) / iGeoMapHeight * 100;
+                }
             }
 
             if ($(this).data('left') > 0) {
@@ -124,9 +129,13 @@ module.exports = {
             dots: false,
             items: 1,
             auto: false,
+            autoHeight:true,
+            touchDrag  : false,
+            mouseDrag  : false,
             responsive: {
                 568: {
-                    nav: true
+                    nav: true,
+                    autoHeight:false
                 }
             }
         });
@@ -134,6 +143,9 @@ module.exports = {
         owlDigits.on('changed.owl.carousel', function (e) {
             $iDigitsValueItem.removeClass($iDigitsValues.data('active'));
             $iDigitsValueItem.eq(e.item.index).addClass($iDigitsValues.data('active'));
+            if (self._state.isMobile) {
+                $iDigitsValues.trigger('to.owl.carousel', e.item.index);
+            }
         });
 
         $iDigitsValueItem.eq(0).addClass($iDigitsValues.data('active'));
@@ -168,6 +180,9 @@ module.exports = {
         var $iLeadershipItem = $iLeadership.find('.iLeadership-item');
         var $iLeadershipToggle = $iLeadership.find('.button-aurora');
 
+        var $iPartners = self._elems.$_.find('.iPartners');
+        var $iPartnersToggle = $iPartners.length ? $iPartners.find('.button-aurora') : $();
+
         var height = $iLeadershipItem.eq(0).height();
         $iLeadershipItem.width(height * 0.8);
 
@@ -185,6 +200,12 @@ module.exports = {
 
         $iLeadershipToggle.click(function (e) {
             e.preventDefault();
+
+            if ($iPartners.length && $iPartnersToggle.length) {
+                $iPartners.removeClass('opened');
+                $iPartnersToggle.removeClass('opened').children('.button-aurora__text').text('Показать еще');
+                $iPartnersToggle.children('i').show();
+            }
 
             if (self._state.isMobile) {
                 if ($(this).hasClass('opened')) {
@@ -204,23 +225,96 @@ module.exports = {
                     $(this).removeClass('opened').children('.button-aurora__text').text('Показать еще');
                     $(this).children('i').show();
 
-                    self._resetDesktop();
-                    self._setWindowRatio();
-                    self._setBodyHeight();
-                    self._setScrollWidth();
+                    if ($(window).width() >= self._elems.$iScroll.children().width()) {
+                        $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
+                    } else {
+                        $('body').height(self._elems.$iScroll.width() / self._state.windowRatio);
+                    }
                 } else {
                     var width = $iLeadershipItem.eq(0).width();
-                    var nWidth = (width + 15) * Math.round($iLeadershipItem.length / 2) - 1600;
+                    var nWidth = (width + 45) * Math.round($iLeadershipItem.length / 2) + 80 - 15 - 1600;
                     self._elems.$iScroll.width(self._elems.$iScroll.width() + nWidth);
 
                     $iLeadership.addClass('opened');
                     $(this).addClass('opened').children('.button-aurora__text').text('Скрыть');
                     $(this).children('i').hide();
 
-                    self._resetDesktop();
-                    self._setWindowRatio();
-                    self._setBodyHeight();
-                    self._setScrollWidth();
+                    if ($(window).width() >= self._elems.$iScroll.children().width()) {
+                        $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
+                    } else {
+                        $('body').height(self._elems.$iScroll.width() / self._state.windowRatio);
+                    }
+                }
+            }
+        });
+    },
+    _initPartners: function () {
+        var self = this;
+
+        var $iPartners = self._elems.$_.find('.iPartners');
+        if ($iPartners.length == 0) return;
+
+        var $iPartnersItem = $iPartners.find('.iPartners__item');
+        var $iPartnersToggle = $iPartners.find('.button-aurora');
+
+        var $iLeadership = self._elems.$_.find('.iLeadership');
+        var $iLeadershipToggle = $iLeadership.length ? $iLeadership.find('.button-aurora') : $();
+
+        $(window).resize(function () {
+            self._elems.$iScroll.width('');
+
+            $iPartners.removeClass('opened');
+            $iPartnersToggle.removeClass('opened');
+            $iPartnersToggle.children('.button-aurora__text').text('Показать еще');
+            $iPartnersToggle.children('i').show();
+        });
+
+        $iPartnersToggle.click(function (e) {
+            e.preventDefault();
+
+            if ($iLeadership.length && $iLeadershipToggle.length) {
+                $iLeadership.removeClass('opened');
+                $iLeadershipToggle.removeClass('opened').children('.button-aurora__text').text('Показать еще');
+                $iLeadershipToggle.children('i').show();
+            }
+
+            if (self._state.isMobile) {
+                if ($(this).hasClass('opened')) {
+                    $iPartners.find('.page__center').removeClass('opened');
+                    $(this).removeClass('opened').children('.button-aurora__text').text('Показать еще');
+                    $(this).children('i').show();
+                } else {
+                    $iPartners.find('.page__center').addClass('opened');
+                    $(this).addClass('opened').children('.button-aurora__text').text('Скрыть');
+                    $(this).children('i').hide();
+                }
+            } else {
+                if ($iPartners.hasClass('opened')) {
+                    self._elems.$iScroll.width('');
+
+                    $iPartners.removeClass('opened');
+                    $(this).removeClass('opened').children('.button-aurora__text').text('Показать еще');
+                    $(this).children('i').show();
+
+                    if ($(window).width() >= self._elems.$iScroll.children().width()) {
+                        $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
+                    } else {
+                        $('body').height(self._elems.$iScroll.width() / self._state.windowRatio);
+                    }
+                } else {
+                    var width = $iPartnersItem.eq(0).width();
+                    var nWidth = width * Math.round($iPartnersItem.length / 5) + 80 - 1600;
+                    self._elems.$iScroll.width(self._elems.$iScroll.width() + nWidth);
+
+                    $iPartners.addClass('opened');
+                    $(this).addClass('opened').children('.button-aurora__text').text('Скрыть');
+                    $(this).children('i').hide();
+
+                    if ($(window).width() >= self._elems.$iScroll.children().width()) {
+                        $('body').height($(window).width() / self._state.windowRatio * self._elems.$iScroll.children().length);
+                    } else {
+                        $('body').height(self._elems.$iScroll.width() / self._state.windowRatio);
+                    }
                 }
             }
         });
@@ -248,12 +342,43 @@ module.exports = {
             }
         });
 
+        events.on('initialized.owl.carousel', function(){
+            var height = $iHistory.find('.iHistory-events').height();
+            $iHistory.find('.iHistory-event').each(function(){
+                $(this).css({'max-height': height});
+                $(this).children('.iHistory-event__left').niceScroll({
+                    cursorborder : '3px solid #d1dae5'
+                });
+            });
+        });
+
+        self._elems.$scroll.on('scroll', {self: self}, function(e){
+            $iHistory.find('.iHistory-event').each(function(){
+                $(this).children('.iHistory-event__left').getNiceScroll().resize();
+            });
+        });
+
+        $(window).on('resize', function(){
+            var height = $iHistory.find('.iHistory-events').height();
+            $iHistory.find('.iHistory-event').each(function(){
+                $(this).css({'max-height': height});
+                $(this).children('.iHistory-event__left').getNiceScroll().resize();
+            });
+        });
+
         events.owlCarousel({
             nav: false,
             dots: false,
             items: 1,
             margin: 15,
-            auto: false
+            auto: false,
+            autoHeight:true,
+            responsive: {
+                568: {
+                    nav: true,
+                    autoHeight:false
+                }
+            }
         });
 
         $iHistory.find('.iHistory-ruler__item a').click(function (e) {
@@ -289,6 +414,7 @@ module.exports = {
     _initNav: function () {
         var self = this;
 
+        if (Utils.isMobile()) return;
         var $iNav = self._elems.$_.find('.iNav');
         if ($iNav.length == 0) return;
 
@@ -308,7 +434,7 @@ module.exports = {
             $iNav.children('a').each(function(){
                 var link = $(this);
                 if (
-                    $(link.attr('href')).offset().left < $(window).width() / 2 && $(link.attr('href')).offset().left > -1 * $(window).width() / 2
+                    $(link.attr('href')).length && $(link.attr('href')).offset().left < $(window).width() / 2 && $(link.attr('href')).offset().left > -1 * $(window).width() / 2
                 ) {
                     link.addClass('active');
 
@@ -330,6 +456,8 @@ module.exports = {
         if (Utils.isTouchDevice()) {
             $(window).scrollTop(scrollTop);
         }
+
+        if (Utils.isMobile()) return;
 
         var img = $('#wrapper .brand-box__image img');
         self._elems.$iScroll.children('.iScroll-item').each(function () {
@@ -450,6 +578,7 @@ module.exports = {
         self._initGeo();
         self._initDigits();
         self._initLeadership();
+        self._initPartners();
         self._initHistory();
         self._initNav();
 

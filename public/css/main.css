@@ -597,7 +597,7 @@ template {
 
 .icon-sprite-png-barsup-ag-white {
   background-image: url(../img/sprite.png);
-  background-position: 0px -209px;
+  background-position: -181px -209px;
   width: 161px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -607,7 +607,7 @@ template {
 
 .icon-sprite-png-barsup-ag {
   background-image: url(../img/sprite.png);
-  background-position: -181px -209px;
+  background-position: 0px -209px;
   width: 161px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -637,7 +637,7 @@ template {
 
 .icon-sprite-png-barsup-am-white {
   background-image: url(../img/sprite.png);
-  background-position: 0px -255px;
+  background-position: -180px -255px;
   width: 160px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -647,7 +647,7 @@ template {
 
 .icon-sprite-png-barsup-am {
   background-image: url(../img/sprite.png);
-  background-position: -180px -255px;
+  background-position: 0px -255px;
   width: 160px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {

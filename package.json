@@ -64,6 +64,7 @@
     "jquery-mousewheel": "3.1.13",
     "jquery-validation": "^1.19.1",
     "jquery.maskedinput": "^1.4.1",
+    "jquery.nicescroll": "3.7.6",
     "midnight.js": "^1.1.1",
     "notifyjs-browser": "^0.4.2",
     "objectFitPolyfill": "^2.2.0",
