@@ -2337,7 +2337,7 @@ img {
   z-index: 110;
   top: 225px;
   left: calc((100% - 1520px) / 2 - 10px) !important;
-  width: 200px; }
+  width: 100%; }
   .nav-sticker__menu._hidden {
     -webkit-transition-delay: 0s;
             transition-delay: 0s;
@@ -2381,7 +2381,8 @@ img {
       color: #000; }
 
 .nav-sticker__link {
-  color: rgba(110, 127, 149, 0.8); }
+  color: rgba(110, 127, 149, 0.8);
+  white-space: nowrap; }
   .nav-sticker__link:hover {
     color: #6e7f95; }
 
