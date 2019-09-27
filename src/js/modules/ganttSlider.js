@@ -62,21 +62,7 @@ module.exports = {
         // imagine, that we have some picture, which contains 7 rectangles.
         // pattern object properties describe how we can draw the picture
 
-        // var PATTERN = {
-        //     canvasWidth: 2350,
-        //     canvasHeight: 350,
-        //     rectWidth: 510,
-        //     rectHeight: 160,
-        //     coords: [
-        //         [100, 200],
-        //         [400, 0],
-        //         [675, 170],
-        //         [1250, 220],
-        //         [1135, 0],
-        //         [1740, 5],
-        //         [1790, 180]
-        //     ]
-        // };
+        
 
         var multiplier = 1.1;
 
@@ -93,6 +79,22 @@ module.exports = {
                 [1135 * multiplier, 0],
                 [1740 * multiplier, 5],
                 [1890 * multiplier, 180]
+            ]
+        };
+
+        var PATTERN = {
+            canvasWidth: 2350 * multiplier,
+            canvasHeight: 350,
+            rectWidth: 510,
+            rectHeight: 160,
+            coords: [
+                [30 * multiplier, 240],
+                [400 * multiplier, 0],
+                [675 * multiplier, 150],
+                [1050 * multiplier, 260],
+                [1135 * multiplier, 0],
+                [1740 * multiplier, 15],
+                [1890 * multiplier, 170]
             ]
         };
 
@@ -129,6 +131,23 @@ module.exports = {
         var $typeClone = self._elems.$types.eq(0).clone();
         $typeClone.appendTo(self._elems.$sandbox);
         self._elems.$typeClone = $typeClone;
+    },
+
+    _slideRight: function(event) {
+        event.preventDefault();
+        var self = this;
+
+        var viewport = self._elems.$scroll[0];
+
+        TweenLite.to(viewport, 2, { scrollTo: { x: viewport.scrollLeft +  document.documentElement.clientWidth} });
+    },
+    _slideLeft: function(event) {
+        event.preventDefault();
+        var self = this;
+
+        var viewport = self._elems.$scroll[0];
+
+        TweenLite.to(viewport, 2, { scrollTo: { x: viewport.scrollLeft -  document.documentElement.clientWidth} });
     },
 
     _sortItemsByGroup: function() {
@@ -480,6 +499,17 @@ module.exports = {
     _bindUI: function() {
         var self = this;
 
+        var prev = document.querySelector(".js-gantt-slider-prev");
+        var next = document.querySelector(".js-gantt-slider-next");
+
+        if (prev) {
+            prev.addEventListener("click", self._slideLeft.bind(this));
+        }
+
+        if (next) {
+            next.addEventListener("click", self._slideRight.bind(this));
+        }
+
         self._elems.$_.on(
             "mouseenter",
             ".gantt-slider__item",
@@ -528,7 +558,6 @@ module.exports = {
         self._sortItemsRandomly();
 
         if (window.matchMedia("(max-width: 800px)").matches) {
-            
             // self._elems.$items.each(function() {
             //     this.style.transform = "";
             // });

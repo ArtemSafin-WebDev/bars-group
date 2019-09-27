@@ -572,7 +572,9 @@ template {
 .notifyjs-global-title {
   margin-bottom: 5px; }
 
-.icon, .slider-nav button:before, .slider-nav button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__text:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
+.icon, .slider-nav button:before, .slider-nav button:after,
+.slider-arrow-container button:before,
+.slider-arrow-container button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__text:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
   display: inline-block; }
 
 .icon-sprite-png-alpha-bi-white {
@@ -764,7 +766,9 @@ template {
   font-weight: normal;
   font-style: normal; }
 
-.icon, .slider-nav button:before, .slider-nav button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__text:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
+.icon, .slider-nav button:before, .slider-nav button:after,
+.slider-arrow-container button:before,
+.slider-arrow-container button:after, .rangeslider__handle i, .nav-pager__prev, .nav-pager__next, .nav-side__arrow, .header__menu__item--more > a:before, .header__search, .header__write, .footer__dev__logo, .overview__nav__text:before, .vacancies__title:before, .icheckbox:before, .form-filter__reset:before, .catalog__button-filter:before, .popup__close, .success__close, .success__title:before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -1113,11 +1117,13 @@ img {
       .search--toggle .search__form {
         margin-top: -160px; } }
 
-.slider-nav {
+.slider-nav,
+.slider-arrow-container {
   display: block;
   text-align: right;
   font-size: 0; }
-  .slider-nav button {
+  .slider-nav button,
+  .slider-arrow-container button {
     -webkit-transition: all .3s;
     transition: all .3s;
     display: inline-block;
@@ -1129,23 +1135,35 @@ img {
     white-space: nowrap;
     color: #6e7f95;
     overflow: hidden; }
-    .slider-nav button:first-child {
+    .slider-nav button:first-child,
+    .slider-arrow-container button:first-child {
       -webkit-transform: scaleX(-1);
               transform: scaleX(-1); }
-    .slider-nav button:hover {
+    .slider-nav button:hover,
+    .slider-arrow-container button:hover {
       background: #e6eefc; }
-      .slider-nav button:hover:before, .slider-nav button:hover:after {
+      .slider-nav button:hover:before, .slider-nav button:hover:after,
+      .slider-arrow-container button:hover:before,
+      .slider-arrow-container button:hover:after {
         -webkit-transform: translateX(0);
                 transform: translateX(0);
         -webkit-transition: all .3s .1s;
         transition: all .3s .1s; }
-    .slider-nav button.disabled, .slider-nav button.swiper-button-disabled {
+    .slider-nav button.disabled, .slider-nav button.swiper-button-disabled,
+    .slider-arrow-container button.disabled,
+    .slider-arrow-container button.swiper-button-disabled {
       background: #eff4fd;
       opacity: 0.5; }
-      .slider-nav button.disabled:before, .slider-nav button.disabled:after, .slider-nav button.swiper-button-disabled:before, .slider-nav button.swiper-button-disabled:after {
+      .slider-nav button.disabled:before, .slider-nav button.disabled:after, .slider-nav button.swiper-button-disabled:before, .slider-nav button.swiper-button-disabled:after,
+      .slider-arrow-container button.disabled:before,
+      .slider-arrow-container button.disabled:after,
+      .slider-arrow-container button.swiper-button-disabled:before,
+      .slider-arrow-container button.swiper-button-disabled:after {
         -webkit-transition: none !important;
         transition: none !important; }
-    .slider-nav button:before, .slider-nav button:after {
+    .slider-nav button:before, .slider-nav button:after,
+    .slider-arrow-container button:before,
+    .slider-arrow-container button:after {
       -webkit-transform: translateX(-100%);
               transform: translateX(-100%);
       content: "\e905";
@@ -1154,20 +1172,28 @@ img {
       text-align: center;
       line-height: 36px;
       font-size: 15px; }
-    .slider-nav button span {
+    .slider-nav button span,
+    .slider-arrow-container button span {
       display: none; }
-  .slider-nav--bottom {
+  .slider-nav--bottom,
+  .slider-arrow-container--bottom {
     margin-top: 30px; }
-  .slider-nav--white button {
+  .slider-nav--white button,
+  .slider-arrow-container--white button {
     background: #fff; }
-    .slider-nav--white button:hover {
+    .slider-nav--white button:hover,
+    .slider-arrow-container--white button:hover {
       background: #fff; }
-  .slider-nav--dark button {
+  .slider-nav--dark button,
+  .slider-arrow-container--dark button {
     background: rgba(239, 244, 253, 0.33);
     color: #fff !important; }
-    .slider-nav--dark button:hover {
+    .slider-nav--dark button:hover,
+    .slider-arrow-container--dark button:hover {
       background: rgba(239, 244, 253, 0.5); }
-    .slider-nav--dark button.disabled, .slider-nav--dark button.swiper-button-disabled {
+    .slider-nav--dark button.disabled, .slider-nav--dark button.swiper-button-disabled,
+    .slider-arrow-container--dark button.disabled,
+    .slider-arrow-container--dark button.swiper-button-disabled {
       background: rgba(239, 244, 253, 0.33); }
 
 .bg-layer {
@@ -3434,6 +3460,21 @@ img {
     -webkit-box-ordinal-group: 0;
         -ms-flex-order: -1;
             order: -1; }
+  .gantt-slider .slider-arrow-container {
+    position: absolute;
+    top: 50%;
+    margin-top: -18px; }
+    @media screen and (max-width: 800px) {
+      .gantt-slider .slider-arrow-container {
+        display: none; } }
+    .gantt-slider .slider-arrow-container button {
+      margin: 0; }
+    .gantt-slider .slider-arrow-container--prev {
+      left: 25px; }
+    .gantt-slider .slider-arrow-container--next {
+      right: 25px;
+      -webkit-transform: scaleX(-1);
+              transform: scaleX(-1); }
   .gantt-slider._loading .gantt-slider__canvas,
   .gantt-slider._loading .gantt-slider__ctrl {
     visibility: hidden; }
@@ -3545,7 +3586,7 @@ img {
       .gantt-slider__item .gantt-slider__desc {
         color: #fff; }
       .gantt-slider__item .gantt-slider__label {
-        opacity: 1; } }
+        opacity: 1 !important; } }
     @media screen and (max-width: 600px) {
       .gantt-slider__item .gantt-slider__bg,
       .gantt-slider__item .gantt-slider__click,
@@ -6173,11 +6214,15 @@ img {
       right: auto;
       left: 20px;
       bottom: 20px; } }
-  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__text:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
+  .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after,
+  .news-details__photo-slider-download .slider-arrow-container button:before, .slider-arrow-container .news-details__photo-slider-download button:before,
+  .news-details__photo-slider-download .slider-arrow-container button:after, .slider-arrow-container .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__text:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
     font-size: 18px;
     margin-right: 12px; }
     @media screen and (max-width: 600px) {
-      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__text:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
+      .news-details__photo-slider-download .icon, .news-details__photo-slider-download .slider-nav button:before, .slider-nav .news-details__photo-slider-download button:before, .news-details__photo-slider-download .slider-nav button:after, .slider-nav .news-details__photo-slider-download button:after,
+      .news-details__photo-slider-download .slider-arrow-container button:before, .slider-arrow-container .news-details__photo-slider-download button:before,
+      .news-details__photo-slider-download .slider-arrow-container button:after, .slider-arrow-container .news-details__photo-slider-download button:after, .news-details__photo-slider-download .rangeslider__handle i, .rangeslider__handle .news-details__photo-slider-download i, .news-details__photo-slider-download .nav-pager__prev, .news-details__photo-slider-download .nav-pager__next, .news-details__photo-slider-download .nav-side__arrow, .news-details__photo-slider-download .header__menu__item--more > a:before, .news-details__photo-slider-download .header__search, .news-details__photo-slider-download .header__write, .news-details__photo-slider-download .footer__dev__logo, .news-details__photo-slider-download .overview__nav__text:before, .news-details__photo-slider-download .vacancies__title:before, .news-details__photo-slider-download .icheckbox:before, .news-details__photo-slider-download .form-filter__reset:before, .news-details__photo-slider-download .catalog__button-filter:before, .news-details__photo-slider-download .popup__close, .news-details__photo-slider-download .success__close, .news-details__photo-slider-download .success__title:before {
         font-size: 16px; } }
   .news-details__photo-slider-download:link, .news-details__photo-slider-download:visited {
     color: white; }
@@ -6369,7 +6414,9 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .slider-nav button:before, .slider-nav .news-details__next-article-arrow button:before, .news-details__next-article-arrow .slider-nav button:after, .slider-nav .news-details__next-article-arrow button:after, .news-details__next-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__arrow, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__text:before, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before, .news-details__next-article-arrow .form-filter__reset:before, .news-details__next-article-arrow .catalog__button-filter:before, .news-details__next-article-arrow .popup__close, .news-details__next-article-arrow .success__close, .news-details__next-article-arrow .success__title:before {
+  .news-details__next-article-arrow .icon, .news-details__next-article-arrow .slider-nav button:before, .slider-nav .news-details__next-article-arrow button:before, .news-details__next-article-arrow .slider-nav button:after, .slider-nav .news-details__next-article-arrow button:after,
+  .news-details__next-article-arrow .slider-arrow-container button:before, .slider-arrow-container .news-details__next-article-arrow button:before,
+  .news-details__next-article-arrow .slider-arrow-container button:after, .slider-arrow-container .news-details__next-article-arrow button:after, .news-details__next-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__next-article-arrow i, .news-details__next-article-arrow .nav-pager__prev, .news-details__next-article-arrow .nav-pager__next, .news-details__next-article-arrow .nav-side__arrow, .news-details__next-article-arrow .header__menu__item--more > a:before, .news-details__next-article-arrow .header__search, .news-details__next-article-arrow .header__write, .news-details__next-article-arrow .footer__dev__logo, .news-details__next-article-arrow .overview__nav__text:before, .news-details__next-article-arrow .vacancies__title:before, .news-details__next-article-arrow .icheckbox:before, .news-details__next-article-arrow .form-filter__reset:before, .news-details__next-article-arrow .catalog__button-filter:before, .news-details__next-article-arrow .popup__close, .news-details__next-article-arrow .success__close, .news-details__next-article-arrow .success__title:before {
     color: #6e7f95; }
   .active .news-details__next-article-arrow {
     -webkit-transform: translateZ(0) translateX(100%);
@@ -6384,7 +6431,9 @@ img {
   transition: -webkit-transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s;
   transition: transform 0.2s linear 0.6s, -webkit-transform 0.2s linear 0.6s; }
-  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .slider-nav button:before, .slider-nav .news-details__previous-article-arrow button:before, .news-details__previous-article-arrow .slider-nav button:after, .slider-nav .news-details__previous-article-arrow button:after, .news-details__previous-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__arrow, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__text:before, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before, .news-details__previous-article-arrow .form-filter__reset:before, .news-details__previous-article-arrow .catalog__button-filter:before, .news-details__previous-article-arrow .popup__close, .news-details__previous-article-arrow .success__close, .news-details__previous-article-arrow .success__title:before {
+  .news-details__previous-article-arrow .icon, .news-details__previous-article-arrow .slider-nav button:before, .slider-nav .news-details__previous-article-arrow button:before, .news-details__previous-article-arrow .slider-nav button:after, .slider-nav .news-details__previous-article-arrow button:after,
+  .news-details__previous-article-arrow .slider-arrow-container button:before, .slider-arrow-container .news-details__previous-article-arrow button:before,
+  .news-details__previous-article-arrow .slider-arrow-container button:after, .slider-arrow-container .news-details__previous-article-arrow button:after, .news-details__previous-article-arrow .rangeslider__handle i, .rangeslider__handle .news-details__previous-article-arrow i, .news-details__previous-article-arrow .nav-pager__prev, .news-details__previous-article-arrow .nav-pager__next, .news-details__previous-article-arrow .nav-side__arrow, .news-details__previous-article-arrow .header__menu__item--more > a:before, .news-details__previous-article-arrow .header__search, .news-details__previous-article-arrow .header__write, .news-details__previous-article-arrow .footer__dev__logo, .news-details__previous-article-arrow .overview__nav__text:before, .news-details__previous-article-arrow .vacancies__title:before, .news-details__previous-article-arrow .icheckbox:before, .news-details__previous-article-arrow .form-filter__reset:before, .news-details__previous-article-arrow .catalog__button-filter:before, .news-details__previous-article-arrow .popup__close, .news-details__previous-article-arrow .success__close, .news-details__previous-article-arrow .success__title:before {
     color: #6e7f95;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg); }

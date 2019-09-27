@@ -6,7 +6,27 @@
     .page__center {
         width: 100%;
         order: -1;
-    }
+	}
+	
+
+	.slider-arrow-container {
+		position: absolute;
+		top: 50%;
+		margin-top: -18px;
+		@media screen and (max-width: 800px) {
+			display: none;
+		}
+		button {
+			margin: 0;
+		}
+		&--prev {
+			left: 25px;
+		}
+		&--next {
+			right: 25px;
+			transform: scaleX(-1);
+		}
+	}
 
     &._loading {
         .gantt-slider__canvas,
@@ -162,7 +182,7 @@
             }
 
             .gantt-slider__label {
-                opacity: 1;
+                opacity: 1 !important;
             }
         }
         @media screen and (max-width: 600px) {
