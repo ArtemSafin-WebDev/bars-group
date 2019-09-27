@@ -524,14 +524,17 @@ module.exports = {
         self._createElemsClones();
         self._sortItemsByGroup();
         self._sortItemsRandomly();
-        
 
         if (window.matchMedia("(max-width: 800px)").matches) {
+            self._destroyParallax();
+            self._elems.$items.each(function() {
+                this.style.transform = "";
+            });
             self._switchToLinesView(true);
         } else {
             self._switchToGanttView(true);
-		}
-		
+        }
+
         self._initRangeSlider();
         self._initScrollBooster();
         self._initParallax();

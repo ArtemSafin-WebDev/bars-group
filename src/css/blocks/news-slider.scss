@@ -1,6 +1,4 @@
-
 .news-slider {
-    
     &__center {
         position: relative;
     }
@@ -15,33 +13,88 @@
             top: -20px;
         }
     }
-    
+
     &__content {
         margin: 0 -12px;
     }
 
+    &__card {
+        display: flex;
+        flex-direction: column;
+        border-top: 4px solid #59b4e6;
+        padding: 32px;
+        min-height: 274px;
+        &--with-image {
+            border-top: none;
+            position: relative;
+        }
+        &:link,
+        &:visited {
+            color: black;
+        }
+        &-title {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 1.3333;
+            margin-top: auto;
+            color: black;
+        }
+
+        &--with-image &-title {
+            margin-top: 12px;
+            color: white;
+            font-size: 17px;
+            line-height: 23px;
+        }
+
+        &-date {
+            color: #6f8fb9;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        &--with-image &-date {
+            margin-top: auto;
+            color: white;
+            order: -1;
+        }
+
+        &-image-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            z-index: -1;
+        }
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
     .swiper-container {
         overflow: visible;
-        
     }
 
     .swiper-slide {
         flex: 0 0 440px;
         max-width: 440px;
         padding: 0 12px;
-       
     }
 
     .swiper-button-disabled {
-        opacity: .5;
+        opacity: 0.5;
     }
-
 }
 
 @media all and (max-width: 1050px) {
-
     .news-slider {
-
         &__lable {
             left: 0;
         }
@@ -51,27 +104,22 @@
             max-width: 380px;
         }
     }
-
 }
 
 @media all and (max-width: 850px) {
-
     .news-slider {
         .swiper-slide {
             flex-basis: 320px;
             max-width: 320px;
         }
     }
-    
 }
 
 @media all and (max-width: 600px) {
-
     .news-slider {
         .swiper-slide {
             flex-basis: 280px;
             max-width: 280px;
         }
     }
-    
 }
