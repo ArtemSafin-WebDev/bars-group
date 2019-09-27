@@ -69,7 +69,7 @@
 }
 
 .news-details__content {
-    > *:not(blockquote):not(table):not(.news-details__brief):not(.news-details__photo-slider):not(.table-block) {
+    > *:not(table):not(.news-details__brief):not(.news-details__photo-slider):not(.table-block) {
         max-width: 930px;
         margin-left: auto !important;
         margin-right: auto !important;
@@ -191,94 +191,134 @@
         }
     }
 
+    // blockquote {
+    //     background-color: #eff4fd;
+    //     padding-top: 45px;
+    //     padding-left: 165px;
+    //     padding-bottom: 40px;
+    //     padding-right: 70px;
+    //     margin: 40px 0;
+    //     position: relative;
+    //     @media screen and (max-width: 1024px) {
+    //         padding-left: 160px;
+    //         padding-top: 20px;
+    //         padding-bottom: 20px;
+    //         padding-right: 30px;
+    //     }
+    //     @media screen and (max-width: 800px) {
+    //         padding-left: 120px;
+    //         margin: 30px 0;
+    //     }
+
+    //     @media screen and (max-width: 600px) {
+    //         padding-left: 100px;
+    //         padding-right: 20px;
+    //     }
+
+    //     @media screen and (max-width: 400px) {
+    //         padding: 10px 20px;
+    //     }
+
+    //     .icon {
+    //         position: absolute;
+    //         top: 60px;
+    //         left: 55px;
+    //         font-size: 80px;
+    //         color: #59b4e6;
+    //         opacity: 0.3;
+    //         @media screen and (max-width: 1024px) {
+    //             font-size: 70px;
+    //             top: 35px;
+    //         }
+    //         @media screen and (max-width: 800px) {
+    //             top: 35px;
+    //             font-size: 50px;
+    //             left: 40px;
+    //         }
+    //         @media screen and (max-width: 600px) {
+    //             left: 30px;
+    //         }
+
+    //         @media screen and (max-width: 400px) {
+    //             // display: none;
+    //             opacity: 0.15;
+    //             font-size: 100px;
+
+    //             top: auto;
+    //             left: auto;
+    //             right: 25px;
+    //             bottom: 0px;
+    //         }
+    //     }
+
+    //     p {
+    //         font-size: 24px;
+    //         line-height: 1.66;
+    //         @media screen and (max-width: 1024px) {
+    //             font-size: 20px;
+    //         }
+    //         @media screen and (max-width: 800px) {
+    //             font-size: 18px;
+    //         }
+    //         @media screen and (max-width: 600px) {
+    //             font-size: 16px;
+    //         }
+    //     }
+
+    //     p.author {
+    //         font-size: 18px;
+    //         line-height: 27px;
+    //         margin-top: 55px;
+    //         text-align: right;
+    //         @media screen and (max-width: 1024px) {
+    //             margin-top: 20px;
+    //         }
+    //         @media screen and (max-width: 800px) {
+    //             font-size: 16px;
+    //         }
+    //         @media screen and (max-width: 600px) {
+    //             font-size: 14px;
+    //         }
+    //     }
+    // }
+
+
     blockquote {
-        background-color: #eff4fd;
-        padding-top: 45px;
-        padding-left: 165px;
-        padding-bottom: 40px;
-        padding-right: 70px;
-        margin: 40px 0;
+        font-size: 32px;
+        line-height: 1.25;
         position: relative;
-        @media screen and (max-width: 1024px) {
-            padding-left: 160px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-right: 30px;
+        padding-left: 105px;
+        margin: 60px 0;
+        display: block;
+        @media screen and (max-width: 1200px) {
+            padding-left: 0;
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
-        @media screen and (max-width: 800px) {
-            padding-left: 120px;
-            margin: 30px 0;
-        }
-
-        @media screen and (max-width: 600px) {
-            padding-left: 100px;
-            padding-right: 20px;
-        }
-
-        @media screen and (max-width: 400px) {
-            padding: 10px 20px;
-        }
-
-        .icon {
-            position: absolute;
-            top: 60px;
-            left: 55px;
-            font-size: 80px;
-            color: #59b4e6;
-            opacity: 0.3;
-            @media screen and (max-width: 1024px) {
-                font-size: 70px;
-                top: 35px;
-            }
-            @media screen and (max-width: 800px) {
-                top: 35px;
-                font-size: 50px;
-                left: 40px;
-            }
-            @media screen and (max-width: 600px) {
-                left: 30px;
-            }
-
-            @media screen and (max-width: 400px) {
-                // display: none;
-                opacity: 0.15;
-                font-size: 100px;
-
-                top: auto;
-                left: auto;
-                right: 25px;
-                bottom: 0px;
-            }
-        }
-
+        
         p {
-            font-size: 24px;
-            line-height: 1.66;
-            @media screen and (max-width: 1024px) {
-                font-size: 20px;
-            }
-            @media screen and (max-width: 800px) {
-                font-size: 18px;
+            font-size: 32px;
+            line-height: 1.25;
+            margin: 0;
+            margin-bottom: 20px;
+            @media screen and (max-width: 1200px) {
+                font-size: 28px;
             }
             @media screen and (max-width: 600px) {
-                font-size: 16px;
+                font-size: 22px;
+                margin-bottom: 15px;
             }
+            
         }
-
-        p.author {
+        footer {
             font-size: 18px;
-            line-height: 27px;
-            margin-top: 55px;
-            text-align: right;
-            @media screen and (max-width: 1024px) {
-                margin-top: 20px;
-            }
-            @media screen and (max-width: 800px) {
-                font-size: 16px;
-            }
-            @media screen and (max-width: 600px) {
-                font-size: 14px;
-            }
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .icon {
+            color: #CDE9F8;
+            font-size: 50px;
+            margin-bottom: 10px;
         }
     }
 
