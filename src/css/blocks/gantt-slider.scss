@@ -2,6 +2,14 @@
 .gantt-slider {
 
 	position: relative;
+	display: flex;
+	flex-direction: column;
+
+
+	.page__center {
+		width: 100%;
+		order: -1;
+	}
 
 	&._loading {
 		.gantt-slider__canvas,
@@ -40,7 +48,7 @@
 
 		.gantt-slider__h1--size-1 {
 			margin-top: -.1em;
-			font-size: 40px;
+			font-size: 36px;
 		}
 
 	}
@@ -132,8 +140,8 @@
 		position: absolute;
 		width: 410px;
 		height: 160px;
-		padding-bottom: 30px;
-		padding-top: 30px;
+		padding-bottom: 20px;
+		padding-top: 20px;
 		margin-bottom: 20px;
 		margin-right: 60px;
 
@@ -211,7 +219,7 @@
 	&__h1 {
 		display: flex;
 		max-height: 2.66em;
-		font-size: 22px;
+		font-size: 20px;
 		font-weight: 700;
 		line-height: 1.35;
 
@@ -238,8 +246,14 @@
 		@extend .clearfix;
 		position: relative;
 		z-index: 50;
-		margin-top: -20px;
+		margin-top: -152px;
 		height: 40px;
+		@media all and (max-width: 1050px) {
+			margin-top: -108px;
+		}
+		@media screen and (max-width: 600px) {
+			margin-top: -140px;
+		}
 	}
 
 	&__toggle {
@@ -286,7 +300,7 @@
 
 	&__range {
 		margin-right: 60px;
-
+		display: none;
 		&--hidden {
 			visibility: hidden !important;
 		}

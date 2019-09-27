@@ -3421,7 +3421,19 @@ img {
     display: none !important; } }
 
 .gantt-slider {
-  position: relative; }
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  .gantt-slider .page__center {
+    width: 100%;
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1; }
   .gantt-slider._loading .gantt-slider__canvas,
   .gantt-slider._loading .gantt-slider__ctrl {
     visibility: hidden; }
@@ -3444,7 +3456,7 @@ img {
       opacity: 1; }
   .gantt-slider--gantt-view .gantt-slider__h1--size-1 {
     margin-top: -.1em;
-    font-size: 40px; }
+    font-size: 36px; }
   .gantt-slider--sandbox {
     overflow: hidden;
     height: 0; }
@@ -3513,8 +3525,8 @@ img {
     position: absolute;
     width: 410px;
     height: 160px;
-    padding-bottom: 30px;
-    padding-top: 30px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     margin-bottom: 20px;
     margin-right: 60px; }
     .gantt-slider__item:hover .gantt-slider__bg,
@@ -3572,7 +3584,7 @@ img {
     display: -ms-flexbox;
     display: flex;
     max-height: 2.66em;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.35; }
     .gantt-slider__h1__left {
@@ -3590,8 +3602,14 @@ img {
   .gantt-slider__ctrl {
     position: relative;
     z-index: 50;
-    margin-top: -20px;
+    margin-top: -152px;
     height: 40px; }
+    @media all and (max-width: 1050px) {
+      .gantt-slider__ctrl {
+        margin-top: -108px; } }
+    @media screen and (max-width: 600px) {
+      .gantt-slider__ctrl {
+        margin-top: -140px; } }
   .gantt-slider__toggle {
     -webkit-transition: background .2s;
     transition: background .2s;
@@ -3633,7 +3651,8 @@ img {
         -webkit-transform: translateX(0%);
                 transform: translateX(0%); }
   .gantt-slider__range {
-    margin-right: 60px; }
+    margin-right: 60px;
+    display: none; }
     .gantt-slider__range--hidden {
       visibility: hidden !important; }
     .gantt-slider__range input {
@@ -5852,6 +5871,16 @@ img {
   padding-left: 105px;
   margin: 60px 0;
   display: block; }
+  .news-details__content blockquote::before {
+    content: '';
+    width: 52px;
+    height: 32px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%0A%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 33'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%2359b4e6;opacity:.3;isolation:isolate%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M38.34 0Q35 7.41 31.89 16.42a146 146 0 0 0-4.52 15l.87 1.44H45.7Q47.89 17.51 52 0zM4.52 16.42A146 146 0 0 0 0 31.4l.87 1.44h17.46Q20.52 17.51 24.63 0H11Q7.66 7.41 4.52 16.42z'/%3E%3C/svg%3E");
+    margin-bottom: 15px; }
   @media screen and (max-width: 1200px) {
     .news-details__content blockquote {
       padding-left: 0;
@@ -5873,10 +5902,6 @@ img {
     font-size: 18px;
     line-height: 1.5;
     font-style: italic; }
-  .news-details__content blockquote .icon, .news-details__content blockquote .slider-nav button:before, .slider-nav .news-details__content blockquote button:before, .news-details__content blockquote .slider-nav button:after, .slider-nav .news-details__content blockquote button:after, .news-details__content blockquote .rangeslider__handle i, .rangeslider__handle .news-details__content blockquote i, .news-details__content blockquote .nav-pager__prev, .news-details__content blockquote .nav-pager__next, .news-details__content blockquote .nav-side__arrow, .news-details__content blockquote .header__menu__item--more > a:before, .news-details__content blockquote .header__search, .news-details__content blockquote .header__write, .news-details__content blockquote .footer__dev__logo, .news-details__content blockquote .overview__nav__text:before, .news-details__content blockquote .vacancies__title:before, .news-details__content blockquote .icheckbox:before, .news-details__content blockquote .form-filter__reset:before, .news-details__content blockquote .catalog__button-filter:before, .news-details__content blockquote .popup__close, .news-details__content blockquote .success__close, .news-details__content blockquote .success__title:before {
-    color: #CDE9F8;
-    font-size: 50px;
-    margin-bottom: 10px; }
 
 .news-details__content .table-gradient-wrapper {
   position: relative;
