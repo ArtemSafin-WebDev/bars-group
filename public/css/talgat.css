@@ -516,6 +516,9 @@
   display: -ms-flexbox;
   display: flex;
 }
+.tDescription__left {
+  margin-right: 60px;
+}
 .tDescription__right {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 440px;
