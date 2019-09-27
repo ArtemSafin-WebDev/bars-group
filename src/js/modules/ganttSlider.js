@@ -63,34 +63,36 @@ module.exports = {
         // pattern object properties describe how we can draw the picture
 
         // var PATTERN = {
-        // 	canvasWidth: 2000,
-        // 	canvasHeight: 600,
-        // 	rectWidth: 510,
-        // 	rectHeight: 160,
-        // 	coords: [ [100, 400], [400, 0], [675, 170], [870, 340], [1135, 0], [1440, 370], [1650, 180] ]
+        //     canvasWidth: 2350,
+        //     canvasHeight: 350,
+        //     rectWidth: 510,
+        //     rectHeight: 160,
+        //     coords: [
+        //         [100, 200],
+        //         [400, 0],
+        //         [675, 170],
+        //         [1250, 220],
+        //         [1135, 0],
+        //         [1740, 5],
+        //         [1790, 180]
+        //     ]
         // };
 
-        // var PATTERN = {
-        // 	canvasWidth: 2200,
-        // 	canvasHeight: 600,
-        // 	rectWidth: 510,
-        // 	rectHeight: 160,
-        // 	coords: [ [100, 200], [400, 0], [675, 170], [1200, 220], [1135, 0], [1740, 70], [1790, 180] ]
-        // };
+        var multiplier = 1.1;
 
         var PATTERN = {
-            canvasWidth: 2350,
+            canvasWidth: 2350 * multiplier,
             canvasHeight: 350,
             rectWidth: 510,
             rectHeight: 160,
             coords: [
-                [100, 200],
-                [400, 0],
-                [675, 170],
-                [1250, 220],
-                [1135, 0],
-                [1740, 5],
-                [1790, 180]
+                [100 * multiplier, 200],
+                [400 * multiplier, 0],
+                [675 * multiplier, 170],
+                [1250 * multiplier, 220],
+                [1135 * multiplier, 0],
+                [1740 * multiplier, 5],
+                [1890 * multiplier, 180]
             ]
         };
 
@@ -526,10 +528,10 @@ module.exports = {
         self._sortItemsRandomly();
 
         if (window.matchMedia("(max-width: 800px)").matches) {
-            self._destroyParallax();
-            self._elems.$items.each(function() {
-                this.style.transform = "";
-            });
+            
+            // self._elems.$items.each(function() {
+            //     this.style.transform = "";
+            // });
             self._switchToLinesView(true);
         } else {
             self._switchToGanttView(true);
@@ -537,11 +539,14 @@ module.exports = {
 
         self._initRangeSlider();
         self._initScrollBooster();
-        self._initParallax();
-
+        if (window.matchMedia("(max-width: 800px)").matches) {
+            self._destroyParallax();
+        } else {
+            self._initParallax();
+        }
         self._elems.$_.removeClass("gantt-slider--frozen _loading");
 
-        self._setInitialOffset();
+        // self._setInitialOffset();
 
         self._bindUI();
     }
