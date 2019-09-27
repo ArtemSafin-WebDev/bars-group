@@ -88,11 +88,11 @@ module.exports = {
             rectWidth: 510,
             rectHeight: 160,
             coords: [
-                [30 * multiplier, 240],
-                [400 * multiplier, 0],
-                [675 * multiplier, 150],
-                [1050 * multiplier, 260],
-                [1135 * multiplier, 0],
+                [40 * multiplier, 240],
+                [200 * multiplier, 30],
+                [675 * multiplier, 185],
+                [1250 * multiplier, 260],
+                [1015 * multiplier, 0],
                 [1740 * multiplier, 15],
                 [1890 * multiplier, 170]
             ]
