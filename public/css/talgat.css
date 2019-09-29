@@ -518,7 +518,6 @@
 }
 .tDescription__left {
   margin-right: 60px;
-  width: 50%;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;

@@ -3776,11 +3776,32 @@ img {
         height: 14px;
         background-repeat: no-repeat;
         background-position: center;
-        background-size: contain; }
+        background-size: contain;
+        -webkit-transition: -webkit-filter .2s;
+        transition: -webkit-filter .2s;
+        transition: filter .2s;
+        transition: filter .2s, -webkit-filter .2s; }
       .gantt-slider__switch-slider-item:first-child::before {
         background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff%7D%3C/style%3E%3C/defs%3E%3Ccircle class='cls-1' cx='1.56' cy='1.56' r='1.56'/%3E%3Ccircle class='cls-1' cx='1.56' cy='7' r='1.56'/%3E%3Ccircle class='cls-1' cx='1.56' cy='12.44' r='1.56'/%3E%3Ccircle class='cls-1' cx='7' cy='1.56' r='1.56'/%3E%3Ccircle class='cls-1' cx='7' cy='7' r='1.56'/%3E%3Ccircle class='cls-1' cx='7' cy='12.44' r='1.56'/%3E%3Ccircle class='cls-1' cx='12.44' cy='1.56' r='1.56'/%3E%3Ccircle class='cls-1' cx='12.44' cy='7' r='1.56'/%3E%3Ccircle class='cls-1' cx='12.44' cy='12.44' r='1.56'/%3E%3C/svg%3E"); }
-      .gantt-slider__switch-slider-item:last-child::before {
-        background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 15'%3E%3Cpath fill='white' d='M15.5 0h-12a1.5 1.5 0 0 0 0 3h12a1.5 1.5 0 0 0 0-3zM14.5 6h-12a1.5 1.5 0 0 0 0 3h12a1.5 1.5 0 0 0 0-3zM13.5 12h-12a1.5 1.5 0 0 0 0 3h12a1.5 1.5 0 0 0 0-3z'/%3E%3C/svg%3E"); }
+      .gantt-slider__switch-slider-item:last-child {
+        -webkit-box-ordinal-group: 0;
+            -ms-flex-order: -1;
+                order: -1; }
+        @media all and (max-width: 800px) {
+          .gantt-slider__switch-slider-item:last-child {
+            -webkit-box-ordinal-group: 2;
+                -ms-flex-order: 1;
+                    order: 1; } }
+        .gantt-slider__switch-slider-item:last-child::before {
+          background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 15'%3E%3Cpath fill='white' d='M15.5 0h-12a1.5 1.5 0 0 0 0 3h12a1.5 1.5 0 0 0 0-3zM14.5 6h-12a1.5 1.5 0 0 0 0 3h12a1.5 1.5 0 0 0 0-3zM13.5 12h-12a1.5 1.5 0 0 0 0 3h12a1.5 1.5 0 0 0 0-3z'/%3E%3C/svg%3E");
+          -webkit-filter: brightness(0.5) sepia(1) hue-rotate(160deg) saturate(1);
+                  filter: brightness(0.5) sepia(1) hue-rotate(160deg) saturate(1); }
+    .gantt-slider__switch.active .gantt-slider__switch-slider-item:first-child::before {
+      -webkit-filter: brightness(0.5) sepia(1) hue-rotate(160deg) saturate(1);
+              filter: brightness(0.5) sepia(1) hue-rotate(160deg) saturate(1); }
+    .gantt-slider__switch.active .gantt-slider__switch-slider-item:last-child::before {
+      -webkit-filter: none;
+              filter: none; }
   .gantt-slider__range {
     margin-right: 60px;
     display: none; }
@@ -7287,7 +7308,7 @@ img {
       margin-bottom: 10px;
       font-size: 16px;
       line-height: 1.35;
-      min-height: 60px; } }
+      min-height: auto; } }
 
 .advantages__slider-card-icon {
   width: 60px;
