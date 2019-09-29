@@ -652,10 +652,15 @@
 
     &__left {
         margin-right: 60px;
+        width: 50%;
+        flex-grow: 1;
     }
 
     &__right {
-        flex: 0 0 440px;
+        // flex: 0 0 440px;
+        max-width: 440px;
+        flex-shrink: 0;
+        flex-grow: 0;
 
         & > p {
             position: relative;
