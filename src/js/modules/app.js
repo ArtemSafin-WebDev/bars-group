@@ -29,6 +29,7 @@ var Arch = require('./arch');
 var NavFilter = require('./navFilter');
 var Lazyload = require('./lazyload');
 var TasksSliders = require('./tTasks');
+var AdvantagesSliders = require('./advantagesSlider');
 
 require('./scrollbox');
 
@@ -110,6 +111,7 @@ module.exports = {
 		TSliders.init();
 		Arch.init();
 		TasksSliders.init();
+		AdvantagesSliders.init();
 
 	},
 
