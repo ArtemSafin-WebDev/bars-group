@@ -23,13 +23,14 @@
         &:hover {
             background: darken(#eff4fd, 2%);
 
-            &:before,
-            &:after {
-                transform: translateX(0);
-                transition: all .3s .1s;
-            }
+            // &:before,
+            // &:after {
+            //     transform: translateX(0);
+            //     transition: all .3s .1s;
+            // }
         }
 
+        &[disabled],
         &.disabled,
         &.swiper-button-disabled {
             background: #eff4fd;

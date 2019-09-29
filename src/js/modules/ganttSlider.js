@@ -62,38 +62,36 @@ module.exports = {
         // imagine, that we have some picture, which contains 7 rectangles.
         // pattern object properties describe how we can draw the picture
 
-        
-
         var multiplier = 1.1;
 
-        var PATTERN = {
-            canvasWidth: 2350 * multiplier,
-            canvasHeight: 350,
-            rectWidth: 510,
-            rectHeight: 160,
-            coords: [
-                [100 * multiplier, 200],
-                [400 * multiplier, 0],
-                [675 * multiplier, 170],
-                [1250 * multiplier, 220],
-                [1135 * multiplier, 0],
-                [1740 * multiplier, 5],
-                [1890 * multiplier, 180]
-            ]
-        };
+        // var PATTERN = {
+        //     canvasWidth: 2350 * multiplier,
+        //     canvasHeight: 350,
+        //     rectWidth: 510,
+        //     rectHeight: 160,
+        //     coords: [
+        //         [100 * multiplier, 200],
+        //         [400 * multiplier, 0],
+        //         [675 * multiplier, 190],
+        //         [1250 * multiplier, 220],
+        //         [1135 * multiplier, 0],
+        //         [1740 * multiplier, 5],
+        //         [1890 * multiplier, 180]
+        //     ]
+        // };
 
         var PATTERN = {
             canvasWidth: 2350 * multiplier,
-            canvasHeight: 350,
+            canvasHeight: 400,
             rectWidth: 510,
             rectHeight: 160,
             coords: [
-                [40 * multiplier, 240],
+                [60 * multiplier, 250],
                 [200 * multiplier, 30],
-                [675 * multiplier, 185],
+                [675 * multiplier, 210],
                 [1250 * multiplier, 260],
                 [1015 * multiplier, 0],
-                [1740 * multiplier, 15],
+                [1740 * multiplier, 5],
                 [1890 * multiplier, 170]
             ]
         };
@@ -133,21 +131,70 @@ module.exports = {
         self._elems.$typeClone = $typeClone;
     },
 
-    _slideRight: function(event) {
-        event.preventDefault();
+
+
+    _checkScrollProgress: function(prev, next) {
         var self = this;
 
         var viewport = self._elems.$scroll[0];
 
-        TweenLite.to(viewport, 2, { scrollTo: { x: viewport.scrollLeft +  document.documentElement.clientWidth} });
+        var reachedEnd = viewport.scrollLeft + document.documentElement.clientWidth === viewport.scrollWidth;
+        var reachedStart = viewport.scrollLeft === 0;
+
+        if (reachedEnd) {
+            next.disabled = true;
+            return 'end';
+        } else if (reachedStart) {
+            prev.disabled = true;
+            return 'start';
+        } else {
+            next.disabled = false;
+            prev.disabled = false;
+            return 'middle';
+        }
     },
-    _slideLeft: function(event) {
-        event.preventDefault();
+
+    _slideRight: function() {
         var self = this;
 
         var viewport = self._elems.$scroll[0];
 
-        TweenLite.to(viewport, 2, { scrollTo: { x: viewport.scrollLeft -  document.documentElement.clientWidth} });
+        if (Element.prototype.scrollBy) {
+            viewport.scrollBy({
+                top: 0,
+                left: document.documentElement.clientWidth,
+                behavior: "smooth"
+            });
+        } else {
+            TweenLite.to(viewport, 2, {
+                scrollTo: {
+                    x:
+                        viewport.scrollLeft +
+                        document.documentElement.clientWidth
+                }
+            });
+        }
+    },
+    _slideLeft: function() {
+        var self = this;
+
+        var viewport = self._elems.$scroll[0];
+
+        if (Element.prototype.scrollBy) {
+            viewport.scrollBy({
+                top: 0,
+                left: -1 * document.documentElement.clientWidth,
+                behavior: "smooth"
+            });
+        } else {
+            TweenLite.to(viewport, 2, {
+                scrollTo: {
+                    x:
+                        viewport.scrollLeft -
+                        document.documentElement.clientWidth
+                }
+            });
+        }
     },
 
     _sortItemsByGroup: function() {
@@ -503,12 +550,28 @@ module.exports = {
         var next = document.querySelector(".js-gantt-slider-next");
 
         if (prev) {
-            prev.addEventListener("click", self._slideLeft.bind(this));
+            var slideLeft = self._slideLeft.bind(this);
+            prev.addEventListener("click", function(event) {
+                event.preventDefault();
+                slideLeft(prev);
+            });
         }
 
         if (next) {
-            next.addEventListener("click", self._slideRight.bind(this));
+            var slideRight = self._slideRight.bind(this);
+
+            next.addEventListener("click", function(event) {
+                event.preventDefault();
+                slideRight(next);
+            });
         }
+
+        var viewport = self._elems.$scroll[0];
+
+        viewport.addEventListener('scroll', function() {
+            console.log('Scrolled');
+            self._checkScrollProgress(prev, next);
+        });
 
         self._elems.$_.on(
             "mouseenter",
