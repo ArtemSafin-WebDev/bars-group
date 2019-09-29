@@ -3670,7 +3670,7 @@ img {
         margin-top: -108px; } }
     @media screen and (max-width: 600px) {
       .gantt-slider__ctrl {
-        margin-top: -145px; } }
+        margin-top: -140px; } }
   .gantt-slider__toggle {
     -webkit-transition: background 0.2s;
     transition: background 0.2s;
@@ -3746,7 +3746,7 @@ img {
         transition: -webkit-transform .2s;
         transition: transform .2s;
         transition: transform .2s, -webkit-transform .2s; }
-    .gantt-slider__switch.active .gantt-slider__switch-slider::before {
+    .gantt-slider__switch--active .gantt-slider__switch__switch-slider::before {
       -webkit-transform: translateX(44px);
               transform: translateX(44px); }
     .gantt-slider__switch-slider-item {

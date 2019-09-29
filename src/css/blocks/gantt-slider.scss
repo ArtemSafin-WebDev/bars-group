@@ -301,7 +301,7 @@
             margin-top: -108px;
         }
         @media screen and (max-width: 600px) {
-            margin-top: -140px;
+            margin-top: -145px;
         }
     }
 
@@ -377,7 +377,7 @@
         }
 
 
-        &--active &__switch-slider {
+        &.active &-slider {
             &::before {
                 transform: translateX(44px);
             }
@@ -447,6 +447,7 @@
 
         &__item {
             height: 150px;
+            
         }
     }
 }

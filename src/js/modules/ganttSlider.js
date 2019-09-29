@@ -500,6 +500,8 @@ module.exports = {
 
         e.preventDefault();
 
+        this.classList.toggle('active')
+
         switch (self._state.currentView) {
             case "gantt":
                 self._destroyParallax();
@@ -587,7 +589,7 @@ module.exports = {
         );
         self._elems.$_.on(
             "click",
-            ".gantt-slider__toggle",
+            ".gantt-slider__switch",
             { self: self },
             self._handleToggleButton
         );
