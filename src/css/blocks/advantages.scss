@@ -69,6 +69,11 @@
     position: absolute;
     right: 75px;
     bottom: 65px;
+
+    // button.swiper-button-disabled {
+    //     opacity: 0;
+    // }
+
     @media screen and (max-width: 800px) {
         display: none;
     }
@@ -95,6 +100,8 @@
     margin-bottom: 15px;
     @media screen and (max-width: 800px) {
         margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 1.35;
     }
 }
 
@@ -106,6 +113,7 @@
     font-weight: 300;
     @media screen and (max-width: 800px) {
         font-size: 14px;
+        line-height: 1.7;
     }
     &::before {
         content: '';

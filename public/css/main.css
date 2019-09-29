@@ -7255,7 +7255,9 @@ img {
   margin-bottom: 15px; }
   @media screen and (max-width: 800px) {
     .advantages__slider-heading {
-      margin-bottom: 10px; } }
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 1.35; } }
 
 .advantages__slider-text {
   font-size: 18px;
@@ -7264,7 +7266,8 @@ img {
   font-weight: 300; }
   @media screen and (max-width: 800px) {
     .advantages__slider-text {
-      font-size: 14px; } }
+      font-size: 14px;
+      line-height: 1.7; } }
   .advantages__slider-text::before {
     content: '';
     width: 100%;

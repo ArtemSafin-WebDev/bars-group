@@ -20,6 +20,7 @@ module.exports = {
                         slidesPerView: 3,
                         spaceBetween: 50,
                         watchOverflow: true,
+                        loop: true,
                         navigation: {
                             nextEl: item.querySelector(
                                 ".js-advantages-slider-next"
