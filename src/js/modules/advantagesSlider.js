@@ -16,26 +16,27 @@ module.exports = {
                         sliderInstance.destroy();
                     }
                 } else {
-                    sliderInstance = new Swiper(container, {
-                        slidesPerView: 3,
-                        spaceBetween: 50,
-                        watchOverflow: true,
-                        loop: true,
-                        navigation: {
-                            nextEl: item.querySelector(
-                                ".js-advantages-slider-next"
-                            ),
-                            prevEl: item.querySelector(
-                                ".js-advantages-slider-prev"
-                            )
-                        },
-                        breakpoints: {
-                            1200: {
-                                slidesPerView: 2,
-                                spaceBetween: 50
+                    if (!document.body.classList.contains("is-admin")) {
+                        sliderInstance = new Swiper(container, {
+                            slidesPerView: 3,
+                            spaceBetween: 50,
+                            watchOverflow: true,
+                            navigation: {
+                                nextEl: item.querySelector(
+                                    ".js-advantages-slider-next"
+                                ),
+                                prevEl: item.querySelector(
+                                    ".js-advantages-slider-prev"
+                                )
+                            },
+                            breakpoints: {
+                                1200: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 50
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
             };
 
