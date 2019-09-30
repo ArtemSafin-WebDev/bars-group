@@ -1,10 +1,12 @@
 
 .nav-sticker {
-
+	pointer-events: none;
 	&._hover {
 		.nav-sticker__list {
 			width: 100% !important;
 		}
+
+		
 	}
 
 	&__menu {
@@ -14,17 +16,18 @@
 		top: 225px;
 		left: calc((100% - 1520px) / 2 - 10px) !important;
 		width: 100%;
-
+		
 		&._hidden {
 			transition-delay: 0s;
 			opacity: 0;
+			
 		}
 
 		&._fixed {
 			transform: translateY(-50%);
 			position: fixed;
 			top: 50% !important;
-
+			
 			.nav-sticker__list {
 				transition: all .3s;
 				overflow: hidden;
@@ -33,7 +36,7 @@
 
 			.nav-sticker__item {
 				padding-left: 25px;
-
+				pointer-events: initial;
 				&._active {
 					&:before {
 						background: #8896a8;
@@ -65,7 +68,7 @@
 		position: relative;
 		padding: 12px 0;
 		font-size: 14px;
-
+		pointer-events: initial;
 		&._active {
 			font-weight: 700;
 
@@ -78,6 +81,7 @@
 	&__link {
 		color: rgba(#6e7f95, .8);
 		white-space: nowrap;
+		
 		&:hover  {
 			color: #6e7f95;
 		}
