@@ -1147,7 +1147,7 @@ img {
     .slider-arrow-container button.disabled,
     .slider-arrow-container button.swiper-button-disabled {
       background: #eff4fd;
-      opacity: 0.5; }
+      opacity: 0; }
       .slider-nav button[disabled]:before, .slider-nav button[disabled]:after, .slider-nav button.disabled:before, .slider-nav button.disabled:after, .slider-nav button.swiper-button-disabled:before, .slider-nav button.swiper-button-disabled:after,
       .slider-arrow-container button[disabled]:before,
       .slider-arrow-container button[disabled]:after,
@@ -7360,6 +7360,9 @@ img {
     @media screen and (max-width: 800px) {
       .advantages__slider-text::before {
         margin-bottom: 10px; } }
+
+time {
+  text-transform: lowercase; }
 
 @media all and (max-width: 600px) {
   body {

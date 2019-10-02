@@ -121,6 +121,11 @@ img {
 @import 'blocks/success';
 @import 'blocks/advantages';
 
+
+time {
+	text-transform: lowercase;
+}
+
 @media all and (max-width: 600px) {
 
 	body {

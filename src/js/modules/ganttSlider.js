@@ -66,17 +66,17 @@ module.exports = {
 
         // var PATTERN = {
         //     canvasWidth: 2350 * multiplier,
-        //     canvasHeight: 350,
+        //     canvasHeight: 400,
         //     rectWidth: 510,
         //     rectHeight: 160,
         //     coords: [
-        //         [100 * multiplier, 200],
-        //         [400 * multiplier, 0],
-        //         [675 * multiplier, 190],
-        //         [1250 * multiplier, 220],
-        //         [1135 * multiplier, 0],
+        //         [60 * multiplier, 250],
+        //         [200 * multiplier, 30],
+        //         [675 * multiplier, 210],
+        //         [1250 * multiplier, 260],
+        //         [1015 * multiplier, 0],
         //         [1740 * multiplier, 5],
-        //         [1890 * multiplier, 180]
+        //         [1890 * multiplier, 170]
         //     ]
         // };
 
@@ -87,7 +87,7 @@ module.exports = {
             rectHeight: 160,
             coords: [
                 [60 * multiplier, 250],
-                [200 * multiplier, 30],
+                [400 * multiplier, 30],
                 [675 * multiplier, 210],
                 [1250 * multiplier, 260],
                 [1015 * multiplier, 0],
@@ -95,6 +95,9 @@ module.exports = {
                 [1890 * multiplier, 170]
             ]
         };
+
+
+        
 
         // items' width and height will change on different screen sizes
         // so we need to have a pattern suitable for new item's dimensions
