@@ -47726,10 +47726,17 @@ module.exports = {
     var urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has("industry")) {
-      var route = urlParams.get('industry');
+      var route = urlParams.get("industry");
       var element = document.querySelector("[data-routing='" + route + "']");
 
-      if (element) {}
+      if (element && element.hasAttribute("data-id")) {
+        var id = element.getAttribute("data-id");
+        self._state.industry = id;
+
+        self._pushCurrentIndustryURL();
+
+        self._renderTilesView();
+      }
     }
   },
   _pushCurrentIndustryURL: function _pushCurrentIndustryURL() {
@@ -47919,6 +47926,8 @@ module.exports = {
     self._elems.$industries = $_.find(".nav-video__item");
     self._elems.$input = $_.find(".js-catalog-search");
     self._elems.$letters = $_.find(".search__letters");
+
+    self._setCurrentIndustryFromURL();
 
     self._stickSidebar();
 

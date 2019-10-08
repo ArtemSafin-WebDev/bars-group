@@ -1,6 +1,6 @@
 .svody {
     background-color: #000;
-    
+    overflow: hidden;
     
 }
 
@@ -20,6 +20,12 @@
     &:visited {
         color: white;
     }
+
+    &:hover {
+        .svody__bg-image {
+            transform: scale(1.05);
+        }
+    }
 }
 
 
@@ -32,6 +38,7 @@
     top: 0;
     object-fit: cover;
     object-position: center;
+    transition: transform .35s ease-out;
 }
 
 

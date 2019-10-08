@@ -22,6 +22,7 @@
         display: flex;
         flex-direction: column;
         border-top: 4px solid #59b4e6;
+        background-color: #F3F7FF;
         padding: 32px;
         min-height: 274px;
         &--with-image {
@@ -34,29 +35,34 @@
         }
         &-title {
             font-weight: 700;
-            font-size: 24px;
-            line-height: 1.3333;
+            font-size: 17px;
+            line-height: 23px;
             margin-top: auto;
             color: black;
+            position: relative;
+            z-index: 1;
         }
 
         &--with-image &-title {
             margin-top: 12px;
             color: white;
-            font-size: 17px;
-            line-height: 23px;
+            
         }
 
         &-date {
             color: #6f8fb9;
             font-size: 14px;
-            margin-top: 12px;
+            position: relative;
+            z-index: 1;
+            order: -1;
+            margin-bottom: auto;
+            margin-left: auto;
         }
 
         &--with-image &-date {
-            margin-top: auto;
+            
             color: white;
-            order: -1;
+            
         }
 
         &-image-container {
@@ -66,7 +72,7 @@
             top: 0;
             left: 0;
             background-color: #000;
-            z-index: -1;
+            
             &::after {
                 content: '';
                 position: absolute;

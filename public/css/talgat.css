@@ -515,10 +515,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 60px;
+  margin-bottom: 60px;
 }
-.tDescription__wrapper:first-child {
-  margin-top: 0;
+.tDescription__wrapper:last-child {
+  margin-bottom: 0;
 }
 .tDescription__left {
   margin-right: 60px;
