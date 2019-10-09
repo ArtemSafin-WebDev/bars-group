@@ -29,8 +29,8 @@ module.exports = {
             const mainContentSlider = new Swiper(mainContentSliderContainer, {
 				slidesPerView: "auto",
                 
-                loop: true,
-                slideToClickedSlide: false,
+                loop: false,
+                // slideToClickedSlide: true,
                 
                 navigation: {
                     nextEl: mainSliderNext,
