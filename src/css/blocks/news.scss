@@ -15,71 +15,29 @@
         margin-right: calc(-1 * (100vw - 1520px) / 2);
         position: relative;
         background: #eff4fd;
+        color: black;
         z-index: 1;
     }
 
     &__main-content {
         .swiper-container {
-            padding: 0 60px;
+            // padding: 0 60px;
         }
 
         .swiper-slide {
             height: auto;
             box-sizing: border-box;
-            width: 520px;
-            min-height: 360px;
+
+            width: 400px;
+
             display: flex;
             flex-direction: column;
+            transition: width 0.3s;
+            &-active {
+                // width: 60%;
+                width: 600px;
+            }
         }
-    }
-
-    &__bg-images {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        
-		background: #000;
-		color: white;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity .3s;
-        .images-shown & {
-            opacity: 1;
-        }
-		.swiper-container {
-			width: 100%;
-			height: 100%;
-		}
-
-		.swiper-slide {
-			height: 100%;
-			width: 100%;
-			box-sizing: border-box;
-			position: relative;
-			&::after {
-				content: "";
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-				background-color: rgba(black, 0.3);
-			}
-		}
-    }
-
-    
-
-    &__bg-image {
-        width: 100%;
-		height: 100%;
-		position: absolute;
-		left: 0;
-		top: 0;
-        display: block;
-        object-fit: cover;
     }
 
     &__nav {
@@ -96,54 +54,101 @@
     }
 
     &__item {
-        width: 100%;
-        padding: 60px 0;
+        padding: 60px;
         flex-grow: 1;
         white-space: normal;
+        position: relative;
+        min-height: 326px;
 
-        .swiper-slide-active & {
-            
+        &--has-image {
+            &:hover {
+                color: white;
+                opacity: 1;
+                .news__date {
+                    color: white;
+                }
 
-            .news__desc {
-                opacity: 0.7;
+
+                .news__item-bg-container::after {
+                    opacity: 1;
+                }
+
+                .news__item-bg {
+                    opacity: 1;
+                }
             }
         }
+
+        .swiper-slide-active & {
+            .news__desc {
+                opacity: 1;
+            }
+        }
+    }
+
+
+    &__item-bg-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: rgba(black, .3);
+            opacity: 0;
+            z-index: 10;
+            transition: opacity .2s;
+        }
+    }
+
+    &__item-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        
+        left: 0;
+        top: 0;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.3s;
     }
 
     &__date {
         margin-top: -10px;
         margin-bottom: 20px;
-        transition: color .2s;
-        .images-shown & {
-            color: white;
-        }
+        transition: color 0.2s;
     }
 
     &__title {
-        transition: font-size 0.3s ease-out;
-        margin-bottom: 1.4em;
+        transition: font-size 0.2s;
+        margin-bottom: 20px;
         font-size: 18px;
         font-weight: 700;
         line-height: 1.4;
-
+        .swiper-slide-active & {
+            font-size: 22px;
+        }
         a {
-            color: #000 !important;
-            transition: color .3s;
-            .images-shown & {
-                color: #fff !important;
+            transition: color 0.2s;
+            &:link,
+            &:visited {
+                color: inherit;
             }
         }
     }
 
     &__desc {
-        transition: opacity 0.3s ease-out, color .3s;
+        transition: opacity 0.2s, color 0.2s;
         font-size: 14px;
         line-height: 1.7;
         opacity: 0;
-        
-        .images-shown & {
-            color: white;
-        }
     }
 
     &__btn-more {
@@ -188,11 +193,11 @@
 
         &__main-content {
             .swiper-container {
-                padding: 0 40px;
+                // padding: 0 40px;
             }
 
             .swiper-slide {
-                width: 450px;
+                // width: 450px;
             }
         }
 
@@ -212,11 +217,9 @@
     .news {
         &__main-content {
             .swiper-slide {
-                width: 320px;
+                // width: 320px;
             }
         }
-
-       
 
         &__title {
             font-size: 14px;

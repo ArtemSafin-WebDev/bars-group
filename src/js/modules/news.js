@@ -20,25 +20,18 @@ module.exports = {
                 ".js-news-bg-images-slider-container"
             );
 
-            const BGImageSlider = new Swiper(BGimagesSliderContainer, {
-                effect: "fade",
-                loop: true,
-                allowTouchMove: false
-            });
+            // const BGImageSlider = new Swiper(BGimagesSliderContainer, {
+            //     effect: "fade",
+            //     loop: true,
+            //     allowTouchMove: false
+            // });
 
             const mainContentSlider = new Swiper(mainContentSliderContainer, {
 				slidesPerView: "auto",
-                spaceBetween: 60,
+                
                 loop: true,
-                slideToClickedSlide: true,
-                breakpoints: {
-                    1050: {
-                        spaceBetween: 40
-                    }
-                },
-                thumbs: {
-                    swiper: BGImageSlider
-                },
+                slideToClickedSlide: false,
+                
                 navigation: {
                     nextEl: mainSliderNext,
                     prevEl: mainSliderPrev
