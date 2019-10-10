@@ -4647,16 +4647,6 @@ img {
       opacity: 1; }
     .news__item--has-image:hover .news__item-bg {
       opacity: 1; }
-  .swiper-slide-active .news__item--has-image {
-    color: white; }
-    .swiper-slide-active .news__item--has-image .news__desc {
-      opacity: 1; }
-    .swiper-slide-active .news__item--has-image .news__date {
-      color: white; }
-    .swiper-slide-active .news__item--has-image .news__item-bg-container::after {
-      opacity: 1; }
-    .swiper-slide-active .news__item--has-image .news__item-bg {
-      opacity: 1; }
 
 .news__item-bg-container {
   position: absolute;
