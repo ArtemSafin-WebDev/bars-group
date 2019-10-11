@@ -49,7 +49,7 @@ module.exports = {
 
 		// filter slides
 		var $slides = $blocks.filter(function (index, elem) {
-			return !!$(elem).children('[data-tabs="["Y"]"]').length;
+			return !!$(elem).children('[data-tabs]:not([data-tabs="[]"]):not([data-tabs=""])').length;
 		}); 
 
 		if ($slides.length == 0) return;
