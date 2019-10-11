@@ -82,7 +82,7 @@ module.exports = {
 
         var PATTERN = {
             canvasWidth: 2350 * multiplier,
-            canvasHeight: 400,
+            canvasHeight: 460,
             rectWidth: 510,
             rectHeight: 160,
             coords: [

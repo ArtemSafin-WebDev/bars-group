@@ -7463,7 +7463,7 @@ img {
 
 .svody__content-logo {
   width: 218px;
-  height: 42px;
+  height: auto;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   margin-top: 8px; }

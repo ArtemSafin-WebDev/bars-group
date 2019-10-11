@@ -261,6 +261,18 @@
   content: "";
   background-color: #59b4e6;
 }
+.page__label--green ~ .tProducts__row .tProductsItem__type[data-item-type="case"],
+.page__label--green ~ #ajaxContainer .tProducts__row .tProductsItem__type[data-item-type="case"] {
+  background-color: #a1c527;
+}
+.page__label--yellow ~ .tProducts__row .tProductsItem__type[data-item-type="case"],
+.page__label--yellow ~ #ajaxContainer .tProducts__row .tProductsItem__type[data-item-type="case"] {
+  background-color: #f4cb23;
+}
+.page__label--red ~ .tProducts__row .tProductsItem__type[data-item-type="case"],
+.page__label--red ~ #ajaxContainer .tProducts__row .tProductsItem__type[data-item-type="case"] {
+  background-color: #d74738;
+}
 .tProducts__row {
   display: -webkit-box;
   display: -ms-flexbox;
