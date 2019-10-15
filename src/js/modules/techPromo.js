@@ -49,7 +49,7 @@ module.exports = {
 	_handleCircleClick: function (e) {
 		var self = e.data.self;
 
-		e.preventDefault();
+		// e.preventDefault();
 
 		var $target = $('#' + $(this).data('target') );
 		var tabIndex = $target.parent().index();

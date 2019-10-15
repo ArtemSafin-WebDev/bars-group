@@ -2120,8 +2120,6 @@ img {
 
 .nav-banner {
   margin-top: -20px; }
-  .nav-banner--hidden {
-    display: none; }
   .nav-banner__crop {
     overflow: hidden; }
   .nav-banner__scroll {

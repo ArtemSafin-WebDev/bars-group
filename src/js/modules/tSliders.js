@@ -46,6 +46,8 @@ module.exports = {
 	},
 
 	init: function () {
+		if (document.body.classList.contains('is-admin')) return;
+
 		var self = this;
 
 		self._initComponentsSlider();
