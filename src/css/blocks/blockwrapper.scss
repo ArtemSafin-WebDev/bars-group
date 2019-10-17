@@ -1,0 +1,21 @@
+.block-wrapper.fade-in {
+    animation-name: fade-in;
+    animation-duration: .6s;
+    animation-timing-function: ease-out;
+    animation-play-state: paused;
+}
+
+
+.block-wrapper.fade-in.revealed {
+    animation-play-state: running;
+}
+
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

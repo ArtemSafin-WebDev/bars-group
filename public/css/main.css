@@ -2405,8 +2405,7 @@ img {
     position: absolute;
     z-index: 110;
     top: 225px;
-    left: calc((100% - 1520px) / 2 - 10px) !important;
-    width: 100%; }
+    left: calc((100% - 1520px) / 2 - 10px) !important; }
     .nav-sticker__menu._hidden {
       -webkit-transition-delay: 0s;
               transition-delay: 0s;
@@ -7547,6 +7546,32 @@ img {
 .svody__icon {
   margin-left: auto;
   margin-top: 15px; }
+
+.block-wrapper.fade-in {
+  -webkit-animation-name: fade-in;
+          animation-name: fade-in;
+  -webkit-animation-duration: .6s;
+          animation-duration: .6s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused; }
+
+.block-wrapper.fade-in.revealed {
+  -webkit-animation-play-state: running;
+          animation-play-state: running; }
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 time {
   text-transform: lowercase; }

@@ -30,6 +30,7 @@ var NavFilter = require('./navFilter');
 var Lazyload = require('./lazyload');
 var TasksSliders = require('./tTasks');
 var AdvantagesSliders = require('./advantagesSlider');
+var ScrollAnimations = require('./scrollAnimations');
 
 require('./scrollbox');
 
@@ -54,6 +55,7 @@ module.exports = {
 		$('#loader-main').removeClass('_active');
 		$('body').removeClass('page__locked');
 
+		ScrollAnimations.init();
 		TechPromo.init();
 		NavMobile.init();
 		Overview.init();
@@ -112,6 +114,7 @@ module.exports = {
 		Arch.init();
 		TasksSliders.init();
 		AdvantagesSliders.init();
+		
 
 	},
 
