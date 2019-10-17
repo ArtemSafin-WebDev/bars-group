@@ -54,6 +54,10 @@
 	&__content {
 		padding: 110px 0;
 		max-width: 600px;
+		min-height: 580px;
+		@media screen and (max-width: 800px) {
+			min-height: auto;
+		}
 	}
 
 	&__label {

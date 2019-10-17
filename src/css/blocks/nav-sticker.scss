@@ -10,7 +10,8 @@
 	}
 
 	&__menu {
-		transition: all .3s .3s;
+		// transition: all .3s .3s;
+		transition: all .3s;
 		position: absolute;
 		z-index: 110;
 		top: 225px;
@@ -20,7 +21,8 @@
 		&._hidden {
 			transition-delay: 0s;
 			opacity: 0;
-			
+			visibility: hidden;
+			transition: opacity .3s, visibility 0s linear .3s;
 		}
 
 		&._fixed {
@@ -76,11 +78,22 @@
 				color: #000;
 			}
 		}
+		.nav-sticker__menu--light &._active {
+			.nav-sticker__link {
+				color: #59b4e6;
+			}
+		}
 	}
 
 	&__link {
 		color: rgba(#6e7f95, .8);
 		white-space: nowrap;
+		.nav-sticker__menu--light & {
+			color: white;
+			&:hover  {
+				color: #59b4e6;
+			}
+		}
 		
 		&:hover  {
 			color: #6e7f95;
@@ -100,6 +113,7 @@
 
 				.nav-sticker__link {
 					color: #fff;
+					
 				}
 			}
 
