@@ -2,13 +2,12 @@ module.exports = {
     init: function() {
 
         const landingMain = document.querySelector('.landing-main');
-
         if (!landingMain) {
             console.warn('No landing main');
             return;
         }
-        
-        const blocksToAnimate = Array.prototype.slice.call(landingMain.querySelectorAll('.block-wrapper:not(.block-nav-sticker)'));
+        const landingMainChildren = Array.prototype.slice.call(landingMain.children);
+        const blocksToAnimate = landingMainChildren.filter(element => element.matches('.block-wrapper:not(.block-nav-sticker):not(.block-page--gap)'))
         
         blocksToAnimate.shift();
 
