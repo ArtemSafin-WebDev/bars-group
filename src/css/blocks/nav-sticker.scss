@@ -68,9 +68,10 @@
 
 	&__item {
 		position: relative;
-		padding: 12px 0;
+		padding: 18px 0;
 		font-size: 14px;
 		pointer-events: initial;
+		
 		&._active {
 			font-weight: 700;
 
@@ -87,7 +88,10 @@
 
 	&__link {
 		color: rgba(#6e7f95, .8);
-		white-space: nowrap;
+		
+		position: absolute;
+		transform: translateY(-50%);
+		width: 180px;
 		.nav-sticker__menu--light & {
 			color: white;
 			&:hover  {
