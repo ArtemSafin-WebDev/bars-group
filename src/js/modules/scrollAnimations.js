@@ -7,7 +7,7 @@ module.exports = {
         blocksToAnimate.shift();
 
         const options = {
-            threshold: 0.3
+            threshold: 0.6
         };
 
         const observer = new IntersectionObserver(entries => {

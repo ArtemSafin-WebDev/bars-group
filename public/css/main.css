@@ -7550,8 +7550,8 @@ img {
 .block-wrapper.fade-in {
   -webkit-animation-name: fade-in;
           animation-name: fade-in;
-  -webkit-animation-duration: .6s;
-          animation-duration: .6s;
+  -webkit-animation-duration: .7s;
+          animation-duration: .7s;
   -webkit-animation-timing-function: ease-out;
           animation-timing-function: ease-out;
   -webkit-animation-play-state: paused;
