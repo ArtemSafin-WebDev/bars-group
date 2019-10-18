@@ -55,7 +55,7 @@ module.exports = {
 		$('#loader-main').removeClass('_active');
 		$('body').removeClass('page__locked');
 
-		ScrollAnimations.init();
+		
 		TechPromo.init();
 		NavMobile.init();
 		Overview.init();
@@ -67,6 +67,7 @@ module.exports = {
 		Lazyload.init();
 		GanttSlider.init();
 		CitiesSlider.init();
+		ScrollAnimations.init();
 
 		// trigger click to start loading lazy videos
 		$('body').trigger('click');

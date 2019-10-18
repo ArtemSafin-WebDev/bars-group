@@ -7567,8 +7567,8 @@ img {
 @-webkit-keyframes fade-in {
   from {
     opacity: 0;
-    -webkit-transform: translateY(30%);
-            transform: translateY(30%); }
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px); }
   to {
     opacity: 1;
     -webkit-transform: translateY(0);
@@ -7577,8 +7577,8 @@ img {
 @keyframes fade-in {
   from {
     opacity: 0;
-    -webkit-transform: translateY(30%);
-            transform: translateY(30%); }
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px); }
   to {
     opacity: 1;
     -webkit-transform: translateY(0);
@@ -7629,30 +7629,30 @@ img {
   @media screen and (max-width: 800px) {
     .numbers__card {
       padding-top: 25px; } }
-  .numbers__card::before {
-    content: '';
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url("../img/numbers/wings-bg.png");
-    z-index: -1; }
-    @media screen and (max-width: 1300px) {
-      .numbers__card::before {
-        width: 160px;
-        height: 160px; } }
-    @media screen and (max-width: 800px) {
-      .numbers__card::before {
-        width: 130px;
-        height: 130px; } }
-    @media screen and (max-width: 600px) {
-      .numbers__card::before {
-        width: 100px;
-        height: 100px; } }
+
+.numbers__bg-image {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  z-index: -1; }
+  @media screen and (max-width: 1300px) {
+    .numbers__bg-image {
+      width: 160px;
+      height: 160px; } }
+  @media screen and (max-width: 800px) {
+    .numbers__bg-image {
+      width: 130px;
+      height: 130px; } }
+  @media screen and (max-width: 600px) {
+    .numbers__bg-image {
+      width: 100px;
+      height: 100px; } }
 
 .numbers__card-more {
   display: block;
@@ -7663,7 +7663,7 @@ img {
 .numbers__card-amount {
   font-weight: 700;
   font-size: 80px;
-  color: #59B4E6;
+  color: #59b4e6;
   white-space: nowrap;
   display: block; }
   @media screen and (max-width: 800px) {

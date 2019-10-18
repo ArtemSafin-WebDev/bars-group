@@ -9,17 +9,16 @@ module.exports = {
         }
         
         const blocksToAnimate = Array.prototype.slice.call(landingMain.children);
-
+        
         blocksToAnimate.shift();
 
         const options = {
-            // threshold: 0.35,
-            rootMargin: "100px 0px 0px 0px"
+            rootMargin: "150px 0px 0px 0px"
         };
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.intersectionRatio > 0) {
+                if (entry.isIntersecting) {
                     entry.target.classList.add("revealed");
                 } 
             });

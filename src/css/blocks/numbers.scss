@@ -1,7 +1,5 @@
 .numbers {
-
 }
-
 
 .numbers__heading {
     font-weight: 700;
@@ -12,7 +10,6 @@
     }
 }
 
-
 .numbers__list {
     display: flex;
     flex-wrap: wrap;
@@ -21,7 +18,6 @@
         margin: -12px -40px;
     }
 }
-
 
 .numbers__list-item {
     padding: 12px 60px;
@@ -37,8 +33,6 @@
     }
 }
 
-
-
 .numbers__card {
     display: flex;
     flex-direction: column;
@@ -47,48 +41,43 @@
     @media screen and (max-width: 800px) {
         padding-top: 25px;
     }
-    &::before {
-        content: '';
-        width: 200px;
-        height: 200px;
-        position: absolute;
-        right: 0;
-        top: 0;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-image: url('../img/numbers/wings-bg.png');
-        z-index: -1;
-        @media screen and (max-width: 1300px) {
-            width: 160px;
-            height: 160px;
-        }
-        @media screen and (max-width: 800px) {
-            width: 130px;
-            height: 130px;
-        }
-        @media screen and (max-width: 600px) {
-            width: 100px;
-            height: 100px;
-        }
-    }
+   
 }
 
-
+.numbers__bg-image {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    object-fit: contain;
+    object-position: center;
+    z-index: -1;
+    @media screen and (max-width: 1300px) {
+        width: 160px;
+        height: 160px;
+    }
+    @media screen and (max-width: 800px) {
+        width: 130px;
+        height: 130px;
+    }
+    @media screen and (max-width: 600px) {
+        width: 100px;
+        height: 100px;
+    }
+}
 
 .numbers__card-more {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
-    
 }
-
 
 .numbers__card-amount {
     font-weight: 700;
     font-size: 80px;
-    color: #59B4E6;
+    color: #59b4e6;
     white-space: nowrap;
     display: block;
     @media screen and (max-width: 800px) {
@@ -99,9 +88,6 @@
     }
 }
 
-
 .numbers__card-details {
-    
     margin-top: 8px;
-   
 }
