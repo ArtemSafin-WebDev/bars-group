@@ -8,7 +8,7 @@ module.exports = {
             return;
         }
         
-        const blocksToAnimate = Array.prototype.slice.call(landingMain.children);
+        const blocksToAnimate = Array.prototype.slice.call(landingMain.querySelectorAll('.block-wrapper:not(.block-nav-sticker)'));
         
         blocksToAnimate.shift();
 
