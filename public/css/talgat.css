@@ -582,9 +582,6 @@
 .tDescription__emblem img {
   width: auto !important;
 }
-.tForWhom {
-  margin-top: 60px;
-}
 .tForWhom__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
