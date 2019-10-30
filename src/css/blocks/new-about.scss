@@ -56,6 +56,7 @@
     -webkit-overflow-scrolling: touch;
     background-color: white;
     color: black;
+    overflow: hidden;
 }
 
 .new-about__slide {
@@ -546,4 +547,9 @@
     color: #6f8fb9;
     margin-top: 1.1vh;
     font-size: 1.8vh;
+}
+
+
+.new-about__slides-scrollbooster-wrapper {
+    display: flex;
 }
