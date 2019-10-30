@@ -31,6 +31,7 @@ var Lazyload = require('./lazyload');
 var TasksSliders = require('./tTasks');
 var AdvantagesSliders = require('./advantagesSlider');
 var ScrollAnimations = require('./scrollAnimations');
+var AboutNew = require('./aboutNew');
 
 require('./scrollbox');
 
@@ -68,6 +69,7 @@ module.exports = {
 		GanttSlider.init();
 		CitiesSlider.init();
 		ScrollAnimations.init();
+		AboutNew.init();
 
 		// trigger click to start loading lazy videos
 		$('body').trigger('click');

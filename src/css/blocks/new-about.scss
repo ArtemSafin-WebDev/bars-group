@@ -1,0 +1,549 @@
+.page-wrapper--new-about {
+    .brand-box {
+        position: absolute;
+        top: 134px;
+        padding-top: 0;
+        margin-bottom: 0;
+        width: 100%;
+        left: 0;
+        transition: transform .2s;
+        transform-origin: left center;
+        &.hidden-by-scroll {
+            transform: translateY(-40px) scale(.8);
+        }
+    }
+}
+
+.new-about {
+    .ps__rail-x {
+        opacity: 1 !important;
+        height: 32px !important;
+        background-color: transparent !important;
+        bottom: 100px !important;
+        border-radius: 0 !important;
+        margin: 0 8vw;
+        z-index: 200 !important;
+    }
+
+    .ps__thumb-x {
+        height: 100% !important;
+        border-radius: 0 !important;
+        bottom: 0 !important;
+        background-color: transparent !important;
+        background-image: url("data:image/svg+xml,%0A%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 32'%3E%3Cdefs%3E%3Cstyle%3E.cls-2%7Bfill:%23d1dae5%7D.cls-3%7Bfill:%236e7f95%7D%3C/style%3E%3C/defs%3E%3Cpath d='M57 .05V0H17v.05h-1a16 16 0 000 32c.34 0 .67 0 1-.05h40A16 16 0 0057 .05zM18.25 21l-1 1-4.75-4.75-1-1 1-1 4.75-4.75 1 1-4.75 4.73zM35 21h-2V11h2zm5 0h-2V11h2zm19.52-4.21l-4.75 4.75-1-1 4.75-4.75L53.75 11l1-1 4.75 4.75 1 1z' fill='%23eff4fd'/%3E%3Cpath class='cls-2' d='M33 11h2v10h-2zM38 11h2v10h-2z'/%3E%3Cpath class='cls-3' d='M54.77 10l-1.02 1.02 4.75 4.75-4.75 4.75 1.02 1.02 4.75-4.75 1.02-1.02-1.02-1.02L54.77 10zM17.23 10.46l-4.75 4.75-1.02 1.02 1.02 1.02L17.23 22l1.02-1.02-4.75-4.75 4.75-4.75-1.02-1.02z'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-position: center;
+    }
+}
+.new-about__container {
+    width: 100%;
+    height: 100vh;
+    margin-top: -72px;
+    position: relative;
+}
+
+.new-about__slides {
+    position: absolute;
+    top: 0;
+    left: calc((100vw - 100%) / 2 * -1);
+    width: 100vw;
+    padding-top: 72px;
+    padding-bottom: 100px;
+    height: 100%;
+    display: flex;
+    flex-wrap: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: white;
+    color: black;
+}
+
+.new-about__slide {
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.new-about__slide-content {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.new-about__slide-heading {
+    // color: white;
+    font-size: 32px;
+}
+
+.new-about__navigation {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.new-about__navigation-list {
+    display: flex;
+
+    height: 100px;
+}
+
+.new-about__navigation-list-item {
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.new-about__navigation-link {
+    color: #c3cad3;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: color 0.2s;
+    &:link,
+    &:visited {
+        color: #c3cad3;
+    }
+    &.active {
+        color: #59b4e6;
+    }
+}
+
+.new-about__home {
+    width: 100vw;
+}
+
+.new-about__text-container {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    position: relative;
+    z-index: 10;
+    margin: auto;
+    margin-top: 8vh;
+    @media screen and (max-width: 1200px) {
+        width: 78%;
+    }
+}
+
+.new-about__home-heading {
+    color: black;
+    font-weight: 700;
+    font-size: 44px;
+    font-size: 5vh;
+    width: 60%;
+    flex-shrink: 0;
+    line-height: 1.3;
+}
+
+.new-about__home-text {
+    font-size: 18px;
+    line-height: 1.4;
+    color: black;
+    margin-top: 18vh;
+}
+
+.new-about__home-image {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    z-index: 1;
+    width: 60%;
+    height: auto;
+}
+
+.new-about__improve {
+    width: 100vw;
+}
+
+.new-about__improve-text-small {
+    color: #59b4e6;
+    font-weight: 700;
+    line-height: 1.4;
+    width: 40%;
+    font-size: 3vh;
+}
+
+.new-about__improve-text-large {
+    color: black;
+    padding-left: 20%;
+    font-size: 4vh;
+    line-height: 1.3;
+    font-weight: 700;
+    margin-top: 1vh;
+}
+
+.new-about__improve-text-block {
+    color: black;
+    font-weight: 700;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.new-about__improve-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+}
+
+.new-about__cities {
+    width: 120vw;
+    display: flex;
+    flex-grow: 1;
+}
+
+.new-about__cities-text {
+    color: black;
+    width: 20%;
+    font-size: 4.5vh;
+    line-height: 1.3;
+    font-weight: 700;
+    flex-shrink: 0;
+    align-self: center;
+    margin-bottom: 25vh;
+}
+
+.new-about__cities-number {
+    position: absolute;
+    right: 15%;
+    top: 20%;
+    font-size: 40vh;
+    color: #eff4fd;
+    font-weight: 700;
+    width: 40vh;
+}
+
+.new-about__cities-map-block {
+    width: 80%;
+    position: relative;
+    // background-color: red;
+}
+
+.new-about__cities-map-image {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+    margin-left: -10%;
+}
+
+.new-about__cities-card {
+    position: absolute;
+    padding: 2vh 2.6vh;
+    background-color: #59b4e6;
+    color: white;
+    top: 20%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    min-width: 15vh;
+    &--medium {
+        padding: 3.5vh 4.5vh;
+        min-width: 20vh;
+    }
+
+    &--large {
+        min-width: 30vh;
+        padding: 3.5vh 4.5vh;
+    }
+
+    &--hq {
+        .new-about__cities-card-name {
+            &::before {
+                content: "Головной офис";
+                text-transform: uppercase;
+                color: white;
+                background-color: #59b4e6;
+                margin-left: 3vh;
+                flex-shrink: 0;
+                order: 1;
+                font-weight: 700;
+                font-size: 1vh;
+                letter-spacing: 0.1em;
+                padding: 0.7vh 0.9vh;
+            }
+        }
+    }
+
+    &--kaliningrad {
+        top: 32.7254%;
+        left: 4.875%;
+        background-color: rgb(163, 58, 0);
+    }
+    &--peterburg {
+        background-color: rgb(0, 91, 168);
+        top: 37.0821%;
+        left: 17.1875%;
+    }
+    &--moscow {
+        background-color: rgb(56, 33, 0);
+        top: 56.4336%;
+        left: 0;
+    }
+    &--kazan {
+        background-color: rgb(9, 0, 49);
+        top: 56.1297%;
+        left: 29.75%;
+    }
+}
+
+.new-about__cities-card-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.new-about__cities-card-name {
+    font-size: 1.8vh;
+    position: relative;
+    z-index: 10;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &::after {
+        content: "";
+        width: 3vh;
+        height: 2px;
+        background-color: #fff;
+        flex-shrink: 0;
+        display: block;
+        margin-left: 3vh;
+        order: 2;
+    }
+}
+
+.new-about__advantages {
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.new-about__advantages-heading {
+    color: black;
+
+    font-size: 4.5vh;
+    line-height: 1.3;
+    font-weight: 700;
+    flex-shrink: 0;
+    align-self: center;
+    margin-bottom: 25vh;
+    margin-right: 15vh;
+}
+
+.new-about__advantages-cards-row {
+    display: flex;
+    margin-bottom: 4vh;
+}
+
+.new-about__advantages-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    margin-left: -30vh;
+    margin-right: 20vh;
+}
+
+.new-about__advantages-card {
+    border-top: 0.7vh solid #59b4e6;
+    width: 60vh;
+    margin-right: 8vh;
+    padding-top: 2vh;
+    display: flex;
+    align-items: flex-start;
+    &:last-child {
+        margin-right: 0;
+    }
+    &--red {
+        border-color: #c32118;
+    }
+    &--grey {
+        border-color: #d1dae5;
+    }
+    &--green {
+        border-color: #95c11b;
+    }
+    &--blue {
+        border-color: #59b4e6;
+    }
+    &--yellow {
+        border-color: #fcd300;
+    }
+}
+
+.new-about__advantages-card-icon {
+    margin-left: 1vh;
+    object-fit: contain;
+    width: 11vh;
+    height: 11vh;
+    flex-shrink: 0;
+}
+
+.new-about__advantages-card-heading {
+    font-weight: 700;
+    color: black;
+    line-height: 1.3;
+    font-size: 2.7vh;
+}
+
+.new-about__advantages-card-text {
+    color: #6f8fb9;
+    margin-top: 2vh;
+    font-size: 1.8vh;
+    line-height: 1.4;
+}
+
+.new-about__ratings {
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.new-about__ratings-heading {
+    color: black;
+
+    font-size: 4.5vh;
+    line-height: 1.3;
+    font-weight: 700;
+    flex-shrink: 0;
+    align-self: center;
+    margin-bottom: 25vh;
+    margin-right: 15vh;
+}
+
+.new-about__ratings-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20vh;
+    margin-left: -20vh;
+}
+
+.new-about__ratings-row {
+    display: flex;
+}
+
+.new-about__ratings-card {
+    width: 30vh;
+    height: 30vh;
+    padding: 5vh;
+    text-align: left;
+    border-radius: 50%;
+    border: 1px solid #59b4e6;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    color: black;
+    margin-right: 8vh;
+    position: relative;
+    &::before {
+        content: "";
+        width: 2vh;
+        height: 2vh;
+        border-radius: 50%;
+        background-color: #59b4e6;
+        position: absolute;
+        left: 3.3vh;
+        top: 3.3vh;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.new-about__ratings-card-place {
+    font-weight: 700;
+    font-size: 8vh;
+    align-self: flex-start;
+    margin-top: 2vh;
+    position: relative;
+    white-space: nowrap;
+}
+
+.new-about__ratings-card-text {
+    margin-top: 1vh;
+    line-height: 1.3;
+    font-size: 1.5vh;
+}
+
+.new-about__ratings-card-agency-logo {
+    // position: absolute;
+    vertical-align: top;
+    display: inline-block;
+    width: 8vh;
+    height: auto;
+}
+
+.new-about__tops {
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.new-about__tops-heading {
+    color: black;
+
+    font-size: 4.5vh;
+    line-height: 1.3;
+    font-weight: 700;
+    flex-shrink: 0;
+    align-self: center;
+    margin-bottom: 25vh;
+    margin-right: 10vh;
+}
+
+.new-about__tops-cards {
+    display: flex;
+    margin-right: 10vh;
+}
+
+.new-about__tops-card {
+    width: 40vh;
+    margin-right: 0.5vh;
+}
+
+.new-about__tops-card-image-container {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+}
+
+.new-about__tops-card-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.new-about__tops-card-name {
+    font-weight: 700;
+    margin-top: 2vh;
+    font-size: 2.5vh;
+}
+
+.new-about__tops-card-status {
+    color: #6f8fb9;
+    margin-top: 1.1vh;
+    font-size: 1.8vh;
+}
