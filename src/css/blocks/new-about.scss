@@ -6,10 +6,10 @@
         margin-bottom: 0;
         width: 100%;
         left: 0;
-        transition: transform .2s;
+        transition: transform 0.2s;
         transform-origin: left center;
         &.hidden-by-scroll {
-            transform: translateY(-40px) scale(.8);
+            transform: translateY(-40px) scale(0.8);
         }
     }
 }
@@ -549,7 +549,123 @@
     font-size: 1.8vh;
 }
 
-
 .new-about__slides-scrollbooster-wrapper {
     display: flex;
+}
+
+.new-about__numbers {
+    width: auto;
+    // display: flex;
+    // justify-content: flex-end;
+    // background-color: red;
+    margin-right: 20vh;
+}
+
+.new-about__numbers-main-slider {
+    width: 110vh;
+}
+
+.new-about__numbers-card {
+    display: flex;
+    align-items: center;
+}
+
+.new-about__numbers-card-digits {
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: #dce7fc;
+    font-size: 30vh;
+    margin-left: 7vh;
+
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: url("../img/new-about/text-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: black;
+    user-select: none;
+}
+
+.new-about__numbers-card-text {
+    font-size: 4vh;
+    font-weight: 700;
+}
+
+.new-about__numbers-thumbs-slider {
+    border-top: 1px solid #bde1f5;
+}
+
+.new-about__numbers-thumb {
+    padding: 2vh 0;
+    
+    font-weight: 700;
+    font-size: 7vh;
+    color: #DCE7FC;
+    cursor: pointer;
+    user-select: none;
+    text-align: right;
+    position: relative;
+    &::before {
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #9ad1ef;
+        opacity: 0;
+        position: absolute;
+    }
+    .swiper-slide-thumb-active & {
+        color: #9ad1ef;
+        &::before {
+            opacity: 1;
+        }
+    }
+}
+
+.new-about__slider-nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2.5vh;
+}
+
+.new-about__slider-nav__buttons {
+    display: flex;
+    align-items: center;
+}
+
+.new-about__slider-nav__button {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background: #eff4fd;
+    color: #6e7f95;
+    font-family: icomoon !important;
+    text-align: center;
+    transition: opacity .2s;
+    &.swiper-button-disabled {
+        opacity: .5;
+        cursor: default;
+    }
+    &::before {
+        position: relative;
+        top: -2px;
+        font-size: 14px;
+    }
+
+    &--prev {
+        &::before {
+            content: '\e904';
+        }
+    }
+
+    &--next {
+        margin-left: 5px;
+        &::before {
+            content: '\e905';
+        }
+    }
 }
