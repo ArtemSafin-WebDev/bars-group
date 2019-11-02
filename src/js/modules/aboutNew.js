@@ -4,7 +4,6 @@ var Swiper = require("swiper");
 function initialize(block) {
     console.log("Running initialize");
 
-
     let sliderActive = false;
 
     let drag = false;
@@ -44,7 +43,7 @@ function initialize(block) {
             block.querySelectorAll(":scope .js-new-about-navigation a")
         );
         elements.logo = document.querySelector(".brand-box");
-        if (!elements.logo) throw new Error('No logo element present');
+        if (!elements.logo) throw new Error("No logo element present");
     }
 
     function setCustomScrollbar(element) {
@@ -94,9 +93,11 @@ function initialize(block) {
 
     function addLogoHandling() {
         if (!state.customScrollbar) return;
-        elements.slidesWrapper.addEventListener("ps-scroll-x", logoScrollHandler);
+        elements.slidesWrapper.addEventListener(
+            "ps-scroll-x",
+            logoScrollHandler
+        );
     }
-
 
     function logoScrollHandler() {
         if (state.customScrollbar.reach.x === "start") {
@@ -106,9 +107,11 @@ function initialize(block) {
         }
     }
 
-
     function removeLogoHandling() {
-        elements.slidesWrapper.removeEventListener("ps-scroll-x", logoScrollHandler);
+        elements.slidesWrapper.removeEventListener(
+            "ps-scroll-x",
+            logoScrollHandler
+        );
     }
 
     function initializeNumbersSlider() {
@@ -139,7 +142,17 @@ function initialize(block) {
                 threshold: 10,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
-                slideToClickedSlide: true
+                slideToClickedSlide: true,
+                breakpoints: {
+                    800: {
+                        slidesPerView: 3,
+                        spaceBetween: 20
+                    },
+                    600: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    }
+                }
             };
 
             mainOptions.thumbs.swiper = new Swiper(
@@ -163,7 +176,9 @@ function initialize(block) {
             );
             const mainOptions = {
                 thumbs: {},
-                direction: "vertical",
+                direction: window.matchMedia("(min-width: 801px)").matches
+                    ? "vertical"
+                    : "horizontal",
                 effect: "fade",
                 fadeEffect: {
                     crossFade: true
@@ -176,7 +191,19 @@ function initialize(block) {
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
                 slideToClickedSlide: true,
-                direction: "vertical"
+                direction: window.matchMedia("(min-width: 801px)").matches
+                    ? "vertical"
+                    : "horizontal",
+                breakpoints: {
+                    800: {
+                        slidesPerView: 4,
+                        spaceBetween: 20
+                    },
+                    600: {
+                        slidesPerView: 3,
+                        spaceBetween: 20
+                    }
+                }
             };
 
             mainOptions.thumbs.swiper = new Swiper(
@@ -203,7 +230,9 @@ function initialize(block) {
                 const timeline = new TimelineMax();
 
                 timeline.from(card, 2, {
-                    autoAlpha: 0
+                    autoAlpha: 0,
+                    scale: 0,
+                    ease: Power4.easeOut
                 });
 
                 new ScrollMagic.Scene({
@@ -319,7 +348,6 @@ function initialize(block) {
         state.scrollMagicController = controller;
     }
 
-
     function removeScrollAnimations() {
         if (state.scrollMagicController) {
             state.scrollMagicController.destroy();
@@ -357,24 +385,23 @@ function initialize(block) {
     function mouseDown(event) {
         if (
             event.target &&
-            (event.target.nodeName === "IMG" ||
-                event.target.nodeName === "A")
+            (event.target.nodeName === "IMG" || event.target.nodeName === "A")
         ) {
             event.preventDefault();
         }
         startX = event.clientX + elements.slidesWrapper.scrollLeft;
         deltaX = 0;
         drag = true;
-    };
+    }
     function mouseMove(event) {
         if (!drag) return;
         deltaX = startX - (event.clientX + elements.slidesWrapper.scrollLeft);
         elements.slidesWrapper.scrollLeft += deltaX;
-    };
+    }
 
     function mouseUp() {
         drag = false;
-    };
+    }
 
     function addDragScroll(element) {
         element.addEventListener("mousedown", mouseDown);
@@ -423,12 +450,10 @@ function initialize(block) {
         elements.slidesWrapper.removeEventListener("wheel", handleMouseWheel);
     }
 
-
     function sliders() {
         initializeNumbersSlider();
         initializeHistorySlider();
     }
-
 
     function init() {
         getElements();
@@ -437,7 +462,6 @@ function initialize(block) {
         addListeners();
         addLogoHandling();
         addScrollAnimations();
-       
     }
 
     function destroy() {
@@ -449,7 +473,6 @@ function initialize(block) {
     }
 
     function main() {
-        
         function mountSlider() {
             if (!sliderActive) {
                 init();
