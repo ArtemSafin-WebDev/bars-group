@@ -56,7 +56,7 @@ function initialize(block) {
 
     function removeCustomScrollbar() {
         if (state.customScrollbar) {
-            customScrollbar.destroy();
+            state.customScrollbar.destroy();
             setState({
                 customScrollbar: null
             });
