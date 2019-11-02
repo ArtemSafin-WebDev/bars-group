@@ -47194,7 +47194,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var PerfectScrollbar = require("perfect-scrollbar");
 
-var ScrollBooster = require("scrollbooster");
+var Swiper = require("swiper");
 
 function initialize(block) {
   console.log("Running initialize");
@@ -47269,6 +47269,31 @@ function initialize(block) {
       } else {
         logo.classList.add("hidden-by-scroll");
       }
+    });
+  }
+
+  function initializeNumbersSlider() {
+    var newAboutNumbers = Array.prototype.slice.call(document.querySelectorAll(".js-new-about-numbers"));
+    newAboutNumbers.forEach(function (block) {
+      var mainContainer = block.querySelector(".new-about__numbers-main-slider .swiper-container");
+      var thumbsContainer = block.querySelector(".new-about__numbers-thumbs-slider .swiper-container");
+      var mainOptions = {
+        navigation: {
+          prevEl: block.querySelector(".new-about__slider-nav__button--prev"),
+          nextEl: block.querySelector(".new-about__slider-nav__button--next")
+        },
+        thumbs: {}
+      };
+      var thumbsOptions = {
+        slidesPerView: 6,
+        spaceBetween: 30,
+        threshold: 10,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+        slideToClickedSlide: true
+      };
+      mainOptions.thumbs.swiper = new Swiper(thumbsContainer, thumbsOptions);
+      new Swiper(mainContainer, mainOptions);
     });
   }
 
@@ -47457,6 +47482,7 @@ function initialize(block) {
     addListeners();
     addLogoHandling();
     addScrollAnimations();
+    initializeNumbersSlider();
   }
 
   main();
@@ -47471,7 +47497,7 @@ module.exports = {
   }
 };
 
-},{"perfect-scrollbar":21,"scrollbooster":25}],31:[function(require,module,exports){
+},{"perfect-scrollbar":21,"swiper":27}],31:[function(require,module,exports){
 "use strict";
 
 var Swiper = require("swiper");
