@@ -7976,11 +7976,45 @@ img {
       font-weight: 700;
       width: 40vh; } }
 
+.new-about__cities-map-block-fullwidth-wrapper {
+  margin: 0 -30px; }
+  @media screen and (max-width: 600px) {
+    .new-about__cities-map-block-fullwidth-wrapper {
+      margin: 0 -20px; } }
+  @media screen and (min-width: 801px) {
+    .new-about__cities-map-block-fullwidth-wrapper {
+      margin: 0;
+      width: 80%;
+      position: relative; } }
+
+.new-about__cities-map-block-scroll-wrapper {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; }
+  @media screen and (min-width: 801px) {
+    .new-about__cities-map-block-scroll-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible; } }
+
+@media screen and (max-width: 800px) {
+  .new-about__cities-map-block-padding-wrapper {
+    padding: 0 100px;
+    width: 800px; } }
+
 .new-about__cities-map-block {
   position: relative; }
   @media screen and (min-width: 801px) {
     .new-about__cities-map-block {
-      width: 80%; } }
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0; } }
 
 .new-about__cities-map-image {
   position: relative;
@@ -8006,7 +8040,7 @@ img {
   left: 20%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  padding: 8px 6px; }
+  padding: 12px 12px; }
   @media screen and (min-width: 801px) {
     .new-about__cities-card {
       min-width: 15vh;
@@ -8474,7 +8508,6 @@ img {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  background-image: url("../img/new-about/text-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -8633,7 +8666,8 @@ img {
   -webkit-transition: color 0.2s;
   transition: color 0.2s;
   font-size: 26px;
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
   @media screen and (min-width: 801px) {
     .new-about__history-thumb {
       font-size: 3vh; } }

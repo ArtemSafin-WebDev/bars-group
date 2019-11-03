@@ -58,6 +58,7 @@
     "destyle.css": "^1.0.9",
     "gsap": "^2.1.3",
     "icheck": "^1.0.2",
+    "iscroll": "^5.2.0",
     "jquery": "^1.12.4",
     "jquery-form": "^4.2.2",
     "jquery-lazy": "^1.7.10",

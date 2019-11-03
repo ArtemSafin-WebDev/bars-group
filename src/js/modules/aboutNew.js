@@ -1,6 +1,7 @@
 var PerfectScrollbar = require("perfect-scrollbar");
 var Swiper = require("swiper");
 
+
 function initialize(block) {
     console.log("Running initialize");
 
@@ -162,6 +163,7 @@ function initialize(block) {
             new Swiper(mainContainer, mainOptions);
         });
     }
+
 
     function initializeHistorySlider() {
         const newAboutHistorySliders = Array.prototype.slice.call(
