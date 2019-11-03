@@ -5664,7 +5664,8 @@ img {
 
 @media all and (max-width: 600px) {
   .form-job {
-    margin-bottom: 35px; }
+    margin-bottom: 18px;
+    padding-bottom: 0; }
     .form-job__inner {
       padding: 50px 0; }
     .form-job__col-right {
@@ -5683,7 +5684,6 @@ img {
         padding-right: 0; }
       .form-job__ctrl__right {
         margin-top: 40px;
-        margin-bottom: -80px;
         text-align: right; } }
 
 .history__list {
