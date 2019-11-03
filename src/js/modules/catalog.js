@@ -303,6 +303,9 @@ module.exports = {
         }
     },
 
+
+
+
     _pushCurrentIndustryURL: function() {
         var self = this;
         var activeIndustryItem = document.querySelector(
@@ -439,6 +442,21 @@ module.exports = {
         self._renderCurrentView();
     },
 
+
+
+    _handleFilterReset: function(e) {
+        var self = e.data.self;
+        e.preventDefault();
+
+        var filter = self._state.filter;
+
+        Object.keys(filter).forEach(key => {
+            filter[key].value = "total";
+        })
+
+        self._renderCurrentView();
+    },
+
     _handlePopupReset: function(e) {
         var self = e.data.self;
 
@@ -516,6 +534,12 @@ module.exports = {
             ".nav-cats__link",
             { self: self },
             self._handleFilterLink
+        );
+        self._elems.$_.on(
+            "click",
+            ".catalog__reset-btn",
+            { self: self },
+            self._handleFilterReset
         );
         self._elems.$popup.on(
             "click",
