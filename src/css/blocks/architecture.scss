@@ -1,0 +1,220 @@
+.architecture__row {
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+    }
+}
+
+
+.architecture__heading {
+    margin-bottom: 0;
+    @media screen and (max-width: 800px) {
+        margin-bottom: 20px;
+    }
+}
+
+.architecture__left-column {
+    width: 50%;
+    flex-grow: 1;
+    @media screen and (max-width: 800px) {
+        width: 100%;
+        flex-grow: 0;
+    }
+}
+
+.architecture__right-column {
+    width: 400px;
+    flex-shrink: 0;
+    margin-left: 75px;
+    @media screen and (max-width: 800px) {
+        margin-left: 0;
+        width: 100%;
+        flex-shrink: 1;
+    }
+}
+
+.architecture__images-width-wrapper {
+    width: 100%;
+}
+
+.architecture__images {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+}
+
+.architecture__image-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateY(-10%);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity .4s, transform .4s;
+    &.visible {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(0);
+    }
+
+    &.active {
+        img {
+            &:nth-child(2) {
+                opacity: 0;
+            }
+        }
+    }
+    
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        transition: all .2s;
+        &:nth-child(2) {
+            opacity: 0.4;
+        }
+    }
+
+    &:nth-child(1) {
+        margin-top: 16%;
+    }
+    &:nth-child(2) {
+        
+        width: 73%;
+        margin-top: 0;
+    }
+    &:nth-child(3) {
+       
+        width: 73%;
+        margin-top: -16%;
+    }
+}
+
+.architecture__slider {
+    .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        transition: .4s;
+    }
+
+
+    @media screen and (max-width: 800px) {
+        .swiper-container {
+            overflow: visible;
+            display: block;
+        }
+
+        .swiper-wrapper {
+            display: block;
+        }
+
+        .swiper-slide {
+            margin-bottom: 30px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+}
+
+.architecture__slider-top-arrow,
+.architecture__slider-down-arrow {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+    > button {
+        width: 36px;
+        height: 36px;
+        background-color: #eff4fd;
+        color: #6e7f95;
+        border-radius: 50%;
+        transition: all .2s;
+        &:hover {
+            background-color: #e6eefc;
+        }
+        &.swiper-button-disabled {
+            cursor: default;
+            opacity: .5;
+        }
+        > span {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            &::after {
+                content: "\e905";
+                font-size: 15px;
+                font-family: icomoon!important;
+                
+            }
+        }
+    }
+}
+
+.architecture__slider-top-arrow {
+    > button {
+        margin-bottom: 40px;
+        > span::after {
+            transform: rotate(-90deg);
+        }
+    }
+}
+.architecture__slider-down-arrow {
+    > button {
+        margin-top: 40px;
+        > span::after {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+
+.architecture__card-image {
+    display: none;
+    @media screen and (max-width: 800px) {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
+
+.architecture__card-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    @media screen and (max-width: 800px) {
+        font-size: 16px;
+        line-height: 1.35;
+        margin-bottom: 10px;
+    }
+}
+
+.architecture__card-text {
+    font-size: 14px;
+    line-height: 1.7;
+    
+    
+    p {
+        margin-bottom: 15px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
