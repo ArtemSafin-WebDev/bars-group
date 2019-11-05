@@ -7771,6 +7771,9 @@ img {
         flex-wrap: none;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
     background-color: white;
     color: black;
     overflow: hidden; } }
@@ -8006,7 +8009,8 @@ img {
       font-size: 40vh;
       color: #eff4fd;
       font-weight: 700;
-      width: 40vh; } }
+      width: 40vh;
+      z-index: -1; } }
 
 .new-about__cities-map-block-fullwidth-wrapper {
   margin: 0 -30px; }
@@ -8050,7 +8054,8 @@ img {
 
 .new-about__cities-map-image {
   position: relative;
-  width: 100%; }
+  width: 100%;
+  z-index: -2; }
   @media screen and (min-width: 801px) {
     .new-about__cities-map-image {
       margin-left: -10%;
@@ -8120,7 +8125,55 @@ img {
   .new-about__cities-card--kazan {
     background-color: #090031;
     top: 56.1297%;
-    left: 29.75%; }
+    left: 29.75%;
+    z-index: 30; }
+  .new-about__cities-card--krasnodar {
+    background-color: #008975;
+    top: 73.3536%;
+    left: 10.0625%; }
+  .new-about__cities-card--innopolis {
+    top: 64.0324%;
+    left: 18.6875%; }
+  .new-about__cities-card--rostov {
+    background-color: #a33a00;
+    top: 43.1611%;
+    left: 41.4375%; }
+  .new-about__cities-card--lipezk {
+    background-color: #00015e;
+    top: 29.7872%;
+    left: 57.875%; }
+  .new-about__cities-card--tumen {
+    background-color: #008975;
+    top: 47.619%;
+    left: 69.9375%; }
+  .new-about__cities-card--rybinsk {
+    background-color: #00015e;
+    top: 23%;
+    left: 30%; }
+  .new-about__cities-card--ryazan {
+    background-color: #382100;
+    top: 34.1439%;
+    left: 73.3125%; }
+  .new-about__cities-card--chelny {
+    background-color: #a60060;
+    top: 77.6089%;
+    left: 36.1875%; }
+  .new-about__cities-card--novosib {
+    background-color: #0074c2;
+    top: 55.4205%;
+    left: 59.6875%; }
+  .new-about__cities-card--tomsk {
+    background-color: #383000;
+    top: 45.1297%;
+    left: 55.75%; }
+  .new-about__cities-card--vladivostok {
+    background-color: #a60060;
+    top: 68.8956%;
+    left: 75.375%; }
+  .new-about__cities-card--tumen {
+    background-color: #000138;
+    top: 47.619%;
+    left: 69.9375%; }
 
 .new-about__cities-card-image {
   position: absolute;
@@ -8668,9 +8721,71 @@ img {
   @media screen and (min-width: 801px) {
     .new-about__history-main-slider {
       width: 140vh;
-      height: 100vh;
-      overflow: hidden;
-      padding-top: 15vh; } }
+      overflow: hidden; } }
+
+.new-about__history-main-slider-top-arrow,
+.new-about__history-main-slider-bottom-arrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%; }
+  @media screen and (max-width: 800px) {
+    .new-about__history-main-slider-top-arrow,
+    .new-about__history-main-slider-bottom-arrow {
+      display: none; } }
+  .new-about__history-main-slider-top-arrow > button,
+  .new-about__history-main-slider-bottom-arrow > button {
+    width: 36px;
+    height: 36px;
+    background-color: #eff4fd;
+    color: #6e7f95;
+    border-radius: 50%;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s; }
+    .new-about__history-main-slider-top-arrow > button:hover,
+    .new-about__history-main-slider-bottom-arrow > button:hover {
+      background-color: #e6eefc; }
+    .new-about__history-main-slider-top-arrow > button.swiper-button-disabled,
+    .new-about__history-main-slider-bottom-arrow > button.swiper-button-disabled {
+      cursor: default;
+      opacity: 0.5; }
+    .new-about__history-main-slider-top-arrow > button > span,
+    .new-about__history-main-slider-bottom-arrow > button > span {
+      width: 100%;
+      height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center; }
+      .new-about__history-main-slider-top-arrow > button > span::after,
+      .new-about__history-main-slider-bottom-arrow > button > span::after {
+        content: "\e905";
+        font-size: 15px;
+        font-family: icomoon !important; }
+
+.new-about__history-main-slider-top-arrow > button {
+  margin-bottom: 2vh; }
+  .new-about__history-main-slider-top-arrow > button > span::after {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg); }
+
+.new-about__history-main-slider-bottom-arrow > button {
+  margin-top: 2vh; }
+  .new-about__history-main-slider-bottom-arrow > button > span::after {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); }
 
 @media screen and (max-width: 800px) {
   .new-about__history-thumbs-slider {

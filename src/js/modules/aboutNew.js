@@ -178,13 +178,19 @@ function initialize(block) {
             );
             const mainOptions = {
                 thumbs: {},
-                direction: window.matchMedia("(min-width: 801px)").matches
-                    ? "vertical"
-                    : "horizontal",
                 effect: "fade",
                 fadeEffect: {
                     crossFade: true
-                }
+                },
+                autoHeight: true,
+                navigation: {
+                    nextEl: element.querySelector(
+                        ".new-about__history-main-slider-bottom-arrow button"
+                    ),
+                    prevEl: element.querySelector(
+                        ".new-about__history-main-slider-top-arrow button"
+                    )
+                },
             };
             const thumbsOptions = {
                 slidesPerView: 6,
@@ -322,30 +328,30 @@ function initialize(block) {
             });
         }
 
-        const geographySlide = document.querySelector("#geography");
+        // const geographySlide = document.querySelector("#geography");
 
-        if (geographySlide) {
-            const parallax = Array.prototype.slice.call(
-                geographySlide.querySelectorAll("[data-parallax]")
-            );
+        // if (geographySlide) {
+        //     const parallax = Array.prototype.slice.call(
+        //         geographySlide.querySelectorAll("[data-parallax]")
+        //     );
 
-            parallax.forEach(element => {
-                const timeline = new TimelineMax();
+        //     parallax.forEach(element => {
+        //         const timeline = new TimelineMax();
 
-                timeline.to(element, 1, {
-                    x: `-${element.getAttribute("data-parallax")}%`,
-                    ease: Power0.easeNone
-                });
+        //         timeline.to(element, 1, {
+        //             x: `-${element.getAttribute("data-parallax")}%`,
+        //             ease: Power0.easeNone
+        //         });
 
-                new ScrollMagic.Scene({
-                    triggerElement: geographySlide,
-                    triggerHook: 1,
-                    duration: "120%"
-                })
-                    .setTween(timeline)
-                    .addTo(controller);
-            });
-        }
+        //         new ScrollMagic.Scene({
+        //             triggerElement: geographySlide,
+        //             triggerHook: 1,
+        //             duration: "120%"
+        //         })
+        //             .setTween(timeline)
+        //             .addTo(controller);
+        //     });
+        // }
 
         state.scrollMagicController = controller;
     }

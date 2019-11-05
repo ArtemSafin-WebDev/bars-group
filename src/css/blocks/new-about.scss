@@ -61,6 +61,8 @@
         flex-wrap: none;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+        transform: translateZ(0);
         background-color: white;
         color: black;
         overflow: hidden;
@@ -257,7 +259,7 @@
     @media screen and (min-width: 801px) {
         width: 120vw;
         display: flex;
-        
+
         flex-grow: 1;
         margin: 0;
     }
@@ -289,10 +291,9 @@
         color: #eff4fd;
         font-weight: 700;
         width: 40vh;
+        z-index: -1;
     }
 }
-
-
 
 .new-about__cities-map-block-fullwidth-wrapper {
     margin: 0 -30px;
@@ -312,7 +313,6 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     @media screen and (min-width: 801px) {
-       
         position: absolute;
         top: 0;
         left: 0;
@@ -322,9 +322,7 @@
     }
 }
 
-
 .new-about__cities-map-block-padding-wrapper {
-   
     @media screen and (max-width: 800px) {
         padding: 0 100px;
         width: 800px;
@@ -333,8 +331,7 @@
 
 .new-about__cities-map-block {
     position: relative;
-   
-   
+
     @media screen and (min-width: 801px) {
         position: absolute;
         width: 100%;
@@ -347,7 +344,7 @@
 .new-about__cities-map-image {
     position: relative;
     width: 100%;
-
+    z-index: -2;
     @media screen and (min-width: 801px) {
         margin-left: -10%;
         position: absolute;
@@ -430,6 +427,81 @@
         background-color: rgb(9, 0, 49);
         top: 56.1297%;
         left: 29.75%;
+        z-index: 30;
+    }
+
+    &--krasnodar {
+        background-color: rgb(0, 137, 117);
+        top: 73.3536%;
+        left: 10.0625%
+    }
+
+    &--innopolis {
+        top: 64.0324%;
+        left: 18.6875%
+    }
+
+    &--rostov {
+        background-color: rgb(163, 58, 0);
+        top: 43.1611%;
+        left: 41.4375%
+    }
+
+    &--lipezk {
+        background-color: rgb(0, 1, 94);
+        top: 29.7872%;
+        left: 57.875%;
+    }
+
+    &--tumen {
+        background-color: rgb(0, 137, 117);
+        top: 47.619%;
+        left: 69.9375%;
+    }
+
+
+    &--rybinsk {
+        background-color: rgb(0, 1, 94);
+        top: 23%;
+        left: 30%;
+    }
+
+    &--ryazan {
+        background-color: rgb(56, 33, 0);
+        top: 34.1439%;
+        left: 73.3125%;
+    }
+
+
+    &--chelny {
+        background-color: rgb(166, 0, 96);
+        top: 77.6089%;
+        left: 36.1875%;
+    }
+
+
+    &--novosib {
+        background-color: rgb(0, 116, 194);
+        top: 55.4205%;
+        left: 59.6875%;
+    }
+
+    &--tomsk {
+        background-color: rgb(56, 48, 0);
+        top: 45.1297%;
+        left: 55.75%;
+    }
+
+    &--vladivostok {
+        background-color: rgb(166, 0, 96);
+        top: 68.8956%;
+        left: 75.375%;
+    }
+
+    &--tumen {
+        background-color: rgb(0, 1, 56);
+        top: 47.619%;
+        left: 69.9375%;
     }
 }
 
@@ -844,7 +916,6 @@
 
 .new-about__numbers-thumbs-slider {
     border-top: 1px solid #bde1f5;
-   
 }
 
 .new-about__numbers-thumb {
@@ -944,14 +1015,68 @@
 }
 
 .new-about__history-main-slider {
-   
     line-height: 1.4;
-   
+
     @media screen and (min-width: 801px) {
         width: 140vh;
-        height: 100vh;
+        // height: 100vh;
         overflow: hidden;
-        padding-top: 15vh;
+        // padding-top: 15vh;
+    }
+}
+
+.new-about__history-main-slider-top-arrow,
+.new-about__history-main-slider-bottom-arrow {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+    > button {
+        width: 36px;
+        height: 36px;
+        background-color: #eff4fd;
+        color: #6e7f95;
+        border-radius: 50%;
+        transition: all 0.2s;
+        &:hover {
+            background-color: #e6eefc;
+        }
+        &.swiper-button-disabled {
+            cursor: default;
+            opacity: 0.5;
+        }
+        > span {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            &::after {
+                content: "\e905";
+                font-size: 15px;
+                font-family: icomoon !important;
+            }
+        }
+    }
+}
+
+.new-about__history-main-slider-top-arrow {
+    > button {
+        margin-bottom: 2vh;
+        > span::after {
+            transform: rotate(-90deg);
+        }
+    }
+}
+.new-about__history-main-slider-bottom-arrow {
+    > button {
+        margin-top: 2vh;
+        > span::after {
+            transform: rotate(90deg);
+        }
     }
 }
 
@@ -964,7 +1089,7 @@
             overflow: visible;
         }
     }
-   
+
     @media screen and (min-width: 801px) {
         margin: 0;
         width: 10vh;
@@ -1012,7 +1137,6 @@
 }
 
 .new-about__history-card-top-row {
-   
     @media screen and (min-width: 801px) {
         display: flex;
         margin-bottom: 1vh;
@@ -1020,7 +1144,6 @@
 }
 
 .new-about__history-year {
-    
     @media screen and (min-width: 801px) {
         width: 50%;
     }
@@ -1103,14 +1226,12 @@
 }
 
 .new-about__history-card-bottom-row {
-   
     @media screen and (min-width: 801px) {
         display: flex;
     }
 }
 
 .new-about__history-card-facts-detailed {
-   
     @media screen and (min-width: 801px) {
         width: 40%;
         flex-grow: 1;
@@ -1141,7 +1262,6 @@
 
     & > ul {
         li {
-           
             position: relative;
             font-size: 14px;
             margin-bottom: 14px;
