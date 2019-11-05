@@ -7974,7 +7974,7 @@ img {
   margin-top: 55px; }
   @media screen and (min-width: 801px) {
     .new-about__cities {
-      width: 120vw;
+      width: 100vw;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -8004,7 +8004,7 @@ img {
     .new-about__cities-number {
       display: block;
       position: absolute;
-      right: 15%;
+      right: 25%;
       top: 20%;
       font-size: 40vh;
       color: #eff4fd;
@@ -8020,7 +8020,7 @@ img {
   @media screen and (min-width: 801px) {
     .new-about__cities-map-block-fullwidth-wrapper {
       margin: 0;
-      width: 80%;
+      width: 60%;
       position: relative; } }
 
 .new-about__cities-map-block-scroll-wrapper {
@@ -8040,7 +8040,7 @@ img {
 @media screen and (max-width: 800px) {
   .new-about__cities-map-block-padding-wrapper {
     padding: 0 100px;
-    width: 800px; } }
+    width: 1000px; } }
 
 .new-about__cities-map-block {
   position: relative; }
@@ -8081,15 +8081,15 @@ img {
   @media screen and (min-width: 801px) {
     .new-about__cities-card {
       min-width: 15vh;
-      padding: 2vh 2.6vh; } }
+      padding: 1.8vh 2.8vh; } }
   @media screen and (min-width: 801px) {
     .new-about__cities-card--medium {
-      padding: 3.5vh 4.5vh;
+      padding: 2.5vh 3.5vh;
       min-width: 20vh; } }
   @media screen and (min-width: 801px) {
     .new-about__cities-card--large {
       min-width: 30vh;
-      padding: 3.5vh 4.5vh; } }
+      padding: 3.2vh 4.5vh; } }
   .new-about__cities-card--hq .new-about__cities-card-name::before {
     content: "Головной офис";
     text-transform: uppercase;
@@ -8111,69 +8111,68 @@ img {
         margin-left: 3vh;
         letter-spacing: 0.1em; } }
   .new-about__cities-card--kaliningrad {
-    top: 32.7254%;
-    left: 4.875%;
+    top: 38.7254%;
+    left: 2.875%;
     background-color: #a33a00; }
   .new-about__cities-card--peterburg {
     background-color: #005ba8;
-    top: 37.0821%;
-    left: 17.1875%; }
+    top: 32.0821%;
+    left: 18.1875%; }
   .new-about__cities-card--moscow {
     background-color: #382100;
     top: 56.4336%;
-    left: 0; }
+    left: 20%;
+    z-index: 20; }
   .new-about__cities-card--kazan {
     background-color: #090031;
-    top: 56.1297%;
-    left: 29.75%;
+    top: 46.1297%;
+    left: 66.75%;
     z-index: 30; }
   .new-about__cities-card--krasnodar {
     background-color: #008975;
-    top: 73.3536%;
-    left: 10.0625%; }
+    top: 70.3536%;
+    left: 6.0625%; }
   .new-about__cities-card--innopolis {
-    top: 64.0324%;
-    left: 18.6875%; }
+    top: 56.0324%;
+    left: 55.6875%; }
   .new-about__cities-card--rostov {
     background-color: #a33a00;
-    top: 43.1611%;
-    left: 41.4375%; }
+    top: 79.1611%;
+    left: 20.4375%; }
   .new-about__cities-card--lipezk {
     background-color: #00015e;
-    top: 29.7872%;
-    left: 57.875%; }
-  .new-about__cities-card--tumen {
-    background-color: #008975;
-    top: 47.619%;
-    left: 69.9375%; }
+    top: 75.7872%;
+    left: 42.875%; }
   .new-about__cities-card--rybinsk {
     background-color: #00015e;
-    top: 23%;
-    left: 30%; }
+    top: 48%;
+    left: 27%;
+    z-index: 25; }
   .new-about__cities-card--ryazan {
     background-color: #382100;
-    top: 34.1439%;
-    left: 73.3125%; }
+    top: 67.1439%;
+    left: 30.3125%;
+    z-index: 25; }
   .new-about__cities-card--chelny {
     background-color: #a60060;
-    top: 77.6089%;
-    left: 36.1875%; }
+    top: 30.6089%;
+    left: 56.1875%; }
   .new-about__cities-card--novosib {
     background-color: #0074c2;
-    top: 55.4205%;
-    left: 59.6875%; }
+    top: 65.4205%;
+    left: 85.6875%; }
   .new-about__cities-card--tomsk {
     background-color: #383000;
-    top: 45.1297%;
-    left: 55.75%; }
+    top: 58.1297%;
+    left: 90.75%; }
   .new-about__cities-card--vladivostok {
     background-color: #a60060;
-    top: 68.8956%;
-    left: 75.375%; }
+    top: 28.8956%;
+    left: 90.375%; }
   .new-about__cities-card--tumen {
     background-color: #000138;
-    top: 47.619%;
-    left: 69.9375%; }
+    top: 84.619%;
+    left: 58.9375%; }
 
 .new-about__cities-card-image {
   position: absolute;
