@@ -16,6 +16,14 @@
             }
         }
     }
+
+
+    .footer {
+       
+        @media screen and (min-width: 801px) {
+            display: none;
+        }
+    }
 }
 
 .new-about {
@@ -134,6 +142,7 @@
 .new-about__home {
     @media screen and (min-width: 801px) {
         width: 100vw;
+        margin-top: 24vh;
     }
 }
 
@@ -141,11 +150,10 @@
     @media screen and (min-width: 801px) {
         display: flex;
         align-items: center;
-        width: 60%;
+        width: 70%;
         position: relative;
         z-index: 10;
         margin: auto;
-        margin-top: 8vh;
     }
     @media screen and (max-width: 1200px) {
         width: 78%;
@@ -168,7 +176,7 @@
 }
 
 .new-about__home-text {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.4;
     color: black;
     margin-top: 15px;
@@ -181,7 +189,7 @@
     margin-bottom: 20px;
     @media screen and (min-width: 801px) {
         position: absolute;
-        top: 10%;
+        top: 25%;
         left: 30%;
         z-index: 1;
         width: 60%;
@@ -191,7 +199,7 @@
 }
 
 .new-about__improve {
-    margin-top: 50px;
+    margin-top: 90px;
     position: relative;
     @media screen and (min-width: 801px) {
         width: 100vw;
@@ -255,300 +263,65 @@
 }
 
 .new-about__cities {
-    margin-top: 55px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    margin-top: 90px;
     @media screen and (min-width: 801px) {
-        width: 100vw;
+        padding-right: 20vh;
         display: flex;
-
-        flex-grow: 1;
-        margin: 0;
+        align-items: center;
+        margin-top: 0;
     }
 }
 
-.new-about__cities-text {
-    color: black;
-
-    line-height: 1.3;
-    font-weight: 700;
-    font-size: 18px;
-    
-    @media screen and (min-width: 801px) {
-        width: 20%;
-        font-size: 4.5vh;
-        flex-shrink: 0;
-        align-self: center;
-        margin-bottom: 25vh;
-        // margin-right: -22vh;
+.new-about__cities-map {
+    @media screen and (max-width: 800px) {
+        margin: 0 -30px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
-}
-
-.new-about__cities-number {
-    display: none;
-    @media screen and (min-width: 801px) {
-        display: block;
-        position: absolute;
-        right: 25%;
-        top: 20%;
-        font-size: 40vh;
-        color: #eff4fd;
-        font-weight: 700;
-        width: 40vh;
-        z-index: -1;
-    }
-}
-
-.new-about__cities-map-block-fullwidth-wrapper {
-    margin: 0 -30px;
     @media screen and (max-width: 600px) {
         margin: 0 -20px;
     }
-    @media screen and (min-width: 801px) {
-        margin: 0;
-        width: 60%;
-        position: relative;
-    }
-}
-
-.new-about__cities-map-block-scroll-wrapper {
-    width: 100%;
-    overflow-y: hidden;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    @media screen and (min-width: 801px) {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-    }
-}
-
-.new-about__cities-map-block-padding-wrapper {
-    @media screen and (max-width: 800px) {
-        padding: 0 100px;
-        width: 1000px;
-    }
-}
-
-.new-about__cities-map-block {
-    position: relative;
-
-    @media screen and (min-width: 801px) {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-}
-
-.new-about__cities-map-image {
-    position: relative;
-    width: 100%;
-    z-index: -2;
-    @media screen and (min-width: 801px) {
-        margin-left: -10%;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 95%;
-        height: 95%;
-        object-fit: contain;
-        transform: translate(-50%, -50%);
-    }
-}
-
-.new-about__cities-card {
-    position: absolute;
-
-    background-color: #59b4e6;
-    color: white;
-    top: 20%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    padding: 12px 12px;
-    @media screen and (min-width: 801px) {
-        min-width: 15vh;
-        padding: 1.8vh 2.8vh;
-    }
-    &--medium {
+    img {
+        width: 180vw;
+        height: auto;
+        max-width: none;
+        margin: 0 30px;
         @media screen and (min-width: 801px) {
-            padding: 2.5vh 3.5vh;
-            min-width: 20vh;
+            width: 100%;
+            height: 70vh;
+            width: auto;
+            max-width: none;
         }
-    }
-
-    &--large {
-        @media screen and (min-width: 801px) {
-            min-width: 30vh;
-            padding: 3.2vh 4.5vh;
-        }
-    }
-
-    &--hq {
-        .new-about__cities-card-name {
-            &::before {
-                content: "Головной офис";
-                text-transform: uppercase;
-                color: white;
-                background-color: #59b4e6;
-                margin-left: 5px;
-                font-size: 8px;
-                padding: 2px 5px;
-                flex-shrink: 0;
-                order: 1;
-                font-weight: 700;
-
-                @media screen and (min-width: 801px) {
-                    font-size: 1vh;
-                    padding: 0.7vh 0.9vh;
-                    margin-left: 3vh;
-                    letter-spacing: 0.1em;
-                }
-            }
-        }
-    }
-
-    &--kaliningrad {
-        top: 38.7254%;
-        left: 2.875%;
-        background-color: rgb(163, 58, 0);
-    }
-    &--peterburg {
-        background-color: rgb(0, 91, 168);
-        top: 32.0821%;
-        left: 18.1875%;
-    }
-    &--moscow {
-        background-color: rgb(56, 33, 0);
-        top: 56.4336%;
-        left: 20%;
-        z-index: 20;
-    }
-    &--kazan {
-        background-color: rgb(9, 0, 49);
-        top: 46.1297%;
-        left: 66.75%;
-        z-index: 30;
-    }
-
-    &--krasnodar {
-        background-color: rgb(0, 137, 117);
-        top: 70.3536%;
-        left: 6.0625%
-    }
-
-    &--innopolis {
-        top: 56.0324%;
-        left: 55.6875%
-    }
-
-    &--rostov {
-        background-color: rgb(163, 58, 0);
-        top: 79.1611%;
-        left: 20.4375%
-    }
-
-    &--lipezk {
-        background-color: rgb(0, 1, 94);
-        top: 75.7872%;
-        left: 42.875%;
-    }
-
-  
-
-
-    &--rybinsk {
-        background-color: rgb(0, 1, 94);
-        top: 48%;
-        left: 27%;
-        z-index: 25;
-    }
-
-    &--ryazan {
-        background-color: rgb(56, 33, 0);
-        top: 67.1439%;
-        left: 30.3125%;
-        z-index: 25;
-    }
-
-
-    &--chelny {
-        background-color: rgb(166, 0, 96);
-        top: 30.6089%;
-        left: 56.1875%;
-    }
-
-
-    &--novosib {
-        background-color: rgb(0, 116, 194);
-        top: 65.4205%;
-        left: 85.6875%;
-    }
-
-    &--tomsk {
-        background-color: rgb(56, 48, 0);
-        top: 58.1297%;
-        left: 90.75%;
-    }
-
-    &--vladivostok {
-        background-color: rgb(166, 0, 96);
-        top: 28.8956%;
-        left: 90.375%;
-    }
-
-    &--tumen {
-        background-color: rgb(0, 1, 56);
-        top: 84.619%;
-        left: 58.9375%;
     }
 }
 
-.new-about__cities-card-image {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.new-about__cities-card-name {
-    position: relative;
-    z-index: 10;
+.new-about__cities-heading {
+    line-height: 1.35;
     font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
+    font-size: 24px;
+    margin-bottom: 10px;
     @media screen and (min-width: 801px) {
-        font-size: 1.8vh;
-    }
-    &::after {
-        content: "";
-        width: 6px;
-        height: 1px;
-        background-color: #fff;
-        flex-shrink: 0;
-        display: block;
-        margin-left: 14px;
-        order: 2;
-        @media screen and (min-width: 801px) {
-            width: 3vh;
-            margin-left: 3vh;
-        }
+        height: 70vh;
+        font-size: 4vh;
+        align-self: flex-start;
+        margin-top: 25vh;
+        margin-bottom: 0;
+        width: 35vh;
     }
 }
 
 .new-about__advantages {
-    margin-top: 50px;
+    margin-top: 90px;
+
     @media screen and (min-width: 801px) {
         margin: 0;
         width: auto;
         display: flex;
         justify-content: flex-start;
+        align-items: center;
+        padding-right: 20vh;
     }
 }
 
@@ -559,11 +332,12 @@
     font-weight: 700;
     flex-shrink: 0;
     align-self: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     @media screen and (min-width: 801px) {
-        font-size: 4.5vh;
-        margin-bottom: 25vh;
-        margin-right: 15vh;
+        font-size: 4vh;
+        align-self: flex-start;
+        margin-top: 2vh;
+        margin-right: -14vh;
     }
 }
 
@@ -571,6 +345,9 @@
     @media screen and (min-width: 801px) {
         display: flex;
         margin-bottom: 4vh;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -580,8 +357,6 @@
         flex-direction: column;
         align-items: center;
         align-self: center;
-        margin-left: -30vh;
-        margin-right: 20vh;
     }
 }
 
@@ -590,7 +365,7 @@
     display: flex;
     align-items: flex-start;
     padding-top: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
     @media screen and (min-width: 801px) {
         border-top: 0.7vh solid #59b4e6;
         width: 60vh;
@@ -618,26 +393,48 @@
     }
 }
 
+.new-about__advantages-card-content {
+    padding-right: 10px;
+    @media screen and (min-width: 801px) {
+        padding-right: 10%;
+    }
+}
+
 .new-about__advantages-card-icon {
-    margin-left: 1vh;
     object-fit: contain;
-    width: 11vh;
-    height: 11vh;
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
     flex-shrink: 0;
+
+    @media screen and (min-width: 801px) {
+        width: 8.25vh;
+        height: 8.25vh;
+        margin-left: 1vw;
+    }
 }
 
 .new-about__advantages-card-heading {
     font-weight: 700;
     color: black;
     line-height: 1.3;
-    font-size: 2.7vh;
+    font-size: 20px;
+    @media screen and (min-width: 801px) {
+        font-size: 2.4vh;
+    }
 }
 
 .new-about__advantages-card-text {
     color: #6f8fb9;
-    margin-top: 2vh;
-    font-size: 1.8vh;
+
     line-height: 1.4;
+    font-size: 14px;
+    margin-top: 15px;
+
+    @media screen and (min-width: 801px) {
+        margin-top: 2vh;
+        font-size: 1.8vh;
+    }
 }
 
 .new-about__ratings {
@@ -647,6 +444,7 @@
         display: flex;
         justify-content: flex-start;
         margin-top: 0;
+        padding-right: 18vh;
     }
 }
 
@@ -659,11 +457,13 @@
     font-weight: 700;
 
     @media screen and (min-width: 801px) {
-        font-size: 4.5vh;
-        margin-bottom: 25vh;
+        font-size: 4vh;
+        // margin-bottom: 25vh;
         margin-right: 15vh;
         flex-shrink: 0;
-        align-self: center;
+        align-self: flex-start;
+        margin-right: -8vh;
+        margin-top: 4vh;
     }
 }
 
@@ -676,8 +476,6 @@
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
-        margin-right: 20vh;
-        margin-left: -20vh;
     }
 }
 
@@ -777,17 +575,16 @@
 .new-about__tops-heading {
     color: black;
     font-size: 24px;
-    margin-bottom: 20px;
-
+    margin-bottom: 30px;
     line-height: 1.3;
     font-weight: 700;
     flex-shrink: 0;
     align-self: center;
-
     @media screen and (min-width: 801px) {
-        margin-bottom: 25vh;
+        margin-top: 2vh;
         margin-right: 10vh;
-        font-size: 4.5vh;
+        font-size: 4vh;
+        align-self: flex-start;
     }
 }
 
@@ -813,7 +610,7 @@
 
 .new-about__tops-card-image-container {
     width: 100%;
-    padding-bottom: 100%;
+    padding-bottom: 120%;
     position: relative;
     @media screen and (min-width: 801px) {
         height: 50vh;
@@ -828,6 +625,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
 }
 
 .new-about__tops-card-name {
@@ -855,9 +653,13 @@
 }
 
 .new-about__numbers {
+    margin-top: 60px;
     @media screen and (min-width: 801px) {
         width: auto;
         margin-right: 20vh;
+        margin-top: 0;
+        width: 110vh;
+        width: 101vh;
     }
 }
 
@@ -868,7 +670,6 @@
         }
     }
     @media screen and (min-width: 801px) {
-        width: 110vh;
     }
 }
 
@@ -904,6 +705,8 @@
         margin-left: 7vh;
         margin-bottom: 0;
         order: 0;
+        flex-grow: 1;
+        text-align: right;
     }
 }
 
@@ -912,11 +715,43 @@
     font-weight: 700;
     @media screen and (min-width: 801px) {
         font-size: 4vh;
+        line-height: 1.35;
     }
 }
 
 .new-about__numbers-thumbs-slider {
     border-top: 1px solid #bde1f5;
+    position: relative;
+    @media screen and (max-width: 800px) {
+        border: none;
+        &::before {
+            content: "";
+            position: absolute;
+            height: 1px;
+            background-color: #bde1f5;
+            left: calc((100vw - 100%) / 2 * -1);
+            right: calc((100vw - 100%) / 2 * -1);
+            top: 0;
+        }
+    }
+
+    .swiper-container {
+        @media screen and (max-width: 800px) {
+            overflow: visible;
+        }
+    }
+    .swiper-slide {
+        width: auto;
+        margin-right: 2.5vh;
+        &:last-child {
+            margin-right: 0 !important;
+        }
+    }
+    .swiper-wrapper {
+        @media screen and (min-width: 801px) {
+            justify-content: space-between;
+        }
+    }
 }
 
 .new-about__numbers-thumb {
@@ -1019,7 +854,7 @@
     line-height: 1.4;
 
     @media screen and (min-width: 801px) {
-        width: 140vh;
+        width: 120vh;
         // height: 100vh;
         overflow: hidden;
         // padding-top: 15vh;
@@ -1031,12 +866,18 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    position: relative;
+    z-index: 200;
+    @media screen and (max-height: 1000px) {
+        display: none;
+    }
     @media screen and (max-width: 800px) {
         display: none;
     }
     > button {
         width: 36px;
         height: 36px;
+
         background-color: #eff4fd;
         color: #6e7f95;
         border-radius: 50%;
@@ -1058,6 +899,9 @@
             &::after {
                 content: "\e905";
                 font-size: 15px;
+                display: block;
+                margin-left: 1px;
+
                 font-family: icomoon !important;
             }
         }
@@ -1066,16 +910,18 @@
 
 .new-about__history-main-slider-top-arrow {
     > button {
-        margin-bottom: 2vh;
+        margin-bottom: 4vh;
         > span::after {
+            margin-bottom: 1px;
             transform: rotate(-90deg);
         }
     }
 }
 .new-about__history-main-slider-bottom-arrow {
     > button {
-        margin-top: 2vh;
+        margin-top: 4vh;
         > span::after {
+            margin-top: 1px;
             transform: rotate(90deg);
         }
     }
@@ -1083,18 +929,30 @@
 
 .new-about__history-thumbs-slider {
     @media screen and (max-width: 800px) {
-        padding: 12px 0;
-        border-bottom: 2px solid #9ad1ef;
         margin-bottom: 15px;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            left: calc((100vw - 100%) / 2 * -1);
+            right: calc((100vw - 100%) / 2 * -1);
+            bottom: 0;
+            height: 1px;
+            background-color: #9ad1ef;
+        }
         .swiper-container {
             overflow: visible;
+        }
+
+        .swiper-slide {
+            width: auto;
         }
     }
 
     @media screen and (min-width: 801px) {
         margin: 0;
         width: 10vh;
-        height: 100vh;
+        height: 92vh;
         overflow: hidden;
         margin-right: 3vh;
         padding-top: 18vh;
@@ -1111,8 +969,10 @@
     font-size: 26px;
     position: relative;
     cursor: pointer;
+    padding: 12px 0;
     @media screen and (min-width: 801px) {
         font-size: 3vh;
+        padding: 0;
     }
     &::after {
         content: "";
@@ -1124,9 +984,14 @@
         background-color: #9ad1ef;
         opacity: 0;
         transition: opacity 0.2s;
-        display: none;
-        @media screen and (min-width: 801px) {
-            display: block;
+
+        @media screen and (max-width: 800px) {
+            top: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+            height: 2px;
         }
     }
     .swiper-slide-thumb-active & {
@@ -1170,14 +1035,14 @@
 
 .new-about__history-year-date {
     font-size: 130px;
-    color: #dce7fc;
+    color: #edf3fd;
     font-weight: 800;
     text-transform: uppercase;
     line-height: 1;
     white-space: nowrap;
     position: relative;
     @media screen and (min-width: 801px) {
-        font-size: 20vh;
+        font-size: 24vh;
     }
 }
 
@@ -1195,13 +1060,19 @@
     text-transform: initial;
     @media screen and (min-width: 801px) {
         font-size: 3.5vh;
+        padding-right: 30%;
     }
 }
 
 .new-about__history-year-main-info {
     color: #6f8fb9;
-    font-size: 1.5vh;
-    margin-top: 0vh;
+    font-size: 14px;
+    padding-right: 15px;
+    @media screen and (min-width: 801px) {
+        font-size: 1.5vh;
+        margin-top: 0vh;
+        padding-right: 30%;
+    }
 }
 
 .new-about__history-photo {
@@ -1255,8 +1126,8 @@
         margin-bottom: 8px;
         margin-top: 15px;
         @media screen and (min-width: 801px) {
-            font-size: 3vh;
-            margin-bottom: 2vh;
+            font-size: 2vh;
+            margin-bottom: 1.5vh;
             margin-top: 0;
         }
     }
@@ -1268,9 +1139,9 @@
             margin-bottom: 14px;
             padding-left: 16px;
             @media screen and (min-width: 801px) {
-                margin-bottom: 2vh;
+                margin-bottom: 1vh;
                 padding-left: 2vh;
-                font-size: 2vh;
+                font-size: 1.5vh;
             }
             &::before {
                 content: "";
@@ -1294,10 +1165,12 @@
 
 .new-about__history-card-facts-brief {
     margin-top: 20px;
+    margin-bottom: 50px;
     @media screen and (min-width: 801px) {
         width: 50vh;
         margin-left: 3vh;
-        margin-top: 6vh;
+        margin-top: 3vh;
+        margin-bottom: 0;
     }
     .swiper-slide-active & {
         animation-name: slide-from-fade;
@@ -1326,9 +1199,9 @@
     flex-shrink: 0;
     margin-right: 20px;
     @media screen and (min-width: 801px) {
-        width: 6vh;
-        height: 6vh;
-        margin-right: 3vh;
+        width: 5vh;
+        height: 5vh;
+        margin-right: 2vh;
     }
 }
 
@@ -1345,6 +1218,6 @@
     flex-grow: 1;
     font-size: 14px;
     @media screen and (min-width: 801px) {
-        font-size: 2vh;
+        font-size: 1.5vh;
     }
 }

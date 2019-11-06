@@ -127,6 +127,7 @@ function initialize(block) {
                 ".new-about__numbers-thumbs-slider .swiper-container"
             );
             const mainOptions = {
+                spaceBetween: 30,
                 navigation: {
                     prevEl: block.querySelector(
                         ".new-about__slider-nav__button--prev"
@@ -138,22 +139,12 @@ function initialize(block) {
                 thumbs: {}
             };
             const thumbsOptions = {
-                slidesPerView: 6,
-                spaceBetween: 30,
+                slidesPerView: 'auto',
                 threshold: 10,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
                 slideToClickedSlide: true,
-                breakpoints: {
-                    800: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
-                    },
-                    600: {
-                        slidesPerView: 2,
-                        spaceBetween: 20
-                    }
-                }
+               
             };
 
             mainOptions.thumbs.swiper = new Swiper(
@@ -193,8 +184,8 @@ function initialize(block) {
                 },
             };
             const thumbsOptions = {
-                slidesPerView: 6,
-                spaceBetween: 30,
+                slidesPerView: 'auto',
+                spaceBetween: 20,
                 threshold: 10,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
@@ -204,12 +195,12 @@ function initialize(block) {
                     : "horizontal",
                 breakpoints: {
                     800: {
-                        slidesPerView: 4,
-                        spaceBetween: 20
+                        // slidesPerView: 4,
+                        // spaceBetween: 20
                     },
                     600: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
+                        // slidesPerView: 3,
+                        // spaceBetween: 20
                     }
                 }
             };
@@ -377,17 +368,18 @@ function initialize(block) {
     }
 
     function handleMouseWheel(event) {
+        event.preventDefault();
         elements.slidesWrapper.scrollLeft += event.deltaY;
 
-        if (
-            elements.slidesWrapper.scrollLeft +
-                elements.slidesWrapper.offsetWidth >=
-            elements.slidesWrapper.scrollWidth
-        ) {
-            return;
-        } else {
-            event.preventDefault();
-        }
+        // if (
+        //     elements.slidesWrapper.scrollLeft +
+        //         elements.slidesWrapper.offsetWidth >=
+        //     elements.slidesWrapper.scrollWidth
+        // ) {
+        //     return;
+        // } else {
+        //     event.preventDefault();
+        // }
     }
 
     function mouseDown(event) {
@@ -466,7 +458,7 @@ function initialize(block) {
     function init() {
         getElements();
         setCustomScrollbar(elements.slidesWrapper);
-        addDragScroll(elements.slidesWrapper);
+        // addDragScroll(elements.slidesWrapper);
         addListeners();
         addLogoHandling();
         addScrollAnimations();
@@ -474,7 +466,7 @@ function initialize(block) {
 
     function destroy() {
         removeCustomScrollbar();
-        removeDragScroll(elements.slidesWrapper);
+        // removeDragScroll(elements.slidesWrapper);
         removeListeners();
         removeLogoHandling();
         removeScrollAnimations();
