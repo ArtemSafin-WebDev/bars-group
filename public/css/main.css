@@ -1333,6 +1333,9 @@ img {
   background: #fff;
   visibility: hidden;
   opacity: 0; }
+  @media screen and (max-width: 800px) {
+    .loader-main {
+      display: none !important; } }
   .loader-main._active {
     visibility: visible;
     opacity: 1; }
