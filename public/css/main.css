@@ -6173,8 +6173,8 @@ img {
           top: -1px; } }
 
 .news-details__content blockquote {
-  font-size: 26px;
-  line-height: 1.25;
+  font-size: 18px;
+  line-height: 1.77;
   position: relative;
   padding-left: 105px;
   margin: 60px 0;
@@ -6195,17 +6195,10 @@ img {
       margin-top: 40px;
       margin-bottom: 40px; } }
   .news-details__content blockquote p {
-    font-size: 26px;
-    line-height: 1.25;
     margin: 0;
-    margin-bottom: 20px; }
-    @media screen and (max-width: 1200px) {
-      .news-details__content blockquote p {
-        font-size: 24px; } }
-    @media screen and (max-width: 600px) {
-      .news-details__content blockquote p {
-        font-size: 22px;
-        margin-bottom: 15px; } }
+    margin-bottom: 15px;
+    font-size: inherit;
+    line-height: inherit; }
   .news-details__content blockquote footer {
     font-size: 18px;
     line-height: 1.5;
