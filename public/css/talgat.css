@@ -291,9 +291,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   width: 33.3333%;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
 }
 .tProducts__column--big {
   width: 66.6666%;
