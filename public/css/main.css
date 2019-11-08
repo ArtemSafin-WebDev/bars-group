@@ -2443,9 +2443,12 @@ img {
     padding-left: 10px; }
   .nav-sticker__item {
     position: relative;
-    padding: 18px 0;
     font-size: 14px;
-    pointer-events: initial; }
+    line-height: 1.4;
+    pointer-events: initial;
+    margin-bottom: 18px; }
+    .nav-sticker__item:last-child {
+      margin-bottom: 0; }
     .nav-sticker__item._active {
       font-weight: 700; }
       .nav-sticker__item._active .nav-sticker__link {
@@ -2454,9 +2457,7 @@ img {
       color: #59b4e6; }
   .nav-sticker__link {
     color: rgba(110, 127, 149, 0.8);
-    position: absolute;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    display: block;
     width: 180px; }
     .nav-sticker__menu--light .nav-sticker__link {
       color: white; }
