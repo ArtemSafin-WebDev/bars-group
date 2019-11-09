@@ -13,7 +13,8 @@ module.exports = {
 			items: 1,
 			dots: false,
 			nav: true,
-			loop: true,
+			rewind: false,
+			loop: false,
 			navText: [''],
 			navContainer: '.tComponents__nav'
 		});
