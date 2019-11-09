@@ -5018,13 +5018,17 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
-  .article-cards__col--gradient-1:hover .article-cards__image, .article-cards__col--gradient-2:hover .article-cards__image {
+  .article-cards__col--gradient-1:hover .article-cards__image, .article-cards__col--gradient-2:hover .article-cards__image, .article-cards__col--gradient-3:hover .article-cards__image, .article-cards__col--gradient-4:hover .article-cards__image {
     -webkit-filter: hue-rotate(10deg);
             filter: hue-rotate(10deg); }
   .article-cards__col--gradient-1 .article-cards__image {
     background: linear-gradient(45deg, #bb92e5, #58b4e6); }
   .article-cards__col--gradient-2 .article-cards__image {
     background: linear-gradient(45deg, #92e0e5, #58b4e6); }
+  .article-cards__col--gradient-3 .article-cards__image {
+    background: linear-gradient(45deg, #1cad7a, #f8d85d); }
+  .article-cards__col--gradient-4 .article-cards__image {
+    background: linear-gradient(45deg, #ed7878, #f7cc69); }
   .article-cards__col--no-image .article-cards__desc {
     border-top: 4px solid #59b4e6;
     padding-right: 25px;

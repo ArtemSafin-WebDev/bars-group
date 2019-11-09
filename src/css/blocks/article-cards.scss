@@ -16,7 +16,9 @@
 		display: flex;
 
 		&--gradient-1,
-		&--gradient-2 {
+		&--gradient-2,
+		&--gradient-3,
+		&--gradient-4 {
 			&:hover {
 				.article-cards__image {
 					filter: hue-rotate(10deg);
@@ -34,6 +36,18 @@
 		&--gradient-2 {
 			.article-cards__image {
 				background: linear-gradient(45deg,#92e0e5,#58b4e6);
+			}
+		}
+
+		&--gradient-3 {
+			.article-cards__image {
+				background: linear-gradient(45deg,#1cad7a,#f8d85d);
+			}
+		}
+
+		&--gradient-4 {
+			.article-cards__image {
+				background: linear-gradient(45deg,#ed7878,#f7cc69);
 			}
 		}
 
