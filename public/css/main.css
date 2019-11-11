@@ -5364,8 +5364,6 @@ img {
     color: rgba(0, 0, 0, 0.3); }
   .banner--dark-text .nav-banner__line {
     background: #59b4e6; }
-  .banner--fixed-bg .banner__image {
-    background-attachment: fixed; }
   .banner__header {
     margin-bottom: 0; }
   .banner__image {
@@ -8989,10 +8987,7 @@ img {
               flex-direction: column; } }
 
 .architecture__heading {
-  margin-bottom: 0; }
-  @media screen and (max-width: 800px) {
-    .architecture__heading {
-      margin-bottom: 20px; } }
+  margin-bottom: 20px; }
 
 .architecture__left-column {
   width: 50%;
@@ -9023,53 +9018,62 @@ img {
 
 .architecture__images {
   width: 100%;
-  padding-bottom: 100%;
-  position: relative; }
+  position: relative;
+  padding-top: 200px;
+  -webkit-transition: padding .2s linear;
+  transition: padding .2s linear; }
   @media screen and (max-width: 800px) {
     .architecture__images {
       display: none; } }
 
 .architecture__image-layer {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) translateY(-10%);
-          transform: translate(-50%, -50%) translateY(-10%);
   width: 100%;
-  height: 100%;
+  position: relative;
   opacity: 0;
-  -webkit-transition: opacity .4s, -webkit-transform .4s;
-  transition: opacity .4s, -webkit-transform .4s;
-  transition: opacity .4s, transform .4s;
-  transition: opacity .4s, transform .4s, -webkit-transform .4s; }
+  -webkit-transition: opacity 0.4s, -webkit-transform 0.4s;
+  transition: opacity 0.4s, -webkit-transform 0.4s;
+  transition: opacity 0.4s, transform 0.4s;
+  transition: opacity 0.4s, transform 0.4s, -webkit-transform 0.4s; }
   .architecture__image-layer.visible {
-    opacity: 1;
-    -webkit-transform: translate(-50%, -50%) translateY(0);
-            transform: translate(-50%, -50%) translateY(0); }
+    opacity: 1; }
+    .architecture__image-layer.visible:nth-child(2) {
+      -webkit-transform: translateX(-50%) translateY(-10vw);
+              transform: translateX(-50%) translateY(-10vw); }
+    .architecture__image-layer.visible:nth-child(3) {
+      -webkit-transform: translateX(-50%) translateY(-17vw);
+              transform: translateX(-50%) translateY(-17vw); }
   .architecture__image-layer.active img:nth-child(2) {
     opacity: 0; }
   .architecture__image-layer img {
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: 100%;
-    -o-object-fit: contain;
-       object-fit: contain;
-    -o-object-position: center;
-       object-position: center;
-    -webkit-transition: all .2s;
-    transition: all .2s; }
+    height: auto;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s; }
     .architecture__image-layer img:nth-child(2) {
-      opacity: 0.4; }
-  .architecture__image-layer:nth-child(1) {
-    margin-top: 16%; }
+      opacity: 0.6;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%; }
   .architecture__image-layer:nth-child(2) {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0;
     width: 73%;
-    margin-top: 0; }
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%); }
   .architecture__image-layer:nth-child(3) {
-    width: 73%;
-    margin-top: -16%; }
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 73%; }
 
 .architecture__slider .swiper-slide {
   display: -webkit-box;
@@ -9084,8 +9088,8 @@ img {
           justify-content: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transition: .4s;
-  transition: .4s; }
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
 
 @media screen and (max-width: 800px) {
   .architecture__slider .swiper-container {
@@ -9118,15 +9122,15 @@ img {
     background-color: #eff4fd;
     color: #6e7f95;
     border-radius: 50%;
-    -webkit-transition: all .2s;
-    transition: all .2s; }
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s; }
     .architecture__slider-top-arrow > button:hover,
     .architecture__slider-down-arrow > button:hover {
       background-color: #e6eefc; }
     .architecture__slider-top-arrow > button.swiper-button-disabled,
     .architecture__slider-down-arrow > button.swiper-button-disabled {
       cursor: default;
-      opacity: .5; }
+      opacity: 0.5; }
     .architecture__slider-top-arrow > button > span,
     .architecture__slider-down-arrow > button > span {
       width: 100%;

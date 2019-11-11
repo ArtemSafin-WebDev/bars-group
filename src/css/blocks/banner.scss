@@ -30,10 +30,10 @@
 		}
 	}
 
-	&--fixed-bg {
-		.banner__image {
-			background-attachment: fixed;
-		}
+	.bx-no-touch &--fixed-bg {
+		// .banner__image {
+		// 	background-attachment: fixed;
+		// }
 	}
 
 	&__header {

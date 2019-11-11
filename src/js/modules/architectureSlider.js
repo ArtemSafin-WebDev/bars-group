@@ -8,13 +8,16 @@ module.exports = {
 
         archSliders.forEach(element => {
             const container = element.querySelector(".swiper-container");
+            const layersContainer = element.querySelector(".architecture__images");
             const layers = Array.prototype.slice.call(
-                element.querySelector(".architecture__images").children
+                layersContainer.children
             );
 
             let slider = null;
 
             const handleLayers = () => {
+                layersContainer.style.paddingTop = `${slider.activeIndex * 8}vw`;
+
                 layers.forEach((layer, layerIndex) => {
                     if (layerIndex === slider.activeIndex) {
                         layer.classList.add("active");
