@@ -1199,6 +1199,28 @@ img {
   width: 100%;
   height: 100%;
   background: #000; }
+  .bg-layer--light {
+    background-color: #fff; }
+  .bg-layer--10 {
+    opacity: .1; }
+  .bg-layer--20 {
+    opacity: .2; }
+  .bg-layer--30 {
+    opacity: .3; }
+  .bg-layer--40 {
+    opacity: .4; }
+  .bg-layer--50 {
+    opacity: .5; }
+  .bg-layer--60 {
+    opacity: .6; }
+  .bg-layer--70 {
+    opacity: .7; }
+  .bg-layer--80 {
+    opacity: .8; }
+  .bg-layer--90 {
+    opacity: .9; }
+  .bg-layer--100 {
+    opacity: 1; }
   .bg-layer__item {
     position: absolute;
     top: 0;
