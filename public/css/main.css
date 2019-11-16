@@ -9017,7 +9017,10 @@ img {
               flex-direction: column; } }
 
 .architecture__heading {
-  margin-bottom: 20px; }
+  margin-bottom: 40px; }
+  @media screen and (max-width: 800px) {
+    .architecture__heading {
+      margin-bottom: 20px; } }
 
 .architecture__left-column {
   width: 50%;

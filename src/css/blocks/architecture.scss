@@ -7,10 +7,10 @@
 }
 
 .architecture__heading {
-    margin-bottom: 20px;
-    // @media screen and (max-width: 800px) {
-    //     margin-bottom: 20px;
-    // }
+    margin-bottom: 40px;
+    @media screen and (max-width: 800px) {
+        margin-bottom: 20px;
+    }
 }
 
 .architecture__left-column {
