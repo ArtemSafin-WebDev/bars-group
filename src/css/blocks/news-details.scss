@@ -75,6 +75,16 @@
         margin-right: auto !important;
     }
 
+
+    & > img {
+        &[align="left"] {
+            margin-right: 30px;
+        }
+        &[align="right"] {
+            margin-left: 30px;
+        }
+    }
+
     h2 {
         font-size: 36px;
         line-height: 1.38;

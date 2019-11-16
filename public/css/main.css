@@ -6099,6 +6099,12 @@ img {
   margin-left: auto !important;
   margin-right: auto !important; }
 
+.news-details__content > img[align="left"] {
+  margin-right: 30px; }
+
+.news-details__content > img[align="right"] {
+  margin-left: 30px; }
+
 .news-details__content h2 {
   font-size: 36px;
   line-height: 1.38;

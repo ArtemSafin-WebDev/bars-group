@@ -5386,6 +5386,8 @@ img {
     color: rgba(0, 0, 0, 0.3); }
   .banner--dark-text .nav-banner__line {
     background: #59b4e6; }
+  .bx-no-touch .banner--fixed-bg .banner__image {
+    background-attachment: fixed; }
   .banner__header {
     margin-bottom: 0; }
   .banner__image {
