@@ -3827,6 +3827,9 @@ img {
     background-color: #eff4fd;
     border-radius: 50px;
     border: 5px solid transparent; }
+    @media screen and (max-width: 800px) {
+      .gantt-slider__switch {
+        display: none; } }
     .gantt-slider__switch-slider {
       display: -webkit-box;
       display: -ms-flexbox;

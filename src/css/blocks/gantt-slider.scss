@@ -354,6 +354,9 @@
         background-color: #eff4fd;
         border-radius: 50px;
         border: 5px solid transparent;
+        @media screen and (max-width: 800px) {
+            display: none;
+        }
         &-slider {
             display: flex;
             align-items: center;
@@ -405,7 +408,7 @@
                 &::before {
                     background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff%7D%3C/style%3E%3C/defs%3E%3Ccircle class='cls-1' cx='1.56' cy='1.56' r='1.56'/%3E%3Ccircle class='cls-1' cx='1.56' cy='7' r='1.56'/%3E%3Ccircle class='cls-1' cx='1.56' cy='12.44' r='1.56'/%3E%3Ccircle class='cls-1' cx='7' cy='1.56' r='1.56'/%3E%3Ccircle class='cls-1' cx='7' cy='7' r='1.56'/%3E%3Ccircle class='cls-1' cx='7' cy='12.44' r='1.56'/%3E%3Ccircle class='cls-1' cx='12.44' cy='1.56' r='1.56'/%3E%3Ccircle class='cls-1' cx='12.44' cy='7' r='1.56'/%3E%3Ccircle class='cls-1' cx='12.44' cy='12.44' r='1.56'/%3E%3C/svg%3E");
                     filter: brightness(0.5) sepia(1) hue-rotate(160deg)
-                            saturate(1);
+                        saturate(1);
                     @media all and (max-width: 800px) {
                         filter: none;
                     }
@@ -441,7 +444,7 @@
             &:last-child {
                 &::before {
                     filter: brightness(0.5) sepia(1) hue-rotate(160deg)
-                            saturate(1);
+                        saturate(1);
                     @media all and (max-width: 800px) {
                         filter: none;
                     }
