@@ -2533,12 +2533,12 @@ img {
     margin-bottom: 0 !important; }
   .article section {
     margin: 40px 0; }
-  .article h3 {
+  .article h3, .article h4 {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: 700;
     line-height: 1.35; }
-  .article h5 {
+  .article h5, .article h6 {
     margin-bottom: 10px;
     font-size: 16px;
     font-weight: 600;
@@ -9213,12 +9213,15 @@ img {
 
 .architecture__card-title {
   font-size: 24px;
+  line-height: 1.4;
   font-weight: 700;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-top: -.3em; }
   @media screen and (max-width: 800px) {
     .architecture__card-title {
       font-size: 16px;
       line-height: 1.35;
+      margin-top: 0;
       margin-bottom: 10px; } }
 
 .architecture__card-text {
@@ -9228,6 +9231,68 @@ img {
     margin-bottom: 15px; }
     .architecture__card-text p:last-child {
       margin-bottom: 0; }
+
+.was-integrated {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  @media screen and (max-width: 800px) {
+    .was-integrated {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; } }
+
+.was-integrated__left-column {
+  width: 484px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-right: 50px; }
+  @media screen and (max-width: 800px) {
+    .was-integrated__left-column {
+      width: 100%;
+      -webkit-box-flex: 0;
+          -ms-flex-positive: 0;
+              flex-grow: 0;
+      margin-right: 0;
+      margin-bottom: 40px; } }
+
+.was-integrated__right-column {
+  width: 30%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  position: relative; }
+  @media screen and (max-width: 800px) {
+    .was-integrated__right-column {
+      width: 100%;
+      -webkit-box-flex: 0;
+          -ms-flex-positive: 0;
+              flex-grow: 0; } }
+
+.was-integrated__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  max-width: none; }
+  @media screen and (max-width: 800px) {
+    .was-integrated__image {
+      position: static;
+      width: 100%;
+      height: auto; } }
+
+.was-integrated__subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #59b4e6;
+  margin-bottom: 8px; }
+  @media (max-width: 600px) {
+    .was-integrated__subtitle {
+      font-size: 14px; } }
 
 time {
   text-transform: lowercase; }

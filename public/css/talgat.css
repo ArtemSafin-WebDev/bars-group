@@ -414,6 +414,33 @@
   content: "";
   background-color: #59b4e6;
 }
+.tTechnicalIssues__item--text p {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.tTechnicalIssues__item--text p:first-child {
+  margin-top: 0;
+}
+.tTechnicalIssues__item--text p:last-child {
+  margin-bottom: 0;
+}
+.tTechnicalIssues__item--text ul li {
+  position: relative;
+  margin-bottom: 15px;
+  padding-left: 30px;
+}
+.tTechnicalIssues__item--text ul li:last-child {
+  margin-bottom: 0;
+}
+.tTechnicalIssues__item--text ul li:before {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 15px;
+  height: 2px;
+  content: "";
+  background-color: #59b4e6;
+}
 .tTechnicalIssues__title {
   font-size: 26px;
   font-weight: 700;
@@ -428,23 +455,6 @@
   top: 11px;
   margin-right: 30px;
   color: #59b4e6;
-}
-.tTechnicalIssues ul li {
-  position: relative;
-  margin-bottom: 15px;
-  padding-left: 30px;
-}
-.tTechnicalIssues ul li:last-child {
-  margin-bottom: 0;
-}
-.tTechnicalIssues ul li:before {
-  position: absolute;
-  top: 12px;
-  left: 0;
-  width: 15px;
-  height: 2px;
-  content: "";
-  background-color: #59b4e6;
 }
 .tTechnicalIssues {
   position: relative;
