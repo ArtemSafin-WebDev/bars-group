@@ -9281,6 +9281,49 @@ img {
     .was-integrated__subtitle {
       font-size: 14px; } }
 
+.slogan {
+  background-color: #EFF4FD;
+  position: relative; }
+
+.slogan__content {
+  min-height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 82px 0;
+  position: relative;
+  z-index: 20; }
+  @media screen and (max-width: 800px) {
+    .slogan__content {
+      padding: 60px 0; } }
+
+.slogan__bg-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; }
+
+.slogan__text {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 41px;
+  width: 100%; }
+  @media screen and (max-width: 800px) {
+    .slogan__text {
+      font-size: 24px;
+      line-height: 32px; } }
+  @media screen and (max-width: 600px) {
+    .slogan__text {
+      font-size: 20px;
+      line-height: 28px; } }
+
 time {
   text-transform: lowercase; }
 
