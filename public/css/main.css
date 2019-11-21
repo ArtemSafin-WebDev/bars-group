@@ -9247,7 +9247,7 @@ img {
   width: 484px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  margin-right: 50px; }
+  margin-right: 80px; }
   @media screen and (max-width: 800px) {
     .was-integrated__left-column {
       width: 100%;
@@ -9269,19 +9269,6 @@ img {
       -webkit-box-flex: 0;
           -ms-flex-positive: 0;
               flex-grow: 0; } }
-
-.was-integrated__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: auto;
-  max-width: none; }
-  @media screen and (max-width: 800px) {
-    .was-integrated__image {
-      position: static;
-      width: 100%;
-      height: auto; } }
 
 .was-integrated__subtitle {
   font-size: 16px;

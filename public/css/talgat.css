@@ -553,7 +553,6 @@
 .tDescription__left > video {
   width: 100%;
   height: auto;
-  margin-top: -20px;
 }
 .tDescription__right {
   max-width: 440px;

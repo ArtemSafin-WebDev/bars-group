@@ -11,7 +11,7 @@
    
     width: 484px;
     flex-shrink: 0;
-    margin-right: 50px;
+    margin-right: 80px;
     @media screen and (max-width: 800px) {
         width: 100%;
         flex-grow: 0;
@@ -35,17 +35,7 @@
 
 
 .was-integrated__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: auto;
-    max-width: none;
-    @media screen and (max-width: 800px) {
-        position: static;
-        width: 100%;
-        height: auto;
-    }
+   
 }
 
 
