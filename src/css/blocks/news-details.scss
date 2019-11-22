@@ -731,12 +731,7 @@
     @media screen and (max-width: 1300px) {
         display: none;
     }
-    // @media screen and (max-width: 1050px) {
-    //     top: 250px;
-    // }
-    // @media screen and (max-width: 600px) {
-    //     display: none;
-    // }
+    
 }
 
 .news-details__previous-article {
@@ -831,6 +826,7 @@
     transform-origin: top center;
     display: block;
     transition: transform 0.3s;
+    min-height: 162px;
     > * {
         opacity: 0;
         transition: opacity 0.2s ease 0.7s;

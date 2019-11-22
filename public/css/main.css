@@ -6788,7 +6788,8 @@ img {
   -webkit-transition: -webkit-transform 0.3s;
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
-  transition: transform 0.3s, -webkit-transform 0.3s; }
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  min-height: 162px; }
   .news-details__description > * {
     opacity: 0;
     -webkit-transition: opacity 0.2s ease 0.7s;
