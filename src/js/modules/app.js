@@ -33,6 +33,7 @@ var AdvantagesSliders = require('./advantagesSlider');
 var ScrollAnimations = require('./scrollAnimations');
 var AboutNew = require('./aboutNew');
 var Architecture = require('./architectureSlider');
+var WasIntegrated = require('./wasIntegrated');
 
 require('./scrollbox');
 
@@ -72,6 +73,7 @@ module.exports = {
 		ScrollAnimations.init();
 		AboutNew.init();
 		Architecture.init();
+		WasIntegrated.init();
 
 		// trigger click to start loading lazy videos
 		$('body').trigger('click');
