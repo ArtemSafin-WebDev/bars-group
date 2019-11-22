@@ -1264,6 +1264,9 @@ img {
     height: 100%;
     background: #000;
     opacity: .3; }
+    @media screen and (max-width: 800px) {
+      .bg-layer__color {
+        opacity: .6; } }
 
 .loader {
   position: absolute;
@@ -6663,11 +6666,7 @@ img {
   position: fixed;
   top: 300px;
   z-index: 3000; }
-  @media screen and (max-width: 1050px) {
-    .news-details__previous-article,
-    .news-details__next-article {
-      top: 250px; } }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 1300px) {
     .news-details__previous-article,
     .news-details__next-article {
       display: none; } }

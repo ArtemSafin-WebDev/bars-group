@@ -71,6 +71,9 @@
 		@include position-fill();
 		background: #000;
 		opacity: .3;
+		@media screen and (max-width: 800px) {
+			opacity: .6;
+		}
 	}
 
 }
