@@ -5727,7 +5727,9 @@ img {
         padding-right: 0; }
       .form-job__ctrl__right {
         margin-top: 40px;
-        text-align: right; } }
+        text-align: right; }
+        .form-job__ctrl__right button[type="submit"] {
+          margin-bottom: 40px; } }
 
 .history__list {
   position: relative;

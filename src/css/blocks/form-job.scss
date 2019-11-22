@@ -146,7 +146,11 @@
 			&__right {
 				margin-top: 40px;
 				
+				
 				text-align: right;
+				button[type="submit"] {
+					margin-bottom: 40px;
+				}
 			}
 		}
 	}
