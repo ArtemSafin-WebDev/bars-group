@@ -354,6 +354,13 @@
         background-color: #eff4fd;
         border-radius: 50px;
         border: 5px solid transparent;
+        transition: opacity .2s;
+        .gantt-animating & {
+            opacity: .5;
+            cursor: default;
+        }
+
+
         @media screen and (max-width: 800px) {
             display: none;
         }

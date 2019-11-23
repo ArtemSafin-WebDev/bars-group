@@ -8085,7 +8085,7 @@ img {
       width: 35vh; } }
 
 .new-about__advantages {
-  margin-top: 90px; }
+  margin-top: 70px; }
   @media screen and (min-width: 801px) {
     .new-about__advantages {
       margin: 0;
@@ -8213,7 +8213,7 @@ img {
       font-size: 1.8vh; } }
 
 .new-about__ratings {
-  margin-top: 55px; }
+  margin-top: 75px; }
   @media screen and (min-width: 801px) {
     .new-about__ratings {
       width: auto;
@@ -8365,7 +8365,7 @@ img {
 .new-about__tops-heading {
   color: black;
   font-size: 24px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   line-height: 1.3;
   font-weight: 700;
   -ms-flex-negative: 0;
@@ -8394,31 +8394,30 @@ img {
       padding: 0; } }
 
 .new-about__tops-card {
-  padding: 8px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
+  width: 100%;
+  padding: 8px; }
   @media screen and (min-width: 801px) {
     .new-about__tops-card {
-      width: 40vh;
       margin-right: 0.5vh;
       padding: 0;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column; } }
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex; } }
 
 .new-about__tops-card-image-container {
-  width: 40vh;
+  width: 100%;
   padding-bottom: 120%;
   position: relative; }
   @media screen and (min-width: 801px) {
     .new-about__tops-card-image-container {
       height: 50vh;
-      padding: 0; } }
+      padding: 0;
+      width: 40vh; } }
 
-.new-about__tops-card-content {
-  width: 30vh; }
+@media screen and (min-width: 801px) {
+  .new-about__tops-card-content {
+    width: 100vh;
+    padding-left: 8vh; } }
 
 .new-about__tops-card-image {
   position: absolute;
@@ -8433,21 +8432,57 @@ img {
 
 .new-about__tops-card-name {
   font-weight: 700;
-  margin-top: 10px;
-  font-size: 16px; }
+  margin-top: 20px;
+  font-size: 20px; }
   @media screen and (min-width: 801px) {
     .new-about__tops-card-name {
-      margin-top: 2vh;
-      font-size: 2.5vh; } }
+      margin-top: 0;
+      font-size: 3.5vh; } }
 
 .new-about__tops-card-status {
   color: #6f8fb9;
   margin-top: 8px;
-  font-size: 12px; }
+  font-size: 12px;
+  margin-bottom: 20px; }
   @media screen and (min-width: 801px) {
     .new-about__tops-card-status {
-      margin-top: 1.1vh;
-      font-size: 1.8vh; } }
+      margin-top: 1.8vh;
+      font-size: 1.8vh;
+      margin-bottom: 0; } }
+
+.new-about__tops-card-main-info {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 15px; }
+  @media screen and (min-width: 801px) {
+    .new-about__tops-card-main-info {
+      font-size: 2.4vh;
+      margin-top: 3vh;
+      margin-bottom: 0; } }
+  .new-about__tops-card-main-info > p {
+    margin-bottom: 15px; }
+    @media screen and (min-width: 801px) {
+      .new-about__tops-card-main-info > p {
+        margin-bottom: 1vh; } }
+    .new-about__tops-card-main-info > p:last-child {
+      margin-bottom: 0; }
+
+.new-about__tops-card-additional-info {
+  line-height: 1.4;
+  font-size: 14px; }
+  .new-about__tops-card-additional-info > p {
+    margin-bottom: 15px; }
+    @media screen and (min-width: 801px) {
+      .new-about__tops-card-additional-info > p {
+        margin-bottom: 1vh; } }
+    .new-about__tops-card-additional-info > p:last-child {
+      margin-bottom: 0; }
+  @media screen and (min-width: 801px) {
+    .new-about__tops-card-additional-info {
+      font-size: 2vh;
+      margin-top: 2vh;
+      width: 85%;
+      margin-left: auto; } }
 
 .new-about__slides-scrollbooster-wrapper {
   display: -webkit-box;
@@ -8455,7 +8490,7 @@ img {
   display: flex; }
 
 .new-about__numbers {
-  margin-top: 60px; }
+  margin-top: 40px; }
   @media screen and (min-width: 801px) {
     .new-about__numbers {
       width: auto;
@@ -8635,7 +8670,7 @@ img {
       content: "\e905"; }
 
 .new-about__history {
-  margin-top: 55px; }
+  margin-top: 70px; }
   @media screen and (min-width: 801px) {
     .new-about__history {
       width: auto;
@@ -8648,6 +8683,24 @@ img {
               align-items: center;
       margin-left: 30vh;
       margin-top: 0; } }
+
+.new-about__history-heading {
+  color: black;
+  font-size: 24px;
+  margin-bottom: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-item-align: center;
+      align-self: center; }
+  @media screen and (min-width: 801px) {
+    .new-about__history-heading {
+      margin-top: 2vh;
+      margin-right: 10vh;
+      font-size: 4vh;
+      -ms-flex-item-align: start;
+          align-self: flex-start; } }
 
 .new-about__history-main-slider {
   line-height: 1.4; }

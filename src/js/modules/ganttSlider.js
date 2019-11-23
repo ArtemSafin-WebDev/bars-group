@@ -35,7 +35,8 @@ module.exports = {
         maxScrollLeft: 0,
         lastRangeValue: 0,
         timeout: null,
-        rellax: null
+        rellax: null,
+        animating: false
     },
 
     _initParallax: function() {
@@ -96,9 +97,6 @@ module.exports = {
             ]
         };
 
-
-        
-
         // items' width and height will change on different screen sizes
         // so we need to have a pattern suitable for new item's dimensions
         var result = {};
@@ -134,26 +132,26 @@ module.exports = {
         self._elems.$typeClone = $typeClone;
     },
 
-
-
     _checkScrollProgress: function(prev, next) {
         var self = this;
 
         var viewport = self._elems.$scroll[0];
 
-        var reachedEnd = viewport.scrollLeft + document.documentElement.clientWidth === viewport.scrollWidth;
+        var reachedEnd =
+            viewport.scrollLeft + document.documentElement.clientWidth ===
+            viewport.scrollWidth;
         var reachedStart = viewport.scrollLeft === 0;
 
         if (reachedEnd) {
             next.disabled = true;
-            return 'end';
+            return "end";
         } else if (reachedStart) {
             prev.disabled = true;
-            return 'start';
+            return "start";
         } else {
             next.disabled = false;
             prev.disabled = false;
-            return 'middle';
+            return "middle";
         }
     },
 
@@ -296,9 +294,15 @@ module.exports = {
                     top: calcs.items[index].top
                 });
             } else {
+                self._state.animating = true;
+                document.body.classList.add("gantt-animating");
                 TweenLite.to(item, 0.5, {
                     left: calcs.items[index].left,
-                    top: calcs.items[index].top
+                    top: calcs.items[index].top,
+                    onComplete: function() {
+                        self._state.animating = false;
+                        document.body.classList.remove("gantt-animating");
+                    }
                 });
             }
         });
@@ -356,9 +360,15 @@ module.exports = {
                         left: leftPos
                     });
                 } else {
+                    self._state.animating = true;
+                    document.body.classList.add("gantt-animating");
                     TweenLite.to(item, 0.5, {
                         top: topPos,
-                        left: leftPos
+                        left: leftPos,
+                        onComplete: function() {
+                            self._state.animating = false;
+                            document.body.classList.remove("gantt-animating");
+                        }
                     });
                 }
 
@@ -503,7 +513,11 @@ module.exports = {
 
         e.preventDefault();
 
-        this.classList.toggle('active')
+        if (self._state.animating) {
+            return;
+        }
+
+        this.classList.toggle("active");
 
         switch (self._state.currentView) {
             case "gantt":
@@ -573,8 +587,8 @@ module.exports = {
 
         var viewport = self._elems.$scroll[0];
 
-        viewport.addEventListener('scroll', function() {
-            console.log('Scrolled');
+        viewport.addEventListener("scroll", function() {
+            console.log("Scrolled");
             self._checkScrollProgress(prev, next);
         });
 

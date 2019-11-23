@@ -3837,7 +3837,12 @@ img {
     float: right;
     background-color: #eff4fd;
     border-radius: 50px;
-    border: 5px solid transparent; }
+    border: 5px solid transparent;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s; }
+    .gantt-animating .gantt-slider__switch {
+      opacity: .5;
+      cursor: default; }
     @media screen and (max-width: 800px) {
       .gantt-slider__switch {
         display: none; } }
