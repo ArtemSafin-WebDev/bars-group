@@ -20,9 +20,7 @@
         }
     }
 
-
     .footer {
-       
         @media screen and (min-width: 801px) {
             display: none;
         }
@@ -316,7 +314,7 @@
 }
 
 .new-about__advantages {
-    margin-top: 90px;
+    margin-top: 70px;
 
     @media screen and (min-width: 801px) {
         margin: 0;
@@ -441,7 +439,7 @@
 }
 
 .new-about__ratings {
-    margin-top: 55px;
+    margin-top: 75px;
     @media screen and (min-width: 801px) {
         width: auto;
         display: flex;
@@ -578,7 +576,7 @@
 .new-about__tops-heading {
     color: black;
     font-size: 24px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     line-height: 1.3;
     font-weight: 700;
     flex-shrink: 0;
@@ -602,12 +600,15 @@
 }
 
 .new-about__tops-card {
-    width: 50%;
+    width: 100%;
     padding: 8px;
+
     @media screen and (min-width: 801px) {
-        width: 40vh;
+        // width: 40vh;
         margin-right: 0.5vh;
         padding: 0;
+
+        display: flex;
     }
 }
 
@@ -618,6 +619,14 @@
     @media screen and (min-width: 801px) {
         height: 50vh;
         padding: 0;
+        width: 40vh;
+    }
+}
+
+.new-about__tops-card-content {
+    @media screen and (min-width: 801px) {
+        width: 100vh;
+        padding-left: 8vh;
     }
 }
 
@@ -633,11 +642,11 @@
 
 .new-about__tops-card-name {
     font-weight: 700;
-    margin-top: 10px;
-    font-size: 16px;
+    margin-top: 20px;
+    font-size: 20px;
     @media screen and (min-width: 801px) {
-        margin-top: 2vh;
-        font-size: 2.5vh;
+        margin-top: 0;
+        font-size: 3.5vh;
     }
 }
 
@@ -645,9 +654,52 @@
     color: #6f8fb9;
     margin-top: 8px;
     font-size: 12px;
+    margin-bottom: 20px;
     @media screen and (min-width: 801px) {
-        margin-top: 1.1vh;
+        margin-top: 1.8vh;
         font-size: 1.8vh;
+        margin-bottom: 0;
+    }
+}
+
+.new-about__tops-card-main-info {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    @media screen and (min-width: 801px) {
+        font-size: 2.4vh;
+        margin-top: 3vh;
+        margin-bottom: 0;
+    }
+    > p {
+        margin-bottom: 15px;
+        @media screen and (min-width: 801px) {
+            margin-bottom: 1vh;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.new-about__tops-card-additional-info {
+    line-height: 1.4;
+    font-size: 14px;
+    > p {
+        margin-bottom: 15px;
+        @media screen and (min-width: 801px) {
+            margin-bottom: 1vh;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @media screen and (min-width: 801px) {
+        font-size: 2vh;
+        margin-top: 2vh;
+        width: 85%;
+        margin-left: auto;
     }
 }
 
@@ -656,13 +708,12 @@
 }
 
 .new-about__numbers {
-    margin-top: 60px;
+    margin-top: 40px;
     @media screen and (min-width: 801px) {
         width: auto;
         margin-right: 20vh;
         margin-top: 0;
         width: 110vh;
-       
     }
 }
 
@@ -842,7 +893,7 @@
 }
 
 .new-about__history {
-    margin-top: 55px;
+    margin-top: 70px;
     @media screen and (min-width: 801px) {
         width: auto;
         margin-right: 80px;
@@ -850,6 +901,22 @@
         align-items: center;
         margin-left: 30vh;
         margin-top: 0;
+    }
+}
+
+.new-about__history-heading {
+    color: black;
+    font-size: 24px;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    font-weight: 700;
+    flex-shrink: 0;
+    align-self: center;
+    @media screen and (min-width: 801px) {
+        margin-top: 2vh;
+        margin-right: 10vh;
+        font-size: 4vh;
+        align-self: flex-start;
     }
 }
 
@@ -958,7 +1025,7 @@
         height: 56vh;
         overflow: hidden;
         margin-right: 3vh;
-       
+
         position: relative;
         z-index: 40;
     }
