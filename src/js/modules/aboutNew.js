@@ -218,6 +218,30 @@ function initialize(block) {
             vertical: false,
             addIndicators: false
         });
+
+        const homeSlide = document.querySelector("#home");
+
+        if (homeSlide) {
+            const pattern = document.querySelector('.new-about__home-pattern');
+            const timeline = new TimelineMax();
+
+
+            timeline.to(pattern, 1, {
+                x: "60%",
+                ease: Power0.easeNone
+            });
+         
+            new ScrollMagic.Scene({
+                triggerElement: homeSlide,
+                triggerHook: 1,
+                duration: "200%"
+            })
+                .setTween(timeline)
+                .addTo(controller);
+        }
+
+
+
         const advantagesSlide = document.querySelector("#advantages");
 
         if (advantagesSlide) {
@@ -292,6 +316,24 @@ function initialize(block) {
                     .setTween(timeline)
                     .addTo(controller);
             });
+
+
+            const pattern = document.querySelector('.new-about__tops-pattern');
+            const timeline = new TimelineMax();
+
+
+            timeline.to(pattern, 1, {
+                x: "40%",
+                ease: Power0.easeNone
+            });
+
+            new ScrollMagic.Scene({
+                triggerElement: topsSlide,
+                triggerHook: 1,
+                duration: "200%"
+            })
+                .setTween(timeline)
+                .addTo(controller);
         }
 
         const missionSlide = document.querySelector("#mission");
