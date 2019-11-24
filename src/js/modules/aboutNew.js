@@ -3,6 +3,11 @@ var Swiper = require("swiper");
 
 
 function initialize(block) {
+    if (document.body.classList.contains('is-admin')) {
+        return;
+    }
+
+
     console.log("Running initialize");
 
     let sliderActive = false;

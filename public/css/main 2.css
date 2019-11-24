@@ -6685,7 +6685,15 @@ img {
 .news-details__next-article {
   position: fixed;
   top: 300px;
-  z-index: 3000; }
+  z-index: 3000;
+  -webkit-transition: all .2s;
+  transition: all .2s; }
+  .news-arrows-hidden .news-details__previous-article, .news-arrows-hidden
+  .news-details__next-article {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity .2s, visibility 0s linear .2s;
+    transition: opacity .2s, visibility 0s linear .2s; }
   @media screen and (max-width: 1300px) {
     .news-details__previous-article,
     .news-details__next-article {
