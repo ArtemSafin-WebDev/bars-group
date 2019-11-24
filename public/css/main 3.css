@@ -7871,7 +7871,7 @@ img {
 .new-about__home-pattern {
   position: absolute;
   top: 50%;
-  left: 10%;
+  left: 0%;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
   height: 95%;
@@ -8381,6 +8381,22 @@ img {
       -webkit-box-pack: start;
           -ms-flex-pack: start;
               justify-content: flex-start; } }
+
+.new-about__tops-pattern {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  height: 95%;
+  opacity: .8;
+  -o-object-fit: contain;
+     object-fit: contain;
+  z-index: -1;
+  display: none; }
+  @media screen and (min-width: 801px) {
+    .new-about__tops-pattern {
+      display: block; } }
 
 .new-about__tops-heading {
   color: black;

@@ -1,7 +1,8 @@
-
 module.exports = {
-    
     init: function() {
+        const newsContent = document.querySelector(".js-news-details-content");
+        if (!newsContent) return;
+
         function setupHandlers(element) {
             if (element) {
                 var elementContainer = element.parentElement;
@@ -49,24 +50,30 @@ module.exports = {
 
                 function contentMouseLeaveHandler() {
                     hideElement();
-                    // elementContent.removeEventListener(
-                    //     "mouseleave",
-                    //     contentMouseLeaveHandler
-                    // );
                 }
 
                 element.addEventListener("click", openElement);
                 element.addEventListener("mouseenter", function() {
                     openElement();
-                    // elementContent.addEventListener(
-                    //     "mouseleave",
-                    //     contentMouseLeaveHandler
-                    // );
                 });
             }
         }
 
         setupHandlers(document.querySelector(".js-news-previous-article"));
         setupHandlers(document.querySelector(".js-news-next-article"));
+
+        function hideOnScroll() {
+            
+            const scrollTop = window.pageYOffset;
+            const contentHeight = newsContent.offsetTop + newsContent.offsetHeight - document.documentElement.clientHeight / 2;
+            
+            if (scrollTop > contentHeight) {
+                document.body.classList.add('news-arrows-hidden');
+            } else {
+                document.body.classList.remove('news-arrows-hidden');
+            }
+        }
+
+        window.addEventListener("scroll", hideOnScroll);
     }
 };
