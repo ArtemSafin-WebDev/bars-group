@@ -25,6 +25,9 @@
 	&__image {
 		flex: 0 0 151px;
 		margin-right: 49px;
+		@media screen and (max-width: 1300px) {
+			flex: 0 0 140px;
+		}
 	}
 
 	&__desc {

@@ -5330,6 +5330,11 @@ img {
         -ms-flex: 0 0 151px;
             flex: 0 0 151px;
     margin-right: 49px; }
+    @media screen and (max-width: 1300px) {
+      .brand-box__image {
+        -webkit-box-flex: 0;
+            -ms-flex: 0 0 140px;
+                flex: 0 0 140px; } }
   .brand-box__desc {
     margin-top: 13px; }
   .brand-box__text-1 {
@@ -9592,6 +9597,53 @@ body:not(.is-admin) .new-about__navigation {
     .slogan__text {
       font-size: 20px;
       line-height: 28px; } }
+
+.contacts-cities__inner {
+  position: relative; }
+
+.contacts-cities__inner-bg {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+
+.contacts-cities__large-cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 -25px;
+  position: relative;
+  z-index: 5; }
+
+.contacts-cities__large-card {
+  padding: 0 25px;
+  width: 50%; }
+
+.contacts-cities__large-card-heading {
+  font-size: 30px;
+  line-height: 41px;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.contacts-cities__large-card-heading-label {
+  background-color: #59B4E6;
+  color: white;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  line-height: 14px;
+  padding: 4px 8px;
+  margin-left: 20px;
+  text-transform: uppercase; }
 
 time {
   text-transform: lowercase; }

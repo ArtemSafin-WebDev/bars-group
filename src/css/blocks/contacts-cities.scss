@@ -1,0 +1,60 @@
+// .contacts-cities {
+//     height: 400px;
+//     width: 100%;
+//     background-color: red;
+// }
+
+
+
+.contacts-cities__inner {
+    position: relative;
+}
+
+
+.contacts-cities__inner-bg {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+   
+  
+}
+
+
+.contacts-cities__large-cards {
+    display: flex;
+    margin: 0 -25px;
+    position: relative;
+    z-index: 5;
+}
+
+
+.contacts-cities__large-card {
+    padding: 0 25px;
+    width: 50%;
+}
+
+
+.contacts-cities__large-card-heading {
+    font-size: 30px;
+    line-height: 41px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+
+.contacts-cities__large-card-heading-label {
+    background-color: #59B4E6;
+    color: white;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    line-height: 14px;
+    padding: 4px 8px;
+    margin-left: 20px;
+    text-transform: uppercase;
+}
