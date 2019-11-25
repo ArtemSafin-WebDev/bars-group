@@ -6990,6 +6990,14 @@ img {
         flex-basis: 280px;
     max-width: 280px; } }
 
+.tech-promo .barsup-ai {
+  width: 160px;
+  height: auto; }
+
+.tech-promo .trivium {
+  width: 160px;
+  height: 80px; }
+
 .tech-promo {
   overflow: hidden; }
   .tech-promo .brand-box__text-2 {
@@ -7107,12 +7115,15 @@ img {
         -webkit-transition: all .3s;
         transition: all .3s;
         margin-left: 25px; }
-      .tech-promo__circle:hover .tech-promo__circle__icon i {
+      .tech-promo__circle:hover .tech-promo__circle__icon i,
+      .tech-promo__circle:hover .tech-promo__circle__icon img {
         -webkit-transition: all .3s;
         transition: all .3s; }
-        .tech-promo__circle:hover .tech-promo__circle__icon i:first-child {
+        .tech-promo__circle:hover .tech-promo__circle__icon i:first-child,
+        .tech-promo__circle:hover .tech-promo__circle__icon img:first-child {
           opacity: 0; }
-        .tech-promo__circle:hover .tech-promo__circle__icon i:last-child {
+        .tech-promo__circle:hover .tech-promo__circle__icon i:last-child,
+        .tech-promo__circle:hover .tech-promo__circle__icon img:last-child {
           opacity: 1; }
       .tech-promo__circle:hover .tech-promo__circle__desc {
         -webkit-transition: height .3s, opacity .3s .1s;
@@ -7218,12 +7229,12 @@ img {
     .tech-promo__circle__icon {
       position: relative;
       margin: 10px 0; }
-      .tech-promo__circle__icon i {
+      .tech-promo__circle__icon i, .tech-promo__circle__icon img {
         -webkit-transition: opacity .3s .1s;
         transition: opacity .3s .1s; }
-        .tech-promo__circle__icon i:first-child {
+        .tech-promo__circle__icon i:first-child, .tech-promo__circle__icon img:first-child {
           opacity: 1; }
-        .tech-promo__circle__icon i:last-child {
+        .tech-promo__circle__icon i:last-child, .tech-promo__circle__icon img:last-child {
           position: absolute;
           top: 0;
           left: 0;

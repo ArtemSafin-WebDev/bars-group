@@ -3843,6 +3843,11 @@ img {
     .gantt-animating .gantt-slider__switch {
       opacity: .5;
       cursor: default; }
+    .gantt-slider__switch--contacts {
+      margin-left: auto;
+      -ms-flex-item-align: center;
+          align-self: center;
+      display: block !important; }
     @media screen and (max-width: 800px) {
       .gantt-slider__switch {
         display: none; } }

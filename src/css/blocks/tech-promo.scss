@@ -1,4 +1,15 @@
 
+
+.tech-promo .barsup-ai {
+	width: 160px;
+	height: auto;
+}
+.tech-promo .trivium {
+	width: 160px;
+	height: 80px;
+}
+
+
 .tech-promo {
 
 	overflow: hidden;
@@ -179,7 +190,8 @@
 
 			.tech-promo__circle__icon {
 
-				i {
+				i,
+				img {
 					transition: all .3s;
 
 					&:first-child {
@@ -333,7 +345,7 @@
 			position: relative;
 			margin: 10px 0;
 
-			i {
+			i, img {
 				transition: opacity .3s .1s;
 
 				&:first-child {
