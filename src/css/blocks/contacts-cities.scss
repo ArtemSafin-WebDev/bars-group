@@ -4,39 +4,66 @@
 //     background-color: red;
 // }
 
-
-
 .contacts-cities__inner {
     position: relative;
 }
 
-
 .contacts-cities__inner-bg {
     position: absolute;
-    height: 100%;
-    width: auto;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     max-width: none;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-   
-  
+    top: 0;
+    transform: translate(-50%, -30%);
 }
-
 
 .contacts-cities__large-cards {
     display: flex;
-    margin: 0 -25px;
+    flex-wrap: wrap;
+    margin: -25px;
+    margin-bottom: 100px;
     position: relative;
     z-index: 5;
+    @media screen and (max-width: 600px) {
+        margin: -15px;
+        margin-bottom: 30px;
+    }
 }
-
 
 .contacts-cities__large-card {
-    padding: 0 25px;
+    padding: 25px;
     width: 50%;
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        padding: 15px;
+    }
 }
 
+.contacts-cities__small-cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -25px;
+    position: relative;
+    z-index: 5;
+    @media screen and (max-width: 600px) {
+        margin: -15px;
+    }
+}
+
+.contacts-cities__small-card {
+    padding: 25px;
+    width: 33.33%;
+    @media screen and (max-width: 800px) {
+        width: 50%;
+        
+    }
+   
+    @media screen and (max-width: 600px) {
+        padding: 15px;
+    }
+}
 
 .contacts-cities__large-card-heading {
     font-size: 30px;
@@ -44,11 +71,18 @@
     font-weight: 700;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
+.contacts-cities__small-card-heading {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 5px;
+}
 
 .contacts-cities__large-card-heading-label {
-    background-color: #59B4E6;
+    background-color: #59b4e6;
     color: white;
     font-weight: 700;
     font-size: 10px;
@@ -57,4 +91,29 @@
     padding: 4px 8px;
     margin-left: 20px;
     text-transform: uppercase;
+}
+
+.contacts-cities__large-card-content,
+.contacts-cities__small-card-content {
+    font-size: 14px;
+    line-height: 28px;
+
+    > p {
+        margin-bottom: 15px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    a {
+        font-weight: 600;
+        &:link,
+        &:visited {
+            color: #59b4e6;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }

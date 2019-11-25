@@ -2195,7 +2195,7 @@ img {
     min-height: 60px;
     padding-bottom: 20px;
     margin-left: 60px;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.4);
     width: 25%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
@@ -9603,25 +9603,61 @@ body:not(.is-admin) .new-about__navigation {
 
 .contacts-cities__inner-bg {
   position: absolute;
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
   max-width: none;
   left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%); }
+  top: 0;
+  -webkit-transform: translate(-50%, -30%);
+          transform: translate(-50%, -30%); }
 
 .contacts-cities__large-cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 -25px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: -25px;
+  margin-bottom: 100px;
   position: relative;
   z-index: 5; }
+  @media screen and (max-width: 600px) {
+    .contacts-cities__large-cards {
+      margin: -15px;
+      margin-bottom: 30px; } }
 
 .contacts-cities__large-card {
-  padding: 0 25px;
+  padding: 25px;
   width: 50%; }
+  @media screen and (max-width: 600px) {
+    .contacts-cities__large-card {
+      width: 100%;
+      padding: 15px; } }
+
+.contacts-cities__small-cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: -25px;
+  position: relative;
+  z-index: 5; }
+  @media screen and (max-width: 600px) {
+    .contacts-cities__small-cards {
+      margin: -15px; } }
+
+.contacts-cities__small-card {
+  padding: 25px;
+  width: 33.33%; }
+  @media screen and (max-width: 800px) {
+    .contacts-cities__small-card {
+      width: 50%; } }
+  @media screen and (max-width: 600px) {
+    .contacts-cities__small-card {
+      padding: 15px; } }
 
 .contacts-cities__large-card-heading {
   font-size: 30px;
@@ -9632,10 +9668,17 @@ body:not(.is-admin) .new-about__navigation {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  margin-bottom: 10px; }
+
+.contacts-cities__small-card-heading {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 32px;
+  margin-bottom: 5px; }
 
 .contacts-cities__large-card-heading-label {
-  background-color: #59B4E6;
+  background-color: #59b4e6;
   color: white;
   font-weight: 700;
   font-size: 10px;
@@ -9644,6 +9687,27 @@ body:not(.is-admin) .new-about__navigation {
   padding: 4px 8px;
   margin-left: 20px;
   text-transform: uppercase; }
+
+.contacts-cities__large-card-content,
+.contacts-cities__small-card-content {
+  font-size: 14px;
+  line-height: 28px; }
+  .contacts-cities__large-card-content > p,
+  .contacts-cities__small-card-content > p {
+    margin-bottom: 15px; }
+    .contacts-cities__large-card-content > p:last-child,
+    .contacts-cities__small-card-content > p:last-child {
+      margin-bottom: 0; }
+  .contacts-cities__large-card-content a,
+  .contacts-cities__small-card-content a {
+    font-weight: 600; }
+    .contacts-cities__large-card-content a:link, .contacts-cities__large-card-content a:visited,
+    .contacts-cities__small-card-content a:link,
+    .contacts-cities__small-card-content a:visited {
+      color: #59b4e6; }
+    .contacts-cities__large-card-content a:hover,
+    .contacts-cities__small-card-content a:hover {
+      text-decoration: underline; }
 
 time {
   text-transform: lowercase; }
