@@ -8606,7 +8606,7 @@ body:not(.is-admin) .new-about__navigation {
   display: flex; }
 
 .new-about__numbers {
-  margin-top: 40px; }
+  margin-top: 0; }
   @media screen and (min-width: 801px) {
     .new-about__numbers {
       width: auto;
