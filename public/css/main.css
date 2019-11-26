@@ -7910,9 +7910,9 @@ body:not(.is-admin) .new-about__slide {
   position: absolute;
   top: 50%;
   left: 0%;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
-  height: 95%;
+  -webkit-transform: translate(-97%, -50%);
+          transform: translate(-97%, -50%);
+  height: 90%;
   -o-object-fit: contain;
      object-fit: contain;
   z-index: -1;
@@ -8606,7 +8606,7 @@ body:not(.is-admin) .new-about__navigation {
   display: flex; }
 
 .new-about__numbers {
-  margin-top: 40px; }
+  margin-top: 0; }
   @media screen and (min-width: 801px) {
     .new-about__numbers {
       width: auto;

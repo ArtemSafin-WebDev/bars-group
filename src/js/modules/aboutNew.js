@@ -232,7 +232,7 @@ function initialize(block) {
 
 
             timeline.to(pattern, 1, {
-                x: "60%",
+                xPercent: "60%",
                 ease: Power0.easeNone
             });
          
