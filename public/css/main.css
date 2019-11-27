@@ -1006,6 +1006,37 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   font-size: 16px;
   line-height: 22px; }
 
+@media screen and (max-width: 800px) {
+  .search__sorting {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-bottom: 20px; } }
+
+.search__sorting-btn {
+  font-size: 16px;
+  line-height: 22px;
+  display: inline-block;
+  border-bottom: 1px dashed transparent;
+  -webkit-transition: color .2s, border-color .2s;
+  transition: color .2s, border-color .2s;
+  margin-bottom: 10px; }
+  @media screen and (max-width: 800px) {
+    .search__sorting-btn {
+      margin: 0;
+      margin-right: 15px; }
+      .search__sorting-btn:last-child {
+        margin-right: 0; } }
+  .search__sorting-btn:last-child {
+    margin-bottom: 0; }
+  .search__sorting-btn:link, .search__sorting-btn:visited {
+    color: black; }
+  .search__sorting-btn:hover, .search__sorting-btn.active {
+    color: #6E7F95;
+    border-bottom: 1px dashed #6E7F95; }
+
 .search {
   -webkit-transition: all .2s;
   transition: all .2s;

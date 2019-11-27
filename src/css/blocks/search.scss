@@ -35,6 +35,46 @@ div.search-popup-el-name, div.search-popup-el-cnt {
 }
 
 
+.search__sorting {
+    @media screen and (max-width: 800px) {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+}
+
+
+.search__sorting-btn {
+    font-size: 16px;
+    line-height: 22px;
+    display: inline-block;
+    border-bottom: 1px dashed transparent;
+    transition: color .2s, border-color .2s;
+    margin-bottom: 10px;
+    @media screen and (max-width: 800px) {
+        margin: 0;
+        margin-right: 15px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &:link,
+    &:visited {
+        color: black;
+    }
+
+     
+    &:hover,
+    &.active {
+        color: #6E7F95;
+        border-bottom: 1px dashed #6E7F95;
+    }
+}
+
+
 
 .search {
     
