@@ -549,6 +549,7 @@
           flex-grow: 1;
 }
 .tDescription__left > img,
+.tDescription__left > picture > img,
 .tDescription__left > iframe,
 .tDescription__left > video {
   width: 100%;
