@@ -9045,14 +9045,14 @@ body:not(.is-admin) .new-about__navigation {
         font-family: icomoon !important; }
 
 .new-about__history-main-slider-top-arrow > button {
-  margin-bottom: 4vh; }
+  margin-bottom: 2vh; }
   .new-about__history-main-slider-top-arrow > button > span::after {
     margin-bottom: 1px;
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg); }
 
 .new-about__history-main-slider-bottom-arrow > button {
-  margin-top: 4vh; }
+  margin-top: 2vh; }
   .new-about__history-main-slider-bottom-arrow > button > span::after {
     margin-top: 1px;
     -webkit-transform: rotate(90deg);
