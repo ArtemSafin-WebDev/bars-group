@@ -629,12 +629,24 @@
     &__left {
         margin-right: 60px;
         flex-grow: 1;
-        & > img,
-        & > picture > img,
-        & > iframe,
-        & > video {
+
+        img,
+        video,
+        iframe {
             width: 100%;
             height: auto;
+        }
+
+        figcaption {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+            white-space: nowrap;
         }
     }
 

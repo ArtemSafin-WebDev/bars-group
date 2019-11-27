@@ -9721,6 +9721,19 @@ body:not(.is-admin) .new-about__navigation {
       -ms-flex-positive: 1;
           flex-grow: 1;
   position: relative; }
+  .was-integrated__right-column figcaption {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; }
+  .was-integrated__right-column img {
+    width: 100%;
+    height: auto; }
   @media screen and (max-width: 800px) {
     .was-integrated__right-column {
       width: 100%;

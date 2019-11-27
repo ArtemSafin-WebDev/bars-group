@@ -548,12 +548,22 @@
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
-.tDescription__left > img,
-.tDescription__left > picture > img,
-.tDescription__left > iframe,
-.tDescription__left > video {
+.tDescription__left img,
+.tDescription__left video,
+.tDescription__left iframe {
   width: 100%;
   height: auto;
+}
+.tDescription__left figcaption {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
 .tDescription__right {
   max-width: 440px;

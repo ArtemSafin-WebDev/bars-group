@@ -27,16 +27,21 @@
     flex-grow: 1;
     
     position: relative;
+
+    figcaption {
+        @include visuallyHidden();
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
     @media screen and (max-width: 800px) {
         width: 100%;
         flex-grow: 0;
     }
 }
 
-
-.was-integrated__image {
-   
-}
 
 
 .was-integrated__subtitle {
