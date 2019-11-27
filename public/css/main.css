@@ -7608,10 +7608,12 @@ img {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
-            flex-direction: column; }
+            flex-direction: column;
+    padding-left: 2px; }
     @media screen and (max-width: 800px) {
       .advantages__slider .swiper-slide {
-        margin-bottom: 30px; }
+        margin-bottom: 30px;
+        padding-left: 0; }
         .advantages__slider .swiper-slide:last-child {
           margin-bottom: 0; } }
   .advantages__slider .swiper-container {
