@@ -34,6 +34,7 @@ var ScrollAnimations = require('./scrollAnimations');
 var AboutNew = require('./aboutNew');
 var Architecture = require('./architectureSlider');
 var WasIntegrated = require('./wasIntegrated');
+var DownloadBtns = require('./downloadBtn');
 
 require('./scrollbox');
 
@@ -74,6 +75,7 @@ module.exports = {
 		AboutNew.init();
 		Architecture.init();
 		WasIntegrated.init();
+		DownloadBtns.init();
 
 		// trigger click to start loading lazy videos
 		$('body').trigger('click');

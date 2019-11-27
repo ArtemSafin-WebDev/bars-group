@@ -599,7 +599,7 @@ template {
 
 .icon-sprite-png-barsup-ag-white {
   background-image: url(../img/sprite.png);
-  background-position: 0px -209px;
+  background-position: -181px -209px;
   width: 161px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -609,7 +609,7 @@ template {
 
 .icon-sprite-png-barsup-ag {
   background-image: url(../img/sprite.png);
-  background-position: -181px -209px;
+  background-position: 0px -209px;
   width: 161px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -639,7 +639,7 @@ template {
 
 .icon-sprite-png-barsup-am-white {
   background-image: url(../img/sprite.png);
-  background-position: 0px -255px;
+  background-position: -180px -255px;
   width: 160px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -649,7 +649,7 @@ template {
 
 .icon-sprite-png-barsup-am {
   background-image: url(../img/sprite.png);
-  background-position: -180px -255px;
+  background-position: 0px -255px;
   width: 160px;
   height: 26px; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -1550,6 +1550,145 @@ img {
     font-size: 12px; }
     .button-aurora__icon {
       right: 0; } }
+
+.download-btn {
+  -webkit-transition: background .2s ease-in .1s;
+  transition: background .2s ease-in .1s;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  min-width: 200px;
+  padding: 22px 30px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff !important;
+  overflow: hidden;
+  margin-top: 55px; }
+  .download-btn::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #59b4e6;
+    z-index: 1; }
+
+.download-btn__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #2da0df;
+  z-index: 2;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform .2s linear;
+  transition: -webkit-transform .2s linear;
+  transition: transform .2s linear;
+  transition: transform .2s linear, -webkit-transform .2s linear;
+  -webkit-transform-origin: left center;
+          transform-origin: left center; }
+
+.download-btn__text,
+.download-btn__icon {
+  position: relative;
+  z-index: 3; }
+
+.download-btn__icon {
+  margin-left: 60px;
+  width: 32px;
+  height: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative; }
+  .download-btn__icon svg {
+    fill: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+    .download-btn__icon svg.download-btn__icon-start {
+      width: 18px;
+      height: 24px;
+      -webkit-transition: all .2s;
+      transition: all .2s; }
+      .downloading .download-btn__icon svg.download-btn__icon-start,
+      .download-finished .download-btn__icon svg.download-btn__icon-start {
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: opacity .2s, visibility 0s linear .2s;
+        transition: opacity .2s, visibility 0s linear .2s; }
+    .download-btn__icon svg.download-btn__icon-progress {
+      width: 21px;
+      height: 21px;
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transition: opacity .2s, visibility 0s linear .2s;
+      transition: opacity .2s, visibility 0s linear .2s;
+      -webkit-animation-name: progress-rotation;
+              animation-name: progress-rotation;
+      -webkit-animation-duration: .6s;
+              animation-duration: .6s;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite; }
+      .downloading .download-btn__icon svg.download-btn__icon-progress {
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .2s;
+        transition: all .2s; }
+    .download-btn__icon svg.download-btn__icon-ready {
+      width: 27px;
+      height: 20px;
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transition: opacity .2s, visibility 0s linear .2s;
+      transition: opacity .2s, visibility 0s linear .2s; }
+      .download-finished .download-btn__icon svg.download-btn__icon-ready {
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .2s;
+        transition: all .2s; }
+
+@-webkit-keyframes progress-rotation {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg); }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg); } }
+
+@keyframes progress-rotation {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg); }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg); } }
 
 .input-brianna {
   -webkit-transition: border-color .2s;
