@@ -8212,6 +8212,21 @@ body:not(.is-admin) .new-about__navigation {
       margin: 0;
       position: static; } }
 
+.new-about__improve-pattern-first {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  -webkit-transform: translate(-20%, -10%) scale(0.85);
+          transform: translate(-20%, -10%) scale(0.85);
+  height: 90%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  z-index: -1;
+  display: none; }
+  @media screen and (min-width: 801px) {
+    .new-about__improve-pattern-first {
+      display: block; } }
+
 .new-about__improve-text-small {
   color: #59b4e6;
   font-weight: 700;
@@ -8795,6 +8810,21 @@ body:not(.is-admin) .new-about__navigation {
       width: 110vh; }
       body.is-admin .new-about__numbers {
         margin-right: 0; } }
+
+.new-about__numbers-pattern {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(35%, -115%) rotate(-45deg) scale(0.95);
+          transform: translate(35%, -115%) rotate(-45deg) scale(0.95);
+  height: 90%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  z-index: -1;
+  display: none; }
+  @media screen and (min-width: 801px) {
+    .new-about__numbers-pattern {
+      display: block; } }
 
 @media screen and (max-width: 800px) {
   .new-about__numbers-main-slider .swiper-container {

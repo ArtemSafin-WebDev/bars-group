@@ -25,7 +25,8 @@ function initialize(block) {
 
     const SCROLLBAR_OPTIONS = {
         wheelPropagation: true,
-        maxScrollbarLength: 72
+        maxScrollbarLength: 72,
+        suppressScrollY: true
     };
 
     const SCROLLING_OFFSET = 70;
