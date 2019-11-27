@@ -1365,7 +1365,12 @@ img {
           justify-content: center;
   background: #fff;
   visibility: hidden;
-  opacity: 0; }
+  opacity: 0;
+  display: none; }
+  .loader-main .is-main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
   @media screen and (max-width: 800px) {
     .loader-main {
       display: none !important; } }

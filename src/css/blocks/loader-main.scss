@@ -13,6 +13,10 @@
 	background: #fff;
 	visibility: hidden;
 	opacity: 0;
+	display: none;
+	.is-main {
+		display: flex;
+	}
 
 	@media screen and (max-width: 800px) {
 		display: none !important;

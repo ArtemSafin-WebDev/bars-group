@@ -474,7 +474,6 @@
                 background-color: #59b4e6;
             }
 
-
             p {
                 margin-bottom: 20px;
                 margin-top: 20px;
@@ -486,10 +485,7 @@
                 }
             }
 
-            
-
             ul {
-                
                 li {
                     position: relative;
 
@@ -638,7 +634,6 @@
         & > video {
             width: 100%;
             height: auto;
-            
         }
     }
 
@@ -735,14 +730,18 @@
     &__item {
         display: flex;
         width: 25%;
-        margin: 35px 0;
+        margin: 50px 0;
         align-items: center;
         justify-content: center;
 
         & > img {
-            width: 70px;
-            height: 70px;
+            width: 70px !important;
+            height: 70px !important;
             object-fit: contain;
+            @media screen and (max-width: 800px) {
+                width: 50px !important;
+                height: 50px !important;
+            }
         }
     }
 }
