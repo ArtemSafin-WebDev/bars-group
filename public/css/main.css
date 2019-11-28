@@ -1013,7 +1013,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    margin-bottom: 20px; } }
+    margin-top: 20px; } }
 
 .search__sorting-btn {
   font-size: 16px;
