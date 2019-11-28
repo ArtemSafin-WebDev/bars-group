@@ -1,8 +1,58 @@
 
+@keyframes demonstration {
+	0% {
+		transform: translateX(-250%);
+		opacity: 0;
+	}
+
+	20% {
+		opacity: 1;
+	}
+
+	60% {
+		opacity: 1;
+	}
+
+	80% {
+		transform: translateX(0%);
+		
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(0%);
+	}
+}
+
+
 .nav-banner {
 
 	margin-top: -20px;
+	position: relative;
 
+	&__swipe-demonstration {
+		position: absolute;
+		display: none;
+		bottom: 100%;
+		right: 40px;
+		margin-bottom: 10px;
+		fill: white;
+		animation-name: demonstration;
+		animation-duration: 1.8s;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: backwards;
+		pointer-events: none;
+		.banner--dark-text & {
+			fill: black;
+		}
+		@media screen and (max-width: 800px) {
+			display: block;
+			width: 50px;
+			height: 50px;
+			// height: auto;
+		}
+	}
 
 	&--hidden {
 		display: none;
