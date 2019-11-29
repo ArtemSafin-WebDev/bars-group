@@ -2410,10 +2410,9 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   .nav-banner__swipe-demonstration {
     position: absolute;
     display: none;
-    bottom: 100%;
+    top: 100%;
     right: 40px;
-    margin-bottom: 10px;
-    fill: white;
+    margin-top: 15px;
     -webkit-animation-name: demonstration;
             animation-name: demonstration;
     -webkit-animation-duration: 1.8s;
@@ -2424,14 +2423,18 @@ div.search-popup-el-name, div.search-popup-el-cnt {
             animation-timing-function: ease-in-out;
     -webkit-animation-fill-mode: backwards;
             animation-fill-mode: backwards;
-    pointer-events: none; }
-    .banner--dark-text .nav-banner__swipe-demonstration {
-      fill: black; }
+    pointer-events: none;
+    fill: black; }
     @media screen and (max-width: 800px) {
       .nav-banner__swipe-demonstration {
         display: block;
         width: 50px;
         height: 50px; } }
+    .tabs-scrolled .nav-banner__swipe-demonstration {
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transition: opacity .3s, visibility 0s linear .3s;
+      transition: opacity .3s, visibility 0s linear .3s; }
   .nav-banner--hidden {
     display: none; }
   .nav-banner__crop {

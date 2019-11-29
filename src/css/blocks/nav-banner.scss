@@ -33,24 +33,28 @@
 	&__swipe-demonstration {
 		position: absolute;
 		display: none;
-		bottom: 100%;
+		top: 100%;
 		right: 40px;
-		margin-bottom: 10px;
-		fill: white;
+		margin-top: 15px;
+		
 		animation-name: demonstration;
 		animation-duration: 1.8s;
 		animation-iteration-count: infinite;
 		animation-timing-function: ease-in-out;
 		animation-fill-mode: backwards;
 		pointer-events: none;
-		.banner--dark-text & {
-			fill: black;
-		}
+		fill: black;
 		@media screen and (max-width: 800px) {
 			display: block;
 			width: 50px;
 			height: 50px;
-			// height: auto;
+		}
+
+
+		.tabs-scrolled & {
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity .3s, visibility 0s linear .3s;
 		}
 	}
 
