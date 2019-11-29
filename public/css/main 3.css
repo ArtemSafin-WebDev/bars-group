@@ -2370,8 +2370,68 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     width: 18px;
     height: 18px; } }
 
+@-webkit-keyframes demonstration {
+  0% {
+    -webkit-transform: translateX(-250%);
+            transform: translateX(-250%);
+    opacity: 0; }
+  20% {
+    opacity: 1; }
+  60% {
+    opacity: 1; }
+  80% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); } }
+
+@keyframes demonstration {
+  0% {
+    -webkit-transform: translateX(-250%);
+            transform: translateX(-250%);
+    opacity: 0; }
+  20% {
+    opacity: 1; }
+  60% {
+    opacity: 1; }
+  80% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); } }
+
 .nav-banner {
-  margin-top: -20px; }
+  margin-top: -20px;
+  position: relative; }
+  .nav-banner__swipe-demonstration {
+    position: absolute;
+    display: none;
+    bottom: 100%;
+    right: 40px;
+    margin-bottom: 10px;
+    fill: white;
+    -webkit-animation-name: demonstration;
+            animation-name: demonstration;
+    -webkit-animation-duration: 1.8s;
+            animation-duration: 1.8s;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: backwards;
+            animation-fill-mode: backwards;
+    pointer-events: none; }
+    .banner--dark-text .nav-banner__swipe-demonstration {
+      fill: black; }
+    @media screen and (max-width: 800px) {
+      .nav-banner__swipe-demonstration {
+        display: block;
+        width: 50px;
+        height: 50px; } }
   .nav-banner--hidden {
     display: none; }
   .nav-banner__crop {
@@ -9988,6 +10048,52 @@ body:not(.is-admin) .new-about__navigation {
     .contacts-cities__large-card-content a:hover,
     .contacts-cities__small-card-content a:hover {
       text-decoration: underline; }
+
+.new-advantages__heading {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+  color: black;
+  margin-bottom: 40px; }
+
+.new-advantages__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: -20px -40px; }
+
+.new-advantages__list-item {
+  padding: 20px 40px;
+  width: 33.33%; }
+
+.new-advantages__icon-container {
+  width: 64px;
+  height: 64px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0; }
+  .new-advantages__icon-container > img {
+    width: 70%;
+    height: 70%;
+    -o-object-fit: contain;
+       object-fit: contain; }
+
+.new-advantages__content {
+  margin-top: 5px; }
 
 time {
   text-transform: lowercase; }
