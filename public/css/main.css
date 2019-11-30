@@ -1480,7 +1480,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   visibility: hidden;
   opacity: 0;
   display: none; }
-  .loader-main .is-main {
+  .is-main .loader-main {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }

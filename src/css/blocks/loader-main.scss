@@ -14,7 +14,7 @@
 	visibility: hidden;
 	opacity: 0;
 	display: none;
-	.is-main {
+	.is-main & {
 		display: flex;
 	}
 
