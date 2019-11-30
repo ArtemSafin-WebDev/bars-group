@@ -37,6 +37,7 @@ var WasIntegrated = require('./wasIntegrated');
 var DownloadBtns = require('./downloadBtn');
 var NewAdvantagesSlider = require('./newAdvantagesSlider');
 var NavBannerScrolled = require('./navBannerScrolled');
+var CircleAccordeons = require('./circleAccordeons');
 
 require('./scrollbox');
 
@@ -80,6 +81,7 @@ module.exports = {
 		DownloadBtns.init();
 		NewAdvantagesSlider.init();
 		NavBannerScrolled.init();
+		CircleAccordeons.init();
 
 		// trigger click to start loading lazy videos
 		$('body').trigger('click');
