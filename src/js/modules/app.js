@@ -170,15 +170,15 @@ module.exports = {
             .forEach(function(video) {
                 if (videoElement.readyState > 3) {
                     console.log("Video in ready state", video);
-                    $(this).addClass("_active");
-                    objectFitPolyfill(this);
+                    $(video).addClass("_active");
+                    objectFitPolyfill(video);
 
-                    if ($(this).data("promo") !== undefined) {
+                    if ($(video).data("promo") !== undefined) {
                         self._state.promoVideosLoaded++;
                     }
 
-                    if ($(this).data("play") !== undefined) {
-                        $(this)[0].play();
+                    if ($(video).data("play") !== undefined) {
+                        $(video)[0].play();
                     }
                 }
             });
