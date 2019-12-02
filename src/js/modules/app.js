@@ -168,7 +168,7 @@ module.exports = {
         Array.prototype.slice
             .call(document.querySelectorAll("video"))
             .forEach(function(video) {
-                if (videoElement.readyState > 3) {
+                if (video.readyState > 3) {
                     console.log("Video in ready state", video);
                     $(video).addClass("_active");
                     objectFitPolyfill(video);
@@ -181,7 +181,7 @@ module.exports = {
                         $(video)[0].play();
                     }
                 } else {
-					console.log('Play state', videoElement.readyState);
+					console.log('Play state', video.readyState);
 				}
             });
         $(self._handleDOMReady.bind(self));
