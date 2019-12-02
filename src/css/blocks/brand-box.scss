@@ -25,6 +25,18 @@
 	&__image {
 		flex: 0 0 151px;
 		margin-right: 49px;
+		img {
+			&:nth-child(2) {
+				display: none;
+			}
+		}
+
+		.banner--dark & img {
+			display: none;
+			&:nth-child(2) {
+				display: block;
+			}
+		}
 		@media screen and (max-width: 1300px) {
 			flex: 0 0 140px;
 		}

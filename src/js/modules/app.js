@@ -180,7 +180,9 @@ module.exports = {
                     if ($(video).data("play") !== undefined) {
                         $(video)[0].play();
                     }
-                }
+                } else {
+					console.log('Play state', videoElement.readyState);
+				}
             });
         $(self._handleDOMReady.bind(self));
     },
