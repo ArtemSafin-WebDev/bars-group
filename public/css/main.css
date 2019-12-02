@@ -9039,6 +9039,20 @@ body:not(.is-admin) .new-about__navigation {
   -webkit-box-ordinal-group: 0;
       -ms-flex-order: -1;
           order: -1; }
+  .new-about__numbers-card-digits--black, .new-about__numbers-card-digits--green, .new-about__numbers-card-digits--blue, .new-about__numbers-card-digits--red, .new-about__numbers-card-digits--yellow {
+    background-image: none !important;
+    -webkit-text-fill-color: initial;
+    background-clip: initial; }
+  .new-about__numbers-card-digits--black {
+    color: #1E2735; }
+  .new-about__numbers-card-digits--green {
+    color: #A1C627; }
+  .new-about__numbers-card-digits--blue {
+    color: #61B4E3; }
+  .new-about__numbers-card-digits--red {
+    color: #D5483E; }
+  .new-about__numbers-card-digits--yellow {
+    color: #F3CA3B; }
   @media screen and (min-width: 801px) {
     .new-about__numbers-card-digits {
       font-size: 30vh;
