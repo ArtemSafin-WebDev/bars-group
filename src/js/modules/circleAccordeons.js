@@ -2,7 +2,7 @@ module.exports = {
     init: function() {
         const accordeonBtns = Array.prototype.slice.call(document.querySelectorAll('.js-circle-accordeons-btn'));
         const accordeonItems = Array.prototype.slice.call(document.querySelectorAll('.js-circle-accordeons-item'));
-        const backgrounds = Array.prototype.slice.call(document.querySelector('.js-circle-accordeons-bg').children);
+        const backgrounds = document.querySelector('.js-circle-accordeons-bg') ?Array.prototype.slice.call(document.querySelector('.js-circle-accordeons-bg').children) : [];
 
         accordeonBtns.forEach((btn, btnIndex) => {
             btn.addEventListener('click', event => {
