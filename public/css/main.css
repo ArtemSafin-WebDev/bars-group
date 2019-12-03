@@ -6328,7 +6328,11 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity .2s, visibility 0s linear .2s;
-  transition: opacity .2s, visibility 0s linear .2s; }
+  transition: opacity .2s, visibility 0s linear .2s;
+  display: none; }
+  @media screen and (max-width: 800px) {
+    .catalog__sticky-filter {
+      display: block; } }
   .catalog__sticky-filter.shown {
     opacity: 1;
     visibility: visible;
