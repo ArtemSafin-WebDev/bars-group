@@ -747,13 +747,22 @@
         align-items: center;
         justify-content: center;
 
-        & > img {
+        img {
             width: auto !important;
             height: 70px !important;
             object-fit: contain;
+            transition: transform .2s;
             @media screen and (max-width: 800px) {
                 width: 50px !important;
                 height: 50px !important;
+            }
+        }
+
+        > a {
+            &:hover {
+                & > img {
+                    transform: scale(1.2);
+                }
             }
         }
     }
