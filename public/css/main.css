@@ -6332,7 +6332,9 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   display: none; }
   @media screen and (max-width: 800px) {
     .catalog__sticky-filter {
-      display: block; } }
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex; } }
   .catalog__sticky-filter.shown {
     opacity: 1;
     visibility: visible;

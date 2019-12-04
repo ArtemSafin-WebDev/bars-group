@@ -123,7 +123,7 @@
 		transition: opacity .2s, visibility 0s linear .2s;
 		display: none;
 		@media screen and (max-width: 800px) {
-			display: block;
+			display: flex;
 		}
 		&.shown {
 			opacity: 1;
