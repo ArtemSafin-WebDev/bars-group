@@ -887,32 +887,15 @@
     user-select: none;
     order: -1;
 
-    &--black,
-    &--green,
-    &--blue,
-    &--red,
-    &--yellow {
+    &--colored {
         background-image: none !important;
         -webkit-text-fill-color: initial;
         -webkit-background-clip: initial;
         background-clip: initial;
-    }
-
-    &--black {
         color: #1E2735;
     }
-    &--green {
-        color: #A1C627;
-    }
-    &--blue {
-        color: #61B4E3;
-    }
-    &--red {
-        color: #D5483E;
-    }
-    &--yellow {
-        color: #F3CA3B;
-    }
+
+    
     @media screen and (min-width: 801px) {
         font-size: 30vh;
         margin-left: 7vh;
