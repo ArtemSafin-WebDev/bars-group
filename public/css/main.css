@@ -1850,10 +1850,17 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     font-size: 18px;
     line-height: 1;
     color: rgba(0, 0, 0, 0.3); }
+  .input-brianna__submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 150; }
   .input-brianna__icon {
     position: absolute;
     top: 50%;
-    margin-top: -13px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
     right: 0;
     font-size: 26px;
     color: #59b4e6; }
