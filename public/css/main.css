@@ -5097,6 +5097,18 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       opacity: 1; }
     .news__item--has-image:hover .news__item-bg {
       opacity: 1; }
+  @media screen and (max-width: 800px) {
+    .news__item--has-image {
+      color: white;
+      opacity: 1; }
+      .news__item--has-image .news__date {
+        color: white; }
+      .news__item--has-image .news__title {
+        color: white; }
+      .news__item--has-image .news__item-bg-container::after {
+        opacity: 1; }
+      .news__item--has-image .news__item-bg {
+        opacity: 1; } }
 
 .news__item-bg-container {
   position: absolute;

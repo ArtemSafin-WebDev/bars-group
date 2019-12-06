@@ -122,24 +122,25 @@
                 }
             }
 
-            // .swiper-slide-active & {
-            //     color: white;
-            //     .news__desc {
-            //         opacity: 1;
-            //     }
+            @media screen and (max-width: 800px) {
+                color: white;
+                opacity: 1;
+                .news__date {
+                    color: white;
+                }
 
-            //     .news__date {
-            //         color: white;
-            //     }
+                .news__title {
+                    color: white;
+                }
 
-            //     .news__item-bg-container::after {
-            //         opacity: 1;
-            //     }
+                .news__item-bg-container::after {
+                    opacity: 1;
+                }
 
-            //     .news__item-bg {
-            //         opacity: 1;
-            //     }
-            // }
+                .news__item-bg {
+                    opacity: 1;
+                }
+            }
         }
     }
 

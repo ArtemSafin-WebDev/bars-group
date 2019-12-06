@@ -664,17 +664,25 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
-.tComponents__item > img {
+.tComponents__item img {
   width: auto !important;
   height: 70px !important;
   -o-object-fit: contain;
      object-fit: contain;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 @media screen and (max-width: 800px) {
-  .tComponents__item > img {
+  .tComponents__item img {
     width: 50px !important;
     height: 50px !important;
   }
+}
+.tComponents__item > a:hover > img {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 @media (max-width: 1100px) {
   .tProductsItem__description {
