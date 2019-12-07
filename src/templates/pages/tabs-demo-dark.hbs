@@ -47,10 +47,14 @@ layout: default.hbs
 
 	<div id="block256" class="block-wrapper">
 
-		<section class="banner banner--fixed-bg banner--dark" data-midnight="_light">
+		<section class="banner banner--dark banner--bg-overlay banner--bg-overlay-03" data-midnight="_light">
 
-			<div class="banner__image" style="background-image: url(img/banners/002.jpg);">
-				<div class="bg-layer__color" style="opacity: 0.05;"></div>
+			<div class="banner__image">
+				
+				{{!-- <img src="img/banners/002.jpg" alt="Фон"> --}}
+				<video loop muted playsinline data-lazy data-play>
+					<source src="video/effect-2.mp4" type="video/mp4">
+				</video>
 			</div>
 
 			<div class="banner__text">

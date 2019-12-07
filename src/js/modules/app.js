@@ -91,8 +91,13 @@ module.exports = {
     _startLazyVideosLoading: function() {
         var self = this;
 
+        if (window.matchMedia("(max-width: 800px)").matches) {
+            return;
+        }
+
         $("video[data-lazy]").each(function() {
             $(this)[0].load();
+          
         });
     },
 
