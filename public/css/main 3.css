@@ -7500,6 +7500,84 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   .tech-promo__center-content {
     width: 70%;
     margin: auto; }
+  .tech-promo__popovers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 50%;
+    overflow: hidden; }
+  .tech-promo__popovers-item {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    width: 92%;
+    height: 92%;
+    padding: 18% 16%;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translate(0, -50%) scale(0);
+            transform: translate(0, -50%) scale(0);
+    -webkit-transform-origin: left center;
+            transform-origin: left center;
+    -webkit-transition: -webkit-transform .4s;
+    transition: -webkit-transform .4s;
+    transition: transform .4s;
+    transition: transform .4s, -webkit-transform .4s;
+    pointer-events: initial; }
+    .tech-promo__popovers-item.active {
+      -webkit-transform: translate(0, -50%) scale(1);
+              transform: translate(0, -50%) scale(1); }
+      .tech-promo__popovers-item.active .tech-promo__popovers-item-wrapper {
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .3s ease .2s;
+        transition: all .3s ease .2s; }
+  .tech-promo__popovers-item-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity .3s, visibility 0s linear .3s;
+    transition: opacity .3s, visibility 0s linear .3s; }
+  .tech-promo__popovers-image {
+    width: 156px; }
+  .tech-promo__popovers-content > *:first-child {
+    margin-bottom: 0; }
+  .tech-promo__popovers-content > *:last-child {
+    margin-bottom: 0; }
+  .tech-promo__popovers-content > h1,
+  .tech-promo__popovers-content > h2,
+  .tech-promo__popovers-content > h3,
+  .tech-promo__popovers-content > h4,
+  .tech-promo__popovers-content > h5,
+  .tech-promo__popovers-content > h6 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 10px 0; }
+  .tech-promo__popovers-content > p {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 10px 0; }
+  .tech-promo__popovers-content > ul {
+    font-size: 12px;
+    line-height: 16px; }
+    .tech-promo__popovers-content > ul > li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 15px; }
+      .tech-promo__popovers-content > ul > li::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #59B4E6;
+        position: absolute;
+        top: .5em;
+        left: 0; }
+      .tech-promo__popovers-content > ul > li:last-child {
+        margin-bottom: 0; }
   .tech-promo__platform {
     margin-bottom: 35px; }
   .tech-promo__platform-text {

@@ -19,6 +19,7 @@ module.exports = {
                 slidesPerColumn: 2,
                 spaceBetween: 50,
                 watchOverflow: true,
+                slidesPerColumnFill: 'row',
                 navigation: {
                     nextEl: item.querySelector(
                         ".js-new-advantages-slider--next"
