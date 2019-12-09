@@ -31,7 +31,7 @@ module.exports = {
 	},
 
 	_isItemInsideOfFixed: function ($item) {
-		var self = this;
+	
 
 		return !!$item.closest('.midnightInner').length;
 	},

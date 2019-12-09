@@ -3,7 +3,7 @@ var $ = require('jquery');
 module.exports = {
 
 	_setActiveTab: function ($block, nextIndex) {
-		var self = this;
+		
 
 		var $ctrlItems = $block.find('.tAdvantages__nav').children();
 

@@ -15,7 +15,7 @@ module.exports = {
 	},
 
 	_setActiveVideo: function (index) {
-		var self = this;
+		
 
 		var $items = $('#tech-promo .bg-layer__item');
 		$items.filter('._active').removeClass('_active').end().find('video')[0].pause();
@@ -47,9 +47,7 @@ module.exports = {
 	},
 
 	_handleCircleClick: function (e) {
-		var self = e.data.self;
-
-		// e.preventDefault();
+		
 
 		var $target = $('#' + $(this).data('target') );
 		var tabIndex = $target.parent().index();

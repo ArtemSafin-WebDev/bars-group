@@ -63,17 +63,19 @@ module.exports = {
         setupHandlers(document.querySelector(".js-news-next-article"));
 
         function hideOnScroll() {
-            
             const scrollTop = window.pageYOffset;
-            const contentHeight = newsContent.offsetTop + newsContent.offsetHeight - document.documentElement.clientHeight / 2;
-            
+            const contentHeight =
+                newsContent.offsetTop +
+                newsContent.offsetHeight -
+                document.documentElement.clientHeight / 2;
+
             if (scrollTop > contentHeight) {
-                document.body.classList.add('news-arrows-hidden');
+                document.body.classList.add("news-arrows-hidden");
             } else {
-                document.body.classList.remove('news-arrows-hidden');
+                document.body.classList.remove("news-arrows-hidden");
             }
         }
 
-        window.addEventListener("scroll", hideOnScroll);
+        window.addEventListener("scroll", hideOnScroll, { passive: true });
     }
 };

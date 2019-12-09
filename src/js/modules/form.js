@@ -1,191 +1,227 @@
-var $ = require('jquery');
-var autosize = require('autosize');
-require('jquery.maskedinput');
-require('jquery-validation');
-require('jquery-form')($);
-require('icheck');
+var $ = require("jquery");
+var autosize = require("autosize");
+require("jquery.maskedinput");
+require("jquery-validation");
+require("jquery-form")($);
+require("icheck");
 
-$.extend( $.validator.messages, {
+$.extend($.validator.messages, {
     required: "Вы пропустили поле",
     email: "Подправьте email"
 });
 
-var notify = require('./notify');
+var notify = require("./notify");
 
 module.exports = {
+    _resetForm: function($form) {
+        $form.data().validator.resetForm();
+        $form
+            .find("input, textarea")
+            .trigger("change")
+            .filter("input")
+            .iCheck("update");
+    },
 
-	_resetForm: function ($form) {
-		$form.data().validator.resetForm();
-		$form
-			.find('input, textarea').trigger('change')
-			.filter('input').iCheck('update');
-	},
+    _handleFocusOnPhone: function(e) {
+        $(this).mask("+9 (999) 999-99-99", {
+            placeholder: " "
+        });
+    },
 
-	_handleFocusOnPhone: function (e) {
-		var self = e.data.self;
+    _handleFocusOnInput: function(e) {
+        $(this)
+            .parent()
+            .addClass("_focus");
+    },
 
-		$(this).mask('+9 (999) 999-99-99', {
-		    placeholder: " "
-		});
-	},
+    _handleBlurOnInput: function(e) {
+        $(this)
+            .parent()
+            .removeClass("_focus");
+    },
 
-	_handleFocusOnInput: function (e) {
-		var self = e.data.self;
+    _handleFilledState: function(e) {
+        $(this)
+            .parent()
+            .toggleClass("_filled", !!$(this).val().length);
+    },
 
-		$(this).parent().addClass('_focus');
-	},
+    _handleFileChange: function(e) {
+        var files = $(this).find('input[type="file"]')[0].files;
+        var names = $.map(files, function(file) {
+            return file.name;
+        });
 
-	_handleBlurOnInput: function (e) {
-		var self = e.data.self;
+        if (names.length == 0) {
+            $(this).removeClass("_chosen");
+        } else {
+            $(this)
+                .addClass("_chosen")
+                .find(".js-form-file__names")
+                .html(names.join(", "));
+        }
+    },
 
-		$(this).parent().removeClass('_focus');
-	},
+    _handleCheckedState: function(e) {
+        var isChecked = $(this).prop("checked");
+        $(this)
+            .closest(".form__check")
+            .toggleClass("_active", isChecked);
+    },
 
-	_handleFilledState: function (e) {
-		var self = e.data.self;
+    _handleFormSubmit: function(e) {
+        var self = e.data.self;
 
-		$(this).parent().toggleClass('_filled', !!$(this).val().length);
-	},
+        e.preventDefault();
 
-	_handleFileChange: function (e) {
-		var self = e.data.self;
+        var $form = $(this);
+        var action = $form.data("action");
 
-		var files = $(this).find('input[type="file"]')[0].files;
-		var names = $.map(files, function (file) {
-			return file.name;
-		});
+        $form.addClass("_loading");
 
-		if ( names.length == 0 ) {
-			$(this)
-				.removeClass('_chosen');
-		} else {
-			$(this)
-				.addClass('_chosen')
-				.find('.js-form-file__names')
-				.html(names.join(', '));
-		}
+        setTimeout(function() {
+            $form.ajaxSubmit({
+                url: action,
+                dataType: "json",
+                success: function(data) {
+                    if (data.status == "success") {
+                        // notify success
+                        $form.addClass("_success");
+                        self._resetForm($form);
+                    } else {
+                        // notify error
+                        notify(
+                            "Ошибка при отправке",
+                            "Некорректный ответ от сервера"
+                        );
+                    }
+                    $form.removeClass("_loading");
+                },
+                error: function(jqXHR, textStatus) {
+                    // notify error
+                    notify("Ошибка при отправке", textStatus);
 
-	},
+                    $form.removeClass("_loading");
+                }
+            });
+        }, 500);
+    },
 
-	_handleCheckedState: function (e) {
-		var self = e.data.self;
+    _handleSuccessClose: function(e) {
+        e.preventDefault();
 
-		var isChecked = $(this).prop('checked');
-		$(this).closest('.form__check').toggleClass('_active', isChecked);
-	},
+        var $form = $(this).closest("form");
 
-	_handleFormSubmit: function (e) {
-		var self = e.data.self;
+        if ($form.hasClass("popup")) {
+            $.fancybox.close();
+            setTimeout(function() {
+                $form.removeClass("_success");
+            }, 500);
+        } else {
+            $form.removeClass("_success");
+        }
+    },
 
-		e.preventDefault();
+    _handleICheckValidation: function(e) {
+        var validator = $(this)
+            .closest("form")
+            .data().validator;
+        validator.element(this);
+    },
 
-		var $form = $(this);
-		var action = $form.data('action');
+    _bindUI: function() {
+        var self = this;
 
-		$form.addClass('_loading');
+        $(document).on(
+            "click",
+            ".js-form-complete",
+            { self: self },
+            self._handleSuccessClose
+        );
+        $(document).on(
+            "focus",
+            ".js-form-input",
+            { self: self },
+            self._handleFocusOnInput
+        );
+        $(document).on(
+            "blur",
+            ".js-form-input",
+            { self: self },
+            self._handleBlurOnInput
+        );
+        $(document).on(
+            "change",
+            ".js-form-input",
+            { self: self },
+            self._handleFilledState
+        );
+        $(document).on(
+            "focus",
+            ".js-form-phone",
+            { self: self },
+            self._handleFocusOnPhone
+        );
+        $(document).on(
+            "change",
+            ".js-form-file",
+            { self: self },
+            self._handleFileChange
+        );
+        $(document).on(
+            "ifCreated ifToggled",
+            ".form__check input",
+            { self: self },
+            self._handleCheckedState
+        );
+        $(document).on(
+            "ifToggled",
+            ".js-form-validate input",
+            { self: self },
+            self._handleICheckValidation
+        );
+        $(document).on(
+            "submit",
+            ".js-form-validate",
+            { self: self },
+            self._handleFormSubmit
+        );
+    },
 
-		setTimeout(function () {
+    init: function() {
+        var self = this;
 
-			$form.ajaxSubmit({
-				url: action,
-				dataType: 'json',
-				success: function (data) {
-					if ( data.status == 'success' ) {
+        self._bindUI();
 
-						// notify success
-						$form.addClass('_success');
-						self._resetForm($form);
+        // init autosize
+        autosize($("textarea"));
 
-					} else {
-					     // notify error
-					    notify('Ошибка при отправке', 'Некорректный ответ от сервера');
-					}
-					$form.removeClass('_loading');
-				},
-				error: function (jqXHR, textStatus) {
-					// notify error
-					notify('Ошибка при отправке', textStatus);
+        // init checkboxes
+        $("input").iCheck();
 
-					$form.removeClass('_loading');
-				}
-			});
-
-		}, 500);
-
-	},
-
-	_handleSuccessClose: function (e) {
-		var self = e.data.self;
-
-		e.preventDefault();
-
-		var $form = $(this).closest('form');
-		
-		if ($form.hasClass('popup')) {
-			$.fancybox.close();
-			setTimeout(function () {
-				$form.removeClass('_success');
-			}, 500);
-		} else {
-			$form.removeClass('_success');
-		}
-
-	},
-
-	_handleICheckValidation: function (e) {
-		var self = e.data.self;
-
-		var validator = $(this).closest('form').data().validator;
-		validator.element(this);
-	},
-
-	_bindUI: function () {
-		var self = this;
-
-		$(document).on('click', '.js-form-complete', {self: self}, self._handleSuccessClose);
-		$(document).on('focus', '.js-form-input', {self: self}, self._handleFocusOnInput);
-		$(document).on('blur', '.js-form-input', {self: self}, self._handleBlurOnInput);
-		$(document).on('change', '.js-form-input', {self: self}, self._handleFilledState);
-		$(document).on('focus', '.js-form-phone', {self: self}, self._handleFocusOnPhone);
-		$(document).on('change', '.js-form-file', {self: self}, self._handleFileChange);
-		$(document).on('ifCreated ifToggled', '.form__check input', {self: self}, self._handleCheckedState);
-		$(document).on('ifToggled', '.js-form-validate input', {self: self}, self._handleICheckValidation);
-		$(document).on('submit', '.js-form-validate', {self: self}, self._handleFormSubmit);
-	},
-
-	init: function () {
-		var self = this;
-
-		self._bindUI();
-
-		// init autosize
-		autosize($('textarea'));
-
-		// init checkboxes
-		$('input').iCheck();
-
-		// init validate
-		$('.js-form-validate').each(function () {
-			$(this).validate({
-				focusInvalid: false,
-				errorClass: '_error',
-				messages: {
-				    agree: "Забыли про галочку",
-				},
-				errorPlacement: function($error, $element) {
-					var $parent = $element.closest('.js-form-error-box');
-					$error.appendTo($parent);
-				},
-				highlight: function(element, errorClass) {
-					$(element).parent().addClass(errorClass);
-				},
-				unhighlight: function(element, errorClass) {
-					$(element).parent().removeClass(errorClass);
-				}
-			});
-		});
-
-	}
-
+        // init validate
+        $(".js-form-validate").each(function() {
+            $(this).validate({
+                focusInvalid: false,
+                errorClass: "_error",
+                messages: {
+                    agree: "Забыли про галочку"
+                },
+                errorPlacement: function($error, $element) {
+                    var $parent = $element.closest(".js-form-error-box");
+                    $error.appendTo($parent);
+                },
+                highlight: function(element, errorClass) {
+                    $(element)
+                        .parent()
+                        .addClass(errorClass);
+                },
+                unhighlight: function(element, errorClass) {
+                    $(element)
+                        .parent()
+                        .removeClass(errorClass);
+                }
+            });
+        });
+    }
 };
-

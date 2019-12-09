@@ -86,7 +86,7 @@ module.exports = {
 	},
 
 	_handleShowMoreClick: function (e) {
-		var self = e.data.self;
+		
 
 		e.preventDefault();
 

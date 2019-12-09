@@ -1,42 +1,47 @@
-var $ = require('jquery');
-require('@fancyapps/fancybox');
+var $ = require("jquery");
+require("@fancyapps/fancybox");
 
 module.exports = {
+    _handleOpenButton: function(e) {
+        e.preventDefault();
 
-	_handleOpenButton: function (e) {
-		var self = e.data.self;
+        var type = $(this).data("type") || "inline";
 
-		e.preventDefault();
+        $.fancybox.open({
+            src: $(this).data("src"),
+            type: type,
+            autoFocus: false,
+            animationEffect: "slide-in-out",
+            modal: true
+        });
+    },
 
-		var type = $(this).data('type') || 'inline';
+    _handleCloseButton: function(e) {
+        e.preventDefault();
 
-		$.fancybox.open({
-			src: $(this).data('src'),
-			type: type,
-			autoFocus: false,
-			animationEffect: 'slide-in-out',
-			modal: true
-		});
-	},
+        $.fancybox.close();
+    },
 
-	_handleCloseButton: function (e) {
-		var self = e.data.self;
+    _bindUI: function() {
+        var self = this;
 
-		e.preventDefault();
+        $(document).on(
+            "click",
+            ".js-popup-close",
+            { self: self },
+            self._handleCloseButton
+        );
+        $(document).on(
+            "click",
+            ".js-popup-open",
+            { self: self },
+            self._handleOpenButton
+        );
+    },
 
-		$.fancybox.close();
-	},
+    init: function() {
+        var self = this;
 
-	_bindUI: function () {
-		var self = this;
-
-		$(document).on('click', '.js-popup-close', {self: self}, self._handleCloseButton);
-		$(document).on('click', '.js-popup-open', {self: self}, self._handleOpenButton);
-	},
-
-	init: function () {
-		var self = this;
-
-		self._bindUI();
-	}
+        self._bindUI();
+    }
 };

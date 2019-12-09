@@ -60,7 +60,7 @@ module.exports = {
 	},
 
 	_getGanttPattern: function (width, height) {
-		var self = this;
+	
 
 		// imagine, that we have some picture, which contains 7 rectangles.
 		// pattern object properties describe how we can draw the picture

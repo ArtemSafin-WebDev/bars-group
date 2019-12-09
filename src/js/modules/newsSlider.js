@@ -5,9 +5,7 @@ module.exports = {
         var newsSliders = Array.prototype.slice.call(
             document.querySelectorAll(".js-news-slider")
         );
-
         newsSliders.forEach(function(item) {
-           
             var sliderInstance = new Swiper(item, {
                 slidesPerView: "auto",
                 navigation: {
@@ -16,7 +14,6 @@ module.exports = {
                 },
                 init: false
             });
-
             sliderInstance.init();
             
         });

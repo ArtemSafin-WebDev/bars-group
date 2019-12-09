@@ -1,57 +1,52 @@
-var $ = require('jquery');
-require('owl.carousel');
+var $ = require("jquery");
+require("owl.carousel");
 
 module.exports = {
+    _initComponentsSlider: function() {
+        var $blocks = $(".jsTComponentsSlider");
+        if ($blocks.length == 0) return;
 
-	_initComponentsSlider: function () {
-		var self = this;
+        $blocks.owlCarousel({
+            items: 1,
+            dots: false,
+            nav: true,
+            rewind: false,
+            loop: false,
+            navText: [""],
+            navContainer: ".tComponents__nav"
+        });
+    },
 
-		var $blocks = $('.jsTComponentsSlider');
-		if ($blocks.length == 0) return;
+    _initNewsSlider: function() {
+        var $blocks = $(".jsTNewsSlider");
+        if ($blocks.length == 0) return;
 
-		$blocks.owlCarousel({
-			items: 1,
-			dots: false,
-			nav: true,
-			rewind: false,
-			loop: false,
-			navText: [''],
-			navContainer: '.tComponents__nav'
-		});
-	},
+        $blocks.owlCarousel({
+            dots: false,
+            nav: true,
+            loop: true,
+            navText: [""],
+            margin: 30,
+            responsive: {
+                0: {
+                    items: 1.5
+                },
+                800: {
+                    items: 2.5
+                },
+                1366: {
+                    items: 3.5
+                }
+            }
+        });
+    },
 
-	_initNewsSlider: function () {
-		var self = this;
+    init: function() {
+        if (document.body.classList.contains("is-admin")) return;
 
-		var $blocks = $('.jsTNewsSlider');
-		if ($blocks.length == 0) return;
+        var self = this;
 
-		$blocks.owlCarousel({
-			dots: false,
-			nav: true,
-			loop: true,
-			navText: [''],
-			margin: 30,
-			responsive: {
-				0: {
-					items: 1.5
-				},
-				800: {
-					items: 2.5
-				},
-				1366: {
-					items: 3.5
-				}
-			}
-		});
-	},
-
-	init: function () {
-		if (document.body.classList.contains('is-admin')) return;
-
-		var self = this;
-
-		self._initComponentsSlider();
-		self._initNewsSlider();
-	}
+        self._initComponentsSlider();
+        self._initNewsSlider();
+    }
 };

@@ -1,11 +1,9 @@
-var PerfectScrollbar = require('perfect-scrollbar');
-var ScrollBooster = require('scrollbooster');
-var Utils = require('./utils');
+var PerfectScrollbar = require("perfect-scrollbar");
+var ScrollBooster = require("scrollbooster");
+var Utils = require("./utils");
 
 module.exports = {
-    
     init: function() {
-        
         var initialOverflow = false;
 
         var scrollableTables = Array.prototype.slice.call(
@@ -13,40 +11,50 @@ module.exports = {
         );
 
         function wrapTable(table) {
-            
             var tableBlock = document.createElement("div");
-            tableBlock.className = 'table-block';
+            tableBlock.className = "table-block";
             var tableGradientWrapper = document.createElement("div");
-            tableGradientWrapper.className = 'table-gradient-wrapper js-srollable-table';
+            tableGradientWrapper.className =
+                "table-gradient-wrapper js-srollable-table";
             var tableScrollContainer = document.createElement("div");
-            tableScrollContainer.className = 'table-scroll-container js-scroll-container';
+            tableScrollContainer.className =
+                "table-scroll-container js-scroll-container";
             var tablePreviousSibling = table.previousElementSibling;
             var tablePreviousSiblingType;
-            
+
             table.parentNode.insertBefore(tableBlock, table);
 
-            tableBlock.appendChild(tableGradientWrapper)
+            tableBlock.appendChild(tableGradientWrapper);
             tableGradientWrapper.appendChild(tableScrollContainer);
-            tableScrollContainer.appendChild(table)
+            tableScrollContainer.appendChild(table);
 
             if (tablePreviousSibling) {
                 tablePreviousSiblingType = tablePreviousSibling.nodeName.toLowerCase();
-                if (tablePreviousSiblingType === 'h1' ||  tablePreviousSiblingType === 'h2' ||  tablePreviousSiblingType === 'h3' ||  tablePreviousSiblingType === 'h4' ||  tablePreviousSiblingType === 'h5' ||  tablePreviousSiblingType === 'h6') {
-                    tableBlock.insertBefore(tablePreviousSibling, tableGradientWrapper);
+                if (
+                    tablePreviousSiblingType === "h1" ||
+                    tablePreviousSiblingType === "h2" ||
+                    tablePreviousSiblingType === "h3" ||
+                    tablePreviousSiblingType === "h4" ||
+                    tablePreviousSiblingType === "h5" ||
+                    tablePreviousSiblingType === "h6"
+                ) {
+                    tableBlock.insertBefore(
+                        tablePreviousSibling,
+                        tableGradientWrapper
+                    );
                 }
             }
 
             return {
                 tableGradientWrapper: tableGradientWrapper,
                 tableScrollContainer: tableScrollContainer
-            }
+            };
         }
 
         scrollableTables.forEach(function(item) {
-
             var containers = wrapTable(item);
-            var scrollableContainer = containers.tableScrollContainer
-            var gradientWrapper = containers.tableGradientWrapper
+            var scrollableContainer = containers.tableScrollContainer;
+            var gradientWrapper = containers.tableGradientWrapper;
 
             var handleGradientsOnStart = function() {
                 if (
@@ -98,31 +106,43 @@ module.exports = {
 
                 handleGradientsOnStart();
 
-                if (!Utils.isTouchDevice())  {
+                if (!Utils.isTouchDevice()) {
                     var viewport = scrollableContainer;
-                    var content = scrollableContainer.querySelector('table');
+                    var content = scrollableContainer.querySelector("table");
 
                     new ScrollBooster({
                         viewport,
                         content,
                         bounce: false,
                         textSelection: true,
-                        mode: 'x',
-                        onUpdate: (data) => {
-                            viewport.scrollLeft = data.position.x
+                        mode: "x",
+                        onUpdate: data => {
+                            viewport.scrollLeft = data.position.x;
                         }
                     });
                 }
 
                 if (initialOverflow) {
-                    scrollableContainer.addEventListener('scroll', handleGradientsOnScroll);
+                    scrollableContainer.addEventListener(
+                        "scroll",
+                        handleGradientsOnScroll,
+                        { passive: true }
+                    );
                 }
 
                 window.addEventListener("resize", function() {
-                    scrollableContainer.removeEventListener('scroll', handleGradientsOnScroll);
+                    scrollableContainer.removeEventListener(
+                        "scroll",
+                        handleGradientsOnScroll,
+                        { passive: true }
+                    );
                     handleGradientsOnStart();
                     if (initialOverflow) {
-                        scrollableContainer.addEventListener('scroll', handleGradientsOnScroll);
+                        scrollableContainer.addEventListener(
+                            "scroll",
+                            handleGradientsOnScroll,
+                            { passive: true }
+                        );
                     }
                 });
             }

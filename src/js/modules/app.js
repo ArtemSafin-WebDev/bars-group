@@ -91,7 +91,7 @@ module.exports = {
     },
 
     _startLazyVideosLoading: function() {
-        var self = this;
+       
 
         if (window.matchMedia("(max-width: 800px)").matches) {
             return;
@@ -114,8 +114,7 @@ module.exports = {
     },
 
     _handleDOMReady: function() {
-        var self = this;
-
+       
         // it's important to call NavBanner inition first,
         // because tabs content can contain other sliders inside
         NavBanner.init();
@@ -178,7 +177,7 @@ module.exports = {
             .call(document.querySelectorAll("video"))
             .forEach(function(video) {
                 if (video.readyState > 3) {
-                    console.log("Video in ready state", video);
+                    // console.log("Video in ready state", video);
                     $(video).addClass("_active");
                     objectFitPolyfill(video);
 
@@ -190,7 +189,7 @@ module.exports = {
                         $(video)[0].play();
                     }
                 } else {
-					console.log('Play state', video.readyState);
+					// console.log('Play state', video.readyState);
 				}
             });
         $(self._handleDOMReady.bind(self));

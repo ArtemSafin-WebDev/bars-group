@@ -3,7 +3,7 @@ var $ = require('jquery');
 module.exports = {
 
 	_adjustMoreItem: function () {
-		var self = this;
+		
 
 		var $_ = $('#header');
 
@@ -55,7 +55,7 @@ module.exports = {
 	},
 
 	_handleMoreClick: function (e) {
-		var self = e.data.self;
+		
 
 		e.preventDefault();
 
@@ -63,7 +63,7 @@ module.exports = {
 	},
 
 	_handleDocumentClick: function (e) {
-		var self = e.data.self;
+		
 
 		var moreSelector = '.header__menu__item--more';
 		if ( $(e.target).closest(moreSelector).length == 0 ){

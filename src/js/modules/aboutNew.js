@@ -12,9 +12,9 @@ function initialize(block) {
 
     let sliderActive = false;
 
-    let drag = false;
-    let startX = 0;
-    let deltaX = 0;
+    // let drag = false;
+    // let startX = 0;
+    // let deltaX = 0;
 
     const elements = {
         slidesWrapper: null,
@@ -198,17 +198,7 @@ function initialize(block) {
                 slideToClickedSlide: true,
                 direction: window.matchMedia("(min-width: 801px)").matches
                     ? "vertical"
-                    : "horizontal",
-                breakpoints: {
-                    800: {
-                        // slidesPerView: 4,
-                        // spaceBetween: 20
-                    },
-                    600: {
-                        // slidesPerView: 3,
-                        // spaceBetween: 20
-                    }
-                }
+                    : "horizontal"
             };
 
             mainOptions.thumbs.swiper = new Swiper(
@@ -418,49 +408,39 @@ function initialize(block) {
     function handleMouseWheel(event) {
         event.preventDefault();
         elements.slidesWrapper.scrollLeft += event.deltaY;
-
-        // if (
-        //     elements.slidesWrapper.scrollLeft +
-        //         elements.slidesWrapper.offsetWidth >=
-        //     elements.slidesWrapper.scrollWidth
-        // ) {
-        //     return;
-        // } else {
-        //     event.preventDefault();
-        // }
     }
 
-    function mouseDown(event) {
-        if (
-            event.target &&
-            (event.target.nodeName === "IMG" || event.target.nodeName === "A")
-        ) {
-            event.preventDefault();
-        }
-        startX = event.clientX + elements.slidesWrapper.scrollLeft;
-        deltaX = 0;
-        drag = true;
-    }
-    function mouseMove(event) {
-        if (!drag) return;
-        deltaX = startX - (event.clientX + elements.slidesWrapper.scrollLeft);
-        elements.slidesWrapper.scrollLeft += deltaX;
-    }
+    // function mouseDown(event) {
+    //     if (
+    //         event.target &&
+    //         (event.target.nodeName === "IMG" || event.target.nodeName === "A")
+    //     ) {
+    //         event.preventDefault();
+    //     }
+    //     startX = event.clientX + elements.slidesWrapper.scrollLeft;
+    //     deltaX = 0;
+    //     drag = true;
+    // }
+    // function mouseMove(event) {
+    //     if (!drag) return;
+    //     deltaX = startX - (event.clientX + elements.slidesWrapper.scrollLeft);
+    //     elements.slidesWrapper.scrollLeft += deltaX;
+    // }
 
-    function mouseUp() {
-        drag = false;
-    }
+    // function mouseUp() {
+    //     drag = false;
+    // }
 
-    function addDragScroll(element) {
-        element.addEventListener("mousedown", mouseDown);
-        element.addEventListener("mousemove", mouseMove);
-        element.addEventListener("mouseup", mouseUp);
-    }
-    function removeDragScroll(element) {
-        element.removeEventListener("mousedown", mouseDown);
-        element.removeEventListener("mousemove", mouseMove);
-        element.removeEventListener("mouseup", mouseUp);
-    }
+    // function addDragScroll(element) {
+    //     element.addEventListener("mousedown", mouseDown);
+    //     element.addEventListener("mousemove", mouseMove);
+    //     element.addEventListener("mouseup", mouseUp);
+    // }
+    // function removeDragScroll(element) {
+    //     element.removeEventListener("mousedown", mouseDown);
+    //     element.removeEventListener("mousemove", mouseMove);
+    //     element.removeEventListener("mouseup", mouseUp);
+    // }
 
     function setState(newState) {
         const oldState = state;

@@ -58,8 +58,6 @@ module.exports = {
     },
 
     _getGanttPattern: function(width, height) {
-        var self = this;
-
         // imagine, that we have some picture, which contains 7 rectangles.
         // pattern object properties describe how we can draw the picture
 
@@ -549,14 +547,12 @@ module.exports = {
     },
 
     _handleItemMouseenter: function(e) {
-        var self = e.data.self;
-
         var $video = $(this).find("video._active");
         if ($video.length) $video[0].play();
     },
 
     _handleItemMouseleave: function(e) {
-        var self = e.data.self;
+        // var self = e.data.self;
 
         var $video = $(this).find("video._active");
         if ($video.length) $video[0].pause();
@@ -587,10 +583,13 @@ module.exports = {
 
         var viewport = self._elems.$scroll[0];
 
-        viewport.addEventListener("scroll", function() {
-            console.log("Scrolled");
-            self._checkScrollProgress(prev, next);
-        });
+        viewport.addEventListener(
+            "scroll",
+            function() {
+                self._checkScrollProgress(prev, next);
+            },
+            { passive: true }
+        );
 
         self._elems.$_.on(
             "mouseenter",
@@ -613,7 +612,7 @@ module.exports = {
         self._elems.$scroll[0].addEventListener(
             "scroll",
             self._handleSliderScroll.bind(self),
-            false
+            { passive: true }
         );
         $(window).on("resize", { self: self }, self._handleWindowResize);
     },
