@@ -16,49 +16,40 @@ module.exports = {
                 element.querySelectorAll(".tech-promo__popovers-close-btn")
             );
 
-            function openItem(index) {
-                items.forEach(item => item.classList.remove("active"));
-                items[index].classList.add("active");
-            }
+            buttons.forEach(button => {
+                button.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    const popover = button.querySelector(
+                        ".tech-promo__popovers-item"
+                    );
 
-            function closeItems() {
-                items.forEach(item => item.classList.remove("active"));
-            }
+                    if (popover) {
+                        items.forEach(item => item.classList.remove("active"));
+                        popover.classList.add("active");
+
+                        console.log("Opening");
+                    }
+                });
+            });
 
             function outsideClickHandler(event) {
-                if (
-                    !element.contains(event.target) &&
-                    event.target !== element
-                ) {
-                    closeItems();
-                }
+                const insideLink =
+                    event.target.closest(".tech-promo__platform-link") ||
+                    event.target.matches(".tech-promo__platform-link");
+
+                if (insideLink) return;
+                items.forEach(item => item.classList.remove("active"));
+
+                console.log("Closing");
             }
 
-            buttons.forEach((btn, index) => {
+            closeBtns.forEach(btn => {
                 btn.addEventListener("click", function(event) {
                     event.preventDefault();
-                    openItem(index);
-                });
-                btn.addEventListener("mouseenter", function() {
-                    openItem(index);
+                    event.stopPropagation();
+                    items.forEach(item => item.classList.remove("active"));
                 });
             });
-
-            items.forEach((item, index) => {
-                item.addEventListener("mouseenter", function() {
-                    openItem(index);
-                });
-                item.addEventListener("mouseleave", function() {
-                    closeItems();
-                });
-            });
-
-            closeBtns.forEach(btn =>
-                btn.addEventListener("click", function(event) {
-                    event.preventDefault();
-                    closeItems();
-                })
-            );
 
             document.addEventListener("click", outsideClickHandler);
         });
