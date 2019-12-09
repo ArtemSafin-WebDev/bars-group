@@ -39,6 +39,7 @@ var NewAdvantagesSlider = require("./newAdvantagesSlider");
 var NavBannerScrolled = require("./navBannerScrolled");
 var CircleAccordeons = require("./circleAccordeons");
 var StickyFilter = require('./stickyFIlter');
+var TechPopovers = require('./techPromoPopovers');
 
 require("./scrollbox");
 
@@ -83,6 +84,7 @@ module.exports = {
         NavBannerScrolled.init();
         CircleAccordeons.init();
         StickyFilter.init();
+        TechPopovers.init();
 
         // trigger click to start loading lazy videos
         $("body").trigger("click");
