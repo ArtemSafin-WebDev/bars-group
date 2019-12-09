@@ -5784,7 +5784,10 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; }
     .banner__image::after {
       content: '';
       background-color: inherit;
@@ -7510,8 +7513,9 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     pointer-events: none; }
   .tech-promo__popovers-item {
     background-color: #fff;
-    width: 400px;
-    padding: 30px 35px;
+    width: 500px;
+    padding: 30px;
+    padding-top: 25px;
     position: absolute;
     -webkit-transform: scale(0);
             transform: scale(0);
@@ -7563,27 +7567,66 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     transition: opacity 0.3s, visibility 0s linear 0.3s; }
   .tech-promo__popovers-image {
     width: 156px; }
+  .tech-promo__popovers-bottom-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 35px; }
+  .tech-promo__popovers-close-btn {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin-right: 20px; }
+    .tech-promo__popovers-close-btn > span {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 50%;
+      background-color: #59B4E6;
+      position: relative; }
+      .tech-promo__popovers-close-btn > span::before, .tech-promo__popovers-close-btn > span::after {
+        content: '';
+        width: 14px;
+        height: 1px;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%; }
+      .tech-promo__popovers-close-btn > span::before {
+        -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+                transform: translate(-50%, -50%) rotate(-45deg); }
+      .tech-promo__popovers-close-btn > span::after {
+        -webkit-transform: translate(-50%, -50%) rotate(45deg);
+                transform: translate(-50%, -50%) rotate(45deg); }
   .tech-promo__popovers-content > *:first-child {
     margin-bottom: 0; }
   .tech-promo__popovers-content > *:last-child {
     margin-bottom: 0; }
   .tech-promo__popovers-content > h1,
   .tech-promo__popovers-content > h2,
-  .tech-promo__popovers-content > h3,
+  .tech-promo__popovers-content > h3 {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 10px 0;
+    font-weight: 700; }
   .tech-promo__popovers-content > h4,
   .tech-promo__popovers-content > h5,
   .tech-promo__popovers-content > h6 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 22px;
     margin: 10px 0; }
   .tech-promo__popovers-content > p {
-    font-size: 12px;
-    line-height: 16px;
-    margin: 10px 0; }
+    font-size: 14px;
+    line-height: 22px;
+    margin: 10px 0;
+    margin-bottom: 15px; }
   .tech-promo__popovers-content > ul {
-    font-size: 12px;
-    line-height: 16px; }
+    font-size: 14px;
+    line-height: 22px; }
     .tech-promo__popovers-content > ul > li {
       margin-bottom: 8px;
       position: relative;
@@ -7595,7 +7638,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
         border-radius: 50%;
         background-color: #59b4e6;
         position: absolute;
-        top: 0.5em;
+        top: .6em;
         left: 0; }
       .tech-promo__popovers-content > ul > li:last-child {
         margin-bottom: 0; }

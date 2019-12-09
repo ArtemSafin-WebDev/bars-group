@@ -7,6 +7,7 @@ module.exports = {
             console.log(element);
             const buttons = Array.prototype.slice.call(element.querySelectorAll('.tech-promo__platform-link'));
             const items = Array.prototype.slice.call(element.querySelectorAll('.tech-promo__popovers-item'));
+            const closeBtns = Array.prototype.slice.call(element.querySelectorAll('.tech-promo__popovers-close-btn'));
 
             function openItem(index) {
                 items.forEach(item => item.classList.remove('active'));
@@ -43,6 +44,11 @@ module.exports = {
                     closeItems();
                 })
             })
+
+            closeBtns.forEach(btn => btn.addEventListener('click', function(event) {
+                event.preventDefault();
+                closeItems();
+            }))
 
 
             document.addEventListener('click', outsideClickHandler);
