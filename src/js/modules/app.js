@@ -82,7 +82,7 @@ module.exports = {
         DownloadBtns.init();
         NewAdvantagesSlider.init();
         NavBannerScrolled.init();
-        CircleAccordeons.init();
+       
         StickyFilter.init();
         
 
@@ -120,6 +120,7 @@ module.exports = {
         NavBanner.init();
         TechPromo.init();
         TechPopovers.init();
+        CircleAccordeons.init();
         SliderContent.init();
         SliderDigits.init();
         SliderTabs.init();
