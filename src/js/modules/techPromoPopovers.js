@@ -30,6 +30,7 @@ module.exports = {
                         }
                         items.forEach(item => item.classList.remove("active"));
                         popover.classList.add("active");
+                        document.body.classList.add('tech-promo-no-hover');
 
                         console.log("Opening");
                     }
@@ -43,7 +44,7 @@ module.exports = {
 
                 if (insideLink) return;
                 items.forEach(item => item.classList.remove("active"));
-
+                document.body.classList.remove('tech-promo-no-hover');
                 console.log("Closing");
             }
 
@@ -52,6 +53,7 @@ module.exports = {
                     event.preventDefault();
                     event.stopPropagation();
                     items.forEach(item => item.classList.remove("active"));
+                    document.body.classList.remove('tech-promo-no-hover');
                 });
             });
 

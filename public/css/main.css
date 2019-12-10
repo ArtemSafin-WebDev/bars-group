@@ -7479,7 +7479,6 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   .tech-promo__center {
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
-    z-index: 700;
     opacity: 0;
     position: absolute;
     left: 0;
@@ -7499,6 +7498,8 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
+    .tech-promo-no-hover .tech-promo__center {
+      z-index: 700; }
     .tech-promo__center._active {
       opacity: 1; }
   .tech-promo__center-content {
@@ -7574,10 +7575,10 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       height: 100%;
       display: block;
       border-radius: 50%;
-      background-color: #59B4E6;
+      background-color: #59b4e6;
       position: relative; }
       .tech-promo__popovers-close-btn > span::before, .tech-promo__popovers-close-btn > span::after {
-        content: '';
+        content: "";
         width: 14px;
         height: 1px;
         background-color: #fff;
@@ -7627,7 +7628,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
         border-radius: 50%;
         background-color: #59b4e6;
         position: absolute;
-        top: .6em;
+        top: 0.6em;
         left: 0; }
       .tech-promo__popovers-content > ul > li:last-child {
         margin-bottom: 0; }
@@ -7701,8 +7702,8 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     margin-top: 10px;
-    -webkit-transition: background-color .2s;
-    transition: background-color .2s;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
     position: relative; }
     .tech-promo__platform-link-plus::before, .tech-promo__platform-link-plus::after {
       content: "";
@@ -7782,7 +7783,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       background: rgba(192, 78, 196, 0.7); }
     .tech-promo__elem-6 .tech-promo__circle__logo {
       margin-left: 105px; }
-    .tech-promo__elem-6 .tech-promo__circle:hover .tech-promo__circle__logo {
+    body:not(.tech-promo-no-hover) .tech-promo__elem-6 .tech-promo__circle:hover .tech-promo__circle__logo {
       margin-top: -30px; }
   .tech-promo__circle {
     -webkit-transition: all 0.6s;
@@ -7797,33 +7798,33 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     border-radius: 50%;
     cursor: pointer;
     opacity: 0; }
-    .tech-promo__circle:hover {
+    body:not(.tech-promo-no-hover) .tech-promo__circle:hover {
       z-index: 210; }
-      .tech-promo__circle:hover .tech-promo__label {
+      body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__label {
         color: #000; }
-      .tech-promo__circle:hover .tech-promo__circle__decor {
+      body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__decor {
         -webkit-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out;
         background: #fff; }
-      .tech-promo__circle:hover .tech-promo__circle__arrow__self {
+      body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__arrow__self {
         -webkit-transition: all 0.3s;
         transition: all 0.3s;
         opacity: 1; }
-      .tech-promo__circle:hover .tech-promo__circle__logo {
+      body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__logo {
         -webkit-transition: all 0.3s;
         transition: all 0.3s;
         margin-left: 25px; }
-      .tech-promo__circle:hover .tech-promo__circle__icon i,
-      .tech-promo__circle:hover .tech-promo__circle__icon img {
+      body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__icon i,
+      body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__icon img {
         -webkit-transition: all 0.3s;
         transition: all 0.3s; }
-        .tech-promo__circle:hover .tech-promo__circle__icon i:first-child,
-        .tech-promo__circle:hover .tech-promo__circle__icon img:first-child {
+        body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__icon i:first-child,
+        body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__icon img:first-child {
           opacity: 0; }
-        .tech-promo__circle:hover .tech-promo__circle__icon i:last-child,
-        .tech-promo__circle:hover .tech-promo__circle__icon img:last-child {
+        body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__icon i:last-child,
+        body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__icon img:last-child {
           opacity: 1; }
-      .tech-promo__circle:hover .tech-promo__circle__desc {
+      body:not(.tech-promo-no-hover) .tech-promo__circle:hover .tech-promo__circle__desc {
         -webkit-transition: height 0.3s, opacity 0.3s 0.1s;
         transition: height 0.3s, opacity 0.3s 0.1s;
         height: 7.5em;
@@ -7841,25 +7842,25 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     .tech-promo__circle._delay-3 {
       -webkit-transition-delay: 0.3s;
               transition-delay: 0.3s; }
-    .tech-promo__circle--size-1:hover .tech-promo__circle__decor {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-1:hover .tech-promo__circle__decor {
       -webkit-transform: scale(1.2);
               transform: scale(1.2); }
-    .tech-promo__circle--size-1:hover .tech-promo__circle__arrow__self {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-1:hover .tech-promo__circle__arrow__self {
       margin-top: -60px; }
-    .tech-promo__circle--size-2:hover .tech-promo__circle__decor {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-2:hover .tech-promo__circle__decor {
       -webkit-transform: scale(1.6);
               transform: scale(1.6); }
-    .tech-promo__circle--size-2:hover .tech-promo__circle__arrow__self {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-2:hover .tech-promo__circle__arrow__self {
       margin-top: -100px; }
-    .tech-promo__circle--size-3:hover .tech-promo__circle__decor {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-3:hover .tech-promo__circle__decor {
       -webkit-transform: scale(2);
               transform: scale(2); }
-    .tech-promo__circle--size-3:hover .tech-promo__circle__arrow__self {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-3:hover .tech-promo__circle__arrow__self {
       margin-top: -120px; }
-    .tech-promo__circle--size-4:hover .tech-promo__circle__decor {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-4:hover .tech-promo__circle__decor {
       -webkit-transform: scale(1.1);
               transform: scale(1.1); }
-    .tech-promo__circle--size-4:hover .tech-promo__circle__arrow__self {
+    body:not(.tech-promo-no-hover) .tech-promo__circle--size-4:hover .tech-promo__circle__arrow__self {
       margin-top: -50px; }
     .tech-promo__circle__arrow {
       position: absolute;
@@ -8002,25 +8003,25 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     margin-top: 50px;
     width: 500px;
     height: 500px; }
-  .tech-promo__circle--size-1:hover .tech-promo__circle__decor {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-1:hover .tech-promo__circle__decor {
     -webkit-transform: scale(1.4);
             transform: scale(1.4); }
-  .tech-promo__circle--size-1:hover .tech-promo__circle__arrow__self {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-1:hover .tech-promo__circle__arrow__self {
     margin-top: -80px; }
-  .tech-promo__circle--size-2:hover .tech-promo__circle__decor {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-2:hover .tech-promo__circle__decor {
     -webkit-transform: scale(1.9);
             transform: scale(1.9); }
-  .tech-promo__circle--size-2:hover .tech-promo__circle__arrow__self {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-2:hover .tech-promo__circle__arrow__self {
     margin-top: -115px; }
-  .tech-promo__circle--size-3:hover .tech-promo__circle__decor {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-3:hover .tech-promo__circle__decor {
     -webkit-transform: scale(2.4);
             transform: scale(2.4); }
-  .tech-promo__circle--size-3:hover .tech-promo__circle__arrow__self {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-3:hover .tech-promo__circle__arrow__self {
     margin-top: -135px; }
-  .tech-promo__circle--size-4:hover .tech-promo__circle__decor {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-4:hover .tech-promo__circle__decor {
     -webkit-transform: scale(1.2);
             transform: scale(1.2); }
-  .tech-promo__circle--size-4:hover .tech-promo__circle__arrow__self {
+  body:not(.tech-promo-no-hover) .tech-promo__circle--size-4:hover .tech-promo__circle__arrow__self {
     margin-top: -60px; }
   .tech-promo__circle__desc {
     font-size: 14px; }

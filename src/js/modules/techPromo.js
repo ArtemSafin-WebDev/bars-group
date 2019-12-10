@@ -27,6 +27,8 @@ module.exports = {
 
 		e.preventDefault();
 
+	
+
 		var index = $(this).data('index');
 
 		clearTimeout(self._state.timerId);
@@ -75,6 +77,8 @@ module.exports = {
 
 		self._elems.$_ = $_;
 
+
+		console.log('Initializing tech circles');
 		TweenLite.fromTo($_.find('.tech-promo__orbit circle')[0], 2, {drawSVG:"0%"}, {drawSVG:"100%"});
 
 		setTimeout(function () {

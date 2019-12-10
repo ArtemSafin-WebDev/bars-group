@@ -64,7 +64,7 @@ module.exports = {
         $("#loader-main").removeClass("_active");
         $("body").removeClass("page__locked");
 
-        TechPromo.init();
+       
         NavMobile.init();
         Overview.init();
         Catalog.init();
@@ -84,7 +84,7 @@ module.exports = {
         NavBannerScrolled.init();
         CircleAccordeons.init();
         StickyFilter.init();
-        TechPopovers.init();
+        
 
         // trigger click to start loading lazy videos
         $("body").trigger("click");
@@ -118,7 +118,8 @@ module.exports = {
         // it's important to call NavBanner inition first,
         // because tabs content can contain other sliders inside
         NavBanner.init();
-
+        TechPromo.init();
+        TechPopovers.init();
         SliderContent.init();
         SliderDigits.init();
         SliderTabs.init();
