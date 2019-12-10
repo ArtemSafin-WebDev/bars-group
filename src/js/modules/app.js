@@ -65,25 +65,7 @@ module.exports = {
         $("body").removeClass("page__locked");
 
        
-        NavMobile.init();
-        Overview.init();
-        Catalog.init();
-        Hover.init();
-        Popup.init();
-        NavFilter.init();
-        TAdvantages.init();
-        Lazyload.init();
-        GanttSlider.init();
-        CitiesSlider.init();
-        ScrollAnimations.init();
-        AboutNew.init();
-        Architecture.init();
-        WasIntegrated.init();
-        DownloadBtns.init();
-        NewAdvantagesSlider.init();
-        NavBannerScrolled.init();
-       
-        StickyFilter.init();
+      
         
 
         // trigger click to start loading lazy videos
@@ -137,6 +119,26 @@ module.exports = {
         Arch.init();
         TasksSliders.init();
         AdvantagesSliders.init();
+
+        NavMobile.init();
+        Overview.init();
+        Catalog.init();
+        Hover.init();
+        Popup.init();
+        NavFilter.init();
+        TAdvantages.init();
+        Lazyload.init();
+        GanttSlider.init();
+        CitiesSlider.init();
+        ScrollAnimations.init();
+        AboutNew.init();
+        Architecture.init();
+        WasIntegrated.init();
+        DownloadBtns.init();
+        NewAdvantagesSlider.init();
+        NavBannerScrolled.init();
+       
+        StickyFilter.init();
     },
 
     _handleWindowLoad: function() {
