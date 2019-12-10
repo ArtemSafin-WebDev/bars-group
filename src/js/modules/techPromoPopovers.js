@@ -24,6 +24,10 @@ module.exports = {
                     );
 
                     if (popover) {
+                        if (popover.classList.contains('active')) {
+                            popover.classList.remove('active');
+                            return;
+                        }
                         items.forEach(item => item.classList.remove("active"));
                         popover.classList.add("active");
 

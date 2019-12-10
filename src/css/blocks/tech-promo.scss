@@ -29,7 +29,7 @@
 
     &__center {
         transition: opacity 1s;
-        z-index: 200;
+        z-index: 700;
         opacity: 0;
         position: absolute;
         left: 0;
@@ -247,6 +247,11 @@
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        &:hover {
+            .tech-promo__platform-link-plus {
+                background: rgba(white, 0.5);
+            }
+        }
     }
 
     &__platform-link-image-container {
@@ -270,7 +275,7 @@
 
         background: rgba(white, 0.2);
         margin-top: 10px;
-
+        transition: background-color .2s;
         position: relative;
         &::before,
         &::after {

@@ -7479,7 +7479,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   .tech-promo__center {
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
-    z-index: 700;
+    z-index: 200;
     opacity: 0;
     position: absolute;
     left: 0;
@@ -7674,8 +7674,6 @@ div.search-popup-el-name, div.search-popup-el-cnt {
         -ms-flex-align: center;
             align-items: center;
     cursor: pointer; }
-    .tech-promo__platform-link:hover .tech-promo__platform-link-plus {
-      background: rgba(255, 255, 255, 0.5); }
   .tech-promo__platform-link-image-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -7701,8 +7699,6 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     margin-top: 10px;
-    -webkit-transition: background-color .2s;
-    transition: background-color .2s;
     position: relative; }
     .tech-promo__platform-link-plus::before, .tech-promo__platform-link-plus::after {
       content: "";
