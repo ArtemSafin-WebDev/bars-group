@@ -8840,7 +8840,7 @@ body:not(.is-admin) .new-about__navigation {
 @media screen and (max-width: 800px) {
   .new-about__cities-map {
     margin: 0 -30px;
-    overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch; } }
 
 @media screen and (max-width: 600px) {
