@@ -2427,37 +2427,37 @@ div.search-popup-el-name, div.search-popup-el-cnt {
 
 @-webkit-keyframes demonstration {
   0% {
-    -webkit-transform: translateX(-250%);
-            transform: translateX(-250%);
+    -webkit-transform: translateX(0%) scaleX(-1);
+            transform: translateX(0%) scaleX(-1);
     opacity: 0; }
   20% {
     opacity: 1; }
   60% {
     opacity: 1; }
   80% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); }
+    -webkit-transform: translateX(-250%) scaleX(-1);
+            transform: translateX(-250%) scaleX(-1); }
   100% {
     opacity: 0;
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); } }
+    -webkit-transform: translateX(-250%) scaleX(-1);
+            transform: translateX(-250%) scaleX(-1); } }
 
 @keyframes demonstration {
   0% {
-    -webkit-transform: translateX(-250%);
-            transform: translateX(-250%);
+    -webkit-transform: translateX(0%) scaleX(-1);
+            transform: translateX(0%) scaleX(-1);
     opacity: 0; }
   20% {
     opacity: 1; }
   60% {
     opacity: 1; }
   80% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); }
+    -webkit-transform: translateX(-250%) scaleX(-1);
+            transform: translateX(-250%) scaleX(-1); }
   100% {
     opacity: 0;
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); } }
+    -webkit-transform: translateX(-250%) scaleX(-1);
+            transform: translateX(-250%) scaleX(-1); } }
 
 .nav-banner {
   margin-top: -20px;
