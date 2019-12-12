@@ -9713,7 +9713,10 @@ body:not(.is-admin) .new-about__navigation {
       align-self: center; }
   @media screen and (min-width: 801px) {
     .new-about__history-heading {
-      margin-top: 2vh;
+      margin-top: auto;
+      margin-bottom: auto;
+      position: relative;
+      top: -20vh;
       margin-right: 10vh;
       font-size: 4vh;
       -ms-flex-item-align: start;
@@ -9721,7 +9724,8 @@ body:not(.is-admin) .new-about__navigation {
       body.is-admin .new-about__history-heading {
         margin-right: 0;
         margin-top: 0;
-        margin-bottom: 30px; } }
+        margin-bottom: 30px;
+        position: static; } }
 
 .new-about__history-main-slider {
   line-height: 1.4; }
