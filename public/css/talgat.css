@@ -676,8 +676,8 @@
 }
 @media screen and (max-width: 800px) {
   .tComponents__item img {
-    width: 50px !important;
-    height: 50px !important;
+    height: 40px !important;
+    max-width: 95%;
   }
 }
 .tComponents__item > a:hover > img {
@@ -743,7 +743,7 @@
     font-size: 24px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .tForWhom__wrapper {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -894,6 +894,7 @@
   .tComponents__item {
     margin: 20px 0;
     padding: 11px;
+    width: 50%;
   }
   .tBlocks__subtitle {
     font-size: 14px;

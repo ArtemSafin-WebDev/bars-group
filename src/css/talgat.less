@@ -753,8 +753,10 @@
             object-fit: contain;
             transition: transform .2s;
             @media screen and (max-width: 800px) {
-                width: 50px !important;
-                height: 50px !important;
+                // width: 50px !important;
+                height: 40px !important;
+                max-width: 95%;
+
             }
         }
 
@@ -843,7 +845,7 @@
         }
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .tForWhom {
         &__wrapper {
             flex-direction: column;
@@ -1024,6 +1026,7 @@
     .tComponents__item {
         margin: 20px 0;
         padding: 11px;
+        width: 50%;
     }
     .tBlocks__subtitle {
         font-size: 14px;
