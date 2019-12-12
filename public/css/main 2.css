@@ -1125,8 +1125,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       .search__example > span:hover {
         border-bottom-color: transparent; }
   .search--toggle {
-    overflow: hidden;
-    height: 190px; }
+    overflow: hidden; }
     .search--toggle .search__form {
       margin-top: -190px; }
     .search--toggle._active .search__form {
