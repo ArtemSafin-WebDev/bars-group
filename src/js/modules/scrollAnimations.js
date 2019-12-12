@@ -7,7 +7,7 @@ module.exports = {
             return;
         }
         const landingMainChildren = Array.prototype.slice.call(landingMain.children);
-        const blocksToAnimate = landingMainChildren.filter(element => element.matches('.block-wrapper:not(.block-nav-sticker):not(.block-page--gap)'))
+        const blocksToAnimate = landingMainChildren.filter(element => element.matches('.block-wrapper:not(.block-nav-sticker):not(.block-page--gap):not(.block-brand-box)'))
         
         blocksToAnimate.shift();
 
