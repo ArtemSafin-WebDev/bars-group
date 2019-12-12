@@ -64,10 +64,7 @@ module.exports = {
         $("#loader-main").removeClass("_active");
         $("body").removeClass("page__locked");
 
-       
-      
-        
-
+    
         // trigger click to start loading lazy videos
         $("body").trigger("click");
     },

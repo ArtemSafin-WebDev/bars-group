@@ -231,6 +231,7 @@
         display: flex;
         flex-wrap: wrap;
         margin: -10px -15px;
+        justify-content: center;
     }
 
     &__platforms-list-item {
@@ -416,6 +417,13 @@
         border-radius: 50%;
         cursor: pointer;
         opacity: 0;
+
+        &:not([href]),
+        &[href=""] {
+            .tech-promo__circle__arrow__self {
+                display: none;
+            }
+        }
 
         body:not(.tech-promo-no-hover) & {
             &:hover {
