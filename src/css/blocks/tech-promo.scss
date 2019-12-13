@@ -419,7 +419,8 @@
         opacity: 0;
 
         &:not([href]),
-        &[href=""] {
+        &[href=""],
+        &[href="#"] {
             .tech-promo__circle__arrow__self {
                 display: none;
             }
