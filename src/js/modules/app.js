@@ -40,6 +40,7 @@ var NavBannerScrolled = require("./navBannerScrolled");
 var CircleAccordeons = require("./circleAccordeons");
 var StickyFilter = require('./stickyFIlter');
 var TechPopovers = require('./techPromoPopovers');
+var SmoothScrollPolyfill = require('smoothscroll-polyfill');
 
 require("./scrollbox");
 
@@ -93,12 +94,12 @@ module.exports = {
     },
 
     _handleDOMReady: function() {
+
+        SmoothScrollPolyfill.polyfill();
        
         // it's important to call NavBanner inition first,
         // because tabs content can contain other sliders inside
         NavBanner.init();
-        TechPromo.init();
-        TechPopovers.init();
         CircleAccordeons.init();
         SliderContent.init();
         SliderDigits.init();
@@ -142,6 +143,11 @@ module.exports = {
         var self = this;
 
         self._state.isWindowLoaded = true;
+
+
+        TechPromo.init();
+        TechPopovers.init();
+        
     },
 
     _handleCanPlayEvent: function(e) {
