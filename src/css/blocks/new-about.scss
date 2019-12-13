@@ -27,6 +27,11 @@
     }
 }
 
+
+body.touch .ps__rail-x {
+    display: none;
+}
+
 .new-about {
     .ps__rail-x {
         opacity: 1 !important;
@@ -1263,14 +1268,14 @@
     position: relative;
     z-index: 200;
     @media screen and (max-height: 1000px) {
-        display: none;
+        
     }
     @media screen and (max-width: 800px) {
         display: none;
     }
     > button {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
 
         background-color: #eff4fd;
         color: #6e7f95;
@@ -1292,7 +1297,7 @@
             justify-content: center;
             &::after {
                 content: "\e905";
-                font-size: 15px;
+                font-size: 12px;
                 display: block;
                 margin-left: 1px;
 
@@ -1304,7 +1309,7 @@
 
 .new-about__history-main-slider-top-arrow {
     > button {
-        margin-bottom: 2vh;
+        margin-bottom: 2.5vh;
         > span::after {
             margin-bottom: 1px;
             transform: rotate(-90deg);
@@ -1313,7 +1318,7 @@
 }
 .new-about__history-main-slider-bottom-arrow {
     > button {
-        margin-top: 2vh;
+        margin-top: 2.5vh;
         > span::after {
             margin-top: 1px;
             transform: rotate(90deg);
@@ -1345,13 +1350,14 @@
 
     @media screen and (min-width: 801px) {
         margin: 0;
-        width: 10vh;
-        height: 56vh;
+        width: 8vh;
+        height: 55vh;
         overflow: hidden;
         margin-right: 3vh;
 
         position: relative;
         z-index: 40;
+        
         body.is-admin & {
             width: 100%;
             height: auto;
@@ -1368,7 +1374,7 @@
     cursor: pointer;
     padding: 12px 0;
     @media screen and (min-width: 801px) {
-        font-size: 3vh;
+        font-size: 2.4vh;
         padding: 0;
     }
     &::after {

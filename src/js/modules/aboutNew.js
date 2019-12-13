@@ -134,6 +134,7 @@ function initialize(block) {
             );
             const mainOptions = {
                 spaceBetween: 30,
+                allowTouchMove: false,
                 navigation: {
                     prevEl: block.querySelector(
                         ".new-about__slider-nav__button--prev"
@@ -176,6 +177,7 @@ function initialize(block) {
             const mainOptions = {
                 thumbs: {},
                 effect: "fade",
+                allowTouchMove: false,
                 fadeEffect: {
                     crossFade: true
                 },
@@ -191,7 +193,7 @@ function initialize(block) {
             };
             const thumbsOptions = {
                 slidesPerView: 'auto',
-                spaceBetween: 20,
+                spaceBetween: 10,
                 threshold: 10,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,

@@ -41,6 +41,7 @@ var CircleAccordeons = require("./circleAccordeons");
 var StickyFilter = require('./stickyFIlter');
 var TechPopovers = require('./techPromoPopovers');
 var SmoothScrollPolyfill = require('smoothscroll-polyfill');
+var detectIt = require('detect-it');
 
 require("./scrollbox");
 
@@ -96,6 +97,12 @@ module.exports = {
     _handleDOMReady: function() {
 
         SmoothScrollPolyfill.polyfill();
+
+        if (detectIt.hasTouch) {
+            document.body.classList.remove('no-touch');
+            document.body.classList.add('touch');
+            console.log('Has touch');
+        }
        
         // it's important to call NavBanner inition first,
         // because tabs content can contain other sliders inside

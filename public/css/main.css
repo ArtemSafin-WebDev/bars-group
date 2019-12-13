@@ -8570,6 +8570,9 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   .page-wrapper--new-about .footer {
     display: none; } }
 
+body.touch .ps__rail-x {
+  display: none; }
+
 .new-about .ps__rail-x {
   opacity: 1 !important;
   height: 32px !important;
@@ -9781,18 +9784,14 @@ body:not(.is-admin) .new-about__navigation {
   width: 100%;
   position: relative;
   z-index: 200; }
-  @media screen and (max-height: 1000px) {
-    .new-about__history-main-slider-top-arrow,
-    .new-about__history-main-slider-bottom-arrow {
-      display: none; } }
   @media screen and (max-width: 800px) {
     .new-about__history-main-slider-top-arrow,
     .new-about__history-main-slider-bottom-arrow {
       display: none; } }
   .new-about__history-main-slider-top-arrow > button,
   .new-about__history-main-slider-bottom-arrow > button {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     background-color: #eff4fd;
     color: #6e7f95;
     border-radius: 50%;
@@ -9825,20 +9824,20 @@ body:not(.is-admin) .new-about__navigation {
       .new-about__history-main-slider-top-arrow > button > span::after,
       .new-about__history-main-slider-bottom-arrow > button > span::after {
         content: "\e905";
-        font-size: 15px;
+        font-size: 12px;
         display: block;
         margin-left: 1px;
         font-family: icomoon !important; }
 
 .new-about__history-main-slider-top-arrow > button {
-  margin-bottom: 2vh; }
+  margin-bottom: 2.5vh; }
   .new-about__history-main-slider-top-arrow > button > span::after {
     margin-bottom: 1px;
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg); }
 
 .new-about__history-main-slider-bottom-arrow > button {
-  margin-top: 2vh; }
+  margin-top: 2.5vh; }
   .new-about__history-main-slider-bottom-arrow > button > span::after {
     margin-top: 1px;
     -webkit-transform: rotate(90deg);
@@ -9864,8 +9863,8 @@ body:not(.is-admin) .new-about__navigation {
 @media screen and (min-width: 801px) {
   .new-about__history-thumbs-slider {
     margin: 0;
-    width: 10vh;
-    height: 56vh;
+    width: 8vh;
+    height: 55vh;
     overflow: hidden;
     margin-right: 3vh;
     position: relative;
@@ -9885,7 +9884,7 @@ body:not(.is-admin) .new-about__navigation {
   padding: 12px 0; }
   @media screen and (min-width: 801px) {
     .new-about__history-thumb {
-      font-size: 3vh;
+      font-size: 2.4vh;
       padding: 0; } }
   .new-about__history-thumb::after {
     content: "";
