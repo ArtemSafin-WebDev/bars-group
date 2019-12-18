@@ -1130,6 +1130,8 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       margin-top: -190px; }
     .search--toggle._active .search__form {
       margin-top: 0; }
+    .search--toggle._active .nav-video {
+      display: none; }
 
 @media all and (max-width: 1600px) {
   .search {
