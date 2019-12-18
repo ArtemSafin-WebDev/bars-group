@@ -144,6 +144,17 @@
 		}
 	}
 
+
+	&__made-by-logo {
+		display: inline-block;
+		vertical-align: baseline;
+		width: 70px;
+		position: relative;
+		bottom: -6.5px;
+		// filter: grayscale(1);
+		opacity: .5;
+	}
+
 }
 
 

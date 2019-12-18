@@ -3608,6 +3608,13 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       position: absolute;
       right: 0;
       top: 1px; }
+  .footer__made-by-logo {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 70px;
+    position: relative;
+    bottom: -6.5px;
+    opacity: .5; }
 
 @media all and (max-width: 1300px) {
   .footer__logo {
