@@ -3082,7 +3082,10 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   transition: opacity 0.2; }
   .page__label:link, .page__label:visited {
     color: white; }
-  .page__label[href]:hover, .page__label[href]:active {
+  .page__label[href="#"], .page__label[href=""] {
+    cursor: default;
+    pointer-events: none; }
+  .page__label[href]:hover, .page__label[href]:active, .page__label:not([href=""]):not([href="#"]):hover, .page__label:not([href=""]):not([href="#"]):active {
     opacity: 0.9; }
   .page__label--small {
     font-size: 14px; }

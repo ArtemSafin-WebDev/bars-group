@@ -87,7 +87,15 @@
             color: white;
         }
 
-        &[href] {
+
+        &[href="#"],
+        &[href=""] {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        &[href],
+        &:not([href=""]):not([href="#"]) {
             &:hover,
             &:active {
                 opacity: 0.9;
