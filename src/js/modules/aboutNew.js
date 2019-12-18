@@ -1,5 +1,6 @@
 var PerfectScrollbar = require("perfect-scrollbar");
 var Swiper = require("swiper");
+var detectIt = require("detect-it");
 
 
 function initialize(block) {
@@ -55,6 +56,8 @@ function initialize(block) {
 
     function setCustomScrollbar(element) {
         console.log("Setting custom scrollbar");
+
+        if (detectIt.hasTouch) return;
         const ps = new PerfectScrollbar(element, SCROLLBAR_OPTIONS);
         setState({
             customScrollbar: ps
