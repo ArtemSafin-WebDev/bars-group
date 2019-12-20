@@ -1285,6 +1285,10 @@
         height: 85px;
         margin-right: 60px;
         flex-shrink: 0;
+        background: #59b4e6;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     &__thumb {
@@ -1443,6 +1447,9 @@
 
     .tSiteSearchNews__thumb-wrapper {
         margin-right: 20px;
+        &:empty {
+            display: none;
+        }
     }
 }
 @media screen and (max-width: 475px) {
