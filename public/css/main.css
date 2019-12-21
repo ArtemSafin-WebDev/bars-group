@@ -2217,6 +2217,8 @@ div.search-popup-el-name, div.search-popup-el-cnt {
 
 .nav-cats {
   margin-top: 60px; }
+  .nav-cats .catalog__reset-btn {
+    display: none; }
   .nav-cats--close {
     margin-top: 30px; }
     .nav-cats--close:first-child {
@@ -2292,6 +2294,10 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       cursor: inherit; }
   .nav-filter {
     display: none; } }
+
+@media all and (max-width: 800px) {
+  .nav-cats .catalog__reset-btn {
+    display: block; } }
 
 .nav-video {
   position: relative;
@@ -6361,6 +6367,9 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   width: 100%;
   color: #6f8fb9;
   display: block; }
+  @media screen and (max-width: 800px) {
+    .catalog__reset-btn {
+      display: none; } }
   .catalog__reset-btn:hover {
     color: #91aaca; }
   .catalog__reset-btn > span {

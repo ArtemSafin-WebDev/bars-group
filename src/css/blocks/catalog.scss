@@ -38,6 +38,9 @@
         width: 100%;
         color: #6f8fb9;
         display: block;
+        @media screen and (max-width: 800px) {
+            display: none;
+        }
         &:hover {
             color: lighten(#6f8fb9, 10%);
         }

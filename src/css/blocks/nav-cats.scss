@@ -3,6 +3,11 @@
 	
 	margin-top: 60px;
 
+
+	.catalog__reset-btn {
+		display: none;
+	}
+
 	&--close {
 		margin-top: 30px;
 
@@ -118,5 +123,13 @@
 		display: none;
 	}
 	
+}
+
+
+
+@media all and (max-width: 800px) {
+	.nav-cats .catalog__reset-btn {
+		display: block;
+	}
 }
 
