@@ -1043,8 +1043,8 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   margin-right: calc(-1 * (100vw - 1520px)/ 2);
   padding-right: calc(1 * (100vw - 1520px)/ 2); }
   .search__form {
-    -webkit-transition: all .2s;
-    transition: all .2s;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
     margin-right: calc(-1 * (100vw - 1520px)/ 2); }
   .search__input {
     -webkit-transition: background .2s;

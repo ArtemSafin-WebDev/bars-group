@@ -2803,6 +2803,8 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     display: block;
     padding: 8px 10px;
     color: #6f8fb6 !important; }
+    .nav-options__link._active {
+      background: #eff4fd; }
 
 .nav-sticker {
   pointer-events: none; }
