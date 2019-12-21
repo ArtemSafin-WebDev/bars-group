@@ -10134,7 +10134,7 @@ body:not(.is-admin) .new-about__navigation {
           align-items: center; }
   @media screen and (min-width: 801px) {
     .new-about__history-card-facts-brief-item {
-      margin-bottom: 3vh; } }
+      margin-bottom: 2.5vh; } }
   .new-about__history-card-facts-brief-item:last-child {
     margin-bottom: 0; }
 

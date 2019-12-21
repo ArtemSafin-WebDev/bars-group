@@ -57,6 +57,8 @@ function initialize(block) {
     function setCustomScrollbar(element) {
         console.log("Setting custom scrollbar");
 
+
+        
         if (detectIt.hasTouch) return;
         const ps = new PerfectScrollbar(element, SCROLLBAR_OPTIONS);
         setState({
