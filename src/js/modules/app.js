@@ -38,72 +38,27 @@ var DownloadBtns = require("./downloadBtn");
 var NewAdvantagesSlider = require("./newAdvantagesSlider");
 var NavBannerScrolled = require("./navBannerScrolled");
 var CircleAccordeons = require("./circleAccordeons");
-var StickyFilter = require('./stickyFIlter');
-var TechPopovers = require('./techPromoPopovers');
-var SmoothScrollPolyfill = require('smoothscroll-polyfill');
-var detectIt = require('detect-it');
+var StickyFilter = require("./stickyFIlter");
+var TechPopovers = require("./techPromoPopovers");
+var SmoothScrollPolyfill = require("smoothscroll-polyfill");
+var detectIt = require("detect-it");
 
 require("./scrollbox");
 
 module.exports = {
-    _state: {
-        preloaderTimer: null,
-        promoVideosTotal: 0,
-        promoVideosLoaded: 0,
-        isUserActivityHandled: false,
-        isWindowLoaded: false
-    },
-
-    _showContent: function() {
-        var self = this;
-
-        if (self._state.isWindowLoaded === false) return;
-        if (self._state.promoVideosLoaded !== self._state.promoVideosTotal)
-            return;
-
-        clearInterval(self._state.preloaderTimer);
-
-        $("#loader-main").removeClass("_active");
-        $("body").removeClass("page__locked");
+    
 
     
-        // trigger click to start loading lazy videos
-        $("body").trigger("click");
-    },
-
-    _startLazyVideosLoading: function() {
-       
-
-        if (window.matchMedia("(max-width: 800px)").matches) {
-            return;
-        }
-
-        $("video[data-lazy]").each(function() {
-            $(this)[0].load();
-          
-        });
-    },
-
-    _handleUserActivity: function(e) {
-        var self = e.data.self;
-
-        if (self._state.isUserActivityHandled) return;
-        if (!Modernizr.video || Modernizr.lowbandwidth) return;
-
-        self._state.isUserActivityHandled = true;
-        setTimeout(self._startLazyVideosLoading.bind(self), 100);
-    },
 
     _handleDOMReady: function() {
-
         SmoothScrollPolyfill.polyfill();
 
         if (detectIt.hasTouch) {
-            document.body.classList.remove('no-touch');
-            document.body.classList.add('touch');
-            console.log('Has touch');
+            document.body.classList.remove("no-touch");
+            document.body.classList.add("touch");
+            console.log("Has touch");
         }
-       
+
         // it's important to call NavBanner inition first,
         // because tabs content can contain other sliders inside
         NavBanner.init();
@@ -124,7 +79,6 @@ module.exports = {
         Arch.init();
         TasksSliders.init();
         AdvantagesSliders.init();
-
         NavMobile.init();
         Overview.init();
         Catalog.init();
@@ -142,70 +96,39 @@ module.exports = {
         DownloadBtns.init();
         NewAdvantagesSlider.init();
         NavBannerScrolled.init();
-       
         StickyFilter.init();
     },
 
     _handleWindowLoad: function() {
-        var self = this;
-
-        self._state.isWindowLoaded = true;
-
-
+        
         TechPromo.init();
         TechPopovers.init();
-        
-    },
 
-    _handleCanPlayEvent: function(e) {
-        var self = e.data.self;
-        console.log("Canplay event happended", e.originalEvent);
+        $("#loader-main").removeClass("_active");
 
-        $(this).addClass("_active");
-        objectFitPolyfill(this);
-
-        if ($(this).data("promo") !== undefined) {
-            self._state.promoVideosLoaded++;
+        if (window.matchMedia("(max-width: 800px)").matches) {
+            return;
         }
+        var videos = Array.prototype.slice.call(document.querySelectorAll('video'));
 
-        if ($(this).data("play") !== undefined) {
-            $(this)[0].play();
-        }
+        videos.forEach(video => {
+            video.classList.add('_active');
+            objectFitPolyfill(video);
+            if (video.hasAttribute('data-lazy')) {
+                if (video.hasAttribute('data-play')) {
+                    video.play();
+                } else {
+                    video.load();
+                }
+            }
+        });
     },
 
     _bindUI: function() {
         var self = this;
 
-        $(document).one(
-            "click touchstart",
-            { self: self },
-            self._handleUserActivity
-        );
         $(window).on("load", self._handleWindowLoad.bind(self));
-        $("video").one(
-            "canplaythrough",
-            { self: self },
-            self._handleCanPlayEvent
-        );
-        Array.prototype.slice
-            .call(document.querySelectorAll("video"))
-            .forEach(function(video) {
-                if (video.readyState > 3) {
-                    // console.log("Video in ready state", video);
-                    $(video).addClass("_active");
-                    objectFitPolyfill(video);
 
-                    if ($(video).data("promo") !== undefined) {
-                        self._state.promoVideosLoaded++;
-                    }
-
-                    if ($(video).data("play") !== undefined) {
-                        $(video)[0].play();
-                    }
-                } else {
-					// console.log('Play state', video.readyState);
-				}
-            });
         $(self._handleDOMReady.bind(self));
     },
 
@@ -217,15 +140,6 @@ module.exports = {
         } else {
             $("html").addClass("mrkwbr-no-mobile");
         }
-
-        // count promo videos
-        self._state.promoVideosTotal = $("video[data-promo]").length;
-
-        // run preloader timer
-        self._state.preloaderTimer = setInterval(
-            self._showContent.bind(self),
-            50
-        );
 
         self._bindUI();
     }
