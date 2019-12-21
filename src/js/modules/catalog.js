@@ -303,9 +303,6 @@ module.exports = {
         }
     },
 
-
-
-
     _pushCurrentIndustryURL: function() {
         var self = this;
         var activeIndustryItem = document.querySelector(

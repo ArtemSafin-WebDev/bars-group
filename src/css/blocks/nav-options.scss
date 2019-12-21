@@ -28,6 +28,9 @@
 		display: block;
 		padding: 8px 10px;
 		color: #6f8fb6 !important;
+		&._active {
+			background: #eff4fd;
+		}
 	}
 
 
