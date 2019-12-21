@@ -26,6 +26,7 @@ module.exports = {
                     if (popover) {
                         if (popover.classList.contains('active')) {
                             popover.classList.remove('active');
+                            document.body.classList.remove('tech-promo-no-hover');
                             return;
                         }
                         items.forEach(item => item.classList.remove("active"));
