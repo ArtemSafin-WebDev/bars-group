@@ -9244,7 +9244,7 @@ body:not(.is-admin) .new-about__navigation {
       -webkit-box-pack: start;
           -ms-flex-pack: start;
               justify-content: flex-start;
-      margin-right: 20vh; }
+      margin-right: 35vh; }
       body.is-admin .new-about__values {
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;

@@ -161,7 +161,7 @@ module.exports = {
         if (Element.prototype.scrollBy) {
             viewport.scrollBy({
                 top: 0,
-                left: document.documentElement.clientWidth,
+                left: document.documentElement.clientWidth / 2,
                 behavior: "smooth"
             });
         } else {
@@ -169,7 +169,7 @@ module.exports = {
                 scrollTo: {
                     x:
                         viewport.scrollLeft +
-                        document.documentElement.clientWidth
+                        document.documentElement.clientWidth / 2
                 }
             });
         }
@@ -182,7 +182,7 @@ module.exports = {
         if (Element.prototype.scrollBy) {
             viewport.scrollBy({
                 top: 0,
-                left: -1 * document.documentElement.clientWidth,
+                left: -1 * document.documentElement.clientWidth / 2,
                 behavior: "smooth"
             });
         } else {
@@ -190,7 +190,7 @@ module.exports = {
                 scrollTo: {
                     x:
                         viewport.scrollLeft -
-                        document.documentElement.clientWidth
+                        document.documentElement.clientWidth / 2
                 }
             });
         }
