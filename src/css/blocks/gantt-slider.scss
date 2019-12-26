@@ -16,7 +16,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-
+    
     .page__center {
         width: 100%;
         order: -1;
@@ -321,7 +321,7 @@
         @extend .clearfix;
         position: relative;
         z-index: 50;
-        margin-top: -152px;
+        margin-top: -112px;
         height: 40px;
         display: flex;
         align-items: center;

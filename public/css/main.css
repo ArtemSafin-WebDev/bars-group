@@ -4183,7 +4183,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   .gantt-slider__ctrl {
     position: relative;
     z-index: 50;
-    margin-top: -152px;
+    margin-top: -112px;
     height: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5742,6 +5742,8 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   z-index: 10;
   padding-top: 55px;
   margin-bottom: 100px; }
+  .brand-box--gantt {
+    margin-bottom: 60px; }
   .brand-box--has-label .brand-box__desc {
     margin-top: 17px;
     font-size: 0; }
