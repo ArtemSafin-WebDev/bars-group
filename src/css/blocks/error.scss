@@ -1,37 +1,69 @@
 .error {
     margin-bottom: 230px;
     position: relative;
-    margin-top: -50px;
+
     @media screen and (max-width: 1300px) {
         margin-top: 0;
         margin-bottom: 120px;
     }
     @media screen and (max-width: 800px) {
-       
         margin-bottom: 50px;
     }
 }
 
-
 .error__image {
-    width: 90%;
-    height: auto;
-    margin-left: auto;
-    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    z-index: -1;
     @media screen and (max-width: 800px) {
-        width: 100%;
-        margin-left: 0;
+        position: static;
+        height: auto;
+        width: auto;
+        max-width: 100%;
+        z-index: 1;
+        margin-bottom: 30px;
     }
 }
 
-
 .error__button {
-    position: absolute;
-    left: 0;
-    bottom: 32px;
+}
+
+.error__content {
+    display: block;
+    padding: 40px 0;
+    max-width: 516px;
+    margin-right: auto;
     @media screen and (max-width: 800px) {
-        position: relative;
-        margin-top: 30px;
-        bottom: auto;
+        padding: 0;
+        max-width: none;
+        margin-right: 0;
+    }
+}
+
+.error__message {
+    font-size: 36px;
+    line-height: 1.36;
+    font-weight: 700;
+    margin-bottom: 25px;
+    @media screen and (max-width: 800px) {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    @media screen and (max-width: 600px) {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+}
+
+.error__dont-panic {
+    font-size: 18px;
+    margin-bottom: 140px;
+    @media screen and (max-width: 800px) {
+        margin-bottom: 30px;
+        font-size: 16px;
     }
 }
