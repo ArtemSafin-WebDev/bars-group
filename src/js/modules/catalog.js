@@ -303,6 +303,21 @@ module.exports = {
         }
     },
 
+
+    _setCurrentFilterFromURL: function(e) {
+        var self = this;
+        var urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.has("customer")) {
+            self._state.filter["customer"].value = urlParams.get("customer");
+        }
+        if (urlParams.has("type")) {
+            self._state.filter["type"].value = urlParams.get("type");
+        }
+
+        self._renderCurrentView();
+    },
+
     _pushCurrentIndustryURL: function() {
         var self = this;
         var activeIndustryItem = document.querySelector(
@@ -432,14 +447,24 @@ module.exports = {
         var filterId = $(this)
             .closest(".nav-cats")
             .data("id");
-        self._state.filter[filterId].value = $(this)
+
+        var filterValue = $(this)
             .closest(".nav-cats__item")
             .data("id");
+        self._state.filter[filterId].value = filterValue;
+
+        var searchParams = new URLSearchParams(window.location.search);
+        searchParams.set(filterId, filterValue);
+        var newRelativePathQuery =
+            window.location.pathname + "?" + searchParams.toString();
+        history.pushState(
+            { id: self._state.industry },
+            "",
+            newRelativePathQuery
+        );
 
         self._renderCurrentView();
     },
-
-
 
     _handleFilterReset: function(e) {
         var self = e.data.self;
@@ -449,7 +474,7 @@ module.exports = {
 
         Object.keys(filter).forEach(key => {
             filter[key].value = "total";
-        })
+        });
 
         self._renderCurrentView();
     },
@@ -575,7 +600,7 @@ module.exports = {
         self._elems.$input = $_.find(".js-catalog-search");
         self._elems.$letters = $_.find(".search__letters");
         self._setCurrentIndustryFromURL();
-
+        self._setCurrentFilterFromURL();
         self._stickSidebar();
         self._initLettersScroll();
 
