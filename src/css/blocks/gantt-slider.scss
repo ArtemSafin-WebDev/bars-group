@@ -1,3 +1,17 @@
+.gantt-slider__bg,
+.gantt-slider__click {
+    right: -30px !important;
+    left: -30px !important;
+    @media screen and(max-width: 800px) {
+        right: -20px !important;
+        left: -20px !important;
+    }
+    @media screen and(max-width: 600px) {
+        right: -30px !important;
+        left: -30px !important;
+    }
+}
+
 .gantt-slider {
     position: relative;
     display: flex;
@@ -9,10 +23,6 @@
     }
 
     .slider-arrow-container {
-        // position: absolute;
-        // top: 50%;
-        // margin-top: -18px;
-        // z-index: 1000;
         margin-right: 10px;
         &:last-child {
             margin-right: 0;
@@ -24,7 +34,7 @@
             margin: 0;
             &[disabled] {
                 display: inline-block !important;
-                opacity: .5;
+                opacity: 0.5;
                 cursor: default;
                 pointer-events: none;
             }
@@ -170,20 +180,21 @@
         margin-right: 60px;
 
         @media screen and (max-width: 800px) {
-            .gantt-slider__bg,
-            .gantt-slider__click,
-            .gantt-slider__dash {
-                right: -30px;
-                left: -30px;
-            }
+            // .gantt-slider__bg,
+            // .gantt-slider__click,
+            // .gantt-slider__dash {
+            //     right: -30px;
+            //     left: -30px;
+            // }
 
             .gantt-slider__bg {
                 height: 100%;
                 opacity: 1;
+                transform: scale(1);
             }
 
             .gantt-slider__dash {
-                height: 100%;
+                // height: 100%;
                 opacity: 0;
             }
 
@@ -197,29 +208,31 @@
             }
         }
         @media screen and (max-width: 600px) {
-            .gantt-slider__bg,
-            .gantt-slider__click,
-            .gantt-slider__dash {
-                right: -20px;
-                left: -20px;
-            }
+            // .gantt-slider__bg,
+            // .gantt-slider__click,
+            // .gantt-slider__dash {
+            //     right: -20px;
+            //     left: -20px;
+            // }
         }
 
         &:hover {
-            .gantt-slider__bg,
-            .gantt-slider__click,
-            .gantt-slider__dash {
-                right: -30px;
-                left: -30px;
-            }
+            // .gantt-slider__bg,
+            // .gantt-slider__click,
+            // .gantt-slider__dash {
+            //     right: -30px;
+            //     left: -30px;
+
+            // }
 
             .gantt-slider__bg {
                 height: 100%;
                 opacity: 1;
+                transform: scale(1);
             }
 
             .gantt-slider__dash {
-                height: 100%;
+                // height: 100%;
                 opacity: 0;
             }
 
@@ -256,6 +269,10 @@
         height: 7px;
         opacity: 0;
         background: $base-gray;
+
+        height: 100%;
+        transform-origin: center top;
+        transform: scale(0);
     }
 
     &__click {
@@ -370,13 +387,13 @@
         background-color: #eff4fd;
         border-radius: 50px;
         border: 5px solid transparent;
-        transition: opacity .2s;
+        transition: opacity 0.2s;
         margin-right: 30px;
         @media screen and (max-width: 800px) {
             margin-right: 0;
         }
         .gantt-animating & {
-            opacity: .5;
+            opacity: 0.5;
             cursor: default;
         }
 
@@ -385,7 +402,6 @@
             align-self: center;
             display: block !important;
         }
-
 
         @media screen and (max-width: 800px) {
             display: none;
@@ -558,14 +574,14 @@
             padding-top: 15px;
             margin-right: 60px;
 
-            &:hover {
-                .gantt-slider__bg,
-                .gantt-slider__click,
-                .gantt-slider__dash {
-                    right: -20px;
-                    left: -20px;
-                }
-            }
+            // &:hover {
+            //     .gantt-slider__bg,
+            //     .gantt-slider__click,
+            //     .gantt-slider__dash {
+            //         right: -20px;
+            //         left: -20px;
+            //     }
+            // }
         }
 
         &__bg,

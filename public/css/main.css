@@ -3952,6 +3952,21 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   .bg-layer__video {
     display: none !important; } }
 
+.gantt-slider__bg,
+.gantt-slider__click {
+  right: -30px !important;
+  left: -30px !important; }
+  @media screen and (max-width: 800px) {
+    .gantt-slider__bg,
+    .gantt-slider__click {
+      right: -20px !important;
+      left: -20px !important; } }
+  @media screen and (max-width: 600px) {
+    .gantt-slider__bg,
+    .gantt-slider__click {
+      right: -30px !important;
+      left: -30px !important; } }
+
 .gantt-slider {
   position: relative;
   display: -webkit-box;
@@ -3977,7 +3992,7 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       margin: 0; }
       .gantt-slider .slider-arrow-container button[disabled] {
         display: inline-block !important;
-        opacity: .5;
+        opacity: 0.5;
         cursor: default;
         pointer-events: none; }
     .gantt-slider .slider-arrow-container--prev {
@@ -4082,38 +4097,24 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     margin-bottom: 20px;
     margin-right: 60px; }
     @media screen and (max-width: 800px) {
-      .gantt-slider__item .gantt-slider__bg,
-      .gantt-slider__item .gantt-slider__click,
-      .gantt-slider__item .gantt-slider__dash {
-        right: -30px;
-        left: -30px; }
       .gantt-slider__item .gantt-slider__bg {
         height: 100%;
-        opacity: 1; }
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1); }
       .gantt-slider__item .gantt-slider__dash {
-        height: 100%;
         opacity: 0; }
       .gantt-slider__item .gantt-slider__h1,
       .gantt-slider__item .gantt-slider__desc {
         color: #fff; }
       .gantt-slider__item .gantt-slider__label {
         opacity: 1 !important; } }
-    @media screen and (max-width: 600px) {
-      .gantt-slider__item .gantt-slider__bg,
-      .gantt-slider__item .gantt-slider__click,
-      .gantt-slider__item .gantt-slider__dash {
-        right: -20px;
-        left: -20px; } }
-    .gantt-slider__item:hover .gantt-slider__bg,
-    .gantt-slider__item:hover .gantt-slider__click,
-    .gantt-slider__item:hover .gantt-slider__dash {
-      right: -30px;
-      left: -30px; }
     .gantt-slider__item:hover .gantt-slider__bg {
       height: 100%;
-      opacity: 1; }
+      opacity: 1;
+      -webkit-transform: scale(1);
+              transform: scale(1); }
     .gantt-slider__item:hover .gantt-slider__dash {
-      height: 100%;
       opacity: 0; }
     .gantt-slider__item:hover .gantt-slider__h1,
     .gantt-slider__item:hover .gantt-slider__desc {
@@ -4140,7 +4141,12 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     right: 0;
     height: 7px;
     opacity: 0;
-    background: #eff4fd; }
+    background: #eff4fd;
+    height: 100%;
+    -webkit-transform-origin: center top;
+            transform-origin: center top;
+    -webkit-transform: scale(0);
+            transform: scale(0); }
   .gantt-slider__click {
     position: absolute;
     top: 0;
@@ -4242,14 +4248,14 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     background-color: #eff4fd;
     border-radius: 50px;
     border: 5px solid transparent;
-    -webkit-transition: opacity .2s;
-    transition: opacity .2s;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
     margin-right: 30px; }
     @media screen and (max-width: 800px) {
       .gantt-slider__switch {
         margin-right: 0; } }
     .gantt-animating .gantt-slider__switch {
-      opacity: .5;
+      opacity: 0.5;
       cursor: default; }
     .gantt-slider__switch--contacts {
       margin-left: auto;
@@ -4399,11 +4405,6 @@ div.search-popup-el-name, div.search-popup-el-cnt {
     padding-bottom: 15px;
     padding-top: 15px;
     margin-right: 60px; }
-    .gantt-slider__item:hover .gantt-slider__bg,
-    .gantt-slider__item:hover .gantt-slider__click,
-    .gantt-slider__item:hover .gantt-slider__dash {
-      right: -20px;
-      left: -20px; }
   .gantt-slider__bg, .gantt-slider__dash {
     height: 3px; }
   .gantt-slider__h1 {
