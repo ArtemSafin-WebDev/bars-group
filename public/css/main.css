@@ -8825,7 +8825,7 @@ body:not(.is-admin) .new-about__navigation {
   margin-top: 15px; }
   @media screen and (min-width: 801px) {
     .new-about__home-text {
-      margin-top: 18vh; } }
+      margin-top: 24vh; } }
 
 .new-about__home-image {
   margin-bottom: 20px; }
