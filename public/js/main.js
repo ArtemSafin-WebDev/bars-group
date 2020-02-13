@@ -51835,46 +51835,57 @@ module.exports = {
       buttons.forEach(function (button) {
         button.addEventListener("click", function (event) {
           event.preventDefault();
+          if (event.currentTarget.classList.contains('active')) return;
+          buttons.forEach(function (btn) {
+            return btn.classList.remove('active');
+          });
+          button.classList.add('active');
           var popover = button.querySelector(".tech-promo__popovers-item");
 
           if (popover) {
-            if (popover.classList.contains('active')) {
-              popover.classList.remove('active');
-              document.body.classList.remove('tech-promo-no-hover');
-              return;
-            }
-
-            items.forEach(function (item) {
-              return item.classList.remove("active");
+            items.forEach(function (element) {
+              if (element !== popover) {
+                element.classList.remove("active");
+              } else {
+                element.classList.add("active");
+              }
             });
-            popover.classList.add("active");
-            document.body.classList.add('tech-promo-no-hover');
-            console.log("Opening");
           }
+
+          document.body.classList.add("tech-promo-no-hover");
         });
       });
-
-      function outsideClickHandler(event) {
-        var insideLink = event.target.closest(".tech-promo__platform-link") || event.target.matches(".tech-promo__platform-link");
-        if (insideLink) return;
-        items.forEach(function (item) {
-          return item.classList.remove("active");
-        });
-        document.body.classList.remove('tech-promo-no-hover');
-        console.log("Closing");
-      }
-
-      closeBtns.forEach(function (btn) {
-        btn.addEventListener("click", function (event) {
+      closeBtns.forEach(function (button) {
+        button.addEventListener("click", function (event) {
           event.preventDefault();
-          event.stopPropagation();
           items.forEach(function (item) {
             return item.classList.remove("active");
           });
-          document.body.classList.remove('tech-promo-no-hover');
+          document.body.classList.remove("tech-promo-no-hover");
         });
       });
-      document.addEventListener("click", outsideClickHandler);
+      document.addEventListener('click', function (event) {
+        var insidePopover = event.target.closest(".tech-promo__popovers-item") || event.target.matches(".tech-promo__popovers-item");
+        var onButton = event.target.closest(".tech-promo__platform-link") || event.target.matches(".tech-promo__platform-link");
+        var isOutsideClick = !insidePopover && !onButton;
+
+        if (isOutsideClick) {
+          items.forEach(function (item) {
+            return item.classList.remove("active");
+          });
+          document.body.classList.remove("tech-promo-no-hover");
+        }
+      }); // function outsideClickHandler(event) {
+      //     const insideClick =
+      //         (event.target.closest(".tech-promo__platform-link") ||
+      //         event.target.matches(".tech-promo__platform-link")) || (event.target.closest(".tech-promo__popovers-item") ||
+      //         event.target.matches(".tech-promo__popovers-item"));
+      //     if (insideClick) return;
+      //     items.forEach(item => item.classList.remove("active"));
+      //     document.body.classList.remove('tech-promo-no-hover');
+      //     console.log("Closing");
+      // }
+      // document.addEventListener("click", outsideClickHandler);
     });
   }
 };
