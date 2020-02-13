@@ -51834,7 +51834,6 @@ module.exports = {
       var closeBtns = Array.prototype.slice.call(element.querySelectorAll(".tech-promo__popovers-close-btn"));
       buttons.forEach(function (button) {
         button.addEventListener("click", function (event) {
-          event.preventDefault();
           if (event.currentTarget.classList.contains('active')) return;
           buttons.forEach(function (btn) {
             return btn.classList.remove('active');

@@ -18,7 +18,7 @@ module.exports = {
 
       buttons.forEach(button => {
         button.addEventListener("click", function(event) {
-          event.preventDefault();
+         
           if (event.currentTarget.classList.contains('active')) return;
           buttons.forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
