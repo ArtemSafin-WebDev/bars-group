@@ -9,7 +9,7 @@
   },
   "scripts": {
     "deploy": "gulp compress && gulp deploy && rm public/html-barsgroup.zip",
-    "build": "export NODE_ENV=production gulp clean && grunt modernizr && gulp build",
+    "build": "cross-env NODE_ENV=production gulp clean && grunt modernizr && gulp build",
     "dev": "gulp clean && grunt modernizr && gulp build && gulp browser"
   },
   "browserslist": [
@@ -24,6 +24,7 @@
     "browser-sync": "^2.14",
     "browserify": "^16.5.0",
     "browserify-shim": "^3.8.14",
+    "cross-env": "^6.0.3",
     "del": "^3.0.0",
     "grunt": "^1.0.2",
     "grunt-assemble": "^0.6.3",
@@ -55,6 +56,7 @@
     "autosize": "^4.0.2",
     "body-scroll-lock": "^2.6.4",
     "bootstrap": "^4.3.1",
+    "bower": "^1.8.8",
     "destyle.css": "^1.0.9",
     "detect-it": "^3.0.5",
     "gsap": "^2.1.3",

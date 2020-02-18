@@ -333,6 +333,8 @@ module.exports = {
         var itemHeight = self._elems.$itemClone.outerHeight();
         var itemOffsetY = parseInt(self._elems.$itemClone.css("margin-bottom"));
         var itemOffsetX = parseInt(self._elems.$itemClone.css("margin-right"));
+        // var itemOffsetX = 80;
+       
 
         // get type dimensions
         var typeWidth = self._elems.$typeClone.width();
