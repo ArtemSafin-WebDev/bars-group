@@ -8,11 +8,21 @@ module.exports = {
         $bgItems: $(),
         $aboutItems: $(),
         $navItems: $(),
-        $navBodies: $()
+        $navBodies: $(),
+        overviewBackgrounds: []
     },
 
     _state: {
         currIndex: 0
+    },
+
+
+    _playVideo: function() {
+        const element = this._elems.overviewBackgrounds[this._state.currIndex];
+
+        const video = element.querySelector('video');
+
+        if (video) video.play();
     },
 
     _handleLinkClick: function(e) {
@@ -87,6 +97,9 @@ module.exports = {
         }
 
         self._state.currIndex = nextIndex;
+
+
+        this._playVideo();
     },
 
     _bindUI: function() {
@@ -106,7 +119,13 @@ module.exports = {
         var $_ = $("#overview");
 
         if ($_.length == 0) return;
+        
+        this._elems.overviewBackgrounds = Array.from(document.querySelector('#overview .overview__bg').children);
 
+        // console.log(this._elems.overviewBackgrounds);
+
+        this._playVideo();
+        
         self._elems.$_ = $_;
         self._elems.$bgItems = self._elems.$_.find(".overview__bg__item");
         self._elems.$aboutItems = self._elems.$_.find(".overview__about__item");

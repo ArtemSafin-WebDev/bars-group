@@ -48150,7 +48150,7 @@ module.exports = {
       return;
     }
 
-    var videos = Array.prototype.slice.call(document.querySelectorAll('video'));
+    var videos = Array.prototype.slice.call(document.querySelectorAll('video:not(.bg-layer__video)'));
     videos.forEach(function (video) {
       video.classList.add('_active');
       objectFitPolyfill(video);
@@ -50761,10 +50761,16 @@ module.exports = {
     $bgItems: $(),
     $aboutItems: $(),
     $navItems: $(),
-    $navBodies: $()
+    $navBodies: $(),
+    overviewBackgrounds: []
   },
   _state: {
     currIndex: 0
+  },
+  _playVideo: function _playVideo() {
+    var element = this._elems.overviewBackgrounds[this._state.currIndex];
+    var video = element.querySelector('video');
+    if (video) video.play();
   },
   _handleLinkClick: function _handleLinkClick(e) {
     var self = e.data.self;
@@ -50834,6 +50840,8 @@ module.exports = {
     }
 
     self._state.currIndex = nextIndex;
+
+    this._playVideo();
   },
   _bindUI: function _bindUI() {
     var self = this;
@@ -50846,6 +50854,10 @@ module.exports = {
     var self = this;
     var $_ = $("#overview");
     if ($_.length == 0) return;
+    this._elems.overviewBackgrounds = Array.from(document.querySelector('#overview .overview__bg').children); // console.log(this._elems.overviewBackgrounds);
+
+    this._playVideo();
+
     self._elems.$_ = $_;
     self._elems.$bgItems = self._elems.$_.find(".overview__bg__item");
     self._elems.$aboutItems = self._elems.$_.find(".overview__about__item");

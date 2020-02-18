@@ -46,9 +46,6 @@ var detectIt = require("detect-it");
 require("./scrollbox");
 
 module.exports = {
-    
-
-    
 
     _handleDOMReady: function() {
         SmoothScrollPolyfill.polyfill();
@@ -109,7 +106,9 @@ module.exports = {
         if (window.matchMedia("(max-width: 800px)").matches) {
             return;
         }
-        var videos = Array.prototype.slice.call(document.querySelectorAll('video'));
+        var videos = Array.prototype.slice.call(document.querySelectorAll('video:not(.bg-layer__video)'));
+
+        
 
         videos.forEach(video => {
             video.classList.add('_active');
