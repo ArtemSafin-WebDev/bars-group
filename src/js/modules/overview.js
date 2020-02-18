@@ -18,7 +18,8 @@ module.exports = {
 
 
     _playVideo: function() {
-        const element = this._elems.overviewBackgrounds[this._state.currIndex];
+        var self = this;
+        const element = self._elems.overviewBackgrounds[self._state.currIndex];
 
         const video = element.querySelector('video');
 
@@ -99,7 +100,7 @@ module.exports = {
         self._state.currIndex = nextIndex;
 
 
-        this._playVideo();
+        self._playVideo();
     },
 
     _bindUI: function() {
@@ -120,11 +121,11 @@ module.exports = {
 
         if ($_.length == 0) return;
         
-        this._elems.overviewBackgrounds = Array.from(document.querySelector('#overview .overview__bg').children);
+        self._elems.overviewBackgrounds = Array.from(document.querySelector('#overview .overview__bg').children);
 
         // console.log(this._elems.overviewBackgrounds);
 
-        this._playVideo();
+        self._playVideo();
         
         self._elems.$_ = $_;
         self._elems.$bgItems = self._elems.$_.find(".overview__bg__item");

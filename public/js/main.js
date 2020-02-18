@@ -199,7 +199,7 @@
 },{}],2:[function(require,module,exports){
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /*!
  * jQuery Form Plugin
@@ -788,7 +788,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 },{"jquery":21}],3:[function(require,module,exports){
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /*
     jQuery Masked Input Plugin
@@ -7812,7 +7812,7 @@ exports.default = detectTouchEvents;
 (function (global){
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /*!
  * VERSION: 2.1.3
@@ -11627,7 +11627,7 @@ if (_gsScope._gsDefine) {
 (function (global){
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /*!
  * VERSION: 1.9.2
@@ -37189,12 +37189,17 @@ module.exports = PerfectScrollbar;
     // Default Settings
     self.options = {
       speed: -2,
+	    verticalSpeed: null,
+	    horizontalSpeed: null,
+      breakpoints: [576, 768, 1201],
       center: false,
       wrapper: null,
       relativeToWrapper: false,
       round: true,
       vertical: true,
       horizontal: false,
+      verticalScrollAxis: "y",
+      horizontalScrollAxis: "x",
       callback: function() {},
     };
 
@@ -37203,6 +37208,29 @@ module.exports = PerfectScrollbar;
       Object.keys(options).forEach(function(key){
         self.options[key] = options[key];
       });
+    }
+
+    function validateCustomBreakpoints () {
+      if (self.options.breakpoints.length === 3 && Array.isArray(self.options.breakpoints)) {
+        var isAscending = true;
+        var isNumerical = true;
+        var lastVal;
+        self.options.breakpoints.forEach(function (i) {
+          if (typeof i !== 'number') isNumerical = false;
+          if (lastVal !== null) {
+            if (i < lastVal) isAscending = false;
+          }
+          lastVal = i;
+        });
+        if (isAscending && isNumerical) return;
+      }
+      // revert defaults if set incorrectly
+      self.options.breakpoints = [576, 768, 1201];
+      console.warn("Rellax: You must pass an array of 3 numbers in ascending order to the breakpoints option. Defaults reverted");
+    }
+
+    if (options && options.breakpoints) {
+      validateCustomBreakpoints();
     }
 
     // By default, rellax class
@@ -37238,6 +37266,17 @@ module.exports = PerfectScrollbar;
       }
     }
 
+    // set a placeholder for the current breakpoint
+    var currentBreakpoint;
+
+    // helper to determine current breakpoint
+    var getCurrentBreakpoint = function (w) {
+      var bp = self.options.breakpoints;
+      if (w < bp[0]) return 'xs';
+      if (w >= bp[0] && w < bp[1]) return 'sm';
+      if (w >= bp[1] && w < bp[2]) return 'md';
+      return 'lg';
+    };
 
     // Get and cache initial position of all elements
     var cacheBlocks = function() {
@@ -37259,6 +37298,8 @@ module.exports = PerfectScrollbar;
 
       screenY = window.innerHeight;
       screenX = window.innerWidth;
+      currentBreakpoint = getCurrentBreakpoint(screenX);
+
       setPosition();
 
       cacheBlocks();
@@ -37280,9 +37321,34 @@ module.exports = PerfectScrollbar;
     var createBlock = function(el) {
       var dataPercentage = el.getAttribute( 'data-rellax-percentage' );
       var dataSpeed = el.getAttribute( 'data-rellax-speed' );
+      var dataXsSpeed = el.getAttribute( 'data-rellax-xs-speed' );
+      var dataMobileSpeed = el.getAttribute( 'data-rellax-mobile-speed' );
+      var dataTabletSpeed = el.getAttribute( 'data-rellax-tablet-speed' );
+      var dataDesktopSpeed = el.getAttribute( 'data-rellax-desktop-speed' );
+      var dataVerticalSpeed = el.getAttribute('data-rellax-vertical-speed');
+      var dataHorizontalSpeed = el.getAttribute('data-rellax-horizontal-speed');
+      var dataVericalScrollAxis = el.getAttribute('data-rellax-vertical-scroll-axis');
+      var dataHorizontalScrollAxis = el.getAttribute('data-rellax-horizontal-scroll-axis');
       var dataZindex = el.getAttribute( 'data-rellax-zindex' ) || 0;
       var dataMin = el.getAttribute( 'data-rellax-min' );
       var dataMax = el.getAttribute( 'data-rellax-max' );
+      var dataMinX = el.getAttribute('data-rellax-min-x');
+      var dataMaxX = el.getAttribute('data-rellax-max-x');
+      var dataMinY = el.getAttribute('data-rellax-min-y');
+      var dataMaxY = el.getAttribute('data-rellax-max-y');
+      var mapBreakpoints;
+      var breakpoints = true;
+
+      if (!dataXsSpeed && !dataMobileSpeed && !dataTabletSpeed && !dataDesktopSpeed) {
+        breakpoints = false;
+      } else {
+        mapBreakpoints = {
+          'xs': dataXsSpeed,
+          'sm': dataMobileSpeed,
+          'md': dataTabletSpeed,
+          'lg': dataDesktopSpeed
+        };
+      }
 
       // initializing at scrollY = 0 (top of browser), scrollX = 0 (left of browser)
       // ensures elements are positioned based on HTML layout.
@@ -37310,9 +37376,15 @@ module.exports = PerfectScrollbar;
       if(self.options.center){ percentageX = 0.5; percentageY = 0.5; }
 
       // Optional individual block speed as data attr, otherwise global speed
-      var speed = dataSpeed ? dataSpeed : self.options.speed;
+      var speed = (breakpoints && mapBreakpoints[currentBreakpoint] !== null) ? Number(mapBreakpoints[currentBreakpoint]) : (dataSpeed ? dataSpeed : self.options.speed);
+      var verticalSpeed = dataVerticalSpeed ? dataVerticalSpeed : self.options.verticalSpeed;
+      var horizontalSpeed = dataHorizontalSpeed ? dataHorizontalSpeed : self.options.horizontalSpeed;
 
-      var bases = updatePosition(percentageX, percentageY, speed);
+      // Optional individual block movement axis direction as data attr, otherwise gobal movement direction
+      var verticalScrollAxis = dataVericalScrollAxis ? dataVericalScrollAxis : self.options.verticalScrollAxis;
+      var horizontalScrollAxis = dataHorizontalScrollAxis ? dataHorizontalScrollAxis : self.options.horizontalScrollAxis;
+
+      var bases = updatePosition(percentageX, percentageY, speed, verticalSpeed, horizontalSpeed);
 
       // ~~Store non-translate3d transforms~~
       // Store inline styles and extract transforms
@@ -37345,11 +37417,19 @@ module.exports = PerfectScrollbar;
         height: blockHeight,
         width: blockWidth,
         speed: speed,
+        verticalSpeed: verticalSpeed,
+        horizontalSpeed: horizontalSpeed,
+        verticalScrollAxis: verticalScrollAxis,
+        horizontalScrollAxis: horizontalScrollAxis,
         style: style,
         transform: transform,
         zindex: dataZindex,
         min: dataMin,
-        max: dataMax
+        max: dataMax,
+        minX: dataMinX,
+        maxX: dataMaxX,
+        minY: dataMinY,
+        maxY: dataMaxY
       };
     };
 
@@ -37386,10 +37466,10 @@ module.exports = PerfectScrollbar;
     // Ahh a pure function, gets new transform value
     // based on scrollPosition and speed
     // Allow for decimal pixel values
-    var updatePosition = function(percentageX, percentageY, speed) {
+    var updatePosition = function(percentageX, percentageY, speed, verticalSpeed, horizontalSpeed) {
       var result = {};
-      var valueX = (speed * (100 * (1 - percentageX)));
-      var valueY = (speed * (100 * (1 - percentageY)));
+      var valueX = ((horizontalSpeed ? horizontalSpeed : speed) * (100 * (1 - percentageX)));
+      var valueY = ((verticalSpeed ? verticalSpeed : speed) * (100 * (1 - percentageY)));
 
       result.x = self.options.round ? Math.round(valueX) : Math.round(valueX * 100) / 100;
       result.y = self.options.round ? Math.round(valueY) : Math.round(valueY * 100) / 100;
@@ -37430,11 +37510,19 @@ module.exports = PerfectScrollbar;
     var animate = function() {
       var positions;
       for (var i = 0; i < self.elems.length; i++){
-        var percentageY = ((posY - blocks[i].top + screenY) / (blocks[i].height + screenY));
-        var percentageX = ((posX - blocks[i].left + screenX) / (blocks[i].width + screenX));
+        // Determine relevant movement directions
+        var verticalScrollAxis = blocks[i].verticalScrollAxis.toLowerCase();
+        var horizontalScrollAxis = blocks[i].horizontalScrollAxis.toLowerCase();
+        var verticalScrollX = verticalScrollAxis.indexOf("x") != -1 ? posY : 0;
+        var verticalScrollY = verticalScrollAxis.indexOf("y") != -1 ? posY : 0;
+        var horizontalScrollX = horizontalScrollAxis.indexOf("x") != -1 ? posX : 0;
+        var horizontalScrollY = horizontalScrollAxis.indexOf("y") != -1 ? posX : 0;
+
+        var percentageY = ((verticalScrollY + horizontalScrollY - blocks[i].top + screenY) / (blocks[i].height + screenY));
+        var percentageX = ((verticalScrollX + horizontalScrollX - blocks[i].left + screenX) / (blocks[i].width + screenX));
 
         // Subtracting initialize value, so element stays in same spot as HTML
-        positions = updatePosition(percentageX, percentageY, blocks[i].speed);// - blocks[i].baseX;
+        positions = updatePosition(percentageX, percentageY, blocks[i].speed, blocks[i].verticalSpeed, blocks[i].horizontalSpeed);
         var positionY = positions.y - blocks[i].baseY;
         var positionX = positions.x - blocks[i].baseX;
 
@@ -37455,6 +37543,14 @@ module.exports = PerfectScrollbar;
           }
         }
 
+        // Check if directional min limits are defined
+        if (blocks[i].minY != null) {
+            positionY = positionY <= blocks[i].minY ? blocks[i].minY : positionY;
+        }
+        if (blocks[i].minX != null) {
+            positionX = positionX <= blocks[i].minX ? blocks[i].minX : positionX;
+        }
+
         // Check if a max limit is defined
         if (blocks[i].max !== null) {
           if (self.options.vertical && !self.options.horizontal) {
@@ -37463,6 +37559,14 @@ module.exports = PerfectScrollbar;
           if (self.options.horizontal && !self.options.vertical) {
             positionX = positionX >= blocks[i].max ? blocks[i].max : positionX;
           }
+        }
+
+        // Check if directional max limits are defined
+        if (blocks[i].maxY != null) {
+            positionY = positionY >= blocks[i].maxY ? blocks[i].maxY : positionY;
+        }
+        if (blocks[i].maxX != null) {
+            positionX = positionX >= blocks[i].maxX ? blocks[i].maxX : positionX;
         }
 
         var zindex = blocks[i].zindex;
@@ -50768,7 +50872,8 @@ module.exports = {
     currIndex: 0
   },
   _playVideo: function _playVideo() {
-    var element = this._elems.overviewBackgrounds[this._state.currIndex];
+    var self = this;
+    var element = self._elems.overviewBackgrounds[self._state.currIndex];
     var video = element.querySelector('video');
     if (video) video.play();
   },
@@ -50841,7 +50946,7 @@ module.exports = {
 
     self._state.currIndex = nextIndex;
 
-    this._playVideo();
+    self._playVideo();
   },
   _bindUI: function _bindUI() {
     var self = this;
@@ -50854,9 +50959,9 @@ module.exports = {
     var self = this;
     var $_ = $("#overview");
     if ($_.length == 0) return;
-    this._elems.overviewBackgrounds = Array.from(document.querySelector('#overview .overview__bg').children); // console.log(this._elems.overviewBackgrounds);
+    self._elems.overviewBackgrounds = Array.from(document.querySelector('#overview .overview__bg').children); // console.log(this._elems.overviewBackgrounds);
 
-    this._playVideo();
+    self._playVideo();
 
     self._elems.$_ = $_;
     self._elems.$bgItems = self._elems.$_.find(".overview__bg__item");
