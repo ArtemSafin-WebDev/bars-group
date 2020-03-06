@@ -50877,6 +50877,10 @@ module.exports = {
     var video = element.querySelector('video');
 
     if (video) {
+      var videos = Array.from(document.querySelectorAll('.overview__bg__item video'));
+      videos.forEach(function (video) {
+        return video.pause();
+      });
       video.play();
       video.classList.add('_active');
     } else {// console.log('Video not found')

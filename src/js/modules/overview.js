@@ -25,7 +25,8 @@ module.exports = {
         const video = element.querySelector('video');
 
         if (video) {
-          
+            const videos = Array.from(document.querySelectorAll('.overview__bg__item video'));
+            videos.forEach(video => video.pause());
             video.play();
             video.classList.add('_active');
         } else {
