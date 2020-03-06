@@ -18,12 +18,20 @@ module.exports = {
 
 
     _playVideo: function() {
+       
         var self = this;
         const element = self._elems.overviewBackgrounds[self._state.currIndex];
-
+      
         const video = element.querySelector('video');
 
-        if (video) video.play();
+        if (video) {
+          
+            video.play();
+            video.classList.add('_active');
+        } else {
+            // console.log('Video not found')
+        }
+        
     },
 
     _handleLinkClick: function(e) {

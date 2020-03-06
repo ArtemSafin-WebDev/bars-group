@@ -108,7 +108,6 @@ module.exports = {
         }
         var videos = Array.prototype.slice.call(document.querySelectorAll('video:not(.bg-layer__video)'));
 
-        
 
         videos.forEach(video => {
             video.classList.add('_active');

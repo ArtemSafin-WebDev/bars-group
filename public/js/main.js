@@ -50875,7 +50875,12 @@ module.exports = {
     var self = this;
     var element = self._elems.overviewBackgrounds[self._state.currIndex];
     var video = element.querySelector('video');
-    if (video) video.play();
+
+    if (video) {
+      video.play();
+      video.classList.add('_active');
+    } else {// console.log('Video not found')
+    }
   },
   _handleLinkClick: function _handleLinkClick(e) {
     var self = e.data.self;
