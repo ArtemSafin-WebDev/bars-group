@@ -51878,7 +51878,7 @@ module.exports = {
   _setActiveVideo: function _setActiveVideo(index) {
     var items = Array.prototype.slice.call(document.querySelectorAll("#tech-promo .bg-layer__item"));
     items.forEach(function (item, itemIndex) {
-      console.log('Item', item);
+      // console.log('Item', item);
       var video = item.querySelector("video");
 
       if (video) {
@@ -51891,8 +51891,7 @@ module.exports = {
           video.classList.remove("_active");
           video.pause();
         }
-      } else {
-        console.log('No video');
+      } else {// console.log('No video');
       }
     }); // var $items = $('#tech-promo .bg-layer__item');
     // $items.filter('._active').removeClass('_active').end().find('video')[0].pause();

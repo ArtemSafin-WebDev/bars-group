@@ -20,7 +20,7 @@ module.exports = {
 
         items.forEach(function(item, itemIndex) {
 
-			console.log('Item', item);
+			// console.log('Item', item);
             const video = item.querySelector("video");
 
             if (video) {
@@ -34,7 +34,7 @@ module.exports = {
 					video.pause();
                 }
             } else {
-				console.log('No video');
+				// console.log('No video');
 			}
         });
 
