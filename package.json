@@ -81,7 +81,7 @@
     "scrollmagic": "^2.0.7",
     "smoothscroll-polyfill": "^0.4.4",
     "sticky-sidebar": "^3.3.1",
-    "swiper": "^4.5.0"
+    "swiper": "^6.5.1"
   },
   "browser": {
     "jQuery-One-Page-Nav": "./bower_components/jQuery-One-Page-Nav/jquery.nav.js",
