@@ -1,0 +1,119 @@
+.mobile-industries {
+    display: none;
+
+    @media screen and (max-width: 600px) {
+        display: block;
+        animation-name: fade-in;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        .search--toggle._active & {
+            display: none;
+        }
+    }
+}
+
+.nav-video,
+.catalog__ctrl-mobile,
+#catalog-tiles {
+    @media screen and (max-width: 600px) {
+        display: none !important;
+    }
+}
+
+.mobile-industries {
+    padding: 0 20px;
+}
+
+.mobile-industries__accordion {
+    border-bottom: 1px solid #e6ebf2;
+    &:last-child {
+        border: none;
+    }
+}
+
+.mobile-industries__accordion-btn {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+
+    svg {
+        flex-shrink: 0;
+        width: 15px;
+        height: 15px;
+        fill: black;
+        transition: transform .3s;
+        margin-left: 15px;
+    }
+
+    .mobile-industries__accordion.active & {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.mobile-industries__accordion-icon-container {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    margin-right: 20px;
+    position: relative;
+}
+
+.mobile-industries__accordion-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mobile-industries__accordion-btn-text {
+    width: 50%;
+    flex-grow: 1;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.mobile-industries__accordion-content {
+    height: 0;
+    overflow: hidden;
+}
+
+.mobile-industries__accordion-content-inner {
+    padding-left: 45px;
+    padding-bottom: 30px;
+}
+
+.mobile-industries__accordion-heading {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 15px;
+}
+
+.mobile-industries__accordion-text {
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .search--toggle {
+        height: auto !important;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        visibility: 0;
+    }
+
+    to {
+        opacity: 1;
+        visibility: inherit;
+    }
+}

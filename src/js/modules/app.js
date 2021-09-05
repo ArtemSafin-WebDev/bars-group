@@ -43,6 +43,7 @@ var TechPopovers = require("./techPromoPopovers");
 var SmoothScrollPolyfill = require("smoothscroll-polyfill");
 var detectIt = require("detect-it");
 var StickyHeader = require("./stickyHeader");
+var MobileIndustries = require('./mobileIndustries');
 
 require("./scrollbox");
 
@@ -96,7 +97,7 @@ module.exports = {
         NavBannerScrolled.init();
         StickyFilter.init();
         StickyHeader.init();
-
+        MobileIndustries.init();
     },
 
     _handleWindowLoad: function() {

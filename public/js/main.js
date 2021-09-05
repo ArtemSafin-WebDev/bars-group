@@ -47559,7 +47559,7 @@ module.exports = {
   }
 };
 
-},{"./utils":76,"jquery":21,"jquery.nicescroll":20,"owl.carousel":25,"rangeslider.js":27}],36:[function(require,module,exports){
+},{"./utils":77,"jquery":21,"jquery.nicescroll":20,"owl.carousel":25,"rangeslider.js":27}],36:[function(require,module,exports){
 "use strict";
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -48160,6 +48160,8 @@ var detectIt = require("detect-it");
 
 var StickyHeader = require("./stickyHeader");
 
+var MobileIndustries = require('./mobileIndustries');
+
 require("./scrollbox");
 
 module.exports = {
@@ -48211,6 +48213,7 @@ module.exports = {
     NavBannerScrolled.init();
     StickyFilter.init();
     StickyHeader.init();
+    MobileIndustries.init();
   },
   _handleWindowLoad: function _handleWindowLoad() {
     TechPromo.init();
@@ -48253,7 +48256,7 @@ module.exports = {
   }
 };
 
-},{"./about":35,"./aboutNew":36,"./advantagesSlider":37,"./arch":39,"./architectureSlider":40,"./catalog":41,"./circleAccordeons":42,"./citiesSlider":43,"./downloadBtn":44,"./form":45,"./ganttSlider":46,"./header":47,"./hover":48,"./lazyload":49,"./navBanner":50,"./navBannerScrolled":51,"./navFilter":52,"./navMobile":53,"./navSticker":54,"./newAdvantagesSlider":55,"./news":56,"./newsPhotoSlider":57,"./newsSlider":58,"./newsToggles":59,"./overview":61,"./popup":62,"./scrollAnimations":63,"./scrollableTable":64,"./scrollbox":65,"./sliderContent":66,"./sliderDigits":67,"./sliderTabs":68,"./stickyFIlter":69,"./stickyHeader":70,"./tAdvantages":71,"./tSliders":72,"./tTasks":73,"./techPromo":74,"./techPromoPopovers":75,"./utils":76,"./wasIntegrated":77,"detect-it":10,"jquery":21,"objectFitPolyfill":24,"smoothscroll-polyfill":31}],39:[function(require,module,exports){
+},{"./about":35,"./aboutNew":36,"./advantagesSlider":37,"./arch":39,"./architectureSlider":40,"./catalog":41,"./circleAccordeons":42,"./citiesSlider":43,"./downloadBtn":44,"./form":45,"./ganttSlider":46,"./header":47,"./hover":48,"./lazyload":49,"./mobileIndustries":50,"./navBanner":51,"./navBannerScrolled":52,"./navFilter":53,"./navMobile":54,"./navSticker":55,"./newAdvantagesSlider":56,"./news":57,"./newsPhotoSlider":58,"./newsSlider":59,"./newsToggles":60,"./overview":62,"./popup":63,"./scrollAnimations":64,"./scrollableTable":65,"./scrollbox":66,"./sliderContent":67,"./sliderDigits":68,"./sliderTabs":69,"./stickyFIlter":70,"./stickyHeader":71,"./tAdvantages":72,"./tSliders":73,"./tTasks":74,"./techPromo":75,"./techPromoPopovers":76,"./utils":77,"./wasIntegrated":78,"detect-it":10,"jquery":21,"objectFitPolyfill":24,"smoothscroll-polyfill":31}],39:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -48907,7 +48910,7 @@ module.exports = {
   }
 };
 
-},{"./notify":60,"jquery":21,"scrollbooster":30,"sticky-sidebar":32}],42:[function(require,module,exports){
+},{"./notify":61,"jquery":21,"scrollbooster":30,"sticky-sidebar":32}],42:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -49239,7 +49242,7 @@ module.exports = {
   }
 };
 
-},{"./utils":76,"TweenLite":16,"gsap/umd/ScrollToPlugin":15,"jquery":21,"rangeslider.js":27,"rellax":28,"scrollbooster":30}],44:[function(require,module,exports){
+},{"./utils":77,"TweenLite":16,"gsap/umd/ScrollToPlugin":15,"jquery":21,"rangeslider.js":27,"rellax":28,"scrollbooster":30}],44:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -49460,7 +49463,7 @@ module.exports = {
   }
 };
 
-},{"./notify":60,"autosize":5,"icheck":17,"jquery":21,"jquery-form":2,"jquery-validation":19,"jquery.maskedinput":3}],46:[function(require,module,exports){
+},{"./notify":61,"autosize":5,"icheck":17,"jquery":21,"jquery-form":2,"jquery-validation":19,"jquery.maskedinput":3}],46:[function(require,module,exports){
 "use strict";
 
 var $ = require("jquery");
@@ -50066,7 +50069,7 @@ module.exports = {
   }
 };
 
-},{"./utils":76,"TweenLite":16,"gsap/umd/CSSPlugin":14,"gsap/umd/ScrollToPlugin":15,"jquery":21,"rangeslider.js":27,"rellax":28,"scrollbooster":30}],47:[function(require,module,exports){
+},{"./utils":77,"TweenLite":16,"gsap/umd/CSSPlugin":14,"gsap/umd/ScrollToPlugin":15,"jquery":21,"rangeslider.js":27,"rellax":28,"scrollbooster":30}],47:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -50200,6 +50203,62 @@ module.exports = {
 },{"jquery":21,"jquery-lazy":18}],50:[function(require,module,exports){
 "use strict";
 
+module.exports = {
+  init: function init() {
+    var SPEED = 0.4;
+
+    var openAccordion = function openAccordion(element) {
+      gsap.to(element, {
+        height: 'auto',
+        duration: SPEED,
+        onComplete: function onComplete() {
+          return ScrollTrigger.refresh();
+        }
+      });
+    };
+
+    var closeAccordion = function closeAccordion(element) {
+      gsap.to(element, {
+        height: 0,
+        duration: SPEED,
+        onComplete: function onComplete() {
+          return ScrollTrigger.refresh();
+        }
+      });
+    };
+
+    var elements = Array.from(document.querySelectorAll('.mobile-industries__accordion'));
+    elements.forEach(function (element) {
+      var btn = element.querySelector('.mobile-industries__accordion-btn');
+      var content = element.querySelector('.mobile-industries__accordion-content');
+      btn.addEventListener('click', function (event) {
+        event.preventDefault();
+        elements.forEach(function (otherElement) {
+          if (otherElement !== element) {
+            if (otherElement.classList.contains('active')) {
+              var _content = otherElement.querySelector('.mobile-industries__accordion-content');
+
+              closeAccordion(_content);
+              otherElement.classList.remove('active');
+            }
+          }
+        });
+
+        if (element.classList.contains('active')) {
+          closeAccordion(content);
+        } else {
+          openAccordion(content);
+        }
+
+        element.classList.toggle('active');
+      });
+    });
+  }
+};
+
+},{}],51:[function(require,module,exports){
+"use strict";
+
 var $ = require('jquery');
 
 require('owl.carousel');
@@ -50294,7 +50353,7 @@ module.exports = {
   }
 };
 
-},{"jquery":21,"owl.carousel":25}],51:[function(require,module,exports){
+},{"jquery":21,"owl.carousel":25}],52:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -50308,7 +50367,7 @@ module.exports = {
   }
 };
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -50350,7 +50409,7 @@ module.exports = {
   }
 };
 
-},{"jquery":21}],53:[function(require,module,exports){
+},{"jquery":21}],54:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -50422,7 +50481,7 @@ module.exports = {
   }
 };
 
-},{"body-scroll-lock":6,"jquery":21}],54:[function(require,module,exports){
+},{"body-scroll-lock":6,"jquery":21}],55:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -50542,7 +50601,7 @@ module.exports = {
   }
 };
 
-},{"jQuery-One-Page-Nav":1,"jquery":21,"midnight.js":22}],55:[function(require,module,exports){
+},{"jQuery-One-Page-Nav":1,"jquery":21,"midnight.js":22}],56:[function(require,module,exports){
 "use strict";
 
 var Swiper = require("swiper");
@@ -50608,7 +50667,7 @@ module.exports = {
   }
 };
 
-},{"swiper":33}],56:[function(require,module,exports){
+},{"swiper":33}],57:[function(require,module,exports){
 "use strict";
 
 var Swiper = require("swiper");
@@ -50632,7 +50691,7 @@ module.exports = {
   }
 };
 
-},{"swiper":33}],57:[function(require,module,exports){
+},{"swiper":33}],58:[function(require,module,exports){
 "use strict";
 
 var Swiper = require("swiper");
@@ -50701,7 +50760,7 @@ module.exports = {
   }
 };
 
-},{"swiper":33}],58:[function(require,module,exports){
+},{"swiper":33}],59:[function(require,module,exports){
 "use strict";
 
 var Swiper = require('swiper');
@@ -50723,7 +50782,7 @@ module.exports = {
   }
 };
 
-},{"swiper":33}],59:[function(require,module,exports){
+},{"swiper":33}],60:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -50796,7 +50855,7 @@ module.exports = {
   }
 };
 
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -50817,7 +50876,7 @@ module.exports = function (title, text) {
   });
 };
 
-},{"jquery":21,"notifyjs-browser":23}],61:[function(require,module,exports){
+},{"jquery":21,"notifyjs-browser":23}],62:[function(require,module,exports){
 "use strict";
 
 var $ = require("jquery");
@@ -50949,7 +51008,7 @@ module.exports = {
   }
 };
 
-},{"./../../../node_modules/bootstrap/js/dist/collapse":7,"./../../../node_modules/bootstrap/js/dist/util":8,"jquery":21}],62:[function(require,module,exports){
+},{"./../../../node_modules/bootstrap/js/dist/collapse":7,"./../../../node_modules/bootstrap/js/dist/util":8,"jquery":21}],63:[function(require,module,exports){
 "use strict";
 
 var $ = require("jquery");
@@ -50988,7 +51047,7 @@ module.exports = {
   }
 };
 
-},{"@fancyapps/fancybox":4,"jquery":21}],63:[function(require,module,exports){
+},{"@fancyapps/fancybox":4,"jquery":21}],64:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -51022,7 +51081,7 @@ module.exports = {
   }
 };
 
-},{}],64:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 "use strict";
 
 var PerfectScrollbar = require("perfect-scrollbar");
@@ -51138,7 +51197,7 @@ module.exports = {
   }
 };
 
-},{"./utils":76,"perfect-scrollbar":26,"scrollbooster":30}],65:[function(require,module,exports){
+},{"./utils":77,"perfect-scrollbar":26,"scrollbooster":30}],66:[function(require,module,exports){
 "use strict";
 
 var scrollbarWidth = require('scrollbarwidth');
@@ -51163,7 +51222,7 @@ window.addEventListener('resize', function () {
   setNegativeOffset();
 });
 
-},{"scrollbarwidth":29}],66:[function(require,module,exports){
+},{"scrollbarwidth":29}],67:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -51207,7 +51266,7 @@ module.exports = {
   }
 };
 
-},{"jquery":21,"owl.carousel":25}],67:[function(require,module,exports){
+},{"jquery":21,"owl.carousel":25}],68:[function(require,module,exports){
 "use strict";
 
 var $ = require("jquery");
@@ -51515,7 +51574,7 @@ module.exports = {
   }
 };
 
-},{"jquery":21}],68:[function(require,module,exports){
+},{"jquery":21}],69:[function(require,module,exports){
 "use strict";
 
 var $ = require("jquery");
@@ -51572,7 +51631,7 @@ module.exports = {
   }
 };
 
-},{"jquery":21}],69:[function(require,module,exports){
+},{"jquery":21}],70:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -51595,13 +51654,13 @@ module.exports = {
   }
 };
 
-},{}],70:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 "use strict";
 
 module.exports = {
   init: function init() {
     console.log('Sticky header enabled');
-    if (!window.matchMedia('(max-width: 568px)').matches) return;
+    if (!window.matchMedia('(max-width: 600px)').matches) return;
     var header = document.querySelector('.header');
 
     if (!header) {
@@ -51621,7 +51680,7 @@ module.exports = {
   }
 };
 
-},{}],71:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -51689,7 +51748,7 @@ module.exports = {
   }
 };
 
-},{"jquery":21}],72:[function(require,module,exports){
+},{"jquery":21}],73:[function(require,module,exports){
 "use strict";
 
 var $ = require("jquery");
@@ -51742,7 +51801,7 @@ module.exports = {
   }
 };
 
-},{"jquery":21,"owl.carousel":25}],73:[function(require,module,exports){
+},{"jquery":21,"owl.carousel":25}],74:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -51848,7 +51907,7 @@ module.exports = {
   }
 };
 
-},{"./utils":76,"jquery":21,"owl.carousel":25}],74:[function(require,module,exports){
+},{"./utils":77,"jquery":21,"owl.carousel":25}],75:[function(require,module,exports){
 "use strict";
 
 var $ = require("jquery");
@@ -51960,7 +52019,7 @@ module.exports = {
   }
 };
 
-},{"./navBanner":50,"./utils":76,"DrawSVGPlugin":78,"TweenLite":16,"jquery":21}],75:[function(require,module,exports){
+},{"./navBanner":51,"./utils":77,"DrawSVGPlugin":79,"TweenLite":16,"jquery":21}],76:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -52028,7 +52087,7 @@ module.exports = {
   }
 };
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -52045,7 +52104,7 @@ module.exports = {
   }
 };
 
-},{}],77:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 "use strict";
 
 var Swiper = require("swiper");
@@ -52067,7 +52126,7 @@ module.exports = {
   }
 };
 
-},{"swiper":33}],78:[function(require,module,exports){
+},{"swiper":33}],79:[function(require,module,exports){
 (function (global){
 "use strict";
 

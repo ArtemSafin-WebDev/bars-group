@@ -3,7 +3,7 @@ module.exports = {
 
         console.log('Sticky header enabled')
 
-        if (!window.matchMedia('(max-width: 568px)').matches) return;
+        if (!window.matchMedia('(max-width: 600px)').matches) return;
 
         const header = document.querySelector('.header');
 
