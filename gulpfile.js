@@ -9,7 +9,7 @@ const buffer = require('vinyl-buffer');
 
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const less = require('gulp-less');
 const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');

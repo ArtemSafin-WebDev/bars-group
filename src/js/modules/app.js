@@ -42,6 +42,7 @@ var StickyFilter = require("./stickyFIlter");
 var TechPopovers = require("./techPromoPopovers");
 var SmoothScrollPolyfill = require("smoothscroll-polyfill");
 var detectIt = require("detect-it");
+var StickyHeader = require("./stickyHeader");
 
 require("./scrollbox");
 
@@ -94,12 +95,15 @@ module.exports = {
         NewAdvantagesSlider.init();
         NavBannerScrolled.init();
         StickyFilter.init();
+        StickyHeader.init();
+
     },
 
     _handleWindowLoad: function() {
         
         TechPromo.init();
         TechPopovers.init();
+        
 
         $("#loader-main").removeClass("_active");
 
