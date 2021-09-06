@@ -6994,6 +6994,11 @@ div.search-popup-el-name, div.search-popup-el-cnt {
 .page__wrapper--gantt .brand-box {
   margin-bottom: 60px;
 }
+@media screen and (max-width: 600px) {
+  .page__wrapper--gantt .brand-box {
+    margin-bottom: 30px;
+  }
+}
 .brand-box--has-label .brand-box__desc {
   margin-top: 17px;
   font-size: 0;
@@ -13333,7 +13338,7 @@ body:not(.is-admin) .new-about__navigation {
 
 .digital-portfolio-preview {
   display: none;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 @media screen and (max-width: 600px) {
   .digital-portfolio-preview {

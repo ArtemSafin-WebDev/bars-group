@@ -9,6 +9,10 @@
 
 	.page__wrapper--gantt & {
 		margin-bottom: 60px;
+
+		@media screen and(max-width: 600px) {
+			margin-bottom: 30px;
+		}
 	}
 
 	&--has-label {
