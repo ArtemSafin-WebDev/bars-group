@@ -4835,6 +4835,11 @@ div.search-popup-el-name, div.search-popup-el-cnt {
       -ms-flex-direction: column;
           flex-direction: column;
 }
+@media screen and (max-width: 600px) {
+  .gantt-slider {
+    display: none;
+  }
+}
 .gantt-slider .page__center {
   width: 100%;
   -webkit-box-ordinal-group: 0;
