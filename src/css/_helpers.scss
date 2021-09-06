@@ -22,3 +22,9 @@
 .is-flipped-x {
 	transform: scaleX(-1);
 }
+
+.hide-on-mobile {
+	@media screen and (max-width: 600px) {
+		display: none !important;
+	}
+}

@@ -1094,6 +1094,12 @@ template {
           transform: scaleX(-1);
 }
 
+@media screen and (max-width: 600px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
 ::-ms-clear {
   display: none;
   width: 0;
@@ -4834,11 +4840,6 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-@media screen and (max-width: 600px) {
-  .gantt-slider {
-    display: none;
-  }
 }
 .gantt-slider .page__center {
   width: 100%;
