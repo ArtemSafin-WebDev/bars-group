@@ -143,6 +143,13 @@
             }
         }
 
+        &--gradient {
+            .gantt-slider__label,
+            .gantt-slider__dash {
+                background: linear-gradient(to right, #a1c70b, #1397e7);
+            }
+        }
+
         &--blue {
             .gantt-slider__label,
             .gantt-slider__dash {
