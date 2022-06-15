@@ -304,15 +304,15 @@
 }
 
 .header__menu-special-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    // display: inline-flex;
+    // align-items: center;
+    // justify-content: center;
     text-align: center;
     border: 10px solid;
     border-image-slice: 1;
     border-width: 2px;
     border-image-source: linear-gradient(to right, #a1c70b, #1397e7);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.2;
     padding: 8px 10px;
     flex-shrink: 0;

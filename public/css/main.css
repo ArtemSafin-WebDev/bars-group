@@ -3351,21 +3351,12 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   }
 }
 .nav-mobile__special-link {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   text-align: center;
   border: 10px solid;
   border-image-slice: 1;
   border-width: 2px;
   border-image-source: linear-gradient(to right, #a1c70b, #1397e7);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.2;
   padding: 8px 10px;
   -ms-flex-negative: 0;
@@ -4309,21 +4300,12 @@ div.search-popup-el-name, div.search-popup-el-cnt {
   }
 }
 .header__menu-special-link {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   text-align: center;
   border: 10px solid;
   border-image-slice: 1;
   border-width: 2px;
   border-image-source: linear-gradient(to right, #a1c70b, #1397e7);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.2;
   padding: 8px 10px;
   -ms-flex-negative: 0;
