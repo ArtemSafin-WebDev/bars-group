@@ -28,7 +28,7 @@
     "del": "^3.0.0",
     "grunt": "^1.0.2",
     "grunt-assemble": "^0.6.3",
-    "grunt-modernizr": "^2.0.1",
+    "grunt-modernizr": "^3.0.3",
     "grunt-responsive-images": "^1.10.1",
     "gulp": "^4.0.0",
     "gulp-clean-css": "^3.9.2",
